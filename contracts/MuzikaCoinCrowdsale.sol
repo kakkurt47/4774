@@ -1,11 +1,11 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.21;
 
 import './MuzikaCoin.sol';
-import 'zeppelin-solidity/contracts/crowdsale/Crowdsale.sol';
+import '../zeppelin-solidity/contracts/crowdsale/Crowdsale.sol';
 
-import "zeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
-import "zeppelin-solidity/contracts/crowdsale/distribution/RefundableCrowdsale.sol";
-import "zeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
+import "../zeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
+import "../zeppelin-solidity/contracts/crowdsale/distribution/RefundableCrowdsale.sol";
+import "../zeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 
 contract MuzikaCoinCrowdsale is CappedCrowdsale, RefundableCrowdsale, MintedCrowdsale {
 

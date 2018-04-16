@@ -1,6 +1,6 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.21;
 
-import '../../zeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
+import '../zeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
 
 contract MuzikaCoin is MintableToken {
   string public name = "MUZIKA COIN";
