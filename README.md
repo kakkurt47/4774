@@ -19,14 +19,16 @@ truffle migrate
 # Create instances of contracts
 > token = MuzikaCoin.at(MuzikaCoin.address)
 > paper = MuzikaPaperContract.at(MuzikaPaperContract.address)
+> eth = web3.eth
 
 # accounts[1] sells a paper
 # This paper is indexed 1
-> paper.sale.sendTransaction('My First Paper', 50000, {from: accounts[1]})
+> paper.sale.sendTransaction('My First Paper', 50000, {from: eth.accounts[1]})
 
 # Set amount of allowance from account[0] to contract
 # txParameter 'from' is automatically set to account[0]
-> token.approve.transaction(eth.accounts[0], paper.address)
+# > token.approve.sendTransaction(paper.address, 1000000, {from: eth.accounts[0]})
+> token.approve.sendTransaction(paper.address, 1000000)
 
 # See allowance
 > token.allowance.call(eth.accounts[0], paper.address)
@@ -39,4 +41,8 @@ truffle migrate
 
 # check if purchased
 > paper.isPurchased.call(eth.accounts[0], 1)
+
+# Check balances
+> token.balanceOf(eth.accounts[0])
+> token.balanceOf(eth.accounts[1])
 ```
