@@ -33,7 +33,7 @@ truffle migrate
 # See allowance
 > token.allowance.call(eth.accounts[0], paper.address)
 
-# accounts[0] alreadt bought paper 1?
+# accounts[0] already bought paper 1?
 > paper.isPurchased.call(eth.accounts[0], 1)
 
 # purhcase paper 1
