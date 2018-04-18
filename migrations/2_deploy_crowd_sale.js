@@ -1,5 +1,5 @@
 const MuzikaCoin = artifacts.require("MuzikaCoin")
 
-module.exports = function(deployer, network, accounts) {
+module.exports = (deployer, network, accounts) => {
   deployer.deploy(MusikaCoin);
 };
