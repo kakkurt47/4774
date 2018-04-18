@@ -11,7 +11,7 @@ truffle migrate
 
 ### Purchase Test
 
-1. Start Ganache client
+1. Start [Ganache](http://truffleframework.com/ganache/) client
 2. Open console with `truffle console`
 3. Follow script to test for sending transactions
 
