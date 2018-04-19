@@ -3,21 +3,24 @@ pragma solidity ^0.4.22;
 import '../token/MuzikaCoin.sol';
 import '../../zeppelin-solidity/contracts/ownership/Heritable.sol';
 
+// @TODO If change contract, disable or destroy this contract after some timeinterval
 contract MuzikaPaperContract is Heritable {
     struct Paper {
         uint id;
         address seller;
         string title;
         uint price;
+        bool forSale;
+        string fileHash;
     }
 
-    mapping (address => mapping (uint => bool)) public purchased;
     mapping (uint => Paper) public registeredPaper;
+    mapping (address => mapping (uint => bool)) internal _purchased;
 
     uint public totalPapers;
     uint public lastPaperID;
 
-    MuzikaCoin _token;
+    MuzikaCoin internal _token;
 
     modifier onlySeller(uint paperID) {
         require(
@@ -33,34 +36,46 @@ contract MuzikaPaperContract is Heritable {
         _token = __token;
     }
 
-    function isPurchased(address user, uint paper) public view returns (bool) {
-        return registeredPaper[paper].seller == user || purchased[user][paper] == true;
+    function isPurchased(address user, uint paperID) public view returns (bool) {
+        return _purchased[user][paperID];
     }
 
-    function sale(string title, uint price) public returns (uint) {
-        require(price > 0, "Price must be bigger than zero");
+    function sell(string title, uint256 price, string fileHash) public returns (uint) {
+        return _sell(msg.sender, title, price, fileHash);
+    }
+
+    function purchase(uint paperID) public returns (bool) {
+        return _purchase(msg.sender, paperID);
+    }
+
+    function _sell(address _seller, string _title, uint256 _price, string _fileHash) internal returns (uint) {
+        require(_price > 0, "Price must be bigger than zero");
 
         ++lastPaperID;
         registeredPaper[lastPaperID] = Paper(
             lastPaperID,
-            msg.sender,
-            title,
-            price
+            _seller,
+            _title,
+            _price,
+            true,
+            _fileHash
         );
+        _purchased[_seller][lastPaperID] = true;
 
         return lastPaperID;
     }
 
-    function purchase(uint paperID) public {
+    function _purchase(address _buyer, uint _paperID) internal returns (bool) {
         require(
-            registeredPaper[paperID].id != 0,
+            registeredPaper[_paperID].forSale,
             "This paper is not for sale"
         );
+        require(!_purchased[_buyer][_paperID], "Already bought");
 
-        Paper memory paper = registeredPaper[paperID];
+        Paper memory paper = registeredPaper[_paperID];
+        _purchased[msg.sender][_paperID] = true;
+        _token.transferForContract(msg.sender, paper.seller, paper.price);
 
-        purchased[msg.sender][paperID] = true;
-
-        _token.transferFrom(msg.sender, paper.seller, paper.price);
+        return true;
     }
 }
