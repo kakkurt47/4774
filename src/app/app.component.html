@@ -10,8 +10,11 @@
     </thead>
     <tbody>
     <tr *ngFor="let account of accounts">
-      <td> </td>
+      <td> {{account.address}} </td>
+      <td> {{account.balance}} ETH </td>
     </tr>
     </tbody>
   </table>
+
+  <button class="btn btn-primary"> 버튼 </button>
 </div>
