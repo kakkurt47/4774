@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.22;
 
 import '../token/MuzikaCoin.sol';
 import '../../zeppelin-solidity/contracts/ownership/Heritable.sol';
@@ -21,13 +21,13 @@ contract MuzikaPaperContract is Heritable {
 
     modifier onlySeller(uint paperID) {
         require(
-            msg.sender == registeredPaper[paperID].seller
-            // "Only seller can call this."
+            msg.sender == registeredPaper[paperID].seller,
+            "Only seller can call this."
         );
         _;
     }
 
-    function MuzikaPaperContract(MuzikaCoin __token, uint _heartbeatTimeout) Heritable(_heartbeatTimeout) public {
+    constructor(MuzikaCoin __token, uint _heartbeatTimeout) Heritable(_heartbeatTimeout) public {
         totalPapers = 0;
         lastPaperID = 0;
         _token = __token;
@@ -38,7 +38,7 @@ contract MuzikaPaperContract is Heritable {
     }
 
     function sale(string title, uint price) public returns (uint) {
-        require(price > 0/*, "Price must be bigger than zero"*/);
+        require(price > 0, "Price must be bigger than zero");
 
         ++lastPaperID;
         registeredPaper[lastPaperID] = Paper(
@@ -53,8 +53,8 @@ contract MuzikaPaperContract is Heritable {
 
     function purchase(uint paperID) public {
         require(
-            registeredPaper[paperID].id != 0
-            // "This paper is not for sale"
+            registeredPaper[paperID].id != 0,
+            "This paper is not for sale"
         );
 
         Paper memory paper = registeredPaper[paperID];

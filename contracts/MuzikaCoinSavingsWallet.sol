@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.22;
 
 import "../zeppelin-solidity/contracts/ownership/Heritable.sol";
 
@@ -8,7 +8,7 @@ contract MuzikaCoinSavingsWallet is Heritable {
     event Received(address indexed payer, uint256 amount, uint256 balance);
 
 
-    function MuzikaCoinSavingsWallet(uint256 _heartbeatTimeout) Heritable(_heartbeatTimeout) public {}
+    constructor(uint256 _heartbeatTimeout) Heritable(_heartbeatTimeout) public {}
 
     /**
      * @dev wallet can receive funds.
