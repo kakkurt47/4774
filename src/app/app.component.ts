@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {canBeNumber} from '../util/validation';
+import {Web3} from 'web3';
 
-const Web3 = require('web3');
 const contract = require('truffle-contract');
-const metaincoinArtifacts = require('../../build/contracts/MetaCoin.json');
+const metaincoinArtifacts = require('../../build/contracts/Muzikacoin.json');
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   MetaCoin = contract(metaincoinArtifacts);
