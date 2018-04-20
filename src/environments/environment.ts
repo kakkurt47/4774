@@ -1,5 +1,3 @@
-import * as TruffleConfig from '../../truffle.js';
-
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
@@ -8,8 +6,8 @@ import * as TruffleConfig from '../../truffle.js';
 export const environment = {
   production: false,
   rpc: {
-    host: TruffleConfig.networks.development.host,
-    port: TruffleConfig.networks.development.port
+    host: '127.0.0.1',
+    port: 8545
   }
 };
 

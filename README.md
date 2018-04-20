@@ -23,7 +23,7 @@ truffle migrate
 
 # accounts[1] sells a paper
 # This paper is indexed 1
-> paper.sale.sendTransaction('My First Paper', 50000, {from: eth.accounts[1]})
+> paper.sell.sendTransaction('My First Paper', 50000, '0ab0fa02fb4a968b1a9fba0fba5f1b1f8' {from: eth.accounts[1]})
 
 # Set amount of allowance from account[0] to contract
 # txParameter 'from' is automatically set to account[0]

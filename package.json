@@ -23,9 +23,11 @@
     "@angular/router": "^6.0.0-rc.5",
     "bootstrap": "^4.1.0",
     "core-js": "^2.5.4",
+    "ngx-bootstrap": "^2.0.4",
     "rxjs": "^6.0.0-uncanny-rc.7",
     "rxjs-compat": "^6.0.0-uncanny-rc.7",
     "truffle-contract": "^3.0.5",
+    "truffle-hdwallet-provider": "0.0.3",
     "web3": "^0.20.6",
     "zone.js": "^0.8.24"
   },

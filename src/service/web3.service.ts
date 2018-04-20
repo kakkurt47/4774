@@ -9,9 +9,11 @@ declare let window: any;
 @Injectable()
 export class Web3Service {
   MuzikaCoin: any;
+  MuzikaPaperContract: any;
 
   constructor() {
     this.MuzikaCoin = contract(require('../../build/contracts/MuzikaCoin.json'));
+    this.MuzikaPaperContract = contract(require('../../build/contracts/MuzikaPaperContract.json'));
   }
 
   ready(): Observable<any> {
@@ -30,6 +32,8 @@ export class Web3Service {
         web3 = new Web3(new Web3.providers.HttpProvider(`http://${environment.rpc.host}:${environment.rpc.port}`));
       }
 
+      this.MuzikaCoin.setProvider(web3.currentProvider);
+      this.MuzikaPaperContract.setProvider(web3.currentProvider);
       observer.next(web3);
       observer.complete();
     });
