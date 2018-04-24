@@ -1,4 +1,4 @@
-image: git-registry.mapianist.co.kr/blockchain/truffle-lab
+image: git-registry.mapianist.co.kr/blockchain/truffle-lab/ganache-cli
 
 cache:
   untracked: true
@@ -20,6 +20,6 @@ build:
   before_script:
     - npm install
   script:
-    - npm run test
+    - npm run test:contract
   tags:
     - frontend
