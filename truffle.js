@@ -2,6 +2,9 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 const accessToken = 'nCLC9iatDyYYhUaFCPkZ ';
 const mnemonic = 'guard rack very inmate draft buddy flame shed picnic genuine oyster view';
 
+require('babel-register');
+require('babel-polyfill');
+
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
