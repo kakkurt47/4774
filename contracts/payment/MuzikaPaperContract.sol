@@ -1,4 +1,4 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.4.23;
 
 import '../token/MuzikaCoin.sol';
 import '../../zeppelin-solidity/contracts/ownership/Heritable.sol';
@@ -74,7 +74,7 @@ contract MuzikaPaperContract is Heritable {
 
         Paper memory paper = registeredPaper[_paperID];
         _purchased[msg.sender][_paperID] = true;
-        _token.transferForContract(msg.sender, paper.seller, paper.price);
+        _token.transferFrom(msg.sender, paper.seller, paper.price);
 
         return true;
     }

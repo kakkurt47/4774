@@ -1,5 +1,5 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const accessToken = 'WKzAZehMnX4JU4mHjLHY ';
+const accessToken = 'nCLC9iatDyYYhUaFCPkZ ';
 const mnemonic = 'guard rack very inmate draft buddy flame shed picnic genuine oyster view';
 
 module.exports = {

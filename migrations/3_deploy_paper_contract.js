@@ -7,8 +7,6 @@ module.exports = (deployer) => {
 	}).then((muzikaCoinIns) => {
 		// Heartbeat Timeout: 7 days
 		const heartbeatTimeout = 7 * 24 * 3600;
-		return deployer.deploy(MuzikaPaperContract, MuzikaCoin.address, heartbeatTimeout).then(() => {
-			return muzikaCoinIns.addAddressToWhitelist(MuzikaPaperContract.address);
-		});
+		return deployer.deploy(MuzikaPaperContract, MuzikaCoin.address, heartbeatTimeout);
 	});
 };

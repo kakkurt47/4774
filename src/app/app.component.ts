@@ -97,12 +97,24 @@ export class AppComponent extends BaseComponent {
   }
 
   buyPaper(paperID: number) {
-    this.web3Service.MuzikaPaperContract.deployed().then(ins => {
+    Promise.all([
+      this.web3Service.MuzikaCoin.deployed(),
+      this.web3Service.MuzikaPaperContract.deployed()
+    ]).then(([coinIns, paperIns]) => {
+      return paperIns.registeredPaper.call(paperID);
+    }).then(paper => {
+      const price = paper[3];
+      const ins = this.web3Service.MuzikaCoin.at(this.web3Service.MuzikaCoin.address);
+      console.log(ins, price);
+      return ins.approve(this.web3Service.MuzikaPaperContract.address, price.toNumber(), {from: this.selectedAddress});
+    }).then(() => {
+      const ins = this.web3Service.MuzikaPaperContract.at(this.web3Service.MuzikaPaperContract.address);
       return ins.purchase(paperID, {from: this.selectedAddress, gas: 6000000});
     }).then(() => {
       this.loadAccounts();
       alert('악보 구매에 성공함');
-    }).catch(() => {
+    }).catch(err => {
+      console.log('악보 구매 실패', err);
       alert('악보 구매 실패');
     });
   }
