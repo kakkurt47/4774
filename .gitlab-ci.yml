@@ -1,4 +1,4 @@
-image: git-registry.mapianist.co.kr/blockchain/truffle-lab/ganache-cli
+image: node:8
 
 cache:
   untracked: true
@@ -10,14 +10,16 @@ cache:
 # Test - Run tests
 # Deploy - Deploy application to S3/ElasticBeanstalk
 stages:
-  - build
+  - test
 
 # Job: Build
 # Installs npm packages, transpiles ES6 -> ES5
 # Passes node_modules/, dist/ onto next steps using artifacts
-build:
-  stage: build
+test:contract:
+  stage: test
   before_script:
+    - npm install -g ganache-cli
+    - nohup ganache-cli &
     - npm install
   script:
     - npm run test:contract
