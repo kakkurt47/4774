@@ -1,0 +1,25 @@
+image: git-registry.mapianist.co.kr/blockchain/truffle-lab
+
+cache:
+  untracked: true
+  key: "$CI_BUILD_REF_NAME"
+  paths:
+    - node_modules/
+
+# Build - Build necessary JS files
+# Test - Run tests
+# Deploy - Deploy application to S3/ElasticBeanstalk
+stages:
+  - build
+
+# Job: Build
+# Installs npm packages, transpiles ES6 -> ES5
+# Passes node_modules/, dist/ onto next steps using artifacts
+build:
+  stage: build
+  before_script:
+    - npm install
+  script:
+    - npm run test
+  tags:
+    - frontend
