@@ -52,6 +52,7 @@ test:contract:
     - ssh-keyscan github.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
 
+    - git submodule init
     - git submodule update
   script:
     - npm run test:contract
