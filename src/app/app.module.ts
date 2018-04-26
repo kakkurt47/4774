@@ -6,17 +6,23 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {ContractProviders} from '../contracts';
 
 import { AppComponent } from './app.component';
+import {AppRouteModule} from './app.routes';
+import {TestPageComponent} from './page/test/test.component';
+import {WalletPageComponent} from './page/wallet/wallet.component';
 import {Web3Provider} from './web3.provider';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestPageComponent,
+    WalletPageComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRouteModule,
     ModalModule.forRoot()
   ],
   providers: [
