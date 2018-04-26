@@ -72,6 +72,25 @@
         </tr>
         </tbody>
       </table>
+      <form #form="ngForm" (ngSubmit)="transferCoin(form)">
+        <div class="form-group row">
+          <label class="col-2 col-form-label"> To </label>
+          <div class="col-10">
+            <input class="form-control" ngModel name="to" id="transferTo" required value="Hello Paper">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label"> Amount </label>
+          <div class="col-10">
+            <input type="number" class="form-control" ngModel name="amount" id="transfer-amount" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-2 col-10">
+            <button type="submit" class="btn btn-success"> 전송 </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

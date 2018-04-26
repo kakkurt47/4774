@@ -1,13 +1,15 @@
-import {ChangeDetectorRef, Component, NgZone, TemplateRef} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, NgZone, TemplateRef} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {fromArray} from 'rxjs/internal/observable/fromArray';
 import {mergeMap} from 'rxjs/operators';
 import {Observable} from 'rxjs/Rx';
-import {Web3Service} from '../service/web3.service';
+import {MuzikaCoin, MuzikaPaperContract} from '../contracts';
+import {IMuzikaCoin} from '../contracts/interface/MuzikaCoin';
+import {IMuzikaPaperContract} from '../contracts/interface/MuzikaPaperContract';
+import {TruffleContract} from '../contracts/typechain-runtime';
 import {BaseComponent} from '../shared/base.component';
-
-declare var Web3;
+import {WEB3} from './web3.provider';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,6 @@ declare var Web3;
 })
 export class AppComponent extends BaseComponent {
   accounts: any[] = [];
-  web3: any;
   modalRef: BsModalRef;
   selectedAddress: string;
   papers: any[] = [];
@@ -25,7 +26,9 @@ export class AppComponent extends BaseComponent {
   price: number = 40000;
   hash: string = '0ab0f0abfd0ab0fd0bd1f5d';
 
-  constructor(private web3Service: Web3Service,
+  constructor(@Inject(WEB3) private web3: any,
+              @Inject(MuzikaCoin) private muzikaCoin: TruffleContract<IMuzikaCoin>,
+              @Inject(MuzikaPaperContract) private muzikaPaper: TruffleContract<IMuzikaPaperContract>,
               private cd: ChangeDetectorRef,
               private modalService: BsModalService) {
     super();
@@ -37,41 +40,38 @@ export class AppComponent extends BaseComponent {
   }
 
   loadAccounts() {
-    this.web3Service.ready().subscribe(web3 => {
-      this.web3 = web3;
-      console.log(web3);
-      this.accounts = [];
-      fromArray(web3.eth.accounts).pipe(
-        mergeMap(acc => {
-          return new Observable<any>(observer => {
-            web3.eth.getBalance(acc, (err, balance) => {
-              if (err) {
-                return;
-              }
+    console.log(this.web3);
+    this.accounts = [];
+    fromArray(this.web3.eth.accounts).pipe(
+      mergeMap((acc: string) => {
+        return new Observable<any>(observer => {
+          this.web3.eth.getBalance(acc, (err, balance) => {
+            if (err) {
+              return;
+            }
 
-              this.web3Service.MuzikaCoin.deployed().then(ins => {
-                return ins.balanceOf(acc);
-              }).then(tokenBalance => {
-                observer.next({address: acc, balance: web3.fromWei(balance).toString(), token: tokenBalance.toNumber() / 1e+18});
-                observer.complete();
-              });
-            })
-          });
-        })
-      ).subscribe(
-        account => {
-          this.accounts = [...this.accounts, account];
-        },
-        err => {
+            this.muzikaCoin.deployed().then(ins => {
+              return ins.balanceOf(acc);
+            }).then(tokenBalance => {
+              observer.next({address: acc, balance: this.web3.fromWei(balance).toString(), token: tokenBalance.toNumber() / 1e+18});
+              observer.complete();
+            });
+          })
+        });
+      })
+    ).subscribe(
+      account => {
+        this.accounts = [...this.accounts, account];
+      },
+      err => {
 
-        },
-        () => {
-          console.log(this.accounts);
-          this.selectedAddress = this.accounts[0].address;
-          this.cd.detectChanges();
-        }
-      );
-    });
+      },
+      () => {
+        console.log(this.accounts);
+        this.selectedAddress = this.accounts[0].address;
+        this.cd.detectChanges();
+      }
+    );
   }
 
   openModal(templateRef: TemplateRef<any>) {
@@ -85,7 +85,7 @@ export class AppComponent extends BaseComponent {
     } else {
       let address = this.selectedAddress;
 
-      this.web3Service.MuzikaPaperContract.deployed().then(ins => {
+      this.muzikaPaper.deployed().then(ins => {
         console.log(ins);
         return ins.sell(form.value.title, form.value.price * 1e+18, form.value.hash, {from: address, gas: 6000000});
       }).then(() => {
@@ -96,36 +96,34 @@ export class AppComponent extends BaseComponent {
     }
   }
 
-  buyPaper(paperID: number) {
-    Promise.all([
-      this.web3Service.MuzikaCoin.deployed(),
-      this.web3Service.MuzikaPaperContract.deployed()
-    ]).then(([coinIns, paperIns]) => {
-      return paperIns.registeredPaper.call(paperID);
-    }).then(paper => {
+  async buyPaper(paperID: number) {
+    try {
+      const coinIns = await this.muzikaCoin.deployed();
+      const paperIns = await this.muzikaPaper.deployed();
+
+      const paper = await paperIns.registeredPaper(paperID);
       const price = paper[3];
-      const ins = this.web3Service.MuzikaCoin.at(this.web3Service.MuzikaCoin.address);
-      console.log(ins, price);
-      return ins.approve(this.web3Service.MuzikaPaperContract.address, price.toNumber(), {from: this.selectedAddress});
-    }).then(() => {
-      const ins = this.web3Service.MuzikaPaperContract.at(this.web3Service.MuzikaPaperContract.address);
-      return ins.purchase(paperID, {from: this.selectedAddress, gas: 6000000});
-    }).then(() => {
+
+      console.log(coinIns, price);
+      await coinIns.approve(paperIns.address, price, {from: this.selectedAddress});
+      console.log('approved');
+      await paperIns.purchase(paperID, {from: this.selectedAddress});
+
       this.loadAccounts();
       alert('악보 구매에 성공함');
-    }).catch(err => {
+    } catch(err) {
       console.log('악보 구매 실패', err);
       alert('악보 구매 실패');
-    });
+    }
   }
 
   loadPapers() {
     this.papers = [];
-    this.web3Service.MuzikaPaperContract.deployed().then(ins => {
-      return ins.lastPaperID.call();
+    this.muzikaPaper.deployed().then(ins => {
+      return ins.lastPaperID();
     }).then(lastPaperID => {
       console.log(lastPaperID);
-      let ins = this.web3Service.MuzikaPaperContract.at(this.web3Service.MuzikaPaperContract.address);
+      let ins = this.muzikaPaper.at(this.muzikaPaper.address);
 
       let promises = [];
       for(let i = 1; i <= lastPaperID.toNumber(); i++) {
@@ -143,5 +141,16 @@ export class AppComponent extends BaseComponent {
 
       return Promise.all(promises);
     });
+  }
+
+  async transferCoin(form: NgForm) {
+    console.log(form);
+    if (form.valid) {
+      const coinIns = await this.muzikaCoin.deployed();
+
+      console.log(form.value.to);
+      await coinIns.transfer(form.value.to, form.value.amount * (10 ** 18), {from: this.selectedAddress});
+      this.loadAccounts();
+    }
   }
 }

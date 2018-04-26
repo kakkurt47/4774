@@ -3,9 +3,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {Web3Service} from '../service/web3.service';
+import {ContractProviders} from '../contracts';
 
 import { AppComponent } from './app.component';
+import {Web3Provider} from './web3.provider';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,10 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [Web3Service],
+  providers: [
+    Web3Provider,
+    ...ContractProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
