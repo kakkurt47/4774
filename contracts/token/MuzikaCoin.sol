@@ -3,10 +3,11 @@ pragma solidity ^0.4.23;
 import '../../zeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
 import '../../zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol';
 
+
 // @TODO Support Freeze account
 contract MuzikaCoin is MintableToken, BurnableToken {
-  string public name = "MUZIKA COIN";
-  string public symbol = "MZK";
+  string public name = 'MUZIKA COIN';
+  string public symbol = 'MZK';
   uint8 public decimals = 18;
 
   /**

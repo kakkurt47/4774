@@ -1,6 +1,7 @@
 pragma solidity ^0.4.23;
 
-import "../zeppelin-solidity/contracts/ownership/Heritable.sol";
+import '../zeppelin-solidity/contracts/ownership/Heritable.sol';
+
 
 contract MuzikaCoinSavingsWallet is Heritable {
 

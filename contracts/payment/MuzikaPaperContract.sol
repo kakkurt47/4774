@@ -3,6 +3,7 @@ pragma solidity ^0.4.23;
 import '../token/MuzikaCoin.sol';
 import '../../zeppelin-solidity/contracts/ownership/Heritable.sol';
 
+
 // @TODO If change contract, disable or destroy this contract after some timeinterval
 contract MuzikaPaperContract is Heritable {
   struct Paper {
@@ -25,12 +26,13 @@ contract MuzikaPaperContract is Heritable {
   modifier onlySeller(uint paperID) {
     require(
       msg.sender == registeredPaper[paperID].seller,
-      "Only seller can call this."
+      'Only seller can call this.'
     );
     _;
   }
 
-  constructor(MuzikaCoin __token, uint _heartbeatTimeout) Heritable(_heartbeatTimeout) public {
+  constructor(MuzikaCoin __token, uint _heartbeatTimeout)
+    Heritable(_heartbeatTimeout) public {
     totalPapers = 0;
     lastPaperID = 0;
     _token = __token;
@@ -40,7 +42,8 @@ contract MuzikaPaperContract is Heritable {
     return _purchased[user][paperID];
   }
 
-  function sell(string title, uint256 price, string fileHash) public returns (uint) {
+  function sell(string title, uint256 price, string fileHash)
+    public returns (uint) {
     return _sell(msg.sender, title, price, fileHash);
   }
 
@@ -48,8 +51,13 @@ contract MuzikaPaperContract is Heritable {
     return _purchase(msg.sender, paperID);
   }
 
-  function _sell(address _seller, string _title, uint256 _price, string _fileHash) internal returns (uint) {
-    require(_price > 0, "Price must be bigger than zero");
+  function _sell(
+    address _seller,
+    string _title,
+    uint256 _price,
+    string _fileHash
+  ) internal returns (uint) {
+    require(_price > 0, 'Price must be bigger than zero');
 
     ++lastPaperID;
     registeredPaper[lastPaperID] = Paper(
@@ -68,9 +76,9 @@ contract MuzikaPaperContract is Heritable {
   function _purchase(address _buyer, uint _paperID) internal returns (bool) {
     require(
       registeredPaper[_paperID].forSale,
-      "This paper is not for sale"
+      'This paper is not for sale'
     );
-    require(!_purchased[_buyer][_paperID], "Already bought");
+    require(!_purchased[_buyer][_paperID], 'Already bought');
 
     Paper memory paper = registeredPaper[_paperID];
     _purchased[msg.sender][_paperID] = true;
