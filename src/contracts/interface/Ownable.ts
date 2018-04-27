@@ -30,6 +30,5 @@ export interface IOwnable extends TruffleContractInstance {
   };
 }
 
-export const TruffleOwnable: TruffleContract<IOwnable> = contract(
-  BuiltContract
-);
+export const TruffleOwnable: () => TruffleContract<IOwnable> = () =>
+  contract(BuiltContract);

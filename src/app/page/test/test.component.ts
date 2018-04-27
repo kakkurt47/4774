@@ -89,7 +89,9 @@ export class TestPageComponent extends BaseComponent {
 
         console.log(paperIns);
 
-        await paperIns.sell(form.value.title, form.value.price * 1e18, form.value.hash, {from: address});
+        const gas = await paperIns.sell.estimateGas(form.value.title, form.value.price * 1e18, form.value.hash);
+        console.log('sell paper gas: ' , gas);
+        await paperIns.sell(form.value.title, form.value.price * 1e18, form.value.hash, {from: address, gas: gas});
 
         this.loadPapers();
       } catch(err) {

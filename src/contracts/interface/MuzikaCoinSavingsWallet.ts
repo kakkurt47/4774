@@ -88,6 +88,6 @@ export interface IMuzikaCoinSavingsWallet extends TruffleContractInstance {
   };
 }
 
-export const TruffleMuzikaCoinSavingsWallet: TruffleContract<
+export const TruffleMuzikaCoinSavingsWallet: () => TruffleContract<
   IMuzikaCoinSavingsWallet
-> = contract(BuiltContract);
+> = () => contract(BuiltContract);

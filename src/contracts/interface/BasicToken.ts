@@ -38,6 +38,5 @@ export interface IBasicToken extends TruffleContractInstance {
   };
 }
 
-export const TruffleBasicToken: TruffleContract<IBasicToken> = contract(
-  BuiltContract
-);
+export const TruffleBasicToken: () => TruffleContract<IBasicToken> = () =>
+  contract(BuiltContract);

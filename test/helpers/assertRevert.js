@@ -1,4 +1,4 @@
-export default async promise => {
+export default async (promise, msg) => {
   try {
     await promise;
   } catch (error) {
@@ -8,5 +8,5 @@ export default async promise => {
     return;
   }
 
-  assert(false, 'Expected revert not received');
+  assert(false, msg || 'Expected revert not received');
 };

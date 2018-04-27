@@ -48,6 +48,5 @@ export interface IBurnableToken extends TruffleContractInstance {
   };
 }
 
-export const TruffleBurnableToken: TruffleContract<IBurnableToken> = contract(
-  BuiltContract
-);
+export const TruffleBurnableToken: () => TruffleContract<IBurnableToken> = () =>
+  contract(BuiltContract);

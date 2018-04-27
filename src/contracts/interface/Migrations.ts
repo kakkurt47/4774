@@ -41,6 +41,5 @@ export interface IMigrations extends TruffleContractInstance {
   };
 }
 
-export const TruffleMigrations: TruffleContract<IMigrations> = contract(
-  BuiltContract
-);
+export const TruffleMigrations: () => TruffleContract<IMigrations> = () =>
+  contract(BuiltContract);

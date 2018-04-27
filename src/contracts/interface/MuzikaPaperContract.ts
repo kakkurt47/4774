@@ -117,6 +117,6 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
   };
 }
 
-export const TruffleMuzikaPaperContract: TruffleContract<
+export const TruffleMuzikaPaperContract: () => TruffleContract<
   IMuzikaPaperContract
-> = contract(BuiltContract);
+> = () => contract(BuiltContract);

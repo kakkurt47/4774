@@ -38,6 +38,5 @@ export interface IERC20Basic extends TruffleContractInstance {
   };
 }
 
-export const TruffleERC20Basic: TruffleContract<IERC20Basic> = contract(
-  BuiltContract
-);
+export const TruffleERC20Basic: () => TruffleContract<IERC20Basic> = () =>
+  contract(BuiltContract);

@@ -71,6 +71,5 @@ export interface IHeritable extends TruffleContractInstance {
   };
 }
 
-export const TruffleHeritable: TruffleContract<IHeritable> = contract(
-  BuiltContract
-);
+export const TruffleHeritable: () => TruffleContract<IHeritable> = () =>
+  contract(BuiltContract);

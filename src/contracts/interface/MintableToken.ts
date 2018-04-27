@@ -177,6 +177,5 @@ export interface IMintableToken extends TruffleContractInstance {
   };
 }
 
-export const TruffleMintableToken: TruffleContract<IMintableToken> = contract(
-  BuiltContract
-);
+export const TruffleMintableToken: () => TruffleContract<IMintableToken> = () =>
+  contract(BuiltContract);

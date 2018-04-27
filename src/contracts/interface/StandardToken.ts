@@ -141,6 +141,5 @@ export interface IStandardToken extends TruffleContractInstance {
   };
 }
 
-export const TruffleStandardToken: TruffleContract<IStandardToken> = contract(
-  BuiltContract
-);
+export const TruffleStandardToken: () => TruffleContract<IStandardToken> = () =>
+  contract(BuiltContract);

@@ -10,6 +10,7 @@ import {AppRouteModule} from './app.routes';
 import {TestPageComponent} from './page/test/test.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
 import {Web3Provider} from './web3.provider';
+import {Buffer} from 'safe-buffer';
 
 declare const window;
 
@@ -36,8 +37,8 @@ declare const window;
 export class AppModule {
   constructor(@Inject(PLATFORM_ID) private platformId: string) {
     if (isPlatformBrowser(this.platformId)) {
+      (window as any).Buffer = Buffer;
       (window as any).global = window;
-      (window as any).Buffer = require('safe-buffer').Buffer;
     }
   }
 }
