@@ -11,7 +11,7 @@ export abstract class EvmType {
 
 export class BooleanType extends EvmType {
   generateCodeForOutput() {
-    return "boolean";
+    return 'boolean';
   }
 }
 
@@ -21,11 +21,11 @@ export class IntegerType extends EvmType {
   }
 
   generateCodeForInput(): string {
-    return "EtherInteger";
+    return 'EtherInteger';
   }
 
   generateCodeForOutput(): string {
-    return "BigNumber";
+    return 'BigNumber';
   }
 }
 
@@ -35,23 +35,23 @@ export class UnsignedIntegerType extends EvmType {
   }
 
   generateCodeForInput(): string {
-    return "EtherInteger";
+    return 'EtherInteger';
   }
 
   generateCodeForOutput(): string {
-    return "BigNumber";
+    return 'BigNumber';
   }
 }
 
 export class VoidType extends EvmType {
   generateCodeForOutput(): string {
-    return "void";
+    return 'void';
   }
 }
 
 export class StringType extends EvmType {
   generateCodeForOutput(): string {
-    return "string";
+    return 'string';
   }
   generateCodeForInputConversion(paramName: string): string {
     return paramName;
@@ -64,17 +64,17 @@ export class BytesType extends EvmType {
   }
 
   generateCodeForOutput(): string {
-    return "BigNumber";
+    return 'BigNumber';
   }
 }
 
 export class AddressType extends EvmType {
   generateCodeForOutput(): string {
-    return "string";
+    return 'string';
   }
 
   generateCodeForInput(): string {
-    return "EtherAddress";
+    return 'EtherAddress';
   }
 }
 
@@ -84,18 +84,18 @@ export class ArrayType extends EvmType {
   }
 
   generateCodeForOutput(): string {
-    return this.itemType.generateCodeForOutput() + "[]";
+    return this.itemType.generateCodeForOutput() + '[]';
   }
 
   generateCodeForInput(): string {
-    return this.itemType instanceof BytesType ? "string" : this.generateCodeForOutput();
+    return this.itemType instanceof BytesType ? 'string' : this.generateCodeForOutput();
   }
 
   generateCodeForInputConversion(paramName: string): string {
     if (this.itemType instanceof BytesType) {
       return paramName;
     } else {
-      return `${paramName}.map(val => ${this.itemType.generateCodeForInputConversion("val")})`;
+      return `${paramName}.map(val => ${this.itemType.generateCodeForInputConversion('val')})`;
     }
   }
 }
@@ -107,15 +107,15 @@ const isBytesTypeRegex = /^bytes([0-9]+)$/;
 export function parseEvmType(rawType: string): EvmType {
   const lastChar = rawType[rawType.length - 1];
 
-  if (lastChar === "]") {
+  if (lastChar === ']') {
     // we parse array type
     let finishArrayTypeIndex = rawType.length - 2;
-    while (rawType[finishArrayTypeIndex] !== "[") {
+    while (rawType[finishArrayTypeIndex] !== '[') {
       finishArrayTypeIndex--;
     }
 
     const arraySizeRaw = rawType.slice(finishArrayTypeIndex + 1, rawType.length - 1);
-    const arraySize = arraySizeRaw !== "" ? parseInt(arraySizeRaw) : undefined;
+    const arraySize = arraySizeRaw !== '' ? parseInt(arraySizeRaw) : undefined;
 
     const restOfTheType = rawType.slice(0, finishArrayTypeIndex);
 
@@ -126,32 +126,32 @@ export function parseEvmType(rawType: string): EvmType {
 
   //first deal with simple types
   switch (rawType) {
-    case "bool":
+    case 'bool':
       return new BooleanType();
-    case "address":
+    case 'address':
       return new AddressType();
-    case "string":
+    case 'string':
       return new StringType();
-    case "byte":
+    case 'byte':
       return new BytesType(1);
-    case "bytes":
+    case 'bytes':
       return new ArrayType(new BytesType(1));
   }
 
   if (isUIntTypeRegex.test(rawType)) {
     const match = isUIntTypeRegex.exec(rawType);
-    return new UnsignedIntegerType(parseInt(match![1] || "256"));
+    return new UnsignedIntegerType(parseInt(match![1] || '256'));
   }
 
   if (isIntTypeRegex.test(rawType)) {
     const match = isIntTypeRegex.exec(rawType);
-    return new IntegerType(parseInt(match![1] || "256"));
+    return new IntegerType(parseInt(match![1] || '256'));
   }
 
   if (isBytesTypeRegex.test(rawType)) {
     const match = isBytesTypeRegex.exec(rawType);
-    return new BytesType(parseInt(match![1] || "1"));
+    return new BytesType(parseInt(match![1] || '1'));
   }
 
-  throw new Error("Unknown type: " + rawType);
+  throw new Error('Unknown type: ' + rawType);
 }

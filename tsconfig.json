@@ -15,14 +15,7 @@
     "lib": [
       "es2017",
       "dom"
-    ],
-    "paths": {
-      "muzika-coin": [
-        "./src/contracts/index.ts",
-        "./src/contracts/interface/MuzikaCoin.ts",
-        "./src/contracts/typechain-runtime.ts"
-      ]
-    }
+    ]
   },
   "exclude": [
     "truffle.js",

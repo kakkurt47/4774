@@ -116,28 +116,6 @@
         }
       }
     },
-    "truffle-lab-e2e": {
-      "root": "projects/wallet/e2e/",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/wallet/e2e/protractor.conf.js",
-            "devServerTarget": "truffle-lab:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/wallet/e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "marketplace": {
       "root": "",
       "projectType": "application",
@@ -150,7 +128,7 @@
             "index": "projects/marketplace/src/index.html",
             "main": "projects/marketplace/src/main.ts",
             "polyfills": "projects/marketplace/src/polyfills.ts",
-            "tsConfig": "projects/marketplace/src/tsconfig.app.json",
+            "tsConfig": "projects/marketplace/tsconfig.app.json",
             "assets": [
               {
                 "glob": "favicon.ico",

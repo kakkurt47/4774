@@ -1,24 +1,23 @@
-#!/usr/bin/env node
-import { readFileSync, writeFileSync } from "fs";
-import chalk from "chalk";
-import { join, dirname, parse, relative } from "path";
-import { pathExistsSync } from "fs-extra";
-import * as glob from "glob";
-import * as prettier from "prettier";
+import chalk from 'chalk';
+import {readFileSync, writeFileSync} from 'fs';
+import {pathExistsSync} from 'fs-extra';
+import * as glob from 'glob';
+import {join, dirname, parse, relative} from 'path';
+import * as prettier from 'prettier';
+import {extractAbi} from './abiParser';
+import {copyRuntime} from './copyRuntime';
 
-import { generateSource } from "./generateSource";
-import { parseArgs } from "./parseArgs";
-import { copyRuntime } from "./copyRuntime";
-import { extractAbi } from "./abiParser";
+import {generateSource} from './generateSource';
+import {parseArgs} from './parseArgs';
 import {getVersion} from './utils';
 
-const { blue, red, green, yellow } = chalk;
+const {blue, red, green, yellow} = chalk;
 const cwd = process.cwd();
 
 async function main() {
   const options = parseArgs();
 
-  const matches = glob.sync(options.glob, { ignore: "node_modules/**", absolute: true });
+  const matches = glob.sync(options.glob, {ignore: 'node_modules/**', absolute: true});
 
   if (matches.length === 0) {
     // tslint:disable-next-line
@@ -39,7 +38,7 @@ async function main() {
   console.log("Generating typings...");
 
   // copy runtime in directory of first typing (@todo it should be customizable)
-  const runtimeFilename = "typechain-runtime.ts";
+  const runtimeFilename = 'typechain-runtime.ts';
   const runtimePath = join(options.outDir || dirname(matches[0]), runtimeFilename);
   const indexPath = join(options.outDir || dirname(matches[0]), 'index.ts');
   copyRuntime(runtimePath);
@@ -47,14 +46,14 @@ async function main() {
   console.log(blue(`${runtimeFilename} => ${runtimePath}`));
 
   // generate wrappers
-  let importString = [];
-  let contractNames = [];
+  const importString = [];
+  const contractNames = [];
   matches.forEach(p => {
-    let contractName = processFile(
+    const contractName = processFile(
       p,
       options.force,
       runtimePath,
-      {...(prettierConfig || {}), parser: "typescript", singleQuote: true},
+      {...(prettierConfig || {}), parser: 'typescript', singleQuote: true},
       options.outDir,
     );
 
@@ -84,7 +83,7 @@ let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
       contract.setProvider(web3.currentProvider);
       return contract;
     }
-    
+
     // @TODO is that works?
     return null;
   };
@@ -100,19 +99,17 @@ ${contractNames.map(name => `  { provide: ${name}, useFactory: ProviderFactory(T
   writeFileSync(indexPath, indexFileContent);
 }
 
-function processFile(
-  absPath: string,
-  forceOverwrite: boolean,
-  runtimeAbsPath: string,
-  prettierConfig: prettier.Options,
-  fixedOutputDir?: string,
-): string {
+function processFile(absPath: string,
+                     forceOverwrite: boolean,
+                     runtimeAbsPath: string,
+                     prettierConfig: prettier.Options,
+                     fixedOutputDir?: string): string {
   const relativeInputPath = relative(cwd, absPath);
   const parsedInputPath = parse(absPath);
   const filenameWithoutAnyExtensions = getFilenameWithoutAnyExtensions(parsedInputPath.name);
   const outputDir = fixedOutputDir || parsedInputPath.dir;
   const outputDirInterface = join(outputDir, 'interface');
-  const outputPath = join(outputDirInterface, filenameWithoutAnyExtensions + ".ts");
+  const outputPath = join(outputDirInterface, filenameWithoutAnyExtensions + '.ts');
   const relativeOutputPath = relative(cwd, outputPath);
 
   const runtimeRelativePath = getRelativeModulePath(outputDirInterface, runtimeAbsPath);
@@ -144,12 +141,13 @@ function processFile(
 }
 
 function getFilenameWithoutAnyExtensions(filePath: string): string {
-  const endPosition = filePath.indexOf(".");
+  const endPosition = filePath.indexOf('.');
   return filePath.slice(0, endPosition !== -1 ? endPosition : filePath.length);
 }
 
 function getRelativeModulePath(from: string, to: string): string {
-  return relative(from, to).replace(".ts", "").replace(/\\/g, '/'); // @note: this is probably not the best way to find relative path for modules
+  // @note: this is probably not the best way to find relative path for modules
+  return relative(from, to).replace('.ts', '').replace(/\\/g, '/');
 }
 
 function getRelativePathOfABI(outDir: string, abiPath: string): string {
