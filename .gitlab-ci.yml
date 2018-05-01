@@ -1,5 +1,10 @@
 image: git-registry.mapianist.co.kr/common/docker-hub/blockchain
 
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+    - node_modules/
+
 # Build - Build necessary JS files
 # Test - Run tests
 # Deploy - Deploy application to S3/ElasticBeanstalk
