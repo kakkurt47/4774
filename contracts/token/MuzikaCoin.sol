@@ -11,8 +11,6 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
   string public symbol = 'MZK';
   uint8 public decimals = 18;
 
-  uint256 public frozenSupply;
-
   event FreezeAddress(address indexed target);
   event UnfreezeAddress(address indexed target);
 
@@ -33,20 +31,15 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
   constructor(uint256 initialSupply) public {
     totalSupply_ = initialSupply;
     balances[msg.sender] = initialSupply;
-    frozenSupply = 0;
     emit Transfer(0x0, msg.sender, initialSupply);
   }
 
   /**
    * @dev Freeze account(address)
    *
-   * @dev Be careful not to occur overflow in frozenSupply. If it was happened,
-   * @dev addresses of anomalies will not be frozen.
-   *
    * @param _target The address to freeze
    */
   function freezeAddress(address _target) public onlyOwner onlyNotFrozenAddress(_target) {
-    frozenSupply = frozenSupply.add(balances[_target]);
     frozenAddress[_target] = true;
 
     emit FreezeAddress(_target);
@@ -58,7 +51,6 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
    * @param _target The address to unfreeze
    */
   function unfreezeAddress(address _target) public onlyOwner onlyFrozenAddress(_target) {
-    frozenSupply = frozenSupply.sub(balances[_target]);
     delete frozenAddress[_target];
 
     emit UnfreezeAddress(_target);
