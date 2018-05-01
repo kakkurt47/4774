@@ -71,8 +71,8 @@ contract('MuzikaCoin', ([_, owner, recipient, anotherAccount, thirdAccount]) => 
 
     await assertRevert(token.transfer(owner, 50, {from: recipient}));
 
-    const frozenSupply = await token.frozenSupply();
-    frozenSupply.should.be.bignumber.equal(100);
+    const balance = await token.balanceOf(recipient);
+    balance.should.be.bignumber.equal(100);
   });
 
   it('allows to transfer from address to another address', async () => {

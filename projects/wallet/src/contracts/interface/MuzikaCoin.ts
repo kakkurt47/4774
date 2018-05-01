@@ -23,7 +23,6 @@ export interface IMuzikaCoin extends TruffleContractInstance {
   paused(): Promise<boolean>;
   owner(): Promise<string>;
   symbol(): Promise<string>;
-  frozenSupply(): Promise<BigNumber>;
   balanceOf(_owner: EtherAddress): Promise<BigNumber>;
   frozenAddress(arg0: EtherAddress): Promise<boolean>;
   allowance(_owner: EtherAddress, _spender: EtherAddress): Promise<BigNumber>;
