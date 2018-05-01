@@ -75,6 +75,8 @@ import { TruffleContract } from './typechain-runtime';
 
 ${importString.join('\n')}
 
+${contractNames.map(name => `export { I${name}, Truffle${name} } from './interface/${name}'`).join(';\n')}
+
 let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
   return (web3: any, platformId: string) => {
     if (isPlatformBrowser(platformId)) {
