@@ -1,6 +1,6 @@
-import * as commandLineArgs from "command-line-args";
+import * as commandLineArgs from 'command-line-args';
 
-const DEFAULT_GLOB_PATTERN = "**/*.abi";
+const DEFAULT_GLOB_PATTERN = '**/*.abi';
 
 export interface IOptions {
   glob: string;
@@ -10,9 +10,9 @@ export interface IOptions {
 
 export function parseArgs(): IOptions {
   const optionDefinitions = [
-    { name: "force", alias: "f", type: Boolean },
-    { name: "glob", type: String, defaultOption: true },
-    { name: "outDir", type: String },
+    { name: 'force', alias: 'f', type: Boolean },
+    { name: 'glob', type: String, defaultOption: true },
+    { name: 'outDir', type: String },
   ];
 
   const rawOptions = commandLineArgs(optionDefinitions);

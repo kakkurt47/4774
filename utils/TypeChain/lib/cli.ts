@@ -13,7 +13,6 @@ import {getVersion} from './utils';
 
 const {blue, red, green, yellow} = chalk;
 const cwd = process.cwd();
-
 async function main() {
   const options = parseArgs();
 
