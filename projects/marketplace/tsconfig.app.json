@@ -1,10 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
+    "outDir": "../../out-tsc/app",
     "module": "es2015",
     "types": ["node"],
-    "typeRoots": [ "../node_modules/@types" ],
+    "typeRoots": [ "../../node_modules/@types" ],
     "paths": {
       "muzika-coin": [
         "../wallet/src/contracts/index.ts",

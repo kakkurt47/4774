@@ -1,4 +1,4 @@
-image: node:8
+image: git-registry.mapianist.co.kr/common/docker-hub/blockchain
 
 cache:
   untracked: true
@@ -18,7 +18,6 @@ stages:
 test:contract:
   stage: test
   before_script:
-    - npm install -g ganache-cli truffle
     - nohup ganache-cli &
     - npm install
 

@@ -57,7 +57,7 @@ export class TestPageComponent extends BaseComponent {
               });
               observer.complete();
             });
-          })
+          });
         });
       })
     ).subscribe(
