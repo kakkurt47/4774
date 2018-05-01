@@ -18,7 +18,7 @@ stages:
 test:contract:
   stage: test
   before_script:
-    - npm install -g ganache-cli
+    - npm install -g ganache-cli truffle
     - nohup ganache-cli &
     - npm install
 
