@@ -1,22 +1,47 @@
 pragma solidity ^0.4.23;
 
 import '../../zeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
-import '../../zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol';
 import '../../zeppelin-solidity/contracts/lifecycle/Pausable.sol';
-import '../../zeppelin-solidity/contracts/ECRecovery.sol';
 
 
-contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
+contract MuzikaCoin is MintableToken, Pausable {
   string public name = 'MUZIKA COIN';
   string public symbol = 'MZK';
   uint8 public decimals = 18;
 
+  bytes8 constant internal MODE_TRANSFER = "Transfer";
+  bytes8 constant internal MODE_APPROVAL = "Approval";
+  bytes8 constant internal MODE_INC_APPROVAL = "IncApprv";
+  bytes8 constant internal MODE_DEC_APPROVAL = "DecApprv";
+
+  event Burn(address indexed burner, uint256 value);
+
   event FreezeAddress(address indexed target);
   event UnfreezeAddress(address indexed target);
 
+  /* Need?
+  event TransferPreSigned(
+    address indexed from,
+    address indexed to,
+    address indexed delegate,
+    uint256 value,
+    uint256 fee
+  );
+  event ApprovalPreSigned(
+    address indexed owner,
+    address indexed spender,
+    address indexed delegate,
+    uint256 value,
+    uint256 fee
+  );
+  */
+
   mapping (address => bool) public frozenAddress;
 
-  mapping (address => uint256) internal _nonce;
+  mapping (bytes => bool) _signatures;
+
+  mapping (uint8 => bytes) internal _prefixPreSignedFirst;
+  mapping (uint8 => bytes) internal _prefixPreSignedSecond;
 
   modifier onlyNotFrozenAddress(address _target) {
     require(!frozenAddress[_target], 'The address is frozen');
@@ -32,6 +57,14 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
     totalSupply_ = initialSupply;
     balances[msg.sender] = initialSupply;
     emit Transfer(0x0, msg.sender, initialSupply);
+  }
+
+  function upgradePrefixPreSignedFirst(uint8 _version, bytes _prefix) public onlyOwner {
+    _prefixPreSignedFirst[_version] = _prefix;
+  }
+
+  function upgradePrefixPreSignedSecond(uint8 _version, bytes _prefix) public onlyOwner {
+    _prefixPreSignedSecond[_version] = _prefix;
   }
 
   /**
@@ -56,8 +89,23 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
     emit UnfreezeAddress(_target);
   }
 
-  function burn(uint256 _amount) public onlyOwner {
-    super.burn(_amount);
+  /**
+   * @dev Burns a specific amount of tokens.
+   * @param _value The amount of token to be burned.
+   */
+  function burn(uint256 _value) public onlyOwner {
+    _burn(msg.sender, _value);
+  }
+
+  function _burn(address _who, uint256 _value) internal {
+    require(_value <= balances[_who], 'Not enough amount to be burned');
+    // no need to require value <= totalSupply, since that would imply the
+    // sender's balance is greater than the totalSupply, which *should* be an assertion failure
+
+    balances[_who] = balances[_who].sub(_value);
+    totalSupply_ = totalSupply_.sub(_value);
+    emit Burn(_who, _value);
+    emit Transfer(_who, address(0), _value);
   }
 
   function transfer(
@@ -122,20 +170,17 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
     return super.decreaseApproval(_spender, _subtractedValue);
   }
 
-  function getNonce(address _target) public view returns (uint256) {
-    return _nonce[_target];
-  }
-
   /**
    * @dev Be careful to use delegateTransfer. If attacker whose balance is less than sum of fee and amount
    * @dev requests constantly transferring using delegateTransfer/delegateApprove to someone,
    * @dev he or she may lose all ether to process these requests.
    */
-  function delegateTransfer(
-    address _from,
+  function transferPreSigned(
     address _to,
     uint256 _value,
     uint256 _fee,
+    uint256 _nonce,
+    uint8 _version,
     bytes _sig
   )
     public
@@ -144,23 +189,24 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
     whenNotPaused
     returns (bool)
   {
-    uint256 _burden = _value.add(_fee);
-
     require(_to != address(0), 'Cannot transfer to zero-address');
-    require(_burden <= balances[_from], 'Not enough amount to be transferred');
+    require(_signatures[_sig] == false, 'Already done');
 
-    uint256 nonce = _nonce[_from];
-    bytes32 message = keccak256(
-      'Transfer',
-      _from,
+    bytes32 hash = preSignedHashing(
+      MODE_TRANSFER,
+      address(this),
       _to,
       _value,
       _fee,
-      nonce
+      _nonce,
+      _version
     );
-    bytes32 hash = ECRecovery.toEthSignedMessageHash(message);
 
-    require(ECRecovery.recover(hash, _sig) == _from, 'Authorization failed');
+    address _from = recover(hash, _sig);
+    require(_from != address(0), 'Authorization failed');
+
+    uint256 _burden = _value.add(_fee);
+    require(_burden <= balances[_from], 'Not enough amount to be transferred');
 
     balances[_from] = balances[_from].sub(_burden);
 
@@ -170,16 +216,17 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
     balances[msg.sender] = balances[msg.sender].add(_fee);
     emit Transfer(_from, msg.sender, _fee);
 
-    _nonce[_from] = _nonce[_from].add(1);
+    _signatures[_sig] = true;
 
     return true;
   }
 
-  function delegateApprove(
-    address _from,
-    address _spender,
+  function approvePreSigned(
+    address _to,
     uint256 _value,
     uint256 _fee,
+    uint256 _nonce,
+    uint8 _version,
     bytes _sig
   )
     public
@@ -188,193 +235,246 @@ contract MuzikaCoin is MintableToken, BurnableToken, Pausable {
     whenNotPaused
     returns (bool)
   {
-    require(_fee <= balances[_from], 'Not enough amount to be transferred');
+    require(_signatures[_sig] == false, 'Already done');
 
-    uint256 nonce = _nonce[_from];
-    bytes32 message = keccak256(
-      'Approve',
-      _from,
-      _spender,
+    bytes32 hash = preSignedHashing(
+      MODE_APPROVAL,
+      address(this),
+      _to,
       _value,
       _fee,
-      nonce
+      _nonce,
+      _version
     );
-    bytes32 hash = ECRecovery.toEthSignedMessageHash(message);
 
-    require(ECRecovery.recover(hash, _sig) == _from, 'Authorization failed');
+    address _from = recover(hash, _sig);
+    require(_from != address(0), 'Authorization failed');
 
-    allowed[_from][_spender] = _value;
-    emit Approval(_from, _spender, _value);
+    require(_fee <= balances[_from], 'Not enough amount to be transferred');
+
+    allowed[_from][_to] = _value;
+    emit Approval(_from, _to, _value);
 
     balances[_from] = balances[_from].sub(_fee);
     balances[msg.sender] = balances[msg.sender].add(_fee);
     emit Transfer(_from, msg.sender, _fee);
 
-    _nonce[_from] = _nonce[_from].add(1);
+    _signatures[_sig] = true;
 
     return true;
   }
 
-  /**
-   * @dev Addition to ERC20 token methods. It allows to
-   * @dev approve the transfer of value and execute a call with the sent data.
-   *
-   * @dev Beware that changing an allowance with this method brings the risk that
-   * @dev someone may use both the old and the new allowance by unfortunate
-   * @dev transaction ordering. One possible solution to mitigate this race condition
-   * @dev is to first reduce the spender's allowance to 0 and set the desired value
-   * @dev afterwards:
-   * @dev https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-   *
-   * @param _spender The address that will spend the funds.
-   * @param _value The amount of tokens to be spent.
-   * @param _data ABI-encoded contract call to call `_to` address.
-   *
-   * @return true if the call function was executed successfully
-   */
-  function approveAndCall(address _spender, uint256 _value, bytes _data) public returns (bool) {
-    require(_spender != address(this));
-
-    approve(_spender, _value);
-
-    // solium-disable-next-line security/no-call-value
-    require(_spender.call(_data));
-
-    return true;
-  }
-
-  /**
-   * @dev Addition to ERC20 token methods. Transfer tokens to a specified
-   * @dev address and execute a call with the sent data on the same transaction
-   *
-   * @param _to address The address which you want to transfer to
-   * @param _value uint256 the amout of tokens to be transfered
-   * @param _data ABI-encoded contract call to call `_to` address.
-   *
-   * @return true if the call function was executed successfully
-   */
-  function transferAndCall(address _to, uint256 _value, bytes _data) public returns (bool) {
-    require(_to != address(this));
-
-    transfer(_to, _value);
-
-    // solium-disable-next-line security/no-call-value
-    require(_to.call(_data));
-    return true;
-  }
-
-  /**
-   * @dev Addition to ERC20 token methods. Transfer tokens from one address to
-   * @dev another and make a contract call on the same transaction
-   *
-   * @param _from The address which you want to send tokens from
-   * @param _to The address which you want to transfer to
-   * @param _value The amout of tokens to be transferred
-   * @param _data ABI-encoded contract call to call `_to` address.
-   *
-   * @return true if the call function was executed successfully
-   */
-  function transferFromAndCall(
-    address _from,
-    address _to,
-    uint256 _value,
-    bytes _data
-  )
-    public returns (bool)
-  {
-    require(_to != address(this));
-
-    transferFrom(_from, _to, _value);
-
-    // solium-disable-next-line security/no-call-value
-    require(_to.call(_data));
-    return true;
-  }
-
-  /**
-   * @dev Addition to StandardToken methods. Increase the amount of tokens that
-   * @dev an owner allowed to a spender and execute a call with the sent data.
-   *
-   * @dev approve should be called when allowed[_spender] == 0. To increment
-   * @dev allowed value is better to use this function to avoid 2 calls (and wait until
-   * @dev the first transaction is mined)
-   * @dev From MonolithDAO Token.sol
-   *
-   * @param _spender The address which will spend the funds.
-   * @param _addedValue The amount of tokens to increase the allowance by.
-   * @param _data ABI-encoded contract call to call `_spender` address.
-   */
-  function increaseApprovalAndCall(address _spender, uint _addedValue, bytes _data) public returns (bool) {
-    require(_spender != address(this));
-
-    increaseApproval(_spender, _addedValue);
-
-    // solium-disable-next-line security/no-call-value
-    require(_spender.call(_data));
-
-    return true;
-  }
-
-  /**
-   * @dev Addition to StandardToken methods. Decrease the amount of tokens that
-   * @dev an owner allowed to a spender and execute a call with the sent data.
-   *
-   * @dev approve should be called when allowed[_spender] == 0. To decrement
-   * @dev allowed value is better to use this function to avoid 2 calls (and wait until
-   * @dev the first transaction is mined)
-   * @dev From MonolithDAO Token.sol
-   *
-   * @param _spender The address which will spend the funds.
-   * @param _subtractedValue The amount of tokens to decrease the allowance by.
-   * @param _data ABI-encoded contract call to call `_spender` address.
-   */
-  function decreaseApprovalAndCall(address _spender, uint _subtractedValue, bytes _data) public returns (bool) {
-    require(_spender != address(this));
-
-    decreaseApproval(_spender, _subtractedValue);
-
-    // solium-disable-next-line security/no-call-value
-    require(_spender.call(_data));
-
-    return true;
-  }
-
-  function delegateTransferAndCall(
-    address _from,
+  function increaseApprovalPreSigned(
     address _to,
     uint256 _value,
     uint256 _fee,
-    bytes _sig,
-    bytes _data
+    uint256 _nonce,
+    uint8 _version,
+    bytes _sig
   )
-    public returns (bool)
+    public
+    onlyNotFrozenAddress(_from)
+    onlyNotFrozenAddress(msg.sender)
+    whenNotPaused
+    returns (bool)
   {
-    require(_to != address(this));
+    require(_signatures[_sig] == false, 'Already done');
 
-    delegateTransfer(_from, _to, _value, _fee, _sig);
+    bytes32 hash = preSignedHashing(
+      MODE_INC_APPROVAL,
+      address(this),
+      _to,
+      _value,
+      _fee,
+      _nonce,
+      _version
+    );
 
-    // solium-disable-next-line security/no-call-value
-    require(_to.call(_data));
+    address _from = recover(hash, _sig);
+    require(_from != address(0), 'Authorization failed');
+
+    require(_fee <= balances[_from], 'Not enough amount to be transferred');
+
+    allowed[_from][_to] = allowed[_from][_to].add(_value);
+    emit Approval(_from, _to, allowed[_from][_to]);
+
+    balances[_from] = balances[_from].sub(_fee);
+    balances[msg.sender] = balances[msg.sender].add(_fee);
+    emit Transfer(_from, msg.sender, _fee);
+
+    _signatures[_sig] = true;
+
     return true;
   }
 
-  function delegateApproveAndCall(
-    address _from,
-    address _spender,
+  function decreaseApprovalPreSigned(
+    address _to,
     uint256 _value,
     uint256 _fee,
-    bytes _sig,
-    bytes _data
+    uint256 _nonce,
+    uint8 _version,
+    bytes _sig
   )
-    public returns (bool)
+    public
+    onlyNotFrozenAddress(_from)
+    onlyNotFrozenAddress(msg.sender)
+    whenNotPaused
+    returns (bool)
   {
-    require(_spender != address(this));
+    require(_signatures[_sig] == false, 'Already done');
 
-    delegateApprove(_from, _spender, _value, _fee, _sig);
+    bytes32 hash = preSignedHashing(
+      MODE_DEC_APPROVAL,
+      address(this),
+      _to,
+      _value,
+      _fee,
+      _nonce,
+      _version
+    );
 
-    // solium-disable-next-line security/no-call-value
-    require(_spender.call(_data));
+    address _from = recover(hash, _sig);
+    require(_from != address(0), 'Authorization failed');
+
+    require(_fee <= balances[_from], 'Not enough amount to be transferred');
+
+    uint256 oldValue = allowed[_from][_to];
+    if (_value > oldValue) {
+      oldValue = 0;
+    } else {
+      oldValue = oldValue.sub(_value);
+    }
+    allowed[_from][_to] = oldValue;
+    emit Approval(_from, _to, oldValue);
+
+    balances[_from] = balances[_from].sub(_fee);
+    balances[msg.sender] = balances[msg.sender].add(_fee);
+    emit Transfer(_from, msg.sender, _fee);
+
+    _signatures[_sig] = true;
 
     return true;
+  }
+
+  /**
+   * @dev Recover signer address from a message by using their signature
+   * @param hash bytes32 message, the hash is the signed message. What is recovered is the signer address.
+   * @param sig bytes signature, the signature is generated using web3.eth.sign()
+   */
+  function recover(bytes32 hash, bytes sig) internal pure returns (address) {
+    bytes32 r;
+    bytes32 s;
+    uint8 v;
+
+    // Check the signature length
+    if (sig.length != 65) {
+      return (address(0));
+    }
+
+    // Divide the signature in r, s and v variables
+    // ecrecover takes the signature parameters, and the only way to get them
+    // currently is to use assembly.
+    // solium-disable-next-line security/no-inline-assembly
+    assembly {
+      r := mload(add(sig, 32))
+      s := mload(add(sig, 64))
+      v := byte(0, mload(add(sig, 96)))
+    }
+
+    // Version of signature should be 27 or 28, but 0 and 1 are also possible versions
+    if (v < 27) {
+      v += 27;
+    }
+
+    // If the version is correct return the signer address
+    if (v != 27 && v != 28) {
+      return (address(0));
+    } else {
+      // solium-disable-next-line arg-overflow
+      return ecrecover(hash, v, r, s);
+    }
+  }
+
+  function messagePreSignedHashing(
+    bytes8 _mode,
+    address _token,
+    address _to,
+    uint256 _value,
+    uint256 _fee,
+    uint256 _nonce,
+    uint8 _version
+  )
+    public view returns (bytes32 hash)
+  {
+    if (_version <= 2) {
+      hash = keccak256(
+        _mode,
+        _token,
+        _to,
+        _value,
+        _fee,
+        _nonce
+      );
+    } else {
+      // Support SignTypedData flexibly
+      hash = keccak256(
+        _prefixPreSignedFirst[_version],
+        _mode,
+        _token,
+        _to,
+        _value,
+        _fee,
+        _nonce
+      );
+    }
+  }
+
+  function preSignedHashing(
+    bytes8 _mode,
+    address _token,
+    address _to,
+    uint256 _value,
+    uint256 _fee,
+    uint256 _nonce,
+    uint8 _version
+  )
+    public view returns (bytes32)
+  {
+    bytes32 hash = messagePreSignedHashing(
+      _mode,
+      _token,
+      _to,
+      _value,
+      _fee,
+      _nonce,
+      _version
+    );
+
+    if (_version <= 2) {
+      if (_version == 0) {
+        return hash;
+      } else if (_version == 1) {
+        return keccak256(
+          "\x19Ethereum Signed Message:\n32",
+          hash
+        );
+      } else {
+        // Support Standard Prefix (Trezor)
+        return keccak256(
+          "\x19Ethereum Signed Message:\n\x20",
+          hash
+        );
+      }
+    } else {
+      // Support SignTypedData flexibly
+      if (_prefixPreSignedSecond[_version].length > 0) {
+        return keccak256(
+          _prefixPreSignedSecond[_version],
+          hash
+        );
+      } else {
+        return hash;
+      }
+    }
   }
 }
