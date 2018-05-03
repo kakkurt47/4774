@@ -17,7 +17,6 @@ stages:
 test:contract:
   stage: test
   before_script:
-    - nohup ganache-cli &
     - npm install
 
     ##
@@ -52,9 +51,10 @@ test:contract:
 
     - git submodule init
     - git submodule update
+    - cd muzika-contract/
+    - git submodule init
+    - git submodule update
   script:
     - npm run contract:compile
-    - npm run lint
-    - npm run test:contract
   tags:
     - frontend
