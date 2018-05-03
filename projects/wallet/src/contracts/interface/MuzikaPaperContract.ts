@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/MuzikaPaperContract.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaPaperContract.json';
 
 export interface IMuzikaPaperContract extends TruffleContractInstance {
   lastPaperID(): Promise<BigNumber>;

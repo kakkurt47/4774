@@ -11,9 +11,8 @@
     "lint": "solium -d contracts/",
     "e2e": "ng e2e --project truffle-lab",
     "test:angular": "ng test --project truffle-lab",
-    "test:contract": "truffle test",
-    "contract:compile": "truffle compile && npm run contract:interface",
-    "contract:interface": "ts-node ./utils/TypeChain/lib/cli.ts --glob './build/contracts/*.json' --force --outDir ./projects/wallet/src/contracts"
+    "contract:compile": "cd muzika-contract/ && truffle compile && cd ../ && npm run contract:interface",
+    "contract:interface": "ts-node ./utils/TypeChain/lib/cli.ts --glob './muzika-contract/build/contracts/*.json' --force --outDir ./projects/wallet/src/contracts"
   },
   "private": true,
   "dependencies": {

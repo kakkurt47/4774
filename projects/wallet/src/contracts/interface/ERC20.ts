@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/ERC20.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/ERC20.json';
 
 export interface IERC20 extends TruffleContractInstance {
   totalSupply(): Promise<BigNumber>;

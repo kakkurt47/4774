@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/MuzikaCoin.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaCoin.json';
 
 export interface IMuzikaCoin extends TruffleContractInstance {
   mintingFinished(): Promise<boolean>;
@@ -26,7 +26,24 @@ export interface IMuzikaCoin extends TruffleContractInstance {
   balanceOf(_owner: EtherAddress): Promise<BigNumber>;
   frozenAddress(arg0: EtherAddress): Promise<boolean>;
   allowance(_owner: EtherAddress, _spender: EtherAddress): Promise<BigNumber>;
-  getNonce(_target: EtherAddress): Promise<BigNumber>;
+  messagePreSignedHashing(
+    _mode: BigNumber,
+    _token: EtherAddress,
+    _to: EtherAddress,
+    _value: EtherInteger,
+    _fee: EtherInteger,
+    _nonce: EtherInteger,
+    _version: EtherInteger
+  ): Promise<BigNumber>;
+  preSignedHashing(
+    _mode: BigNumber,
+    _token: EtherAddress,
+    _to: EtherAddress,
+    _value: EtherInteger,
+    _fee: EtherInteger,
+    _nonce: EtherInteger,
+    _version: EtherInteger
+  ): Promise<BigNumber>;
 
   unpause: {
     (txParams?: ITxParams): Promise<void>;
@@ -76,6 +93,40 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     request: (newOwner: EtherAddress) => Promise<string>;
     estimateGas: (newOwner: EtherAddress) => Promise<number>;
   };
+  upgradePrefixPreSignedFirst: {
+    (_version: EtherInteger, _prefix: string, txParams?: ITxParams): Promise<
+      void
+    >;
+    sendTransaction: (
+      _version: EtherInteger,
+      _prefix: string,
+      txParams?: ITxParams
+    ) => Promise<void>;
+    call: (
+      _version: EtherInteger,
+      _prefix: string,
+      txParams?: ITxParams
+    ) => Promise<void>;
+    request: (_version: EtherInteger, _prefix: string) => Promise<string>;
+    estimateGas: (_version: EtherInteger, _prefix: string) => Promise<number>;
+  };
+  upgradePrefixPreSignedSecond: {
+    (_version: EtherInteger, _prefix: string, txParams?: ITxParams): Promise<
+      void
+    >;
+    sendTransaction: (
+      _version: EtherInteger,
+      _prefix: string,
+      txParams?: ITxParams
+    ) => Promise<void>;
+    call: (
+      _version: EtherInteger,
+      _prefix: string,
+      txParams?: ITxParams
+    ) => Promise<void>;
+    request: (_version: EtherInteger, _prefix: string) => Promise<string>;
+    estimateGas: (_version: EtherInteger, _prefix: string) => Promise<number>;
+  };
   freezeAddress: {
     (_target: EtherAddress, txParams?: ITxParams): Promise<void>;
     sendTransaction: (
@@ -97,14 +148,14 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     estimateGas: (_target: EtherAddress) => Promise<number>;
   };
   burn: {
-    (_amount: EtherInteger, txParams?: ITxParams): Promise<void>;
+    (_value: EtherInteger, txParams?: ITxParams): Promise<void>;
     sendTransaction: (
-      _amount: EtherInteger,
+      _value: EtherInteger,
       txParams?: ITxParams
     ) => Promise<void>;
-    call: (_amount: EtherInteger, txParams?: ITxParams) => Promise<void>;
-    request: (_amount: EtherInteger) => Promise<string>;
-    estimateGas: (_amount: EtherInteger) => Promise<number>;
+    call: (_value: EtherInteger, txParams?: ITxParams) => Promise<void>;
+    request: (_value: EtherInteger) => Promise<string>;
+    estimateGas: (_value: EtherInteger) => Promise<number>;
   };
   transfer: {
     (_to: EtherAddress, _value: EtherInteger, txParams?: ITxParams): Promise<
@@ -225,329 +276,184 @@ export interface IMuzikaCoin extends TruffleContractInstance {
       _subtractedValue: EtherInteger
     ) => Promise<number>;
   };
-  delegateTransfer: {
+  transferPreSigned: {
     (
-      _from: EtherAddress,
       _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string,
       txParams?: ITxParams
     ): Promise<boolean>;
     sendTransaction: (
-      _from: EtherAddress,
       _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     call: (
-      _from: EtherAddress,
       _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (
-      _from: EtherAddress,
       _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string
     ) => Promise<string>;
     estimateGas: (
-      _from: EtherAddress,
       _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string
     ) => Promise<number>;
   };
-  delegateApprove: {
+  approvePreSigned: {
     (
-      _from: EtherAddress,
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string,
       txParams?: ITxParams
     ): Promise<boolean>;
     sendTransaction: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     call: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string
     ) => Promise<string>;
     estimateGas: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
       _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
       _sig: string
     ) => Promise<number>;
   };
-  approveAndCall: {
+  increaseApprovalPreSigned: {
     (
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
-      _data: string,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
       txParams?: ITxParams
     ): Promise<boolean>;
     sendTransaction: (
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
-      _data: string,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     call: (
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
-      _data: string,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
-      _data: string
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
     ) => Promise<string>;
     estimateGas: (
-      _spender: EtherAddress,
+      _to: EtherAddress,
       _value: EtherInteger,
-      _data: string
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
     ) => Promise<number>;
   };
-  transferAndCall: {
+  decreaseApprovalPreSigned: {
     (
       _to: EtherAddress,
       _value: EtherInteger,
-      _data: string,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
       txParams?: ITxParams
     ): Promise<boolean>;
     sendTransaction: (
       _to: EtherAddress,
       _value: EtherInteger,
-      _data: string,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     call: (
       _to: EtherAddress,
       _value: EtherInteger,
-      _data: string,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (
       _to: EtherAddress,
       _value: EtherInteger,
-      _data: string
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
     ) => Promise<string>;
     estimateGas: (
       _to: EtherAddress,
       _value: EtherInteger,
-      _data: string
-    ) => Promise<number>;
-  };
-  transferFromAndCall: {
-    (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ): Promise<boolean>;
-    sendTransaction: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _data: string
-    ) => Promise<string>;
-    estimateGas: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _data: string
-    ) => Promise<number>;
-  };
-  increaseApprovalAndCall: {
-    (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ): Promise<boolean>;
-    sendTransaction: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      _data: string
-    ) => Promise<string>;
-    estimateGas: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      _data: string
-    ) => Promise<number>;
-  };
-  decreaseApprovalAndCall: {
-    (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ): Promise<boolean>;
-    sendTransaction: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
-      _data: string
-    ) => Promise<string>;
-    estimateGas: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
-      _data: string
-    ) => Promise<number>;
-  };
-  delegateTransferAndCall: {
-    (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
       _fee: EtherInteger,
-      _sig: string,
-      _data: string,
-      txParams?: ITxParams
-    ): Promise<boolean>;
-    sendTransaction: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string
-    ) => Promise<string>;
-    estimateGas: (
-      _from: EtherAddress,
-      _to: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string
-    ) => Promise<number>;
-  };
-  delegateApproveAndCall: {
-    (
-      _from: EtherAddress,
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string,
-      txParams?: ITxParams
-    ): Promise<boolean>;
-    sendTransaction: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string
-    ) => Promise<string>;
-    estimateGas: (
-      _from: EtherAddress,
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      _fee: EtherInteger,
-      _sig: string,
-      _data: string
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
     ) => Promise<number>;
   };
 }

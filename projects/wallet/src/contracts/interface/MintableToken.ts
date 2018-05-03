@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/MintableToken.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/MintableToken.json';
 
 export interface IMintableToken extends TruffleContractInstance {
   mintingFinished(): Promise<boolean>;

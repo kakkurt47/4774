@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/Pausable.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/Pausable.json';
 
 export interface IPausable extends TruffleContractInstance {
   paused(): Promise<boolean>;

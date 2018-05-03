@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/Migrations.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/Migrations.json';
 
 export interface IMigrations extends TruffleContractInstance {
   last_completed_migration(): Promise<BigNumber>;

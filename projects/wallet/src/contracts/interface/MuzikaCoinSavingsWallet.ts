@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/MuzikaCoinSavingsWallet.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaCoinSavingsWallet.json';
 
 export interface IMuzikaCoinSavingsWallet extends TruffleContractInstance {
   heartbeatTimeout(): Promise<BigNumber>;

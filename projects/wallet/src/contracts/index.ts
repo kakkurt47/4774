@@ -6,7 +6,6 @@ import { WEB3 } from '../app/web3.provider';
 import { TruffleContract } from './typechain-runtime';
 
 import { IBasicToken, TruffleBasicToken } from './interface/BasicToken';
-import { IBurnableToken, TruffleBurnableToken } from './interface/BurnableToken';
 import { IERC20, TruffleERC20 } from './interface/ERC20';
 import { IERC20Basic, TruffleERC20Basic } from './interface/ERC20Basic';
 import { IHeritable, TruffleHeritable } from './interface/Heritable';
@@ -20,7 +19,6 @@ import { IPausable, TrufflePausable } from './interface/Pausable';
 import { IStandardToken, TruffleStandardToken } from './interface/StandardToken';
 
 export { IBasicToken, TruffleBasicToken } from './interface/BasicToken';
-export { IBurnableToken, TruffleBurnableToken } from './interface/BurnableToken';
 export { IERC20, TruffleERC20 } from './interface/ERC20';
 export { IERC20Basic, TruffleERC20Basic } from './interface/ERC20Basic';
 export { IHeritable, TruffleHeritable } from './interface/Heritable';
@@ -47,7 +45,6 @@ let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
 };
 
 export const BasicToken = new InjectionToken<TruffleContract<IBasicToken>>('BasicToken');
-export const BurnableToken = new InjectionToken<TruffleContract<IBurnableToken>>('BurnableToken');
 export const ERC20 = new InjectionToken<TruffleContract<IERC20>>('ERC20');
 export const ERC20Basic = new InjectionToken<TruffleContract<IERC20Basic>>('ERC20Basic');
 export const Heritable = new InjectionToken<TruffleContract<IHeritable>>('Heritable');
@@ -62,7 +59,6 @@ export const StandardToken = new InjectionToken<TruffleContract<IStandardToken>>
 
 export const ContractProviders: Provider[] = [
   { provide: BasicToken, useFactory: ProviderFactory(TruffleBasicToken), deps: [WEB3, PLATFORM_ID] },
-  { provide: BurnableToken, useFactory: ProviderFactory(TruffleBurnableToken), deps: [WEB3, PLATFORM_ID] },
   { provide: ERC20, useFactory: ProviderFactory(TruffleERC20), deps: [WEB3, PLATFORM_ID] },
   { provide: ERC20Basic, useFactory: ProviderFactory(TruffleERC20Basic), deps: [WEB3, PLATFORM_ID] },
   { provide: Heritable, useFactory: ProviderFactory(TruffleHeritable), deps: [WEB3, PLATFORM_ID] },

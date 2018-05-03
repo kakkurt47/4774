@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/BasicToken.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/BasicToken.json';
 
 export interface IBasicToken extends TruffleContractInstance {
   totalSupply(): Promise<BigNumber>;

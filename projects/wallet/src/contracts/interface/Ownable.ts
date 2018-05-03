@@ -13,7 +13,7 @@ import {
   TxValue,
   promisify
 } from '../typechain-runtime';
-import BuiltContract from '../../../../../build/contracts/Ownable.json';
+import BuiltContract from '../../../../../muzika-contract/build/contracts/Ownable.json';
 
 export interface IOwnable extends TruffleContractInstance {
   owner(): Promise<string>;
