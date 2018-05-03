@@ -54,6 +54,7 @@ test:contract:
     - cd muzika-contract/
     - git submodule init
     - git submodule update
+    - cd ../
   script:
     - npm run contract:compile
   tags:
