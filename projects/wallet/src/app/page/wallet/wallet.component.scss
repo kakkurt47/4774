@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+.navbar-brand {
+  line-height: 30px;
+}
+
+.balance-wrapper {
+  height: 12rem;
+  background: linear-gradient(to bottom right, #c30000, #ffb100);
+
+  .address {
+    color: #fff;
+    text-align: center;
+  }
+
+  .balance {
+    font-size: 5rem;
+    color: #fff;
+  }
+}

@@ -7,6 +7,7 @@ import {ContractProviders} from '../contracts';
 
 import {AppComponent} from './app.component';
 import {AppRouteModule} from './app.routes';
+import {MainPageComponent} from './page/main/main.component';
 import {TestPageComponent} from './page/test/test.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
 import {Web3Provider} from './web3.provider';
@@ -19,7 +20,8 @@ declare const window;
   declarations: [
     AppComponent,
     TestPageComponent,
-    WalletPageComponent
+    WalletPageComponent,
+    MainPageComponent
   ],
   imports: [
     CommonModule,
