@@ -1,6 +1,6 @@
 import {InjectionToken, Provider} from '@angular/core';
 import {environment} from '../environments/environment';
-import Web3 from 'web3';
+import * as Web3 from 'web3';
 
 declare var window: any;
 
@@ -22,7 +22,7 @@ let web3Factory = () => {
   return web3;
 };
 
-export const WEB3 = new InjectionToken('Web3');
+export const WEB3 = new InjectionToken<Web3>('Web3');
 
 export const Web3Provider: Provider = {
   provide: WEB3,

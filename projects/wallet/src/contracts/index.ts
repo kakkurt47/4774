@@ -3,6 +3,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { InjectionToken, PLATFORM_ID, Provider } from '@angular/core';
 import { WEB3 } from '../app/web3.provider';
+import { Web3 } from '../typings/web3';
 import { TruffleContract } from './typechain-runtime';
 
 import { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
@@ -12,7 +13,7 @@ export { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
 export { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract'
 
 let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
-  return (web3: any, platformId: string) => {
+  return (web3: Web3, platformId: string) => {
     if (isPlatformBrowser(platformId)) {
       let contract: TruffleContract<any> = contractFunction();
       contract.setProvider(web3.currentProvider);

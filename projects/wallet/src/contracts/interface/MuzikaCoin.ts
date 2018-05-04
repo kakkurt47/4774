@@ -10,8 +10,7 @@ import {
   RawAbiDefinition,
   TruffleContract,
   TruffleContractInstance,
-  TxValue,
-  promisify
+  TxValue
 } from '../typechain-runtime';
 import BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaCoin.json';
 

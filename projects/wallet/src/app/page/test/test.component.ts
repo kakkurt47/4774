@@ -1,12 +1,11 @@
 import {ChangeDetectorRef, Component, Inject, TemplateRef} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {fromArray} from 'rxjs/internal/observable/fromArray';
-import {mergeMap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
 import {MuzikaCoin, MuzikaPaperContract, IMuzikaCoin, IMuzikaPaperContract} from '../../../contracts';
 import {TruffleContract} from '../../../contracts/typechain-runtime';
 import {BaseComponent} from '../../../shared/base.component';
+import {Web3} from '../../../typings/web3';
+import {promisify} from '../../../utils';
 import {WEB3} from '../../web3.provider';
 
 @Component({
@@ -24,7 +23,7 @@ export class TestPageComponent extends BaseComponent {
   price: number = 40000;
   hash: string = '0ab0f0abfd0ab0fd0bd1f5d';
 
-  constructor(@Inject(WEB3) private web3: any,
+  constructor(@Inject(WEB3) private web3: Web3,
               @Inject(MuzikaCoin) private muzikaCoin: TruffleContract<IMuzikaCoin>,
               @Inject(MuzikaPaperContract) private muzikaPaper: TruffleContract<IMuzikaPaperContract>,
               private cd: ChangeDetectorRef,
@@ -37,39 +36,24 @@ export class TestPageComponent extends BaseComponent {
     this.loadPapers();
   }
 
-  loadAccounts() {
+  async loadAccounts() {
     console.log(this.web3);
-    this.accounts = [];
-    fromArray(this.web3.eth.accounts).pipe(
-      mergeMap((acc: string) => {
-        return new Observable<any>(observer => {
-          this.web3.eth.getBalance(acc, (err, balance) => {
-            if (err) {
-              return;
-            }
+    this.accounts = await Promise.all(
+      this.web3.eth.accounts.map(async account => {
+        const coin = await this.muzikaCoin.deployed();
 
-            this.muzikaCoin.deployed().then(ins => {
-              return ins.balanceOf(acc);
-            }).then(tokenBalance => {
-              observer.next({address: acc, balance: this.web3.fromWei(balance).toString(), token: tokenBalance.toNumber() / 1e+18});
-              observer.complete();
-            });
-          })
-        });
+        const balance = this.web3.fromWei(await promisify(this.web3.eth.getBalance, account), 'ether').toString();
+        const token = this.web3.fromWei(await coin.balanceOf(account), 'ether').toString();
+
+        return {
+          address: account,
+          balance: balance,
+          token: token
+        }
       })
-    ).subscribe(
-      account => {
-        this.accounts = [...this.accounts, account];
-      },
-      err => {
-
-      },
-      () => {
-        console.log(this.accounts);
-        this.selectedAddress = this.accounts[0].address;
-        this.cd.detectChanges();
-      }
     );
+
+    this.selectedAddress = this.accounts[0].address;
   }
 
   openModal(templateRef: TemplateRef<any>) {

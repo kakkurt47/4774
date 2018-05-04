@@ -22,7 +22,7 @@ function codeGenForContract(abi: Array<RawAbiDefinition>, input: Contract, conte
   
 import * as contract from 'truffle-contract';
 import { BigNumber } from 'bignumber.js';
-import { EtherAddress, EtherInteger, ITxParams, RawAbiDefinition, TruffleContract, TruffleContractInstance, TxValue, promisify } from '${
+import { EtherAddress, EtherInteger, ITxParams, RawAbiDefinition, TruffleContract, TruffleContractInstance, TxValue } from '${
     context.relativeRuntimePath
   }'
 import BuiltContract from '${context.relativeInputPath}';
