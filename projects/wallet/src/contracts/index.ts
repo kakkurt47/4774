@@ -5,31 +5,11 @@ import { InjectionToken, PLATFORM_ID, Provider } from '@angular/core';
 import { WEB3 } from '../app/web3.provider';
 import { TruffleContract } from './typechain-runtime';
 
-import { IBasicToken, TruffleBasicToken } from './interface/BasicToken';
-import { IERC20, TruffleERC20 } from './interface/ERC20';
-import { IERC20Basic, TruffleERC20Basic } from './interface/ERC20Basic';
-import { IHeritable, TruffleHeritable } from './interface/Heritable';
-import { IMigrations, TruffleMigrations } from './interface/Migrations';
-import { IMintableToken, TruffleMintableToken } from './interface/MintableToken';
 import { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
-import { IMuzikaCoinSavingsWallet, TruffleMuzikaCoinSavingsWallet } from './interface/MuzikaCoinSavingsWallet';
 import { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract';
-import { IOwnable, TruffleOwnable } from './interface/Ownable';
-import { IPausable, TrufflePausable } from './interface/Pausable';
-import { IStandardToken, TruffleStandardToken } from './interface/StandardToken';
 
-export { IBasicToken, TruffleBasicToken } from './interface/BasicToken';
-export { IERC20, TruffleERC20 } from './interface/ERC20';
-export { IERC20Basic, TruffleERC20Basic } from './interface/ERC20Basic';
-export { IHeritable, TruffleHeritable } from './interface/Heritable';
-export { IMigrations, TruffleMigrations } from './interface/Migrations';
-export { IMintableToken, TruffleMintableToken } from './interface/MintableToken';
 export { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
-export { IMuzikaCoinSavingsWallet, TruffleMuzikaCoinSavingsWallet } from './interface/MuzikaCoinSavingsWallet';
-export { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract';
-export { IOwnable, TruffleOwnable } from './interface/Ownable';
-export { IPausable, TrufflePausable } from './interface/Pausable';
-export { IStandardToken, TruffleStandardToken } from './interface/StandardToken'
+export { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract'
 
 let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
   return (web3: any, platformId: string) => {
@@ -44,30 +24,10 @@ let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
   };
 };
 
-export const BasicToken = new InjectionToken<TruffleContract<IBasicToken>>('BasicToken');
-export const ERC20 = new InjectionToken<TruffleContract<IERC20>>('ERC20');
-export const ERC20Basic = new InjectionToken<TruffleContract<IERC20Basic>>('ERC20Basic');
-export const Heritable = new InjectionToken<TruffleContract<IHeritable>>('Heritable');
-export const Migrations = new InjectionToken<TruffleContract<IMigrations>>('Migrations');
-export const MintableToken = new InjectionToken<TruffleContract<IMintableToken>>('MintableToken');
 export const MuzikaCoin = new InjectionToken<TruffleContract<IMuzikaCoin>>('MuzikaCoin');
-export const MuzikaCoinSavingsWallet = new InjectionToken<TruffleContract<IMuzikaCoinSavingsWallet>>('MuzikaCoinSavingsWallet');
 export const MuzikaPaperContract = new InjectionToken<TruffleContract<IMuzikaPaperContract>>('MuzikaPaperContract');
-export const Ownable = new InjectionToken<TruffleContract<IOwnable>>('Ownable');
-export const Pausable = new InjectionToken<TruffleContract<IPausable>>('Pausable');
-export const StandardToken = new InjectionToken<TruffleContract<IStandardToken>>('StandardToken');
 
 export const ContractProviders: Provider[] = [
-  { provide: BasicToken, useFactory: ProviderFactory(TruffleBasicToken), deps: [WEB3, PLATFORM_ID] },
-  { provide: ERC20, useFactory: ProviderFactory(TruffleERC20), deps: [WEB3, PLATFORM_ID] },
-  { provide: ERC20Basic, useFactory: ProviderFactory(TruffleERC20Basic), deps: [WEB3, PLATFORM_ID] },
-  { provide: Heritable, useFactory: ProviderFactory(TruffleHeritable), deps: [WEB3, PLATFORM_ID] },
-  { provide: Migrations, useFactory: ProviderFactory(TruffleMigrations), deps: [WEB3, PLATFORM_ID] },
-  { provide: MintableToken, useFactory: ProviderFactory(TruffleMintableToken), deps: [WEB3, PLATFORM_ID] },
   { provide: MuzikaCoin, useFactory: ProviderFactory(TruffleMuzikaCoin), deps: [WEB3, PLATFORM_ID] },
-  { provide: MuzikaCoinSavingsWallet, useFactory: ProviderFactory(TruffleMuzikaCoinSavingsWallet), deps: [WEB3, PLATFORM_ID] },
-  { provide: MuzikaPaperContract, useFactory: ProviderFactory(TruffleMuzikaPaperContract), deps: [WEB3, PLATFORM_ID] },
-  { provide: Ownable, useFactory: ProviderFactory(TruffleOwnable), deps: [WEB3, PLATFORM_ID] },
-  { provide: Pausable, useFactory: ProviderFactory(TrufflePausable), deps: [WEB3, PLATFORM_ID] },
-  { provide: StandardToken, useFactory: ProviderFactory(TruffleStandardToken), deps: [WEB3, PLATFORM_ID] }
+  { provide: MuzikaPaperContract, useFactory: ProviderFactory(TruffleMuzikaPaperContract), deps: [WEB3, PLATFORM_ID] }
 ];

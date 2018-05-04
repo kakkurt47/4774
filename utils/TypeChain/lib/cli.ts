@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import {readFileSync, writeFileSync} from 'fs';
+import {readFileSync, writeFileSync, mkdirSync, rmdirSync} from 'fs';
 import {pathExistsSync} from 'fs-extra';
 import * as glob from 'glob';
 import {join, dirname, parse, relative} from 'path';
@@ -45,6 +45,10 @@ async function main() {
   console.log(blue(`${runtimeFilename} => ${runtimePath}`));
 
   // generate wrappers
+  if (!pathExistsSync(join(options.outDir, 'interface'))) {
+    mkdirSync(join(options.outDir, 'interface'));
+  }
+
   const importString = [];
   const contractNames = [];
   matches.forEach(p => {
@@ -54,6 +58,7 @@ async function main() {
       runtimePath,
       {...(prettierConfig || {}), parser: 'typescript', singleQuote: true},
       options.outDir,
+      options.contracts
     );
 
     if (contractName) {
@@ -102,7 +107,8 @@ function processFile(absPath: string,
                      forceOverwrite: boolean,
                      runtimeAbsPath: string,
                      prettierConfig: prettier.Options,
-                     fixedOutputDir?: string): string {
+                     fixedOutputDir?: string,
+                     allowedContracts?: string[]): string {
   const relativeInputPath = relative(cwd, absPath);
   const parsedInputPath = parse(absPath);
   const filenameWithoutAnyExtensions = getFilenameWithoutAnyExtensions(parsedInputPath.name);
@@ -126,6 +132,12 @@ function processFile(absPath: string,
   if (rawAbi.length === 0) {
     // tslint:disable-next-line
     console.log(yellow("ABI is empty, skipping"));
+    return;
+  }
+
+  if (allowedContracts.length > 0 && allowedContracts.indexOf(filenameWithoutAnyExtensions) == -1) {
+    // tslint:disable-next-line
+    console.log(yellow("Do not want to compile this contract, skipping"));
     return;
   }
 
