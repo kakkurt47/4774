@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="provider">
+    <button type="button" class="btn btn-success" (click)="usingMetamask()"> Metamask </button>
+  </div>
+  <div class="provider">
+    <button type="button" class="btn btn-success" (click)="usingGanache()"> Ganache </button>
+  </div>
+  <div class="provider">
+    <button type="button" class="btn btn-success" (click)="walletModal.show()"> Wallet </button>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #walletModal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Private Key</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="walletModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" (ngSubmit)="usingWallet(form)">
+          <div class="form-group">
+            <input class="form-control" type="password" id="privKey" name="privKey" ngModel>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-danger">가져오기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

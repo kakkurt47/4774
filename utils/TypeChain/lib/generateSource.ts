@@ -25,7 +25,7 @@ import { BigNumber } from 'bignumber.js';
 import { EtherAddress, EtherInteger, ITxParams, RawAbiDefinition, TruffleContract, TruffleContractInstance, TxValue } from '${
     context.relativeRuntimePath
   }'
-import BuiltContract from '${context.relativeInputPath}';
+import * as BuiltContract from '${context.relativeInputPath}';
 
 export interface I${typeName} extends TruffleContractInstance {
     
