@@ -23,17 +23,16 @@ export class MainPageComponent extends BaseComponent {
   }
 
   usingMetamask() {
-    this.web3.setProvider(MetamaskProvider());
+    this.web3.setProvider(new MetamaskProvider());
     this.router.navigate(['/wallet']);
   }
 
   usingGanache() {
-    this.web3.setProvider(RPCProvider());
+    this.web3.setProvider(new RPCProvider());
     this.router.navigate(['/wallet']);
   }
 
   usingWallet(form: NgForm) {
-    console.log(form);
     if (form.value.privKey) {
       this.web3.setProvider(new WalletProvider(form.value.privKey));
       this.router.navigate(['/wallet']);

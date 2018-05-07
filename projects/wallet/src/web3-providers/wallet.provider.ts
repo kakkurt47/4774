@@ -32,12 +32,12 @@ export class WalletProvider implements Web3Provider {
     this.engine.start(); // Required by the provider engine.
   }
 
-  sendAsync() {
-    this.engine.sendAsync.apply(this.engine, arguments);
+  sendAsync(...args) {
+    this.engine.sendAsync.apply(this.engine, args);
   }
 
-  send() {
-    return this.engine.send.apply(this.engine, arguments);
+  send(...args): any {
+    return this.engine.send.apply(this.engine, args);
   }
 
   getAddress() {
