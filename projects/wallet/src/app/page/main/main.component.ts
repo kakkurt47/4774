@@ -1,12 +1,12 @@
 import {Component, Inject} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {Web3} from '../../../typings/web3';
 import {MetamaskProvider} from '../../../web3-providers/metamask.provider';
 import {RPCProvider} from '../../../web3-providers/rpc.provider';
 import {WalletProvider} from '../../../web3-providers/wallet.provider';
 import {WEB3} from '../../web3.provider';
 import {BaseComponent} from '../../../shared/base.component';
+import {Web3} from '../../../typings/web3';
 
 @Component({
   selector: 'app-main',

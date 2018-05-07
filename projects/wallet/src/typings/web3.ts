@@ -144,7 +144,7 @@ declare namespace Web3 {
     contract(abi: AbiDefinition[]): Web3.Contract<any>;
 
     // TODO block param
-    getBalance(addressHexString: string): Promise<BigNumber.BigNumber>;
+    getBalance(addressHexString: string): BigNumber.BigNumber;
     getBalance(addressHexString: string, callback: (err: Error, result: BigNumber.BigNumber) => void): void;
 
     // TODO block param

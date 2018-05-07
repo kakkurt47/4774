@@ -4,9 +4,9 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {MuzikaCoin, MuzikaPaperContract, IMuzikaCoin, IMuzikaPaperContract} from '../../../contracts';
 import {TruffleContract} from '../../../contracts/typechain-runtime';
 import {BaseComponent} from '../../../shared/base.component';
-import {Web3} from '../../../typings/web3';
 import {promisify} from '../../../utils';
 import {WEB3} from '../../web3.provider';
+import {Web3} from '../../../typings/web3';
 
 @Component({
   selector: 'app-test-page',

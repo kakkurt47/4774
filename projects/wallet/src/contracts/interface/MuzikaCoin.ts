@@ -12,7 +12,7 @@ import {
   TruffleContractInstance,
   TxValue
 } from '../typechain-runtime';
-import * as BuiltContract from '../../../muzika-contract/build/contracts/MuzikaCoin.json';
+import * as BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaCoin.json';
 
 export interface IMuzikaCoin extends TruffleContractInstance {
   mintingFinished(): Promise<boolean>;

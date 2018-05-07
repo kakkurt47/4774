@@ -5,8 +5,8 @@
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
+      "root": "projects/wallet/src",
+      "outDir": "dist/wallet",
       "assets": [
         "assets",
         "favicon.ico"
@@ -15,14 +15,14 @@
       "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
+      "tsconfig": "../tsconfig.app.json",
+      "testTsconfig": "../tsconfig.spec.json",
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/bootstrap/scss/bootstrap.scss",
-        "../scss/fontawesome-pro/css/fontawesome.min.css",
-        "../scss/fontawesome-pro/css/fontawesome-all.min.css"
+        "../../../node_modules/bootstrap/scss/bootstrap.scss",
+        "../../../scss/fontawesome-pro/css/fontawesome.min.css",
+        "../../../scss/fontawesome-pro/css/fontawesome-all.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -39,11 +39,11 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json",
+      "project": "projects/wallet/tsconfig.app.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "src/tsconfig.spec.json",
+      "project": "projects/wallet/tsconfig.spec.json",
       "exclude": "**/node_modules/**"
     },
     {
@@ -57,7 +57,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   }
 }
