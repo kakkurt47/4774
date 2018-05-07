@@ -20,7 +20,7 @@ export class WalletPageComponent extends BaseComponent {
     super();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadAccount();
   }
 

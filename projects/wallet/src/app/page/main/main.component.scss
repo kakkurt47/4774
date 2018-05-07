@@ -1,7 +1,59 @@
+:host {
+  position: relative;
+  display: block;
+  background-color: #010e1e;
+}
+
+app-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.background {
+  height: 100vh;
+  width: 100%;
+  padding-top: 60px;
+  background: url(../../../assets/back.jpg) no-repeat 50%;
+  background-size: 800px;
+  display: flex;
+  flex-direction: column;
+
+  >h1 {
+    font-family: "Libre Baskerville";
+    color: white;
+    text-align: center;
+  }
+
+  >.method {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    .method-wrapper {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 50px;
+      border-radius: 15px;
+      border: 6px solid #081523;
+    }
+  }
+
+  >.other-method {
+    margin: 32px;
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+  }
+}
+
 .provider {
   margin: 10px 0;
 
   button {
-    width: 14rem;
+    width: 100%;
+    height: 320px;
   }
 }
+

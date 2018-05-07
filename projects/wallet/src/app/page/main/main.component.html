@@ -1,13 +1,46 @@
+<app-navbar></app-navbar>
 
-<div class="container">
-  <div class="provider">
-    <button type="button" class="btn btn-success" (click)="usingMetamask()"> Metamask </button>
+<div class="background">
+  <h1>
+    Muzika
+  </h1>
+
+  <div class="method">
+    <div class="container">
+      <div class="method-wrapper">
+        <div class="row">
+          <div class="provider col">
+            <button type="button" class="btn btn-outline-light" (click)="usingMetamask()">
+              Metamask
+            </button>
+          </div>
+          <div class="provider col">
+            <button type="button" class="btn btn-outline-light" (click)="usingGanache()">
+              Ledger
+            </button>
+          </div>
+          <div class="provider col">
+            <button type="button" class="btn btn-outline-light" (click)="usingGanache()">
+              Trezor
+            </button>
+          </div>
+          <div class="provider col">
+            <button type="button" class="btn btn-outline-light" (click)="walletModal.show()">
+              Keystore
+            </button>
+          </div>
+          <div class="provider col">
+            <button type="button" class="btn btn-outline-light" (click)="walletModal.show()">
+              Private Key
+            </button>
+          </div>
+      </div>
+      </div>
+    </div>
   </div>
-  <div class="provider">
-    <button type="button" class="btn btn-success" (click)="usingGanache()"> Ganache </button>
-  </div>
-  <div class="provider">
-    <button type="button" class="btn btn-success" (click)="walletModal.show()"> Wallet </button>
+
+  <div class="other-method">
+    또는 지갑주소 직접 입력
   </div>
 </div>
 
