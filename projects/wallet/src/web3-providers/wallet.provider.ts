@@ -13,12 +13,16 @@ export class WalletProvider implements Web3Provider {
   private engine: ProviderEngine;
   private wallet: Wallet;
 
-  constructor(private privKey: string,
-              private providerOrUrl?: string | Web3Provider,
-              private timeout?: number,
-              private user?: string,
-              private password?: string) {
-    this.wallet = Wallet.fromPrivateKey(Buffer.from(privKey, 'hex'));
+  constructor(walletKey: string | {input: string, password: string},
+              providerOrUrl?: string | Web3Provider,
+              timeout?: number,
+              user?: string,
+              password?: string) {
+    if (typeof walletKey === 'string') {
+      this.wallet = Wallet.fromPrivateKey(Buffer.from(walletKey, 'hex'));
+    } else {
+      this.wallet = Wallet.fromV3(walletKey.input, walletKey.password, true);
+    }
     this.address = this.wallet.getAddress();
 
     const httpProvider = (providerOrUrl && providerOrUrl.hasOwnProperty('send') && providerOrUrl.hasOwnProperty('sendAsync'))

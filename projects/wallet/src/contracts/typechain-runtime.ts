@@ -2,7 +2,7 @@
 import { BigNumber } from "bignumber.js";
 
 export type TxValue = number | string | BigNumber;
-export type EtherInteger = number | BigNumber;
+export type EtherInteger = number | string | BigNumber;
 export type EtherAddress = string | BigNumber;
 
 export interface RawAbiParameter {

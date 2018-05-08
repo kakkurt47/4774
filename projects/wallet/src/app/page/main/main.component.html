@@ -1,69 +1,115 @@
-<app-navbar></app-navbar>
+<h1>
+  Muzika
+</h1>
 
-<div class="background">
-  <h1>
-    Muzika
-  </h1>
+<div class="method">
+  <div class="container">
+    <div class="wrapper">
+      <h2 class="d-flex text-main-color justify-content-between">
+        <a class="backbtn" [ngClass]="showExtra ? 'visible' : 'invisible'" (click)="resetExtra()"><i class="fa fa-arrow-left"></i></a>
+        <span> 지갑 선택 </span>
+        <a class="invisible"><i class="fa fa-arrow-left"></i></a>
+      </h2>
 
-  <div class="method">
-    <div class="container">
-      <div class="method-wrapper">
-        <div class="row">
+      <div class="inner">
+        <div class="row" [class.show]="!showExtra" [class.hide]="showExtra">
           <div class="provider col">
             <button type="button" class="btn btn-outline-light" (click)="usingMetamask()">
-              Metamask
+            <span class="method-name">
+              <i class="fa fa-desktop-alt"></i>
+              <span class="name">MetaMask</span>
+            </span>
             </button>
           </div>
           <div class="provider col">
             <button type="button" class="btn btn-outline-light" (click)="usingGanache()">
-              Ledger
+            <span class="method-name">
+              <app-icon-ledger></app-icon-ledger>
+              <span class="name">Ledger</span>
+            </span>
             </button>
           </div>
           <div class="provider col">
             <button type="button" class="btn btn-outline-light" (click)="usingGanache()">
-              Trezor
+            <span class="method-name">
+              <app-icon-trezor></app-icon-trezor>
+              <span class="name">Trezor</span>
+            </span>
             </button>
           </div>
           <div class="provider col">
-            <button type="button" class="btn btn-outline-light" (click)="walletModal.show()">
-              Keystore
+            <button type="button" class="btn btn-outline-light" (click)="displayExtra('keystore')">
+            <span class="method-name">
+              <app-icon-json></app-icon-json>
+              <span class="name">Keystore</span>
+            </span>
             </button>
           </div>
           <div class="provider col">
-            <button type="button" class="btn btn-outline-light" (click)="walletModal.show()">
-              Private Key
+            <button type="button" class="btn btn-outline-light" (click)="displayExtra('privateKey')">
+            <span class="method-name">
+              <i class="fa fa-key"></i>
+              <span class="name">Private Key</span>
+            </span>
             </button>
           </div>
-      </div>
+        </div>
+
+        <div class="row extra" [class.show]="showExtra" [class.hide]="!showExtra">
+          <div class="offset-1 col-10 d-flex align-items-center" *ngIf="extraType==='keystore'">
+            <form #keystoreForm="ngForm" (ngSubmit)="usingKeystore(keystoreForm)">
+              <div class="d-flex">
+                <div class="form-group text-center">
+                  <label class="keystore-file" for="keystore-select">
+                    <input type="file" class="d-none" id="keystore-select" name="keystore-select" ngModel
+                           (change)="onKeystoreSelect($event)" required>
+                    <i class="fa fa-plus-square" *ngIf="!keystoreFile"></i>
+                    <div id="keystore-file-name" *ngIf="!!keystoreFile">
+                      {{keystoreFile.name}}
+                    </div>
+                  </label>
+                </div>
+                <div class="form-group text-center flex-grow-1 d-flex justify-content-center flex-column"
+                     style="margin-left: 20px;">
+                  <h5 class="text-center text-main-color"> 지갑 파일 선택 후 비밀번호를 입력해주세요 </h5>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" name="keyPassword" id="keyPassword"
+                           ngModel placeholder="비밀번호" required>
+                  </div>
+                  <div class="text-center" style="margin-top: 12px;">
+                    <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="offset-1 col-10 d-flex align-items-center" *ngIf="extraType==='privateKey'">
+            <form #privForm="ngForm" (ngSubmit)="usingPrivateKey(privForm)">
+              <h5 class="text-center text-main-color"> 개인키를 입력해주세요 </h5>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  </div>
+                  <input type="password" class="form-control" name="privKey" id="privKey" ngModel required>
+                </div>
+              </div>
+              <div class="text-center" style="margin-top: 12px;">
+                <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
+<footer>
   <div class="other-method">
     또는 지갑주소 직접 입력
   </div>
-</div>
-
-<div class="modal fade" bsModal #walletModal="bs-modal"
-     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Private Key</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="walletModal.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #form="ngForm" (ngSubmit)="usingWallet(form)">
-          <div class="form-group">
-            <input class="form-control" type="password" id="privKey" name="privKey" ngModel>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-danger">가져오기</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+</footer>

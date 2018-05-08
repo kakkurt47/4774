@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<app-navbar></app-navbar>
+
+<main class="background">
+  <div [@routerTransition]="getState(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+</main>
+

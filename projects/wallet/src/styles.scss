@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'theme/variables';
 
 @font-face {
   font-family: 'Libre Baskerville';
@@ -17,4 +18,8 @@
   font-style: normal;
   font-weight: 700;
   src: local('Libre Baskerville Bold'), local('LibreBaskerville-Bold'), url(https://fonts.gstatic.com/s/librebaskerville/v5/kmKiZrc3Hgbbcjq75U4uslyuy4kn0qviTgY5KcU.ttf) format('truetype');
+}
+
+.text-main-color {
+  color: $main-color-text !important;
 }
