@@ -7,6 +7,9 @@ import {promisify} from '../../../utils';
 import {AddressOnlyProvider} from '../../../web3-providers/address.only.provider';
 import {WEB3} from '../../web3.provider';
 import {Web3} from '../../../typings/web3';
+import * as _alertify from 'alertify.js';
+
+const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 
 @Component({
   selector: 'app-wallet-page',
@@ -22,6 +25,7 @@ export class WalletPageComponent extends BaseComponent {
   amount: number;
   gasLimit: number = 54000;
   gasPrice: number = 8;
+  agreeTransfer = false;
 
   supportTransfer = false;
 
@@ -44,10 +48,15 @@ export class WalletPageComponent extends BaseComponent {
   transfer(form?: NgForm) {
     if (!this.stepTransfer) {
       this.stepTransfer = true;
+      this.toAddress = null;
+      this.amount = null;
+      this.agreeTransfer = false;
     } else {
       if (form && form.valid) {
         this._transferPerform().then(() => {
-          alert('Success');
+          alertify.alert('전송되었습니다');
+          this.loadAccount();
+          this.agreeTransfer = false;
         });
       }
     }
@@ -61,7 +70,6 @@ export class WalletPageComponent extends BaseComponent {
     const mzk = this.web3.toWei(this.amount, 'ether');
     const gasPrice = this.web3.toWei(this.gasPrice, 'gwei');
     const coin = await this.muzikaCoin.deployed();
-    console.log(coin.transfer.estimateGas(this.address, mzk));
     const data = <any>coin.transfer.request(this.toAddress, mzk);
     const transaction = {
       from: this.address,
@@ -71,7 +79,6 @@ export class WalletPageComponent extends BaseComponent {
       data: data.params[0].data
     };
 
-    console.log(transaction);
     return await promisify(this.web3.eth.sendTransaction, transaction);
   }
 }
