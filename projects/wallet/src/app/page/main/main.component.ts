@@ -23,7 +23,7 @@ export class MainPageComponent extends BaseComponent {
   }
 
   ngOnInit() {
-    console.log(this.web3);
+    // console.log(this.web3);
   }
 
   usingMetamask() {
