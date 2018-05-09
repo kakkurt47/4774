@@ -16,6 +16,7 @@ import {
   JSONRPCRequestPayload,
   JSONRPCResponsePayload,
 } from '@0xproject/types';
+import {Observable} from 'rxjs/Observable';
 
 type MixedData = string | number | object | any[] | BigNumber.BigNumber;
 
@@ -46,6 +47,9 @@ export declare class Web3 {
   public isAddress(address: string): boolean;
   public isChecksumAddress(address: string): boolean;
   public sha3(value: string, options?: Web3.Sha3Options): string;
+
+  /* custom functions */
+  public onProviderChange(): Observable<Provider>;
 }
 
 declare namespace providers {

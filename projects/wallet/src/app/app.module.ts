@@ -14,7 +14,7 @@ import {TrezorIconComponent} from './component/trezor-icon/trezor-icon.component
 import {MainPageComponent} from './page/main/main.component';
 import {TestPageComponent} from './page/test/test.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
-import {Web3Provider} from './web3.provider';
+import {LocalWeb3Provider} from './web3.provider';
 import {NavbarComponent} from './component/navbar/navbar.component';
 
 declare const window;
@@ -40,7 +40,7 @@ declare const window;
     ModalModule.forRoot()
   ],
   providers: [
-    Web3Provider,
+    LocalWeb3Provider,
     ...ContractProviders
   ],
   bootstrap: [AppComponent]
