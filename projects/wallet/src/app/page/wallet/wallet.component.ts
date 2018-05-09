@@ -66,15 +66,7 @@ export class WalletPageComponent extends BaseComponent {
     const mzk = this.web3.toWei(this.amount, 'ether');
     const gasPrice = this.web3.toWei(this.gasPrice, 'gwei');
     const coin = await this.muzikaCoin.deployed();
-    const data = <any>coin.transfer.request(this.toAddress, mzk);
-    const transaction = {
-      from: this.address,
-      to: coin.address,
-      gas: this.gasLimit,
-      gasPrice: gasPrice,
-      data: data.params[0].data
-    };
 
-    return await promisify(this.web3.eth.sendTransaction, transaction);
+    return await coin.transfer(this.toAddress, mzk, {from: this.address, gas: this.gasLimit, gasPrice: gasPrice});
   }
 }
