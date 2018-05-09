@@ -70,7 +70,7 @@ h1 {
         }
       }
 
-      &:hover {
+      &:not(:disabled):not(.disabled):hover {
         background: rgba(255, 255, 255, 0.3);
         .method-name {
           font-size: $afterSize;
@@ -83,7 +83,7 @@ h1 {
         }
       }
 
-      &:active {
+      &:not(:disabled):not(.disabled):active {
         .method-name {
           color: $main-color-active-text;
           app-icon-ledger, app-icon-trezor, app-icon-json {

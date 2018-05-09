@@ -15,42 +15,44 @@
         <div class="row" [class.show]="!showExtra" [class.hide]="showExtra">
           <div class="provider col">
             <button type="button" class="btn btn-outline-light" (click)="usingMetamask()">
-            <span class="method-name">
-              <i class="fa fa-desktop-alt"></i>
-              <span class="name">MetaMask</span>
-            </span>
+              <span class="method-name">
+                <i class="fa fa-desktop-alt"></i>
+                <span class="name">MetaMask</span>
+              </span>
             </button>
           </div>
           <div class="provider col">
-            <button type="button" class="btn btn-outline-light" (click)="usingGanache()">
-            <span class="method-name">
-              <app-icon-ledger></app-icon-ledger>
-              <span class="name">Ledger</span>
-            </span>
+            <button type="button" class="btn btn-outline-light" (click)="usingGanache()" disabled>
+              <span class="method-name">
+                <app-icon-ledger></app-icon-ledger>
+                <span class="name">Ledger</span>
+                <small> 준비중 </small>
+              </span>
             </button>
           </div>
           <div class="provider col">
-            <button type="button" class="btn btn-outline-light" (click)="usingGanache()">
-            <span class="method-name">
-              <app-icon-trezor></app-icon-trezor>
-              <span class="name">Trezor</span>
-            </span>
+            <button type="button" class="btn btn-outline-light" (click)="usingGanache()" disabled>
+              <span class="method-name">
+                <app-icon-trezor></app-icon-trezor>
+                <span class="name">Trezor</span>
+                <small> 준비중 </small>
+              </span>
             </button>
           </div>
           <div class="provider col">
             <button type="button" class="btn btn-outline-light" (click)="displayExtra('keystore')">
-            <span class="method-name">
-              <app-icon-json></app-icon-json>
-              <span class="name">Keystore</span>
-            </span>
+              <span class="method-name">
+                <app-icon-json></app-icon-json>
+                <span class="name">Keystore</span>
+              </span>
             </button>
           </div>
           <div class="provider col">
             <button type="button" class="btn btn-outline-light" (click)="displayExtra('privateKey')">
-            <span class="method-name">
-              <i class="fa fa-key"></i>
-              <span class="name">Private Key</span>
-            </span>
+              <span class="method-name">
+                <i class="fa fa-key"></i>
+                <span class="name">Private Key</span>
+              </span>
             </button>
           </div>
         </div>
