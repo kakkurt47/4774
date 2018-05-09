@@ -101,6 +101,14 @@ h1 {
   color: $main-color-text;
   text-align: center;
   text-decoration: underline;
+
+  a {
+    color: $main-color-text;
+
+    &:active {
+      color: $main-color-text;
+    }
+  }
 }
 
 .provider {

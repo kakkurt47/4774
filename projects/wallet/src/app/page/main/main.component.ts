@@ -1,6 +1,7 @@
 import {Component, Inject, QueryList, ViewChildren} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AddressOnlyProvider} from '../../../web3-providers/address.only.provider';
 import {MetamaskProvider} from '../../../web3-providers/metamask.provider';
 import {RPCProvider} from '../../../web3-providers/rpc.provider';
 import {WalletProvider} from '../../../web3-providers/wallet.provider';
@@ -15,7 +16,7 @@ import {Web3} from '../../../typings/web3';
 })
 export class MainPageComponent extends BaseComponent {
   showExtra = false;
-  extraType: 'keystore' | 'privateKey' = null;
+  extraType: 'keystore' | 'privateKey' | 'direct' = null;
   keystoreFile: File = null;
 
   @ViewChildren(NgForm)
@@ -27,6 +28,7 @@ export class MainPageComponent extends BaseComponent {
   }
 
   ngOnInit() {
+    console.log(this.web3);
   }
 
   usingMetamask() {
@@ -60,7 +62,14 @@ export class MainPageComponent extends BaseComponent {
     }
   }
 
-  displayExtra(_extraType: 'keystore' | 'privateKey') {
+  usingAddressDirect(form: NgForm) {
+    if (form.value.address) {
+      this.web3.setProvider(new AddressOnlyProvider(form.value.address));
+      this.router.navigate(['/wallet']);
+    }
+  }
+
+  displayExtra(_extraType: 'keystore' | 'privateKey' | 'direct') {
     this.extraType = _extraType;
     this.showExtra = true;
   }

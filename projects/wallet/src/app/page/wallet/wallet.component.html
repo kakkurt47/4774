@@ -58,7 +58,8 @@
         </div>
       </div>
       <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-outline-light" id="transfer" (click)="transfer(transferForm)">
+        <button type="button" class="btn btn-outline-light" id="transfer"
+                (click)="transfer(transferForm)" [disabled]="!supportTransfer">
           코인 전송
         </button>
       </div>

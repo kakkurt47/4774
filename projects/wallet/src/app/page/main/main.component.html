@@ -102,6 +102,23 @@
               </div>
             </form>
           </div>
+          <div class="offset-1 col-10 d-flex align-items-center" *ngIf="extraType==='direct'">
+            <form #addressForm="ngForm" (ngSubmit)="usingAddressDirect(addressForm)">
+              <h5 class="text-center text-main-color"> 주소를 입력해주세요 </h5>
+              <p class="text-center text-main-color"> 해당 방법은 잔액 조회만 가능합니다. </p>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="address" id="address" ngModel required>
+                </div>
+              </div>
+              <div class="text-center" style="margin-top: 12px;">
+                <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -110,6 +127,6 @@
 
 <footer>
   <div class="other-method">
-    또는 지갑주소 직접 입력
+    <a href="#" (click)="$event.preventDefault();displayExtra('direct')">또는 지갑주소 직접 입력</a>
   </div>
 </footer>

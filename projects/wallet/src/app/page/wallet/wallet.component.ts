@@ -4,6 +4,7 @@ import {IMuzikaCoin, MuzikaCoin} from '../../../contracts';
 import {TruffleContract} from '../../../contracts/typechain-runtime';
 import {BaseComponent} from '../../../shared/base.component';
 import {promisify} from '../../../utils';
+import {AddressOnlyProvider} from '../../../web3-providers/address.only.provider';
 import {WEB3} from '../../web3.provider';
 import {Web3} from '../../../typings/web3';
 
@@ -22,6 +23,8 @@ export class WalletPageComponent extends BaseComponent {
   gasLimit: number = 54000;
   gasPrice: number = 8;
 
+  supportTransfer = false;
+
   constructor(@Inject(WEB3) private web3: Web3,
               @Inject(MuzikaCoin) private muzikaCoin: TruffleContract<IMuzikaCoin>) {
     super();
@@ -29,7 +32,7 @@ export class WalletPageComponent extends BaseComponent {
 
   ngOnInit(): void {
     this.loadAccount();
-    console.log(this.web3);
+    this.supportTransfer = !(this.web3.currentProvider instanceof AddressOnlyProvider);
   }
 
   async loadAccount() {
