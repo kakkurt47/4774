@@ -6,7 +6,10 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "@muzika/core": "projects/core/index.ts"
+    }
   },
   "files": [
     "src/test.ts",

@@ -1,12 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {IMuzikaCoin, MuzikaCoin} from '../../../contracts';
-import {TruffleContract} from '../../../contracts/typechain-runtime';
+import {AddressOnlyProvider, IMuzikaCoin, MuzikaCoin, TruffleContract, Web3, WEB3} from '@muzika/core';
 import {BaseComponent} from '../../../shared/base.component';
 import {promisify} from '../../../utils';
-import {AddressOnlyProvider} from '../../../web3-providers/address.only.provider';
-import {WEB3} from '../../web3.provider';
-import {Web3} from '../../../typings/web3';
 import * as _alertify from 'alertify.js';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');

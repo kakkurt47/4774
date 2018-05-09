@@ -1,13 +1,8 @@
 import {Component, Inject, QueryList, ViewChildren} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AddressOnlyProvider} from '../../../web3-providers/address.only.provider';
-import {MetamaskProvider} from '../../../web3-providers/metamask.provider';
-import {RPCProvider} from '../../../web3-providers/rpc.provider';
-import {WalletProvider} from '../../../web3-providers/wallet.provider';
-import {WEB3} from '../../web3.provider';
 import {BaseComponent} from '../../../shared/base.component';
-import {Web3} from '../../../typings/web3';
+import {AddressOnlyProvider, MetamaskProvider, RPCProvider, WalletProvider, Web3, WEB3} from '@muzika/core';
 
 @Component({
   selector: 'app-main',

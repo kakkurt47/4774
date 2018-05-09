@@ -4,8 +4,8 @@ import * as WalletSubprovider from 'web3-provider-engine/subproviders/wallet';
 import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {Provider as Web3Provider} from '@0xproject/types';
 import * as Wallet from 'ethereumjs-wallet-browser';
-import {environment} from '../environments/environment';
 import {Buffer} from 'safe-buffer';
+import {DEFAULT_RPC_URL} from '../config';
 
 export class WalletProvider implements Web3Provider {
   private engine: ProviderEngine;
@@ -20,7 +20,7 @@ export class WalletProvider implements Web3Provider {
     }
 
     const rpcProvider = new RpcSubprovider({
-      rpcUrl: providerUrl || `http://${environment.rpc.host}:${environment.rpc.port}`
+      rpcUrl: providerUrl || DEFAULT_RPC_URL
     });
 
     this.engine = new ProviderEngine();

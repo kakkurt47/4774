@@ -73,8 +73,8 @@ async function main() {
 /* tslint:disable */
 import { isPlatformBrowser } from '@angular/common';
 import { InjectionToken, PLATFORM_ID, Provider } from '@angular/core';
-import { WEB3 } from '../app/web3.provider';
-import { Web3 } from '../typings/web3';
+import { WEB3 } from '../web3.provider';
+import { Web3 } from '../types/web3';
 import { TruffleContract } from './typechain-runtime';
 
 ${importString.join('\n')}

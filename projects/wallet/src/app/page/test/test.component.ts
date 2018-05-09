@@ -1,12 +1,17 @@
 import {ChangeDetectorRef, Component, Inject, TemplateRef} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {
+  IMuzikaCoin,
+  IMuzikaPaperContract,
+  MuzikaCoin,
+  MuzikaPaperContract,
+  TruffleContract,
+  Web3,
+  WEB3
+} from '@muzika/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {MuzikaCoin, MuzikaPaperContract, IMuzikaCoin, IMuzikaPaperContract} from '../../../contracts';
-import {TruffleContract} from '../../../contracts/typechain-runtime';
 import {BaseComponent} from '../../../shared/base.component';
 import {promisify} from '../../../utils';
-import {WEB3} from '../../web3.provider';
-import {Web3} from '../../../typings/web3';
 
 @Component({
   selector: 'app-test-page',

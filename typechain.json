@@ -2,7 +2,7 @@
   "baseDir": ".",
   "force": true,
   "glob": "muzika-contract/build/contracts/*.json",
-  "outDir": "projects/wallet/src/contracts",
+  "outDir": "projects/core/src/contracts",
   "contracts": [
     "MuzikaCoin",
     "MuzikaPaperContract"

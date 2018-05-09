@@ -3,8 +3,9 @@ import {NgModule, PLATFORM_ID, Inject} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MuzikaCoreModule} from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {ContractProviders} from '../contracts';
+import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
 import {AppRouteModule} from './app.routes';
@@ -14,7 +15,6 @@ import {TrezorIconComponent} from './component/trezor-icon/trezor-icon.component
 import {MainPageComponent} from './page/main/main.component';
 import {TestPageComponent} from './page/test/test.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
-import {LocalWeb3Provider} from './web3.provider';
 import {NavbarComponent} from './component/navbar/navbar.component';
 
 declare const window;
@@ -37,11 +37,8 @@ declare const window;
     FormsModule,
     ReactiveFormsModule,
     AppRouteModule,
-    ModalModule.forRoot()
-  ],
-  providers: [
-    LocalWeb3Provider,
-    ...ContractProviders
+    ModalModule.forRoot(),
+    MuzikaCoreModule.forRoot(`http://${environment.rpc.host}:${environment.rpc.port}`)
   ],
   bootstrap: [AppComponent]
 })
