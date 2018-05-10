@@ -86,7 +86,9 @@ let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
     if (isPlatformBrowser(platformId)) {
       let contract: TruffleContract<any> = contractFunction();
       web3.onProviderChange().subscribe(provider => {
-        contract.setProvider(provider);
+        if (!!provider) {
+          contract.setProvider(provider);
+        }
       });
       return contract;
     }

@@ -1,5 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 import {AddressOnlyProvider, IMuzikaCoin, MuzikaCoin, TruffleContract, Web3, WEB3} from '@muzika/core';
 import {BaseComponent} from '../../../shared/base.component';
 import {promisify} from '../../../utils';
@@ -26,11 +27,15 @@ export class WalletPageComponent extends BaseComponent {
   supportTransfer = false;
 
   constructor(@Inject(WEB3) private web3: Web3,
-              @Inject(MuzikaCoin) private muzikaCoin: TruffleContract<IMuzikaCoin>) {
+              @Inject(MuzikaCoin) private muzikaCoin: TruffleContract<IMuzikaCoin>,
+              private router: Router) {
     super();
   }
 
   ngOnInit(): void {
+    if (!this.web3.currentProvider) {
+      this.router.navigate(['/']);
+    }
     this.loadAccount();
     this.supportTransfer = !(this.web3.currentProvider instanceof AddressOnlyProvider);
   }
