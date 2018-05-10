@@ -23,9 +23,8 @@ export class WalletProvider implements Web3Provider {
       rpcUrl: providerUrl || DEFAULT_RPC_URL
     });
 
-    this.engine = new ProviderEngine();
+    this.engine = new ProviderEngine({pollingInterval: 10000});
     this.engine.addProvider(new WalletSubprovider(wallet, {}));
-    this.engine.addProvider(new FiltersSubprovider());
     this.engine.addProvider(rpcProvider);
     this.engine.start(); // Required by the provider engine.
   }

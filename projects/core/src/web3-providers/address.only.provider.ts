@@ -13,7 +13,7 @@ export class AddressOnlyProvider implements Web3Provider {
       rpcUrl: providerUrl || DEFAULT_RPC_URL
     });
 
-    this.engine = new ProviderEngine();
+    this.engine = new ProviderEngine({pollingInterval: 10000});
     this.engine.addProvider(new HookedWalletSubprovider({
       getAccounts: ((cb: (err: any, accounts: string[]) => void) => {
         cb(null, [walletAddress]);
