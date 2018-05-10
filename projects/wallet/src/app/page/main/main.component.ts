@@ -18,6 +18,7 @@ export class MainPageComponent extends BaseComponent {
   forms: QueryList<NgForm>;
 
   constructor(@Inject(WEB3) private web3: Web3,
+              @Inject('RPC_URL') private rpcUrl: string,
               private router: Router) {
     super();
   }
@@ -32,7 +33,7 @@ export class MainPageComponent extends BaseComponent {
   }
 
   usingGanache() {
-    this.web3.setProvider(new RPCProvider());
+    this.web3.setProvider(new RPCProvider(this.rpcUrl));
     this.router.navigate(['/wallet']);
   }
 
@@ -43,7 +44,7 @@ export class MainPageComponent extends BaseComponent {
        const keystore = reader.result;
        const password = form.value.keyPassword;
 
-       this.web3.setProvider(new WalletProvider({input: keystore, password: password}));
+       this.web3.setProvider(new WalletProvider({input: keystore, password: password}, this.rpcUrl));
        this.router.navigate(['/wallet']);
      };
      reader.readAsText(this.keystoreFile);
@@ -52,14 +53,14 @@ export class MainPageComponent extends BaseComponent {
 
   usingPrivateKey(form: NgForm) {
     if (form.value.privKey) {
-      this.web3.setProvider(new WalletProvider(form.value.privKey));
+      this.web3.setProvider(new WalletProvider(form.value.privKey, this.rpcUrl));
       this.router.navigate(['/wallet']);
     }
   }
 
   usingAddressDirect(form: NgForm) {
     if (form.value.address) {
-      this.web3.setProvider(new AddressOnlyProvider(form.value.address));
+      this.web3.setProvider(new AddressOnlyProvider(form.value.address, this.rpcUrl));
       this.router.navigate(['/wallet']);
     }
   }

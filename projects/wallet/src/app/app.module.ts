@@ -38,9 +38,15 @@ declare const window;
     ReactiveFormsModule,
     AppRouteModule,
     ModalModule.forRoot(),
-    MuzikaCoreModule.forRoot(`http://${environment.rpc.host}:${environment.rpc.port}`)
+    MuzikaCoreModule.forRoot()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: 'RPC_URL',
+      useValue: `${environment.rpcUrl}/${environment.infuraAccessToken}`
+    }
+  ]
 })
 export class AppModule {
   constructor(@Inject(PLATFORM_ID) private platformId: string) {

@@ -6,7 +6,7 @@ import {ContractProviders} from './contracts';
 
 })
 export class MuzikaCoreModule {
-  static forRoot(defaultRpcUrl?: string): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: MuzikaCoreModule,
       providers: [

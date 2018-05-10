@@ -6,10 +6,8 @@
 export const environment = {
   production: false,
   env: 'dev',
-  rpc: {
-    host: '127.0.0.1',
-    port: 8545
-  }
+  infuraAccessToken: 'nCLC9iatDyYYhUaFCPkZ',
+  rpcUrl: 'https://ropsten.infura.io'
 };
 
 /*
