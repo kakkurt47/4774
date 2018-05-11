@@ -5,6 +5,9 @@ import {LedgerProvider} from '../../../../../core/src/web3-providers/ledger.prov
 import {BaseComponent} from '../../../shared/base.component';
 import {AddressOnlyProvider, MetamaskProvider, RPCProvider, WalletProvider, Web3, WEB3} from '@muzika/core';
 import {promisify} from '../../../utils';
+import * as _alertify from 'alertify.js';
+
+const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 
 type ExtraType = null | 'keystore' | 'privateKey' | 'direct' | 'ledger';
 
@@ -47,7 +50,6 @@ export class MainPageComponent extends BaseComponent {
   }
 
   usingLedger(offset?: number) {
-    console.log(offset);
     this.web3.setProvider(new LedgerProvider({
       accountsLength: 1,
       accountsOffset: offset || 0
@@ -61,25 +63,37 @@ export class MainPageComponent extends BaseComponent {
      reader.onload = e => {
        const keystore = reader.result;
        const password = form.value.keyPassword;
+       let provider;
 
-       this.web3.setProvider(new WalletProvider({input: keystore, password: password}, this.rpcUrl));
-       this.router.navigate(['/wallet']);
+       try {
+         provider = new WalletProvider({input: keystore, password: password}, this.rpcUrl);
+         this.web3.setProvider(provider);
+         this.router.navigate(['/wallet']);
+       } catch (e) {
+         alertify.alert('올바르지 않은 지갑 파일이거나 비밀번호가 일치하지 않습니다');
+       }
      };
      reader.readAsText(this.keystoreFile);
+    } else {
+      alertify.alert('파일을 선택해주시고 비밀번호를 입력해주세요');
     }
   }
 
   usingPrivateKey(form: NgForm) {
-    if (form.value.privKey) {
+    if (form.valid && form.value.privKey) {
       this.web3.setProvider(new WalletProvider(form.value.privKey, this.rpcUrl));
       this.router.navigate(['/wallet']);
+    } else {
+      alertify.alert('개인키가 올바르지 않습니다');
     }
   }
 
   usingAddressDirect(form: NgForm) {
-    if (form.value.address) {
+    if (form.valid && form.value.address) {
       this.web3.setProvider(new AddressOnlyProvider(form.value.address, this.rpcUrl));
       this.router.navigate(['/wallet']);
+    } else {
+      alertify.alert('지갑주소가 올바르지 않습니다');
     }
   }
 

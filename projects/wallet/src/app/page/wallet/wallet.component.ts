@@ -35,6 +35,7 @@ export class WalletPageComponent extends BaseComponent {
   ngOnInit(): void {
     if (!this.web3.currentProvider) {
       this.router.navigate(['/']);
+      return;
     }
     this.loadAccount();
     this.supportTransfer = !(this.web3.currentProvider instanceof AddressOnlyProvider);
@@ -59,6 +60,16 @@ export class WalletPageComponent extends BaseComponent {
           this.loadAccount();
           this.agreeTransfer = false;
         });
+      } else {
+        if (form.controls.toAddress.invalid) {
+          alertify.alert('받는주소가 올바르지 않습니다');
+        } else if (form.controls.amount.invalid) {
+          alertify.alert('보내는 수량이 올바르지 않습니다');
+        } else if (form.controls.gasLimit.invalid || form.controls.gasPrice.invalid) {
+          alertify.alert('가스한도 및 가스 가격을 확인해주세요');
+        } else {
+          alertify.alert('보내는 정보가 맞는지 확인하시고, 확인 여부에 체크해주세요');
+        }
       }
     }
   }
