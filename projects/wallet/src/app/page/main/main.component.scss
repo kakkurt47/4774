@@ -43,7 +43,7 @@ h1 {
     }
 
     h2 {
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
 
       @include media-breakpoint-down(md) {
         margin-bottom: 2rem
@@ -262,6 +262,30 @@ h1 {
       &::placeholder {
         color: rgba(255, 255, 255, 0.6);
       }
+    }
+
+    .ledger-wallet-list {
+      list-style: none;
+      font-size: 1.2rem;
+      padding: 0;
+      margin: 0;
+      color: $main-color-text;
+      margin-bottom: 20px;
+
+      li {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255 ,255, 0.6);
+      }
+    }
+  }
+}
+
+app-spinner {
+  margin-bottom: 8px;
+
+  /deep/ .spinner {
+    > div {
+      background: $main-color-text;
     }
   }
 }

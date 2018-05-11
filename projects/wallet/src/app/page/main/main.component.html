@@ -22,11 +22,10 @@
             </button>
           </div>
           <div class="provider col d-none d-md-block">
-            <button type="button" class="btn btn-outline-light" (click)="usingGanache()" disabled>
+            <button type="button" class="btn btn-outline-light" (click)="displayExtra('ledger')">
               <span class="method-name">
                 <app-icon-ledger></app-icon-ledger>
                 <span class="name">Ledger</span>
-                <small> 준비중 </small>
               </span>
             </button>
           </div>
@@ -58,6 +57,8 @@
         </div>
 
         <div class="row extra" [class.show]="showExtra" [class.hide]="!showExtra">
+
+          <!-- Extra: using keystore -->
           <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='keystore'">
             <form #keystoreForm="ngForm" (ngSubmit)="usingKeystore(keystoreForm)">
               <div class="d-block d-md-flex">
@@ -87,7 +88,9 @@
               </div>
             </form>
           </div>
-          <div class="offset-1 col-10 d-flex align-items-center" *ngIf="extraType==='privateKey'">
+
+          <!-- Extra: using private Key -->
+          <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='privateKey'">
             <form #privForm="ngForm" (ngSubmit)="usingPrivateKey(privForm)">
               <h5 class="text-center text-main-color"> 개인키를 입력해주세요 </h5>
               <div class="form-group">
@@ -103,7 +106,9 @@
               </div>
             </form>
           </div>
-          <div class="offset-1 col-10 d-flex align-items-center" *ngIf="extraType==='direct'">
+
+          <!-- Extra: using account address -->
+          <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='direct'">
             <form #addressForm="ngForm" (ngSubmit)="usingAddressDirect(addressForm)">
               <h5 class="text-center text-main-color"> 주소를 입력해주세요 </h5>
               <p class="text-center text-main-color"> 해당 방법은 잔액 조회만 가능합니다. </p>
@@ -119,6 +124,48 @@
                 <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
               </div>
             </form>
+          </div>
+
+          <!-- Extra: using ledger -->
+          <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='ledger'">
+            <div class="w-100">
+              <ng-container *ngIf="ledgerConnection === 'connecting'">
+                <div class="text-center"> <app-spinner></app-spinner> </div>
+                <h5 class="text-center text-main-color"> 연결중입니다. </h5>
+              </ng-container>
+
+              <ng-container *ngIf="ledgerConnection === 'ready'">
+                <ul class="ledger-wallet-list">
+                  <li *ngFor="let account of ledgerAccounts; let i = index">
+                    {{account}}
+
+                    <button type="button" class="float-right btn btn-outline-light"
+                            (click)="usingLedger(ledgerOffset + i)">
+                      선택
+                    </button>
+                  </li>
+                </ul>
+
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="float-right btn btn-outline-light"
+                          [disabled]="ledgerOffset===0" (click)="ledgerPrevAccounts()">
+                    <i class="fa fa-arrow-left"></i>
+                    이전
+                  </button>
+
+                  <button type="button" class="float-right btn btn-outline-light" (click)="ledgerNextAccounts()">
+                    다음
+                    <i class="fa fa-arrow-right"></i>
+                  </button>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="ledgerConnection === 'error'">
+                <div class="text-center"> <app-spinner></app-spinner> </div>
+                <h5 class="text-center text-main-color"> 연결중입니다. </h5>
+                <p class="text-center text-main-color"> <i class="fa fa-times"></i> 지갑이 연결되어있는지 확인해주세요. </p>
+              </ng-container>
+            </div>
           </div>
         </div>
       </div>
