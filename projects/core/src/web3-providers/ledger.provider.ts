@@ -51,4 +51,8 @@ export class LedgerProvider implements Web3Provider {
   send(...args): any {
     return this.engine.send.apply(this.engine, args);
   }
+
+  stop(): void {
+    this.engine.stop();
+  }
 }
