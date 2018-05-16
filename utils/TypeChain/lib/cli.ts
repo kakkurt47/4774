@@ -81,27 +81,23 @@ ${importString.join('\n')}
 
 ${contractNames.map(name => `export { I${name}, Truffle${name} } from './interface/${name}'`).join(';\n')}
 
-let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
-  return (web3: Web3, platformId: string) => {
-    if (isPlatformBrowser(platformId)) {
-      let contract: TruffleContract<any> = contractFunction();
-      web3.onProviderChange().subscribe(provider => {
-        if (!!provider) {
-          contract.setProvider(provider);
-        }
-      });
-      return contract;
-    }
-
-    // @TODO is that works?
-    return null;
-  };
-};
+${contractNames.map(name => `
+export const Truffle${name}ProviderFactory = (web3: Web3, platformId: string) => {
+  if (isPlatformBrowser(platformId)) {
+    let contract: TruffleContract<any> = Truffle${name}();
+    web3.onProviderChange().subscribe(provider => {
+      if (!!provider) {
+        contract.setProvider(provider);
+      }
+    });
+    return contract;
+  }
+}`).join(';\n')};
 
 ${contractNames.map(name => `export const ${name} = new InjectionToken<TruffleContract<I${name}>>('${name}')`).join(';\n')};
 
 export const ContractProviders: Provider[] = [
-${contractNames.map(name => `  { provide: ${name}, useFactory: ProviderFactory(Truffle${name}), deps: [WEB3, PLATFORM_ID] }`).join(',\n')}
+${contractNames.map(name => `  { provide: ${name}, useFactory: Truffle${name}ProviderFactory, deps: [WEB3, PLATFORM_ID] }`).join(',\n')}
 ];
 `;
 

@@ -1,0 +1,289 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "muzika-wallet": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/wallet",
+            "index": "projects/wallet/src/index.html",
+            "main": "projects/wallet/src/main.ts",
+            "tsConfig": "projects/wallet/src/../tsconfig.json",
+            "polyfills": "projects/wallet/src/polyfills.ts",
+            "assets": [
+              "projects/wallet/src/assets",
+              "projects/wallet/src/favicon.ico"
+            ],
+            "styles": [
+              "projects/wallet/src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "scss/fontawesome-pro/css/fontawesome.min.css",
+              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/wallet/src/environments/environment.ts",
+                  "with": "projects/wallet/src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/wallet/src/environments/environment.ts",
+                  "with": "projects/wallet/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "muzika-wallet:build"
+          },
+          "configurations": {
+            "stage": {
+              "browserTarget": "muzika-wallet:build:stage"
+            },
+            "production": {
+              "browserTarget": "muzika-wallet:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "muzika-wallet:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/wallet/src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "projects/wallet/src/polyfills.ts",
+            "tsConfig": "projects/wallet/src/../tsconfig.spec.json",
+            "scripts": [],
+            "styles": [
+              "projects/wallet/src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "scss/fontawesome-pro/css/fontawesome.min.css",
+              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+            ],
+            "assets": [
+              "projects/wallet/src/assets",
+              "projects/wallet/src/favicon.ico"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/core/tsconfig.json",
+              "projects/core/tsconfig.spec.json",
+              "projects/wallet/tsconfig.json",
+              "projects/wallet/tsconfig.spec.json",
+              "projects/prototype/tsconfig.json",
+              "projects/prototype/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "muzika-wallet-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "muzika-wallet:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "muzika-prototype": {
+      "root": "projects/prototype/",
+      "sourceRoot": "projects/prototype/",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/prototype",
+            "index": "projects/prototype/src/index.html",
+            "main": "projects/prototype/src/main.ts",
+            "tsConfig": "projects/prototype/tsconfig.json",
+            "polyfills": "projects/prototype/src/polyfills.ts",
+            "assets": [
+              "projects/prototype/src/assets",
+              "projects/prototype/src/favicon.ico"
+            ],
+            "styles": [
+              "projects/prototype/src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "scss/fontawesome-pro/css/fontawesome.min.css",
+              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/prototype/src/environments/environment.ts",
+                  "with": "projects/prototype/src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/prototype/src/environments/environment.ts",
+                  "with": "projects/prototype/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "muzika-prototype:build"
+          },
+          "configurations": {
+            "stage": {
+              "browserTarget": "muzika-prototype:build:stage"
+            },
+            "production": {
+              "browserTarget": "muzika-prototype:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "muzika-prototype:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/prototype/src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "projects/prototype/src/polyfills.ts",
+            "tsConfig": "projects/prototype/src/../tsconfig.spec.json",
+            "scripts": [],
+            "styles": [
+              "projects/prototype/src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "scss/fontawesome-pro/css/fontawesome.min.css",
+              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+            ],
+            "assets": [
+              "projects/prototype/src/assets",
+              "projects/prototype/src/favicon.ico"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/core/tsconfig.json",
+              "projects/core/tsconfig.spec.json",
+              "projects/wallet/tsconfig.json",
+              "projects/wallet/tsconfig.spec.json",
+              "projects/prototype/tsconfig.json",
+              "projects/prototype/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "muzika-prototype-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "muzika-prototype:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "muzika-wallet",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  }
+}
