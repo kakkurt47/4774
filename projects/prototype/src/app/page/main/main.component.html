@@ -1,0 +1,180 @@
+<h1>
+  Muzika
+</h1>
+
+<div class="method">
+  <div class="container">
+    <div class="wrapper">
+      <h2 class="d-flex text-main-color justify-content-between">
+        <a class="backbtn" [ngClass]="showExtra ? 'visible' : 'invisible'" (click)="resetExtra()"><i class="fa fa-arrow-left"></i></a>
+        <span> 지갑 선택 </span>
+        <a class="invisible"><i class="fa fa-arrow-left"></i></a>
+      </h2>
+
+      <div class="inner">
+        <div class="row" [class.show]="!showExtra" [class.hide]="showExtra">
+          <div class="provider col d-none d-md-block">
+            <button type="button" class="btn btn-outline-light" (click)="usingMetamask()">
+              <span class="method-name">
+                <i class="fa fa-desktop-alt"></i>
+                <span class="name">MetaMask</span>
+              </span>
+            </button>
+          </div>
+          <div class="provider col d-none d-md-block">
+            <button type="button" class="btn btn-outline-light" (click)="displayExtra('ledger')">
+              <span class="method-name">
+                <app-icon-ledger></app-icon-ledger>
+                <span class="name">Ledger</span>
+              </span>
+            </button>
+          </div>
+          <div class="provider col d-none d-md-block">
+            <button type="button" class="btn btn-outline-light" (click)="usingGanache()" disabled>
+              <span class="method-name">
+                <app-icon-trezor></app-icon-trezor>
+                <span class="name">Trezor</span>
+                <small> 준비중 </small>
+              </span>
+            </button>
+          </div>
+          <div class="provider col">
+            <button type="button" class="btn btn-outline-light" (click)="displayExtra('keystore')">
+              <span class="method-name">
+                <app-icon-json></app-icon-json>
+                <span class="name">Keystore</span>
+              </span>
+            </button>
+          </div>
+          <div class="provider col">
+            <button type="button" class="btn btn-outline-light" (click)="displayExtra('privateKey')">
+              <span class="method-name">
+                <i class="fa fa-key"></i>
+                <span class="name">Private Key</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="row extra" [class.show]="showExtra" [class.hide]="!showExtra">
+
+          <!-- Extra: using keystore -->
+          <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='keystore'">
+            <form #keystoreForm="ngForm" (ngSubmit)="usingKeystore(keystoreForm)">
+              <div class="d-block d-md-flex">
+                <div class="form-group text-center">
+                  <label class="keystore-file" for="keystore-select">
+                    <input type="file" class="d-none" id="keystore-select" name="keystore-select" ngModel
+                           (change)="onKeystoreSelect($event)" required>
+                    <i class="fa fa-plus-square" *ngIf="!keystoreFile"></i>
+                    <div id="keystore-file-name" *ngIf="!!keystoreFile">
+                      {{keystoreFile.name}}
+                    </div>
+                  </label>
+                </div>
+                <div class="form-group text-center flex-grow-1 d-flex justify-content-center flex-column">
+                  <h5 class="text-center text-main-color"> 지갑 파일 선택 후 비밀번호를 입력해주세요 </h5>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" name="keyPassword" id="keyPassword"
+                           ngModel placeholder="비밀번호" required>
+                  </div>
+                  <div class="text-center" style="margin-top: 12px;">
+                    <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Extra: using private Key -->
+          <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='privateKey'">
+            <form #privForm="ngForm" (ngSubmit)="usingPrivateKey(privForm)">
+              <h5 class="text-center text-main-color"> 개인키를 입력해주세요 </h5>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  </div>
+                  <input type="password" class="form-control" name="privKey" id="privKey" ngModel required pattern="[a-fA-F0-9]{64}">
+                </div>
+              </div>
+              <div class="text-center" style="margin-top: 12px;">
+                <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Extra: using account address -->
+          <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='direct'">
+            <form #addressForm="ngForm" (ngSubmit)="usingAddressDirect(addressForm)">
+              <h5 class="text-center text-main-color"> 주소를 입력해주세요 </h5>
+              <p class="text-center text-main-color"> 해당 방법은 잔액 조회만 가능합니다. </p>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-qrcode"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="address" id="address" ngModel required pattern="0x[a-fA-F0-9]{40}">
+                </div>
+              </div>
+              <div class="text-center" style="margin-top: 12px;">
+                <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Extra: using ledger -->
+          <div class="offset-md-1 col-md-10 d-flex align-items-center" *ngIf="extraType==='ledger'">
+            <div class="w-100">
+              <ng-container *ngIf="ledgerConnection === 'connecting'">
+                <div class="text-center"> <app-spinner></app-spinner> </div>
+                <h5 class="text-center text-main-color"> 연결중입니다. </h5>
+              </ng-container>
+
+              <ng-container *ngIf="ledgerConnection === 'ready'">
+                <ul class="ledger-wallet-list">
+                  <li *ngFor="let account of ledgerAccounts; let i = index">
+                    {{account}}
+
+                    <button type="button" class="float-right btn btn-outline-light"
+                            (click)="usingLedger(ledgerOffset + i)">
+                      선택
+                    </button>
+                  </li>
+                </ul>
+
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="float-right btn btn-outline-light"
+                          [disabled]="ledgerOffset===0" (click)="ledgerPrevAccounts()">
+                    <i class="fa fa-arrow-left"></i>
+                    이전
+                  </button>
+
+                  <button type="button" class="float-right btn btn-outline-light" (click)="ledgerNextAccounts()">
+                    다음
+                    <i class="fa fa-arrow-right"></i>
+                  </button>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="ledgerConnection === 'error'">
+                <div class="text-center"> <app-spinner></app-spinner> </div>
+                <h5 class="text-center text-main-color"> 연결중입니다. </h5>
+                <p class="text-center text-main-color"> <i class="fa fa-times"></i> 지갑이 연결되어있는지 확인해주세요. </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="other-method">
+    <a href="#" (click)="$event.preventDefault();displayExtra('direct')">또는 지갑주소 직접 입력</a>
+  </div>
+</footer>

@@ -14,6 +14,7 @@ import {LedgerIconComponent} from './component/ledger-icon/ledger-icon.component
 import {SpinnerComponent} from './component/spinner/spinner.component';
 import {TrezorIconComponent} from './component/trezor-icon/trezor-icon.component';
 import {MainPageComponent} from './page/main/main.component';
+import {TestPageComponent} from './page/test/test.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
 
@@ -22,6 +23,7 @@ declare const window;
 @NgModule({
   declarations: [
     AppComponent,
+    TestPageComponent,
     WalletPageComponent,
     MainPageComponent,
     NavbarComponent,

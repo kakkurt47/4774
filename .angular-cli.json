@@ -28,6 +28,35 @@
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
+        "stage": "environments/environment.stage.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "root": "projects/prototype/src",
+      "outDir": "dist/prototype",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "../tsconfig.json",
+      "testTsconfig": "../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.scss",
+        "../../../node_modules/bootstrap/scss/bootstrap.scss",
+        "../../../scss/fontawesome-pro/css/fontawesome.min.css",
+        "../../../scss/fontawesome-pro/css/fontawesome-all.min.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "stage": "environments/environment.stage.ts",
         "prod": "environments/environment.prod.ts"
       }
     }
@@ -39,11 +68,27 @@
   },
   "lint": [
     {
+      "project": "projects/core/tsconfig.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "projects/core/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
       "project": "projects/wallet/tsconfig.json",
       "exclude": "**/node_modules/**"
     },
     {
       "project": "projects/wallet/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "projects/prototype/tsconfig.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "projects/prototype/tsconfig.spec.json",
       "exclude": "**/node_modules/**"
     },
     {
