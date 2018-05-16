@@ -7,9 +7,11 @@ import { Web3 } from '../types/web3';
 import { TruffleContract } from './typechain-runtime';
 
 import { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
+import { IMuzikaLoyaltyPoint, TruffleMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
 import { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract';
 
 export { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
+export { IMuzikaLoyaltyPoint, TruffleMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
 export { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract'
 
 let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
@@ -30,9 +32,11 @@ let ProviderFactory = (contractFunction: () => TruffleContract<any>) => {
 };
 
 export const MuzikaCoin = new InjectionToken<TruffleContract<IMuzikaCoin>>('MuzikaCoin');
+export const MuzikaLoyaltyPoint = new InjectionToken<TruffleContract<IMuzikaLoyaltyPoint>>('MuzikaLoyaltyPoint');
 export const MuzikaPaperContract = new InjectionToken<TruffleContract<IMuzikaPaperContract>>('MuzikaPaperContract');
 
 export const ContractProviders: Provider[] = [
   { provide: MuzikaCoin, useFactory: ProviderFactory(TruffleMuzikaCoin), deps: [WEB3, PLATFORM_ID] },
+  { provide: MuzikaLoyaltyPoint, useFactory: ProviderFactory(TruffleMuzikaLoyaltyPoint), deps: [WEB3, PLATFORM_ID] },
   { provide: MuzikaPaperContract, useFactory: ProviderFactory(TruffleMuzikaPaperContract), deps: [WEB3, PLATFORM_ID] }
 ];

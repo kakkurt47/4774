@@ -5,6 +5,7 @@
   "outDir": "projects/core/src/contracts",
   "contracts": [
     "MuzikaCoin",
-    "MuzikaPaperContract"
+    "MuzikaPaperContract",
+    "MuzikaLoyaltyPoint"
   ]
 }

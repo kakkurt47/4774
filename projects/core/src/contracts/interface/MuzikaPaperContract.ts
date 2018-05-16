@@ -15,55 +15,11 @@ import {
 import * as BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaPaperContract.json';
 
 export interface IMuzikaPaperContract extends TruffleContractInstance {
-  lastPaperID(): Promise<BigNumber>;
-  heartbeatTimeout(): Promise<BigNumber>;
   owner(): Promise<string>;
-  heir(): Promise<string>;
-  totalPapers(): Promise<BigNumber>;
-  timeOfDeath(): Promise<BigNumber>;
-  registeredPaper(
-    arg0: EtherInteger
-  ): Promise<[BigNumber, string, string, BigNumber, boolean, string]>;
-  isPurchased(user: EtherAddress, paperID: EtherInteger): Promise<boolean>;
+  originalFileHash(): Promise<string>;
+  ipfsFileHash(): Promise<string>;
+  isPurchased(user: EtherAddress): Promise<boolean>;
 
-  claimHeirOwnership: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
-  setHeir: {
-    (newHeir: EtherAddress, txParams?: ITxParams): Promise<void>;
-    sendTransaction: (
-      newHeir: EtherAddress,
-      txParams?: ITxParams
-    ) => Promise<void>;
-    call: (newHeir: EtherAddress, txParams?: ITxParams) => Promise<void>;
-    request: (newHeir: EtherAddress) => Promise<string>;
-    estimateGas: (newHeir: EtherAddress) => Promise<number>;
-  };
-  proclaimDeath: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
-  heartbeat: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
-  removeHeir: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
     sendTransaction: (
@@ -74,45 +30,42 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     request: (newOwner: EtherAddress) => Promise<string>;
     estimateGas: (newOwner: EtherAddress) => Promise<number>;
   };
-  sell: {
-    (
-      title: string,
-      price: EtherInteger,
-      fileHash: string,
-      txParams?: ITxParams
-    ): Promise<BigNumber>;
-    sendTransaction: (
-      title: string,
-      price: EtherInteger,
-      fileHash: string,
-      txParams?: ITxParams
-    ) => Promise<BigNumber>;
-    call: (
-      title: string,
-      price: EtherInteger,
-      fileHash: string,
-      txParams?: ITxParams
-    ) => Promise<BigNumber>;
-    request: (
-      title: string,
-      price: EtherInteger,
-      fileHash: string
-    ) => Promise<string>;
-    estimateGas: (
-      title: string,
-      price: EtherInteger,
-      fileHash: string
-    ) => Promise<number>;
+  soldOut: {
+    (txParams?: ITxParams): Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    call: (txParams?: ITxParams) => Promise<void>;
+    request: () => Promise<string>;
+    estimateGas: () => Promise<number>;
   };
   purchase: {
-    (paperID: EtherInteger, txParams?: ITxParams): Promise<boolean>;
+    (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      txParams?: ITxParams
+    ): Promise<boolean>;
     sendTransaction: (
-      paperID: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
-    call: (paperID: EtherInteger, txParams?: ITxParams) => Promise<boolean>;
-    request: (paperID: EtherInteger) => Promise<string>;
-    estimateGas: (paperID: EtherInteger) => Promise<number>;
+    call: (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    request: (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
+    ) => Promise<string>;
+    estimateGas: (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
+    ) => Promise<number>;
   };
 }
 
