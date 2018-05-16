@@ -1,6 +1,17 @@
+@import '../../../theme/variables';
+
+:host {
+  background-color: #fff;
+  display: block;
+  height: 75px;
+}
+
 .navbar-brand {
-  font-weight: 700;
-  line-height: 30px;
   outline: none;
   cursor: pointer;
+
+  brand-icon-muzika {
+    height: 30px;
+    fill: #000;
+  }
 }

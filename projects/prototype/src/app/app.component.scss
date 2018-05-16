@@ -3,19 +3,9 @@
 :host {
   position: relative;
   display: block;
-  background-color: $main-background;
-}
-
-app-navbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
 }
 
 .background {
   height: 100vh;
   width: 100%;
-  background: url(../assets/back.jpg) no-repeat 50%;
 }

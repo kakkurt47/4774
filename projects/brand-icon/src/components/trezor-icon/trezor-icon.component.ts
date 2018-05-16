@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-icon-trezor',
+  selector: 'brand-icon-trezor',
   templateUrl: './trezor-icon.component.html',
   styleUrls: ['./trezor-icon.component.scss']
 })

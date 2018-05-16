@@ -19,7 +19,8 @@
       "dom"
     ],
     "paths": {
-      "@muzika/core": ["../core/index.ts"]
+      "@muzika/core": ["../core/index.ts"],
+      "@muzika/brand-icon": ["../brand-icon/index.ts"]
     }
   },
   "exclude": [
