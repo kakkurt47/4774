@@ -5,6 +5,8 @@ import {AppModule} from './app/app.module';
 import {environment} from './environments/environment';
 import {hmrBootstrap} from './hmr';
 
+declare const document, global;
+
 if (environment.production) {
   enableProdMode();
 }
@@ -19,7 +21,5 @@ if (environment.env === 'dev') {
     console.log('Are you using the --hmr flag for ng serve?');
   }
 } else {
-  document.addEventListener('DOMContentLoaded', () => {
-    bootstrap();
-  });
+  document.addEventListener('DOMContentLoaded', bootstrap);
 }
