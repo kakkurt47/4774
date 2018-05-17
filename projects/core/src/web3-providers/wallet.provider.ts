@@ -1,16 +1,15 @@
-import * as ProviderEngine from 'web3-provider-engine';
-import * as FiltersSubprovider from 'web3-provider-engine/subproviders/filters';
-import * as WalletSubprovider from 'web3-provider-engine/subproviders/wallet';
-import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {Provider as Web3Provider} from '@0xproject/types';
 import * as Wallet from 'ethereumjs-wallet-browser';
 import {Buffer} from 'safe-buffer';
+import * as ProviderEngine from 'web3-provider-engine';
+import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
+import * as WalletSubprovider from 'web3-provider-engine/subproviders/wallet';
 import {DEFAULT_RPC_URL} from '../config';
 
 export class WalletProvider implements Web3Provider {
   private engine: ProviderEngine;
 
-  constructor(walletKey: string | {input: string, password: string},
+  constructor(walletKey: string | { input: string, password: string },
               providerUrl?: string) {
     let wallet: Wallet;
     if (typeof walletKey === 'string') {

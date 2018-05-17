@@ -1,7 +1,7 @@
-import * as ProviderEngine from 'web3-provider-engine';
-import * as HookedWalletSubprovider  from 'web3-provider-engine/subproviders/hooked-wallet';
-import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {Provider as Web3Provider} from '@0xproject/types';
+import * as ProviderEngine from 'web3-provider-engine';
+import * as HookedWalletSubprovider from 'web3-provider-engine/subproviders/hooked-wallet';
+import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {DEFAULT_RPC_URL} from '../config';
 
 export class AddressOnlyProvider implements Web3Provider {

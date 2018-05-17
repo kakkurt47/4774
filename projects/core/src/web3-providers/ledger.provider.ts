@@ -1,14 +1,11 @@
-import * as ProviderEngine from 'web3-provider-engine';
-import * as FiltersSubprovider from 'web3-provider-engine/subproviders/filters';
-import {default as TransportU2F} from '@ledgerhq/hw-transport-u2f';
-import {default as createLedgerSubprovider} from "@ledgerhq/web3-subprovider";
-import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {Provider as Web3Provider} from '@0xproject/types';
-import * as Wallet from 'ethereumjs-wallet-browser';
-import {Buffer} from 'safe-buffer';
+import {default as TransportU2F} from '@ledgerhq/hw-transport-u2f';
+import {default as createLedgerSubprovider} from '@ledgerhq/web3-subprovider';
+import * as ProviderEngine from 'web3-provider-engine';
+import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {DEFAULT_RPC_URL} from '../config';
 
-type SubproviderOptions = {
+interface SubproviderOptions {
   // refer to https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
   networkId?: number,
   // derivation path
@@ -19,7 +16,7 @@ type SubproviderOptions = {
   accountsLength?: number,
   // offset index to use to start derivating the accounts
   accountsOffset?: number
-};
+}
 
 export class LedgerProvider implements Web3Provider {
   private engine: ProviderEngine;
