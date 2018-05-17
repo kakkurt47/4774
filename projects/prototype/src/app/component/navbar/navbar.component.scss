@@ -1,9 +1,8 @@
 @import '../../../theme/variables';
 
 :host {
-  background-color: #fff;
+  background-color: $navbar-background;
   display: block;
-  height: 75px;
 }
 
 .navbar-brand {
@@ -11,7 +10,44 @@
   cursor: pointer;
 
   brand-icon-muzika {
-    height: 30px;
-    fill: #000;
+    height: $navbar-brand-size;
+
+    /deep/ .muzika-icon-striped-primary {
+      fill: $primary-color;
+    }
+
+    /deep/ .muzika-icon-striped-secondary {
+      fill: $secondary-color;
+    }
+  }
+}
+
+.wallet {
+  text-transform: lowercase;
+  color: map-get($secondary-palette, 500);
+}
+
+.main-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    cursor: pointer;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    color: map-get($secondary-palette, 200);
+
+    &.active {
+      border-bottom: 5px solid $primary-color;
+      color: $primary-color;
+    }
+  }
+}
+
+.user-profile-img {
+  img {
+    height: 3.8rem;
+    border-radius: 50%;
   }
 }
