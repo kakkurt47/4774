@@ -17,8 +17,16 @@
             "tsConfig": "projects/wallet/src/../tsconfig.json",
             "polyfills": "projects/wallet/src/polyfills.ts",
             "assets": [
-              "projects/wallet/src/assets",
-              "projects/wallet/src/favicon.ico"
+              {
+                "glob": "favicon.ico",
+                "input": "projects/wallet/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/wallet/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "projects/wallet/src/styles.scss",
@@ -93,8 +101,16 @@
               "scss/fontawesome-pro/css/fontawesome-all.min.css"
             ],
             "assets": [
-              "projects/wallet/src/assets",
-              "projects/wallet/src/favicon.ico"
+              {
+                "glob": "favicon.ico",
+                "input": "projects/wallet/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/wallet/src/assets",
+                "output": "/assets"
+              }
             ]
           }
         },
@@ -155,12 +171,19 @@
             "tsConfig": "projects/prototype/tsconfig.json",
             "polyfills": "projects/prototype/src/polyfills.ts",
             "assets": [
-              "projects/prototype/src/assets",
-              "projects/prototype/src/favicon.ico"
+              {
+                "glob": "favicon.ico",
+                "input": "projects/prototype/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/prototype/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "projects/prototype/src/styles.scss",
-              "node_modules/bootstrap/scss/bootstrap.scss",
               "scss/fontawesome-pro/css/fontawesome.min.css",
               "scss/fontawesome-pro/css/fontawesome-all.min.css"
             ],
@@ -231,8 +254,16 @@
               "scss/fontawesome-pro/css/fontawesome-all.min.css"
             ],
             "assets": [
-              "projects/prototype/src/assets",
-              "projects/prototype/src/favicon.ico"
+              {
+                "glob": "favicon.ico",
+                "input": "projects/prototype/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/prototype/src/assets",
+                "output": "/assets"
+              }
             ]
           }
         },
