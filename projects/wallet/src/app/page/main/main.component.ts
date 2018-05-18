@@ -5,6 +5,7 @@ import {AddressOnlyProvider, MetamaskProvider, RPCProvider, WalletProvider, Web3
 import * as _alertify from 'alertify.js';
 import {LedgerProvider} from '../../../../../core/src/web3-providers/ledger.provider';
 import {promisify} from '../../../utils';
+import {environment} from '../../../environments/environment';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 
@@ -51,8 +52,9 @@ export class MainPageComponent extends BaseComponent {
   usingLedger(offset?: number) {
     this.web3.setProvider(new LedgerProvider({
       accountsLength: 1,
-      accountsOffset: offset || 0
-    }));
+      accountsOffset: offset || 0,
+      networkId: environment.networkId,
+    }, this.rpcUrl));
     this.router.navigate(['/wallet']);
   }
 
@@ -127,7 +129,8 @@ export class MainPageComponent extends BaseComponent {
 
     this.web3.setProvider(new LedgerProvider({
       accountsLength: this.ledgerAccountLength,
-      accountsOffset: offset
+      accountsOffset: offset,
+      networkId: environment.networkId,
     }, this.rpcUrl));
 
     promisify(this.web3.eth.getAccounts).then(accounts => {

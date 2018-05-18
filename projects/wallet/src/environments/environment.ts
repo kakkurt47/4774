@@ -7,7 +7,8 @@ export const environment = {
   production: false,
   env: 'dev',
   infuraAccessToken: '',
-  rpcUrl: 'http://localhost:8545'
+  rpcUrl: 'http://localhost:8545',
+  networkId: 5777,
 };
 
 /*

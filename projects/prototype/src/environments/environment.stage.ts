@@ -2,5 +2,6 @@ export const environment = {
   production: false,
   env: 'stage',
   infuraAccessToken: 'nCLC9iatDyYYhUaFCPkZ',
-  rpcUrl: 'https://ropsten.infura.io'
+  rpcUrl: 'https://ropsten.infura.io',
+  networkId: 3,
 };
