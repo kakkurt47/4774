@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - "8"
+  - "9"
+
+install:
+  - npm install -g truffle ganache-cli
+  - nohup ganache-cli &
+  - npm install
+
+  - git submodule update --init --recursive
+  - git submodule foreach --recursive git submodule update --init
+script:
+  - npm run contract:compile
+  - npm run lint
