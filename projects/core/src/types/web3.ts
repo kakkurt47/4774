@@ -16,7 +16,7 @@ import {
   JSONRPCRequestPayload,
   JSONRPCResponsePayload,
 } from '@0xproject/types';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 type MixedData = string | number | object | any[] | BigNumber.BigNumber;
 
