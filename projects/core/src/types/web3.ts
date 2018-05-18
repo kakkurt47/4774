@@ -20,6 +20,16 @@ import {Observable} from 'rxjs/Observable';
 
 type MixedData = string | number | object | any[] | BigNumber.BigNumber;
 
+declare namespace providers {
+  class HttpProvider implements Provider {
+    constructor(url?: string, timeout?: number, username?: string, password?: string);
+    public sendAsync(
+      payload: JSONRPCRequestPayload,
+      callback: (err: Error, result: JSONRPCResponsePayload) => void,
+    ): void;
+  }
+}
+
 export declare class Web3 {
   public static providers: typeof providers;
   public currentProvider: Provider;
@@ -50,16 +60,6 @@ export declare class Web3 {
 
   /* custom functions */
   public onProviderChange(): Observable<Provider>;
-}
-
-declare namespace providers {
-  class HttpProvider implements Provider {
-    constructor(url?: string, timeout?: number, username?: string, password?: string);
-    public sendAsync(
-      payload: JSONRPCRequestPayload,
-      callback: (err: Error, result: JSONRPCResponsePayload) => void,
-    ): void;
-  }
 }
 
 declare namespace Web3 {

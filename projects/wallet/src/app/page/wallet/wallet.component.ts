@@ -20,8 +20,8 @@ export class WalletPageComponent extends BaseComponent {
 
   toAddress: string;
   amount: number;
-  gasLimit: number = 54000;
-  gasPrice: number = 8;
+  gasLimit = 54000;
+  gasPrice = 8;
   agreeTransfer = false;
 
   supportTransfer = false;
@@ -33,6 +33,7 @@ export class WalletPageComponent extends BaseComponent {
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     if (!this.web3.currentProvider) {
       this.router.navigate(['/']);
       return;

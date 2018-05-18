@@ -12,7 +12,9 @@ export class ExtendedWeb3 extends Web3 {
 
   public setProvider(provider: Web3Provider): void {
     const currentProvider = (<any>this).currentProvider;
-    currentProvider && currentProvider.stop && currentProvider.stop();
+    if (currentProvider && currentProvider.stop) {
+      currentProvider.stop();
+    }
 
     super.setProvider(provider);
     this._providerChange.next(provider);

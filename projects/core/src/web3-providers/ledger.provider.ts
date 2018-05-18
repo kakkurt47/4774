@@ -7,15 +7,15 @@ import {DEFAULT_RPC_URL} from '../config';
 
 interface SubproviderOptions {
   // refer to https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
-  networkId?: number,
+  networkId?: number;
   // derivation path
-  path?: string,
+  path?: string;
   // should use actively validate on the device
-  askConfirm?: boolean,
+  askConfirm?: boolean;
   // number of accounts to derivate
-  accountsLength?: number,
+  accountsLength?: number;
   // offset index to use to start derivating the accounts
-  accountsOffset?: number
+  accountsOffset?: number;
 }
 
 export class LedgerProvider implements Web3Provider {
