@@ -1,10 +1,5 @@
-import {Component, Inject, QueryList, ViewChildren} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {Router} from '@angular/router';
-import {LedgerProvider} from '../../../../../core/src/web3-providers/ledger.provider';
-import {BaseComponent} from '../../../shared/base.component';
-import {AddressOnlyProvider, MetamaskProvider, RPCProvider, WalletProvider, Web3, WEB3} from '@muzika/core';
-import {promisify} from '../../../utils';
+import {Component} from '@angular/core';
+import {BaseComponent} from '@muzika/core';
 import * as _alertify from 'alertify.js';
 import {ArtistsMock} from '../../mock/artists';
 import {SheetsMock} from '../../mock/sheets';

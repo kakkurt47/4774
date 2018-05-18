@@ -1,5 +1,5 @@
 import {OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 
 export class BaseComponent implements OnInit, OnDestroy {
   _sub: Subscription[] = [];

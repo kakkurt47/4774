@@ -1,11 +1,10 @@
 import {Component, Inject, QueryList, ViewChildren} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {LedgerProvider} from '../../../../../core/src/web3-providers/ledger.provider';
-import {BaseComponent} from '../../../shared/base.component';
-import {AddressOnlyProvider, MetamaskProvider, RPCProvider, WalletProvider, Web3, WEB3} from '@muzika/core';
-import {promisify} from '../../../utils';
+import {AddressOnlyProvider, MetamaskProvider, RPCProvider, WalletProvider, Web3, WEB3, BaseComponent} from '@muzika/core';
 import * as _alertify from 'alertify.js';
+import {LedgerProvider} from '../../../../../core/src/web3-providers/ledger.provider';
+import {promisify} from '../../../utils';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 
@@ -59,21 +58,21 @@ export class MainPageComponent extends BaseComponent {
 
   usingKeystore(form: NgForm) {
     if (form.valid) {
-     const reader = new FileReader();
-     reader.onload = e => {
-       const keystore = reader.result;
-       const password = form.value.keyPassword;
-       let provider;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const keystore = reader.result;
+        const password = form.value.keyPassword;
+        let provider;
 
-       try {
-         provider = new WalletProvider({input: keystore, password: password}, this.rpcUrl);
-         this.web3.setProvider(provider);
-         this.router.navigate(['/wallet']);
-       } catch (e) {
-         alertify.alert('올바르지 않은 지갑 파일이거나 비밀번호가 일치하지 않습니다');
-       }
-     };
-     reader.readAsText(this.keystoreFile);
+        try {
+          provider = new WalletProvider({input: keystore, password: password}, this.rpcUrl);
+          this.web3.setProvider(provider);
+          this.router.navigate(['/wallet']);
+        } catch (e) {
+          alertify.alert('올바르지 않은 지갑 파일이거나 비밀번호가 일치하지 않습니다');
+        }
+      };
+      reader.readAsText(this.keystoreFile);
     } else {
       alertify.alert('파일을 선택해주시고 비밀번호를 입력해주세요');
     }
