@@ -31,8 +31,8 @@
             "styles": [
               "projects/wallet/src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "scss/fontawesome-pro/css/fontawesome.min.css",
-              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "scripts": []
           },
@@ -97,8 +97,8 @@
             "styles": [
               "projects/wallet/src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "scss/fontawesome-pro/css/fontawesome.min.css",
-              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "assets": [
               {
@@ -184,8 +184,8 @@
             ],
             "styles": [
               "projects/prototype/src/styles.scss",
-              "scss/fontawesome-pro/css/fontawesome.min.css",
-              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "scripts": []
           },
@@ -250,8 +250,8 @@
             "styles": [
               "projects/prototype/src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "scss/fontawesome-pro/css/fontawesome.min.css",
-              "scss/fontawesome-pro/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "assets": [
               {
