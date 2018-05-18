@@ -1,4 +1,6 @@
-# Muzika Platform monorepo
+# Muzika Platform monorepo 
+
+[![Build Status](https://travis-ci.com/MuzikaFoundation/muzika-platform.svg?branch=master)](https://travis-ci.com/MuzikaFoundation/muzika-platform)
 
 ## Muzika Wallet
 
