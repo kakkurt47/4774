@@ -42,15 +42,11 @@ declare const window;
     MatCardModule,
     AppRouteModule,
     ModalModule.forRoot(),
-    MuzikaCoreModule.forRoot(),
+    MuzikaCoreModule.forRoot(environment.env),
     BrandIconModule
   ],
   bootstrap: [AppComponent],
   providers: [
-    {
-      provide: 'RPC_URL',
-      useValue: `${environment.rpcUrl}/${environment.infuraAccessToken}`
-    }
   ]
 })
 export class AppModule {

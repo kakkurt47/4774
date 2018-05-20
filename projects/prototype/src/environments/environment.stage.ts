@@ -1,7 +1,4 @@
-export const environment = {
+export const environment: EnvironmentType = {
   production: false,
-  env: 'stage',
-  infuraAccessToken: 'nCLC9iatDyYYhUaFCPkZ',
-  rpcUrl: 'https://ropsten.infura.io',
-  networkId: 3,
+  env: 'stage'
 };

@@ -25,11 +25,11 @@ export class ExtendedWeb3 extends Web3 {
   }
 }
 
-export const WEB3 = new InjectionToken<Web3>('Web3');
+export const WEB3_TOKEN = new InjectionToken<Web3>('Web3');
 
 export const LocalWeb3ProviderFactory = () => new ExtendedWeb3(null);
 
 export const LocalWeb3Provider: Provider = {
-  provide: WEB3,
+  provide: WEB3_TOKEN,
   useFactory: LocalWeb3ProviderFactory
 };

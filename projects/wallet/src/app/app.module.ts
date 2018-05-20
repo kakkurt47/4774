@@ -14,8 +14,6 @@ import {MainPageComponent} from './page/main/main.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
 
-declare const window;
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,22 +30,13 @@ declare const window;
     ReactiveFormsModule,
     AppRouteModule,
     ModalModule.forRoot(),
-    MuzikaCoreModule.forRoot(),
+    MuzikaCoreModule,
     BrandIconModule
   ],
   bootstrap: [AppComponent],
-  providers: [
-    {
-      provide: 'RPC_URL',
-      useValue: `${environment.rpcUrl}/${environment.infuraAccessToken}`
-    }
-  ]
+  providers: []
 })
 export class AppModule {
   constructor(@Inject(PLATFORM_ID) private platformId: string) {
-    if (isPlatformBrowser(this.platformId)) {
-      // (window as any).Buffer = Buffer;
-      // (window as any).global = window;
-    }
   }
 }

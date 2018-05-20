@@ -2,7 +2,7 @@
 /* tslint:disable */
 import { isPlatformBrowser } from '@angular/common';
 import { InjectionToken, PLATFORM_ID, Provider } from '@angular/core';
-import { WEB3 } from '../web3.provider';
+import { WEB3_TOKEN } from '../web3.provider';
 import { Web3 } from '../types/web3';
 import { TruffleContract } from './typechain-runtime';
 
@@ -41,6 +41,6 @@ export const MuzikaCoin = new InjectionToken<TruffleContract<IMuzikaCoin>>('Muzi
 export const MuzikaPaperContract = new InjectionToken<TruffleContract<IMuzikaPaperContract>>('MuzikaPaperContract');
 
 export const ContractProviders: Provider[] = [
-  { provide: MuzikaCoin, useFactory: TruffleMuzikaCoinProviderFactory, deps: [WEB3, PLATFORM_ID] },
-  { provide: MuzikaPaperContract, useFactory: TruffleMuzikaPaperContractProviderFactory, deps: [WEB3, PLATFORM_ID] }
+  { provide: MuzikaCoin, useFactory: TruffleMuzikaCoinProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] },
+  { provide: MuzikaPaperContract, useFactory: TruffleMuzikaPaperContractProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] }
 ];
