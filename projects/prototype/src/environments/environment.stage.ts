@@ -1,4 +1,4 @@
-export const environment: EnvironmentType = {
+export const environment = {
   production: false,
   env: 'stage'
 };
