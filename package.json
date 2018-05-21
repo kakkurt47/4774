@@ -17,7 +17,7 @@
     "sp": "npm run start:prototype -o",
     "start:prototype:stage": "npm run start:prototype -- -c stage",
     "start:prototype:prod": "npm run start:prototype -- -c production",
-    "build:core:": "ng build --project muzika-core",
+    "build:core": "ng build --project muzika-core",
     "build:wallet": "ng build --project muzika-wallet",
     "build:wallet:stage": "npm run build:wallet -- -c stage",
     "build:wallet:prod": "npm run build:wallet -- -c production",
