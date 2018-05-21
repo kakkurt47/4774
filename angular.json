@@ -3,6 +3,44 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "muzika-core": {
+      "root": "projects/core",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "project": "projects/core/ng-package.json",
+            "tsConfig": "projects/core/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/core/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/core/src/test.ts",
+            "tsConfig": "projects/core/tsconfig.spec.json",
+            "karmaConfig": "projects/core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:lint",
+          "options": {
+            "tsConfig": [
+              "projects/core/tsconfig.json",
+              "projects/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "muzika-wallet": {
       "root": "projects/wallet/",
       "sourceRoot": "projects/wallet/",
@@ -14,7 +52,7 @@
             "outputPath": "dist/wallet",
             "index": "projects/wallet/src/index.html",
             "main": "projects/wallet/src/main.ts",
-            "tsConfig": "projects/wallet/src/../tsconfig.json",
+            "tsConfig": "projects/wallet/tsconfig.json",
             "polyfills": "projects/wallet/src/polyfills.ts",
             "assets": [
               {

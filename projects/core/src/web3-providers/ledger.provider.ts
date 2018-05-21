@@ -5,7 +5,7 @@ import * as ProviderEngine from 'web3-provider-engine';
 import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {DEFAULT_RPC_URL} from '../config';
 
-interface SubproviderOptions {
+export interface SubproviderOptions {
   // refer to https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
   networkId?: number;
   // derivation path
