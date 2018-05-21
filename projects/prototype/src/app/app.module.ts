@@ -13,6 +13,7 @@ import {AppComponent} from './app.component';
 import {AppRouteModule} from './app.routes';
 import {ArtistSheetComponent} from './component/artist-sheet/artist-sheet.component';
 import {FooterComponent} from './component/footer/footer.component';
+import {PostListItemComponent} from './component/post-list-item/post-list-item.component';
 import {PostSheetComponent} from './component/post-sheet/post-sheet.component';
 import {SpinnerComponent} from './component/spinner/spinner.component';
 import {MainPageComponent} from './page/main/main.component';
@@ -31,6 +32,7 @@ declare const window;
     FooterComponent,
     ArtistSheetComponent,
     PostSheetComponent,
+    PostListItemComponent,
   ],
   imports: [
     CommonModule,
