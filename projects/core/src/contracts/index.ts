@@ -16,7 +16,7 @@ export { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/Mu
 
 export const TruffleMuzikaCoinProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
-    let contract: TruffleContract<any> = TruffleMuzikaCoin();
+    const contract: TruffleContract<any> = TruffleMuzikaCoin();
     web3.onProviderChange().subscribe(provider => {
       if (!!provider) {
         contract.setProvider(provider);
@@ -28,7 +28,7 @@ export const TruffleMuzikaCoinProviderFactory = (web3: ExtendedWeb3, platformId:
 
 export const TruffleMuzikaLoyaltyPointProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
-    let contract: TruffleContract<any> = TruffleMuzikaLoyaltyPoint();
+    const contract: TruffleContract<any> = TruffleMuzikaLoyaltyPoint();
     web3.onProviderChange().subscribe(provider => {
       if (!!provider) {
         contract.setProvider(provider);
@@ -40,7 +40,7 @@ export const TruffleMuzikaLoyaltyPointProviderFactory = (web3: ExtendedWeb3, pla
 
 export const TruffleMuzikaPaperContractProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
-    let contract: TruffleContract<any> = TruffleMuzikaPaperContract();
+    const contract: TruffleContract<any> = TruffleMuzikaPaperContract();
     web3.onProviderChange().subscribe(provider => {
       if (!!provider) {
         contract.setProvider(provider);

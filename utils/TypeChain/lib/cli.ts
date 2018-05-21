@@ -13,6 +13,7 @@ import {getVersion} from './utils';
 
 const {blue, red, green, yellow} = chalk;
 const cwd = process.cwd();
+
 async function main() {
   const options = parseArgs();
 
@@ -83,7 +84,7 @@ ${contractNames.map(name => `export { I${name}, Truffle${name} } from './interfa
 ${contractNames.map(name => `
 export const Truffle${name}ProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
-    let contract: TruffleContract<any> = Truffle${name}();
+    const contract: TruffleContract<any> = Truffle${name}();
     web3.onProviderChange().subscribe(provider => {
       if (!!provider) {
         contract.setProvider(provider);
