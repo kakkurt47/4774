@@ -2,11 +2,14 @@
 
 [![Build Status](https://travis-ci.com/MuzikaFoundation/muzika-platform.svg?branch=master)](https://travis-ci.com/MuzikaFoundation/muzika-platform)
 
-## Muzika Wallet
 
-![Wallet App](img/wallet-app.png)
+### Packages
 
-## Muzika Prototype
+*These packages are not published*
 
-![Prototype App](img/prototype-app.png)
-
+| Packages                                   | Version              | Description                                         |
+| ------------------------------------------ | -------------------- | --------------------------------------------------- |
+| [`@muzika/core`](/projects/core)           | *Not published*      | Muzika core module uses in every packages of Muzika |
+| [`@muzika/wallet`](/projects/wallet)       | *Not published*      | Muzika wallet web application                       |
+| [`@muzika/prototype`](/projects/prototype) | *Not published*      | Prototype for Muzika marketplace                    |
+| [`@muzika/viewer`](/projects/viewer)       | *Not published*      | Electron based sheet music viewer                   |
