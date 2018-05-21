@@ -13,11 +13,11 @@
     height: $navbar-brand-size;
 
     /deep/ .muzika-icon-striped-primary {
-      fill: $primary-color;
+      fill: $brand-color-1;
     }
 
     /deep/ .muzika-icon-striped-secondary {
-      fill: $secondary-color;
+      fill: $brand-color-2;
     }
   }
 }
