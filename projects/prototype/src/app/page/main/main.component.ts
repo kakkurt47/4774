@@ -3,8 +3,8 @@ import {BaseComponent} from '@muzika/core';
 import * as _alertify from 'alertify.js';
 import {ArtistsMock} from '../../mock/artists';
 import {SheetsMock} from '../../mock/sheets';
-import {Artist} from '../../models/artist';
-import {SheetMusic} from '../../models/sheet-music';
+import {Artist} from '../../model/artist';
+import {SheetMusic} from '../../model/sheet-music';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 

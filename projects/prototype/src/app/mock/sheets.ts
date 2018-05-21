@@ -1,4 +1,4 @@
-import {SheetMusic} from '../models/sheet-music';
+import {SheetMusic} from '../model/sheet-music';
 import {ArtistsMock} from './artists';
 
 export const SheetsMock: SheetMusic[] = [

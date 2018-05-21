@@ -1,4 +1,4 @@
-import {Artist} from '../models/artist';
+import {Artist} from '../model/artist';
 
 export const ArtistsMock: Artist[] = [
   {

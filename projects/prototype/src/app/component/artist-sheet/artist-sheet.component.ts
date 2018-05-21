@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SheetMusic} from '../../models/sheet-music';
+import {SheetMusic} from '../../model/sheet-music';
 
 @Component({
   selector: 'app-artist-sheet',
