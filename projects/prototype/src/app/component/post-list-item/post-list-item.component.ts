@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Post} from '../../model/post';
+import {FreePost} from '../../model/post';
 
 @Component({
   selector: 'app-post-list-item, [app-post-list-item]',
@@ -7,5 +7,5 @@ import {Post} from '../../model/post';
   styleUrls: ['./post-list-item.component.scss']
 })
 export class PostListItemComponent {
-  @Input() post: Post;
+  @Input() post: FreePost;
 }
