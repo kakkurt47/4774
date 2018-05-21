@@ -8,6 +8,7 @@ export interface BasePost {
   author: User;
 }
 
+// tslint:disable-next-line
 export interface Post extends BasePost {
 
 }
