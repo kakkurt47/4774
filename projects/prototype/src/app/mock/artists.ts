@@ -3,7 +3,7 @@ import {Artist} from '../model/user';
 export const ArtistsMock: Artist[] = [
   {
     userId: 1,
-    name: 'Beautify',
+    name: 'Sarah',
     area: 'piano',
     profileImage: 'assets/person-1.png'
   },
@@ -15,13 +15,13 @@ export const ArtistsMock: Artist[] = [
   },
   {
     userId: 3,
-    name: 'Babes',
+    name: 'Tom',
     area: 'piano',
     profileImage: 'assets/person-3.png'
   },
   {
     userId: 4,
-    name: 'Kiddy Corus',
+    name: 'Jamy',
     area: 'guitar',
     profileImage: 'assets/person-4.png'
   },

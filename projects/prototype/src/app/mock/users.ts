@@ -3,7 +3,7 @@ import {User} from '../model/user';
 export const UsersMock: User[] = [
   {
     userId: 1,
-    name: 'Beautify',
+    name: 'Sarah',
     profileImage: 'assets/person-1.png'
   },
   {
@@ -13,12 +13,12 @@ export const UsersMock: User[] = [
   },
   {
     userId: 3,
-    name: 'Babes',
+    name: 'Tom',
     profileImage: 'assets/person-3.png'
   },
   {
     userId: 4,
-    name: 'Kiddy Corus',
+    name: 'Jamy',
     profileImage: 'assets/person-4.png'
   },
 ];
