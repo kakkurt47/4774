@@ -1,7 +1,7 @@
-import { app, BrowserWindow, screen } from 'electron';
+import {app, BrowserWindow, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import * as IPFS from 'ipfs';
+import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -28,7 +28,8 @@ function createWindow() {
 
   if (serve) {
     require('electron-reload')(__dirname, {
-     electron: require(`${__dirname}/node_modules/electron`)});
+      electron: require(`${__dirname}/node_modules/electron`)
+    });
     win.loadURL('http://localhost:4200');
   } else {
     win.loadURL(url.format({
@@ -57,17 +58,7 @@ try {
   app.on('ready', () => {
     createWindow();
 
-    // Spawn your IPFS node \o/
-    const node = new IPFS();
-
-    node.on('ready', () => {
-      node.id((err, id) => {
-        if (err) {
-          return console.log(err);
-        }
-        console.log(id);
-      });
-    });
+    IpfsServiceInstance.init();
   });
 
   // Quit when all windows are closed.

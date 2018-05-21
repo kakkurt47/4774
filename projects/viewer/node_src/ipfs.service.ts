@@ -1,8 +1,6 @@
-import {Injectable} from '@angular/core';
 import * as IPFS from 'ipfs';
 import {Observable, throwError} from 'rxjs';
 
-@Injectable()
 export class IpfsService {
   node: IPFS;
 
@@ -13,7 +11,6 @@ export class IpfsService {
   isReady = false;
 
   constructor() {
-
   }
 
   init() {
@@ -22,24 +19,26 @@ export class IpfsService {
       config: {
         Addresses: {
           Swarm: [
-            '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star',
+            '/ip4/0.0.0.0/tcp/4004/ws'
           ]
+        },
+        Swarm: {
+          DisableRelay: false,
+          EnableRelayHop: true
         }
       }
     });
 
     // if ipfs node generated, connect to a remote storage for speeding up file exchange.
-    if (this.remoteStorage) {
-      this.node.on('ready', () => {
-        this.node.swarm.connect(this.remoteStorage, (err) => {
-          if (err) {
-            console.log(err);
-          }
+    this.node.on('ready', () => {
+      this.node.swarm.connect(this.remoteStorage, (err) => {
+        if (err) {
+          console.log(err);
+        }
 
-          this.isReady = true;
-        });
+        this.isReady = true;
       });
-    }
+    });
   }
 
   sub(arg) {
@@ -106,13 +105,13 @@ export class IpfsService {
         // this.node.add();
         this.node.files.add(blob, (err, result) => {
           if (err) {
-            throw Observable.throw('Failed to upload file to IPFS');
+            throw throwError('Failed to upload file to IPFS');
           }
           observer.next(result);
           observer.complete();
         });
       } catch (e) {
-        throw Observable.throw(e);
+        throw throwError(e);
       }
     });
   }
@@ -122,7 +121,7 @@ export class IpfsService {
       try {
         this.node.files.get(hash, (err, files) => {
           if (err) {
-            throw Observable.throw('Not found');
+            throw throwError('Not found');
           }
           observer.next(files);
           observer.complete();
@@ -133,3 +132,5 @@ export class IpfsService {
     });
   }
 }
+
+export const IpfsServiceInstance = new IpfsService();
