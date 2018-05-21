@@ -1,11 +1,7 @@
 import {Injectable, Inject} from '@angular/core';
 import {EnvironmentToken, EnvironmentType} from './types/environment';
 import {promisify} from './utils';
-import {AddressOnlyProvider} from './web3-providers/address.only.provider';
-import {LedgerProvider} from './web3-providers/ledger.provider';
-import {MetamaskProvider} from './web3-providers/metamask.provider';
-import {RPCProvider} from './web3-providers/rpc.provider';
-import {WalletProvider} from './web3-providers/wallet.provider';
+import {AddressOnlyProvider, LedgerProvider, MetamaskProvider, RPCProvider, WalletProvider} from './web3-providers';
 import {ExtendedWeb3} from './web3.provider';
 
 @Injectable()
