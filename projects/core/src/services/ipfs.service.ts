@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as IPFS from 'ipfs';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable()
 export class IpfsService {
@@ -45,7 +44,7 @@ export class IpfsService {
 
   sub(arg) {
     return Observable.create(observer => {
-      this.node.pubsub.subscribe(arg, { discover: true }, (msg) => {
+      this.node.pubsub.subscribe(arg, {discover: true}, (msg) => {
         observer.next(msg.data);
       });
     });
@@ -129,7 +128,7 @@ export class IpfsService {
           observer.complete();
         });
       } catch (e) {
-        throw Observable.throw(e);
+        throw throwError(e);
       }
     });
   }
