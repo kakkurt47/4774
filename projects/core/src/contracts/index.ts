@@ -7,15 +7,29 @@ import { Web3 } from '../types/web3';
 import { TruffleContract } from './typechain-runtime';
 
 import { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
+import { IMuzikaLoyaltyPoint, TruffleMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
 import { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract';
 
 export { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
+export { IMuzikaLoyaltyPoint, TruffleMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
 export { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract'
 
 
 export const TruffleMuzikaCoinProviderFactory = (web3: Web3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
     let contract: TruffleContract<any> = TruffleMuzikaCoin();
+    web3.onProviderChange().subscribe(provider => {
+      if (!!provider) {
+        contract.setProvider(provider);
+      }
+    });
+    return contract;
+  }
+};
+
+export const TruffleMuzikaLoyaltyPointProviderFactory = (web3: Web3, platformId: string) => {
+  if (isPlatformBrowser(platformId)) {
+    let contract: TruffleContract<any> = TruffleMuzikaLoyaltyPoint();
     web3.onProviderChange().subscribe(provider => {
       if (!!provider) {
         contract.setProvider(provider);
@@ -38,9 +52,11 @@ export const TruffleMuzikaPaperContractProviderFactory = (web3: Web3, platformId
 };
 
 export const MuzikaCoin = new InjectionToken<TruffleContract<IMuzikaCoin>>('MuzikaCoin');
+export const MuzikaLoyaltyPoint = new InjectionToken<TruffleContract<IMuzikaLoyaltyPoint>>('MuzikaLoyaltyPoint');
 export const MuzikaPaperContract = new InjectionToken<TruffleContract<IMuzikaPaperContract>>('MuzikaPaperContract');
 
 export const ContractProviders: Provider[] = [
   { provide: MuzikaCoin, useFactory: TruffleMuzikaCoinProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] },
+  { provide: MuzikaLoyaltyPoint, useFactory: TruffleMuzikaLoyaltyPointProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] },
   { provide: MuzikaPaperContract, useFactory: TruffleMuzikaPaperContractProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] }
 ];

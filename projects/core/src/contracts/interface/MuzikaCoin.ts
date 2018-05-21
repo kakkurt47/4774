@@ -15,6 +15,7 @@ import {
 import * as BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaCoin.json';
 
 export interface IMuzikaCoin extends TruffleContractInstance {
+  mintingFinished(): Promise<boolean>;
   name(): Promise<string>;
   totalSupply(): Promise<BigNumber>;
   decimals(): Promise<BigNumber>;
@@ -24,47 +25,7 @@ export interface IMuzikaCoin extends TruffleContractInstance {
   balanceOf(_owner: EtherAddress): Promise<BigNumber>;
   frozenAddress(arg0: EtherAddress): Promise<boolean>;
   allowance(_owner: EtherAddress, _spender: EtherAddress): Promise<BigNumber>;
-  messagePreSignedHashing(
-    _mode: BigNumber,
-    _token: EtherAddress,
-    _to: EtherAddress,
-    _value: EtherInteger,
-    _fee: EtherInteger,
-    _nonce: EtherInteger,
-    _version: EtherInteger
-  ): Promise<BigNumber>;
-  preSignedHashing(
-    _mode: BigNumber,
-    _token: EtherAddress,
-    _to: EtherAddress,
-    _value: EtherInteger,
-    _fee: EtherInteger,
-    _nonce: EtherInteger,
-    _version: EtherInteger
-  ): Promise<BigNumber>;
 
-  approve: {
-    (
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      txParams?: ITxParams
-    ): Promise<boolean>;
-    sendTransaction: (
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _spender: EtherAddress,
-      _value: EtherInteger,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (_spender: EtherAddress, _value: EtherInteger) => Promise<string>;
-    estimateGas: (
-      _spender: EtherAddress,
-      _value: EtherInteger
-    ) => Promise<number>;
-  };
   unpause: {
     (txParams?: ITxParams): Promise<void>;
     sendTransaction: (txParams?: ITxParams) => Promise<void>;
@@ -72,30 +33,29 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     request: () => Promise<string>;
     estimateGas: () => Promise<number>;
   };
-  decreaseApproval: {
-    (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
-      txParams?: ITxParams
-    ): Promise<boolean>;
+  mint: {
+    (_to: EtherAddress, _amount: EtherInteger, txParams?: ITxParams): Promise<
+      boolean
+    >;
     sendTransaction: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
+      _to: EtherAddress,
+      _amount: EtherInteger,
       txParams?: ITxParams
     ) => Promise<boolean>;
     call: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger,
+      _to: EtherAddress,
+      _amount: EtherInteger,
       txParams?: ITxParams
     ) => Promise<boolean>;
-    request: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger
-    ) => Promise<string>;
-    estimateGas: (
-      _spender: EtherAddress,
-      _subtractedValue: EtherInteger
-    ) => Promise<number>;
+    request: (_to: EtherAddress, _amount: EtherInteger) => Promise<string>;
+    estimateGas: (_to: EtherAddress, _amount: EtherInteger) => Promise<number>;
+  };
+  finishMinting: {
+    (txParams?: ITxParams): Promise<boolean>;
+    sendTransaction: (txParams?: ITxParams) => Promise<boolean>;
+    call: (txParams?: ITxParams) => Promise<boolean>;
+    request: () => Promise<string>;
+    estimateGas: () => Promise<number>;
   };
   pause: {
     (txParams?: ITxParams): Promise<void>;
@@ -103,31 +63,6 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
     estimateGas: () => Promise<number>;
-  };
-  increaseApproval: {
-    (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      txParams?: ITxParams
-    ): Promise<boolean>;
-    sendTransaction: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger
-    ) => Promise<string>;
-    estimateGas: (
-      _spender: EtherAddress,
-      _addedValue: EtherInteger
-    ) => Promise<number>;
   };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
@@ -138,40 +73,6 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     call: (newOwner: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (newOwner: EtherAddress) => Promise<string>;
     estimateGas: (newOwner: EtherAddress) => Promise<number>;
-  };
-  upgradePrefixPreSignedFirst: {
-    (_version: EtherInteger, _prefix: string, txParams?: ITxParams): Promise<
-      void
-    >;
-    sendTransaction: (
-      _version: EtherInteger,
-      _prefix: string,
-      txParams?: ITxParams
-    ) => Promise<void>;
-    call: (
-      _version: EtherInteger,
-      _prefix: string,
-      txParams?: ITxParams
-    ) => Promise<void>;
-    request: (_version: EtherInteger, _prefix: string) => Promise<string>;
-    estimateGas: (_version: EtherInteger, _prefix: string) => Promise<number>;
-  };
-  upgradePrefixPreSignedSecond: {
-    (_version: EtherInteger, _prefix: string, txParams?: ITxParams): Promise<
-      void
-    >;
-    sendTransaction: (
-      _version: EtherInteger,
-      _prefix: string,
-      txParams?: ITxParams
-    ) => Promise<void>;
-    call: (
-      _version: EtherInteger,
-      _prefix: string,
-      txParams?: ITxParams
-    ) => Promise<void>;
-    request: (_version: EtherInteger, _prefix: string) => Promise<string>;
-    estimateGas: (_version: EtherInteger, _prefix: string) => Promise<number>;
   };
   freezeAddress: {
     (_target: EtherAddress, txParams?: ITxParams): Promise<void>;
@@ -192,23 +93,6 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     call: (_target: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (_target: EtherAddress) => Promise<string>;
     estimateGas: (_target: EtherAddress) => Promise<number>;
-  };
-  mint: {
-    (_to: EtherAddress, _amount: EtherInteger, txParams?: ITxParams): Promise<
-      boolean
-    >;
-    sendTransaction: (
-      _to: EtherAddress,
-      _amount: EtherInteger,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    call: (
-      _to: EtherAddress,
-      _amount: EtherInteger,
-      txParams?: ITxParams
-    ) => Promise<boolean>;
-    request: (_to: EtherAddress, _amount: EtherInteger) => Promise<string>;
-    estimateGas: (_to: EtherAddress, _amount: EtherInteger) => Promise<number>;
   };
   burn: {
     (_value: EtherInteger, txParams?: ITxParams): Promise<void>;
@@ -265,6 +149,78 @@ export interface IMuzikaCoin extends TruffleContractInstance {
       _from: EtherAddress,
       _to: EtherAddress,
       _value: EtherInteger
+    ) => Promise<number>;
+  };
+  approve: {
+    (
+      _spender: EtherAddress,
+      _value: EtherInteger,
+      txParams?: ITxParams
+    ): Promise<boolean>;
+    sendTransaction: (
+      _spender: EtherAddress,
+      _value: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    call: (
+      _spender: EtherAddress,
+      _value: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    request: (_spender: EtherAddress, _value: EtherInteger) => Promise<string>;
+    estimateGas: (
+      _spender: EtherAddress,
+      _value: EtherInteger
+    ) => Promise<number>;
+  };
+  increaseApproval: {
+    (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      txParams?: ITxParams
+    ): Promise<boolean>;
+    sendTransaction: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    call: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    request: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger
+    ) => Promise<string>;
+    estimateGas: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger
+    ) => Promise<number>;
+  };
+  decreaseApproval: {
+    (
+      _spender: EtherAddress,
+      _subtractedValue: EtherInteger,
+      txParams?: ITxParams
+    ): Promise<boolean>;
+    sendTransaction: (
+      _spender: EtherAddress,
+      _subtractedValue: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    call: (
+      _spender: EtherAddress,
+      _subtractedValue: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    request: (
+      _spender: EtherAddress,
+      _subtractedValue: EtherInteger
+    ) => Promise<string>;
+    estimateGas: (
+      _spender: EtherAddress,
+      _subtractedValue: EtherInteger
     ) => Promise<number>;
   };
   transferPreSigned: {

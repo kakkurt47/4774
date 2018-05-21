@@ -15,50 +15,11 @@ import {
 import * as BuiltContract from '../../../../../muzika-contract/build/contracts/MuzikaPaperContract.json';
 
 export interface IMuzikaPaperContract extends TruffleContractInstance {
-  heartbeatTimeout(): Promise<BigNumber>;
   owner(): Promise<string>;
-  heir(): Promise<string>;
-  timeOfDeath(): Promise<BigNumber>;
+  originalFileHash(): Promise<string>;
+  ipfsFileHash(): Promise<string>;
   isPurchased(user: EtherAddress): Promise<boolean>;
 
-  claimHeirOwnership: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
-  setHeir: {
-    (newHeir: EtherAddress, txParams?: ITxParams): Promise<void>;
-    sendTransaction: (
-      newHeir: EtherAddress,
-      txParams?: ITxParams
-    ) => Promise<void>;
-    call: (newHeir: EtherAddress, txParams?: ITxParams) => Promise<void>;
-    request: (newHeir: EtherAddress) => Promise<string>;
-    estimateGas: (newHeir: EtherAddress) => Promise<number>;
-  };
-  proclaimDeath: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
-  heartbeat: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
-  removeHeir: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
-  };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
     sendTransaction: (
@@ -77,11 +38,34 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     estimateGas: () => Promise<number>;
   };
   purchase: {
-    (txParams?: ITxParams): Promise<boolean>;
-    sendTransaction: (txParams?: ITxParams) => Promise<boolean>;
-    call: (txParams?: ITxParams) => Promise<boolean>;
-    request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      txParams?: ITxParams
+    ): Promise<boolean>;
+    sendTransaction: (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    call: (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    request: (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
+    ) => Promise<string>;
+    estimateGas: (
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string
+    ) => Promise<number>;
   };
 }
 
