@@ -73,8 +73,7 @@ async function main() {
 /* tslint:disable */
 import { isPlatformBrowser } from '@angular/common';
 import { InjectionToken, PLATFORM_ID, Provider } from '@angular/core';
-import { WEB3_TOKEN } from '../web3.provider';
-import { Web3 } from '../types/web3';
+import { ExtendedWeb3 } from '../web3.provider';
 import { TruffleContract } from './typechain-runtime';
 
 ${importString.join('\n')}
@@ -82,7 +81,7 @@ ${importString.join('\n')}
 ${contractNames.map(name => `export { I${name}, Truffle${name} } from './interface/${name}'`).join(';\n')}
 
 ${contractNames.map(name => `
-export const Truffle${name}ProviderFactory = (web3: Web3, platformId: string) => {
+export const Truffle${name}ProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
     let contract: TruffleContract<any> = Truffle${name}();
     web3.onProviderChange().subscribe(provider => {
@@ -97,7 +96,7 @@ export const Truffle${name}ProviderFactory = (web3: Web3, platformId: string) =>
 ${contractNames.map(name => `export const ${name} = new InjectionToken<TruffleContract<I${name}>>('${name}')`).join(';\n')};
 
 export const ContractProviders: Provider[] = [
-${contractNames.map(name => `  { provide: ${name}, useFactory: Truffle${name}ProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] }`).join(',\n')}
+${contractNames.map(name => `  { provide: ${name}, useFactory: Truffle${name}ProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] }`).join(',\n')}
 ];
 `;
 

@@ -1,17 +1,16 @@
 import {Injectable, Inject} from '@angular/core';
-import {Web3} from './types/web3';
+import {EnvironmentToken, EnvironmentType} from './types/environment';
 import {promisify} from './utils';
 import {AddressOnlyProvider} from './web3-providers/address.only.provider';
 import {LedgerProvider} from './web3-providers/ledger.provider';
 import {MetamaskProvider} from './web3-providers/metamask.provider';
 import {RPCProvider} from './web3-providers/rpc.provider';
 import {WalletProvider} from './web3-providers/wallet.provider';
-import {WEB3_TOKEN} from './web3.provider';
-import {EnvironmentToken, EnvironmentType} from './types/environment';
+import {ExtendedWeb3} from './web3.provider';
 
 @Injectable()
 export class MuzikaWeb3Service {
-  constructor(@Inject(WEB3_TOKEN) private web3: Web3,
+  constructor(private web3: ExtendedWeb3,
               @Inject(EnvironmentToken) private environment: EnvironmentType,
               @Inject('RPC_URL') private rpcUrl: string) {
   }

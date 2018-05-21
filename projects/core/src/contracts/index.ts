@@ -2,8 +2,7 @@
 /* tslint:disable */
 import { isPlatformBrowser } from '@angular/common';
 import { InjectionToken, PLATFORM_ID, Provider } from '@angular/core';
-import { WEB3_TOKEN } from '../web3.provider';
-import { Web3 } from '../types/web3';
+import { ExtendedWeb3 } from '../web3.provider';
 import { TruffleContract } from './typechain-runtime';
 
 import { IMuzikaCoin, TruffleMuzikaCoin } from './interface/MuzikaCoin';
@@ -15,7 +14,7 @@ export { IMuzikaLoyaltyPoint, TruffleMuzikaLoyaltyPoint } from './interface/Muzi
 export { IMuzikaPaperContract, TruffleMuzikaPaperContract } from './interface/MuzikaPaperContract'
 
 
-export const TruffleMuzikaCoinProviderFactory = (web3: Web3, platformId: string) => {
+export const TruffleMuzikaCoinProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
     let contract: TruffleContract<any> = TruffleMuzikaCoin();
     web3.onProviderChange().subscribe(provider => {
@@ -27,7 +26,7 @@ export const TruffleMuzikaCoinProviderFactory = (web3: Web3, platformId: string)
   }
 };
 
-export const TruffleMuzikaLoyaltyPointProviderFactory = (web3: Web3, platformId: string) => {
+export const TruffleMuzikaLoyaltyPointProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
     let contract: TruffleContract<any> = TruffleMuzikaLoyaltyPoint();
     web3.onProviderChange().subscribe(provider => {
@@ -39,7 +38,7 @@ export const TruffleMuzikaLoyaltyPointProviderFactory = (web3: Web3, platformId:
   }
 };
 
-export const TruffleMuzikaPaperContractProviderFactory = (web3: Web3, platformId: string) => {
+export const TruffleMuzikaPaperContractProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
     let contract: TruffleContract<any> = TruffleMuzikaPaperContract();
     web3.onProviderChange().subscribe(provider => {
@@ -56,7 +55,7 @@ export const MuzikaLoyaltyPoint = new InjectionToken<TruffleContract<IMuzikaLoya
 export const MuzikaPaperContract = new InjectionToken<TruffleContract<IMuzikaPaperContract>>('MuzikaPaperContract');
 
 export const ContractProviders: Provider[] = [
-  { provide: MuzikaCoin, useFactory: TruffleMuzikaCoinProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] },
-  { provide: MuzikaLoyaltyPoint, useFactory: TruffleMuzikaLoyaltyPointProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] },
-  { provide: MuzikaPaperContract, useFactory: TruffleMuzikaPaperContractProviderFactory, deps: [WEB3_TOKEN, PLATFORM_ID] }
+  { provide: MuzikaCoin, useFactory: TruffleMuzikaCoinProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] },
+  { provide: MuzikaLoyaltyPoint, useFactory: TruffleMuzikaLoyaltyPointProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] },
+  { provide: MuzikaPaperContract, useFactory: TruffleMuzikaPaperContractProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] }
 ];

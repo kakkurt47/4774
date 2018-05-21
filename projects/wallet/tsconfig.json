@@ -10,9 +10,10 @@
     "experimentalDecorators": true,
     "target": "es5",
     "module": "es2015",
-    "types": ["node"],
+    "types": ["node", "web3"],
     "typeRoots": [
-      "../../node_modules/@types"
+      "../../node_modules/@types",
+      "../../node_modules/@0xproject/typescript-typings/types"
     ],
     "lib": [
       "es2017",

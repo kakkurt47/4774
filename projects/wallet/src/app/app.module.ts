@@ -30,7 +30,7 @@ import {NavbarComponent} from './component/navbar/navbar.component';
     ReactiveFormsModule,
     AppRouteModule,
     ModalModule.forRoot(),
-    MuzikaCoreModule,
+    MuzikaCoreModule.forRoot(environment.env),
     BrandIconModule
   ],
   bootstrap: [AppComponent],

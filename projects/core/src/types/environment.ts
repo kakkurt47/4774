@@ -8,10 +8,4 @@ export interface EnvironmentType {
   networkId: number;
 }
 
-export const EnvironmentToken = new InjectionToken<{
-  production: boolean,
-  env: 'dev' | 'prod' | 'stage',
-  infuraAccessToken: string,
-  rpcUrl: string,
-  networkId: number
-}>('MuzikaEnvironment');
+export const EnvironmentToken = new InjectionToken<EnvironmentType>('MuzikaEnvironment');

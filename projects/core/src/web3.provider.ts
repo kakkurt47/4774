@@ -1,16 +1,18 @@
-import {Provider as Web3Provider} from '@0xproject/types';
-import {InjectionToken, Provider} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {Provider} from '@0xproject/types';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
 import * as Web3 from 'web3';
 
-export class ExtendedWeb3 extends Web3 {
-  private _providerChange: Subject<Web3Provider> = new BehaviorSubject<Web3Provider>(null);
 
-  public constructor(provider?: Provider) {
-    super(provider);
+@Injectable({providedIn: 'root'})
+export class ExtendedWeb3 extends Web3 {
+  private _providerChange: BehaviorSubject<Provider> = new BehaviorSubject<Provider>(null);
+
+  constructor() {
+    super(null);
   }
 
-  public setProvider(provider: Web3Provider): void {
+  public setProvider(provider: Provider): void {
     const currentProvider = (<any>this).currentProvider;
     if (currentProvider && currentProvider.stop) {
       currentProvider.stop();
@@ -20,16 +22,7 @@ export class ExtendedWeb3 extends Web3 {
     this._providerChange.next(provider);
   }
 
-  public onProviderChange(): Observable<Web3Provider> {
+  public onProviderChange(): Observable<Provider> {
     return this._providerChange.asObservable();
   }
 }
-
-export const WEB3_TOKEN = new InjectionToken<Web3>('Web3');
-
-export const LocalWeb3ProviderFactory = () => new ExtendedWeb3(null);
-
-export const LocalWeb3Provider: Provider = {
-  provide: WEB3_TOKEN,
-  useFactory: LocalWeb3ProviderFactory
-};
