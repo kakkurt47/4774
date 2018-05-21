@@ -33,4 +33,8 @@ export class AddressOnlyProvider implements Web3Provider {
   send(...args): any {
     return this.engine.send.apply(this.engine, args);
   }
+
+  stop(): void {
+    this.engine.stop();
+  }
 }
