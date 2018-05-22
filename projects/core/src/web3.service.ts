@@ -1,5 +1,5 @@
 import {Injectable, Inject} from '@angular/core';
-import {EnvironmentToken, EnvironmentType} from './types/environment';
+import {EnvironmentToken, EnvironmentType} from './environments/env_types';
 import {promisify} from './utils';
 import {AddressOnlyProvider, LedgerProvider, MetamaskProvider, RPCProvider, WalletProvider} from './web3-providers';
 import {ExtendedWeb3} from './web3.provider';
@@ -54,6 +54,18 @@ export class MuzikaWeb3Service {
 
   public usingAddressDirect(address: string) {
     this.web3.setProvider(new AddressOnlyProvider(address, this.rpcUrl));
+  }
+
+  public getTransactions() {
+    const subj = new BehaviorSubject<any[]>([]);
+
+    /** @TODO
+     * @assign brcps12
+     * @implements use etherscan.io public api or use our internal ethereum node
+     * Get Transaction list & return all of the transactions as array
+     */
+
+    return subj.asObservable();
   }
 
   public loadLedgerAccounts(accountsOffset?: number, accountsLength: number = 5) {

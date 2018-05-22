@@ -1,22 +1,22 @@
 {
-  "productName": "muzika-platform",
+  "productName": "Muzika",
   "directories": {
     "output": "app-builds"
   },
   "win": {
-    "icon": "dist",
+    "icon": "dist/muzika-viewer",
     "target": [
       "portable"
     ]
   },
   "mac": {
-    "icon": "dist",
+    "icon": "dist/muzika-viewer",
     "target": [
       "dmg"
     ]
   },
   "linux": {
-    "icon": "dist",
+    "icon": "dist/muzika-viewer",
     "target": [
       "AppImage"
     ]

@@ -356,7 +356,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/muzika-viewer",
             "index": "projects/viewer/src/index.html",
             "main": "projects/viewer/src/main.ts",
             "tsConfig": "projects/viewer/src/tsconfig.app.json",

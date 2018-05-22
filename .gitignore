@@ -41,3 +41,7 @@ Thumbs.db
 
 # Truffle build directory
 build
+ipfs-muzika
+app-builds
+main.js
+projects/viewer/node_src/**/*.js
