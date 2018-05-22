@@ -33,6 +33,7 @@
     "electron:linux": "npm run build:viewer:prod && npx electron-builder build --linux",
     "electron:windows": "npm run build:viewer:prod && npx electron-builder build --windows",
     "electron:mac": "npm run build:viewer:prod && npx electron-builder build --mac",
+    "publish:core": "npm run build:core && npm publish dist/muzika-core/ --access=public",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
