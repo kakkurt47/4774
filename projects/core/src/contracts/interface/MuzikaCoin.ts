@@ -411,5 +411,7 @@ export interface IMuzikaCoin extends TruffleContractInstance {
   };
 }
 
-export const TruffleMuzikaCoin: () => TruffleContract<IMuzikaCoin> = () =>
+export class MuzikaCoin extends TruffleContract<IMuzikaCoin> {}
+
+export const createTruffleMuzikaCoin: () => MuzikaCoin = () =>
   contract(BuiltContract);

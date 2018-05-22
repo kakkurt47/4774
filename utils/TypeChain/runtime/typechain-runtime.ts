@@ -30,17 +30,31 @@ export interface ITxParams {
 }
 
 // @TODO
-export interface TruffleContract<T extends TruffleContractInstance> {
+export class TruffleContract<T extends TruffleContractInstance> {
   abi: RawAbiDefinition;
   address: string;
 
-  new(...args: any[]): Promise<T>;
-  at(address: string): T;
-  deployed(): Promise<T>;
-  detectNetwork(): Promise<void>;
-  setNetwork(networkID: number): void;
-  resetAddress(): void;
-  setProvider(provider: any): void;
+  'new'(...args: any[]): Promise<T> {
+    throw new Error('Not Implemented');
+  };
+  at(address: string): T {
+    throw new Error('Not Implemented');
+  };
+  deployed(): Promise<T> {
+    throw new Error('Not Implemented');
+  };
+  detectNetwork(): Promise<void> {
+    throw new Error('Not Implemented');
+  };
+  setNetwork(networkID: number): void {
+    throw new Error('Not Implemented');
+  };
+  resetAddress(): void {
+    throw new Error('Not Implemented');
+  };
+  setProvider(provider: any): void {
+    throw new Error('Not Implemented');
+  };
 }
 
 // @TODO

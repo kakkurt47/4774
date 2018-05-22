@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AddressOnlyProvider, IMuzikaCoin, MuzikaCoin, TruffleContract, ExtendedWeb3, BaseComponent, promisify} from '@muzika/core';
+import {AddressOnlyProvider, MuzikaCoin, ExtendedWeb3, BaseComponent, promisify} from '@muzika/core';
 import * as _alertify from 'alertify.js';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');
@@ -25,7 +25,7 @@ export class WalletPageComponent extends BaseComponent {
   supportTransfer = false;
 
   constructor(private web3: ExtendedWeb3,
-              @Inject(MuzikaCoin) private muzikaCoin: TruffleContract<IMuzikaCoin>,
+              private muzikaCoin: MuzikaCoin,
               private router: Router) {
     super();
   }

@@ -87,6 +87,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
   };
 }
 
-export const TruffleMuzikaLoyaltyPoint: () => TruffleContract<
-  IMuzikaLoyaltyPoint
-> = () => contract(BuiltContract);
+export class MuzikaLoyaltyPoint extends TruffleContract<IMuzikaLoyaltyPoint> {}
+
+export const createTruffleMuzikaLoyaltyPoint: () => MuzikaLoyaltyPoint = () =>
+  contract(BuiltContract);

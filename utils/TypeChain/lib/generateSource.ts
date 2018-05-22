@@ -70,7 +70,10 @@ export interface I${typeName} extends TruffleContractInstance {
           .join(";\n")} 
 }
 
-export const Truffle${typeName}: () => TruffleContract<I${typeName}> = () => contract(BuiltContract);`;
+export class ${typeName} extends TruffleContract<I${typeName}> {
+}
+
+export const createTruffle${typeName}: () => ${typeName} = () => contract(BuiltContract);`;
 }
 
 function codeGenForParams(param: AbiParameter, index: number): string {
