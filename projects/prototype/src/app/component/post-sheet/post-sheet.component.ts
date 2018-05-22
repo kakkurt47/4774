@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SheetMusic} from '../../model/post';
+import {SheetMusic} from '@muzika/core';
 
 @Component({
   selector: 'app-post-sheet, [app-post-sheet]',

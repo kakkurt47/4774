@@ -1,4 +1,4 @@
-import {FreePost} from '../model/post';
+import {FreePost} from '@muzika/core';
 import {ArtistsMock} from './artists';
 
 export const PostsMock: FreePost[] = [

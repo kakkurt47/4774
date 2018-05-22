@@ -3,8 +3,8 @@ import {ContractProviders} from './contracts';
 import {environmentDev} from './environments/environment';
 import {environmentProd} from './environments/environment.prod';
 import {environmentStage} from './environments/environment.stage';
-import {EnvironmentToken} from './types/environment';
 import {MuzikaWeb3Service} from './web3.service';
+import {EnvironmentToken} from './environments/env_types';
 
 @NgModule({
   providers: [

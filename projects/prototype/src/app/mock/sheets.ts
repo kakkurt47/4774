@@ -1,4 +1,4 @@
-import {SheetMusic} from '../model/post';
+import {SheetMusic} from '@muzika/core';
 import {ArtistsMock} from './artists';
 
 export const SheetsMock: SheetMusic[] = [

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FreePost} from '../../model/post';
+import {FreePost} from '@muzika/core';
 
 @Component({
   selector: 'app-post-list-item, [app-post-list-item]',

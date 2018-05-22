@@ -1,4 +1,4 @@
-import {User} from '../model/user';
+import {User} from '@muzika/core';
 
 export const UsersMock: User[] = [
   {

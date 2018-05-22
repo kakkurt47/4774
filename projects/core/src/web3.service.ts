@@ -1,4 +1,5 @@
 import {Injectable, Inject} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {EnvironmentToken, EnvironmentType} from './environments/env_types';
 import {promisify} from './utils';
 import {AddressOnlyProvider, LedgerProvider, MetamaskProvider, RPCProvider, WalletProvider} from './web3-providers';
@@ -56,7 +57,7 @@ export class MuzikaWeb3Service {
     this.web3.setProvider(new AddressOnlyProvider(address, this.rpcUrl));
   }
 
-  public getTransactions() {
+  public getTransactions(): Observable<any[]> {
     const subj = new BehaviorSubject<any[]>([]);
 
     /** @TODO

@@ -1,5 +1,5 @@
-import {Artist, User} from './user';
 import {Comment} from './comment';
+import {Artist, User} from './user';
 
 export interface BasePost {
   postId: number;
