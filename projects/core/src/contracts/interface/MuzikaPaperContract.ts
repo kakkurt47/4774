@@ -22,10 +22,20 @@ export const BuiltContract = require('../../../../../muzika-contract/build/contr
 
 export interface IMuzikaPaperContract extends TruffleContractInstance {
   owner(): Promise<string>;
+  seller(): Promise<string>;
+  price(): Promise<BigNumber>;
+  forSale(): Promise<boolean>;
   originalFileHash(): Promise<string>;
   ipfsFileHash(): Promise<string>;
   isPurchased(user: EtherAddress): Promise<boolean>;
 
+  renounceOwnership: {
+    (txParams?: ITxParams): Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    call: (txParams?: ITxParams) => Promise<void>;
+    request: () => Promise<string>;
+    estimateGas: () => Promise<number>;
+  };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
     sendTransaction: (
@@ -44,6 +54,16 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     estimateGas: () => Promise<number>;
   };
   purchase: {
+    (_buyer: EtherAddress, txParams?: ITxParams): Promise<boolean>;
+    sendTransaction: (
+      _buyer: EtherAddress,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    call: (_buyer: EtherAddress, txParams?: ITxParams) => Promise<boolean>;
+    request: (_buyer: EtherAddress) => Promise<string>;
+    estimateGas: (_buyer: EtherAddress) => Promise<number>;
+  };
+  purchasePreSigned: {
     (
       _nonce: EtherInteger,
       _version: EtherInteger,

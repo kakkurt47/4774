@@ -56,6 +56,13 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     request: (_to: EtherAddress, _amount: EtherInteger) => Promise<string>;
     estimateGas: (_to: EtherAddress, _amount: EtherInteger) => Promise<number>;
   };
+  renounceOwnership: {
+    (txParams?: ITxParams): Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    call: (txParams?: ITxParams) => Promise<void>;
+    request: () => Promise<string>;
+    estimateGas: () => Promise<number>;
+  };
   finishMinting: {
     (txParams?: ITxParams): Promise<boolean>;
     sendTransaction: (txParams?: ITxParams) => Promise<boolean>;
@@ -407,6 +414,86 @@ export interface IMuzikaCoin extends TruffleContractInstance {
       _nonce: EtherInteger,
       _version: EtherInteger,
       _sig: string
+    ) => Promise<number>;
+  };
+  increaseApprovalAndCall: {
+    (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      _data: string,
+      txParams?: ITxParams
+    ): Promise<boolean>;
+    sendTransaction: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      _data: string,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    call: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      _data: string,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    request: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      _data: string
+    ) => Promise<string>;
+    estimateGas: (
+      _spender: EtherAddress,
+      _addedValue: EtherInteger,
+      _data: string
+    ) => Promise<number>;
+  };
+  increaseApprovalPreSignedAndCall: {
+    (
+      _to: EtherAddress,
+      _value: EtherInteger,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      _data: string,
+      txParams?: ITxParams
+    ): Promise<boolean>;
+    sendTransaction: (
+      _to: EtherAddress,
+      _value: EtherInteger,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      _data: string,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    call: (
+      _to: EtherAddress,
+      _value: EtherInteger,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      _data: string,
+      txParams?: ITxParams
+    ) => Promise<boolean>;
+    request: (
+      _to: EtherAddress,
+      _value: EtherInteger,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      _data: string
+    ) => Promise<string>;
+    estimateGas: (
+      _to: EtherAddress,
+      _value: EtherInteger,
+      _fee: EtherInteger,
+      _nonce: EtherInteger,
+      _version: EtherInteger,
+      _sig: string,
+      _data: string
     ) => Promise<number>;
   };
 }
