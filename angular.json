@@ -516,12 +516,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "/Users/sangmin/Desktop/truffle-lab/platforms/android/platform_www",
-                "output": "./"
-              },
-              {
-                "glob": "**/*",
-                "input": "/Users/sangmin/Desktop/truffle-lab/platforms/android/platform_www",
+                "input": "platforms/android/platform_www",
                 "output": "./"
               }
             ],
