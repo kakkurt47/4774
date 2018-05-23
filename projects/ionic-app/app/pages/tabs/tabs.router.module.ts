@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TabsPage } from './tabs.page';
-import { HomePage } from '../home/home.page';
-import { AboutPage } from '../about/about.page';
-import { ContactPage } from '../contact/contact.page';
+import { TabsPageComponent } from './tabs.page';
+import { HomePageComponent } from '../home/home.page';
+import { WalletPageComponent } from '../about/about.page';
+import { ContactPageComponent } from '../contact/contact.page';
 
 const routes: Routes = [
   {
     path: 'tabs',
-    component: TabsPage,
+    component: TabsPageComponent,
     children: [
       {
         path: 'home',
         outlet: 'home',
-        component: HomePage
+        component: HomePageComponent
       },
       {
-        path: 'about',
-        outlet: 'about',
-        component: AboutPage
+        path: 'wallet',
+        outlet: 'wallet',
+        component: WalletPageComponent
       },
       {
         path: 'contact',
         outlet: 'contact',
-        component: ContactPage
+        component: ContactPageComponent
       }
     ]
   },

@@ -3,15 +3,17 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AboutPage } from './about.page';
+import { WalletPageComponent } from './about.page';
+import {BrandIconModule} from '@muzika/core';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: AboutPage }])
+    BrandIconModule,
+    RouterModule.forChild([{ path: '', component: WalletPageComponent }])
   ],
-  declarations: [AboutPage]
+  declarations: [WalletPageComponent]
 })
 export class AboutPageModule {}

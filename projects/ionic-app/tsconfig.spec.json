@@ -7,7 +7,12 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "stream": ["../../node_modules/stream-browserify/index.js"],
+      "vm": ["../../node_modules/vm-browserify/index.js"],
+      "@muzika/core": ["../core/index.ts"]
+    }
   },
   "files": [
     "test.ts"
