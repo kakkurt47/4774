@@ -513,6 +513,16 @@
                 "glob": "**/*.svg",
                 "input": "node_modules/@ionic/angular/dist/ionic/svg",
                 "output": "./svg"
+              },
+              {
+                "glob": "**/*",
+                "input": "/Users/sangmin/Desktop/truffle-lab/platforms/android/platform_www",
+                "output": "./"
+              },
+              {
+                "glob": "**/*",
+                "input": "/Users/sangmin/Desktop/truffle-lab/platforms/android/platform_www",
+                "output": "./"
               }
             ],
             "styles": [
@@ -521,7 +531,9 @@
               },
               {
                 "input": "projects/ionic-app/global.scss"
-              }
+              },
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "scripts": []
           },

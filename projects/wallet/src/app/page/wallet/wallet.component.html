@@ -57,7 +57,7 @@
                 <p class="text-center text-main-color">
                   <input type="checkbox" name="agreeTransfer" id="agreeTransfer"
                          [(ngModel)]="agreeTransfer" required>
-                  위 내용으로 코인을 전송합니다. 한번 더 확인해 주세요.
+                  위 내용으로 MZK 코인을 전송합니다. 한번 더 확인해 주세요.
                 </p>
               </div>
             </form>
@@ -67,7 +67,7 @@
       <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-outline-light" id="transfer"
                 (click)="transfer(transferForm)" [disabled]="!supportTransfer">
-          코인 전송
+          MZK 코인 전송
         </button>
       </div>
     </div>

@@ -1,6 +1,6 @@
 {
   "name": "@muzika/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": "muzika-core/public_api.js",
   "typings": "muzika-core/public_api.d.ts",
