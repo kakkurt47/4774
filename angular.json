@@ -499,14 +499,14 @@
           "options": {
             "progress": false,
             "outputPath": "www",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "index": "projects/ionic-app/index.html",
+            "main": "projects/ionic-app/main.ts",
+            "polyfills": "projects/ionic-app/polyfills.ts",
+            "tsConfig": "projects/ionic-app/tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets",
+                "input": "projects/ionic-app/assets",
                 "output": "assets"
               },
               {
@@ -517,10 +517,10 @@
             ],
             "styles": [
               {
-                "input": "src/theme/variables.scss"
+                "input": "projects/ionic-app/theme/variables.scss"
               },
               {
-                "input": "src/global.scss"
+                "input": "projects/ionic-app/global.scss"
               }
             ],
             "scripts": []
@@ -529,8 +529,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/ionic-app/environments/environment.ts",
+                  "with": "projects/ionic-app/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -565,10 +565,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "projects/ionic-app/test.ts",
+            "polyfills": "projects/ionic-app/polyfills.ts",
+            "tsConfig": "projects/ionic-app/tsconfig.spec.json",
+            "karmaConfig": "projects/ionic-app/karma.conf.js",
             "styles": [
               "styles.css"
             ],
@@ -576,12 +576,12 @@
             "assets": [
               {
                 "glob": "favicon.ico",
-                "input": "src/",
+                "input": "projects/ionic-app/",
                 "output": "/"
               },
               {
                 "glob": "**/*",
-                "input": "src/assets",
+                "input": "projects/ionic-app/assets",
                 "output": "/assets"
               }
             ]
@@ -591,8 +591,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "projects/ionic-app/tsconfig.app.json",
+              "projects/ionic-app/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
