@@ -1,10 +1,14 @@
 import {Injectable, Inject} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {fromPromise} from 'rxjs/observable/fromPromise';
+import {Observer} from 'rxjs/Observer';
+import {map} from 'rxjs/operators';
 import {EnvironmentToken, EnvironmentType} from './environments/env_types';
 import {promisify} from './utils';
 import {AddressOnlyProvider, LedgerProvider, MetamaskProvider, RPCProvider, WalletProvider} from './web3-providers';
 import {ExtendedWeb3} from './web3.provider';
 import {MuzikaCoin} from './contracts';
+import {Provider as Web3Provider} from '@0xproject/types';
 
 @Injectable()
 export class MuzikaWeb3Service {
@@ -14,53 +18,86 @@ export class MuzikaWeb3Service {
               @Inject('RPC_URL') private rpcUrl: string) {
   }
 
-  public usingMetamask() {
-    this.web3.setProvider(new MetamaskProvider());
-  }
-
-  public usingGanache() {
-    this.web3.setProvider(new RPCProvider(this.rpcUrl));
-  }
-
-  public usingLedger(offset?: number) {
-    this.web3.setProvider(new LedgerProvider({
-      accountsLength: 1,
-      accountsOffset: offset || 0,
-      networkId: this.environment.networkId,
-    }, this.rpcUrl));
-  }
-
-  public usingKeystore(file: File, password: string) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const keystore = reader.result;
-        let provider;
-
-        try {
-          provider = new WalletProvider({
-            input: keystore, password
-          }, this.rpcUrl);
-          this.web3.setProvider(provider);
-          resolve();
-        } catch (e) {
-          reject();
-        }
-      };
-      reader.readAsText(file);
+  public usingMetamask(): Observable<string[]> {
+    return new Observable<string[]>(observer => {
+      try {
+        this._providerHandle(new MetamaskProvider(), observer);
+      } catch(e) {
+        observer.error(e);
+      }
     });
   }
 
-  public usingPrivateKey(privateKey: string) {
-    this.web3.setProvider(new WalletProvider(privateKey, this.rpcUrl));
+  public usingGanache(): Observable<string[]> {
+    return new Observable<string[]>(observer => {
+      try {
+        this._providerHandle(new RPCProvider(this.rpcUrl), observer);
+      } catch(e) {
+        observer.error(e);
+      }
+    });
   }
 
-  public usingAddressDirect(address: string) {
-    this.web3.setProvider(new AddressOnlyProvider(address, this.rpcUrl));
+  public usingLedger(accountsOffset?: number, accountsLength: number = 1, path: string = `44'/60'/0'/0`): Observable<string[]> {
+    return new Observable(observer => {
+      try {
+        const provider = new LedgerProvider({
+          accountsLength,
+          accountsOffset: accountsOffset || 0,
+          networkId: this.environment.networkId,
+          path: path,
+        }, this.rpcUrl);
+
+        this._providerHandle(provider, observer);
+      } catch(e) {
+        observer.error(e);
+      }
+    });
+  }
+
+  public usingKeystore(file: File, password: string): Observable<string[]> {
+    return new Observable<string[]>(observer => {
+      try {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const input = reader.result;
+
+          try {
+            this._providerHandle(new WalletProvider({input, password}, this.rpcUrl), observer);
+          } catch(e) {
+            observer.error(e);
+          }
+        };
+
+        reader.readAsText(file);
+      } catch (e) {
+        observer.error(e);
+      }
+    });
+  }
+
+  public usingPrivateKey(privateKey: string): Observable<string[]> {
+    return new Observable(observer => {
+      try {
+        this._providerHandle(new WalletProvider(privateKey, this.rpcUrl), observer);
+      } catch(e) {
+        observer.error(e);
+      }
+    });
+  }
+
+  public usingAddressDirect(address: string): Observable<string[]> {
+    return new Observable(observer => {
+      try {
+        this._providerHandle(new AddressOnlyProvider(address, this.rpcUrl), observer);
+      } catch(e) {
+        observer.error(e);
+      }
+    });
   }
 
   public getTransactions(address: string): Observable<any[]> {
-    const subj = new BehaviorSubject<any[]>([]);
     const transferHash = this.web3.sha3('Transfer(address,address,uint256)');
 
     // Padding zeros to left (length of data set to 32 bytes)
@@ -76,33 +113,32 @@ export class MuzikaWeb3Service {
       // topics: [transferHash, null, address]
     });
 
-    (<any>filter).get((error: any, events: any) => {
-      if (error) {
-
-      }
-
-      // the order is ascend of block number
-      subj.next(events.map(event => {
-        return {
-          from: event.topics[1],
-          to: event.topics[2],
-          amount: this.web3.toBigNumber(event.data).toString()
-        };
-      }));
-    });
-
-    return subj.asObservable();
+    return fromPromise(promisify(filter.get)).pipe(
+      map(
+        events => events.map(event => {
+          return {
+            from: event.topics[1],
+            to: event.topics[2],
+            amount: this.web3.toBigNumber(event.data).toString()
+          };
+        })
+      )
+    );
   }
 
-  public loadLedgerAccounts(accountsOffset?: number, accountsLength: number = 5) {
-    delete this.web3.currentProvider;
-    accountsOffset = accountsOffset || 0;
+  private _providerHandle(provider: Web3Provider, observer: Observer<string[]>) {
+    this.web3.setProvider(provider);
 
-    this.web3.setProvider(new LedgerProvider({
-      accountsLength, accountsOffset,
-      networkId: this.environment.networkId,
-    }, this.rpcUrl));
+    promisify(this.web3.eth.getAccounts).then(accounts => {
+      if (!accounts || accounts.length == 0) {
+        observer.error(new Error('Accounts does not be available'));
+        return;
+      }
 
-    return promisify(this.web3.eth.getAccounts);
+      observer.next(accounts);
+      observer.complete();
+    }).catch(e => {
+      observer.error(e);
+    });
   }
 }

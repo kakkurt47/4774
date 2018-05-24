@@ -36,28 +36,38 @@ export class MainPageComponent extends BaseComponent {
   }
 
   usingMetamask() {
-    this.web3Service.usingMetamask();
-    this.router.navigate(['/wallet']);
+    this.web3Service.usingMetamask().subscribe(
+      () => {
+        this.router.navigate(['/wallet']);
+      },
+      (e) => {
+        alertify.alert('메타마스크를 사용할 수 없습니다. 설치가 제대로 되어있는지 확인해주세요.');
+      }
+    );
   }
 
   usingGanache() {
-    this.web3Service.usingGanache();
-    this.router.navigate(['/wallet']);
+    this.web3Service.usingGanache().subscribe(() => {
+      this.router.navigate(['/wallet']);
+    });
   }
 
   usingLedger(offset?: number) {
-    this.web3Service.usingLedger(offset);
-    this.router.navigate(['/wallet']);
+    this.web3Service.usingLedger(offset).subscribe(() => {
+      this.router.navigate(['/wallet']);
+    });
   }
 
   async usingKeystore(form: NgForm) {
     if (form.valid) {
-      const result = await this.web3Service.usingKeystore(this.keystoreFile, form.value.keyPassword);
-      if (result) {
-        this.router.navigate(['/wallet']);
-      } else {
-        alertify.alert('올바르지 않은 지갑 파일이거나 비밀번호가 일치하지 않습니다');
-      }
+      this.web3Service.usingKeystore(this.keystoreFile, form.value.keyPassword).subscribe(
+        () => {
+          this.router.navigate(['/wallet']);
+        },
+        (e) => {
+          alertify.alert('올바르지 않은 지갑 파일이거나 비밀번호가 일치하지 않습니다');
+        }
+      );
     } else {
       alertify.alert('파일을 선택해주시고 비밀번호를 입력해주세요');
     }
@@ -65,8 +75,9 @@ export class MainPageComponent extends BaseComponent {
 
   usingPrivateKey(form: NgForm) {
     if (form.valid && form.value.privKey) {
-      this.web3Service.usingPrivateKey(form.value.privKey);
-      this.router.navigate(['/wallet']);
+      this.web3Service.usingPrivateKey(form.value.privKey).subscribe(() => {
+        this.router.navigate(['/wallet']);
+      });
     } else {
       alertify.alert('개인키가 올바르지 않습니다');
     }
@@ -74,8 +85,9 @@ export class MainPageComponent extends BaseComponent {
 
   usingAddressDirect(form: NgForm) {
     if (form.valid && form.value.address) {
-      this.web3Service.usingAddressDirect(form.value.address);
-      this.router.navigate(['/wallet']);
+      this.web3Service.usingAddressDirect(form.value.address).subscribe(() => {
+        this.router.navigate(['/wallet']);
+      });
     } else {
       alertify.alert('지갑주소가 올바르지 않습니다');
     }
@@ -118,14 +130,17 @@ export class MainPageComponent extends BaseComponent {
 
   private loadLedgerAccounts(offset?: number) {
     this.web3Service
-      .loadLedgerAccounts(offset, this.ledgerAccountLength)
-      .then(accounts => {
-        this.ledgerConnection = 'ready';
-        this.ledgerAccounts = accounts;
-        this.ledgerOffset = offset;
-      }).catch(e => {
-      console.error(e);
-      this.ledgerConnection = 'error';
-    });
+      .usingLedger(offset, this.ledgerAccountLength)
+      .subscribe(
+        accounts => {
+          this.ledgerConnection = 'ready';
+          this.ledgerAccounts = accounts;
+          this.ledgerOffset = offset;
+        },
+        e => {
+          console.error(e);
+          this.ledgerConnection = 'error';
+        }
+      );
   }
 }
