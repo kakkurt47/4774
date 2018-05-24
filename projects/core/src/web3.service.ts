@@ -1,7 +1,6 @@
 import {Injectable, Inject} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {fromPromise} from 'rxjs/observable/fromPromise';
-import {Observer} from 'rxjs/Observer';
+import {BehaviorSubject, Observable, from} from 'rxjs';
+import {Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {EnvironmentToken, EnvironmentType} from './environments/env_types';
 import {promisify} from './utils';
@@ -113,7 +112,7 @@ export class MuzikaWeb3Service {
       // topics: [transferHash, null, address]
     });
 
-    return fromPromise(promisify(filter.get)).pipe(
+    return from(promisify(filter.get)).pipe(
       map(
         events => events.map(event => {
           return {
