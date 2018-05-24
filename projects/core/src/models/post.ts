@@ -22,7 +22,14 @@ export interface VideoPost extends BasePost {
   youtubeUrl: string;
 }
 
-export interface SheetMusic extends BasePost {
+export interface MusicPost extends BasePost {
+  price: number;
+  author: Artist;
+}
+
+export interface SheetMusic {
+  sheetId: number;
+  title: string;
   price: number;
   author: Artist;
 }

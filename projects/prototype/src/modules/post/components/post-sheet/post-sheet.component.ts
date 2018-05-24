@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SheetMusic} from '@muzika/core';
+import {MusicPost} from '@muzika/core';
 
 @Component({
   selector: 'app-post-sheet, [app-post-sheet]',
@@ -7,5 +7,5 @@ import {SheetMusic} from '@muzika/core';
   styleUrls: ['./post-sheet.component.scss']
 })
 export class PostSheetComponent {
-  @Input() sheet: SheetMusic;
+  @Input() sheet: MusicPost;
 }

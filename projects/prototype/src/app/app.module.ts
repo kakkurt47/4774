@@ -14,13 +14,12 @@ import {
 } from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
+import {PostModule} from '../modules/post/post.module';
 
 import {AppComponent} from './app.component';
 import {AppRouteModule} from './app.routes';
 import {ArtistSheetComponent} from './component/artist-sheet/artist-sheet.component';
 import {FooterComponent} from './component/footer/footer.component';
-import {PostListItemComponent} from './component/post-list-item/post-list-item.component';
-import {PostSheetComponent} from './component/post-sheet/post-sheet.component';
 import {SpinnerComponent} from './component/spinner/spinner.component';
 import {LoginPageComponent} from './page/login/login.component';
 import {MainPageComponent} from './page/main/main.component';
@@ -48,8 +47,6 @@ const baseApiUrlProvider: Provider = {
     SpinnerComponent,
     FooterComponent,
     ArtistSheetComponent,
-    PostSheetComponent,
-    PostListItemComponent,
 
     /* Page Components */
     WalletPageComponent,
@@ -57,18 +54,28 @@ const baseApiUrlProvider: Provider = {
     LoginPageComponent,
   ],
   imports: [
+    /* Angular modules */
     CommonModule,
     BrowserModule.withServerTransition({appId: 'muzika-universal'}),
     BrowserTransferStateModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+
+    /* Bootstrap modules */
+    ModalModule.forRoot(),
+
+    /* Material modules */
     MatButtonModule,
     MatCardModule,
-    AppRouteModule,
-    ModalModule.forRoot(),
+
+    /* Muzika Modules */
     SharedModule,
     MuzikaCoreModule.forRoot(environment.env),
+    AppRouteModule,
+
+    /* Sub-modules */
+    PostModule,
   ],
   bootstrap: [AppComponent],
   providers: [
