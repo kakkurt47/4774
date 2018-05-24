@@ -13,7 +13,7 @@ export class LocalStorage {
     }
   }
 
-  getItem(key: string, defaultValue: string = undefined) {
+  getItem(key: string, defaultValue?: string) {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.getItem(key) || defaultValue;
     }
