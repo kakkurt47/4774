@@ -1,4 +1,4 @@
-image: git-registry.mapianist.co.kr/common/docker-hub/blockchain
+image: node:8
 
 cache:
   key: "$CI_COMMIT_REF_NAME"
@@ -17,6 +17,7 @@ stages:
 test:contract:
   stage: test
   before_script:
+    - npm install -g ganache-cli truffle
     - npm install
 
     ##
