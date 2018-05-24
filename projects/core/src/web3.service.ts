@@ -21,7 +21,7 @@ export class MuzikaWeb3Service {
     return new Observable<string[]>(observer => {
       try {
         this._providerHandle(new MetamaskProvider(), observer);
-      } catch(e) {
+      } catch (e) {
         observer.error(e);
       }
     });
@@ -31,7 +31,7 @@ export class MuzikaWeb3Service {
     return new Observable<string[]>(observer => {
       try {
         this._providerHandle(new RPCProvider(this.rpcUrl), observer);
-      } catch(e) {
+      } catch (e) {
         observer.error(e);
       }
     });
@@ -48,7 +48,7 @@ export class MuzikaWeb3Service {
         }, this.rpcUrl);
 
         this._providerHandle(provider, observer);
-      } catch(e) {
+      } catch (e) {
         observer.error(e);
       }
     });
@@ -64,7 +64,7 @@ export class MuzikaWeb3Service {
 
           try {
             this._providerHandle(new WalletProvider({input, password}, this.rpcUrl), observer);
-          } catch(e) {
+          } catch (e) {
             observer.error(e);
           }
         };
@@ -80,7 +80,7 @@ export class MuzikaWeb3Service {
     return new Observable(observer => {
       try {
         this._providerHandle(new WalletProvider(privateKey, this.rpcUrl), observer);
-      } catch(e) {
+      } catch (e) {
         observer.error(e);
       }
     });
@@ -90,7 +90,7 @@ export class MuzikaWeb3Service {
     return new Observable(observer => {
       try {
         this._providerHandle(new AddressOnlyProvider(address, this.rpcUrl), observer);
-      } catch(e) {
+      } catch (e) {
         observer.error(e);
       }
     });
@@ -129,7 +129,7 @@ export class MuzikaWeb3Service {
     this.web3.setProvider(provider);
 
     promisify(this.web3.eth.getAccounts).then(accounts => {
-      if (!accounts || accounts.length == 0) {
+      if (!accounts || accounts.length === 0) {
         observer.error(new Error('Accounts does not be available'));
         return;
       }

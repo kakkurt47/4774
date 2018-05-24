@@ -29,12 +29,12 @@ export class NavbarComponent extends BaseComponent {
   }
 
   login() {
-    let messagePrefix = `Login to Muzika!\nSignature: `;
+    const messagePrefix = `Login to Muzika!\nSignature: `;
     this.web3Service.usingMetamask().pipe(
       concatMap(accounts => {
         return this.userActions.getLoginMessage(accounts[0]).pipe(
           map(message => {
-            return {address: accounts[0], message}
+            return {address: accounts[0], message};
           })
         );
       }),

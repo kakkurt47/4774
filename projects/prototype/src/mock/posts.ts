@@ -13,7 +13,7 @@ function createFree(postId: number, title: string, author: User): FreePost {
     comments: rand(),
     commentList: [],
     tags: []
-  }
+  };
 }
 
 function createVideo(postId: number, title: string, author: User): VideoPost {
@@ -29,7 +29,7 @@ function createVideo(postId: number, title: string, author: User): VideoPost {
     tags: [],
     videoThumb: null,
     youtubeUrl: null
-  }
+  };
 }
 
 function createMusic(postId: number, title: string, author: Artist): MusicPost {
@@ -44,7 +44,7 @@ function createMusic(postId: number, title: string, author: Artist): MusicPost {
     commentList: [],
     tags: [],
     price: rand() * 100
-  }
+  };
 }
 
 export const BestPostsMock: FreePost[] = [
