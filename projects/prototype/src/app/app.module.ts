@@ -10,11 +10,9 @@ import {
   baseApiUrl,
   baseApiUrlDev,
   baseApiUrlStage,
-  BrandIconModule,
-  MuzikaCoreModule
+  MuzikaCoreModule, SharedModule
 } from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {SharedModule} from '../../../core/src/shared.module';
 import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
@@ -24,6 +22,7 @@ import {FooterComponent} from './component/footer/footer.component';
 import {PostListItemComponent} from './component/post-list-item/post-list-item.component';
 import {PostSheetComponent} from './component/post-sheet/post-sheet.component';
 import {SpinnerComponent} from './component/spinner/spinner.component';
+import {LoginPageComponent} from './page/login/login.component';
 import {MainPageComponent} from './page/main/main.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
@@ -43,14 +42,19 @@ const baseApiUrlProvider: Provider = {
 @NgModule({
   declarations: [
     AppComponent,
-    WalletPageComponent,
-    MainPageComponent,
+
+    /* Reusable Components */
     NavbarComponent,
     SpinnerComponent,
     FooterComponent,
     ArtistSheetComponent,
     PostSheetComponent,
     PostListItemComponent,
+
+    /* Page Components */
+    WalletPageComponent,
+    MainPageComponent,
+    LoginPageComponent,
   ],
   imports: [
     CommonModule,

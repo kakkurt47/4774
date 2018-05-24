@@ -5,19 +5,30 @@
     </div>
 
     <div class="navbar-collapse">
-      <div class="ml-auto pr-4 border-right">
-        <div class="user-profile-img">
-          <img src="assets/person-1.png">
+      <ng-container *ngIf="currentUser; else loggedInBlock">
+        <div class="ml-auto pr-4 border-right">
+          <div class="user-profile-img">
+            <img src="assets/person-1.png">
+          </div>
         </div>
-      </div>
-      <div class="pl-4">
-        <div class="font-weight-bold text-dark">
-          Sarah
+        <div class="pl-4">
+          <div class="font-weight-bold text-dark">
+            Sarah
+          </div>
+          <div class="wallet">
+            0x2CFb8C41047F59D54c38d4cD84E8999e89ab3449
+          </div>
         </div>
-        <div class="wallet">
-          0x2CFb8C41047F59D54c38d4cD84E8999e89ab3449
+      </ng-container>
+
+      <ng-template #loggedInBlock>
+        <div class="ml-auto pr-4">
+          <!-- @TODO Allowed other wallets (now only support metamask) -->
+          <button mat-raised-button color="primary" (click)="login()">
+            로그인
+          </button>
         </div>
-      </div>
+      </ng-template>
     </div>
   </div>
 </nav>
