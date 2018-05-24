@@ -1,16 +1,52 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import {NgRedux, NgReduxModule} from '@angular-redux/store';
+import {isPlatformBrowser, isPlatformServer} from '@angular/common';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {Inject, ModuleWithProviders, NgModule, PLATFORM_ID, SkipSelf} from '@angular/core';
+import {BrowserTransferStateModule, TransferState} from '@angular/platform-browser';
+import {createStore} from 'redux';
+import {UserActions} from './actions/user.action';
+import {BASE_API_URL, baseApiUrl, APIConfig, JWTInterceptor, MUZIKA_REDUX_STATE_KEY} from './config';
 import {ContractProviders} from './contracts';
 import {environmentDev} from './environments/environment';
 import {environmentProd} from './environments/environment.prod';
 import {environmentStage} from './environments/environment.stage';
+import {IAppState, rootReducer} from './reducers';
+import {LocalStorage} from './services';
 import {MuzikaWeb3Service} from './web3.service';
 import {EnvironmentToken} from './environments/env_types';
 
+export function _baseAPIUrlFactory(url: string): string {
+  return url || baseApiUrl;
+}
+
+const STORE_DIRECTIVES = [
+  MuzikaWeb3Service,
+  ...ContractProviders,
+
+  APIConfig,
+  UserActions,
+  LocalStorage,
+
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JWTInterceptor,
+    multi: true
+  },
+
+  {
+    provide: BASE_API_URL,
+    useFactory: _baseAPIUrlFactory,
+    deps: [[new SkipSelf(), new Inject(BASE_API_URL)]]
+  }
+];
+
 @NgModule({
-  providers: [
-    MuzikaWeb3Service,
-    ...ContractProviders
-  ]
+  imports: [
+    HttpClientModule,
+    NgReduxModule,
+    BrowserTransferStateModule
+  ],
+  providers: STORE_DIRECTIVES
 })
 export class MuzikaCoreModule {
   static forRoot(environmentType: string): ModuleWithProviders {
@@ -33,5 +69,26 @@ export class MuzikaCoreModule {
         }
       ]
     };
+  }
+
+  constructor(@Inject(PLATFORM_ID) private platformId,
+              private transferState: TransferState,
+              private ngRedux: NgRedux<IAppState>) {
+
+    if (isPlatformServer(this.platformId)) { // In Server
+      this.ngRedux.provideStore(createStore(rootReducer));
+      if (!this.transferState.hasKey(MUZIKA_REDUX_STATE_KEY)) {
+        this.transferState.onSerialize(MUZIKA_REDUX_STATE_KEY, () => this.ngRedux.getState());
+      }
+    }
+
+    if (isPlatformBrowser(this.platformId)) {
+      const state = this.transferState.get<any>(MUZIKA_REDUX_STATE_KEY, null);
+      if (state) { // Server side rendering을 통해 REDUX_STATE_KEY를 받아온 경우
+        this.ngRedux.configureStore(rootReducer, state);
+      } else {
+        this.ngRedux.provideStore(createStore(rootReducer));
+      }
+    }
   }
 }

@@ -1,10 +1,11 @@
 import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {NgModule, PLATFORM_ID, Inject} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrandIconModule, MuzikaCoreModule} from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import {SharedModule} from '../../../core/src/shared.module';
 import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
@@ -24,14 +25,15 @@ import {NavbarComponent} from './component/navbar/navbar.component';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'muzika-universal'}),
+    BrowserTransferStateModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     AppRouteModule,
     ModalModule.forRoot(),
+    SharedModule,
     MuzikaCoreModule.forRoot(environment.env),
-    BrandIconModule
   ],
   bootstrap: [AppComponent],
   providers: []
