@@ -3,9 +3,8 @@ import {NgModule, PLATFORM_ID, Inject} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BrandIconModule, MuzikaCoreModule} from '@muzika/core';
+import {MuzikaCoreModule, SharedModule} from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {SharedModule} from '../../../core/src/shared.module';
 import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
