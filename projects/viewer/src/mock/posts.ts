@@ -1,6 +1,7 @@
 import {FreePost, MusicPost, User, VideoPost} from '@muzika/core';
 import {UsersMock} from './users';
 
+/* tslint:disable */
 const contentHtmlMock = `
 <div>
    <h1>Baculum aut dea obliquis conchis hac iram</h1>
