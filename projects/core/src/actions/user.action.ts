@@ -1,8 +1,7 @@
 import {NgRedux} from '@angular-redux/store';
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {User} from '@muzika/core';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {APIConfig} from '../config';
 import {IAppState} from '../reducers';
@@ -21,19 +20,41 @@ export class UserActions {
     return this.apiConfig.get(`/user/${address}`);
   }
 
-  login(address: string, message: string, signature: string): Observable<User> {
-    return this.apiConfig.post<User>(`/login`, {address, message, signature}).pipe(
+  refreshMe(): Observable<User> {
+    return this.apiConfig.get<User>('/me').pipe(
       map(user => {
-        if (user) {
-          this.localStorage.setItem('token', user.jwt);
-        }
-
         this.store.dispatch({
           type: UserActions.SET_CURRENT_USER,
           user: user
         });
 
         return user;
+      })
+    );
+  }
+
+  register(address: string, message: string, signature: string, user_name: string): Observable<string> {
+    return this.apiConfig.post<string>(`/register`, {address, message, signature, user_name}).pipe(
+      map(token => {
+        if (token) {
+          this.localStorage.setItem('token', token);
+          this.refreshMe().subscribe(); // @TODO switchMap would be better
+        }
+
+        return token;
+      })
+    );
+  }
+
+  login(address: string, message: string, signature: string): Observable<string> {
+    return this.apiConfig.post<string>(`/login`, {address, message, signature}).pipe(
+      map(token => {
+        if (token) {
+          this.localStorage.setItem('token', token);
+          this.refreshMe().subscribe(); // @TODO switchMap would be better
+        }
+
+        return token;
       })
     );
   }

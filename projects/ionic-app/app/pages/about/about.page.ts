@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent, MuzikaWeb3Service} from '@muzika/core';
+import {BaseComponent, UserActions} from '@muzika/core';
 
 @Component({
   selector: 'app-page-about',
@@ -7,12 +7,13 @@ import {BaseComponent, MuzikaWeb3Service} from '@muzika/core';
   styleUrls: ['about.page.scss']
 })
 export class WalletPageComponent extends BaseComponent {
-  constructor(private web3Service: MuzikaWeb3Service) {
+  public address: string;
+
+  constructor(private userActions: UserActions) {
     super();
   }
 
   ngOnInit() {
     super.ngOnInit();
-    this.web3Service.getTransactions();
   }
 }
