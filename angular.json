@@ -370,7 +370,9 @@
               "projects/viewer/src/favicon.512x512.png"
             ],
             "styles": [
-              "projects/viewer/src/styles.scss"
+              "projects/viewer/src/styles.scss",
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "scripts": []
           },
@@ -437,7 +439,9 @@
             "karmaConfig": "projects/viewer/src/karma.conf.js",
             "scripts": [],
             "styles": [
-              "projects/viewer/src/styles.scss"
+              "projects/viewer/src/styles.scss",
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "assets": [
               "projects/viewer/src/assets",
