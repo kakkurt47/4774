@@ -453,7 +453,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/viewer/src/tsconfig.app.json",
+              "projects/viewer/src/tsconfig.json",
               "projects/viewer/src/tsconfig.spec.json"
             ],
             "exclude": [
@@ -502,7 +502,7 @@
             "index": "projects/ionic-app/index.html",
             "main": "projects/ionic-app/main.ts",
             "polyfills": "projects/ionic-app/polyfills.ts",
-            "tsConfig": "projects/ionic-app/tsconfig.app.json",
+            "tsConfig": "projects/ionic-app/tsconfig.json",
             "assets": [
               {
                 "glob": "**/*",
@@ -598,7 +598,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ionic-app/tsconfig.app.json",
+              "projects/ionic-app/tsconfig.json",
               "projects/ionic-app/tsconfig.spec.json"
             ],
             "exclude": [
