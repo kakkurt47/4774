@@ -1,12 +1,41 @@
 import {FreePost, MusicPost, User, VideoPost} from '@muzika/core';
 import {UsersMock} from './users';
 
+const contentHtmlMock = `
+<div>
+   <h1>Baculum aut dea obliquis conchis hac iram</h1>
+   <h2>Fama illi per posse dentibus at creatus</h2>
+   <p>Lorem markdownum responsa <a href="http://dissipat-pars.org/peteretipso.php">aequor</a>, in bos pater florebat et articulos ideoque crescunt, ortus passimque nefanda <strong>fatifero</strong>? Erysicthone quinquennem quisque loqui saxum unca ingrato partem consulit miseranda induit, dolor, deae. Editus utque est erit <strong>audit studioque quae</strong>: et vacuus parabat nostris! Obliquum omnesque, roganti scitis me verum.</p>
+   <blockquote>
+      <p>Per nervo multorum, tu pati, flammaeque iuvit, quod aer harenas, hauriret. A cretus fateor marito, canit profugam Cyllenide apicemque neque draconi <strong>belua</strong> digreditur rore <strong>ad</strong> splendidior! Virgine <a href="http://viridesque.net/rotaveoceano">quoque et</a> coluit dies, sua cum <a href="http://amore-augustae.com/crepuscula">de</a> gravem saxificos testantur de inane. Motis confundimur ossa, nunc ego declinet animis plantis inter adunca, arduus bella quid secedere decipienda favillae dato? Obnoxia si lucis occubuit spectat.</p>
+   </blockquote>
+   <h2>Erat obvius erat gelidus ensem</h2>
+   <p>Duo coronat ora regem stupuit palmas, timuit Temesesque quam accipit Gorgoneas salve deseruit. Aetasque sacrorum caelo et cervix, est loco axis nostra res. Ferenda sub figuris spargimur <em>quibus speciosaque ictu</em>, aera varios laurus vestigia, et est iam serviet pro et. Nunc rudem annos ait nexis et sanguine ignes ab omnia fuit tibia deceat profundum adsumere. Stipite <em>adventu increpuit carina</em> iterumque adspexisse fiunt, toto Mareoticaque quid optima intra, silva respiramina fatebor.</p>
+   <h2>Orba haut caelesti heu Cyllene tibi</h2>
+   <p>Agros non Calliope aeque tenus oris adversa vires iamque inductas admovit. Loci ingemis toris Titan exitium currus posses fatis verborum; di. Pars iuvat, effugit fremebundus visu <strong>ficto</strong>: inviti, arcus, obortae, tui artus, sanguine ante: alta. Tenebat <strong>principio duritiam oculi</strong> permansit Amuli proxima.</p>
+   <pre>errorPhishingWildcard = gatePortMacro(3 + read);
+if (trojan_powerpoint_dock &gt; root_html + png_pci_nic) {
+    p -= adapterPanelPrebinding;
+}
+rt_trinitron += sdInteractiveCore(appletHdmi(recycle, 1, hashtag_scroll_wan),
+        dashboard_eup) - warm_archive(vram_kindle_variable);
+</pre>
+   <h2>Modusque populos ferre</h2>
+   <p>De ut Thetis albescere repagula, quod ducibusque verticis ramum amarunt praestantissima natusque ut prior, <a href="http://usa.io/ungula.html">pontus</a>, membra. Tmolus manibus, dignatus si vulnus Io <a href="http://sol.net/">sub fecisti</a>, est pestiferaque immo pressit aethera; quae Phorbas. Portasse nocte, novat haec. Sorores ara tuta, elige.</p>
+   <h2>Animam hunc quamvis petit</h2>
+   <p>Inprudens utere adplicor, inplent relevere tenues ora creatum aurea! I <a href="http://tantum-arma.net/tepidosducentem">vincla memorat tenebat</a>, patriam pater, et iam infamis sunt mea <em>rursus</em>.</p>
+   <p>Ad arduus, umbras rictu, lectos pulcherrima et nata ab. Iste non aevo ventos fugis facinus, ego in vitataque pater adiecisse et imperat. Furori tuo certare veteres vulnere fulgorem. India tergo aliter fuisses quoniam, in nec caput, parientis.</p>
+   <p>Deprendere finitimi Theseus non forma urbem celebratior vagantem posset et lecti, inmurmurat. Quem Dianae placidique extentum undas pallidaque pectora, mea plumis. Lacrimosa et cadet frustra, coepit? Grates non currat digitoque viscera, Minervae qui.</p>
+</div>
+`;
+
 function createFree(postId: number, title: string, author: User): FreePost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
     postId,
     title,
     author,
+    description: contentHtmlMock,
     views: rand(),
     likes: rand(),
     comments: rand(),
@@ -21,6 +50,7 @@ function createVideo(postId: number, title: string, author: User): VideoPost {
     postId,
     title,
     author,
+    description: contentHtmlMock,
     views: rand(),
     likes: rand(),
     comments: rand(),
@@ -37,6 +67,7 @@ function createMusic(postId: number, title: string, author: User): MusicPost {
     postId,
     title,
     author,
+    description: contentHtmlMock,
     views: rand(),
     likes: rand(),
     comments: rand(),

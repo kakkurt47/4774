@@ -4,6 +4,7 @@ import {User} from './user';
 export interface BasePost {
   postId: number;
   title: string;
+  description: string;
   views: number;
   likes: number;
   comments: number;

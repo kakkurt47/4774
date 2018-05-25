@@ -7,6 +7,11 @@ import {PostListItemComponent} from './components/post-list-item/post-list-item.
 import {PostSheetComponent} from './components/post-sheet/post-sheet.component';
 import {PostFreeListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {AppPostRouteModule} from './post.routes';
+import {
+  PostFreeItemDetailComponent, PostMusicItemDetailComponent,
+  PostVideoItemDetailComponent
+} from './pages/post-item-detail/post-item-detail';
+import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 
 @NgModule({
   imports: [
@@ -16,6 +21,9 @@ import {AppPostRouteModule} from './post.routes';
     SharedModule,
 
     AppPostRouteModule,
+
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
   ],
   declarations: [
     PostListItemComponent,
@@ -25,6 +33,9 @@ import {AppPostRouteModule} from './post.routes';
     PostFreeListComponent,
     PostMusicListComponent,
     PostVideoListComponent,
+    PostFreeItemDetailComponent,
+    PostMusicItemDetailComponent,
+    PostVideoItemDetailComponent,
   ],
   exports: [
     PostListItemComponent,
