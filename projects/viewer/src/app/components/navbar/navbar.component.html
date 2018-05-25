@@ -1,13 +1,24 @@
-<nav class="navbar navbar-expand text-dark">
+<nav class="navbar navbar-expand">
   <div class="container">
     <div class="navbar-brand" routerLink="/">
       <brand-icon-muzika></brand-icon-muzika>
     </div>
 
     <div class="navbar-collapse">
-      <div class="flex-grow-1 text-center">
-        검색
-      </div>
+      <ul class="row main-menu flex-grow-1">
+        <li routerLink="/board/video" routerLinkActive="active">
+          <i class="fab fa-youtube"></i>
+          영상
+        </li>
+        <li routerLink="/board/free" routerLinkActive="active">
+          <i class="fa fa-users"></i>
+          커뮤니티
+        </li>
+        <li routerLink="/board/music" routerLinkActive="active">
+          <i class="fa fa-music"></i>
+          악보
+        </li>
+      </ul>
       <ng-container *ngIf="currentUser; else loggedInBlock">
         <div class="ml-auto pr-4 border-right">
           <div class="user-profile-img">
@@ -35,6 +46,7 @@
     </div>
   </div>
 </nav>
+<!--
 <div class="pt-4">
   <div class="container font-weight-bold px-0">
     <ul class="row main-menu">
@@ -56,3 +68,4 @@
     </ul>
   </div>
 </div>
+-->
