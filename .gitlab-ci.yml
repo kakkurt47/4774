@@ -56,7 +56,6 @@ test:contract:
     - npm run contract:compile
     - npm run lint
     - npm run build:core
-    - npm run build:prototype
     - npm run build:wallet
     - npm run build:viewer
   tags:
