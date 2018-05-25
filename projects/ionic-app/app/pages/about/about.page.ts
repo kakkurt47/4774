@@ -8,12 +8,11 @@ import {BaseComponent, MuzikaWeb3Service} from '@muzika/core';
 })
 export class WalletPageComponent extends BaseComponent {
   constructor(private web3Service: MuzikaWeb3Service) {
+    super();
   }
 
   ngOnInit() {
     super.ngOnInit();
     this.web3Service.getTransactions();
   }
-
-
 }
