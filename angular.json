@@ -435,7 +435,7 @@
           "options": {
             "main": "projects/viewer/src/test.ts",
             "polyfills": "projects/viewer/src/polyfills-test.ts",
-            "tsConfig": "projects/viewer/src/tsconfig.spec.json",
+            "tsConfig": "projects/viewer/tsconfig.spec.json",
             "karmaConfig": "projects/viewer/src/karma.conf.js",
             "scripts": [],
             "styles": [
@@ -458,7 +458,7 @@
           "options": {
             "tsConfig": [
               "projects/viewer/tsconfig.json",
-              "projects/viewer/src/tsconfig.spec.json"
+              "projects/viewer/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
