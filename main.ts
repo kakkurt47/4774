@@ -16,15 +16,18 @@ try {
 function createWindow() {
 
   const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  // const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const size = {width: 1280, height: 860};
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
     width: size.width,
-    height: size.height
+    height: size.height,
+    resizable: false,
   });
+
+  // disable menu
+  win.setMenu(null);
 
   if (serve) {
     require('electron-reload')(__dirname, {
