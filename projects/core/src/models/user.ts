@@ -5,7 +5,3 @@ export interface User {
   wallet?: string;
   jwt?: string;
 }
-
-export interface Artist extends User {
-  area: string;
-}
