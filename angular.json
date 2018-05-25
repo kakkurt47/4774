@@ -370,7 +370,9 @@
               "projects/viewer/src/favicon.512x512.png"
             ],
             "styles": [
-              "projects/viewer/src/styles.scss"
+              "projects/viewer/src/styles.scss",
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "scripts": []
           },
@@ -433,11 +435,13 @@
           "options": {
             "main": "projects/viewer/src/test.ts",
             "polyfills": "projects/viewer/src/polyfills-test.ts",
-            "tsConfig": "projects/viewer/src/tsconfig.spec.json",
+            "tsConfig": "projects/viewer/tsconfig.spec.json",
             "karmaConfig": "projects/viewer/src/karma.conf.js",
             "scripts": [],
             "styles": [
-              "projects/viewer/src/styles.scss"
+              "projects/viewer/src/styles.scss",
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "assets": [
               "projects/viewer/src/assets",
@@ -453,8 +457,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/viewer/src/tsconfig.json",
-              "projects/viewer/src/tsconfig.spec.json"
+              "projects/viewer/tsconfig.json",
+              "projects/viewer/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

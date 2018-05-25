@@ -1,5 +1,4 @@
-import {Artist, FreePost, MusicPost, User, VideoPost} from '@muzika/core';
-import {ArtistsMock} from './artists';
+import {FreePost, MusicPost, User, VideoPost} from '@muzika/core';
 import {UsersMock} from './users';
 
 function createFree(postId: number, title: string, author: User): FreePost {
@@ -32,7 +31,7 @@ function createVideo(postId: number, title: string, author: User): VideoPost {
   };
 }
 
-function createMusic(postId: number, title: string, author: Artist): MusicPost {
+function createMusic(postId: number, title: string, author: User): MusicPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
     postId,
@@ -83,15 +82,15 @@ export const VideoPostsMock: VideoPost[] = [
 ];
 
 export const MusicPostsMock: MusicPost[] = [
-  createMusic(1, 'aliquet sagittis id consectetur', ArtistsMock[2]),
-  createMusic(2, 'nibh venenatis cras sed', ArtistsMock[1]),
-  createMusic(3, 'pellentesque pulvinar pellentesque habitant', ArtistsMock[1]),
-  createMusic(4, 'tincidunt eget nullam non', ArtistsMock[2]),
-  createMusic(5, 'sapien faucibus et molestie', ArtistsMock[3]),
-  createMusic(6, 'lacus sed turpis tincidunt', ArtistsMock[3]),
-  createMusic(7, 'mauris pharetra et ultrices', ArtistsMock[3]),
-  createMusic(8, 'cras fermentum odio eu', ArtistsMock[2]),
-  createMusic(9, 'lorem ipsum dolor sit', ArtistsMock[3]),
-  createMusic(10, 'amet nisl suscipit adipiscing', ArtistsMock[1]),
-  createMusic(11, 'volutpat lacus laoreet non', ArtistsMock[1]),
+  createMusic(1, 'aliquet sagittis id consectetur', UsersMock[2]),
+  createMusic(2, 'nibh venenatis cras sed', UsersMock[1]),
+  createMusic(3, 'pellentesque pulvinar pellentesque habitant', UsersMock[1]),
+  createMusic(4, 'tincidunt eget nullam non', UsersMock[2]),
+  createMusic(5, 'sapien faucibus et molestie', UsersMock[3]),
+  createMusic(6, 'lacus sed turpis tincidunt', UsersMock[3]),
+  createMusic(7, 'mauris pharetra et ultrices', UsersMock[3]),
+  createMusic(8, 'cras fermentum odio eu', UsersMock[2]),
+  createMusic(9, 'lorem ipsum dolor sit', UsersMock[3]),
+  createMusic(10, 'amet nisl suscipit adipiscing', UsersMock[1]),
+  createMusic(11, 'volutpat lacus laoreet non', UsersMock[1]),
 ];

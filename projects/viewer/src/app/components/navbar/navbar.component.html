@@ -1,10 +1,34 @@
-<nav class="navbar navbar-expand text-dark">
+<nav class="navbar navbar-expand">
   <div class="container">
     <div class="navbar-brand" routerLink="/">
       <brand-icon-muzika></brand-icon-muzika>
     </div>
 
     <div class="navbar-collapse">
+      <ul class="row main-menu flex-grow-1">
+        <li routerLink="/board/video" routerLinkActive="active">
+          <i class="fab fa-youtube"></i>
+          영상
+        </li>
+        <li routerLink="/board/free" routerLinkActive="active">
+          <i class="fa fa-users"></i>
+          커뮤니티
+        </li>
+        <li routerLink="/board/music" routerLinkActive="active">
+          <i class="fa fa-music"></i>
+          악보
+        </li>
+        <li class="search">
+          <div class="search-wrapper">
+            <div class="search-icon">
+              <i class="fa fa-search"></i>
+            </div>
+            <div class="search-input">
+              <input type="text" class="w-100" placeholder="Search">
+            </div>
+          </div>
+        </li>
+      </ul>
       <ng-container *ngIf="currentUser; else loggedInBlock">
         <div class="ml-auto pr-4 border-right">
           <div class="user-profile-img">
@@ -24,7 +48,7 @@
       <ng-template #loggedInBlock>
         <div class="ml-auto pr-4">
           <!-- @TODO Allowed other wallets (now only support metamask) -->
-          <button mat-raised-button color="primary" (click)="login()">
+          <button mat-button color="white" (click)="login()">
             로그인
           </button>
         </div>
@@ -32,6 +56,7 @@
     </div>
   </div>
 </nav>
+<!--
 <div class="pt-4">
   <div class="container font-weight-bold px-0">
     <ul class="row main-menu">
@@ -53,3 +78,4 @@
     </ul>
   </div>
 </div>
+-->

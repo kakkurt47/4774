@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent, Artist, FreePost, MusicPost} from '@muzika/core';
-import {ArtistsMock} from '../../../mock/artists';
+import {BaseComponent, FreePost, MusicPost} from '@muzika/core';
 import {BestPostsMock, MusicPostsMock} from '../../../mock/posts';
 
 @Component({
@@ -9,7 +8,6 @@ import {BestPostsMock, MusicPostsMock} from '../../../mock/posts';
   styleUrls: ['./main.component.scss']
 })
 export class MainPageComponent extends BaseComponent {
-  artists: Artist[] = ArtistsMock;
   sheets: MusicPost[] = MusicPostsMock.slice(0, 5);
   posts: FreePost[] = BestPostsMock;
 

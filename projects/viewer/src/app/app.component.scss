@@ -2,12 +2,16 @@
 
 :host {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
   background-color: $background-color;
 }
 
-.notice {
-  a {
-    color: orange;
-  }
+.main-content {
+  height: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

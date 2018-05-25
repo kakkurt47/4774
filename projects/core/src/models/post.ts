@@ -1,9 +1,10 @@
 import {Comment} from './comment';
-import {Artist, User} from './user';
+import {User} from './user';
 
 export interface BasePost {
   postId: number;
   title: string;
+  description: string;
   views: number;
   likes: number;
   comments: number;
@@ -24,12 +25,11 @@ export interface VideoPost extends BasePost {
 
 export interface MusicPost extends BasePost {
   price: number;
-  author: Artist;
 }
 
 export interface SheetMusic {
   sheetId: number;
   title: string;
   price: number;
-  author: Artist;
+  author: User;
 }
