@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand text-dark">
+  <div class="container">
+    <div class="navbar-brand" routerLink="/">
+      <brand-icon-muzika></brand-icon-muzika>
+    </div>
+
+    <div class="navbar-collapse">
+      <ng-container *ngIf="currentUser; else loggedInBlock">
+        <div class="ml-auto pr-4 border-right">
+          <div class="user-profile-img">
+            <img src="assets/person-1.png">
+          </div>
+        </div>
+        <div class="pl-4">
+          <div class="font-weight-bold text-dark">
+            Sarah
+          </div>
+          <div class="wallet">
+            0x2CFb8C41047F59D54c38d4cD84E8999e89ab3449
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #loggedInBlock>
+        <div class="ml-auto pr-4">
+          <!-- @TODO Allowed other wallets (now only support metamask) -->
+          <button mat-raised-button color="primary" (click)="login()">
+            로그인
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+<div class="pt-4">
+  <div class="container font-weight-bold px-0">
+    <ul class="row main-menu">
+      <li class="col" routerLink="/board/video" routerLinkActive="active">
+        <i class="fab fa-youtube"></i>
+        영상
+      </li>
+      <li class="col" routerLink="/board/free" routerLinkActive="active">
+        <i class="fa fa-users"></i>
+        커뮤니티
+      </li>
+      <li class="col" routerLink="/board/music" routerLinkActive="active">
+        <i class="fa fa-music"></i>
+        악보
+      </li>
+      <li class="col">
+        준비중...
+      </li>
+    </ul>
+  </div>
+</div>

@@ -359,7 +359,7 @@
             "outputPath": "dist/muzika-viewer",
             "index": "projects/viewer/src/index.html",
             "main": "projects/viewer/src/main.ts",
-            "tsConfig": "projects/viewer/src/tsconfig.app.json",
+            "tsConfig": "projects/viewer/tsconfig.json",
             "polyfills": "projects/viewer/src/polyfills.ts",
             "assets": [
               "projects/viewer/src/assets",
