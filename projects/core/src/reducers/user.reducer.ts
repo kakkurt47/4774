@@ -13,15 +13,9 @@ const initialState: UserState = {
 export function UserReducer(state: UserState = initialState, action: PayloadAction): UserState {
   switch (action.type) {
     case UserActions.SET_CURRENT_USER:
-      if (!state.currentUser) {
-        return tassign(state, {
-          currentUser: tassign(action.payload)
-        });
-      } else {
-        return tassign(state, {
-          currentUser: action.payload
-        });
-      }
+      return tassign(state, {
+        currentUser: (!state.currentUser) ? tassign(action.payload) : null
+      });
 
     default:
       return state;
