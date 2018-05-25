@@ -18,6 +18,16 @@
           <i class="fa fa-music"></i>
           악보
         </li>
+        <li class="search">
+          <div class="search-wrapper">
+            <div class="search-icon">
+              <i class="fa fa-search"></i>
+            </div>
+            <div class="search-input">
+              <input type="text" class="w-100" placeholder="Search">
+            </div>
+          </div>
+        </li>
       </ul>
       <ng-container *ngIf="currentUser; else loggedInBlock">
         <div class="ml-auto pr-4 border-right">
@@ -38,7 +48,7 @@
       <ng-template #loggedInBlock>
         <div class="ml-auto pr-4">
           <!-- @TODO Allowed other wallets (now only support metamask) -->
-          <button mat-raised-button color="primary" (click)="login()">
+          <button mat-button color="white" (click)="login()">
             로그인
           </button>
         </div>

@@ -34,16 +34,17 @@
 
   li {
     width: 140px;
+    line-height: 40px;
     text-align: center;
     //padding-bottom: 1.5rem;
     color: map-get($secondary-palette, 200);
     outline: none;
-    transition: font-size 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     &.active {
       //border-bottom: 5px solid $primary-color;
+      //font-size: 115%;
       color: #fff;
-      font-size: 115%;
     }
 
     &[routerLink] {
@@ -56,5 +57,37 @@
   img {
     height: 3.8rem;
     border-radius: 50%;
+  }
+}
+
+.search {
+  position: relative;
+
+  .search-wrapper {
+    background: #fff;
+    border-radius: 4px;
+    width: 360px;
+    color: #404040;
+
+    .search-icon {
+      float: left;
+      padding: 0 16px;
+
+      i {
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .search-input {
+      overflow: hidden;
+
+      input {
+        background: transparent;
+        border: none;
+        outline: none;
+        height: 100%;
+      }
+    }
   }
 }
