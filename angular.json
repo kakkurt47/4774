@@ -457,7 +457,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/viewer/src/tsconfig.json",
+              "projects/viewer/tsconfig.json",
               "projects/viewer/src/tsconfig.spec.json"
             ],
             "exclude": [
