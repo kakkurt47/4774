@@ -42,8 +42,7 @@ export class CommentActions {
       .pipe(
         map(data => {
           if (data.status === 'success') {
-            // this.userAction.loadCommentLikes();
-            // @TODO loadCommentLikes 구성하기
+            this.userAction.loadCommentLikes(boardType);
           }
           return data;
         })

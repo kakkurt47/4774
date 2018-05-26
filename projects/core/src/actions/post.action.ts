@@ -21,7 +21,6 @@ export class PostActions {
   static LIKE_TOGGLE_POST = '[posts] like toggle post';
   static SAVE_POSTS = '[posts] save posts';
   static SAVE_POST_ADDITION = '[posts] save post additional info';
-  static SET_ARTIST_LIST = '[posts] set artist list';
 
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,
