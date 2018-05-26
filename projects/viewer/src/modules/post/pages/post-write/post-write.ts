@@ -54,4 +54,14 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
 })
 export class PostVideoWriteComponent extends BasePostWriteComponent {
   post: VideoPost;
+  youtubeUrlRegExp = /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w-_]+)/;
+  currentYoutubeVideoId: string;
+
+  onChangeYoutubeURL(url: string) {
+    const videoId = this.youtubeUrlRegExp.exec(url);
+
+    if (!!videoId && !!videoId[1] && videoId[1].length > 0) {
+      this.currentYoutubeVideoId = videoId[1];
+    }
+  }
 }

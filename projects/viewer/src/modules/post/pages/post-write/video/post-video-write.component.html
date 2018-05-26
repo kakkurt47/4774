@@ -22,7 +22,11 @@
           <div class="youtube-form">
             <input type="text" class="form-control"
                    placeholder="https://www.youtube.com/watch?v=..."
-                   ngModel>
+                   ngModel (ngModelChange)="onChangeYoutubeURL($event)"
+                   [ngModelOptions]="{standalone: true}">
+            <div class="youtube-thumbnail" *ngIf="currentYoutubeVideoId">
+              <img [src]="'https://img.youtube.com/vi/' + currentYoutubeVideoId + '/mqdefault.jpg'">
+            </div>
           </div>
 
           <h5> 태그 </h5>
