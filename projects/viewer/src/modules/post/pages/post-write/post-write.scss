@@ -1,6 +1,7 @@
 .write-form {
   display: flex;
   flex-direction: column;
+  overflow-y: overlay;
 
   input {
     border: none;
@@ -9,5 +10,36 @@
     font-size: 1.8rem;
     font-weight: 500;
     padding: 12px;
+  }
+
+  .description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    /deep/ {
+      .fr-wrapper, .fr-toolbar {
+        border: none;
+      }
+
+      .fr-box {
+        display: flex;
+        flex-direction: column;
+
+        .fr-wrapper {
+          flex: 1;
+          overflow-y: overlay;
+          padding-bottom: 24vh;
+        }
+
+        .fr-toolbar {
+          border-bottom: 1px solid #eee;
+
+          .fr-hs {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }
