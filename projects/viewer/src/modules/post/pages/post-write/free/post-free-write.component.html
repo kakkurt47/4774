@@ -1,0 +1,22 @@
+<section class="post-write bg-white h-100">
+  <form class="form h-100">
+    <div class="row h-100 mx-0">
+      <div class="col-8 px-0 write-form">
+        <div class="title">
+          <input type="text" class="w-100" placeholder="제목을 입력해주세요">
+        </div>
+
+        <div class="description">
+          <div [froalaEditor]="options" [(froalaModel)]="description"></div>
+        </div>
+      </div>
+      <div class="col px-0 border-left">
+        <h3> 첨부파일 관리 </h3>
+
+        <hr>
+
+        <h3> 태그 </h3>
+      </div>
+    </div>
+  </form>
+</section>

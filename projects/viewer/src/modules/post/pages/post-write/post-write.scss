@@ -1,0 +1,13 @@
+.write-form {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #eee;
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 12px;
+  }
+}

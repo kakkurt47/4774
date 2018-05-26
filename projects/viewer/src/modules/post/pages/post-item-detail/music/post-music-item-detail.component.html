@@ -1,4 +1,17 @@
-<div class="bg-white">
-  <main [froalaView]="post.description"></main>
+<div class="bg-white mb-4">
+  <div class="row">
+    <div class="col-8">
+      <section id="blog" class="blog border">
+        <article class="post">
+          <app-post-item-detail-header [post]="post"></app-post-item-detail-header>
+
+          <header>
+            <h1 itemprop="headline">{{post.title}}</h1>
+          </header>
+
+          <main [froalaView]="post.description"></main>
+        </article>
+      </section>
+    </div>
+  </div>
 </div>
-kwf

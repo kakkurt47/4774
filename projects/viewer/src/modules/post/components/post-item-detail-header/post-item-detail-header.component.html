@@ -1,0 +1,23 @@
+<div class="post-header">
+  <img *ngIf="!!post" [src]="post.author.profileImage">
+  <a class="float-right text-center post-header-following">
+    <i class="fa fa-user-plus"></i>
+    팔로잉
+  </a>
+  <div>
+    <a><b>{{post.author.name}}</b></a>
+    <!--<span app-level-icon [user]="post.author"></span>-->
+
+    <div class="post-header-extra">
+      <small *ngFor="let tag of post.tags">
+        {{tag.name}}
+      </small>
+      <small>
+        <!--<time>{{post.time}}</time>-->
+      </small>
+      <small>
+        조회수 {{post.views}}
+      </small>
+    </div>
+  </div>
+</div>
