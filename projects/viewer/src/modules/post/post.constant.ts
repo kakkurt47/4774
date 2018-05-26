@@ -5,16 +5,25 @@ export const FroalaEditorOptions = {
   language: 'ko',
   key: 'RF4H3B17A9iB6E5C3A4I2I3C9B6C5E5C-11lcsmdhnA-13D-11G5hcj1==',
 
-  toolbarButtons: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-', 'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
-  toolbarButtonsMD: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-', 'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
-  toolbarButtonsSM: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-', 'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
-  toolbarButtonsXS: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-', 'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
+  toolbarButtons: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-',
+    'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|',
+    'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
+  toolbarButtonsMD: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-',
+    'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|',
+    'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
+  toolbarButtonsSM: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-',
+    'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|',
+    'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
+  toolbarButtonsXS: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-',
+    'insertHR', 'paragraphFormat', 'paragraphStyle', 'formatUL', '|',
+    'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'html'],
   requestWithCredentials: true,
 
   imagePaste: false,
 
   heightMin: 400,
-  pluginsEnabled: ['image', 'video', 'colors', 'fontSize', 'link', 'table', 'url', 'paragraphStyle', 'emoticons', 'align', 'codeView', 'lists'],
+  pluginsEnabled: ['image', 'video', 'colors', 'fontSize', 'link', 'table',
+    'url', 'paragraphStyle', 'emoticons', 'align', 'codeView', 'lists'],
 
   events: {
     'froalaEditor.image.uploaded': null,
