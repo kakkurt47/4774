@@ -30,13 +30,13 @@ rt_trinitron += sdInteractiveCore(appletHdmi(recycle, 1, hashtag_scroll_wan),
 </div>
 `;
 
-function createCommunity(postId: number, title: string, author: User): CommunityPost {
+function createCommunity(post_id: number, title: string, author: User): CommunityPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
-    postId,
+    post_id,
     title,
     author,
-    description: contentHtmlMock,
+    content: contentHtmlMock,
     views: rand(),
     likes: rand(),
     comments: rand(),
@@ -45,13 +45,13 @@ function createCommunity(postId: number, title: string, author: User): Community
   };
 }
 
-function createVideo(postId: number, title: string, author: User): VideoPost {
+function createVideo(post_id: number, title: string, author: User): VideoPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
-    postId,
+    post_id,
     title,
     author,
-    description: contentHtmlMock,
+    content: contentHtmlMock,
     views: rand(),
     likes: rand(),
     comments: rand(),
@@ -62,13 +62,13 @@ function createVideo(postId: number, title: string, author: User): VideoPost {
   };
 }
 
-function createSheet(postId: number, title: string, author: User): SheetPost {
+function createSheet(post_id: number, title: string, author: User): SheetPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
-    postId,
+    post_id,
     title,
     author,
-    description: contentHtmlMock,
+    content: contentHtmlMock,
     views: rand(),
     likes: rand(),
     comments: rand(),

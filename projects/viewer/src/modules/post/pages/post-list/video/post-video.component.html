@@ -27,7 +27,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let post of posts">
-            <td> <a [routerLink]="[post.postId]"> {{post.title}} </a> </td>
+            <td> <a [routerLink]="[post.post_id]"> {{post.title}} </a> </td>
             <td> {{post.author.name}} </td>
             <td> {{post.views}} </td>
             <td> {{post.likes}} </td>

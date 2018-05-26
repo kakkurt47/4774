@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {JsonIconComponent, LedgerIconComponent, MuzikaIconComponent, TrezorIconComponent} from './components';
+import {JsonIconComponent, LedgerIconComponent, MuzikaIconComponent, TrezorIconComponent} from './components/index';
 
 @NgModule({
   declarations: [

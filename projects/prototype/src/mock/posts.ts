@@ -1,10 +1,10 @@
 import {CommunityPost, SheetPost, User, VideoPost} from '@muzika/core';
 import {UsersMock} from './users';
 
-function createFree(postId: number, title: string, author: User): CommunityPost {
+function createFree(post_id: number, title: string, author: User): CommunityPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
-    postId,
+    post_id,
     title,
     author,
     views: rand(),
@@ -15,10 +15,10 @@ function createFree(postId: number, title: string, author: User): CommunityPost 
   };
 }
 
-function createVideo(postId: number, title: string, author: User): VideoPost {
+function createVideo(post_id: number, title: string, author: User): VideoPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
-    postId,
+    post_id,
     title,
     author,
     views: rand(),
@@ -31,10 +31,10 @@ function createVideo(postId: number, title: string, author: User): VideoPost {
   };
 }
 
-function createMusic(postId: number, title: string, author: User): SheetPost {
+function createMusic(post_id: number, title: string, author: User): SheetPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
-    postId,
+    post_id,
     title,
     author,
     views: rand(),

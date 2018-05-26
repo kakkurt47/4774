@@ -1,25 +1,25 @@
-import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
-import {SharedModule} from '@muzika/core';
+import {SharedModule, MuzikaCoreModule} from '@muzika/core';
+import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
+import {PostCommentComponent} from './components/post-comment/post-comment.component';
+import {PostItemDetailHeaderComponent} from './components/post-item-detail-header/post-item-detail-header.component';
 import {PostListItemComponent} from './components/post-list-item/post-list-item.component';
 import {PostSheetComponent} from './components/post-sheet/post-sheet.component';
-import {PostCommunityListComponent, PostSheetListComponent, PostVideoListComponent} from './pages/post-list/post-list';
-import {AppPostRouteModule} from './post.routes';
 import {
-  PostCommunityItemDetailComponent, PostSheetItemDetailComponent,
+  PostCommunityItemDetailComponent,
+  PostSheetItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
-import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
-import {PostCommunityWriteComponent, PostSheetWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
+import {PostCommunityListComponent, PostSheetListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {PostCommunityModifyComponent, PostSheetModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
-import {MatButtonModule} from '@angular/material';
-import {PostItemDetailHeaderComponent} from './components/post-item-detail-header/post-item-detail-header.component';
+import {PostCommunityWriteComponent, PostSheetWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
+import {AppPostRouteModule} from './post.routes';
 
 @NgModule({
   imports: [
-    CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -27,6 +27,7 @@ import {PostItemDetailHeaderComponent} from './components/post-item-detail-heade
 
     AppPostRouteModule,
 
+    MuzikaCoreModule,
     MatButtonModule,
 
     FroalaEditorModule.forRoot(),
@@ -36,6 +37,8 @@ import {PostItemDetailHeaderComponent} from './components/post-item-detail-heade
     PostListItemComponent,
     PostSheetComponent,
     PostItemDetailHeaderComponent,
+
+    PostCommentComponent,
 
     /* Pages */
     PostCommunityListComponent,

@@ -1,5 +1,5 @@
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
-import {isPlatformBrowser, isPlatformServer} from '@angular/common';
+import {isPlatformBrowser, isPlatformServer, CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {Inject, ModuleWithProviders, NgModule, PLATFORM_ID, SkipSelf} from '@angular/core';
 import {BrowserTransferStateModule, TransferState} from '@angular/platform-browser';
@@ -15,6 +15,7 @@ import {environmentStage} from './environments/environment.stage';
 import {IAppState, rootReducer} from './reducers';
 import {LocalStorage} from './services';
 import {MuzikaWeb3Service} from './web3.service';
+import {PaginationComponent} from './components/pagination/pagination.component';
 
 const STORE_DIRECTIVES = [
   MuzikaWeb3Service,
@@ -33,9 +34,16 @@ const STORE_DIRECTIVES = [
 
 @NgModule({
   imports: [
+    CommonModule,
     HttpClientModule,
     NgReduxModule,
     BrowserTransferStateModule
+  ],
+  declarations: [
+    PaginationComponent
+  ],
+  exports: [
+    PaginationComponent
   ],
   providers: STORE_DIRECTIVES
 })

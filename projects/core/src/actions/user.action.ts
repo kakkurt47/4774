@@ -13,6 +13,8 @@ import {MuzikaWeb3Service} from '../web3.service';
 @Injectable()
 export class UserActions {
   static SET_CURRENT_USER = '[user][SET_CURRENT_USER]';
+  static SET_BOARD_LIKES = '[user] SET_BOARD_LIKES';
+  static SET_COMMENT_LIKES = '[user] SET_COMMENT_LIKES';
 
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,
@@ -23,6 +25,32 @@ export class UserActions {
 
   getLoginMessage(address: string): Observable<string> {
     return this.apiConfig.get(`/user/${address}`);
+  }
+
+  loadBoardLikes(boardType: string) {
+    if (!this.store.getState().user.currentUser) return;
+    const userID = this.store.getState().user.currentUser.userId;
+    this.apiConfig.get<any>(`/user/${userID}/board/${boardType}/like`)
+      .subscribe(likes => {
+        this.store.dispatch({
+          type: UserActions.SET_BOARD_LIKES,
+          likes, boardType
+        });
+      });
+  }
+
+  loadCommentLikes(boardType) {
+    if (!this.store.getState().user.currentUser) return;
+    const userID = this.store.getState().user.currentUser.userId;
+    this.apiConfig.get<any>(`/user/${userID}/board/${boardType}/comment/likes`)
+      .subscribe(likes => {
+        this.store.dispatch({
+          type: UserActions.SET_COMMENT_LIKES,
+          payload: {
+            likes, boardType
+          }
+        });
+      });
   }
 
   refreshMe(): Observable<User> {
