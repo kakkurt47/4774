@@ -12,7 +12,7 @@ const alertify = _alertify.okBtn('확인').cancelBtn('취소');
   styleUrls: ['./login.component.scss']
 })
 export class LoginPageComponent extends BaseComponent {
-  currentWalletProvider = 'metamask';
+  currentWalletProvider = 'private';
 
   @ViewChildren(NgForm)
   forms: QueryList<NgForm>;

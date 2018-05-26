@@ -11,7 +11,7 @@
     "start:wallet:stage": "npm run start:wallet -- -c stage",
     "start:wallet:prod": "npm run start:wallet -- -c production",
     "start:prototype": "ng serve -o --project muzika-prototype --hmr --ssl --ssl-key ssl/server.key --ssl-cert ssl/server.crt",
-    "start:viewer": "node hooks/set_environments.js && npm-run-all -p serve:viewer electron:serve",
+    "start:viewer": "cross-env ENV=dev node hooks/set_environments.js && npm-run-all -p serve:viewer electron:serve",
     "start:viewer:stage": "cross-env ENV=stage node hooks/set_environments.js && npm-run-all -p serve:viewer:stage electron:serve",
     "serve:viewer": "ng serve --project muzika-ipfs-viewer",
     "serve:viewer:stage": "npm run serve:viewer -- -c stage",
