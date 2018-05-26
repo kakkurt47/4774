@@ -1,0 +1,57 @@
+<section class="post-write bg-white h-100">
+  <form class="form h-100">
+    <div class="row h-100 mx-0">
+      <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
+        <h5> 악보 업로드 </h5>
+
+        <div class="upload-form">
+          <label class="upload-btn" for="upload-sheet">
+            <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet">
+            <span class="btn-text">
+              <i class="fa fa-file-pdf"></i> 악보 PDF 업로드
+            </span>
+          </label>
+        </div>
+
+        <h5> 곡 종류 </h5>
+
+        <div class="song-type-form">
+          <div class="btn-group">
+            <button class="btn btn-light"> 커버 </button>
+            <button class="btn btn-primary"> 자작곡 </button>
+          </div>
+        </div>
+
+        <h5> 장르 </h5>
+
+        <h5> 악기 </h5>
+
+        <h5> 가격 </h5>
+
+        <div class="price-form">
+          <div class="input-group">
+            <input type="text" class="form-control" id="price" name="price">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                MZK
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="col-6 px-0 write-form border-left">
+        <div class="title">
+          <input type="text" class="w-100" placeholder="제목을 입력해주세요">
+        </div>
+
+        <div class="description">
+          <div [froalaEditor]="options" [(froalaModel)]="post.description"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-floating">
+      <button mat-raised-button color="accent"> <i class="fa fa-pencil"></i> 작성 </button>
+    </div>
+  </form>
+</section>

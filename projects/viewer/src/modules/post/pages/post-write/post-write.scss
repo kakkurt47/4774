@@ -1,3 +1,21 @@
+@import '../../../../theme/variables';
+
+form {
+  .submit-floating {
+    position: fixed;
+    right: 35px;
+    bottom: 27px;
+    z-index: 10;
+  }
+
+  input, select, button.btn {
+    box-shadow: none !important;
+    &:focus, &:active {
+      box-shadow: none;
+    }
+  }
+}
+
 .write-form {
   display: flex;
   flex-direction: column;
@@ -10,6 +28,7 @@
     font-size: 1.8rem;
     font-weight: 500;
     padding: 12px;
+    outline: none;
   }
 
   .description {
@@ -29,7 +48,7 @@
         .fr-wrapper {
           flex: 1;
           overflow-y: overlay;
-          padding-bottom: 24vh;
+          padding-bottom: 10vh;
         }
 
         .fr-toolbar {
@@ -43,3 +62,81 @@
     }
   }
 }
+
+.extra-section {
+  padding: 15px;
+  // background-color: rgb(251, 250, 245);
+
+  h5 {
+    padding: 6px 0;
+    font-weight: bold;
+    // border-left: 5px solid $primary-color;
+    // margin-left: -1rem;
+    margin-top: 32px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .upload-form {
+    height: 7rem;
+    color: #666;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+
+    .upload-btn {
+      .btn-text {
+        padding: 8px 30px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .tags-song-type {
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+
+      }
+    }
+  }
+
+  .tags {
+    .tag {
+      background: #2f3c60;
+      color: #fff;
+      padding: 0 8px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-right: 6px;
+
+      i.fa {
+        cursor: pointer;
+        line-height: 21px;
+        font-size: 0.6rem;
+      }
+    }
+  }
+
+  .input-group {
+    input {
+      border-color: #eee;
+    }
+
+    .input-group-text {
+      background-color: $primary-color;
+      border-color: #eee;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+}
+

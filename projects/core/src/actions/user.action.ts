@@ -1,8 +1,7 @@
 import {NgRedux} from '@angular-redux/store';
 import {Injectable} from '@angular/core';
 import {Observable, from} from 'rxjs';
-import {concatMap, tap} from 'rxjs/internal/operators';
-import {map} from 'rxjs/operators';
+import {concatMap, map, tap} from 'rxjs/operators';
 import {APIConfig} from '../config';
 import {User} from '../models/user';
 import {IAppState} from '../reducers';

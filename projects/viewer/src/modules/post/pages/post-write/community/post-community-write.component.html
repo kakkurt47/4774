@@ -7,16 +7,36 @@
         </div>
 
         <div class="description">
-          <div [froalaEditor]="options" [(froalaModel)]="description"></div>
+          <div [froalaEditor]="options" [(froalaModel)]="post.description"></div>
         </div>
       </div>
       <div class="col px-0 border-left">
-        <h3> 첨부파일 관리 </h3>
+        <section class="extra-section">
+          <h5> 첨부파일 관리 </h5>
 
-        <hr>
+          <div class="attach-file-form">
+            <i class="fa fa-exclamation-triangle"></i> 현재는 지원하지 않습니다
+          </div>
 
-        <h3> 태그 </h3>
+          <h5> 태그 </h5>
+
+          <div class="tags-container">
+            <div class="tags">
+              <label class="label tag" *ngFor="let tag of tags; let i = index">
+                {{tag.name}}
+                <i class="fa fa-times" (click)="removeTag(i)"></i>
+              </label>
+            </div>
+
+            <input type="text" class="form-control" (keypress)="handleTagInput($event, tagInput)" #tagInput
+                   placeholder="추가할 태그 입력">
+          </div>
+        </section>
       </div>
+    </div>
+
+    <div class="submit-floating">
+      <button mat-raised-button color="accent"> <i class="fa fa-pencil"></i> 작성 </button>
     </div>
   </form>
 </section>
