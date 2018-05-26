@@ -24,13 +24,14 @@ import {BASE_API_URL, baseApiUrl, baseApiUrlDev, baseApiUrlStage, MuzikaCoreModu
 import { AppComponent } from './app.component';
 import {environment} from '../environments/environment';
 import {ArtistSheetComponent} from './components/artist-sheet/artist-sheet.component';
-import {LoginPageComponent} from './pages/login/login.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {SpinnerComponent} from './components/spinner/spinner.component';
 import {MainPageComponent} from './pages/main/main.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {PostModule} from '../modules/post/post.module';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import {MatRadioModule} from '@angular/material';
+import {WalletModule} from '../modules/wallet/wallet.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -59,7 +60,6 @@ const baseApiUrlProvider: Provider = {
 
     /* Page Components */
     MainPageComponent,
-    LoginPageComponent,
   ],
   imports: [
     /* Angular modules */
@@ -71,6 +71,7 @@ const baseApiUrlProvider: Provider = {
     ReactiveFormsModule,
     HttpClientModule,
 
+    WalletModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
@@ -86,6 +87,7 @@ const baseApiUrlProvider: Provider = {
     /* Material modules */
     MatButtonModule,
     MatCardModule,
+    MatRadioModule,
 
     /* Muzika Modules */
     SharedModule,

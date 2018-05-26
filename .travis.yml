@@ -16,5 +16,4 @@ script:
   - npm run contract:compile
   - npm run lint
   - npm run build:core
-  - npm run build:wallet
   - npm run build:viewer

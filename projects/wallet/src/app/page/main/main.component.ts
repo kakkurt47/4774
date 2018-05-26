@@ -35,17 +35,6 @@ export class MainPageComponent extends BaseComponent {
     // console.log(this.web3);
   }
 
-  usingMetamask() {
-    this.web3Service.usingMetamask().subscribe(
-      () => {
-        this.router.navigate(['/wallet']);
-      },
-      (e) => {
-        alertify.alert('메타마스크를 사용할 수 없습니다. 설치가 제대로 되어있는지 확인해주세요.');
-      }
-    );
-  }
-
   usingGanache() {
     this.web3Service.usingGanache().subscribe(() => {
       this.router.navigate(['/wallet']);

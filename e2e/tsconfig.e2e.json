@@ -1,5 +1,4 @@
 {
-  "extends": "../tsconfig.spec.json",
   "compilerOptions": {
     "outDir": "../out-tsc/e2e",
     "baseUrl": "./",

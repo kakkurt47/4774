@@ -1,7 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, QueryList, ViewChildren} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import {BaseComponent, promisify, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core';
-import {from} from 'rxjs';
-import {concatMap, map} from 'rxjs/internal/operators';
+import * as _alertify from 'alertify.js';
+import {Router} from '@angular/router';
+
+const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 
 @Component({
   selector: 'app-page-login',
@@ -9,7 +12,13 @@ import {concatMap, map} from 'rxjs/internal/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginPageComponent extends BaseComponent {
+  currentWalletProvider = 'metamask';
+
+  @ViewChildren(NgForm)
+  forms: QueryList<NgForm>;
+
   constructor(private userActions: UserActions,
+              private router: Router,
               private web3Service: MuzikaWeb3Service,
               private web3: ExtendedWeb3) {
     super();
@@ -18,6 +27,7 @@ export class LoginPageComponent extends BaseComponent {
   ngOnInit() {
     super.ngOnInit();
   }
+
 
   login() {
     this.userActions.login('metamask').subscribe();

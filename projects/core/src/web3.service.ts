@@ -43,8 +43,8 @@ export class MuzikaWeb3Service {
         const provider = new LedgerProvider({
           accountsLength,
           accountsOffset: accountsOffset || 0,
+          path,
           networkId: this.environment.networkId,
-          path: path,
         }, this.rpcUrl);
 
         this._providerHandle(provider, observer);
