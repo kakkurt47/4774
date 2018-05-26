@@ -62,6 +62,8 @@ export class PostVideoWriteComponent extends BasePostWriteComponent {
 
     if (!!videoId && !!videoId[1] && videoId[1].length > 0) {
       this.currentYoutubeVideoId = videoId[1];
+    } else {
+      this.currentYoutubeVideoId = null;
     }
   }
 }

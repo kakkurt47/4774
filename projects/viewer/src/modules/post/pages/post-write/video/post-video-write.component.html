@@ -12,12 +12,6 @@
       </div>
       <div class="col px-0 border-left">
         <section class="extra-section">
-          <h5> 첨부파일 관리 </h5>
-
-          <div class="attach-file-form">
-            <i class="fa fa-exclamation-triangle"></i> 현재는 지원하지 않습니다
-          </div>
-
           <h5> 유투브 영상 주소 </h5>
           <div class="youtube-form">
             <input type="text" class="form-control"
@@ -27,6 +21,12 @@
             <div class="youtube-thumbnail" *ngIf="currentYoutubeVideoId">
               <img [src]="'https://img.youtube.com/vi/' + currentYoutubeVideoId + '/mqdefault.jpg'">
             </div>
+          </div>
+
+          <h5> 첨부파일 관리 </h5>
+
+          <div class="attach-file-form">
+            <i class="fa fa-exclamation-triangle"></i> 현재는 지원하지 않습니다
           </div>
 
           <h5> 태그 </h5>
