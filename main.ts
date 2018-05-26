@@ -24,6 +24,9 @@ function createWindow() {
     width: size.width,
     height: size.height,
     resizable: false,
+    webPreferences: {
+      nodeIntegration: false,
+    }
   });
 
   // disable menu
