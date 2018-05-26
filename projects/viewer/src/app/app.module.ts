@@ -1,51 +1,38 @@
-import 'zone.js/dist/zone-mix';
-import 'reflect-metadata';
-import '../polyfills';
-import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {NgModule, Provider} from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatRadioModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-
+import {MuzikaCoreModule, SharedModule} from '@muzika/core';
 // NG Translate
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { ElectronService } from './providers/electron.service';
-
-import { WebviewDirective } from './directives/webview.directive';
-
-import {BASE_API_URL, baseApiUrl, baseApiUrlDev, baseApiUrlStage, MuzikaCoreModule, SharedModule} from '@muzika/core';
-import { AppComponent } from './app.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
+import {PostModule} from '../modules/post/post.module';
+import {WalletModule} from '../modules/wallet/wallet.module';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {ArtistSheetComponent} from './components/artist-sheet/artist-sheet.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {SpinnerComponent} from './components/spinner/spinner.component';
-import {MainPageComponent} from './pages/main/main.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import {PostModule} from '../modules/post/post.module';
-import {ModalModule} from 'ngx-bootstrap/modal';
-import {MatRadioModule} from '@angular/material';
-import {WalletModule} from '../modules/wallet/wallet.module';
+import {SpinnerComponent} from './components/spinner/spinner.component';
+
+import {WebviewDirective} from './directives/webview.directive';
+import {MainPageComponent} from './pages/main/main.component';
+
+import {ElectronService} from './providers/electron.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
-const baseApiUrlProvider: Provider = {
-  provide: BASE_API_URL,
-  useValue: {
-    stage: baseApiUrlStage,
-    dev: baseApiUrlDev,
-    prod: baseApiUrl
-  }[environment.env] || baseApiUrl
-};
 
 @NgModule({
   declarations: [
@@ -97,9 +84,9 @@ const baseApiUrlProvider: Provider = {
     PostModule,
   ],
   providers: [
-    ElectronService,
-    baseApiUrlProvider
+    ElectronService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

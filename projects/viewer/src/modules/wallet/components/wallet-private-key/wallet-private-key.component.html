@@ -40,5 +40,8 @@
   <form #privForm="ngForm" (ngSubmit)="usingPrivateKey(privForm)">
     <input type="password" class="form-control" name="privKey" id="privKey"
            ngModel required pattern="[a-fA-F0-9]{64}">
+    <div class="text-center" style="margin-top: 12px;">
+      <button type="submit" class="btn btn-outline-light"> 가져오기 </button>
+    </div>
   </form>
 </div>

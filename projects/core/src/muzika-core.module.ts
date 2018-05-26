@@ -6,18 +6,15 @@ import {BrowserTransferStateModule, TransferState} from '@angular/platform-brows
 import {createStore} from 'redux';
 import {UserActions} from './actions/user.action';
 import {BASE_API_URL, baseApiUrl, APIConfig, JWTInterceptor, MUZIKA_REDUX_STATE_KEY} from './config';
+import {baseApiUrlStage, baseApiUrlDev} from './config/api.constant';
 import {ContractProviders} from './contracts';
+import {EnvironmentToken} from './environments/env_types';
 import {environmentDev} from './environments/environment';
 import {environmentProd} from './environments/environment.prod';
 import {environmentStage} from './environments/environment.stage';
 import {IAppState, rootReducer} from './reducers';
 import {LocalStorage} from './services';
 import {MuzikaWeb3Service} from './web3.service';
-import {EnvironmentToken} from './environments/env_types';
-
-export function _baseAPIUrlFactory(url: string): string {
-  return url || baseApiUrl;
-}
 
 const STORE_DIRECTIVES = [
   MuzikaWeb3Service,
@@ -31,12 +28,6 @@ const STORE_DIRECTIVES = [
     provide: HTTP_INTERCEPTORS,
     useClass: JWTInterceptor,
     multi: true
-  },
-
-  {
-    provide: BASE_API_URL,
-    useFactory: _baseAPIUrlFactory,
-    deps: [[new SkipSelf(), new Inject(BASE_API_URL)]]
   }
 ];
 
@@ -49,28 +40,6 @@ const STORE_DIRECTIVES = [
   providers: STORE_DIRECTIVES
 })
 export class MuzikaCoreModule {
-  static forRoot(environmentType: string): ModuleWithProviders {
-    const environment = {
-      dev: environmentDev,
-      stage: environmentStage,
-      prod: environmentProd
-    }[environmentType] || environmentDev;
-
-    return {
-      ngModule: MuzikaCoreModule,
-      providers: [
-        {
-          provide: EnvironmentToken,
-          useValue: environment
-        },
-        {
-          provide: 'RPC_URL',
-          useValue: `${environment.rpcUrl}/${environment.infuraAccessToken}`
-        }
-      ]
-    };
-  }
-
   constructor(@Inject(PLATFORM_ID) private platformId,
               private transferState: TransferState,
               private ngRedux: NgRedux<IAppState>) {
@@ -90,5 +59,37 @@ export class MuzikaCoreModule {
         this.ngRedux.provideStore(createStore(rootReducer));
       }
     }
+  }
+
+  static forRoot(environmentType: string): ModuleWithProviders {
+    const environment = {
+      dev: environmentDev,
+      stage: environmentStage,
+      prod: environmentProd
+    }[environmentType] || environmentDev;
+
+    const base_api_url = {
+      stage: baseApiUrlStage,
+      dev: baseApiUrlDev,
+      prod: baseApiUrl
+    }[environmentType] || baseApiUrl;
+
+    return {
+      ngModule: MuzikaCoreModule,
+      providers: [
+        {
+          provide: EnvironmentToken,
+          useValue: environment
+        },
+        {
+          provide: 'RPC_URL',
+          useValue: `${environment.rpcUrl}/${environment.infuraAccessToken}`
+        },
+        {
+          provide: BASE_API_URL,
+          useValue: base_api_url
+        }
+      ]
+    };
   }
 }

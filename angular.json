@@ -396,23 +396,6 @@
             ]
           },
           "configurations": {
-            "stage": {
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
-              "fileReplacements": [
-                {
-                  "replace": "projects/viewer/src/environments/environment.ts",
-                  "with": "projects/viewer/src/environments/environment.stage.ts"
-                }
-              ]
-            },
             "production": {
               "optimization": true,
               "outputHashing": "all",
@@ -429,6 +412,23 @@
                   "with": "projects/viewer/src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "stage": {
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "fileReplacements": [
+                {
+                  "replace": "projects/viewer/src/environments/environment.ts",
+                  "with": "projects/viewer/src/environments/environment.stage.ts"
+                }
+              ]
             }
           }
         },
@@ -440,6 +440,9 @@
           "configurations": {
             "production": {
               "browserTarget": "muzika-ipfs-viewer:build:production"
+            },
+            "stage": {
+              "browserTarget": "muzika-ipfs-viewer:build:stage"
             }
           }
         },

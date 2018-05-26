@@ -1,17 +1,11 @@
 import {CommonModule, isPlatformBrowser} from '@angular/common';
-import {NgModule, PLATFORM_ID, Inject, Provider} from '@angular/core';
+import {NgModule, PLATFORM_ID, Inject} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  BASE_API_URL,
-  baseApiUrl,
-  baseApiUrlDev,
-  baseApiUrlStage,
-  MuzikaCoreModule, SharedModule
-} from '@muzika/core';
+import {MuzikaCoreModule, SharedModule} from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
 import {PostModule} from '../modules/post/post.module';
@@ -20,22 +14,13 @@ import {AppComponent} from './app.component';
 import {AppRouteModule} from './app.routes';
 import {ArtistSheetComponent} from './component/artist-sheet/artist-sheet.component';
 import {FooterComponent} from './component/footer/footer.component';
+import {NavbarComponent} from './component/navbar/navbar.component';
 import {SpinnerComponent} from './component/spinner/spinner.component';
 import {LoginPageComponent} from './page/login/login.component';
 import {MainPageComponent} from './page/main/main.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
-import {NavbarComponent} from './component/navbar/navbar.component';
 
 declare const window;
-
-const baseApiUrlProvider: Provider = {
-  provide: BASE_API_URL,
-  useValue: {
-    stage: baseApiUrlStage,
-    dev: baseApiUrlDev,
-    prod: baseApiUrl
-  }[environment.env] || baseApiUrl
-};
 
 
 @NgModule({
