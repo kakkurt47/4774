@@ -2,6 +2,7 @@ import {app, BrowserWindow, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
+import {IpcMainServiceInstance} from './projects/viewer/node_src/ipc.service';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -26,6 +27,7 @@ function createWindow() {
     resizable: false,
     webPreferences: {
       nodeIntegration: false,
+      plugins: true
     }
   });
 
@@ -65,6 +67,7 @@ try {
     createWindow();
 
     IpfsServiceInstance.init();
+    IpcMainServiceInstance.init();
   });
 
   // Quit when all windows are closed.
