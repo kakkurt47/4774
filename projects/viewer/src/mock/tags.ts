@@ -1,17 +1,17 @@
 import {Tag} from '@muzika/core';
 
-export const FreeTagsMock: Tag[] = [
+export const CommunityTagsMock: Tag[] = [
   {name: 'notice'},
   {name: 'life'},
   {name: 'travel'},
   {name: 'art'},
-  {name: 'music'},
+  {name: 'sheet'},
   {name: 'piano'},
   {name: 'food'},
   {name: 'news'}
 ];
 
-export const MusicTagsMock: Tag[] = [
+export const SheetTagsMock: Tag[] = [
   {name: 'life'},
   {name: 'story'},
   {name: 'summer'},

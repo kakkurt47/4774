@@ -14,7 +14,7 @@ export interface BasePost {
 }
 
 // tslint:disable-next-line
-export interface FreePost extends BasePost {
+export interface CommunityPost extends BasePost {
 
 }
 
@@ -23,7 +23,7 @@ export interface VideoPost extends BasePost {
   youtubeUrl: string;
 }
 
-export interface MusicPost extends BasePost {
+export interface SheetPost extends BasePost {
   price: number;
 }
 

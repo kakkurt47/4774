@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent, Artist, FreePost, MusicPost} from '@muzika/core';
+import {BaseComponent, Artist, CommunityPost, SheetPost} from '@muzika/core';
 import * as _alertify from 'alertify.js';
 import {BestPostsMock, MusicPostsMock} from '../../../mock/posts';
 
@@ -11,10 +11,10 @@ const alertify = _alertify.okBtn('확인').cancelBtn('취소');
   styleUrls: ['./main.component.scss']
 })
 export class MainPageComponent extends BaseComponent {
-  sheets: MusicPost[] = MusicPostsMock.slice(0, 5);
-  posts: FreePost[] = BestPostsMock;
+  sheets: SheetPost[] = MusicPostsMock.slice(0, 5);
+  posts: CommunityPost[] = BestPostsMock;
 
-  topSheets: MusicPost[];
+  topSheets: SheetPost[];
 
   constructor() {
     super();

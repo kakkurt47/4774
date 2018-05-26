@@ -5,15 +5,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {SharedModule} from '@muzika/core';
 import {PostListItemComponent} from './components/post-list-item/post-list-item.component';
 import {PostSheetComponent} from './components/post-sheet/post-sheet.component';
-import {PostFreeListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
+import {PostCommunityListComponent, PostSheetListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {AppPostRouteModule} from './post.routes';
 import {
-  PostFreeItemDetailComponent, PostMusicItemDetailComponent,
+  PostCommunityItemDetailComponent, PostSheetItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
 import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
-import {PostFreeWriteComponent, PostMusicWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
-import {PostFreeModifyComponent, PostMusicModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
+import {PostCommunityWriteComponent, PostSheetWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
+import {PostCommunityModifyComponent, PostSheetModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
 import {MatButtonModule} from '@angular/material';
 import {PostItemDetailHeaderComponent} from './components/post-item-detail-header/post-item-detail-header.component';
 
@@ -38,15 +38,15 @@ import {PostItemDetailHeaderComponent} from './components/post-item-detail-heade
     PostItemDetailHeaderComponent,
 
     /* Pages */
-    PostFreeListComponent,
-    PostFreeItemDetailComponent,
-    PostFreeModifyComponent,
-    PostFreeWriteComponent,
+    PostCommunityListComponent,
+    PostCommunityItemDetailComponent,
+    PostCommunityModifyComponent,
+    PostCommunityWriteComponent,
 
-    PostMusicListComponent,
-    PostMusicItemDetailComponent,
-    PostMusicWriteComponent,
-    PostMusicModifyComponent,
+    PostSheetListComponent,
+    PostSheetItemDetailComponent,
+    PostSheetWriteComponent,
+    PostSheetModifyComponent,
 
     PostVideoListComponent,
     PostVideoItemDetailComponent,

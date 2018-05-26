@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FreePost} from '@muzika/core';
+import {CommunityPost} from '@muzika/core';
 
 @Component({
   selector: 'app-post-list-item, [app-post-list-item]',
@@ -7,5 +7,5 @@ import {FreePost} from '@muzika/core';
   styleUrls: ['./post-list-item.component.scss']
 })
 export class PostListItemComponent {
-  @Input() post: FreePost;
+  @Input() post: CommunityPost;
 }

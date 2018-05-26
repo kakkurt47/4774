@@ -1,30 +1,30 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PostFreeListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
+import {PostCommunityListComponent, PostSheetListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {
-  PostFreeItemDetailComponent, PostMusicItemDetailComponent,
+  PostCommunityItemDetailComponent, PostSheetItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
-import {PostFreeWriteComponent, PostMusicWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
-import {PostFreeModifyComponent, PostMusicModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
+import {PostCommunityWriteComponent, PostSheetWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
+import {PostCommunityModifyComponent, PostSheetModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
 const routes: Routes = [
-  { path: 'board/free/write', component: PostFreeWriteComponent },
-  { path: 'board/music/write', component: PostMusicWriteComponent },
+  { path: 'board/community/write', component: PostCommunityWriteComponent },
+  { path: 'board/sheet/write', component: PostSheetWriteComponent },
   { path: 'board/video/write', component: PostVideoWriteComponent },
 
-  { path: 'board/free/modify', component: PostFreeModifyComponent },
-  { path: 'board/music/modify', component: PostMusicModifyComponent },
+  { path: 'board/community/modify', component: PostCommunityModifyComponent },
+  { path: 'board/sheet/modify', component: PostSheetModifyComponent },
   { path: 'board/video/modify', component: PostVideoModifyComponent },
 
   {
-    path: 'board/free',
-    component: PostFreeListComponent,
-    children: [{ path: ':id', component: PostFreeItemDetailComponent }]
+    path: 'board/community',
+    component: PostCommunityListComponent,
+    children: [{ path: ':id', component: PostCommunityItemDetailComponent }]
   },
   {
-    path: 'board/music',
-    component: PostMusicListComponent,
-    children: [{ path: ':id', component: PostMusicItemDetailComponent }]
+    path: 'board/sheet',
+    component: PostSheetListComponent,
+    children: [{ path: ':id', component: PostSheetItemDetailComponent }]
   },
   {
     path: 'board/video',

@@ -2,21 +2,21 @@ import {Component} from '@angular/core';
 import {FroalaEditorOptions} from '../../post.constant';
 
 @Component({
-  selector: 'app-post-free-write',
-  templateUrl: './free/post-free-write.component.html',
-  styleUrls: ['./post-write.scss', './free/post-free-write.component.scss']
+  selector: 'app-post-community-write',
+  templateUrl: './community/post-community-write.component.html',
+  styleUrls: ['./post-write.scss', './community/post-community-write.component.scss']
 })
-export class PostFreeWriteComponent {
+export class PostCommunityWriteComponent {
   description: string;
   options = FroalaEditorOptions;
 }
 
 @Component({
-  selector: 'app-post-music-write',
-  templateUrl: './music/post-music-write.component.html',
-  styleUrls: ['./post-write.scss', './music/post-music-write.component.scss']
+  selector: 'app-post-sheet-write',
+  templateUrl: './sheet/post-sheet-write.component.html',
+  styleUrls: ['./post-write.scss', './sheet/post-sheet-write.component.scss']
 })
-export class PostMusicWriteComponent {
+export class PostSheetWriteComponent {
 
 }
 

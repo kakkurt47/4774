@@ -1,20 +1,20 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-post-free-modify',
-  templateUrl: './free/post-free-modify.component.html',
-  styleUrls: ['./post-modify.scss', './free/post-free-modify.component.scss']
+  selector: 'app-post-community-modify',
+  templateUrl: './community/post-community-modify.component.html',
+  styleUrls: ['./post-modify.scss', './community/post-community-modify.component.scss']
 })
-export class PostFreeModifyComponent {
+export class PostCommunityModifyComponent {
 
 }
 
 @Component({
-  selector: 'app-post-music-modify',
-  templateUrl: './music/post-music-modify.component.html',
-  styleUrls: ['./post-modify.scss', './music/post-music-modify.component.scss']
+  selector: 'app-post-sheet-modify',
+  templateUrl: './sheet/post-sheet-modify.component.html',
+  styleUrls: ['./post-modify.scss', './sheet/post-sheet-modify.component.scss']
 })
-export class PostMusicModifyComponent {
+export class PostSheetModifyComponent {
 
 }
 

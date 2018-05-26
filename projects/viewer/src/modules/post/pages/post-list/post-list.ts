@@ -1,27 +1,27 @@
 import {Component} from '@angular/core';
-import {FreePost, MusicPost, Tag, VideoPost} from '@muzika/core';
-import {FreePostsMock, MusicPostsMock, VideoPostsMock} from '../../../../mock/posts';
-import {FreeTagsMock, MusicTagsMock, VideoTagsMock} from '../../../../mock/tags';
+import {CommunityPost, SheetPost, Tag, VideoPost} from '@muzika/core';
+import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
+import {CommunityTagsMock, SheetTagsMock, VideoTagsMock} from '../../../../mock/tags';
 
 @Component({
-  selector: 'app-post-list-free',
-  templateUrl: './free/post-free.component.html',
-  styleUrls: ['./post-list.scss', './free/post-free.component.scss']
+  selector: 'app-post-list-community',
+  templateUrl: './community/post-community.component.html',
+  styleUrls: ['./post-list.scss', './community/post-community.component.scss']
 })
-export class PostFreeListComponent {
-  tags: Tag[] = FreeTagsMock;
-  posts: FreePost[] = FreePostsMock;
+export class PostCommunityListComponent {
+  tags: Tag[] = CommunityTagsMock;
+  posts: CommunityPost[] = CommunityPostsMock;
 }
 
 
 @Component({
-  selector: 'app-post-list-music',
-  templateUrl: './music/post-music.component.html',
-  styleUrls: ['./post-list.scss', './music/post-music.component.html']
+  selector: 'app-post-list-sheet',
+  templateUrl: './sheet/post-sheet.component.html',
+  styleUrls: ['./post-list.scss', './sheet/post-sheet.component.html']
 })
-export class PostMusicListComponent {
-  tags: Tag[] = MusicTagsMock;
-  posts: MusicPost[] = MusicPostsMock;
+export class PostSheetListComponent {
+  tags: Tag[] = SheetTagsMock;
+  posts: SheetPost[] = SheetPostsMock;
 }
 
 @Component({

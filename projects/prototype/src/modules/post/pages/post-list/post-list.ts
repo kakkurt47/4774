@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FreePost, MusicPost, Tag, VideoPost} from '@muzika/core';
+import {CommunityPost, SheetPost, Tag, VideoPost} from '@muzika/core';
 import {FreePostsMock, MusicPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {FreeTagsMock, MusicTagsMock, VideoTagsMock} from '../../../../mock/tags';
 
@@ -10,7 +10,7 @@ import {FreeTagsMock, MusicTagsMock, VideoTagsMock} from '../../../../mock/tags'
 })
 export class PostFreeListComponent {
   tags: Tag[] = FreeTagsMock;
-  posts: FreePost[] = FreePostsMock;
+  posts: CommunityPost[] = FreePostsMock;
 }
 
 
@@ -21,7 +21,7 @@ export class PostFreeListComponent {
 })
 export class PostMusicListComponent {
   tags: Tag[] = MusicTagsMock;
-  posts: MusicPost[] = MusicPostsMock;
+  posts: SheetPost[] = MusicPostsMock;
 }
 
 @Component({

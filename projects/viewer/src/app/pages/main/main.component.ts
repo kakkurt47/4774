@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {BaseComponent, FreePost, MusicPost} from '@muzika/core';
-import {BestPostsMock, MusicPostsMock} from '../../../mock/posts';
+import {BaseComponent, CommunityPost, SheetPost} from '@muzika/core';
+import {BestPostsMock, SheetPostsMock} from '../../../mock/posts';
 
 @Component({
   selector: 'app-main',
@@ -8,10 +8,10 @@ import {BestPostsMock, MusicPostsMock} from '../../../mock/posts';
   styleUrls: ['./main.component.scss']
 })
 export class MainPageComponent extends BaseComponent {
-  sheets: MusicPost[] = MusicPostsMock.slice(0, 5);
-  posts: FreePost[] = BestPostsMock;
+  sheets: SheetPost[] = SheetPostsMock.slice(0, 5);
+  posts: CommunityPost[] = BestPostsMock;
 
-  topSheets: MusicPost[];
+  topSheets: SheetPost[];
 
   constructor() {
     super();

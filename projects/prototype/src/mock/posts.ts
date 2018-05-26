@@ -1,7 +1,7 @@
-import {FreePost, MusicPost, User, VideoPost} from '@muzika/core';
+import {CommunityPost, SheetPost, User, VideoPost} from '@muzika/core';
 import {UsersMock} from './users';
 
-function createFree(postId: number, title: string, author: User): FreePost {
+function createFree(postId: number, title: string, author: User): CommunityPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
     postId,
@@ -31,7 +31,7 @@ function createVideo(postId: number, title: string, author: User): VideoPost {
   };
 }
 
-function createMusic(postId: number, title: string, author: User): MusicPost {
+function createMusic(postId: number, title: string, author: User): SheetPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
     postId,
@@ -46,14 +46,14 @@ function createMusic(postId: number, title: string, author: User): MusicPost {
   };
 }
 
-export const BestPostsMock: FreePost[] = [
+export const BestPostsMock: CommunityPost[] = [
   createFree(1, 'Community Open!', UsersMock[1]),
   createFree(2, 'Welcome to Muzika World', UsersMock[1]),
   createFree(3, 'Sell your own sheets', UsersMock[2]),
   createFree(4, 'Post Yourself', UsersMock[3]),
 ];
 
-export const FreePostsMock: FreePost[] = [
+export const FreePostsMock: CommunityPost[] = [
   createFree(1, 'vulputate dignissim suspendisse in', UsersMock[3]),
   createFree(2, 'praesent semper feugiat nibh', UsersMock[2]),
   createFree(3, 'faucibus in ornare quam', UsersMock[1]),
@@ -81,7 +81,7 @@ export const VideoPostsMock: VideoPost[] = [
   createVideo(11, 'Cras pulvinar ipsum luctus', UsersMock[2]),
 ];
 
-export const MusicPostsMock: MusicPost[] = [
+export const MusicPostsMock: SheetPost[] = [
   createMusic(1, 'aliquet sagittis id consectetur', UsersMock[2]),
   createMusic(2, 'nibh venenatis cras sed', UsersMock[1]),
   createMusic(3, 'pellentesque pulvinar pellentesque habitant', UsersMock[1]),

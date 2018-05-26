@@ -5,7 +5,7 @@ export const FreeTagsMock: Tag[] = [
   {name: 'life'},
   {name: 'travel'},
   {name: 'art'},
-  {name: 'music'},
+  {name: 'sheet'},
   {name: 'piano'},
   {name: 'food'},
   {name: 'news'}

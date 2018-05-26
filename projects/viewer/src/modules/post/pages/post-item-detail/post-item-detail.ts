@@ -1,23 +1,23 @@
 import {Component} from '@angular/core';
-import {FreePost, MusicPost, VideoPost} from '@muzika/core';
-import {FreePostsMock, MusicPostsMock, VideoPostsMock} from '../../../../mock/posts';
+import {CommunityPost, SheetPost, VideoPost} from '@muzika/core';
+import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
 
 @Component({
-  selector: 'app-post-free-item-detail',
-  templateUrl: './free/post-free-item-detail.component.html',
-  styleUrls: ['./post-item-detail.scss', './free/post-free-item-detail.component.scss']
+  selector: 'app-post-community-item-detail',
+  templateUrl: './community/post-community-item-detail.component.html',
+  styleUrls: ['./post-item-detail.scss', './community/post-community-item-detail.component.scss']
 })
-export class PostFreeItemDetailComponent {
-  post: FreePost = FreePostsMock[0];
+export class PostCommunityItemDetailComponent {
+  post: CommunityPost = CommunityPostsMock[0];
 }
 
 @Component({
-  selector: 'app-post-music-item-detail',
-  templateUrl: './music/post-music-item-detail.component.html',
-  styleUrls: ['./post-item-detail.scss', './music/post-music-item-detail.component.scss']
+  selector: 'app-post-sheet-item-detail',
+  templateUrl: './sheet/post-sheet-item-detail.component.html',
+  styleUrls: ['./post-item-detail.scss', './sheet/post-sheet-item-detail.component.scss']
 })
-export class PostMusicItemDetailComponent {
-  post: MusicPost = MusicPostsMock[0];
+export class PostSheetItemDetailComponent {
+  post: SheetPost = SheetPostsMock[0];
 }
 @Component({
   selector: 'app-post-video-item-detail',
