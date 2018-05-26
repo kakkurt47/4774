@@ -28,12 +28,12 @@ export class PostActions {
               @Inject(PLATFORM_ID) private platformId) {
   }
 
-  loadPost(boardType, postID) {
-    this.apiConfig.get<BasePost>(`/post/${boardType}/${postID}`)
+  loadPost(boardType, boardID) {
+    this.apiConfig.get<BasePost>(`/post/${boardType}/${boardID}`)
       .subscribe(
         (post) => {
           this.savePost(boardType, post);
-          this.visit(boardType, +postID);
+          this.visit(boardType, +boardID);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -45,26 +45,24 @@ export class PostActions {
         });
   }
 
-  visit(boardType: string, postID: number) {
+  visit(boardType: string, boardID: number) {
     if (isPlatformBrowser(this.platformId)) { // Server side rendering에서는 업데이트 안함
       this.apiConfig
         .post('board/row/update', {
-          boardType: boardType,
-          boardID: postID
+          boardType, boardID
         }).subscribe();
     }
   }
 
-  like(boardType: string, postID: number, diff: number): Observable<any> {
-    return this.apiConfig.post<any>(`/board/${boardType}/${postID}/like`, {})
+  like(boardType: string, boardID: number, diff: number): Observable<any> {
+    return this.apiConfig.post<any>(`/board/${boardType}/${boardID}/like`, {})
       .pipe(
         map(data => {
           if (data.status === 'success') {
             this.userActions.loadBoardLikes(boardType);
             this.store.dispatch({
               type: PostActions.LIKE_TOGGLE_POST,
-              boardType, diff,
-              boardID: postID
+              boardType, diff, boardID
             });
           }
           return data;
@@ -122,18 +120,7 @@ export class PostActions {
   savePosts(boardType: string, posts: BasePost[], update_column: string) {
     this.store.dispatch({
       type: PostActions.SAVE_POSTS,
-      boardType: boardType,
-      posts: posts,
-      update_column: update_column
-    });
-  }
-
-  savePost(boardType: string, post: BasePost, update_column = 'all') {
-    this.store.dispatch({
-      type: PostActions.SAVE_POSTS,
-      boardType: boardType,
-      posts: [post],
-      update_column: update_column
+      boardType, posts, update_column
     });
   }
 
@@ -166,6 +153,14 @@ export class PostActions {
           params: ParamsBuilder.from({payType})
         });
     }
+  }
+
+  private savePost(boardType: string, post: BasePost, update_column = 'all') {
+    this.store.dispatch({
+      type: PostActions.SAVE_POSTS,
+      boardType, update_column,
+      posts: [post],
+    });
   }
 
   private requestPosts(boardType: string, dispatchType: string, params: Object) {
