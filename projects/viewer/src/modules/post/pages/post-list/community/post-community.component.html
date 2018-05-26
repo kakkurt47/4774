@@ -4,11 +4,11 @@
       <div class="tags-all font-weight-bold mb-2"> 태그 </div>
       <ul class="tags">
         <li *ngFor="let tag of tags">
-          <a> {{tag.name}} </a>
+          <a> {{tag}} </a>
         </li>
       </ul>
     </div>
-    <div class="col px-0">
+    <div class="col pl-0">
       <div class="scroll-post-content">
         <div class="bg-white">
           <router-outlet></router-outlet>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let post of posts">
-              <td> <a [routerLink]="[post.postId]"> {{post.title}} </a> </td>
+              <td> <a [routerLink]="[post.post_id]"> {{post.title}} </a> </td>
               <td> {{post.author.name}} </td>
               <td> {{post.views}} </td>
               <td> {{post.likes}} </td>

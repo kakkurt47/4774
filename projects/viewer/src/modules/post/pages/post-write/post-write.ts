@@ -1,16 +1,16 @@
 import {Component} from '@angular/core';
 import {FroalaEditorOptions} from '../../post.constant';
-import {BaseComponent, BasePost, CommunityPost, SheetPost, Tag, VideoPost} from '@muzika/core';
+import {BaseComponent, BasePost, CommunityPost, SheetPost, VideoPost} from '@muzika/core';
 
 export class BasePostWriteComponent extends BaseComponent {
   options = FroalaEditorOptions;
-  tags: Tag[] = [];
+  tags: string[] = [];
   post: BasePost = <any>{};
 
   addTag(name: string) {
     name = name.toLowerCase();
-    if (/^[a-z0-9.]+$/.test(name) && this.tags.findIndex(tag => tag.name === name) === -1) {
-      this.tags.push({name});
+    if (/^[a-z0-9.]+$/.test(name) && this.tags.findIndex(tag => tag === name) === -1) {
+      this.tags.push(name);
 
       return true;
     }

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {CommunityPost, SheetPost, Tag, VideoPost} from '@muzika/core';
+import {CommunityPost, SheetPost, VideoPost} from '@muzika/core';
 import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {CommunityTagsMock, SheetTagsMock, VideoTagsMock} from '../../../../mock/tags';
 
@@ -9,7 +9,7 @@ import {CommunityTagsMock, SheetTagsMock, VideoTagsMock} from '../../../../mock/
   styleUrls: ['./post-list.scss', './community/post-community.component.scss']
 })
 export class PostCommunityListComponent {
-  tags: Tag[] = CommunityTagsMock;
+  tags: string[] = CommunityTagsMock;
   posts: CommunityPost[] = CommunityPostsMock;
 }
 
@@ -20,7 +20,7 @@ export class PostCommunityListComponent {
   styleUrls: ['./post-list.scss', './sheet/post-sheet.component.html']
 })
 export class PostSheetListComponent {
-  tags: Tag[] = SheetTagsMock;
+  tags: string[] = SheetTagsMock;
   posts: SheetPost[] = SheetPostsMock;
 }
 
@@ -30,6 +30,6 @@ export class PostSheetListComponent {
   styleUrls: ['./post-list.scss', './video/post-video.component.html']
 })
 export class PostVideoListComponent {
-  tags: Tag[] = VideoTagsMock;
+  tags: string[] = VideoTagsMock;
   posts: VideoPost[] = VideoPostsMock;
 }

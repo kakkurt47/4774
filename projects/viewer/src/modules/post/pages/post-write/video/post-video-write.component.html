@@ -34,7 +34,7 @@
           <div class="tags-container">
             <div class="tags">
               <label class="label tag" *ngFor="let tag of tags; let i = index">
-                {{tag.name}}
+                {{tag}}
                 <i class="fa fa-times" (click)="removeTag(i)"></i>
               </label>
             </div>
