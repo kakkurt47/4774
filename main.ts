@@ -29,7 +29,8 @@ function createWindow() {
     maxHeight: 740,
     resizable: true,
     webPreferences: {
-      plugins: true
+      plugins: true,
+      nodeIntegration: false,
     }
   });
 
