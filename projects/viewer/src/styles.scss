@@ -61,15 +61,19 @@ button:focus {
 
 /* Scrollbar design */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 
   * {
     background: transparent;
   }
 }
 
+::-webkit-scrollbar * {
+  background: transparent;
+}
+
 ::-webkit-scrollbar-thumb {
-  background: #666;
+  background: #8c8c8c;
   border-radius: 20px;
 }
 
