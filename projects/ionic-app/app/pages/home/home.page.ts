@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import {BaseComponent, ExtendedWeb3, MuzikaCoin, promisify, AddressOnlyProvider} from '@muzika/core';
-import {Router} from '@angular/router';
+import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import {BaseComponent, ExtendedWeb3, MuzikaCoin, promisify, AddressOnlyProvider} from '@muzika/core';
 import * as _alertify from 'alertify.js';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');
@@ -26,6 +27,7 @@ export class HomePageComponent extends BaseComponent {
 
   constructor(private web3: ExtendedWeb3,
               private muzikaCoin: MuzikaCoin,
+              private storage: NativeStorage,
               private router: Router) {
     super();
   }
@@ -36,6 +38,15 @@ export class HomePageComponent extends BaseComponent {
       this.router.navigate(['/']);
       return;
     }
+    this.storage.getItem('myitem')
+      .then(
+        data => {
+          console.log(data);
+        },
+        error => {
+          this.web3.accounts.create();
+        }
+      );
     this.loadAccount();
     this.supportTransfer = !(this.web3.currentProvider instanceof AddressOnlyProvider);
   }

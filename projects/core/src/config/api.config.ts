@@ -40,7 +40,7 @@ export class APIConfig {
     return this.http.post<T>(this.apiUrl + url, body, options);
   }
 
-  delete<T>(url: string, options?: {
+  'delete'<T>(url: string, options?: {
     headers?: HttpHeaders | {
       [header: string]: string | string[];
     };
