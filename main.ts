@@ -30,7 +30,7 @@ function createWindow() {
     resizable: true,
     webPreferences: {
       plugins: true,
-      nodeIntegration: false,
+      nodeIntegration: false
     }
   });
 
