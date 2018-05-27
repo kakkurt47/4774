@@ -91,12 +91,10 @@ export class UserActions {
           this.web3.personal.sign,
           this.web3.toHex(messagePrefix + message),
           address
-        )).pipe(
-          map(signature => ({message, signature}))
-        );
+        ));
       }),
-      concatMap(({message, signature}) => {
-        return this.apiConfig.post<string>(`/login`, {address, message, signature}).pipe(
+      concatMap((signature) => {
+        return this.apiConfig.post<string>(`/login`, {address, signature}).pipe(
           tap(token => {
             if (token) {
               this.localStorage.setItem('token', token);
