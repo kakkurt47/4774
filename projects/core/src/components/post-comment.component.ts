@@ -61,8 +61,9 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
         is_changed = true;
       }
     }
-    if (is_changed)
+    if (is_changed) {
       this.setCommentSub();
+    }
   }
 
   ngOnDestroy(): void {
@@ -88,9 +89,12 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
   }
 
   setCommentSub() {
-    if (!this.boardType || !this.boardID) return;
-    if (this._commentSub)
+    if (!this.boardType || !this.boardID) {
+      return;
+    }
+    if (this._commentSub) {
       this._commentSub.unsubscribe();
+    }
 
     this._commentSub = combineLatest<PaginationResult<PostComment>, number[]>(
       this.store.select(['comment', this.boardType, this.boardID]),

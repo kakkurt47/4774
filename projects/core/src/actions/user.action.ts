@@ -28,7 +28,9 @@ export class UserActions {
   }
 
   loadBoardLikes(boardType: string) {
-    if (!this.store.getState().user.currentUser) return;
+    if (!this.store.getState().user.currentUser) {
+      return;
+    }
     const userID = this.store.getState().user.currentUser.userId;
     this.apiConfig.get<any>(`/user/${userID}/board/${boardType}/like`)
       .subscribe(likes => {
@@ -40,7 +42,9 @@ export class UserActions {
   }
 
   loadCommentLikes(boardType) {
-    if (!this.store.getState().user.currentUser) return;
+    if (!this.store.getState().user.currentUser) {
+      return;
+    }
     const userID = this.store.getState().user.currentUser.userId;
     this.apiConfig.get<any>(`/user/${userID}/board/${boardType}/comment/likes`)
       .subscribe(likes => {

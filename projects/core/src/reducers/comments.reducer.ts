@@ -4,11 +4,11 @@ import {PayloadAction} from '../actions/index';
 import {PostComment} from '../models/comment';
 import {PaginationResult} from '../models/pagination';
 
-export type CommentState = {
+export interface CommentState {
   [key: string]: {
     [key: string]: PaginationResult<PostComment>
   };
-};
+}
 
 export const initialState: CommentState = {
   community: {},

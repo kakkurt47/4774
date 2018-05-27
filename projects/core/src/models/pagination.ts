@@ -1,17 +1,17 @@
-export type InfPaginationResult<T> = {
-  list: T[],
-  after: string,
-  before: string
-};
+export interface InfPaginationResult<T> {
+  list: T[];
+  after: string;
+  before: string;
+}
 
-export type PaginationResult<T> = {
-  list: T[],
-  page: Pagination[],
-  total?: number
-};
+export interface PaginationResult<T> {
+  list: T[];
+  page: Pagination[];
+  total?: number;
+}
 
-export type Pagination = {
+export interface Pagination {
   current: boolean;
   num: number;
   text: string;
-};
+}

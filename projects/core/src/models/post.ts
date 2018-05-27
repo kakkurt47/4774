@@ -41,11 +41,14 @@ export class PostRef {
 
   // update = true 옵션은
   static syncPost(postDBRef, boardType, posts: BasePost[], update_column: string = null) {
-    if (!update_column)
+    if (!update_column) {
       update_column = 'all';
+    }
     return posts.map(post => {
       let is_changed = false;
-      if (post instanceof PostRef) return post;
+      if (post instanceof PostRef) {
+        return post;
+      }
       if (postDBRef[boardType][post.post_id]) {
         const attrs = update_column === 'all' ? Object.keys(post) : update_column.split(',');
         attrs.forEach(attr => {

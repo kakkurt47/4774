@@ -5,7 +5,7 @@ import {PostActions} from '../actions/post.action';
 import {InfPaginationResult, PaginationResult} from '../models/pagination';
 import {PostRef, BasePost} from '../models/post';
 
-export type PostsState = {
+export interface PostsState {
   posts: {
     [key: string]: PaginationResult<PostRef>
   };
@@ -22,7 +22,7 @@ export type PostsState = {
       [key: string]: any
     }
   };
-};
+}
 
 const initialState: PostsState = {
   posts: {
