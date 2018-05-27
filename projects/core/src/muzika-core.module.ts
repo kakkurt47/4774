@@ -16,6 +16,7 @@ import {IAppState, rootReducer} from './reducers';
 import {LocalStorage} from './services';
 import {MuzikaWeb3Service} from './web3.service';
 import {PaginationComponent} from './components/pagination/pagination.component';
+import {CommentActions, PostActions} from './actions';
 
 const STORE_DIRECTIVES = [
   MuzikaWeb3Service,
@@ -24,6 +25,9 @@ const STORE_DIRECTIVES = [
   APIConfig,
   UserActions,
   LocalStorage,
+
+  PostActions,
+  CommentActions,
 
   {
     provide: HTTP_INTERCEPTORS,
