@@ -5,26 +5,26 @@ import {PostActions} from '../actions/post.action';
 import {InfPaginationResult, PaginationResult} from '../models/pagination';
 import {PostRef, BasePost} from '../models/post';
 
-export interface PostsState {
+export interface PostState {
   posts: {
-    [key: string]: PaginationResult<PostRef>
+    [boardType: string]: PaginationResult<PostRef>
   };
   infPosts: {
-    [key: string]: InfPaginationResult<PostRef>
+    [boardType: string]: InfPaginationResult<PostRef>
   };
   post: {
-    [key: string]: {
-      [key: string]: BasePost
+    [boardType: string]: {
+      [postId: string]: BasePost
     }
   };
   postAddition: {
-    [key: string]: {
-      [key: string]: any
+    [boardType: string]: {
+      [postId: string]: any
     }
   };
 }
 
-const initialState: PostsState = {
+const initialState: PostState = {
   posts: {
     community: {total: 0, page: [], list: []},
     sheet: {total: 0, page: [], list: []},
@@ -127,7 +127,7 @@ function postsActionState(state, payload: any, insertType: 'after' | 'before') {
   });
 }
 
-export const PostsReducer = function (state: PostsState = initialState, _action: Action): PostsState {
+export const PostReducer = function (state: PostState = initialState, _action: Action): PostState {
   const action: PayloadAction = <PayloadAction>_action;
   switch (_action.type) {
     case PostActions.RESET_POSTS:
