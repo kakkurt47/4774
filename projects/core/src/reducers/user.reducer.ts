@@ -27,7 +27,7 @@ export function UserReducer(state: UserState = initialState, action: PayloadActi
   switch (action.type) {
     case UserActions.SET_CURRENT_USER:
       return tassign(state, {
-        currentUser: (!state.currentUser) ? tassign(action.payload) : null
+        currentUser: (!action.payload) ? tassign(action.payload) : null
       });
 
     case UserActions.SET_BOARD_LIKES:
