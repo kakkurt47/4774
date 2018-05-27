@@ -30,17 +30,17 @@
         </li>
       </ul>
       <ng-container *ngIf="currentUser; else loggedInBlock">
-        <div class="ml-auto pr-4 border-right">
+        <div class="ml-auto">
           <div class="user-profile-img">
             <img src="assets/person-1.png">
           </div>
         </div>
         <div class="pl-4">
-          <div class="font-weight-bold text-dark">
-            Sarah
+          <div class="font-weight-bold user-name">
+            {{currentUser.name || 'Unnamed'}}
           </div>
           <div class="wallet">
-            0x2CFb8C41047F59D54c38d4cD84E8999e89ab3449
+            {{currentUser.address | slice:0:8}}...{{currentUser.address | slice:-6}}
           </div>
         </div>
       </ng-container>

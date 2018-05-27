@@ -61,7 +61,8 @@ export class UserActions {
     return this.apiConfig.get<User>('/me').pipe(
       map(user => {
         this.store.dispatch({
-          type: UserActions.SET_CURRENT_USER, user
+          type: UserActions.SET_CURRENT_USER,
+          payload: user
         });
 
         return user;
