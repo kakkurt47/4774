@@ -1,13 +1,14 @@
 <section class="post-write bg-white h-100">
-  <form class="form h-100">
+  <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
     <div class="row h-100 mx-0">
       <div class="col-8 px-0 write-form">
         <div class="title">
-          <input type="text" class="w-100" placeholder="제목을 입력해주세요">
+          <input type="text" id="title" name="title" class="w-100" placeholder="제목을 입력해주세요"
+                 required [(ngModel)]="post.title">
         </div>
 
         <div class="description">
-          <div [froalaEditor]="options" [(froalaModel)]="post.description"></div>
+          <div [froalaEditor]="options" [(froalaModel)]="post.content"></div>
         </div>
       </div>
       <div class="col px-0 border-left">
@@ -22,7 +23,7 @@
 
           <div class="tags-container">
             <div class="tags">
-              <label class="label tag" *ngFor="let tag of tags; let i = index">
+              <label class="label tag" *ngFor="let tag of post.tags; let i = index">
                 {{tag}}
                 <i class="fa fa-times" (click)="removeTag(i)"></i>
               </label>

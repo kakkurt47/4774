@@ -1,5 +1,5 @@
 <section class="post-write bg-white h-100">
-  <form class="form h-100">
+  <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
     <div class="row h-100 mx-0">
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
         <h5> 악보 업로드 </h5>
@@ -17,20 +17,43 @@
 
         <div class="song-type-form">
           <div class="btn-group">
-            <button class="btn btn-light"> 커버 </button>
-            <button class="btn btn-primary"> 자작곡 </button>
+            <button class="btn btn-secondary"
+                    [class.active]="songType === '~cover'"
+                    (click)="songType = '~cover'"> 커버 </button>
+            <button class="btn btn-secondary"
+                    [class.active]="songType === '~original'"
+                    (click)="songType = '~original'"> 자작곡 </button>
           </div>
         </div>
 
         <h5> 장르 </h5>
 
+        <div class="tag-selector genre-form">
+          <ul>
+            <li *ngFor="let genre of genreSelections"
+                [class.active]="genres.has(genre.value)" (click)="toggleGenre(genre.value)">
+              {{genre.name}}
+            </li>
+          </ul>
+        </div>
+
         <h5> 악기 </h5>
+
+        <div class="tag-selector instrument-form">
+          <ul>
+            <li *ngFor="let instrument of instrumentSelections"
+                [class.active]="instruments.has(instrument.value)" (click)="toggleInstrument(instrument.value)">
+              {{instrument.name}}
+            </li>
+          </ul>
+        </div>
 
         <h5> 가격 </h5>
 
         <div class="price-form">
           <div class="input-group">
-            <input type="text" class="form-control" id="price" name="price">
+            <input type="number" class="form-control" id="price" name="price"
+                   [(ngModel)]="post.price" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 MZK
@@ -41,11 +64,12 @@
       </section>
       <div class="col-6 px-0 write-form border-left">
         <div class="title">
-          <input type="text" class="w-100" placeholder="제목을 입력해주세요">
+          <input type="text" id="title" name="title" class="w-100" placeholder="제목을 입력해주세요"
+                 required [(ngModel)]="post.title">
         </div>
 
         <div class="description">
-          <div [froalaEditor]="options" [(froalaModel)]="post.description"></div>
+          <div [froalaEditor]="options" [(froalaModel)]="post.content"></div>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ form {
 .write-form {
   display: flex;
   flex-direction: column;
-  overflow-y: overlay;
+  overflow-y: auto;
 
   input {
     border: none;
@@ -47,7 +47,7 @@ form {
 
         .fr-wrapper {
           flex: 1;
-          overflow-y: overlay;
+          overflow-y: auto;
           padding-bottom: 10vh;
         }
 
@@ -65,6 +65,8 @@ form {
 
 .extra-section {
   padding: 15px;
+  padding-bottom: 10vh;
+  overflow-y: auto;
   // background-color: rgb(251, 250, 245);
 
   h5 {
@@ -127,15 +129,44 @@ form {
   }
 
   .input-group {
-    input {
-      border-color: #eee;
-    }
-
     .input-group-text {
       background-color: $primary-color;
-      border-color: #eee;
       color: #fff;
       font-weight: bold;
+    }
+  }
+}
+
+.tag-selector {
+  ul {
+    list-style: none;
+    padding-left: 0;
+    border: 1px solid #aaa;
+    border-bottom: none;
+    border-left: none;
+
+    li {
+      padding: 6px 12px;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #aaa;
+      border-left: 1px solid #aaa;
+      width: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.1s ease-in-out;
+
+      &:hover:not(.active) {
+        background-color: #e6e6e6;
+      }
+
+      &:active:not(.active) {
+        background-color: #d6d6d6;
+      }
+
+      &.active {
+        background-color: $secondary-color;
+        color: #fff;
+      }
     }
   }
 }

@@ -9,7 +9,7 @@
     <small class="text-muted mp-hint">
       {{writtenContent.length}}
     </small>
-    <button type="submit" class="btn btn-primary pull-right">
+    <button type="submit" class="btn btn-primary float-right">
       Submit
     </button>
   </form>
@@ -17,17 +17,17 @@
 
 <div class="section comment" *ngFor="let comment of commentResult?.list" [id]="'comment-section-' + comment.comment_id">
   <div class="content">
-    <img [src]="comment.author.profileURL" class="profile-img">
+    <img [src]="comment.author.profileImage" class="profile-img">
 
     <ng-template [ngIf]="!modifyShow[comment.comment_id]">
-      <a class="pull-right text-center like-btn" [class.active]="comment.myLike" (click)="like(comment)">
+      <a class="float-right text-center like-btn" [class.active]="comment.myLike" (click)="like(comment)">
         <i class="fal fa-thumbs-up"></i> {{comment.likes}}
       </a>
-      <a [routerLink]="['/profile', comment.author.id]">
-        <b>{{comment.author.name}}</b>
+      <a [routerLink]="['/profile', comment.author.user_id]">
+        <b> {{comment.author.name}} </b>
       </a>
 
-      <span *ngIf="comment.isViolation == 0" class="comment-content"
+      <span *ngIf="comment.isViolation != 1" class="comment-content"
             [innerHtml]="comment.content"></span>
       <span *ngIf="comment.isViolation == 1"
             class="comment-content text-danger">Deleted</span>
@@ -81,17 +81,17 @@
   </div>
   <div class="reply" *ngIf="comment.replyList && comment.replyList.length > 0">
     <div class="section comment" *ngFor="let reply of comment.replyList" [id]="'comment-section-' + reply.comment_id">
-      <img [src]="reply.author.profileURL" class="profile-img">
+      <img [src]="reply.author.profileImage" class="profile-img">
       <div class="content">
         <ng-container *ngIf="!modifyShow[reply.comment_id]">
-          <a class="pull-right text-center like-btn" [class.active]="reply.myLike" (click)="like(reply)">
+          <a class="float-right text-center like-btn" [class.active]="reply.myLike" (click)="like(reply)">
             <i class="fal fa-thumbs-up"></i> {{reply.likes}}
           </a>
           <a [routerLink]="['/profile', reply.author.id]">
-            <b>{{reply.author.name}}</b>
+            <b> {{reply.author.name}} </b>
           </a>
 
-          <span *ngIf="reply.isViolation == 0" class="comment-content"
+          <span *ngIf="reply.isViolation != 1" class="comment-content"
                 [innerHtml]="reply.content"></span>
           <span *ngIf="reply.isViolation == 1" class="comment-content text-danger">Deleted</span>
         </ng-container>
@@ -131,5 +131,7 @@
     </div>
   </div>
 </div>
+<!--
 <muzika-pagination [pages]="commentResult?.page" (pageClick)="loadComments($event)"
                    class="text-center"></muzika-pagination>
+-->

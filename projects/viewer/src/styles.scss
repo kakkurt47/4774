@@ -60,22 +60,20 @@ button:focus {
 }
 
 /* Scrollbar design */
-* {
-  &::-webkit-scrollbar {
-    width: 10px;
+::-webkit-scrollbar {
+  width: 10px;
 
-    * {
-      background: transparent;
-    }
+  * {
+    background: transparent;
   }
+}
 
-  &::-webkit-scrollbar-thumb {
-    background: #666;
-    border-radius: 20px;
-  }
+::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 20px;
+}
 
-  &::-webkit-scrollbar-track {
-    background: #ddd;
-    border-radius: 20px;
-  }
+::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
 }

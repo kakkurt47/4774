@@ -17,6 +17,8 @@ import {PostCommunityListComponent, PostSheetListComponent, PostVideoListCompone
 import {PostCommunityModifyComponent, PostSheetModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
 import {PostCommunityWriteComponent, PostSheetWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
 import {AppPostRouteModule} from './post.routes';
+import {YoutubeVideoCellComponent} from './components/youtube-video-cell/youtube-video-cell.component';
+import {MuzikaAlertModule} from '../alert/alert.module';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import {AppPostRouteModule} from './post.routes';
 
     MuzikaCoreModule,
     MatButtonModule,
+    MuzikaAlertModule,
 
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
@@ -39,6 +42,8 @@ import {AppPostRouteModule} from './post.routes';
     PostItemDetailHeaderComponent,
 
     PostCommentComponent,
+
+    YoutubeVideoCellComponent,
 
     /* Pages */
     PostCommunityListComponent,

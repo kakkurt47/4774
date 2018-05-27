@@ -57,8 +57,8 @@ function createVideo(post_id: number, title: string, author: User): VideoPost {
     comments: rand(),
     commentList: [],
     tags: [],
-    videoThumb: null,
-    youtubeUrl: null
+    videoThumb: 'https://img.youtube.com/vi/_yLKMS7mjvM/default.jpg',
+    youtubeUrl: 'https://www.youtube.com/embed/_yLKMS7mjvM?rel=0'
   };
 }
 

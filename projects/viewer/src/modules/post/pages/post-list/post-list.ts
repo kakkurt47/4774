@@ -17,7 +17,7 @@ export class PostCommunityListComponent {
 @Component({
   selector: 'app-post-list-sheet',
   templateUrl: './sheet/post-sheet.component.html',
-  styleUrls: ['./post-list.scss', './sheet/post-sheet.component.html']
+  styleUrls: ['./post-list.scss', './sheet/post-sheet.component.scss']
 })
 export class PostSheetListComponent {
   tags: string[] = SheetTagsMock;
@@ -27,7 +27,7 @@ export class PostSheetListComponent {
 @Component({
   selector: 'app-post-list-video',
   templateUrl: './video/post-video.component.html',
-  styleUrls: ['./post-list.scss', './video/post-video.component.html']
+  styleUrls: ['./post-list.scss', './video/post-video.component.scss']
 })
 export class PostVideoListComponent {
   tags: string[] = VideoTagsMock;

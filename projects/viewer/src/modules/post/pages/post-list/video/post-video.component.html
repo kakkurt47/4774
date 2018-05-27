@@ -15,26 +15,17 @@
           <router-outlet></router-outlet>
         </div>
 
-        <div class="bg-white border">
-          <table class="table">
-            <thead>
-            <tr>
-              <th> 제목 </th>
-              <th width="140"> 글쓴이 </th>
-              <th width="130"> 조회수 </th>
-              <th width="130"> 좋아요수 </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let post of posts">
-              <td> <a [routerLink]="[post.post_id]"> {{post.title}} </a> </td>
-              <td> {{post.author.name}} </td>
-              <td> {{post.views}} </td>
-              <td> {{post.likes}} </td>
-            </tr>
-            </tbody>
-          </table>
+        <div class="video-list">
+          <a *ngFor="let post of posts"
+             app-youtube-video-cell
+             [routerLink]="['/board/video', post.post_id]"
+             queryParamsHandling="preserve"
+             [attr.title]="post.title"
+             class="theme-large theme-underbar" [post]="post">
+          </a>
         </div>
+        <div class="clearfix"></div>
+
       </div>
     </div>
   </div>
