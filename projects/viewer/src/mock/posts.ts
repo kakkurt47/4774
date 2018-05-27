@@ -41,6 +41,7 @@ function createCommunity(post_id: number, title: string, author: User): Communit
     likes: rand(),
     comments: rand(),
     comment_list: [],
+    created_at: '2018-05-13 16:04:24',
     tags: []
   };
 }
@@ -58,7 +59,8 @@ function createVideo(post_id: number, title: string, author: User): VideoPost {
     comment_list: [],
     tags: [],
     video_thumb: 'https://img.youtube.com/vi/_yLKMS7mjvM/default.jpg',
-    youtube_url: 'https://www.youtube.com/embed/_yLKMS7mjvM?rel=0'
+    youtube_url: 'https://www.youtube.com/embed/_yLKMS7mjvM?rel=0',
+    created_at: '2018-05-13 16:04:24',
   };
 }
 
@@ -74,7 +76,8 @@ function createSheet(post_id: number, title: string, author: User): SheetPost {
     comments: rand(),
     comment_list: [],
     tags: [],
-    price: rand() * 100
+    price: rand() * 100,
+    created_at: '2018-05-13 16:04:24',
   };
 }
 

@@ -11,6 +11,7 @@ export const PostCommentsMock: PostComment[] = [
     likes: 15,
     reply_cnt: 0,
     reply_list: [],
+    created_at: '2018-05-13 16:04:24',
     my_like: false,
   },
   {
@@ -31,6 +32,7 @@ export const PostCommentsMock: PostComment[] = [
         likes: 0,
         reply_cnt: 0,
         reply_list: [],
+        created_at: '2018-05-13 16:04:24',
         my_like: false,
       },
       {
@@ -42,9 +44,11 @@ export const PostCommentsMock: PostComment[] = [
         likes: 0,
         reply_cnt: 0,
         reply_list: [],
+        created_at: '2018-05-13 16:04:24',
         my_like: false,
       }
     ],
+    created_at: '2018-05-13 16:04:24',
     my_like: false,
   },
   {
@@ -56,6 +60,7 @@ export const PostCommentsMock: PostComment[] = [
     likes: 4,
     reply_cnt: 0,
     reply_list: [],
+    created_at: '2018-05-13 16:04:24',
     my_like: false,
   }
 ];
