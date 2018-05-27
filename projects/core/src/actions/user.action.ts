@@ -31,7 +31,7 @@ export class UserActions {
     if (!this.store.getState().user.currentUser) {
       return;
     }
-    const userID = this.store.getState().user.currentUser.userId;
+    const userID = this.store.getState().user.currentUser.user_id;
     this.apiConfig.get<any>(`/user/${userID}/board/${boardType}/like`)
       .subscribe(likes => {
         this.store.dispatch({
@@ -45,7 +45,7 @@ export class UserActions {
     if (!this.store.getState().user.currentUser) {
       return;
     }
-    const userID = this.store.getState().user.currentUser.userId;
+    const userID = this.store.getState().user.currentUser.user_id;
     this.apiConfig.get<any>(`/user/${userID}/board/${boardType}/comment/likes`)
       .subscribe(likes => {
         this.store.dispatch({

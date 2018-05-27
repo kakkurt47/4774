@@ -102,10 +102,10 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
     ).subscribe(([commentResult, commentLikes]) => {
       if (!!commentResult) {
         commentResult.list = commentResult.list.map(comment => {
-          comment.myLike = (commentLikes.indexOf(comment.comment_id) !== -1);
-          if (comment.replyCnt > 0) {
-            comment.replyList = comment.replyList.map(reply => {
-              reply.myLike = (commentLikes.indexOf(reply.comment_id) !== -1);
+          comment.my_like = (commentLikes.indexOf(comment.comment_id) !== -1);
+          if (comment.reply_cnt > 0) {
+            comment.reply_list = comment.reply_list.map(reply => {
+              reply.my_like = (commentLikes.indexOf(reply.comment_id) !== -1);
               return reply;
             });
           }

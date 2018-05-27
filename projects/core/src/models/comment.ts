@@ -7,9 +7,8 @@ export interface PostComment {
   author: User;
   content: string;
   likes: number;
-  replyCnt: number;
-
-  replyList: PostComment[];
-
-  myLike?: boolean;
+  reply_cnt: number;
+  reply_list: PostComment[];
+  created_at: string;
+  my_like?: boolean;
 }

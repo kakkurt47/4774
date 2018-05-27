@@ -1,7 +1,7 @@
 export interface User {
-  userId: number;
+  user_id: number;
   name: string;
-  profileImage: string;
+  profile_image: string;
   wallet?: string;
   jwt?: string;
 }

@@ -199,7 +199,7 @@ export class PostVideoWriteComponent extends BasePostWriteComponent {
       this.currentYoutubeVideoId = null;
     }
 
-    this.post.youtubeUrl = url;
+    this.post.youtube_url = url;
   }
 
   prepare(form: NgForm): BasePost {
@@ -209,7 +209,7 @@ export class PostVideoWriteComponent extends BasePostWriteComponent {
       return null;
     }
 
-    if (!this.youtubeUrlRegExp.test(this.post.youtubeUrl)) {
+    if (!this.youtubeUrlRegExp.test(this.post.youtube_url)) {
       this.alertService.alert('Invalid Youtube URL');
       return null;
     }

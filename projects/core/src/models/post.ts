@@ -10,7 +10,8 @@ export interface BasePost {
   comments: number;
   author: User;
   tags: string[];
-  commentList: PostComment[];
+  comment_list: PostComment[];
+  created_at: string;
 }
 
 // tslint:disable-next-line
@@ -19,8 +20,8 @@ export interface CommunityPost extends BasePost {
 }
 
 export interface VideoPost extends BasePost {
-  videoThumb: string;
-  youtubeUrl: string;
+  video_thumb: string;
+  youtube_url: string;
 }
 
 export interface SheetPost extends BasePost {
@@ -28,7 +29,7 @@ export interface SheetPost extends BasePost {
 }
 
 export interface SheetMusic {
-  sheetId: number;
+  sheet_id: number;
   title: string;
   price: number;
   author: User;

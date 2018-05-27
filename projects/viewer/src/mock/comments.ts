@@ -9,9 +9,9 @@ export const PostCommentsMock: PostComment[] = [
     author: UsersMock[1],
     content: 'Hi! Thank you for your post',
     likes: 15,
-    replyCnt: 0,
-    replyList: [],
-    myLike: false,
+    reply_cnt: 0,
+    reply_list: [],
+    my_like: false,
   },
   {
     comment_id: 2,
@@ -20,8 +20,8 @@ export const PostCommentsMock: PostComment[] = [
     author: UsersMock[2],
     content: 'Temesesque quam accipit Gorgoneas salve deseruit.',
     likes: 4,
-    replyCnt: 2,
-    replyList: [
+    reply_cnt: 2,
+    reply_list: [
       {
         comment_id: 3,
         post_id: 1,
@@ -29,9 +29,9 @@ export const PostCommentsMock: PostComment[] = [
         author: UsersMock[2],
         content: 'Per nervo multorum, tu pati, flammaeque iuvit',
         likes: 0,
-        replyCnt: 0,
-        replyList: [],
-        myLike: false,
+        reply_cnt: 0,
+        reply_list: [],
+        my_like: false,
       },
       {
         comment_id: 4,
@@ -40,12 +40,12 @@ export const PostCommentsMock: PostComment[] = [
         author: UsersMock[1],
         content: 'Pofela mofills hoopsten goccis',
         likes: 0,
-        replyCnt: 0,
-        replyList: [],
-        myLike: false,
+        reply_cnt: 0,
+        reply_list: [],
+        my_like: false,
       }
     ],
-    myLike: false,
+    my_like: false,
   },
   {
     comment_id: 5,
@@ -54,8 +54,8 @@ export const PostCommentsMock: PostComment[] = [
     author: UsersMock[3],
     content: 'Shelmic gist dot compute folling turn',
     likes: 4,
-    replyCnt: 0,
-    replyList: [],
-    myLike: false,
+    reply_cnt: 0,
+    reply_list: [],
+    my_like: false,
   }
 ];

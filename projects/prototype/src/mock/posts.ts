@@ -10,7 +10,7 @@ function createFree(post_id: number, title: string, author: User): CommunityPost
     views: rand(),
     likes: rand(),
     comments: rand(),
-    commentList: [],
+    comment_list: [],
     tags: []
   };
 }
@@ -24,10 +24,10 @@ function createVideo(post_id: number, title: string, author: User): VideoPost {
     views: rand(),
     likes: rand(),
     comments: rand(),
-    commentList: [],
+    comment_list: [],
     tags: [],
-    videoThumb: null,
-    youtubeUrl: null
+    video_thumb: null,
+    youtube_url: null
   };
 }
 
@@ -40,7 +40,7 @@ function createMusic(post_id: number, title: string, author: User): SheetPost {
     views: rand(),
     likes: rand(),
     comments: rand(),
-    commentList: [],
+    comment_list: [],
     tags: [],
     price: rand() * 100
   };

@@ -40,7 +40,7 @@ function createCommunity(post_id: number, title: string, author: User): Communit
     views: rand(),
     likes: rand(),
     comments: rand(),
-    commentList: [],
+    comment_list: [],
     tags: []
   };
 }
@@ -55,10 +55,10 @@ function createVideo(post_id: number, title: string, author: User): VideoPost {
     views: rand(),
     likes: rand(),
     comments: rand(),
-    commentList: [],
+    comment_list: [],
     tags: [],
-    videoThumb: 'https://img.youtube.com/vi/_yLKMS7mjvM/default.jpg',
-    youtubeUrl: 'https://www.youtube.com/embed/_yLKMS7mjvM?rel=0'
+    video_thumb: 'https://img.youtube.com/vi/_yLKMS7mjvM/default.jpg',
+    youtube_url: 'https://www.youtube.com/embed/_yLKMS7mjvM?rel=0'
   };
 }
 
@@ -72,7 +72,7 @@ function createSheet(post_id: number, title: string, author: User): SheetPost {
     views: rand(),
     likes: rand(),
     comments: rand(),
-    commentList: [],
+    comment_list: [],
     tags: [],
     price: rand() * 100
   };

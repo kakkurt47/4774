@@ -2,23 +2,23 @@ import {User} from '@muzika/core';
 
 export const UsersMock: User[] = [
   {
-    userId: 1,
+    user_id: 1,
     name: 'Sarah',
-    profileImage: 'assets/person-1.png'
+    profile_image: 'assets/person-1.png'
   },
   {
-    userId: 2,
+    user_id: 2,
     name: 'James',
-    profileImage: 'assets/person-2.png'
+    profile_image: 'assets/person-2.png'
   },
   {
-    userId: 3,
+    user_id: 3,
     name: 'Tom',
-    profileImage: 'assets/person-3.png'
+    profile_image: 'assets/person-3.png'
   },
   {
-    userId: 4,
+    user_id: 4,
     name: 'Jamy',
-    profileImage: 'assets/person-4.png'
+    profile_image: 'assets/person-4.png'
   },
 ];
