@@ -29,6 +29,7 @@ import {MainPageComponent} from './pages/main/main.component';
 
 import {ElectronService} from './providers/electron.service';
 import {IpcRendererService} from './services/ipc-renderer.service';
+import {MuzikaAlertModule} from '../modules/alert/alert.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -82,6 +83,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MuzikaCoreModule.forRoot(environment.env),
 
     /* Sub-modules */
+    MuzikaAlertModule,
     PostModule,
   ],
   providers: [
