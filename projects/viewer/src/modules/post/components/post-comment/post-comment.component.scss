@@ -1,4 +1,6 @@
 a {
+  cursor: pointer;
+
   &:hover {
     text-decoration: none;
   }
@@ -92,6 +94,7 @@ form {
     padding: 0;
     cursor: pointer;
     color: #4e4e4e;
+    font-size: 0.8rem;
 
     i {
       margin-right: 3px;

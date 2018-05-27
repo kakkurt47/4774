@@ -44,14 +44,14 @@
     </ng-template>
 
     <div class="comment-extra small">
-            <span class="text-primary" *ngIf="comment.likes >= 5">
+            <span class="text-danger" *ngIf="comment.likes >= 5">
                 Hot
             </span>
-      <time>{{comment.customTime}}</time>
+      <!--<time>{{comment.created_at}}</time>-->
       <a (click)="replyShow[comment.comment_id] = !replyShow[comment.comment_id];">
         Reply
       </a>
-      <ng-template [ngIf]="comment.author.id == currentUser?.id || currentUser?.authLevel >= 200">
+      <ng-template [ngIf]="comment.author.user_id == currentUser?.user_id">
         <a (click)="modify(comment)">
           {{modifyShow[comment.comment_id] ? 'Cancel' : 'Modify'}}
         </a>
@@ -59,9 +59,11 @@
           Delete
         </a>
       </ng-template>
-      <a *ngIf="comment.author.id != currentUser?.id" (click)="violation(comment.comment_id)">
+      <!--
+      <a *ngIf="comment.author.user_id != currentUser?.user_id" (click)="violation(comment.comment_id)">
         Report
       </a>
+      -->
     </div>
   </div>
   <div class="reply-write-form" *ngIf="replyShow[comment.comment_id]">
@@ -89,9 +91,7 @@
             <b> {{reply.author.name}} </b>
           </a>
 
-          <span *ngIf="reply.isViolation != 1" class="comment-content"
-                [innerHtml]="reply.content"></span>
-          <span *ngIf="reply.isViolation == 1" class="comment-content text-danger">Deleted</span>
+          <span class="comment-content" [innerHtml]="reply.content"></span>
         </ng-container>
 
         <ng-container *ngIf="modifyShow[reply.comment_id]">
@@ -108,12 +108,13 @@
         </ng-container>
 
         <div class="comment-extra small">
-          <span class="text-primary" *ngIf="reply.likes >= 5"> Hot </span>
-          <time>{{reply.customTime}}</time>
+          <span class="text-danger" *ngIf="reply.likes >= 5"> Hot </span>
+
+          <!--<time>{{reply.customTime}}</time>-->
           <a (click)="replyShow[comment.comment_id]=!replyShow[comment.comment_id];">
             Reply
           </a>
-          <ng-template [ngIf]="reply.author.id == currentUser?.id || currentUser?.authLevel >= 200">
+          <ng-template [ngIf]="reply.author.user_id == currentUser?.user_id">
             <a (click)="modify(reply)">
               {{modifyShow[reply.comment_id] ? 'Cancel' : 'Modify'}}
             </a>
@@ -121,9 +122,11 @@
               Delete
             </a>
           </ng-template>
+          <!--
           <a *ngIf="reply.author.id != currentUser?.id" (click)="violation(reply.comment_id)">
             Report
           </a>
+          -->
         </div>
       </div>
     </div>
