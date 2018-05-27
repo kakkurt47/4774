@@ -13,6 +13,7 @@ import {SpinnerComponent} from './component/spinner/spinner.component';
 import {MainPageComponent} from './page/main/main.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
+import {PLATFORM_TYPE_TOKEN} from '../../../core/src/models/platform';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,10 @@ import {NavbarComponent} from './component/navbar/navbar.component';
     MuzikaCoreModule.forRoot(environment.env),
   ],
   bootstrap: [AppComponent],
-  providers: []
+  providers: [{
+    provide: PLATFORM_TYPE_TOKEN,
+    useValue: 'wallet'
+  }]
 })
 export class AppModule {
   constructor(@Inject(PLATFORM_ID) private platformId: string) {

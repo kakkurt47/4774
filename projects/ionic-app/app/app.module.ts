@@ -10,6 +10,7 @@ import {environment} from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {PLATFORM_TYPE_TOKEN} from '../../core/src/models/platform';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,8 @@ import {AppComponent} from './app.component';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    {provide: PLATFORM_TYPE_TOKEN, useValue: 'app'}
   ],
   bootstrap: [AppComponent]
 })
