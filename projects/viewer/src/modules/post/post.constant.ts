@@ -2,7 +2,7 @@ declare var jQuery;
 
 export const FroalaEditorOptions = {
   theme: 'muzika',
-  language: 'ko',
+  language: 'en',
   key: 'RF4H3B17A9iB6E5C3A4I2I3C9B6C5E5C-11lcsmdhnA-13D-11G5hcj1==',
 
   toolbarButtons: ['bold', 'italic', 'underline', 'align', 'emoticons', 'fontSize', 'color', 'undo', '-',

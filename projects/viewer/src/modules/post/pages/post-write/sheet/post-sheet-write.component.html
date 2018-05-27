@@ -2,31 +2,31 @@
   <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
     <div class="row h-100 mx-0">
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
-        <h5> 악보 업로드 </h5>
+        <h5> Upload sheet music </h5>
 
         <div class="upload-form">
           <label class="upload-btn" for="upload-sheet">
             <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet">
             <span class="btn-text">
-              <i class="fa fa-file-pdf"></i> 악보 PDF 업로드
+              <i class="fa fa-file-pdf"></i> Select sheet music (PDF format)
             </span>
           </label>
         </div>
 
-        <h5> 곡 종류 </h5>
+        <h5> Song type </h5>
 
         <div class="song-type-form">
           <div class="btn-group">
-            <button class="btn btn-secondary"
+            <button class="btn btn-secondary" type="button"
                     [class.active]="songType === '~cover'"
-                    (click)="songType = '~cover'"> 커버 </button>
-            <button class="btn btn-secondary"
+                    (click)="songType = '~cover'"> Cover </button>
+            <button class="btn btn-secondary" type="button"
                     [class.active]="songType === '~original'"
-                    (click)="songType = '~original'"> 자작곡 </button>
+                    (click)="songType = '~original'"> Original </button>
           </div>
         </div>
 
-        <h5> 장르 </h5>
+        <h5> Genre </h5>
 
         <div class="tag-selector genre-form">
           <ul>
@@ -37,7 +37,7 @@
           </ul>
         </div>
 
-        <h5> 악기 </h5>
+        <h5> Instrument </h5>
 
         <div class="tag-selector instrument-form">
           <ul>
@@ -48,7 +48,7 @@
           </ul>
         </div>
 
-        <h5> 가격 </h5>
+        <h5> Price </h5>
 
         <div class="price-form">
           <div class="input-group">
@@ -64,7 +64,7 @@
       </section>
       <div class="col-6 px-0 write-form border-left">
         <div class="title">
-          <input type="text" id="title" name="title" class="w-100" placeholder="제목을 입력해주세요"
+          <input type="text" id="title" name="title" class="w-100" placeholder="Title"
                  required [(ngModel)]="post.title">
         </div>
 
@@ -75,7 +75,7 @@
     </div>
 
     <div class="submit-floating">
-      <button mat-raised-button color="accent"> <i class="fa fa-pencil"></i> 작성 </button>
+      <button mat-raised-button color="accent"> <i class="fa fa-pencil"></i> Upload </button>
     </div>
   </form>
 </section>

@@ -1,0 +1,46 @@
+@import '../../../../../theme/variables';
+
+.extra-section {
+
+  .upload-form {
+    height: 7rem;
+    color: #666;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+
+    .upload-btn {
+      cursor: pointer;
+
+      .btn-text {
+        padding: 8px 30px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        transition-timing-function: ease-in-out;
+        transition-property: background-color, color;
+        transition-duration: 0.2s;
+      }
+
+      &:hover {
+        .btn-text {
+          background-color: $primary-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .tags-song-type {
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+
+      }
+    }
+  }
+}

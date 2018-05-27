@@ -81,36 +81,6 @@ form {
     }
   }
 
-  .upload-form {
-    height: 7rem;
-    color: #666;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-
-    .upload-btn {
-      .btn-text {
-        padding: 8px 30px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-      }
-    }
-  }
-
-  .tags-song-type {
-    ul {
-      list-style: none;
-      padding-left: 0;
-
-      li {
-
-      }
-    }
-  }
-
   .tags {
     .tag {
       background: #2f3c60;
