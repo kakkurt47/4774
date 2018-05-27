@@ -2,7 +2,7 @@
   <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
     <div class="row h-100 mx-0">
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
-        <h5> Upload sheet music </h5>
+        <h5> Upload Music </h5>
 
         <div class="upload-form">
           <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
@@ -10,7 +10,7 @@
                    ngFileSelect [uploadInput]="uploadInput" (uploadOutput)="onUploadOutput($event)"
                    [disabled]="uploadStatus?.status === 'uploading'">
             <span class="btn-text">
-              Select sheet music (PDF format)
+              Select Music File
             </span>
           </label>
 
@@ -37,7 +37,7 @@
           </div>
         </div>
 
-        <h5> Song type </h5>
+        <h5> Song Type </h5>
 
         <div class="song-type-form">
           <div class="btn-group">
