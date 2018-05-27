@@ -1,16 +1,16 @@
 @import '../../../../../theme/variables';
 
 .extra-section {
-
   .upload-form {
     height: 7rem;
     color: #666;
     border: 1px solid #eee;
-    border-radius: 8px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    position: relative;
 
     .upload-btn {
       cursor: pointer;
@@ -30,7 +30,25 @@
           color: #fff;
         }
       }
+
+      &.disabled {
+        cursor: not-allowed;
+
+        .btn-text {
+          background-color: #eee;
+          color: #aaa;
+        }
+      }
     }
+
+    .file-name {
+      position: absolute;
+      bottom: 8px;
+    }
+  }
+
+  .upload-progress {
+    margin-top: 12px;
   }
 
   .tags-song-type {

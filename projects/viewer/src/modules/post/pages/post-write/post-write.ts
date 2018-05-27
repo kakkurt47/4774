@@ -1,9 +1,10 @@
-import {Component, Injector} from '@angular/core';
+import {Component, EventEmitter, Injector} from '@angular/core';
 import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
-import {BaseComponent, BasePost, CommunityPost, SheetPost, VideoPost} from '@muzika/core';
+import {APIConfig, BaseComponent, BasePost, CommunityPost, LocalStorage, SheetPost, VideoPost} from '@muzika/core';
 import {NgForm} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {AlertService} from '../../../alert/alert.service';
+import {UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
 
 export class BasePostWriteComponent extends BaseComponent {
   options = FroalaEditorOptions;
@@ -112,8 +113,20 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
   genres: Set<string> = new Set();
   instruments: Set<string> = new Set();
 
+  uploadInput: EventEmitter<UploadInput> = new EventEmitter<UploadInput>();
+
+  uploadStatus: {
+    status: string;
+    progress: number;
+    fileName: string;
+    fileId?: number;
+    process?: string;
+  };
+
   constructor(private injector: Injector,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private apiConfig: APIConfig,
+              private localStorage: LocalStorage) {
     super(injector);
   }
 
@@ -172,6 +185,46 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     ];
 
     return prepared;
+  }
+
+  onUploadOutput(output: UploadOutput): void {
+    console.log(output);
+
+    if (output.type === 'allAddedToQueue') {
+      const event: UploadInput = {
+        type: 'uploadAll',
+        url: `${this.apiConfig.apiUrl}/file?type=paper&auth=${this.localStorage.getItem('token')}`,
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${this.localStorage.getItem('token')}`
+        }
+      };
+
+      this.uploadInput.emit(event);
+    } else if (output.type === 'addedToQueue' && typeof output.file !== 'undefined') {
+      this.uploadStatus = {
+        status: 'uploading',
+        fileId: null,
+        fileName: output.file.name,
+        progress: 0,
+        process: null
+      };
+    } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
+      this.uploadStatus.progress = output.file.progress.data.percentage;
+
+      if (this.uploadStatus.progress === 100) {
+        this.uploadStatus.process = 'pending';
+      }
+    } else if (output.type === 'removed') {
+      this.uploadStatus = null;
+    } else if (output.type === 'done') {
+      if (output.file.responseStatus === 200 && output.file.response.file_id) {
+        this.uploadStatus.status = 'done';
+        this.uploadStatus.fileId = output.file.response.file_id;
+      } else {
+        this.uploadStatus.status = 'failed';
+      }
+    }
   }
 }
 
