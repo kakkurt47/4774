@@ -24,7 +24,7 @@ export class UserActions {
   }
 
   getLoginMessage(address: string): Observable<string> {
-    return this.apiConfig.get(`/user/${address}`);
+    return this.apiConfig.get(`/user/${address}/sign-message`);
   }
 
   loadBoardLikes(boardType: string) {

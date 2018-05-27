@@ -18,15 +18,17 @@ function createWindow() {
 
   const electronScreen = screen;
   // const size = electronScreen.getPrimaryDisplay().workAreaSize;
-  const size = {width: 1280, height: 860};
 
   // Create the browser window.
   win = new BrowserWindow({
-    width: size.width,
-    height: size.height,
-    resizable: false,
+    width: 1340,
+    height: 700,
+    minWidth: 700,
+    minHeight: 400,
+    maxWidth: 1340,
+    maxHeight: 740,
+    resizable: true,
     webPreferences: {
-      nodeIntegration: false,
       plugins: true
     }
   });
