@@ -37,7 +37,7 @@
     line-height: 40px;
     text-align: center;
     //padding-bottom: 1.5rem;
-    color: map-get($secondary-palette, 200);
+    color: white;
     outline: none;
     transition: all 0.1s ease-in-out;
 
@@ -51,6 +51,11 @@
       cursor: pointer;
     }
   }
+}
+
+.btn-login {
+  display: block;
+  color: white;
 }
 
 .user-profile-img {
