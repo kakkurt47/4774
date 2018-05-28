@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Injector} from '@angular/core';
 import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
-import {APIConfig, BaseComponent, BasePost, CommunityPost, LocalStorage, SheetPost, VideoPost} from '@muzika/core';
+import {
+  APIConfig, BaseComponent, BasePost, CommunityPost, ExtendedWeb3, LocalStorage, MuzikaContractService, promisify, SheetPost,
+  VideoPost
+} from '@muzika/core';
 import {NgForm} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {AlertService} from '../../../alert/alert.service';
@@ -45,14 +48,14 @@ export class BasePostWriteComponent extends BaseComponent {
   }
 
   /* @TODO Implement functions */
-  submit(form: NgForm): Observable<any> {
+  submit(form: NgForm): void {
     const prepared = this.prepare(form);
 
     if (prepared !== null) {
-      return null;
+      return;
     }
 
-    return null;
+    return;
   }
 
   protected prepare(form: NgForm): BasePost | null {
@@ -121,12 +124,15 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     fileName: string;
     fileId?: number;
     process?: string;
+    ipfsFileHash: string;
   };
 
   constructor(private injector: Injector,
               private alertService: AlertService,
               private apiConfig: APIConfig,
-              private localStorage: LocalStorage) {
+              private localStorage: LocalStorage,
+              private web3: ExtendedWeb3,
+              private contractService: MuzikaContractService) {
     super(injector);
   }
 
@@ -178,6 +184,12 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       return null;
     }
 
+    /* only file upload finished */
+    if (this.uploadStatus.status !== 'done') {
+      this.alertService.alert('Music file is not yet uploaded');
+      return null;
+    }
+
     prepared.tags = [
       this.songType,
       ...Array.from(this.genres.values()),
@@ -188,8 +200,6 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
   }
 
   onUploadOutput(output: UploadOutput): void {
-    console.log(output);
-
     if (output.type === 'allAddedToQueue') {
       const event: UploadInput = {
         type: 'uploadAll',
@@ -207,7 +217,8 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
         fileId: null,
         fileName: output.file.name,
         progress: 0,
-        process: null
+        process: null,
+        ipfsFileHash: null
       };
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
       this.uploadStatus.progress = output.file.progress.data.percentage;
@@ -221,9 +232,27 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       if (output.file.responseStatus === 200 && output.file.response.file_id) {
         this.uploadStatus.status = 'done';
         this.uploadStatus.fileId = output.file.response.file_id;
+        this.uploadStatus.ipfsFileHash = output.file.response.ipfs_hash;
       } else {
         this.uploadStatus.status = 'failed';
       }
+    }
+  }
+
+  submit(form: NgForm): void {
+    const prepared = <SheetPost>this.prepare(form);
+
+    if (prepared !== null) {
+      promisify(this.web3.eth.accounts).then(accounts => {
+        this.contractService.createNewPaperContract(
+          accounts[0],
+          prepared.price,
+          this.uploadStatus.ipfsFileHash,
+          'NotSupported'
+        ).subscribe(txHash => {
+          console.log(txHash);
+        });
+      });
     }
   }
 }
