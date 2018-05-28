@@ -44,7 +44,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "contract:compile": "cd muzika-contract/ && truffle compile",
-    "contract:interface": "ts-node ./utils/TypeChain/lib/cli.ts -p typechain.json"
+    "contract:interface": "ts-node --project tsconfig.typechain.json ./utils/TypeChain/lib/cli.ts -p typechain.json"
   },
   "dependencies": {
     "@angular-redux/store": "^9.0.0-beta.0",
