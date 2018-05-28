@@ -1,8 +1,9 @@
 import {NgRedux} from '@angular-redux/store';
-import {Injectable} from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 import {Observable, from} from 'rxjs';
 import {concatMap, map, tap} from 'rxjs/operators';
 import {APIConfig} from '../config';
+import {PLATFORM_TYPE_TOKEN, MuzikaPlatformType} from '../models/platform';
 import {User} from '../models/user';
 import {IAppState} from '../reducers';
 import {LocalStorage} from '../services';
@@ -20,7 +21,8 @@ export class UserActions {
               private apiConfig: APIConfig,
               private web3: ExtendedWeb3,
               private web3Service: MuzikaWeb3Service,
-              private localStorage: LocalStorage) {
+              private localStorage: LocalStorage,
+              @Inject(PLATFORM_TYPE_TOKEN) private platformType: MuzikaPlatformType) {
   }
 
   getLoginMessage(address: string): Observable<string> {
@@ -94,13 +96,15 @@ export class UserActions {
         ));
       }),
       concatMap((signature) => {
-        return this.apiConfig.post<string>(`/login`, {address, signature}).pipe(
-          tap(token => {
-            if (token) {
-              this.localStorage.setItem('token', token);
-            }
-          })
-        );
+        return this.apiConfig
+          .post<string>(`/login`, {address, signature, platform_type: this.platformType})
+          .pipe(
+            tap(token => {
+              if (token) {
+                this.localStorage.setItem('token', token);
+              }
+            })
+          );
       }),
       concatMap(token => this.refreshMe())
     );

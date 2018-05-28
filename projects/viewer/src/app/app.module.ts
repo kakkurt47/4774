@@ -30,6 +30,7 @@ import {MainPageComponent} from './pages/main/main.component';
 import {ElectronService} from './providers/electron.service';
 import {IpcRendererService} from './services/ipc-renderer.service';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
+import {PLATFORM_TYPE_TOKEN} from '../../../core/src/models/platform';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -88,7 +89,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     ElectronService,
-    IpcRendererService
+    IpcRendererService,
+    {
+      provide: PLATFORM_TYPE_TOKEN,
+      useValue: 'electron'
+    }
   ],
   bootstrap: [AppComponent]
 })
