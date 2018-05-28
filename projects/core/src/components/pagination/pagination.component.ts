@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Pagination} from '@muzika/core';
+import {Pagination} from '../../models';
 
 @Component({
   selector: 'muzika-pagination',
