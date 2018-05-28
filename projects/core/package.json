@@ -1,9 +1,10 @@
 {
   "name": "@muzika/core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "main": "muzika-core/public_api.js",
   "typings": "muzika-core/public_api.d.ts",
+  "private": false,
   "peerDependency": {
     "@angular-redux/store": ">=7.0.0",
     "@angular/common": ">=6.0.0",

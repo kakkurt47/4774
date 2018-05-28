@@ -1,10 +1,12 @@
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
 import {isPlatformBrowser, isPlatformServer, CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {Inject, ModuleWithProviders, NgModule, PLATFORM_ID, SkipSelf} from '@angular/core';
+import {Inject, ModuleWithProviders, NgModule, PLATFORM_ID} from '@angular/core';
 import {BrowserTransferStateModule, TransferState} from '@angular/platform-browser';
 import {createStore} from 'redux';
+import {CommentActions, PostActions} from './actions';
 import {UserActions} from './actions/user.action';
+import {PaginationComponent} from './components/pagination/pagination.component';
 import {BASE_API_URL, baseApiUrl, APIConfig, JWTInterceptor, MUZIKA_REDUX_STATE_KEY} from './config';
 import {baseApiUrlStage, baseApiUrlDev} from './config/api.constant';
 import {ContractProviders} from './contracts';
@@ -15,8 +17,6 @@ import {environmentStage} from './environments/environment.stage';
 import {IAppState, rootReducer} from './reducers';
 import {LocalStorage} from './services';
 import {MuzikaWeb3Service} from './web3.service';
-import {PaginationComponent} from './components/pagination/pagination.component';
-import {CommentActions, PostActions} from './actions';
 
 const STORE_DIRECTIVES = [
   MuzikaWeb3Service,

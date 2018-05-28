@@ -3,7 +3,7 @@ import {Injectable, Inject} from '@angular/core';
 import {Observable, from} from 'rxjs';
 import {concatMap, map, tap} from 'rxjs/operators';
 import {APIConfig} from '../config';
-import {PLATFORM_TYPE_TOKEN, MuzikaPlatformType} from '../models/platform';
+import {PLATFORM_TYPE_TOKEN, MuzikaPlatformType} from '../config/platform';
 import {User} from '../models/user';
 import {IAppState} from '../reducers';
 import {LocalStorage} from '../services';

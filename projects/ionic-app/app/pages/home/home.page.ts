@@ -44,7 +44,7 @@ export class HomePageComponent extends BaseComponent {
           console.log(data);
         },
         error => {
-          this.web3.accounts.create();
+          // this.web3.accounts.create();
         }
       );
     this.loadAccount();

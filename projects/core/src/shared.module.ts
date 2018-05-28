@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {BrandIconModule} from './brand-icon.module';
 
@@ -6,9 +5,7 @@ import {BrandIconModule} from './brand-icon.module';
   imports: [
     BrandIconModule,
   ],
-  providers: [
-
-  ],
+  providers: [],
   exports: [
     BrandIconModule
   ]

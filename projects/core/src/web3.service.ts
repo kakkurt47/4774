@@ -1,13 +1,12 @@
+import {Provider as Web3Provider} from '@0xproject/types';
 import {Injectable, Inject} from '@angular/core';
-import {BehaviorSubject, Observable, from} from 'rxjs';
-import {Observer} from 'rxjs';
+import {Observable, from, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {MuzikaCoin} from './contracts';
 import {EnvironmentToken, EnvironmentType} from './environments/env_types';
 import {promisify} from './utils';
 import {AddressOnlyProvider, LedgerProvider, MetamaskProvider, RPCProvider, WalletProvider} from './web3-providers';
 import {ExtendedWeb3} from './web3.provider';
-import {MuzikaCoin} from './contracts';
-import {Provider as Web3Provider} from '@0xproject/types';
 
 @Injectable()
 export class MuzikaWeb3Service {

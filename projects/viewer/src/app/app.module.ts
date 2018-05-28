@@ -14,6 +14,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
+import {MuzikaAlertModule} from '../modules/alert/alert.module';
 import {PostModule} from '../modules/post/post.module';
 import {WalletModule} from '../modules/wallet/wallet.module';
 
