@@ -6,6 +6,7 @@
   "contracts": [
     "MuzikaCoin",
     "MuzikaPaperContract",
-    "MuzikaLoyaltyPoint"
+    "MuzikaLoyaltyPoint",
+    "Dispatcher"
   ]
 }

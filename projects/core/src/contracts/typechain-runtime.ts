@@ -1,65 +1,61 @@
 /* tslint:disable */
-import { BigNumber } from "bignumber.js";
+import { BigNumber } from 'bignumber.js';
+import { ContractAbi, TxData } from '@0xproject/types';
 
 export type TxValue = number | string | BigNumber;
 export type EtherInteger = number | string | BigNumber;
 export type EtherAddress = string | BigNumber;
 
-export interface RawAbiParameter {
-  name: string;
-  type: string;
-}
-
-export interface RawAbiDefinition {
-  name: string;
-  constant: boolean;
-  payable: boolean;
-  inputs: RawAbiParameter[];
-  outputs: RawAbiParameter[];
-  stateMutability: string;
-  type: string;
-}
-
-export interface ITxParams {
-  from?: string;
-  to?: string;
-  data?: string;
-  value?: TxValue;
-  gas?: TxValue;
-  gasPrice?: TxValue;
-}
+export type ITxParams = TxData;
 
 // @TODO
 export class TruffleContract<T extends TruffleContractInstance> {
-  abi: RawAbiDefinition;
+  abi: ContractAbi;
   address: string;
+  binary: string;
+  deployedBinary: string;
+  bytecode: string;
+  deployedBytecode: string;
+
+  /** @deprecated use bytecode */
+  unlinked_binary: string;
 
   'new'(...args: any[]): Promise<T> {
     throw new Error('Not Implemented');
-  };
+  }
+
   at(address: string): T {
     throw new Error('Not Implemented');
-  };
+  }
+
   deployed(): Promise<T> {
     throw new Error('Not Implemented');
-  };
+  }
+
   detectNetwork(): Promise<void> {
     throw new Error('Not Implemented');
-  };
+  }
+
   setNetwork(networkID: number): void {
     throw new Error('Not Implemented');
-  };
+  }
+
   resetAddress(): void {
     throw new Error('Not Implemented');
-  };
+  }
+
   setProvider(provider: any): void {
     throw new Error('Not Implemented');
-  };
+  }
+
+  link(name: any, address: string): void {
+    throw new Error('Not Implemented');
+  }
 }
 
 // @TODO
 export interface TruffleContractInstance {
-  abi: RawAbiDefinition;
+  abi: ContractAbi;
   address: string;
   contract: any;
 

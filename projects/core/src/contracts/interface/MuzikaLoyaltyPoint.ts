@@ -13,7 +13,6 @@ import {
   EtherAddress,
   EtherInteger,
   ITxParams,
-  RawAbiDefinition,
   TruffleContract,
   TruffleContractInstance,
   TxValue
@@ -28,6 +27,13 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
   symbol(): Promise<string>;
   balanceOf(_owner: EtherAddress): Promise<BigNumber>;
 
+  renounceOwnership: {
+    (txParams?: ITxParams): Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    call: (txParams?: ITxParams) => Promise<void>;
+    request: () => Promise<string>;
+    estimateGas: () => Promise<number>;
+  };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
     sendTransaction: (

@@ -28,7 +28,7 @@ import * as contractImported from 'truffle-contract';
 const contract = contractImported; 
 
 import { BigNumber } from 'bignumber.js';
-import { EtherAddress, EtherInteger, ITxParams, RawAbiDefinition, TruffleContract, TruffleContractInstance, TxValue } from '${
+import { EtherAddress, EtherInteger, ITxParams, TruffleContract, TruffleContractInstance, TxValue } from '${
     context.relativeRuntimePath
   }'
 export const BuiltContract = require('${context.relativeInputPath}');

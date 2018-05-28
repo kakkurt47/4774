@@ -4,14 +4,28 @@ import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Provider } from '@angular/core';
 import { ExtendedWeb3 } from '../web3.provider';
 
+import { Dispatcher, createTruffleDispatcher } from './interface/Dispatcher';
 import { MuzikaCoin, createTruffleMuzikaCoin } from './interface/MuzikaCoin';
 import { MuzikaLoyaltyPoint, createTruffleMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
 import { MuzikaPaperContract, createTruffleMuzikaPaperContract } from './interface/MuzikaPaperContract';
 
+export { Dispatcher } from './interface/Dispatcher';
 export { MuzikaCoin } from './interface/MuzikaCoin';
 export { MuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
 export { MuzikaPaperContract } from './interface/MuzikaPaperContract'
 
+
+export const DispatcherProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
+  if (isPlatformBrowser(platformId)) {
+    const contract: Dispatcher = createTruffleDispatcher();
+    web3.onProviderChange().subscribe(provider => {
+      if (!!provider) {
+        contract.setProvider(provider);
+      }
+    });
+    return contract;
+  }
+};
 
 export const MuzikaCoinProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
   if (isPlatformBrowser(platformId)) {
@@ -50,6 +64,7 @@ export const MuzikaPaperContractProviderFactory = (web3: ExtendedWeb3, platformI
 };
 
 export const ContractProviders: Provider[] = [
+  { provide: Dispatcher, useFactory: DispatcherProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] },
   { provide: MuzikaCoin, useFactory: MuzikaCoinProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] },
   { provide: MuzikaLoyaltyPoint, useFactory: MuzikaLoyaltyPointProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] },
   { provide: MuzikaPaperContract, useFactory: MuzikaPaperContractProviderFactory, deps: [ExtendedWeb3, PLATFORM_ID] }

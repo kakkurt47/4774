@@ -13,7 +13,6 @@ import {
   EtherAddress,
   EtherInteger,
   ITxParams,
-  RawAbiDefinition,
   TruffleContract,
   TruffleContractInstance,
   TxValue
@@ -63,34 +62,39 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     request: (_buyer: EtherAddress) => Promise<string>;
     estimateGas: (_buyer: EtherAddress) => Promise<number>;
   };
-  purchasePreSigned: {
+  receiveApproval: {
     (
-      _nonce: EtherInteger,
-      _version: EtherInteger,
-      _sig: string,
+      _owner: EtherAddress,
+      arg1: EtherInteger,
+      arg2: EtherAddress,
+      arg3: string,
       txParams?: ITxParams
     ): Promise<boolean>;
     sendTransaction: (
-      _nonce: EtherInteger,
-      _version: EtherInteger,
-      _sig: string,
+      _owner: EtherAddress,
+      arg1: EtherInteger,
+      arg2: EtherAddress,
+      arg3: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     call: (
-      _nonce: EtherInteger,
-      _version: EtherInteger,
-      _sig: string,
+      _owner: EtherAddress,
+      arg1: EtherInteger,
+      arg2: EtherAddress,
+      arg3: string,
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (
-      _nonce: EtherInteger,
-      _version: EtherInteger,
-      _sig: string
+      _owner: EtherAddress,
+      arg1: EtherInteger,
+      arg2: EtherAddress,
+      arg3: string
     ) => Promise<string>;
     estimateGas: (
-      _nonce: EtherInteger,
-      _version: EtherInteger,
-      _sig: string
+      _owner: EtherAddress,
+      arg1: EtherInteger,
+      arg2: EtherAddress,
+      arg3: string
     ) => Promise<number>;
   };
 }
