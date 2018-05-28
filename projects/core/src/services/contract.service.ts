@@ -43,6 +43,10 @@ export class MuzikaContractService {
     /* Get accounts */
     const accounts = await promisify(this.web3.eth.getAccounts);
 
+    /* Detect network automatically (set to networkId) */
+    await this.dispatcher.detectNetwork();
+    await this.muzikaPaper.detectNetwork();
+
     /* creating contract function (web3.eth.contract.new()) calls callback twice
      * (https://github.com/ethereum/wiki/wiki/JavaScript-API#returns-49, show `myContractReturned = ...
      * So, is it correct that use promisify function?
