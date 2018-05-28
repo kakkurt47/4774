@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MuzikaCoreModule, SharedModule} from '@muzika/core';
+import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN, SharedModule} from '@muzika/core';
 // NG Translate
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -30,7 +30,6 @@ import {MainPageComponent} from './pages/main/main.component';
 import {ElectronService} from './providers/electron.service';
 import {IpcRendererService} from './services/ipc-renderer.service';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
-import {PLATFORM_TYPE_TOKEN} from '../../../core/src/models/platform';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

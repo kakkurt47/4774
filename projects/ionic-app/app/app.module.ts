@@ -5,12 +5,11 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
-import {MuzikaCoreModule} from '@muzika/core';
+import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN} from '@muzika/core';
 import {environment} from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {PLATFORM_TYPE_TOKEN} from '../../core/src/models/platform';
 
 @NgModule({
   declarations: [AppComponent],

@@ -5,7 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MuzikaCoreModule, SharedModule} from '@muzika/core';
+import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN, SharedModule} from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
 import {PostModule} from '../modules/post/post.module';
@@ -19,7 +19,6 @@ import {SpinnerComponent} from './component/spinner/spinner.component';
 import {LoginPageComponent} from './page/login/login.component';
 import {MainPageComponent} from './page/main/main.component';
 import {WalletPageComponent} from './page/wallet/wallet.component';
-import {PLATFORM_TYPE_TOKEN} from '../../../core/src/models/platform';
 
 declare const window;
 
