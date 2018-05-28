@@ -196,6 +196,11 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       ...Array.from(this.instruments.values())
     ];
 
+    prepared.ipfs_hash = this.uploadStatus.ipfsFileHash;
+    // @TODO calculate file hash
+    // suggestion: hash calculated from node backend, using raw level code like c implementation
+    prepared.original_hash = 'Not Supported';
+
     return prepared;
   }
 
@@ -243,13 +248,14 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     const prepared = <SheetPost>this.prepare(form);
 
     if (prepared !== null) {
-      promisify(this.web3.eth.accounts).then(accounts => {
+      promisify(this.web3.eth.getAccounts).then(accounts => {
         this.contractService.createNewPaperContract(
           accounts[0],
           prepared.price,
-          this.uploadStatus.ipfsFileHash,
-          'NotSupported'
+          prepared.ipfs_hash,
+          prepared.original_hash
         ).subscribe(txHash => {
+          // @TODO implement page to see txHash where paper contract is created at, and writing post status
           console.log(txHash);
         });
       });
