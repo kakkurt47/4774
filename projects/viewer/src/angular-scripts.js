@@ -1,3 +1,4 @@
+process.browser = true;
 window.jQuery = window.$ = require('jquery/dist/jquery.min');
 [
   'froala-editor',
