@@ -361,7 +361,8 @@
               "projects/viewer/src/favicon.png",
               "projects/viewer/src/favicon.icns",
               "projects/viewer/src/favicon.256x256.png",
-              "projects/viewer/src/favicon.512x512.png"
+              "projects/viewer/src/favicon.512x512.png",
+              "projects/viewer/src/angular-scripts.js"
             ],
             "styles": [
               "projects/viewer/src/styles.scss",
@@ -376,24 +377,7 @@
               "node_modules/froala-editor/css/plugins/emoticons.min.css",
               "projects/viewer/src/theme/froala-theme.scss"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/froala-editor/js/froala_editor.min.js",
-              "node_modules/froala-editor/js/languages/ko.js",
-              "node_modules/froala-editor/js/plugins/link.min.js",
-              "node_modules/froala-editor/js/plugins/table.min.js",
-              "node_modules/froala-editor/js/plugins/url.min.js",
-              "node_modules/froala-editor/js/plugins/colors.min.js",
-              "node_modules/froala-editor/js/plugins/align.min.js",
-              "node_modules/froala-editor/js/plugins/emoticons.min.js",
-              "node_modules/froala-editor/js/plugins/font_size.min.js",
-              "node_modules/froala-editor/js/plugins/code_view.min.js",
-              "node_modules/froala-editor/js/plugins/lists.min.js",
-              "node_modules/froala-editor/js/plugins/paragraph_style.min.js",
-              "node_modules/froala-editor/js/plugins/image.min.js",
-              "node_modules/froala-editor/js/plugins/video.min.js",
-              "node_modules/froala-editor/js/plugins/image_manager.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
