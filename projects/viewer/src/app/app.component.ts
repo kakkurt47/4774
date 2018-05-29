@@ -12,6 +12,8 @@ import {ElectronService} from './providers/electron.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends BaseComponent {
+  currentTab: 'viewer' | 'wallet' = 'viewer';
+
   constructor(public electronService: ElectronService,
               @Inject(PLATFORM_ID) private platformId: any,
               private userActions: UserActions,

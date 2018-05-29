@@ -28,10 +28,10 @@ export const FroalaEditorOptions = {
   events: {
     'froalaEditor.image.uploaded': null,
     'froalaEditor.initialized': (e, editor) => {
-      console.log(editor);
+      // console.log(editor);
       editor.$box.find('.fr-toolbar').find('i').each((_, i) => {
         const $i = jQuery(i);
-        console.log($i);
+        // console.log($i);
 
         $i.removeClass('fa')
         // .addClass('fa-lg')

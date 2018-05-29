@@ -1,0 +1,56 @@
+:host {
+  background: #222;
+  display: block;
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
+
+  li {
+    position: relative;
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 15px;
+    color: #777;
+    transition: color 0.2s ease-in-out;
+
+    brand-icon-muzika {
+      fill: #777;
+      width: 55px;
+      margin: 0 auto;
+      transition: fill 0.2s ease-in-out;
+    }
+
+    .unread {
+      position: absolute;
+      right: -5px;
+      top: -9px;
+      background: #d61212;
+      color: #fff;
+      border-radius: 12px;
+      padding: 0 7px;
+      border: 2px solid #fff;
+      font-weight: bold;
+      font-size: 0.75rem;
+    }
+
+    &:hover {
+      color: #d8d8d8;
+
+      brand-icon-muzika {
+        fill: #d8d8d8;
+      }
+    }
+
+    &.active {
+      color: #fff;
+
+      brand-icon-muzika {
+        fill: #fff;
+      }
+    }
+  }
+}

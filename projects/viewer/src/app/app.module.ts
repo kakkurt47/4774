@@ -19,6 +19,7 @@ import {WalletModule} from '../modules/wallet/wallet.module';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {MuzikaAppsComponent} from './components/muzika-apps/muzika-apps.component';
 import {ArtistSheetComponent} from './components/artist-sheet/artist-sheet.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
@@ -30,6 +31,7 @@ import {MainPageComponent} from './pages/main/main.component';
 import {ElectronService} from './providers/electron.service';
 import {IpcRendererService} from './services/ipc-renderer.service';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
+import {MuzikaWalletProvider} from './services/muzika-wallet.provider';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,6 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    MuzikaAppsComponent,
+
     WebviewDirective,
 
     /* Reusable Components */
@@ -89,6 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     ElectronService,
     IpcRendererService,
+    MuzikaWalletProvider,
     {
       provide: PLATFORM_TYPE_TOKEN,
       useValue: 'electron'

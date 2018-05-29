@@ -14,7 +14,7 @@ export class NavbarComponent extends BaseComponent {
   currentUserObs: Observable<User>;
   currentUser: User;
 
-  constructor() {
+  constructor(private userActions: UserActions) {
     super();
   }
 
@@ -24,5 +24,9 @@ export class NavbarComponent extends BaseComponent {
         this.currentUser = user;
       })
     );
+  }
+
+  logout() {
+    this.userActions.logout();
   }
 }
