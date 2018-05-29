@@ -9,7 +9,7 @@
 
 | Packages                                   | Version              | Description                                         |
 | ------------------------------------------ | -------------------- | --------------------------------------------------- |
-| [`@muzika/core`](/projects/core)           | [![npm version](https://badge.fury.io/js/%40muzika%2Fcore.svg)](https://badge.fury.io/js/%40muzika%2Fcore)      | Muzika core module uses in every packages of Muzika |
-| [`@muzika/wallet`](/projects/wallet)       | *Not published*      | Muzika wallet web application                       |
-| [`@muzika/prototype`](/projects/prototype) | *Not published*      | Prototype for Muzika marketplace                    |
-| [`@muzika/viewer`](/projects/viewer)       | *Not published*      | Electron based sheet music viewer                   |
+| [`@muzika/core`](/projects/core)           | [![npm version](https://badge.fury.io/js/%40muzika%2Fcore.svg)](https://badge.fury.io/js/%40muzika%2Fcore)      | the implementation of smart contract usage interfaces which will be used in Muzika platform layer |
+| [`@muzika/wallet`](/projects/wallet)       | *Not published*      | Muzika wallet web application (deprecated - included to viewer)                       |
+| [`@muzika/prototype`](/projects/prototype) | *Not published*      | Prototype for Muzika marketplace (deprecated - included to viewer)                    |
+| [`@muzika/viewer`](/projects/viewer)       | *Not published*      | Muzika platform Minimum Viable Product (include platform-prototype / wallet)                 |
