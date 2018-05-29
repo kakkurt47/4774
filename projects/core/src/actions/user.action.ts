@@ -109,4 +109,25 @@ export class UserActions {
       concatMap(token => this.refreshMe())
     );
   }
+
+  logout() {
+    this.localStorage.removeItem('token');
+    this.store.dispatch({
+      type: UserActions.SET_CURRENT_USER,
+      payload: null
+    });
+    /*
+    // 게시글 좋아요 목록 리셋
+    this.store.dispatch({
+      type: UserActions.SET_BOARD_LIKES,
+      likes: {free: [], video: [], music: []}
+    });
+    // 댓글 좋아요 목록 리셋
+    this.store.dispatch({
+      type: UserActions.SET_COMMENT_LIKES,
+      likes: {free: [], video: [], music: []}
+    });
+    */
+  }
+
 }
