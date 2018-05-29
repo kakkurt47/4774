@@ -1,11 +1,10 @@
 import {isPlatformBrowser} from '@angular/common';
 import {Component, PLATFORM_ID, Inject, NgZone} from '@angular/core';
-import {BaseComponent} from '@muzika/core';
+import {BaseComponent, UserActions} from '@muzika/core';
 import {TranslateService} from '@ngx-translate/core';
 import {interval} from 'rxjs';
 import {environment} from '../environments/environment';
 import {ElectronService} from './providers/electron.service';
-import {UserActions} from '../../../core/src/actions/user.action';
 
 @Component({
   selector: 'app-root',
