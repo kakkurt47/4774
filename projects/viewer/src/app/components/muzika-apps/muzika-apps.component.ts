@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./muzika-apps.component.scss']
 })
 export class MuzikaAppsComponent {
-  @Output() onTabChange: EventEmitter<'viewer' | 'wallet'> = new EventEmitter();
+  @Output() tabChange: EventEmitter<'viewer' | 'wallet'> = new EventEmitter();
   currentTab: 'viewer' | 'wallet' = 'viewer';
 
   constructor(private router: Router,
@@ -16,6 +16,6 @@ export class MuzikaAppsComponent {
 
   changeTab(tab: 'viewer' | 'wallet') {
     this.currentTab = tab;
-    this.onTabChange.emit(tab);
+    this.tabChange.emit(tab);
   }
 }

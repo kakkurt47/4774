@@ -1,5 +1,5 @@
 <div class="apps">
-  <muzika-apps (onTabChange)="currentTab=$event"></muzika-apps>
+  <muzika-apps (tabChange)="currentTab=$event"></muzika-apps>
 </div>
 
 <div class="app-container h-100" [class.d-none]="currentTab !== 'viewer'">
