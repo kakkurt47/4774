@@ -36,15 +36,16 @@ class IpcMainService {
       const blockKey = new BlockKey('');
 
       request.post(
-        `${baseApiUrl}/api/paper/${contractAddress}/download`,
         {
+          url: `${baseApiUrl}/api/paper/${contractAddress}/download`,
+          encoding: null,
           json: {
             'public_key': blockKey.publicKey
           }
         },
         (error, response, body) => {
-          const encryptedKey = new Buffer(body.slice(0, 344), 'base64');
-          const encryptedData = new Buffer(body.slice(344), 'base64');
+          const encryptedKey = new Buffer(body.slice(0, 256));
+          const encryptedData = new Buffer(body.slice(256));
 
           const encryptedBlock = new Block(encryptedData, true, encryptedKey);
           const decryptedBlock = blockKey.decrypt(encryptedBlock);
@@ -66,15 +67,16 @@ class IpcMainService {
       const blockKey = new BlockKey('QmSgRcqRvLukaDzWZTw2kWrUD1eFukDRwJpbB2U4ayDwsz');
 
       request.post(
-        `${baseApiUrl}/test/paper/download`,
         {
+          url: `${baseApiUrl}/test/paper/download`,
+          encoding: null,
           json: {
             'public_key': blockKey.publicKey
           }
         },
         (error, response, body) => {
-          const encryptedKey = new Buffer(body.slice(0, 344), 'base64');
-          const encryptedData = new Buffer(body.slice(344), 'base64');
+          const encryptedKey = new Buffer(body.slice(0, 256));
+          const encryptedData = new Buffer(body.slice(256));
 
           const encryptedBlock = new Block(encryptedData, true, encryptedKey);
           const decryptedBlock = blockKey.decrypt(encryptedBlock);
