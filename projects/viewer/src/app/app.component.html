@@ -2,16 +2,14 @@
   <muzika-apps (tabChange)="currentTab=$event"></muzika-apps>
 </div>
 
-<div class="app-container h-100" [class.d-none]="currentTab !== 'viewer'">
+<div class="app-container h-100" [(ngClass)]="currentTab">
   <app-navbar></app-navbar>
 
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>
-</div>
-
-<div class="app-container h-100" [class.d-none]="currentTab !== 'wallet'">
-  <div class="main-content">
+  <div class="backdrop"></div>
+  <div class="wallet-content">
     <router-outlet name="wallet"></router-outlet>
   </div>
 </div>

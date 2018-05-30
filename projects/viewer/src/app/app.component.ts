@@ -12,7 +12,7 @@ import {ElectronService} from './providers/electron.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends BaseComponent {
-  currentTab: 'viewer' | 'wallet' = 'viewer';
+  currentTab: 'viewer' | 'wallet' | 'floating-wallet' = 'floating-wallet';
 
   constructor(public electronService: ElectronService,
               @Inject(PLATFORM_ID) private platformId: any,
