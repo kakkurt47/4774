@@ -26,12 +26,14 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {SpinnerComponent} from './components/spinner/spinner.component';
 
 import {WebviewDirective} from './directives/webview.directive';
+import {LoginPageComponent} from './pages/login/login.component';
 import {MainPageComponent} from './pages/main/main.component';
 
 import {ElectronService} from './providers/electron.service';
 import {IpcRendererService} from './services/ipc-renderer.service';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
-import {MuzikaWalletProvider} from './services/muzika-wallet.provider';
+import {MuzikaWalletProvider} from './providers/muzika-wallet.provider';
+import {TabService} from './services/tab.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -53,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     /* Page Components */
     MainPageComponent,
+    LoginPageComponent,
   ],
   imports: [
     /* Angular modules */
@@ -93,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     ElectronService,
     IpcRendererService,
+    TabService,
     MuzikaWalletProvider,
     {
       provide: PLATFORM_TYPE_TOKEN,

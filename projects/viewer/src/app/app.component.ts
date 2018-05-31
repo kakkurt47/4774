@@ -1,24 +1,31 @@
 import {isPlatformBrowser} from '@angular/common';
-import {Component, PLATFORM_ID, Inject, NgZone} from '@angular/core';
-import {BaseComponent, UserActions} from '@muzika/core';
+import {Component, PLATFORM_ID, Inject, NgZone, AfterViewInit, ChangeDetectorRef} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {BaseComponent, ExtendedWeb3, UserActions} from '@muzika/core';
 import {TranslateService} from '@ngx-translate/core';
 import {interval} from 'rxjs';
 import {environment} from '../environments/environment';
 import {ElectronService} from './providers/electron.service';
+import {MuzikaWalletProvider} from './providers/muzika-wallet.provider';
+import {MuzikaTabs, TabService} from './services/tab.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent extends BaseComponent {
-  currentTab: 'viewer' | 'wallet' | 'floating-wallet' = 'floating-wallet';
+export class AppComponent extends BaseComponent implements AfterViewInit {
+  currentTab: MuzikaTabs = 'viewer';
 
   constructor(public electronService: ElectronService,
               @Inject(PLATFORM_ID) private platformId: any,
               private userActions: UserActions,
               private zone: NgZone,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private web3: ExtendedWeb3,
+              private tabService: TabService,
+              private router: Router,
+              private walletProvider: MuzikaWalletProvider) {
     super();
     translate.setDefaultLang('en');
     console.log('AppConfig', environment);
@@ -47,5 +54,21 @@ export class AppComponent extends BaseComponent {
         this.userActions.refreshMe().subscribe();
       });
     }
+
+    this._sub.push(
+      this.tabService.tabChange.subscribe(tab => {
+        this.currentTab = tab;
+      })
+    );
+  }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.web3.setProvider(this.walletProvider);
+    }
+  }
+
+  closeFloating() {
+    this.tabService.changeTab('viewer');
   }
 }

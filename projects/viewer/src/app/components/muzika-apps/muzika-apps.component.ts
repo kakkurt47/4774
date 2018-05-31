@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {BaseComponent} from '@muzika/core';
+import {MuzikaTabs, TabService} from '../../services/tab.service';
 
 @Component({
   selector: 'muzika-apps',
@@ -8,11 +9,11 @@ import {BaseComponent} from '@muzika/core';
   styleUrls: ['./muzika-apps.component.scss']
 })
 export class MuzikaAppsComponent extends BaseComponent {
-  @Output() tabChange: EventEmitter<'viewer' | 'wallet' | 'floating-wallet'> = new EventEmitter();
-  currentTab: 'viewer' | 'wallet' | 'floating-wallet' = 'viewer';
+  currentTab: MuzikaTabs = 'viewer';
 
   constructor(private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private tabService: TabService) {
     super();
   }
 
@@ -24,15 +25,15 @@ export class MuzikaAppsComponent extends BaseComponent {
           // @TODO @brcps12 You should change this router url to signing url
           // (or change it to regex patterns of urls which should be shown as floating modal)
           if (event.url === '/(wallet:home)') {
-            this.changeTab('floating-wallet');
+            // this.changeTab('floating-wallet');
           }
         }
       })
     );
   }
 
-  changeTab(tab: 'viewer' | 'wallet' | 'floating-wallet') {
+  changeTab(tab: MuzikaTabs) {
     this.currentTab = tab;
-    this.tabChange.emit(tab);
+    this.tabService.changeTab(tab);
   }
 }
