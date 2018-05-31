@@ -27,6 +27,17 @@
     transition: background ease 0.3s;
   }
 
+  .wallet-content {
+    .floating-close {
+      position: absolute;
+      display: none;
+      right: 5px;
+      top: 0;
+      color: #929292;
+      cursor: pointer;
+    }
+  }
+
   &.wallet {
     app-navbar {
       display: none;
@@ -60,6 +71,10 @@
       position: absolute;
       left: 10%;
       top: 10%;
+
+      .floating-close {
+        display: block;
+      }
     }
 
     .backdrop {
