@@ -1,0 +1,35 @@
+<h3> IPFS Test </h3>
+
+<div class="row mx-0">
+  <div class="col">
+    <form (ngSubmit)="submitUpload()">
+      <h3 class="mb-4"> IPFS Upload </h3>
+
+      <label class="btn btn-primary mb-0">
+        <input type="file" class="d-none" id="ipfsFile" name="ipfsFile" (change)="changeFile($event)">
+        Select File
+      </label>
+
+      <div class="mt-4">
+        Hash: {{uploadedHash}}
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-success"> Upload </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col">
+    <form (ngSubmit)="submitDownload()">
+      <h3 class="mb-4"> IPFS Download </h3>
+
+      <input type="text" class="form-control" placeholder="IPFS File Hash"
+             id="ipfsHash" name="ipfsHash" [(ngModel)]="ipfsHash">
+
+      <div class="mt-4">
+        <button class="btn btn-success"> Download </button>
+      </div>
+    </form>
+  </div>
+</div>

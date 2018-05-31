@@ -15,6 +15,33 @@
   display: flex;
   flex-direction: column;
 
+  &:not(.viewer) {
+    app-navbar,
+    .main-content {
+      display: none;
+    }
+  }
+
+  &:not(.wallet) {
+    .wallet-content {
+      display: none;
+    }
+  }
+
+  &:not(.floating-wallet) {
+    .wallet-content {
+      .floating-close {
+        display: none;
+      }
+    }
+  }
+
+  &:not(.ipfs-test) {
+    .ipfs-content {
+      display: none;
+    }
+  }
+
   .main-content {
     height: 100%;
     flex-grow: 1;
@@ -30,7 +57,6 @@
   .wallet-content {
     .floating-close {
       position: absolute;
-      display: none;
       right: 5px;
       top: 0;
       color: #929292;
@@ -39,25 +65,11 @@
   }
 
   &.wallet {
-    app-navbar {
-      display: none;
-    }
-
-    .main-content {
-      display: none;
-    }
-
     .wallet-content {
       height: 100%;
       flex-grow: 1;
       overflow-y: auto;
       overflow-x: hidden;
-    }
-  }
-
-  &.viewer {
-    .wallet-content {
-      display: none;
     }
   }
 
@@ -72,10 +84,6 @@
       left: 10%;
       top: 10%;
       z-index: 11;
-
-      .floating-close {
-        display: block;
-      }
     }
 
     .backdrop {
@@ -88,8 +96,11 @@
       z-index: 10;
     }
   }
-}
 
+  .ipfs-content {
+    height: 100%;
+  }
+}
 
 .apps {
   width: 85px;

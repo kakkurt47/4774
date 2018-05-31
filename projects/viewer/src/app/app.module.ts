@@ -26,6 +26,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {SpinnerComponent} from './components/spinner/spinner.component';
 
 import {WebviewDirective} from './directives/webview.directive';
+import {IPFSTestPageComponent} from './pages/ipfs-test/ipfs-test.component';
 import {LoginPageComponent} from './pages/login/login.component';
 import {MainPageComponent} from './pages/main/main.component';
 
@@ -56,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     /* Page Components */
     MainPageComponent,
     LoginPageComponent,
+    IPFSTestPageComponent,
   ],
   imports: [
     /* Angular modules */
