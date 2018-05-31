@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BaseComponent} from '@muzika/core';
-import * as ethUtil from "ethereumjs-util";
+import * as ethUtil from 'ethereumjs-util';
 import * as ethWallet from 'ethereumjs-wallet';
 import {WalletStorageService} from '../../services/wallet-storage.service';
 

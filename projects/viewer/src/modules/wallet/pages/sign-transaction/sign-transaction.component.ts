@@ -2,8 +2,8 @@ import {TxData} from '@0xproject/types';
 import {Component} from '@angular/core';
 import {BaseComponent} from '@muzika/core';
 import {default as BigNumber} from 'bignumber.js';
-import * as EthTx from "ethereumjs-tx";
-import * as ethUtil from "ethereumjs-util";
+import * as EthTx from 'ethereumjs-tx';
+import * as ethUtil from 'ethereumjs-util';
 import {WalletStorageService} from '../../services/wallet-storage.service';
 
 @Component({

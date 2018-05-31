@@ -28,8 +28,8 @@ export class WalletHomeComponent implements OnInit {
     });
 
     // @TODO Signing is currently not allowed duplicated
-    let signMessageCnt = 0;
-    let signTransactionCnt = 0;
+    // let signMessageCnt = 0;
+    // let signTransactionCnt = 0;
     this.electronService.ipcRenderer.on('Wallet:signTransaction:request', (event, txData) => {
       this.zone.run(() => {
         try {
@@ -47,7 +47,7 @@ export class WalletHomeComponent implements OnInit {
           console.log('tx', txData);
           // event.sender.send('Wallet:signTransaction:received', null, '0x' + tx.serialize().toString('hex'));
           this.walletStorage.emitReadySignTransaction({event, txData});
-        } catch(e) {
+        } catch (e) {
           event.sender.send('Wallet:signTransaction:received', e);
         }
       });
@@ -60,7 +60,7 @@ export class WalletHomeComponent implements OnInit {
           const serialized = sigUtil.personalSign(privateKey, msgParams);
           // event.sender.send('Wallet:signPersonalMessage:received', null, serialized);
           this.walletStorage.emitReadySignMessage({event, msgParams});
-        } catch(e) {
+        } catch (e) {
           event.sender.send('Wallet:signPersonalMessage:received', e);
         }
       });

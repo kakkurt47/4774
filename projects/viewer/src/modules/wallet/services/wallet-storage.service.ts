@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {LocalStorage} from '@muzika/core';
-import * as ethUtil from "ethereumjs-util";
+import * as ethUtil from 'ethereumjs-util';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 
