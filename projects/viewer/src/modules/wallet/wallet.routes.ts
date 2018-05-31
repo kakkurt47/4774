@@ -1,13 +1,23 @@
 
 import {WalletHomeComponent} from './pages/home/home.component';
-import {LoginPageComponent} from './pages/login/login.component';
 import {Routes, RouterModule} from '@angular/router';
+import {WalletSignPersonalMessageComponent} from './pages/sign-personal-message/sign-personal-message.component';
+import {WalletSignTransactionComponent} from './pages/sign-transaction/sign-transaction.component';
+import {WalletListComponent} from './pages/wallet-list/wallet-list.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginPageComponent },
-  { path: '', pathMatch: 'full', redirectTo: '/(wallet:home)'},
-  { path: 'home', component: WalletHomeComponent, outlet: 'wallet' },
-  { path: '**', component: WalletHomeComponent, outlet: 'wallet' }
+  { path: 'home', component: WalletListComponent },
+  { path: 'sign-message', component: WalletSignPersonalMessageComponent },
+  { path: 'sign-transaction', component: WalletSignTransactionComponent },
+  // { path: '**', component: WalletHomeComponent }
 ];
 
-export const WalletRoutesModule = RouterModule.forRoot(routes, {useHash: true});
+export const WalletRoutesModule = RouterModule.forRoot([
+  { path: '', pathMatch: 'full', redirectTo: '/(wallet:home)'},
+  {
+    path: '',
+    outlet: 'wallet',
+    component: WalletHomeComponent,
+    children: [...routes]
+  }
+], {useHash: true});

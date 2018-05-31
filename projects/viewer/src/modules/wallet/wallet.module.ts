@@ -9,7 +9,11 @@ import {WalletLedgerComponent} from './components/wallet-ledger/wallet-ledger.co
 import {WalletMetamaskComponent} from './components/wallet-metamask/wallet-metamask.component';
 import {WalletPrivateKeyComponent} from './components/wallet-private-key/wallet-private-key.component';
 import {WalletHomeComponent} from './pages/home/home.component';
-import {LoginPageComponent} from './pages/login/login.component';
+import {WalletSignPersonalMessageComponent} from './pages/sign-personal-message/sign-personal-message.component';
+import {WalletSignTransactionComponent} from './pages/sign-transaction/sign-transaction.component';
+import {WalletListComponent} from './pages/wallet-list/wallet-list.component';
+import {HexToNumberPipe} from './pipes/hexToNumber.pipe';
+import {WalletStorageService} from './services/wallet-storage.service';
 import {WalletRoutesModule} from './wallet.routes';
 
 @NgModule({
@@ -22,14 +26,19 @@ import {WalletRoutesModule} from './wallet.routes';
     MuzikaCoreModule,
   ],
   declarations: [
-    LoginPageComponent,
-
     WalletHomeComponent,
     WalletPrivateKeyComponent,
     WalletKeystoreComponent,
     WalletAddressOnlyComponent,
     WalletLedgerComponent,
     WalletMetamaskComponent,
+    WalletListComponent,
+    WalletSignPersonalMessageComponent,
+    WalletSignTransactionComponent,
+    HexToNumberPipe,
+  ],
+  providers: [
+    WalletStorageService
   ]
 })
 export class WalletModule {
