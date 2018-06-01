@@ -4,7 +4,6 @@ import {UsersMock} from './users';
 /* tslint:disable */
 const contentHtmlMock = `
 <div>
-   <h1>Baculum aut dea obliquis conchis hac iram</h1>
    <h2>Fama illi per posse dentibus at creatus</h2>
    <p>Lorem markdownum responsa <a href="http://dissipat-pars.org/peteretipso.php">aequor</a>, in bos pater florebat et articulos ideoque crescunt, ortus passimque nefanda <strong>fatifero</strong>? Erysicthone quinquennem quisque loqui saxum unca ingrato partem consulit miseranda induit, dolor, deae. Editus utque est erit <strong>audit studioque quae</strong>: et vacuus parabat nostris! Obliquum omnesque, roganti scitis me verum.</p>
    <blockquote>
@@ -78,6 +77,7 @@ function createSheet(post_id: number, title: string, author: User): SheetPost {
     tags: [],
     price: rand() * 100,
     created_at: '2018-05-13 16:04:24',
+    contractAddress: '0x02d641B94FF290F2f993CD5D0C5d562EF1710aA6'
   };
 }
 

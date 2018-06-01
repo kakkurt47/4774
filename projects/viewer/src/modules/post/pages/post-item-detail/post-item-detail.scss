@@ -93,3 +93,12 @@
     }
   }
 }
+
+.attached {
+  padding-top: 8px;
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,19 +1,38 @@
 <div class="bg-white mb-4">
-  <div class="row">
-    <div class="col-8">
+  <div class="row mx-0">
+    <div class="col-8 px-0">
       <section id="blog" class="blog border">
         <article class="post">
           <app-post-item-detail-header [post]="post"></app-post-item-detail-header>
 
           <header>
-            <h1 itemprop="headline">{{post.title}}</h1>
+            <h5 itemprop="headline">{{post.title}}</h5>
           </header>
 
           <main [froalaView]="post.content"></main>
         </article>
       </section>
     </div>
+
+    <div class="col-4">
+      <div class="attached">
+        <h4> Contract Address </h4>
+        <p> {{post.contractAddress}} </p>
+
+        <h4> Price </h4>
+        <p> {{post.price | number}} MZK </p>
+
+        <div class="text-center">
+          <ng-container *ngIf="!isPurchased">
+            <button type="button" class="btn btn-primary" (click)="purchase()"> Purchase </button>
+          </ng-container>
+          <ng-container *ngIf="isPurchased">
+            <button type="button" class="btn btn-primary" disabled> Already Purchased </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <app-post-comment boardType="free"></app-post-comment>
+  <app-post-comment boardType="sheet"></app-post-comment>
 </div>
