@@ -45,7 +45,7 @@ export class PostSheetItemDetailComponent extends BaseComponent {
   }
 
   ngOnInit() {
-    this.paper = this.muzikaPaper.at(this.post.contractAddress);
+    this.paper = this.muzikaPaper.at(this.post.contract_address);
 
     this._sub.push(
       this.currentUserObs.subscribe(async user => {
@@ -71,13 +71,13 @@ export class PostSheetItemDetailComponent extends BaseComponent {
 
     try {
       const estimateGas = await coin.increaseApprovalAndCall.estimateGas(
-        this.post.contractAddress,
+        this.post.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address}
       );
       await coin.increaseApprovalAndCall(
-        this.post.contractAddress,
+        this.post.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address, gas: estimateGas + 30000}
