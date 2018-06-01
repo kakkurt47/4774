@@ -1,9 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
 import {BlockWithTransactionData, Provider as Web3Provider} from '@0xproject/types';
 import * as ProviderEngine from 'web3-provider-engine';
-import * as CacheSubprovider from'web3-provider-engine/subproviders/cache';
-import * as FilterSubprovider from'web3-provider-engine/subproviders/filters';
-import * as HookedWalletEthTxSubprovider from'web3-provider-engine/subproviders/hooked-wallet-ethtx';
+import * as CacheSubprovider from 'web3-provider-engine/subproviders/cache';
+import * as FilterSubprovider from 'web3-provider-engine/subproviders/filters';
+import * as HookedWalletEthTxSubprovider from 'web3-provider-engine/subproviders/hooked-wallet-ethtx';
 import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {IMuzikaCoin} from '../../../../core/src/contracts/interface/MuzikaCoin';
 import {WalletStorageService} from './services/wallet-storage.service';

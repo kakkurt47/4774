@@ -99,7 +99,7 @@ export class WalletListComponent extends BaseComponent {
     }
 
     this.alertService.confirm(
-      "Are you sure to transfer? Please make sure that you provided information is correct.",
+      'Are you sure to transfer? Please make sure that you provided information is correct.',
       async () => {
         this._submitted = true;
         try {
