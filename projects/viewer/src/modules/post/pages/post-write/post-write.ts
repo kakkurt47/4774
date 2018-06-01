@@ -11,7 +11,7 @@ import {
   LocalStorage,
   MuzikaContractService,
   PostActions,
-  SheetPost,
+  SheetPost, unitDown,
   User,
   VideoPost
 } from '@muzika/core';
@@ -276,7 +276,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     if (prepared !== null) {
       this.contractService.createNewPaperContract(
         this.currentUser.address,
-        prepared.price,
+        unitDown(prepared.price),
         prepared.ipfs_hash,
         prepared.original_hash
       ).subscribe(txHash => {
