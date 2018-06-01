@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class WalletStorageService {
-  private _stateChange: Subject<boolean> = new BehaviorSubject(true);
+  private _stateChange: Subject<boolean> = new BehaviorSubject(false);
   private _eventSignPersonalMessage: Subject<any> = new BehaviorSubject(null);
   private _eventSignTransaction: Subject<any> = new BehaviorSubject(null);
 
@@ -37,7 +37,7 @@ export class WalletStorageService {
   get walletsObs(): Observable<string[]> {
     return this._stateChange.asObservable().pipe(
       map(() => {
-        return JSON.parse(this.localStorage.getItem('wallets'));
+        return JSON.parse(this.localStorage.getItem('wallets', '[]'));
       })
     );
   }
