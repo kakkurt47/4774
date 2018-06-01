@@ -8,9 +8,15 @@
 
     <div *ngIf="accounts.length > 0" class="wallet-list">
       <ul class="account-list list-group">
-        <li *ngFor="let address of accounts" class="list-group-item"
-            (click)="selectedAccount = address" [class.active]="selectedAccount === address">
-          {{address}}
+        <li *ngFor="let account of accounts" class="list-group-item"
+            (click)="selectAccount(account.address)" [class.active]="selectedAccount === account.address">
+          <div class="address">
+            {{account.address}}
+          </div>
+          <div class="balances d-flex justify-content-between">
+            <span> {{account.eth | number}} ETH </span>
+            <span> {{account.mzk | number}} MZK </span>
+          </div>
         </li>
       </ul>
     </div>
@@ -37,13 +43,13 @@
 
         <div class="form-group">
           <div class="font-weight-bold"> To </div>
-          <input type="text" class="form-control" id="txTo" name="txTo" [(ngModel)]="tx.to">
+          <input type="text" class="form-control" id="txTo" name="txTo" [(ngModel)]="tx.to" (blur)="estimate()">
         </div>
 
         <div class="form-group">
           <div class="font-weight-bold"> Amount </div>
           <div class="input-group">
-            <input type="number" class="form-control" id="txValue" name="txValue" [(ngModel)]="tx.value">
+            <input type="number" class="form-control" id="txValue" name="txValue" [(ngModel)]="tx.value" (blur)="estimate()">
             <div class="input-group-append input-group-text">
               MZK
             </div>
@@ -57,10 +63,28 @@
 
         <div class="form-group">
           <div class="font-weight-bold"> Gas Price </div>
-          <input type="number" class="form-control" id="txGasPrice" name="txGasPrice" [(ngModel)]="tx.gasPrice">
+          <div class="input-group">
+            <input type="number" class="form-control" id="txGasPrice" name="txGasPrice" [(ngModel)]="tx.gasPrice">
+            <div class="input-group-append input-group-text">
+              Gwei
+            </div>
+          </div>
         </div>
 
         <button class="btn btn-primary float-right" (click)="sendMZK()"> Sign &amp; Send </button>
+
+        <div class="clearfix"></div>
+
+        <div *ngIf="sentTxHash" class="text-center">
+          <h3> <i class="fa fa-check text-success"></i> </h3>
+          <h4> Broadcast success </h4>
+
+          <table class="table">
+            <tr>
+              <td> <a href="#" (click)="$event.preventDefault();goScan(sentTxHash)"> {{sentTxHash}} </a> </td>
+            </tr>
+          </table>
+        </div>
       </div>
 
       <div *ngIf="!selectedAccount" class="no-messages">
