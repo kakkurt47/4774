@@ -3,6 +3,7 @@ import {BaseComponent, promisify, toBigNumber, unitDown, unitUp} from '@muzika/c
 import * as ethUtil from 'ethereumjs-util';
 import * as ethWallet from 'ethereumjs-wallet';
 import {createTruffleMuzikaCoin, IMuzikaCoin} from '../../../../../../core/src/contracts/interface/MuzikaCoin';
+import {ElectronService} from '../../../../app/providers/electron.service';
 import {AlertService} from '../../../alert/alert.service';
 import {WalletStorageService} from '../../services/wallet-storage.service';
 import {Web3WalletProvider} from '../../wallet.provider';
@@ -35,7 +36,8 @@ export class WalletListComponent extends BaseComponent {
   constructor(private walletStorage: WalletStorageService,
               private walletProvider: Web3WalletProvider,
               private alertService: AlertService,
-              private zone: NgZone) {
+              private zone: NgZone,
+              private electronService: ElectronService) {
     super();
     walletProvider.create(block => {
       zone.run(() => {
@@ -156,6 +158,17 @@ export class WalletListComponent extends BaseComponent {
 
     return promisify(this.walletProvider.sendAsync.bind(this.walletProvider), params).then(v => {
       return toBigNumber(v.result).toString(10);
+    });
+  }
+
+  goScan(txHash: string) {
+    this.electronService.shell.openExternal(`https://ropsten.etherscan.io/tx/${txHash}`);
+  }
+
+  importWallet() {
+    // @TODO Now only for private key
+    this.alertService.prompt('Enter the wallet private key', (key) => {
+      this.walletStorage.addWallet(key);
     });
   }
 
