@@ -63,7 +63,7 @@ export interface I${typeName} extends TruffleContractInstance {
               func.outputs,
             )}>, sendTransaction: (${inputParamsWithTxParam}) => Promise<string>, call: (${inputParamsWithTxParam}) => Promise<${codeGenForOutputTypeList(
               func.outputs,
-            )}>, request: (${inputParams}) => Promise<string>, estimateGas: (${inputParams}) => Promise<number> }`;
+            )}>, request: (${inputParams}) => Promise<string>, estimateGas: (${inputParamsWithTxParam}) => Promise<number> }`;
           })
           .join(";\n")} 
 }

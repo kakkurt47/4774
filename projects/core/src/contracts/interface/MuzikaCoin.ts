@@ -36,7 +36,7 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   mint: {
     (_to: EtherAddress, _amount: EtherInteger, txParams?: ITxParams): Promise<
@@ -53,28 +53,32 @@ export interface IMuzikaCoin extends TruffleContractInstance {
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (_to: EtherAddress, _amount: EtherInteger) => Promise<string>;
-    estimateGas: (_to: EtherAddress, _amount: EtherInteger) => Promise<number>;
+    estimateGas: (
+      _to: EtherAddress,
+      _amount: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   renounceOwnership: {
     (txParams?: ITxParams): Promise<void>;
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   finishMinting: {
     (txParams?: ITxParams): Promise<boolean>;
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<boolean>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   pause: {
     (txParams?: ITxParams): Promise<void>;
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
@@ -84,7 +88,10 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     ) => Promise<string>;
     call: (newOwner: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (newOwner: EtherAddress) => Promise<string>;
-    estimateGas: (newOwner: EtherAddress) => Promise<number>;
+    estimateGas: (
+      newOwner: EtherAddress,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   freezeAddress: {
     (_target: EtherAddress, txParams?: ITxParams): Promise<void>;
@@ -94,7 +101,10 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     ) => Promise<string>;
     call: (_target: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (_target: EtherAddress) => Promise<string>;
-    estimateGas: (_target: EtherAddress) => Promise<number>;
+    estimateGas: (
+      _target: EtherAddress,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   unfreezeAddress: {
     (_target: EtherAddress, txParams?: ITxParams): Promise<void>;
@@ -104,7 +114,10 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     ) => Promise<string>;
     call: (_target: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (_target: EtherAddress) => Promise<string>;
-    estimateGas: (_target: EtherAddress) => Promise<number>;
+    estimateGas: (
+      _target: EtherAddress,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   burn: {
     (_value: EtherInteger, txParams?: ITxParams): Promise<void>;
@@ -114,7 +127,10 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     ) => Promise<string>;
     call: (_value: EtherInteger, txParams?: ITxParams) => Promise<void>;
     request: (_value: EtherInteger) => Promise<string>;
-    estimateGas: (_value: EtherInteger) => Promise<number>;
+    estimateGas: (
+      _value: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   transfer: {
     (_to: EtherAddress, _value: EtherInteger, txParams?: ITxParams): Promise<
@@ -131,7 +147,11 @@ export interface IMuzikaCoin extends TruffleContractInstance {
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (_to: EtherAddress, _value: EtherInteger) => Promise<string>;
-    estimateGas: (_to: EtherAddress, _value: EtherInteger) => Promise<number>;
+    estimateGas: (
+      _to: EtherAddress,
+      _value: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   transferFrom: {
     (
@@ -160,7 +180,8 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     estimateGas: (
       _from: EtherAddress,
       _to: EtherAddress,
-      _value: EtherInteger
+      _value: EtherInteger,
+      txParams?: ITxParams
     ) => Promise<number>;
   };
   approve: {
@@ -182,7 +203,8 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     request: (_spender: EtherAddress, _value: EtherInteger) => Promise<string>;
     estimateGas: (
       _spender: EtherAddress,
-      _value: EtherInteger
+      _value: EtherInteger,
+      txParams?: ITxParams
     ) => Promise<number>;
   };
   increaseApproval: {
@@ -207,7 +229,8 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     ) => Promise<string>;
     estimateGas: (
       _spender: EtherAddress,
-      _addedValue: EtherInteger
+      _addedValue: EtherInteger,
+      txParams?: ITxParams
     ) => Promise<number>;
   };
   decreaseApproval: {
@@ -232,7 +255,8 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     ) => Promise<string>;
     estimateGas: (
       _spender: EtherAddress,
-      _subtractedValue: EtherInteger
+      _subtractedValue: EtherInteger,
+      txParams?: ITxParams
     ) => Promise<number>;
   };
   increaseApprovalAndCall: {
@@ -262,7 +286,8 @@ export interface IMuzikaCoin extends TruffleContractInstance {
     estimateGas: (
       _spender: EtherAddress,
       _addedValue: EtherInteger,
-      _data: string
+      _data: string,
+      txParams?: ITxParams
     ) => Promise<number>;
   };
 }

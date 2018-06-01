@@ -32,7 +32,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
@@ -42,7 +42,10 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     ) => Promise<string>;
     call: (newOwner: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (newOwner: EtherAddress) => Promise<string>;
-    estimateGas: (newOwner: EtherAddress) => Promise<number>;
+    estimateGas: (
+      newOwner: EtherAddress,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   updateExchangeRatio: {
     (_ratio: EtherInteger, txParams?: ITxParams): Promise<boolean>;
@@ -52,7 +55,10 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     ) => Promise<string>;
     call: (_ratio: EtherInteger, txParams?: ITxParams) => Promise<boolean>;
     request: (_ratio: EtherInteger) => Promise<string>;
-    estimateGas: (_ratio: EtherInteger) => Promise<number>;
+    estimateGas: (
+      _ratio: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   reward: {
     (_to: EtherAddress, _amount: EtherInteger, txParams?: ITxParams): Promise<
@@ -69,7 +75,11 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
       txParams?: ITxParams
     ) => Promise<boolean>;
     request: (_to: EtherAddress, _amount: EtherInteger) => Promise<string>;
-    estimateGas: (_to: EtherAddress, _amount: EtherInteger) => Promise<number>;
+    estimateGas: (
+      _to: EtherAddress,
+      _amount: EtherInteger,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   exchange: {
     (_to: EtherAddress, txParams?: ITxParams): Promise<boolean>;
@@ -79,7 +89,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     ) => Promise<string>;
     call: (_to: EtherAddress, txParams?: ITxParams) => Promise<boolean>;
     request: (_to: EtherAddress) => Promise<string>;
-    estimateGas: (_to: EtherAddress) => Promise<number>;
+    estimateGas: (_to: EtherAddress, txParams?: ITxParams) => Promise<number>;
   };
   exchangeFromAddresses: {
     (_people: string[], txParams?: ITxParams): Promise<boolean>;
@@ -89,7 +99,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     ) => Promise<string>;
     call: (_people: string[], txParams?: ITxParams) => Promise<boolean>;
     request: (_people: string[]) => Promise<string>;
-    estimateGas: (_people: string[]) => Promise<number>;
+    estimateGas: (_people: string[], txParams?: ITxParams) => Promise<number>;
   };
 }
 

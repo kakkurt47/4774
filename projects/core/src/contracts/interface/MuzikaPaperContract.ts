@@ -33,7 +33,7 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   transferOwnership: {
     (newOwner: EtherAddress, txParams?: ITxParams): Promise<void>;
@@ -43,21 +43,24 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     ) => Promise<string>;
     call: (newOwner: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (newOwner: EtherAddress) => Promise<string>;
-    estimateGas: (newOwner: EtherAddress) => Promise<number>;
+    estimateGas: (
+      newOwner: EtherAddress,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   soldOut: {
     (txParams?: ITxParams): Promise<void>;
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   resale: {
     (txParams?: ITxParams): Promise<void>;
     sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
-    estimateGas: () => Promise<number>;
+    estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
   purchase: {
     (_buyer: EtherAddress, txParams?: ITxParams): Promise<boolean>;
@@ -67,7 +70,10 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     ) => Promise<string>;
     call: (_buyer: EtherAddress, txParams?: ITxParams) => Promise<boolean>;
     request: (_buyer: EtherAddress) => Promise<string>;
-    estimateGas: (_buyer: EtherAddress) => Promise<number>;
+    estimateGas: (
+      _buyer: EtherAddress,
+      txParams?: ITxParams
+    ) => Promise<number>;
   };
   receiveApproval: {
     (
@@ -101,7 +107,8 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
       _owner: EtherAddress,
       arg1: EtherInteger,
       arg2: EtherAddress,
-      arg3: string
+      arg3: string,
+      txParams?: ITxParams
     ) => Promise<number>;
   };
 }
