@@ -30,7 +30,7 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
 
   renounceOwnership: {
     (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
     estimateGas: () => Promise<number>;
@@ -40,21 +40,21 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     sendTransaction: (
       newOwner: EtherAddress,
       txParams?: ITxParams
-    ) => Promise<void>;
+    ) => Promise<string>;
     call: (newOwner: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (newOwner: EtherAddress) => Promise<string>;
     estimateGas: (newOwner: EtherAddress) => Promise<number>;
   };
   soldOut: {
     (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
     estimateGas: () => Promise<number>;
   };
   resale: {
     (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
     estimateGas: () => Promise<number>;
@@ -64,7 +64,7 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     sendTransaction: (
       _buyer: EtherAddress,
       txParams?: ITxParams
-    ) => Promise<boolean>;
+    ) => Promise<string>;
     call: (_buyer: EtherAddress, txParams?: ITxParams) => Promise<boolean>;
     request: (_buyer: EtherAddress) => Promise<string>;
     estimateGas: (_buyer: EtherAddress) => Promise<number>;
@@ -83,7 +83,7 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
       arg2: EtherAddress,
       arg3: string,
       txParams?: ITxParams
-    ) => Promise<boolean>;
+    ) => Promise<string>;
     call: (
       _owner: EtherAddress,
       arg1: EtherInteger,

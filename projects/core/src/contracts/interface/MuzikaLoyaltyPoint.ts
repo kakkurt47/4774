@@ -29,7 +29,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
 
   renounceOwnership: {
     (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<void>;
+    sendTransaction: (txParams?: ITxParams) => Promise<string>;
     call: (txParams?: ITxParams) => Promise<void>;
     request: () => Promise<string>;
     estimateGas: () => Promise<number>;
@@ -39,7 +39,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     sendTransaction: (
       newOwner: EtherAddress,
       txParams?: ITxParams
-    ) => Promise<void>;
+    ) => Promise<string>;
     call: (newOwner: EtherAddress, txParams?: ITxParams) => Promise<void>;
     request: (newOwner: EtherAddress) => Promise<string>;
     estimateGas: (newOwner: EtherAddress) => Promise<number>;
@@ -49,7 +49,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     sendTransaction: (
       _ratio: EtherInteger,
       txParams?: ITxParams
-    ) => Promise<boolean>;
+    ) => Promise<string>;
     call: (_ratio: EtherInteger, txParams?: ITxParams) => Promise<boolean>;
     request: (_ratio: EtherInteger) => Promise<string>;
     estimateGas: (_ratio: EtherInteger) => Promise<number>;
@@ -62,7 +62,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
       _to: EtherAddress,
       _amount: EtherInteger,
       txParams?: ITxParams
-    ) => Promise<boolean>;
+    ) => Promise<string>;
     call: (
       _to: EtherAddress,
       _amount: EtherInteger,
@@ -76,7 +76,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     sendTransaction: (
       _to: EtherAddress,
       txParams?: ITxParams
-    ) => Promise<boolean>;
+    ) => Promise<string>;
     call: (_to: EtherAddress, txParams?: ITxParams) => Promise<boolean>;
     request: (_to: EtherAddress) => Promise<string>;
     estimateGas: (_to: EtherAddress) => Promise<number>;
@@ -86,7 +86,7 @@ export interface IMuzikaLoyaltyPoint extends TruffleContractInstance {
     sendTransaction: (
       _people: string[],
       txParams?: ITxParams
-    ) => Promise<boolean>;
+    ) => Promise<string>;
     call: (_people: string[], txParams?: ITxParams) => Promise<boolean>;
     request: (_people: string[]) => Promise<string>;
     estimateGas: (_people: string[]) => Promise<number>;
