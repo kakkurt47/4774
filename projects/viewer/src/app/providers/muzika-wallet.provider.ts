@@ -1,26 +1,48 @@
 import {Provider as Web3Provider, TxData} from '@0xproject/types';
-import {Inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs/internal/Observable';
+import {Inject, Injectable, NgZone} from '@angular/core';
+import {Router} from '@angular/router';
 import * as ProviderEngine from 'web3-provider-engine';
 import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import * as HookedWalletSubprovider from 'web3-provider-engine/subproviders/hooked-wallet';
-import {ElectronService} from '../providers/electron.service';
+import * as FiltersSubprovider from 'web3-provider-engine/subproviders/filters';
+import {TabService} from '../services/tab.service';
+import {ElectronService} from './electron.service';
 
 @Injectable()
 export class MuzikaWalletProvider implements Web3Provider {
   private engine: ProviderEngine;
 
   constructor(@Inject('RPC_URL') private rpcUrl: string,
-              private electronService: ElectronService) {
+              private electronService: ElectronService,
+              private tabService: TabService,
+              private zone: NgZone,
+              private router: Router) {
     const rpcProvider = new RpcSubprovider({rpcUrl});
 
     const opts = {
-      getAccounts: this.getAccounts,
-      signTransaction: this.signTransaction,
-      signPersonalMessage: this.signPersonalMessage
+      getAccounts: (cb: (error, ...args) => any) => {
+        this.zone.run(() => {
+          this.getAccounts(cb);
+        });
+      },
+      signTransaction: (txData: TxData, cb: (error, ...args) => any) => {
+        this.zone.run(() => {
+          this.tabService.changeTab('floating-wallet');
+          this.router.navigate([{outlets: {wallet: 'sign-transaction'}}]);
+          this.signTransaction(txData, cb);
+        });
+      },
+      signPersonalMessage: (msgParams: any, cb: (error, ...args) => any) => {
+        this.zone.run(() => {
+          this.tabService.changeTab('floating-wallet');
+          this.router.navigate([{outlets: {wallet: 'sign-message'}}]);
+          this.signPersonalMessage(msgParams, cb);
+        });
+      }
     };
 
     this.engine = new ProviderEngine({pollingInterval: 10000});
+    this.engine.addProvider(new FiltersSubprovider());
     this.engine.addProvider(new HookedWalletSubprovider(opts));
     this.engine.addProvider(rpcProvider);
     this.engine.start(); // Required by the provider engine.
@@ -49,25 +71,27 @@ export class MuzikaWalletProvider implements Web3Provider {
     this.electronService.ipcRenderer.send('Wallet:getAccounts');
   }
 
-  private signTransaction(txParams: TxData, cb: (error, ...args) => any): void {
+  private signTransaction(txData: TxData, cb: (error, ...args) => any): void {
     this.electronService.ipcRenderer.once('Wallet:signTransaction', (events, error, signed) => {
+      this.tabService.changeTab('viewer');
       if (error) {
         cb(error);
       } else {
         cb(null, signed);
       }
     });
-    this.electronService.ipcRenderer.send('Wallet:signTransaction');
+    this.electronService.ipcRenderer.send('Wallet:signTransaction', txData);
   }
 
   private signPersonalMessage(msgParams: any, cb: (error, ...args) => any): void {
     this.electronService.ipcRenderer.once('Wallet:signPersonalMessage', (events, error, signed) => {
+      this.tabService.changeTab('viewer');
       if (error) {
         cb(error);
       } else {
         cb(null, signed);
       }
     });
-    this.electronService.ipcRenderer.send('Wallet:signPersonalMessage');
+    this.electronService.ipcRenderer.send('Wallet:signPersonalMessage', msgParams);
   }
 }

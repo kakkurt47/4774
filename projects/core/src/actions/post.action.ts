@@ -3,7 +3,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/internal/operators';
+import {map} from 'rxjs/operators';
 import {APIConfig, ParamsBuilder} from '../config';
 import {BasePost, InfPaginationResult, PaginationResult, PostRef} from '../models';
 import {IAppState} from '../reducers';
@@ -24,6 +24,9 @@ export class PostActions {
               private apiConfig: APIConfig,
               private userActions: UserActions,
               @Inject(PLATFORM_ID) private platformId) {
+  }
+  write(boardType, post): Observable<any> {
+    return this.apiConfig.post(`/board/${boardType}`, post);
   }
 
   loadPost(boardType, boardID) {

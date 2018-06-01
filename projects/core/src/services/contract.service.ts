@@ -41,7 +41,7 @@ export class MuzikaContractService {
     /* Generate txData for creating paper contract */
 
     /* Get accounts */
-    const accounts = await promisify(this.web3.eth.getAccounts);
+    // const accounts = await promisify(this.web3.eth.getAccounts);
 
     /* Detect network automatically (set to networkId) */
     await this.dispatcher.detectNetwork();
@@ -62,7 +62,7 @@ export class MuzikaContractService {
     gasPrice = gasPrice || '14000000000'; // 14Gwei
 
     return await promisify(this.web3.eth.sendTransaction, {
-      from: accounts[0],
+      from: seller,
       data, gas, gasPrice
     });
   }

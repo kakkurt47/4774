@@ -7,7 +7,7 @@ export class IpfsService {
   // define remote node for promoting file exchange
   // the remote node should have webrtc-star or websocket-star address and support circuit relay.
   // reference : https://github.com/ipfs/js-ipfs/tree/master/examples/circuit-relaying
-  remoteStorage = '/ip4/127.0.0.1/tcp/4004/ws/ipfs/QmdP8ATHxW1zLJ897aawkstbibRhyAXyLhDpc2STJUKqtg';
+  remoteStorage = '/ip4/52.78.36.21/tcp/4004/ws/ipfs/QmSMbmF2oZhVuu77vV7iWKiuBuEH6npAJYamq7Kgor5Eow';
   isReady = false;
 
   constructor() {
@@ -21,6 +21,14 @@ export class IpfsService {
           Swarm: [
             '/ip4/0.0.0.0/tcp/4004/ws'
           ]
+        },
+        'EXPERIMENTAL': {
+          'relay': {
+            'enabled': true,
+            'hop': {
+              'enabled': true
+            }
+          }
         },
         Swarm: {
           DisableRelay: false,

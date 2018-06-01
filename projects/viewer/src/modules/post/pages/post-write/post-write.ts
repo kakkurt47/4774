@@ -1,7 +1,18 @@
+import {select} from '@angular-redux/store';
 import {Component, EventEmitter, Injector} from '@angular/core';
+import {Router} from '@angular/router';
 import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
 import {
-  APIConfig, BaseComponent, BasePost, CommunityPost, ExtendedWeb3, LocalStorage, MuzikaContractService, promisify, SheetPost,
+  APIConfig,
+  BaseComponent,
+  BasePost,
+  CommunityPost,
+  ExtendedWeb3,
+  LocalStorage,
+  MuzikaContractService,
+  PostActions,
+  SheetPost, unitDown,
+  User,
   VideoPost
 } from '@muzika/core';
 import {NgForm} from '@angular/forms';
@@ -108,6 +119,10 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     price: 0,
   };
 
+  @select(['user', 'currentUser'])
+  currentUserObs: Observable<User>;
+  currentUser: User;
+
   songType: '~cover' | '~original' = '~original';
 
   genreSelections = GenreSelections;
@@ -132,8 +147,18 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
               private apiConfig: APIConfig,
               private localStorage: LocalStorage,
               private web3: ExtendedWeb3,
-              private contractService: MuzikaContractService) {
+              private contractService: MuzikaContractService,
+              private router: Router,
+              private postActions: PostActions) {
     super(injector);
+  }
+
+  ngOnInit() {
+    this._sub.push(
+      this.currentUserObs.subscribe(user => {
+        this.currentUser = user;
+      })
+    );
   }
 
   toggleGenre(value: string) {
@@ -196,6 +221,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       ...Array.from(this.instruments.values())
     ];
 
+    prepared.file_id = this.uploadStatus.fileId;
     prepared.ipfs_hash = this.uploadStatus.ipfsFileHash;
     // @TODO calculate file hash
     // suggestion: hash calculated from node backend, using raw level code like c implementation
@@ -248,15 +274,19 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     const prepared = <SheetPost>this.prepare(form);
 
     if (prepared !== null) {
-      promisify(this.web3.eth.getAccounts).then(accounts => {
-        this.contractService.createNewPaperContract(
-          accounts[0],
-          prepared.price,
-          prepared.ipfs_hash,
-          prepared.original_hash
-        ).subscribe(txHash => {
-          // @TODO implement page to see txHash where paper contract is created at, and writing post status
-          console.log(txHash);
+      this.contractService.createNewPaperContract(
+        this.currentUser.address,
+        unitDown(prepared.price),
+        prepared.ipfs_hash,
+        prepared.original_hash
+      ).subscribe(txHash => {
+        this.postActions.write('sheet', prepared).subscribe(() => {
+          this.router.navigate(['/board/sheet/write/complete'], {
+            queryParams: {
+              txHash: txHash,
+              title: prepared.title
+            }
+          });
         });
       });
     }

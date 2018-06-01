@@ -61,9 +61,7 @@ export interface I${typeName} extends TruffleContractInstance {
             const inputParamsWithTxParam = [...params, 'txParams?: ITxParams'].join(", ");
             return `${func.name}: { (${inputParamsWithTxParam}): Promise<${codeGenForOutputTypeList(
               func.outputs,
-            )}>, sendTransaction: (${inputParamsWithTxParam}) => Promise<${codeGenForOutputTypeList(
-              func.outputs,
-            )}>, call: (${inputParamsWithTxParam}) => Promise<${codeGenForOutputTypeList(
+            )}>, sendTransaction: (${inputParamsWithTxParam}) => Promise<string>, call: (${inputParamsWithTxParam}) => Promise<${codeGenForOutputTypeList(
               func.outputs,
             )}>, request: (${inputParams}) => Promise<string>, estimateGas: (${inputParams}) => Promise<number> }`;
           })

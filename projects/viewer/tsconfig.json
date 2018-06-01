@@ -24,6 +24,7 @@
     "paths": {
       "stream": ["../../node_modules/stream-browserify/index.js"],
       "vm": ["../../node_modules/vm-browserify/index.js"],
+      "crypto": ["../../node_modules/crypto-browserify/index.js"],
       "@muzika/core": ["../core/index.ts"]
     }
   },

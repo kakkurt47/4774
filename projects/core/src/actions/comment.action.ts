@@ -1,12 +1,10 @@
 import {NgRedux} from '@angular-redux/store';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/internal/operators';
-import {APIConfig} from '../config/api.config';
-import {ParamsBuilder} from '../config/params.builder';
-import {PostComment} from '../models/comment';
-import {PaginationResult} from '../models/pagination';
-import {IAppState} from '../reducers/index';
+import {map} from 'rxjs/operators';
+import {APIConfig, ParamsBuilder} from '../config';
+import {PaginationResult, PostComment} from '../models';
+import {IAppState} from '../reducers';
 import {UserActions} from './user.action';
 
 @Injectable()

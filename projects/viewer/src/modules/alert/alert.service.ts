@@ -12,4 +12,8 @@ export class AlertService {
   alert(...args) {
     return this.alertify.alert(...args);
   }
+
+  confirm(...args) {
+    return this.alertify.confirm(...args);
+  }
 }

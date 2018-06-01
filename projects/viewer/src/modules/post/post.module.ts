@@ -15,6 +15,7 @@ import {
 } from './pages/post-item-detail/post-item-detail';
 import {PostCommunityListComponent, PostSheetListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {PostCommunityModifyComponent, PostSheetModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
+import {PostSheetWriteCompleteComponent} from './pages/post-write-complete/sheet/post-sheet-write-complete.component';
 import {PostCommunityWriteComponent, PostSheetWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
 import {AppPostRouteModule} from './post.routes';
 import {YoutubeVideoCellComponent} from './components/youtube-video-cell/youtube-video-cell.component';
@@ -57,6 +58,7 @@ import {NgUploaderModule} from 'ngx-uploader';
     PostSheetItemDetailComponent,
     PostSheetWriteComponent,
     PostSheetModifyComponent,
+    PostSheetWriteCompleteComponent,
 
     PostVideoListComponent,
     PostVideoItemDetailComponent,

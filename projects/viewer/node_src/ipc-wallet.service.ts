@@ -22,21 +22,21 @@ class IpcWalletService {
     });
 
     /* For signTransaction */
-    ipcMain.on('Wallet:signTransaction', (event) => {
-      event.sender.send('Wallet:signTransaction:request');
+    ipcMain.on('Wallet:signTransaction', (event, txData) => {
+      event.sender.send('Wallet:signTransaction:request', txData);
     });
 
-    ipcMain.on('Wallet:signTransaction:received', (event, error, accounts) => {
-      event.sender.send('Wallet:signTransaction', error, accounts);
+    ipcMain.on('Wallet:signTransaction:received', (event, error, signed) => {
+      event.sender.send('Wallet:signTransaction', error, signed);
     });
 
     /* For signPersonalMessage */
-    ipcMain.on('Wallet:signPersonalMessage', (event) => {
-      event.sender.send('Wallet:signPersonalMessage:request');
+    ipcMain.on('Wallet:signPersonalMessage', (event, msgParams) => {
+      event.sender.send('Wallet:signPersonalMessage:request', msgParams);
     });
 
-    ipcMain.on('Wallet:signPersonalMessage:received', (event, error, accounts) => {
-      event.sender.send('Wallet:signPersonalMessage', error, accounts);
+    ipcMain.on('Wallet:signPersonalMessage:received', (event, error, signed) => {
+      event.sender.send('Wallet:signPersonalMessage', error, signed);
     });
   }
 }

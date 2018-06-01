@@ -5,11 +5,13 @@ import {
   PostCommunityItemDetailComponent, PostSheetItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
+import {PostSheetWriteCompleteComponent} from './pages/post-write-complete/sheet/post-sheet-write-complete.component';
 import {PostCommunityWriteComponent, PostSheetWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
 import {PostCommunityModifyComponent, PostSheetModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
 const routes: Routes = [
   { path: 'board/community/write', component: PostCommunityWriteComponent },
   { path: 'board/sheet/write', component: PostSheetWriteComponent },
+  { path: 'board/sheet/write/complete', component: PostSheetWriteCompleteComponent },
   { path: 'board/video/write', component: PostVideoWriteComponent },
 
   { path: 'board/community/modify', component: PostCommunityModifyComponent },

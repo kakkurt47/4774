@@ -1,0 +1,17 @@
+<div *ngIf="currentMsg" style="width: 80%">
+  <h4> Signer </h4>
+
+  <p> {{currentMsg.from}} </p>
+
+  <h4> Message </h4>
+
+  <div>
+    <textarea rows="8" readonly>{{currentMsg.data}}</textarea>
+  </div>
+
+  <button class="btn btn-primary float-right" (click)="sign()"> Sign </button>
+</div>
+
+<div *ngIf="!currentMsg" class="no-messages">
+  There are no messages to sign
+</div>

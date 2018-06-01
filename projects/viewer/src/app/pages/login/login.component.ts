@@ -1,10 +1,7 @@
 import {Component, QueryList, ViewChildren} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {BaseComponent, promisify, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core';
-import * as _alertify from 'alertify.js';
 import {Router} from '@angular/router';
-
-const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 
 @Component({
   selector: 'app-page-login',
@@ -13,6 +10,8 @@ const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 })
 export class LoginPageComponent extends BaseComponent {
   currentWalletProvider = 'private';
+  selectedAccount: string;
+  accounts: string[];
 
   @ViewChildren(NgForm)
   forms: QueryList<NgForm>;
@@ -26,10 +25,16 @@ export class LoginPageComponent extends BaseComponent {
 
   ngOnInit() {
     super.ngOnInit();
+    promisify(this.web3.eth.getAccounts).then(accounts => {
+      this.accounts = accounts;
+    });
   }
 
 
   login() {
-    this.userActions.login('metamask').subscribe();
+    // this.userActions.login('metamask').subscribe();
+    this.userActions.login(this.selectedAccount).subscribe(user => {
+      console.log(user);
+    });
   }
 }
