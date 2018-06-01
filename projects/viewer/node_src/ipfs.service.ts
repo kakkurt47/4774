@@ -1,13 +1,11 @@
 import * as IPFS from 'ipfs';
 import {Observable, throwError} from 'rxjs';
+import * as request from 'request';
+import {baseApiUrl} from '../../core/src/config/api.constant';
 
 export class IpfsService {
   node: IPFS;
-
-  // define remote node for promoting file exchange
-  // the remote node should have webrtc-star or websocket-star address and support circuit relay.
-  // reference : https://github.com/ipfs/js-ipfs/tree/master/examples/circuit-relaying
-  remoteStorage = '/ip4/52.78.36.21/tcp/4004/ws/ipfs/QmSMbmF2oZhVuu77vV7iWKiuBuEH6npAJYamq7Kgor5Eow';
+  muzikaPeers: string[] = [];
   isReady = false;
 
   constructor() {
@@ -19,7 +17,7 @@ export class IpfsService {
       config: {
         Addresses: {
           Swarm: [
-            '/ip4/0.0.0.0/tcp/4004/ws'
+            '/ip4/0.0.0.0/tcp/4004/ws',
           ]
         },
         'EXPERIMENTAL': {
@@ -39,13 +37,24 @@ export class IpfsService {
 
     // if ipfs node generated, connect to a remote storage for speeding up file exchange.
     this.node.on('ready', () => {
-      this.node.swarm.connect(this.remoteStorage, (err) => {
-        if (err) {
-          console.log(err);
+      // get IPFS nodes list
+      request.get({
+        url: `${baseApiUrl}/seed/ipfs`,
+        json: true
+        },
+        (error, response, body) => {
+          for (const ipfsNode of body) {
+            this.node.swarm.connect(ipfsNode.ID, (err) => {
+              if (err) {
+                console.log(err);
+              }
+              // if one of the IPFS is connected, ready status to true
+              this.muzikaPeers.push(ipfsNode.APIServer);
+              this.isReady = true;
+            });
+          }
         }
-
-        this.isReady = true;
-      });
+      );
     });
   }
 
@@ -107,21 +116,25 @@ export class IpfsService {
     });
   }
 
-  put(blob) {
-    return Observable.create(observer => {
-      try {
-        // this.node.add();
-        this.node.files.add(blob, (err, result) => {
-          if (err) {
-            throw throwError('Failed to upload file to IPFS');
-          }
-          observer.next(result);
-          observer.complete();
-        });
-      } catch (e) {
-        throw throwError(e);
-      }
-    });
+  put(blob, callback) {
+    if (callback) {
+      this.node.files.add(blob, (err, result) => callback(err, result));
+    } else {
+      return Observable.create(observer => {
+        try {
+          // this.node.add();
+          this.node.files.add(blob, (err, result) => {
+            if (err) {
+              throw throwError('Failed to upload file to IPFS');
+            }
+            observer.next(result);
+            observer.complete();
+          });
+        } catch (e) {
+          throw throwError(e);
+        }
+      });
+    }
   }
 
   get(hash) {
@@ -138,6 +151,10 @@ export class IpfsService {
         throw throwError(e);
       }
     });
+  }
+
+  getRandomPeer() {
+    return this.muzikaPeers[Math.floor(Math.random() * this.muzikaPeers.length)];
   }
 }
 
