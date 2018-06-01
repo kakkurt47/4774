@@ -23,7 +23,7 @@ export function toBigNumber (value: number | string | BigNumber): BigNumber {
   }
 
   if (typeof value === 'string' && (value.indexOf('0x') === 0 || value.indexOf('-0x') === 0)) {
-    return new BigNumber(value.replace('0x',''), 16);
+    return new BigNumber(value.replace('0x', ''), 16);
   }
 
   return new BigNumber(value.toString(), 10);

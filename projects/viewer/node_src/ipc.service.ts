@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as tempfile from 'tempfile';
 import {BlockKey} from './block/block-key';
 import {Block} from './block/block';
+import {IpfsServiceInstance} from './ipfs.service';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -92,6 +93,25 @@ class IpcMainService {
         }
       );
 
+    });
+
+    ipcMain.on('File:uploadByIPFS', (event, blob) => {
+      const ipfs = IpfsServiceInstance;
+      ipfs.put(blob, (err, result) => {
+        const helper = ipfs.getRandomPeer();
+        request.post({
+          url: `${helper}/api/file/${result[0].hash}`,
+          json: true
+          },
+          (peerRequestError, res, body) => {
+            if (body && body.status === 'success') {
+              event.sender.send('File:uploadedByIPFS', peerRequestError, result[0].hash);
+            } else {
+              event.sender.send('File:uploadedByIPFS', peerRequestError, null);
+            }
+          }
+        );
+      });
     });
   }
 }
