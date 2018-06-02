@@ -78,7 +78,7 @@ import { ExtendedWeb3 } from '../web3.provider';
 
 ${importString.join('\n')}
 
-${contractNames.map(name => `export { ${name} } from './interface/${name}'`).join(';\n')}
+${contractNames.map(name => `export { ${name}, I${name} } from './interface/${name}'`).join(';\n')}
 
 ${contractNames.map(name => `
 export const ${name}ProviderFactory = (web3: ExtendedWeb3, platformId: string) => {
