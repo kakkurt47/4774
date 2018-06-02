@@ -30,7 +30,7 @@ export class PostActions {
   }
 
   loadPost(boardType, boardID) {
-    this.apiConfig.get<BasePost>(`/post/${boardType}/${boardID}`)
+    this.apiConfig.get<BasePost>(`/board/${boardType}/${boardID}`)
       .subscribe(
         (post) => {
           this.savePost(boardType, post);
@@ -127,7 +127,7 @@ export class PostActions {
 
   loadAdditional(boardType: string, boardID: number, is_modify: boolean): Observable<any> {
     return this.apiConfig
-      .get(`/post/${boardType}/${boardID}/additional`, {
+      .get(`/board/${boardType}/${boardID}/additional`, {
         params: ParamsBuilder.from({is_modify})
       })
       .pipe(
@@ -166,7 +166,7 @@ export class PostActions {
 
   private requestPosts(boardType: string, dispatchType: string, params: Object) {
     this.apiConfig
-      .get<PaginationResult<BasePost> | InfPaginationResult<BasePost>>(`/post/${boardType}`, {
+      .get<PaginationResult<BasePost> | InfPaginationResult<BasePost>>(`/board/${boardType}`, {
         params: ParamsBuilder.from(params)
       })
       .subscribe((data: any) => {

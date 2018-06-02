@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {CommunityPost, SheetPost, VideoPost} from '@muzika/core';
+import {BaseComponent, CommunityPost, PaginationResult, PostActions, SheetPost, VideoPost} from '@muzika/core';
 import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {CommunityTagsMock, SheetTagsMock, VideoTagsMock} from '../../../../mock/tags';
+import {select} from '@angular-redux/store';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-post-list-community',
@@ -19,9 +21,30 @@ export class PostCommunityListComponent {
   templateUrl: './sheet/post-sheet.component.html',
   styleUrls: ['./post-list.scss', './sheet/post-sheet.component.scss']
 })
-export class PostSheetListComponent {
+export class PostSheetListComponent extends BaseComponent {
   tags: string[] = SheetTagsMock;
-  posts: SheetPost[] = SheetPostsMock;
+
+  @select(['post', 'posts', 'sheet'])
+  postsObs: Observable<PaginationResult<SheetPost>>;
+  posts: PaginationResult<SheetPost>;
+
+  constructor(private postActions: PostActions) {
+    super();
+  }
+
+  ngOnInit() {
+    this._sub.push(
+      this.postsObs.subscribe(posts => {
+        this.posts = posts;
+      })
+    );
+
+    this.loadPosts(1);
+  }
+
+  loadPosts(page?: string | number) {
+    this.postActions.loadPosts('sheet', page.toString(), {});
+  }
 }
 
 @Component({

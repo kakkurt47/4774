@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let post of posts">
+            <tr *ngFor="let post of posts.list">
               <td> <a [routerLink]="[post.post_id]"> {{post.title}} </a> </td>
               <td> {{post.author.name}} </td>
               <td> {{post.views}} </td>
@@ -35,6 +35,9 @@
             </tbody>
           </table>
         </div>
+
+        <muzika-pagination [pages]="posts?.page" (pageClick)="loadPosts($event)"
+                           class="text-center"></muzika-pagination>
       </div>
     </div>
   </div>
