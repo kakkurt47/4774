@@ -6,6 +6,7 @@ import {Block} from './block/block';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
+import {StorageServiceInstance} from './storage.service';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -24,10 +25,13 @@ class IpcMainService {
       // @TODO controls already downloaded file before
       request.post(
         {
-          url: `${electronEnvironment.base_api_url}/api/paper/${contractAddress}/download`,
+          url: `${electronEnvironment.base_api_url}/paper/${contractAddress}/download`,
           encoding: null,
           json: {
             'public_key': blockKey.publicKey
+          },
+          headers: {
+            Authorization: `Bearer ${StorageServiceInstance.get('token')}`
           }
         },
         (error, response, body) => {
@@ -38,17 +42,24 @@ class IpcMainService {
           const decryptedBlock = blockKey.decrypt(encryptedBlock);
 
           const blob = decryptedBlock.data;
-          const url = URL.createObjectURL(blob);
-          const pdfWindow = new BrowserWindow({
-            width: 1024,
-            height: 800,
-            webPreferences: {
-              plugins: true,
-            },
-          });
-          pdfWindow.loadURL(url);
 
-          event.sender.send('PDFViewer:opened', url);
+          const filename = tempfile();
+          fs.writeFile(filename, blob, (err) => {
+            if (err) {
+              return;
+            }
+
+            const pdfWindow = new BrowserWindow({
+              width: 1024,
+              height: 800,
+              webPreferences: {
+                plugins: true,
+              },
+            });
+            pdfWindow.loadURL(filename);
+
+            event.sender.send('PDFViewer:opened', filename);
+          });
         }
       );
     });

@@ -4,6 +4,7 @@ import * as url from 'url';
 import {IpcWalletServiceInstance} from './projects/viewer/node_src/ipc-wallet.service';
 import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
 import {IpcMainServiceInstance} from './projects/viewer/node_src/ipc.service';
+import {StorageServiceInstance} from './projects/viewer/node_src/storage.service';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -73,6 +74,7 @@ try {
     IpfsServiceInstance.init();
     IpcMainServiceInstance.init();
     IpcWalletServiceInstance.init();
+    StorageServiceInstance.init();
   });
 
   // Quit when all windows are closed.

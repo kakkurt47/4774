@@ -17,6 +17,7 @@ export class ElectronService {
   childProcess: typeof childProcess;
   fs: typeof fs;
   ipfs: typeof ipfs;
+  storage: { get: (key: string) => any, set: (key: string, value: any) => void, remove: (key: string) => void };
 
   constructor() {
     // Conditional imports
@@ -25,6 +26,7 @@ export class ElectronService {
       this.webFrame = window.require('electron').webFrame;
       this.remote = window.require('electron').remote;
       this.shell = window.require('electron').shell;
+      this.storage = window.require('electron').remote.getGlobal('muzikaStorage');
 
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');

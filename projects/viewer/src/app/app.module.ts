@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN, SharedModule} from '@muzika/core';
+import {LocalStorage, MuzikaCoreModule, PLATFORM_TYPE_TOKEN, SharedModule} from '@muzika/core';
 // NG Translate
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -35,6 +35,7 @@ import {IpcRendererService} from './services/ipc-renderer.service';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
 import {MuzikaWalletProvider} from './providers/muzika-wallet.provider';
 import {TabService} from './services/tab.service';
+import {ElectronLocalStorage} from './services/electron-localstorage.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -103,6 +104,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     {
       provide: PLATFORM_TYPE_TOKEN,
       useValue: 'electron'
+    },
+    {
+      provide: LocalStorage,
+      useClass: ElectronLocalStorage
     }
   ],
   bootstrap: [AppComponent]
