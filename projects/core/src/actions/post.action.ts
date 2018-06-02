@@ -30,23 +30,6 @@ export class PostActions {
     return this.apiConfig.post(`/board/${boardType}`, post);
   }
 
-  loadPost(boardType, boardID) {
-    this.apiConfig.get<BasePost>(`/board/${boardType}/${boardID}`)
-      .subscribe(
-        (post) => {
-          this.savePost(boardType, post);
-          this.visit(boardType, +boardID);
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.log('An error occurred:', err.error.message);
-          } else {
-            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-          }
-        });
-  }
-
   visit(boardType: string, boardID: number) {
     if (isPlatformBrowser(this.platformId)) { // Server side rendering에서는 업데이트 안함
       this.apiConfig
@@ -76,6 +59,19 @@ export class PostActions {
     return this.apiConfig.delete(`/board/${boardType}/${boardID}`);
   }
 
+  purchase(isFree: number, boardID: number, payType: 'pdf' | 'point' | 'cash') {
+    if (isFree === 0) {
+      return this.apiConfig.get<any>(`/post/product-buy/${boardID}`, {
+        params: ParamsBuilder.from({payType})
+      });
+    } else {
+      return this.apiConfig
+        .get<any>(`/post/paper-buy/${boardID}`, {
+          params: ParamsBuilder.from({payType})
+        });
+    }
+  }
+
   violation(boardType, boardID, commentID, reason: string) {
     // return this.http
     //   .post<any>(this.apiConfig.legacy_api_url, {
@@ -102,6 +98,23 @@ export class PostActions {
     });
   }
 
+  loadPost(boardType, boardID) {
+    this.apiConfig.get<BasePost>(`/board/${boardType}/${boardID}`)
+      .subscribe(
+        (post) => {
+          this.savePost(boardType, post);
+          this.visit(boardType, +boardID);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.log('An error occurred:', err.error.message);
+          } else {
+            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          }
+        });
+  }
+
   loadInfPosts(boardType: string, mode: string, params: Object) {
     const currentPosts: InfPaginationResult<BasePost> = this.store.getState().post.infPosts[boardType];
     if (mode === 'after' && currentPosts.after !== null) {
@@ -117,13 +130,6 @@ export class PostActions {
   loadPosts(boardType: string, page: string, params: Object) {
     params['page'] = page;
     this.requestPosts(boardType, PostActions.INSERT_POSTS_LIST, params);
-  }
-
-  savePosts(boardType: string, posts: BasePost[], update_column: string) {
-    this.store.dispatch({
-      type: PostActions.SAVE_POSTS,
-      boardType, posts, update_column
-    });
   }
 
   loadAdditional(boardType: string, boardID: number, is_modify: boolean): Observable<any> {
@@ -142,19 +148,6 @@ export class PostActions {
           return data;
         })
       );
-  }
-
-  purchase(isFree: number, boardID: number, payType: 'pdf' | 'point' | 'cash') {
-    if (isFree === 0) {
-      return this.apiConfig.get<any>(`/post/product-buy/${boardID}`, {
-        params: ParamsBuilder.from({payType})
-      });
-    } else {
-      return this.apiConfig
-        .get<any>(`/post/paper-buy/${boardID}`, {
-          params: ParamsBuilder.from({payType})
-        });
-    }
   }
 
   private savePost(boardType: string, post: BasePost, update_column = 'all') {
