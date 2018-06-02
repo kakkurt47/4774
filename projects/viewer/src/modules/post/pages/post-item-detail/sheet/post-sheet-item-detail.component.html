@@ -1,4 +1,4 @@
-<div class="bg-white mb-4">
+<div class="bg-white mb-4" *ngIf="post">
   <div class="row mx-0">
     <div class="col-8 px-0">
       <section id="blog" class="blog border">
@@ -27,7 +27,7 @@
             <button type="button" class="btn btn-primary" (click)="purchase()"> Purchase </button>
           </ng-container>
           <ng-container *ngIf="isPurchased">
-            <button type="button" class="btn btn-primary" disabled> Already Purchased </button>
+            <button type="button" class="btn btn-primary" (click)="sheetView()"> View </button>
           </ng-container>
         </div>
       </div>

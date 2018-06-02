@@ -17,19 +17,40 @@ class IpcMainService {
   }
 
   init() {
-    ipcMain.on('PDFViewer:open', (event, ipfs_url) => {
-      const blob = ipfs_url; // TODO: @ksw must rewrite it to blob (download from ipfs_url)
-      const url = URL.createObjectURL(blob);
-      const pdfWindow = new BrowserWindow({
-        width: 1024,
-        height: 800,
-        webPreferences: {
-          plugins: true,
-        },
-      });
-      pdfWindow.loadURL(url);
+    ipcMain.on('PDFViewer:open', (event, contractAddress) => {
+      // TODO: get file hash from contract address
+      const blockKey = new BlockKey('');
 
-      event.sender.send('PDFViewer:opened', url);
+      // @TODO controls already downloaded file before
+      request.post(
+        {
+          url: `${electronEnvironment.base_api_url}/api/paper/${contractAddress}/download`,
+          encoding: null,
+          json: {
+            'public_key': blockKey.publicKey
+          }
+        },
+        (error, response, body) => {
+          const encryptedKey = new Buffer(body.slice(0, 256));
+          const encryptedData = new Buffer(body.slice(256));
+
+          const encryptedBlock = new Block(encryptedData, true, encryptedKey);
+          const decryptedBlock = blockKey.decrypt(encryptedBlock);
+
+          const blob = decryptedBlock.data;
+          const url = URL.createObjectURL(blob);
+          const pdfWindow = new BrowserWindow({
+            width: 1024,
+            height: 800,
+            webPreferences: {
+              plugins: true,
+            },
+          });
+          pdfWindow.loadURL(url);
+
+          event.sender.send('PDFViewer:opened', url);
+        }
+      );
     });
 
     ipcMain.on('File:download', (event, contractAddress) => {

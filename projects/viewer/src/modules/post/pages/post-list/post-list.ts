@@ -36,6 +36,7 @@ export class PostSheetListComponent extends BaseComponent {
     this._sub.push(
       this.postsObs.subscribe(posts => {
         this.posts = posts;
+        console.log(posts);
       })
     );
 

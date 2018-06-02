@@ -29,8 +29,8 @@ export class IpcRendererService {
     }
   }
 
-  openPDFViewer(ipfs_url) {
-    this.electronService.ipcRenderer.send('PDFViewer:open', ipfs_url);
+  openPDFViewer(contractAddress) {
+    this.electronService.ipcRenderer.send('PDFViewer:open', contractAddress);
   }
 
   downloadFile(contractAddress) {
