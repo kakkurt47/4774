@@ -12,7 +12,6 @@ install:
 
   - git submodule update --init --recursive
   - git submodule foreach --recursive git submodule update --init
-  - mv muzika-contract/config/truffle.provider.example.js muzika-contract/config/truffle.provider.js
   - cd muzika-contract/ && npm install && cd ../
 script:
   - npm run contract:compile
