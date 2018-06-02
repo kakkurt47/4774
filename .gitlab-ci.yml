@@ -53,6 +53,7 @@ test:contract:
     - git submodule update --init --recursive
     - git submodule foreach --recursive git submodule update --init
   script:
+    - mv muzika-contract/config/truffle.provider.example.js muzika-contract/config/truffle.provider.js
     - npm run contract:compile
     - npm run lint
     - npm run build:core
