@@ -27,10 +27,16 @@ export class WalletStorageService {
   addWallet(privateKey: string): void {
     const currentState: string[] = JSON.parse(this.localStorage.getItem('wallets', '[]'));
 
-    if (currentState.indexOf(privateKey) === -1 && ethUtil.isValidPrivate(ethUtil.toBuffer(privateKey))) {
-      currentState.push(privateKey);
-      this.localStorage.setItem('wallets', JSON.stringify(currentState));
-      this._stateChange.next(true);
+    if (ethUtil.isValidPrivate(ethUtil.toBuffer(privateKey))) {
+      if (currentState.indexOf(privateKey) === -1) {
+        currentState.push(privateKey);
+        this.localStorage.setItem('wallets', JSON.stringify(currentState));
+        this._stateChange.next(true);
+      } else {
+        alert('Already exists in your wallets');
+      }
+    } else {
+      alert('Invalid Private key');
     }
   }
 

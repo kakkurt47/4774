@@ -53,6 +53,7 @@ export class WalletListComponent extends BaseComponent {
   }
 
   ngOnInit() {
+    super.ngOnInit();
     this._sub.push(
       this.walletStorage.walletsObs.subscribe(privateKeys => {
         this.accounts = privateKeys.map(key => {
