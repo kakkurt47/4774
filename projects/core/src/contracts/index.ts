@@ -9,10 +9,10 @@ import { MuzikaCoin, createTruffleMuzikaCoin } from './interface/MuzikaCoin';
 import { MuzikaLoyaltyPoint, createTruffleMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
 import { MuzikaPaperContract, createTruffleMuzikaPaperContract } from './interface/MuzikaPaperContract';
 
-export { Dispatcher, IDispatcher } from './interface/Dispatcher';
-export { MuzikaCoin, IMuzikaCoin } from './interface/MuzikaCoin';
-export { MuzikaLoyaltyPoint, IMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
-export { MuzikaPaperContract, IMuzikaPaperContract } from './interface/MuzikaPaperContract'
+export { Dispatcher, IDispatcher, createTruffleDispatcher } from './interface/Dispatcher';
+export { MuzikaCoin, IMuzikaCoin, createTruffleMuzikaCoin } from './interface/MuzikaCoin';
+export { MuzikaLoyaltyPoint, IMuzikaLoyaltyPoint, createTruffleMuzikaLoyaltyPoint } from './interface/MuzikaLoyaltyPoint';
+export { MuzikaPaperContract, IMuzikaPaperContract, createTruffleMuzikaPaperContract } from './interface/MuzikaPaperContract'
 
 
 export const DispatcherProviderFactory = (web3: ExtendedWeb3, platformId: string) => {

@@ -1,5 +1,5 @@
 import {Component, NgZone} from '@angular/core';
-import {BaseComponent, promisify, toBigNumber, unitDown, unitUp, MuzikaCoin, IMuzikaCoin} from '@muzika/core';
+import {BaseComponent, promisify, toBigNumber, unitDown, unitUp, IMuzikaCoin, createTruffleMuzikaCoin} from '@muzika/core';
 import * as ethUtil from 'ethereumjs-util';
 import * as ethWallet from 'ethereumjs-wallet';
 import {ElectronService} from '../../../../app/providers/electron.service';
@@ -35,7 +35,6 @@ export class WalletListComponent extends BaseComponent {
   constructor(private walletStorage: WalletStorageService,
               private walletProvider: Web3WalletProvider,
               private alertService: AlertService,
-              private muzikaCoin: MuzikaCoin,
               private zone: NgZone,
               private electronService: ElectronService) {
     super();
@@ -45,8 +44,9 @@ export class WalletListComponent extends BaseComponent {
       });
     });
 
-    this.muzikaCoin.setProvider(walletProvider);
-    this.muzikaCoin.deployed().then(deployed => {
+    const MuzikaCoin = createTruffleMuzikaCoin();
+    MuzikaCoin.setProvider(walletProvider);
+    MuzikaCoin.deployed().then(deployed => {
       this.coin = deployed;
       this.loadBalances();
     });

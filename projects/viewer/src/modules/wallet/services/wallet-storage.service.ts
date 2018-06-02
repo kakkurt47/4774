@@ -27,6 +27,7 @@ export class WalletStorageService {
   addWallet(privateKey: string): void {
     const currentState: string[] = JSON.parse(this.localStorage.getItem('wallets', '[]'));
 
+    privateKey = ethUtil.addHexPrefix(privateKey);
     if (ethUtil.isValidPrivate(ethUtil.toBuffer(privateKey))) {
       if (currentState.indexOf(privateKey) === -1) {
         currentState.push(privateKey);

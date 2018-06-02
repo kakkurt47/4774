@@ -2,7 +2,7 @@ import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
 import {
   BaseComponent,
-  CommunityPost,
+  CommunityPost, IMuzikaPaperContract,
   MuzikaCoin,
   MuzikaPaperContract,
   SheetPost,
@@ -11,7 +11,6 @@ import {
   VideoPost
 } from '@muzika/core';
 import {Observable} from 'rxjs/internal/Observable';
-import {IMuzikaPaperContract} from '../../../../../../core/src/contracts/interface/MuzikaPaperContract';
 import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {AlertService} from '../../../alert/alert.service';
 

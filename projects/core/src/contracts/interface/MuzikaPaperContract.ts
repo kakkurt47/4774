@@ -55,13 +55,6 @@ export interface IMuzikaPaperContract extends TruffleContractInstance {
     request: () => Promise<string>;
     estimateGas: (txParams?: ITxParams) => Promise<number>;
   };
-  resale: {
-    (txParams?: ITxParams): Promise<void>;
-    sendTransaction: (txParams?: ITxParams) => Promise<string>;
-    call: (txParams?: ITxParams) => Promise<void>;
-    request: () => Promise<string>;
-    estimateGas: (txParams?: ITxParams) => Promise<number>;
-  };
   purchase: {
     (_buyer: EtherAddress, txParams?: ITxParams): Promise<boolean>;
     sendTransaction: (
