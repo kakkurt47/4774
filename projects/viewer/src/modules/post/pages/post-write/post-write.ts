@@ -222,7 +222,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     ];
 
     prepared.file_id = this.uploadStatus.fileId;
-    prepared.file_name =this.uploadStatus.fileName;
+    prepared.file_name = this.uploadStatus.fileName;
     prepared.ipfs_hash = this.uploadStatus.ipfsFileHash;
     // @TODO calculate file hash
     // suggestion: hash calculated from node backend, using raw level code like c implementation
