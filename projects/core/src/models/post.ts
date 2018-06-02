@@ -25,18 +25,16 @@ export interface VideoPost extends BasePost {
 }
 
 export interface SheetPost extends BasePost {
-  price: number | string;
-  file_id?: number;
-  file_name?: string;
-  tx_hash?: string;
-  ipfs_hash?: string;
-  original_hash?: string;
-  contract_address?: string;
+  price?: number | string;
+  sheet_music?: SheetMusic;
 }
 
 export interface SheetMusic {
-  sheet_id: number;
-  title: string;
-  price: number;
-  author: User;
+  paper_id: number;
+  file_id: number;
+  name: string;
+  ipfs_file_hash: string;
+  tx_hash: string;
+  contract_address?: string;
+  original_hash?: string;
 }

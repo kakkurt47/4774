@@ -10,7 +10,7 @@ import {
   ExtendedWeb3,
   LocalStorage,
   MuzikaContractService,
-  PostActions,
+  PostActions, SheetMusic,
   SheetPost, unitDown,
   User,
   VideoPost
@@ -221,12 +221,16 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       ...Array.from(this.instruments.values())
     ];
 
-    prepared.file_id = this.uploadStatus.fileId;
-    prepared.file_name = this.uploadStatus.fileName;
-    prepared.ipfs_hash = this.uploadStatus.ipfsFileHash;
-    // @TODO calculate file hash
-    // suggestion: hash calculated from node backend, using raw level code like c implementation
-    prepared.original_hash = 'Not Supported';
+    prepared.sheet_music = <SheetMusic>{
+      file_id: this.uploadStatus.fileId,
+      name: this.uploadStatus.fileName,
+      ipfs_file_hash: this.uploadStatus.ipfsFileHash,
+      tx_hash: null,
+
+      // @TODO calculate file hash
+      // suggestion: hash calculated from node backend, using raw level code like c implementation
+      original_hash: 'Not Supported'
+    };
 
     return prepared;
   }
@@ -275,13 +279,14 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     const prepared = <SheetPost>this.prepare(form);
 
     if (prepared !== null) {
+      console.log(prepared);
       this.contractService.createNewPaperContract(
         this.currentUser.address,
         unitDown(prepared.price),
-        prepared.ipfs_hash,
-        prepared.original_hash
+        prepared.sheet_music.ipfs_file_hash,
+        prepared.sheet_music.original_hash
       ).subscribe(txHash => {
-        prepared.tx_hash = txHash;
+        prepared.sheet_music.tx_hash = txHash;
 
         this.postActions.write('sheet', prepared).subscribe(() => {
           this.router.navigate(['/board/sheet/write/complete'], {
