@@ -3,14 +3,14 @@ import {tassign} from 'tassign';
 import {PayloadAction} from '../actions/index';
 import {PostActions} from '../actions/post.action';
 import {InfPaginationResult, PaginationResult} from '../models/pagination';
-import {PostRef, BasePost} from '../models/post';
+import {BasePost} from '../models/post';
 
 export interface PostState {
   posts: {
-    [boardType: string]: PaginationResult<PostRef>
+    [boardType: string]: PaginationResult<BasePost>
   };
   infPosts: {
-    [boardType: string]: InfPaginationResult<PostRef>
+    [boardType: string]: InfPaginationResult<BasePost>
   };
   post: {
     [boardType: string]: {
@@ -66,6 +66,29 @@ export interface PostAdditionAction extends Action {
   additionalInfo: any;
 }
 
+function syncPostToState(postState, boardType, posts: BasePost[], update_column: string = null) {
+  if (!update_column) {
+    update_column = 'all';
+  }
+
+  return posts.map(post => {
+    postState[boardType][post.post_id] = postState[boardType][post.post_id] || {};
+
+    const attrs = update_column === 'all' ? Object.keys(post) : update_column.split(',');
+    attrs.forEach(attr => {
+      if (post.hasOwnProperty(attr) && postState[boardType][post.post_id][attr] !== post[attr]) {
+        if (attr === 'content') {
+          post.content = post.content.split('https://www.youtube.com/embed/').join('//www.youtube.com/embed/');
+          post.content = post.content.split('//www.youtube.com/embed/').join('https://www.youtube.com/embed/');
+        }
+        postState[boardType][post.post_id][attr] = post[attr];
+      }
+    });
+
+    return postState[boardType][post.post_id];
+  });
+}
+
 function InfPaginationResultCombine<T>(target: InfPaginationResult<T>,
                                        source: InfPaginationResult<T>,
                                        insertType: 'after' | 'before',
@@ -117,11 +140,11 @@ function InfPaginationResultCombine<T>(target: InfPaginationResult<T>,
 function postsActionState(state, payload: any, insertType: 'after' | 'before') {
   return tassign(state, {
     infPosts: tassign(state.infPosts, {
-      [payload.boardType]: InfPaginationResultCombine<PostRef>(state.infPosts[payload.boardType],
+      [payload.boardType]: InfPaginationResultCombine<BasePost>(state.infPosts[payload.boardType],
         {
           after: payload.after,
           before: payload.before,
-          list: PostRef.syncPost(state.post, payload.boardType, payload.list)
+          list: syncPostToState(state.post, payload.boardType, payload.list)
         }, insertType, 'id')
     })
   });
@@ -133,7 +156,7 @@ export const PostReducer = function (state: PostState = initialState, _action: A
     case PostActions.RESET_POSTS:
       return tassign(state, {
         posts: tassign(state.posts, {
-          [action.payload.boardType]: {total: 0, page: [], list: []} as PaginationResult<PostRef>
+          [action.payload.boardType]: {total: 0, page: [], list: []} as PaginationResult<BasePost>
         })
       });
 
@@ -147,10 +170,10 @@ export const PostReducer = function (state: PostState = initialState, _action: A
     case PostActions.INSERT_POSTS_LIST:
       return tassign(state, {
         posts: tassign(state.posts, {
-          [action.payload.boardType]: <PaginationResult<PostRef>>{
+          [action.payload.boardType]: <PaginationResult<BasePost>>{
             ...action.payload,
             ...{
-              list: PostRef.syncPost(state.post, action.payload.boardType, action.payload.list)
+              list: syncPostToState(state.post, action.payload.boardType, action.payload.list)
             }
           }
         })
@@ -165,7 +188,7 @@ export const PostReducer = function (state: PostState = initialState, _action: A
     case PostActions.SAVE_POSTS:
       const savePostAction = (<SavePostAction> _action);
 
-      PostRef.syncPost(state.post, savePostAction.boardType, savePostAction.posts, savePostAction.update_column);
+      syncPostToState(state.post, savePostAction.boardType, savePostAction.posts, savePostAction.update_column);
 
       return tassign(state, {
         post: tassign(state.post, {

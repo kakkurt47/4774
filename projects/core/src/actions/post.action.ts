@@ -5,7 +5,7 @@ import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {APIConfig, ParamsBuilder} from '../config';
-import {BasePost, InfPaginationResult, PaginationResult, PostRef} from '../models';
+import {BasePost, InfPaginationResult, PaginationResult} from '../models';
 import {IAppState} from '../reducers';
 import {UserActions} from './user.action';
 
@@ -25,6 +25,7 @@ export class PostActions {
               private userActions: UserActions,
               @Inject(PLATFORM_ID) private platformId) {
   }
+
   write(boardType, post): Observable<any> {
     return this.apiConfig.post(`/board/${boardType}`, post);
   }
@@ -102,7 +103,7 @@ export class PostActions {
   }
 
   loadInfPosts(boardType: string, mode: string, params: Object) {
-    const currentPosts: InfPaginationResult<PostRef> = this.store.getState().post.infPosts[boardType];
+    const currentPosts: InfPaginationResult<BasePost> = this.store.getState().post.infPosts[boardType];
     if (mode === 'after' && currentPosts.after !== null) {
       params['after'] = currentPosts.after;
     } else if (currentPosts.before !== null) {

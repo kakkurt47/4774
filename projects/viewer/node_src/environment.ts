@@ -1,4 +1,4 @@
 export const electronEnvironment = {
   production: false,
-  env: 'stage'
+  env: 'dev'
 };
