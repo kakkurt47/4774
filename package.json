@@ -43,7 +43,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "contract:compile": "cd muzika-contract/ && truffle compile",
+    "contract:compile": "cd muzika-contract/ && npm run contract:compile && npm run contract:import",
     "contract:interface": "ts-node --project tsconfig.typechain.json ./utils/TypeChain/lib/cli.ts -p typechain.json"
   },
   "dependencies": {
