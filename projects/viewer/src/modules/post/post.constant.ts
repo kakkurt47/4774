@@ -97,6 +97,7 @@ export const FroalaEditorOptions = {
 };
 
 export const GenreSelections: { name: string, value: string }[] = [
+  { name: 'EDM', value: '~edm' },
   { name: 'New-age', value: '~newage' },
   { name: 'Classic', value: '~classic' },
   { name: 'Jazz', value: '~jazz' },
