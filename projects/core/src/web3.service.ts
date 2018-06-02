@@ -3,10 +3,11 @@ import {Injectable, Inject} from '@angular/core';
 import {Observable, from, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {MuzikaCoin} from './contracts';
-import {EnvironmentToken, EnvironmentType} from './environments/env_types';
+import {EnvironmentType} from './environments/env_types';
 import {promisify} from './utils';
 import {AddressOnlyProvider, LedgerProvider, MetamaskProvider, RPCProvider, WalletProvider} from './web3-providers';
 import {ExtendedWeb3} from './web3.provider';
+import {EnvironmentToken} from './config/api.token';
 
 @Injectable()
 export class MuzikaWeb3Service {

@@ -7,10 +7,9 @@ import {createStore} from 'redux';
 import {CommentActions, PostActions} from './actions';
 import {UserActions} from './actions/user.action';
 import {PaginationComponent} from './components/pagination/pagination.component';
-import {BASE_API_URL, baseApiUrl, APIConfig, JWTInterceptor, MUZIKA_REDUX_STATE_KEY} from './config';
-import {baseApiUrlStage, baseApiUrlDev} from './config/api.constant';
+import {BASE_API_URL, APIConfig, JWTInterceptor, MUZIKA_REDUX_STATE_KEY} from './config';
 import {ContractProviders} from './contracts';
-import {EnvironmentToken} from './environments/env_types';
+import {EnvironmentToken} from './config/api.token';
 import {environmentDev} from './environments/environment';
 import {environmentProd} from './environments/environment.prod';
 import {environmentStage} from './environments/environment.stage';
@@ -81,12 +80,6 @@ export class MuzikaCoreModule {
       prod: environmentProd
     }[environmentType] || environmentDev;
 
-    const base_api_url = {
-      stage: baseApiUrlStage,
-      dev: baseApiUrlDev,
-      prod: baseApiUrl
-    }[environmentType] || baseApiUrl;
-
     return {
       ngModule: MuzikaCoreModule,
       providers: [
@@ -100,7 +93,7 @@ export class MuzikaCoreModule {
         },
         {
           provide: BASE_API_URL,
-          useValue: base_api_url
+          useValue: environment.base_api_url
         }
       ]
     };

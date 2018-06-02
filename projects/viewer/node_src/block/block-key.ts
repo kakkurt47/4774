@@ -1,6 +1,6 @@
 import {BlockRequest} from './block-request';
 import {Block} from './block';
-import * as nodeRSA from 'node-rsa';
+import * as NodeRSA from 'node-rsa';
 import * as aesjs from 'aes-js';
 
 
@@ -16,7 +16,7 @@ export class BlockKey {
 
   generateKey() {
     // creates a 2048 bit RSA key
-    const rsaKey = new nodeRSA({b: 2048}).generateKeyPair();
+    const rsaKey = new NodeRSA({b: 2048}).generateKeyPair();
     this.privateKey = rsaKey;
     this.publicKey = rsaKey.exportKey('pkcs8-public');
   }

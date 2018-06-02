@@ -1,10 +1,10 @@
 import {ipcMain, BrowserWindow} from 'electron';
-import {baseApiUrl} from '../../core/src/config/api.constant';
-import * as request from 'request';
 import * as fs from 'fs';
+import * as request from 'request';
 import * as tempfile from 'tempfile';
-import {BlockKey} from './block/block-key';
 import {Block} from './block/block';
+import {BlockKey} from './block/block-key';
+import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
@@ -18,7 +18,7 @@ class IpcMainService {
 
   init() {
     ipcMain.on('PDFViewer:open', (event, ipfs_url) => {
-      const blob = ipfs_url; // @ksw must rewrite it to blob (download from ipfs_url)
+      const blob = ipfs_url; // TODO: @ksw must rewrite it to blob (download from ipfs_url)
       const url = URL.createObjectURL(blob);
       const pdfWindow = new BrowserWindow({
         width: 1024,
@@ -33,12 +33,12 @@ class IpcMainService {
     });
 
     ipcMain.on('File:download', (event, contractAddress) => {
-      // TODO: get file hash from contract address
+      // TODO: get file hash from contract address @ksw
       const blockKey = new BlockKey('');
 
       request.post(
         {
-          url: `${baseApiUrl}/api/paper/${contractAddress}/download`,
+          url: `${electronEnvironment.base_api_url}/api/paper/${contractAddress}/download`,
           encoding: null,
           json: {
             'public_key': blockKey.publicKey
@@ -69,7 +69,7 @@ class IpcMainService {
 
       request.post(
         {
-          url: `${baseApiUrl}/test/paper/download`,
+          url: `${electronEnvironment.base_api_url}/test/paper/download`,
           encoding: null,
           json: {
             'public_key': blockKey.publicKey
@@ -100,8 +100,8 @@ class IpcMainService {
       ipfs.put(blob, (err, result) => {
         const helper = ipfs.getRandomPeer();
         request.post({
-          url: `${helper}/api/file/${result[0].hash}`,
-          json: true
+            url: `${helper}/api/file/${result[0].hash}`,
+            json: true
           },
           (peerRequestError, res, body) => {
             if (body && body.status === 'success') {

@@ -1,7 +1,7 @@
 import * as IPFS from 'ipfs';
-import {Observable, throwError} from 'rxjs';
 import * as request from 'request';
-import {baseApiUrl} from '../../core/src/config/api.constant';
+import {Observable, throwError} from 'rxjs';
+import {electronEnvironment} from './environment';
 
 export class IpfsService {
   node: IPFS;
@@ -39,8 +39,8 @@ export class IpfsService {
     this.node.on('ready', () => {
       // get IPFS nodes list
       request.get({
-        url: `${baseApiUrl}/seed/ipfs`,
-        json: true
+          url: `${electronEnvironment.base_api_url}/seed/ipfs`,
+          json: true
         },
         (error, response, body) => {
           for (const ipfsNode of body) {

@@ -6,7 +6,7 @@ var path = require('path');
 var profile = process.env.ENV || 'dev';
 
 console.log('Moving environment configuration ...');
-const projectEnvironmentPath = path.resolve(__dirname, '../projects/viewer/src/environments/');
+const projectEnvironmentPath = path.resolve(__dirname, '../projects/core/src/environments/');
 const targetEnvironmentPath = path.resolve(__dirname,'../projects/viewer/node_src/environment.ts');
 
 switch (profile) {
@@ -20,6 +20,8 @@ switch (profile) {
     fs.copySync(path.join(projectEnvironmentPath, 'environment.ts'), targetEnvironmentPath);
 }
 
+fs.copySync(path.join(projectEnvironmentPath, 'env_types.ts'), targetEnvironmentPath.replace('environment.ts', 'env_types.ts'));
+
 console.log('Current profile : ' + profile);
 
 replace({
@@ -29,3 +31,13 @@ replace({
   recursive: true,
   silent: true,
 });
+
+for (let environmentType of ["EnvironmentDev", "EnvironmentStage", "EnvironmentProd"]) {
+  replace({
+    regex: environmentType,
+    replacement: "Environment",
+    paths: [targetEnvironmentPath],
+    recursive: true,
+    silent: true,
+  });
+}

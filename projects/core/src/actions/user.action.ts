@@ -72,16 +72,16 @@ export class UserActions {
     );
   }
 
-  register(address: string, message: string, signature: string, user_name: string): Observable<string> {
+  register(address: string, message: string, signature: string, user_name: string): Observable<User> {
     return this.apiConfig.post<string>(`/register`, {address, message, signature, user_name}).pipe(
       map(token => {
         if (token) {
           this.localStorage.setItem('token', token);
-          this.refreshMe().subscribe(); // @TODO switchMap would be better
         }
 
         return token;
-      })
+      }),
+      concatMap(token => this.refreshMe())
     );
   }
 
