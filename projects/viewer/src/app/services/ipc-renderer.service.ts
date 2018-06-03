@@ -14,7 +14,7 @@ export class IpcRendererService {
   init() {
     if (this.electronService.ipcRenderer) {
       this.electronService.ipcRenderer.on('PDFViewer:opened', (event, arg) => {
-        console.log(arg); // prints "pong"
+        console.log(event, arg); // prints "pong"
       });
 
       this.electronService.ipcRenderer.on('File:downloaded', (event, arg) => {

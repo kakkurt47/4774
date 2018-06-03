@@ -28,7 +28,7 @@ class IpcMainService {
           url: `${electronEnvironment.base_api_url}/paper/${contractAddress}/download`,
           encoding: null,
           json: {
-            'public_key': blockKey.publicKey
+            'public_key': blockKey.publicKey // TODO: replace this publicKey to user's wallet public key
           },
           headers: {
             Authorization: `Bearer ${StorageServiceInstance.get('token')}`
@@ -56,7 +56,7 @@ class IpcMainService {
                 plugins: true,
               },
             });
-            pdfWindow.loadURL(filename);
+            pdfWindow.loadURL('file://' + filename);
 
             event.sender.send('PDFViewer:opened', filename);
           });
