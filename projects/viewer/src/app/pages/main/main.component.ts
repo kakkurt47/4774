@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {BaseComponent, CommunityPost, ExtendedWeb3, MuzikaCoin, SheetPost, unitUp, User} from '@muzika/core';
 import {Observable, combineLatest, from} from 'rxjs';
 import {BestPostsMock, SheetPostsMock} from '../../../mock/posts';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -24,6 +25,7 @@ export class MainPageComponent extends BaseComponent {
   };
 
   constructor(private muzikaCoin: MuzikaCoin,
+              private router: Router,
               private web3: ExtendedWeb3) {
     super();
     this.topSheets = this.sheets.slice(0, 3);
@@ -32,6 +34,8 @@ export class MainPageComponent extends BaseComponent {
 
   ngOnInit() {
     this.muzikaCoin.deployed();
+
+    this.router.navigateByUrl('/board/sheet/write');
 
     this._sub.push(
       combineLatest(

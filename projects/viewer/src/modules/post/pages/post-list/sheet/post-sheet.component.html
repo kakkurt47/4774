@@ -4,7 +4,7 @@
       <div class="tags-all font-weight-bold mb-2"> Topic </div>
       <ul class="tags">
         <li *ngFor="let tag of tags">
-          <a> {{tag}} </a>
+          <a> {{tag.name}} </a>
         </li>
       </ul>
     </div>
@@ -19,8 +19,8 @@
           <table class="table">
             <thead>
             <tr>
-              <th> Title </th>
-              <th width="140"> Author </th>
+              <th> Product Name </th>
+              <th width="140"> Owner </th>
               <th width="130"> Views </th>
               <th width="130"> Likes </th>
             </tr>

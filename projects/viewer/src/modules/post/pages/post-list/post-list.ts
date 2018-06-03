@@ -1,9 +1,10 @@
+import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
 import {BaseComponent, CommunityPost, PaginationResult, PostActions, SheetPost, VideoPost} from '@muzika/core';
-import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
-import {CommunityTagsMock, SheetTagsMock, VideoTagsMock} from '../../../../mock/tags';
-import {select} from '@angular-redux/store';
 import {Observable} from 'rxjs';
+import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
+import {CommunityTagsMock, VideoTagsMock} from '../../../../mock/tags';
+import {GenreSelections} from '../../post.constant';
 
 @Component({
   selector: 'app-post-list-community',
@@ -22,7 +23,7 @@ export class PostCommunityListComponent {
   styleUrls: ['./post-list.scss', './sheet/post-sheet.component.scss']
 })
 export class PostSheetListComponent extends BaseComponent {
-  tags: string[] = SheetTagsMock;
+  tags: { name: string, value: string }[] = GenreSelections;
 
   @select(['post', 'posts', 'sheet'])
   postsObs: Observable<PaginationResult<SheetPost>>;
