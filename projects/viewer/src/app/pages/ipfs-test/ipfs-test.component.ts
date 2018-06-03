@@ -1,10 +1,8 @@
 import {Component} from '@angular/core';
-import {NgForm} from '@angular/forms';
 import {APIConfig, BaseComponent, LocalStorage} from '@muzika/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {IpcRendererService} from '../../services/ipc-renderer.service';
 import {IpfsEventService} from '../../services/ipfs-event.service';
+
 // import ipcRenderer = Electron.ipcRenderer;
 
 
@@ -42,10 +40,6 @@ export class IPFSTestPageComponent extends BaseComponent {
   }
 
   submitDownload() {
-    this._downloadFile(this.ipfsHash);
-  }
-
-  private _downloadFile(hash: string): void {
-    window.location.href = `http://ipfs.io/ipfs/${hash}`;
+    window.location.href = `http://ipfs.io/ipfs/${this.ipfsHash}`;
   }
 }

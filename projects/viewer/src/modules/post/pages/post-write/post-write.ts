@@ -1,24 +1,27 @@
 import {select} from '@angular-redux/store';
 import {Component, EventEmitter, Injector} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
 import {
   APIConfig,
   BaseComponent,
   BasePost,
   CommunityPost,
-  ExtendedWeb3,
   LocalStorage,
   MuzikaContractService,
-  PostActions, SheetMusic,
-  SheetPost, unitDown,
+  PostActions,
+  SheetMusic,
+  SheetPost,
+  unitDown,
   User,
   VideoPost
 } from '@muzika/core';
-import {NgForm} from '@angular/forms';
+import {UploadInput, UploadOutput} from 'ngx-uploader';
 import {Observable} from 'rxjs';
+import {IpcRendererService} from '../../../../app/services/ipc-renderer.service';
+import {IpfsEventService} from '../../../../app/services/ipfs-event.service';
 import {AlertService} from '../../../alert/alert.service';
-import {UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
+import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
 
 export class BasePostWriteComponent extends BaseComponent {
   options = FroalaEditorOptions;
@@ -146,7 +149,8 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
               private alertService: AlertService,
               private apiConfig: APIConfig,
               private localStorage: LocalStorage,
-              private web3: ExtendedWeb3,
+              private ipfsEventService: IpfsEventService,
+              private ipcRendererService: IpcRendererService,
               private contractService: MuzikaContractService,
               private router: Router,
               private postActions: PostActions) {
@@ -157,6 +161,24 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     this._sub.push(
       this.currentUserObs.subscribe(user => {
         this.currentUser = user;
+      })
+    );
+
+    this._sub.push(
+      this.ipfsEventService.event('ipfsHash').subscribe(ipfsEvent => {
+        const file_hash = ipfsEvent.data;
+
+        this.uploadStatus.ipfsFileHash = file_hash;
+
+        const event: UploadInput = {
+          type: 'uploadAll',
+          url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${file_hash}`,
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${this.localStorage.getItem('token')}`
+          }
+        };
+        this.uploadInput.emit(event);
       })
     );
   }
@@ -237,16 +259,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
 
   onUploadOutput(output: UploadOutput): void {
     if (output.type === 'allAddedToQueue') {
-      const event: UploadInput = {
-        type: 'uploadAll',
-        url: `${this.apiConfig.apiUrl}/file?type=paper&auth=${this.localStorage.getItem('token')}`,
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${this.localStorage.getItem('token')}`
-        }
-      };
-
-      this.uploadInput.emit(event);
+      // Waiting for IPFS Hash Uploaded (look ngOnInit subscription part of this classes)
     } else if (output.type === 'addedToQueue' && typeof output.file !== 'undefined') {
       this.uploadStatus = {
         status: 'uploading',
@@ -256,19 +269,24 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
         process: null,
         ipfsFileHash: null
       };
+
+      // @TODO nativeFile should be encrypted in Node Main Process
+      this.ipcRendererService.uploadFile(output.file.nativeFile);
+
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
       this.uploadStatus.progress = output.file.progress.data.percentage;
 
       if (this.uploadStatus.progress === 100) {
         this.uploadStatus.process = 'pending';
       }
+
     } else if (output.type === 'removed') {
       this.uploadStatus = null;
+
     } else if (output.type === 'done') {
       if (output.file.responseStatus === 200 && output.file.response.file_id) {
         this.uploadStatus.status = 'done';
         this.uploadStatus.fileId = output.file.response.file_id;
-        this.uploadStatus.ipfsFileHash = output.file.response.ipfs_hash;
       } else {
         this.uploadStatus.status = 'failed';
       }
