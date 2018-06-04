@@ -172,7 +172,7 @@ export class WalletListComponent extends BaseComponent {
   }
 
   private _estimateGas(tx: any, set?: boolean): Promise<number> {
-    return this.coin.transfer.estimateGas(tx.to, unitDown(tx.value)).then(estimated => {
+    return this.coin.transfer.estimateGas(tx.to, unitDown(tx.value), {from: this.selectedAccount}).then(estimated => {
       if (set) {
         this.tx.gas = estimated;
       }
