@@ -21,10 +21,10 @@ export class WalletSignTransactionComponent extends BaseComponent {
 
   ngOnInit() {
     this._sub.push(
-      this.walletStorage.eventSignTransaction.subscribe(e => {
-        if (e) {
-          this.currentEvent = e.event;
-          this.currentTx = e.txData;
+      this.walletStorage.eventSignTransaction.subscribe(event => {
+        if (event) {
+          this.currentEvent = event;
+          this.currentTx = event.data;
 
           this.currentTx.value = this.hexToNumber(this.currentTx.value);
           this.currentTx.gas = this.hexToNumber(this.currentTx.gas || this.currentTx.gasLimit);
@@ -38,21 +38,28 @@ export class WalletSignTransactionComponent extends BaseComponent {
   }
 
   sign() {
-    this.currentTx.value = this.numberToHex(this.currentTx.value);
-    this.currentTx.gasPrice = this.numberToHex(this.currentTx.gasPrice);
-    this.currentTx.gasLimit = this.numberToHex(this.currentTx.gasLimit || this.currentTx.gas || '0x00');
-    this.currentTx.gas = this.numberToHex(this.currentTx.gas || this.currentTx.gasLimit || '0x00');
+    try {
+      this.currentTx.value = this.numberToHex(this.currentTx.value);
+      this.currentTx.gasPrice = this.numberToHex(this.currentTx.gasPrice);
+      this.currentTx.gasLimit = this.numberToHex(this.currentTx.gasLimit || this.currentTx.gas || '0x00');
+      this.currentTx.gas = this.numberToHex(this.currentTx.gas || this.currentTx.gasLimit || '0x00');
 
-    this.currentTx.value = this.currentTx.value || '0x00';
-    this.currentTx.data = ethUtil.addHexPrefix(this.currentTx.data);
+      this.currentTx.value = this.currentTx.value || '0x00';
+      this.currentTx.data = ethUtil.addHexPrefix(this.currentTx.data);
 
-    const privateKey = this.walletStorage.privateKeyOf(this.currentTx.from);
+      const privateKey = this.walletStorage.privateKeyOf(this.currentTx.from);
 
-    const tx = new EthTx(this.currentTx);
-    tx.sign(privateKey);
+      const tx = new EthTx(this.currentTx);
+      tx.sign(privateKey);
 
-    this.currentEvent.sender.send('Wallet:signTransaction:received', null, '0x' + tx.serialize().toString('hex'));
-    this.walletStorage.emitReadySignTransaction(null);
+      this.walletStorage.receiveSignTransactionEvent(
+        Object.assign(this.currentEvent, {
+          data: '0x' + tx.serialize().toString('hex')
+        })
+      );
+    } catch (e) {
+      this.walletStorage.receiveSignTransactionEvent(Object.assign(this.currentEvent, {error: e}));
+    }
   }
 
   hexToNumber(value: string): string {

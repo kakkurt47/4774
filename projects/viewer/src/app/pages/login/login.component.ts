@@ -33,8 +33,13 @@ export class LoginPageComponent extends BaseComponent {
 
   login() {
     // this.userActions.login('metamask').subscribe();
-    this.userActions.login(this.selectedAccount).subscribe(user => {
-      console.log(user);
-    });
+    this.userActions.login(this.selectedAccount).subscribe(
+      user => {
+        console.log(user);
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 }

@@ -11,33 +11,37 @@ class IpcWalletService {
 
   init() {
     /* For getAccounts */
-    ipcMain.on('Wallet:getAccounts', (event) => {
+    ipcMain.on('Wallet:getAccounts', (event, uuid) => {
       // Request wallet application getting accounts
-      event.sender.send('Wallet:getAccounts:request');
+      event.sender.send('WalletProvider:getAccounts', uuid);
     });
 
-    ipcMain.on('Wallet:getAccounts:received', (event, error, accounts) => {
+    ipcMain.on('WalletProvider:getAccounts', (event, uuid, error, accounts) => {
       // On receive accounts
-      event.sender.send('Wallet:getAccounts', error, accounts);
+      event.sender.send(this.wrap('Wallet:getAccounts', uuid), error, accounts);
     });
 
     /* For signTransaction */
-    ipcMain.on('Wallet:signTransaction', (event, txData) => {
-      event.sender.send('Wallet:signTransaction:request', txData);
+    ipcMain.on('Wallet:signTransaction', (event, uuid, txData) => {
+      event.sender.send('WalletProvider:signTransaction', uuid, txData);
     });
 
-    ipcMain.on('Wallet:signTransaction:received', (event, error, signed) => {
-      event.sender.send('Wallet:signTransaction', error, signed);
+    ipcMain.on('WalletProvider:signTransaction', (event, uuid, error, signed) => {
+      event.sender.send(this.wrap('Wallet:signTransaction', uuid), error, signed);
     });
 
     /* For signPersonalMessage */
-    ipcMain.on('Wallet:signPersonalMessage', (event, msgParams) => {
-      event.sender.send('Wallet:signPersonalMessage:request', msgParams);
+    ipcMain.on('Wallet:signPersonalMessage', (event, uuid, msgParams) => {
+      event.sender.send('WalletProvider:signPersonalMessage', uuid, msgParams);
     });
 
-    ipcMain.on('Wallet:signPersonalMessage:received', (event, error, signed) => {
-      event.sender.send('Wallet:signPersonalMessage', error, signed);
+    ipcMain.on('WalletProvider:signPersonalMessage', (event, uuid, error, signed) => {
+      event.sender.send(this.wrap('Wallet:signPersonalMessage', uuid), error, signed);
     });
+  }
+
+  private wrap(eventName: string, uuid: string) {
+    return `${eventName}::${uuid}`;
   }
 }
 
