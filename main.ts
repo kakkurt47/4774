@@ -27,8 +27,6 @@ function createWindow() {
     height: 700,
     minWidth: 700,
     minHeight: 400,
-    maxWidth: 1340,
-    maxHeight: 740,
     resizable: true,
     webPreferences: {
       plugins: true,
