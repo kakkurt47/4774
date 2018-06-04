@@ -48,7 +48,7 @@ export class IpcRendererService {
       if (err) {
         console.log(err);
       }
-      this.electronService.ipcRenderer.send('File:uploadByIPFS', Buffer.from(reader.result));
+      this.electronService.ipcRenderer.send('File:uploadByIPFS', Buffer.from(reader.result), true);
     };
     reader.readAsArrayBuffer(file);
   }

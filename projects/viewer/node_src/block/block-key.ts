@@ -1,6 +1,6 @@
 import {BlockRequest} from './block-request';
 import {Block} from './block';
-import * as NodeRSA from 'node-rsa';
+import * as ursa from 'ursa';
 import * as aesjs from 'aes-js';
 
 
@@ -16,10 +16,17 @@ export class BlockKey {
 
   generateKey() {
     // creates a 2048 bit RSA key
-    // TODO: convert node-rsa module to other rsa module because of generating speed problem.
-    const rsaKey = new NodeRSA({b: 2048}).generateKeyPair();
+    const rsaKey = ursa.generatePrivateKey(2048, 65537);
     this.privateKey = rsaKey;
     this.publicKey = rsaKey;
+  }
+
+  getPrivateKey() {
+    return this.privateKey.toPrivatePem().toString();
+  }
+
+  getPublicKey() {
+    return this.publicKey.toPublicPem().toString();
   }
 
   generateRequest(blockHash) {

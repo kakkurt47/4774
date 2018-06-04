@@ -127,9 +127,22 @@ class IpcMainService {
 
     });
 
-    ipcMain.on('File:uploadByIPFS', (event, blob) => {
+    ipcMain.on('File:uploadByIPFS', (event, blob, encryption) => {
+      /**
+       * blob : file binary
+       * encryption : whether encrypt or not. If true, do block encryption.
+       */
       const ipfs = IpfsServiceInstance;
-      ipfs.put(blob, (err, result) => {
+      let block = new Block(blob);
+      let blockKey = null;
+
+      if (encryption) {
+        blockKey = new BlockKey(null);
+        const blockRequest = blockKey.generateRequest(null);
+        block = blockRequest.encrypt(block);
+      }
+
+      ipfs.put(block.data, (err, result) => {
         const helper = ipfs.getRandomPeer();
         request.post({
             url: `${helper}/api/file/${result[0].hash}`,
@@ -139,7 +152,7 @@ class IpcMainService {
             if (body && body.status === 'success') {
               event.sender.send('File:uploadedByIPFS', peerRequestError, result[0].hash);
             } else {
-              event.sender.send('File:uploadedByIPFS', peerRequestError, null);
+              event.sender.send('File:uploadedByIPFS', peerRequestError, null, null);
             }
           }
         );

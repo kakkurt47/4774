@@ -164,23 +164,23 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       })
     );
 
-    this._sub.push(
-      this.ipfsEventService.event('ipfsHash').subscribe(ipfsEvent => {
-        const file_hash = ipfsEvent.data;
-
-        this.uploadStatus.ipfsFileHash = file_hash;
-
-        const event: UploadInput = {
-          type: 'uploadAll',
-          url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${file_hash}`,
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${this.localStorage.getItem('token')}`
-          }
-        };
-        this.uploadInput.emit(event);
-      })
-    );
+    // this._sub.push(
+    //   this.ipfsEventService.event('ipfsHash').subscribe(ipfsEvent => {
+    //     const file_hash = ipfsEvent.data;
+    //
+    //     this.uploadStatus.ipfsFileHash = file_hash;
+    //
+    //     const event: UploadInput = {
+    //       type: 'uploadAll',
+    //       url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${file_hash}`,
+    //       method: 'POST',
+    //       headers: {
+    //         Authorization: `Bearer ${this.localStorage.getItem('token')}`
+    //       }
+    //     };
+    //     this.uploadInput.emit(event);
+    //   })
+    // );
   }
 
   toggleGenre(value: string) {
