@@ -16,9 +16,10 @@ export class BlockKey {
 
   generateKey() {
     // creates a 2048 bit RSA key
+    // TODO: convert node-rsa module to other rsa module because of generating speed problem.
     const rsaKey = new NodeRSA({b: 2048}).generateKeyPair();
     this.privateKey = rsaKey;
-    this.publicKey = rsaKey.exportKey('pkcs8-public');
+    this.publicKey = rsaKey;
   }
 
   generateRequest(blockHash) {
@@ -53,7 +54,7 @@ export class BlockKey {
     encryptedData = aesjs.utils.hex.toBytes(aesjs.utils.hex.fromBytes(encryptedData));
 
     const aesCbc = new aesjs.ModeOfOperation.cbc(aesKey, iv);
-    const decryptedData = aesCbc.decrypt(encryptedData);
+    const decryptedData = Buffer.from(aesCbc.decrypt(encryptedData));
 
     const decryptedBlock = new Block(decryptedData, true);
     decryptedBlock.unpad();
