@@ -58,7 +58,7 @@ export class MuzikaContractService {
       seller, price, ipfsFileHash, originalFileHash,
       {data: this.muzikaPaper.binary}
     );
-    const gas = await promisify(this.web3.eth.estimateGas, {data});
+    const gas = await promisify(this.web3.eth.estimateGas, {data}) + 30000;
     gasPrice = gasPrice || '14000000000'; // 14Gwei
 
     return await promisify(this.web3.eth.sendTransaction, {
