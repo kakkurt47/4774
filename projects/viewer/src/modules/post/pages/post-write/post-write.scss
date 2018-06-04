@@ -111,19 +111,22 @@ form {
   ul {
     list-style: none;
     padding-left: 0;
-    border: 1px solid #aaa;
-    border-bottom: none;
-    border-left: none;
+    border-top: 1px solid #aaa;
 
     li {
       padding: 6px 12px;
       background-color: #f8f9fa;
-      border-bottom: 1px solid #aaa;
       border-left: 1px solid #aaa;
+      border-right: 1px solid #aaa;
+      border-bottom: 1px solid #aaa;
       width: 50%;
       display: inline-block;
       cursor: pointer;
       transition: background-color 0.1s ease-in-out;
+
+      &:nth-child(even) {
+        border-left: none;
+      }
 
       &:hover:not(.active) {
         background-color: #e6e6e6;
