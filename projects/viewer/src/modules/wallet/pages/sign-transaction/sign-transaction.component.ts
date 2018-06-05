@@ -26,7 +26,7 @@ export class WalletSignTransactionComponent extends BaseComponent {
           this.currentEvent = event;
           this.currentTx = event.data;
 
-          this.currentTx.value = this.hexToNumber(this.currentTx.value);
+          this.currentTx.value = this.hexToNumber(this.currentTx.value || 0);
           this.currentTx.gas = this.hexToNumber(this.currentTx.gas || this.currentTx.gasLimit);
           this.currentTx.gasPrice = this.hexToNumber(this.currentTx.gasPrice);
         } else {
@@ -39,7 +39,7 @@ export class WalletSignTransactionComponent extends BaseComponent {
 
   sign() {
     try {
-      this.currentTx.value = this.numberToHex(this.currentTx.value);
+      this.currentTx.value = this.numberToHex(this.currentTx.value || 0);
       this.currentTx.gasPrice = this.numberToHex(this.currentTx.gasPrice);
       this.currentTx.gasLimit = this.numberToHex(this.currentTx.gasLimit || this.currentTx.gas || '0x00');
       this.currentTx.gas = this.numberToHex(this.currentTx.gas || this.currentTx.gasLimit || '0x00');
