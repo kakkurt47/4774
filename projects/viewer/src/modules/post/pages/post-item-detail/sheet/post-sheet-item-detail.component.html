@@ -1,7 +1,7 @@
 <div class="bg-white mb-4" *ngIf="post">
   <div class="row mx-0">
     <div class="col-8 px-0">
-      <section id="blog" class="blog border">
+      <section id="blog" class="blog border-right h-100">
         <article class="post">
           <app-post-item-detail-header [post]="post"></app-post-item-detail-header>
 
@@ -14,7 +14,7 @@
       </section>
     </div>
 
-    <div class="col-4">
+    <div class="col-4 pb-4">
       <div class="attached">
         <h4> Contract Address </h4>
         <p> {{post.sheet_music.contract_address}} </p>
