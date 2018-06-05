@@ -1,4 +1,5 @@
 import {ipcMain, BrowserWindow} from 'electron';
+import {IPCUtil} from '../shared/ipc-utils';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -18,7 +19,7 @@ class IpcWalletService {
 
     ipcMain.on('WalletProvider:getAccounts', (event, uuid, error, accounts) => {
       // On receive accounts
-      event.sender.send(this.wrap('Wallet:getAccounts', uuid), error, accounts);
+      event.sender.send(IPCUtil.wrap('Wallet:getAccounts', uuid), error, accounts);
     });
 
     /* For signTransaction */
@@ -27,7 +28,7 @@ class IpcWalletService {
     });
 
     ipcMain.on('WalletProvider:signTransaction', (event, uuid, error, signed) => {
-      event.sender.send(this.wrap('Wallet:signTransaction', uuid), error, signed);
+      event.sender.send(IPCUtil.wrap('Wallet:signTransaction', uuid), error, signed);
     });
 
     /* For signPersonalMessage */
@@ -36,12 +37,8 @@ class IpcWalletService {
     });
 
     ipcMain.on('WalletProvider:signPersonalMessage', (event, uuid, error, signed) => {
-      event.sender.send(this.wrap('Wallet:signPersonalMessage', uuid), error, signed);
+      event.sender.send(IPCUtil.wrap('Wallet:signPersonalMessage', uuid), error, signed);
     });
-  }
-
-  private wrap(eventName: string, uuid: string) {
-    return `${eventName}::${uuid}`;
   }
 }
 

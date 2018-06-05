@@ -5,6 +5,7 @@ import * as ProviderEngine from 'web3-provider-engine';
 import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import * as HookedWalletSubprovider from 'web3-provider-engine/subproviders/hooked-wallet';
 import * as FiltersSubprovider from 'web3-provider-engine/subproviders/filters';
+import {IPCUtil} from '../../../shared/ipc-utils';
 import {TabService} from '../services/tab.service';
 import {ElectronService} from './electron.service';
 import * as deserializeError from 'deserialize-error';
@@ -62,8 +63,8 @@ export class MuzikaWalletProvider implements Web3Provider {
   }
 
   private getAccounts(cb: (error, ...args) => any): void {
-    const uuid = this.uuid();
-    this.electronService.ipcRenderer.once(this.wrap('Wallet:getAccounts', uuid), (events, error, accounts) => {
+    const uuid = IPCUtil.uuid();
+    this.electronService.ipcRenderer.once(IPCUtil.wrap('Wallet:getAccounts', uuid), (events, error, accounts) => {
       if (error) {
         cb(deserializeError(error));
       } else {
@@ -74,12 +75,12 @@ export class MuzikaWalletProvider implements Web3Provider {
   }
 
   private signTransaction(txData: TxData, cb: (error, ...args) => any): void {
-    const uuid = this.uuid();
-    this.electronService.ipcRenderer.once(this.wrap('Wallet:signTransaction', uuid), (events, error, signed) => {
+    const uuid = IPCUtil.uuid();
+    this.electronService.ipcRenderer.once(IPCUtil.wrap('Wallet:signTransaction', uuid), (events, error, signed) => {
+      this.tabService.changeTab('viewer');
       if (error) {
         cb(deserializeError(error));
       } else {
-        this.tabService.changeTab('viewer');
         cb(null, signed);
       }
     });
@@ -87,28 +88,15 @@ export class MuzikaWalletProvider implements Web3Provider {
   }
 
   private signPersonalMessage(msgParams: any, cb: (error, ...args) => any): void {
-    const uuid = this.uuid();
-    this.electronService.ipcRenderer.once(this.wrap('Wallet:signPersonalMessage', uuid), (events, error, signed) => {
+    const uuid = IPCUtil.uuid();
+    this.electronService.ipcRenderer.once(IPCUtil.wrap('Wallet:signPersonalMessage', uuid), (events, error, signed) => {
+      this.tabService.changeTab('viewer');
       if (error) {
         cb(deserializeError(error));
       } else {
-        this.tabService.changeTab('viewer');
         cb(null, signed);
       }
     });
     this.electronService.ipcRenderer.send('Wallet:signPersonalMessage', uuid, msgParams);
-  }
-
-  private uuid(): string {
-    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-  }
-
-  private wrap(eventName: string, uuid?: string) {
-    if (!this.uuid) {
-      uuid = this.uuid();
-    }
-
-    return `${eventName}::${uuid}`;
   }
 }

@@ -43,4 +43,10 @@ export class WalletSignPersonalMessageComponent extends BaseComponent {
       this.walletStorage.receiveSignMessageEvent(Object.assign(this.currentEvent, {error: e}));
     }
   }
+
+  reject() {
+    this.walletStorage.receiveSignMessageEvent(
+      Object.assign(this.currentEvent, {error: new Error('Rejected Request')})
+    );
+  }
 }

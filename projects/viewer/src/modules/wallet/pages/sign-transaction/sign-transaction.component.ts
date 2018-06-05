@@ -62,6 +62,12 @@ export class WalletSignTransactionComponent extends BaseComponent {
     }
   }
 
+  reject() {
+    this.walletStorage.receiveSignTransactionEvent(
+      Object.assign(this.currentEvent, {error: new Error('Rejected Request')})
+    );
+  }
+
   hexToNumber(value: string): string {
     return new BigNumber(value, 16).toString();
   }

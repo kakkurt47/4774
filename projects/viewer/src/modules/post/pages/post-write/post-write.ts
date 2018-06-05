@@ -295,7 +295,6 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     const prepared = <SheetPost>this.prepare(form);
 
     if (prepared !== null) {
-      console.log(prepared);
       this.contractService.createNewPaperContract(
         this.currentUser.address,
         unitDown(prepared.price),

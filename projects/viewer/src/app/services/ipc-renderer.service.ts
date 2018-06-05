@@ -1,5 +1,6 @@
 import {Injectable, NgZone} from '@angular/core';
 import {Observable} from 'rxjs';
+import {IPCUtil} from '../../../shared/ipc-utils';
 import {ElectronService} from '../providers/electron.service';
 import {IpfsEventService} from './ipfs-event.service';
 
@@ -68,8 +69,8 @@ export class IpcRendererService {
         if (reader.error) {
           observer.error(reader.error);
         } else {
-          const uuid = this.uuid();
-          this.electronService.ipcRenderer.once(this.wrap('File:IPFSUpload', uuid), (event, error, hash) => {
+          const uuid = IPCUtil.uuid();
+          this.electronService.ipcRenderer.once(IPCUtil.wrap('File:IPFSUpload', uuid), (event, error, hash) => {
             this.zone.run(() => {
               if (error) {
                 observer.error(error);
@@ -85,18 +86,5 @@ export class IpcRendererService {
       };
       reader.readAsArrayBuffer(file);
     });
-  }
-
-  private uuid(): string {
-    const s4 = () => ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-  }
-
-  private wrap(eventName: string, uuid?: string) {
-    if (!this.uuid) {
-      uuid = this.uuid();
-    }
-
-    return `${eventName}::${uuid}`;
   }
 }

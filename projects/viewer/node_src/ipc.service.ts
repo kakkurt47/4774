@@ -2,6 +2,7 @@ import {ipcMain, BrowserWindow} from 'electron';
 import * as fs from 'fs';
 import * as request from 'request';
 import * as tempfile from 'tempfile';
+import {IPCUtil} from '../shared/ipc-utils';
 import {Block} from './block/block';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
@@ -183,23 +184,19 @@ class IpcMainService {
           },
           (peerRequestError, res, body) => {
             if (peerRequestError) {
-              event.sender.send(this.wrap('File:IPFSUpload', uuid), peerRequestError);
+              event.sender.send(IPCUtil.wrap('File:IPFSUpload', uuid), peerRequestError);
             } else if (res.statusCode !== 200) {
               event.sender.send(
-                this.wrap('File:IPFSUpload', uuid),
+                IPCUtil.wrap('File:IPFSUpload', uuid),
                 new Error('Response is not valid - failed with code: ' + res.statusCode)
               );
             } else {
-              event.sender.send(this.wrap('File:IPFSUpload', uuid), null, result[0].hash);
+              event.sender.send(IPCUtil.wrap('File:IPFSUpload', uuid), null, result[0].hash);
             }
           }
         );
       });
     });
-  }
-
-  private wrap(eventName: string, uuid: string) {
-    return `${eventName}::${uuid}`;
   }
 }
 
