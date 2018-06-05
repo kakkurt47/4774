@@ -164,23 +164,23 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       })
     );
 
-    // this._sub.push(
-    //   this.ipfsEventService.event('ipfsHash').subscribe(ipfsEvent => {
-    //     const file_hash = ipfsEvent.data;
-    //
-    //     this.uploadStatus.ipfsFileHash = file_hash;
-    //
-    //     const event: UploadInput = {
-    //       type: 'uploadAll',
-    //       url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${file_hash}`,
-    //       method: 'POST',
-    //       headers: {
-    //         Authorization: `Bearer ${this.localStorage.getItem('token')}`
-    //       }
-    //     };
-    //     this.uploadInput.emit(event);
-    //   })
-    // );
+    this._sub.push(
+      this.ipfsEventService.event('ipfsHash').subscribe(ipfsEvent => {
+        const file_hash = ipfsEvent.data;
+
+        this.uploadStatus.ipfsFileHash = file_hash;
+
+        const event: UploadInput = {
+          type: 'uploadAll',
+          url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${file_hash}`,
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${this.localStorage.getItem('token')}`
+          }
+        };
+        this.uploadInput.emit(event);
+      })
+    );
   }
 
   toggleGenre(value: string) {
@@ -269,9 +269,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
         process: null,
         ipfsFileHash: null
       };
-
-      // @TODO nativeFile should be encrypted in Node Main Process
-      this.ipcRendererService.uploadFile(output.file.nativeFile);
+      this.uploadFile(output.file.nativeFile);
 
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
       this.uploadStatus.progress = output.file.progress.data.percentage;
@@ -316,6 +314,23 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
         });
       });
     }
+  }
+
+  private uploadFile(file: File) {
+    // @TODO nativeFile should be encrypted in Node Main Process
+    this.ipcRendererService.uploadAsync(file).subscribe(hash => {
+      this.uploadStatus.ipfsFileHash = hash;
+
+      const event: UploadInput = {
+        type: 'uploadAll',
+        url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}`,
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${this.localStorage.getItem('token')}`
+        }
+      };
+      this.uploadInput.emit(event);
+    });
   }
 }
 

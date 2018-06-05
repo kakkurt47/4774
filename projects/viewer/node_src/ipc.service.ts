@@ -158,6 +158,48 @@ class IpcMainService {
         );
       });
     });
+
+    ipcMain.on('File:IPFSUpload', (event, uuid, blob, encryption) => {
+      /**
+       * blob : file binary
+       * encryption : whether encrypt or not. If true, do block encryption.
+       */
+      const ipfs = IpfsServiceInstance;
+      let block = new Block(blob);
+      let blockKey = null;
+
+      if (encryption) {
+        blockKey = new BlockKey(null);
+        const blockRequest = blockKey.generateRequest(null);
+        block = blockRequest.encrypt(block);
+      }
+
+      ipfs.put(block.data, (err, result) => {
+        const helper = ipfs.getRandomPeer();
+        request.post(
+          {
+            url: `${helper}/file/${result[0].hash}`,
+            json: true
+          },
+          (peerRequestError, res, body) => {
+            if (peerRequestError) {
+              event.sender.send(this.wrap('File:IPFSUpload', uuid), peerRequestError);
+            } else if (res.statusCode !== 200) {
+              event.sender.send(
+                this.wrap('File:IPFSUpload', uuid),
+                new Error('Response is not valid - failed with code: ' + res.statusCode)
+              );
+            } else {
+              event.sender.send(this.wrap('File:IPFSUpload', uuid), null, result[0].hash);
+            }
+          }
+        );
+      });
+    });
+  }
+
+  private wrap(eventName: string, uuid: string) {
+    return `${eventName}::${uuid}`;
   }
 }
 
