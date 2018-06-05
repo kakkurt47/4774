@@ -145,14 +145,14 @@ class IpcMainService {
       ipfs.put(block.data, (err, result) => {
         const helper = ipfs.getRandomPeer();
         request.post({
-            url: `${helper}/api/file/${result[0].hash}`,
+            url: `${helper}/file/${result[0].hash}`,
             json: true
           },
           (peerRequestError, res, body) => {
-            if (body && body.status === 'success') {
+            if (res.statusCode === 200) {
               event.sender.send('File:uploadedByIPFS', peerRequestError, result[0].hash);
             } else {
-              event.sender.send('File:uploadedByIPFS', peerRequestError, null, null);
+              event.sender.send('File:uploadedByIPFS', peerRequestError, null);
             }
           }
         );
