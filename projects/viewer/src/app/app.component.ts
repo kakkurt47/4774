@@ -5,9 +5,9 @@ import {BaseComponent, ExtendedWeb3, UserActions} from '@muzika/core';
 import {TranslateService} from '@ngx-translate/core';
 import {interval} from 'rxjs';
 import {environment} from '../environments/environment';
-import {ElectronService} from './providers/electron.service';
-import {MuzikaWalletProvider} from './providers/muzika-wallet.provider';
-import {MuzikaTabs, TabService} from './services/tab.service';
+import {ElectronService} from '../providers/electron.service';
+import {MuzikaWalletProvider} from '../providers/muzika-wallet.provider';
+import {MuzikaTabs, TabService} from '../providers/tab.service';
 
 @Component({
   selector: 'app-root',

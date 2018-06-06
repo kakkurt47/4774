@@ -1,10 +1,6 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
-import * as ethUtil from 'ethereumjs-util';
-import * as ethWallet from 'ethereumjs-wallet';
-import * as EthTx from 'ethereumjs-tx';
-import * as sigUtil from 'eth-sig-util';
 import * as serializeError from 'serialize-error';
-import {ElectronService} from '../../../../app/providers/electron.service';
+import {ElectronService} from '../../../../providers/electron.service';
 import {WalletStorageService} from '../../services/wallet-storage.service';
 
 @Component({

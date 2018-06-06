@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BaseComponent} from '@muzika/core';
-import {ElectronService} from '../../../../../app/providers/electron.service';
+import {ElectronService} from '../../../../../providers/electron.service';
 
 @Component({
   selector: 'app-post-sheet-write-complete',

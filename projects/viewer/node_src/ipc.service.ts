@@ -18,14 +18,34 @@ class IpcMainService {
   constructor() {
   }
 
+  /**
+   * @param {string} eventType
+   * @param {Function} listener
+   *
+   * @use-case
+   *   this.eventHandler('Event Type Example', (ipcSender, contractAddress, hash, ...) => {
+   *      // do stuff with contractAddress, hash, ... arguments
+   *
+   *      // and send response to ipcRender
+   *      ipcSender('hello', 'world');
+   *   });
+   *
+   */
+  eventHandler(eventType: string, listener: Function) {
+    ipcMain.on(eventType, (event, uuid, ...args) => {
+      listener((...sendArgs) => {
+        event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), ...sendArgs);
+      }, ...args);
+    });
+  }
+
   init() {
-    ipcMain.on('PDFViewer:open', (event, contractAddress) => {
+    this.eventHandler('PDFViewer:open', (ipcSender, contractAddress) => {
       // TODO: get file hash from contract address
       const blockKey = new BlockKey('');
 
       // @TODO controls already downloaded file before
-      request.post(
-        {
+      request.post({
           url: `${electronEnvironment.base_api_url}/paper/${contractAddress}/download`,
           encoding: null,
           json: {
@@ -34,8 +54,7 @@ class IpcMainService {
           headers: {
             Authorization: `Bearer ${StorageServiceInstance.get('token')}`
           }
-        },
-        (error, response, body) => {
+        }, (error, response, body) => {
           const encryptedKey = new Buffer(body.slice(0, 256));
           const encryptedData = new Buffer(body.slice(256));
 
@@ -59,10 +78,46 @@ class IpcMainService {
             });
             pdfWindow.loadURL('file://' + filename);
 
-            event.sender.send('PDFViewer:opened', filename);
+            ipcSender(filename);
           });
         }
       );
+    });
+
+
+    this.eventHandler('File:IPFSUpload', (ipcSender, blob, encryption) => {
+      /**
+       * blob : file binary
+       * encryption : whether encrypt or not. If true, do block encryption.
+       */
+      const ipfs = IpfsServiceInstance;
+      let block = new Block(blob);
+      let blockKey = null;
+
+      if (encryption) {
+        blockKey = new BlockKey(null);
+        const blockRequest = blockKey.generateRequest(null);
+        block = blockRequest.encrypt(block);
+      }
+
+      ipfs.put(block.data, (err, result) => {
+        const helper = ipfs.getRandomPeer();
+        request.post(
+          {
+            url: `${helper}/file/${result[0].hash}`,
+            json: true
+          },
+          (peerRequestError, res, body) => {
+            if (peerRequestError) {
+              ipcSender(peerRequestError);
+            } else if (res.statusCode !== 200) {
+              ipcSender(new Error('Response is not valid - failed with code: ' + res.statusCode));
+            } else {
+              ipcSender(null, result[0].hash);
+            }
+          }
+        );
+      });
     });
 
     ipcMain.on('File:download', (event, contractAddress) => {
@@ -154,44 +209,6 @@ class IpcMainService {
               event.sender.send('File:uploadedByIPFS', peerRequestError, result[0].hash);
             } else {
               event.sender.send('File:uploadedByIPFS', peerRequestError, null);
-            }
-          }
-        );
-      });
-    });
-
-    ipcMain.on('File:IPFSUpload', (event, uuid, blob, encryption) => {
-      /**
-       * blob : file binary
-       * encryption : whether encrypt or not. If true, do block encryption.
-       */
-      const ipfs = IpfsServiceInstance;
-      let block = new Block(blob);
-      let blockKey = null;
-
-      if (encryption) {
-        blockKey = new BlockKey(null);
-        const blockRequest = blockKey.generateRequest(null);
-        block = blockRequest.encrypt(block);
-      }
-
-      ipfs.put(block.data, (err, result) => {
-        const helper = ipfs.getRandomPeer();
-        request.post(
-          {
-            url: `${helper}/file/${result[0].hash}`,
-            json: true
-          },
-          (peerRequestError, res, body) => {
-            if (peerRequestError) {
-              event.sender.send(IPCUtil.wrap('File:IPFSUpload', uuid), peerRequestError);
-            } else if (res.statusCode !== 200) {
-              event.sender.send(
-                IPCUtil.wrap('File:IPFSUpload', uuid),
-                new Error('Response is not valid - failed with code: ' + res.statusCode)
-              );
-            } else {
-              event.sender.send(IPCUtil.wrap('File:IPFSUpload', uuid), null, result[0].hash);
             }
           }
         );

@@ -18,8 +18,7 @@ import {
 } from '@muzika/core';
 import {UploadInput, UploadOutput} from 'ngx-uploader';
 import {Observable} from 'rxjs';
-import {IpcRendererService} from '../../../../app/services/ipc-renderer.service';
-import {IpfsEventService} from '../../../../app/services/ipfs-event.service';
+import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
 import {AlertService} from '../../../alert/alert.service';
 import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
 
@@ -149,7 +148,6 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
               private alertService: AlertService,
               private apiConfig: APIConfig,
               private localStorage: LocalStorage,
-              private ipfsEventService: IpfsEventService,
               private ipcRendererService: IpcRendererService,
               private contractService: MuzikaContractService,
               private router: Router,
@@ -158,27 +156,11 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
   }
 
   ngOnInit() {
+    super.ngOnInit();
+
     this._sub.push(
       this.currentUserObs.subscribe(user => {
         this.currentUser = user;
-      })
-    );
-
-    this._sub.push(
-      this.ipfsEventService.event('ipfsHash').subscribe(ipfsEvent => {
-        const file_hash = ipfsEvent.data;
-
-        this.uploadStatus.ipfsFileHash = file_hash;
-
-        const event: UploadInput = {
-          type: 'uploadAll',
-          url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${file_hash}`,
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${this.localStorage.getItem('token')}`
-          }
-        };
-        this.uploadInput.emit(event);
       })
     );
   }
@@ -316,20 +298,29 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
   }
 
   private uploadFile(file: File) {
-    // @TODO nativeFile should be encrypted in Node Main Process
-    this.ipcRendererService.uploadAsync(file).subscribe(hash => {
-      this.uploadStatus.ipfsFileHash = hash;
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.error) {
 
-      const event: UploadInput = {
-        type: 'uploadAll',
-        url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}`,
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${this.localStorage.getItem('token')}`
-        }
-      };
-      this.uploadInput.emit(event);
-    });
+      } else {
+        this.ipcRendererService
+          .sendAndWaitForResult('File:IPFSUpload', Buffer.from(reader.result), true)
+          .then((hash) => {
+            this.uploadStatus.ipfsFileHash = hash;
+
+            const event: UploadInput = {
+              type: 'uploadAll',
+              url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}`,
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${this.localStorage.getItem('token')}`
+              }
+            };
+            this.uploadInput.emit(event);
+          });
+      }
+    };
+    reader.readAsArrayBuffer(file);
   }
 }
 

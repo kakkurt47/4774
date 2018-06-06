@@ -15,7 +15,7 @@ import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mo
 import {AlertService} from '../../../alert/alert.service';
 import {ActivatedRoute} from '@angular/router';
 import {combineLatest, Subscription} from 'rxjs';
-import {IpcRendererService} from '../../../../app/services/ipc-renderer.service';
+import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
 
 @Component({
   selector: 'app-post-community-item-detail',

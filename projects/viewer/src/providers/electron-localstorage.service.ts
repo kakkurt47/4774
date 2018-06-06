@@ -1,6 +1,6 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
-import {ElectronService} from '../providers/electron.service';
+import {ElectronService} from './electron.service';
 
 @Injectable()
 export class ElectronLocalStorage {

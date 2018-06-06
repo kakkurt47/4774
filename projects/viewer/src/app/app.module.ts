@@ -19,23 +19,23 @@ import {WalletModule} from '../modules/wallet/wallet.module';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MuzikaAppsComponent} from './components/muzika-apps/muzika-apps.component';
-import {ArtistSheetComponent} from './components/artist-sheet/artist-sheet.component';
-import {FooterComponent} from './components/footer/footer.component';
-import {NavbarComponent} from './components/navbar/navbar.component';
-import {SpinnerComponent} from './components/spinner/spinner.component';
+import {MuzikaAppsComponent} from '../components/muzika-apps/muzika-apps.component';
+import {ArtistSheetComponent} from '../components/artist-sheet/artist-sheet.component';
+import {FooterComponent} from '../components/footer/footer.component';
+import {NavbarComponent} from '../components/navbar/navbar.component';
+import {SpinnerComponent} from '../components/spinner/spinner.component';
 
-import {WebviewDirective} from './directives/webview.directive';
-import {IPFSTestPageComponent} from './pages/ipfs-test/ipfs-test.component';
-import {LoginPageComponent} from './pages/login/login.component';
-import {MainPageComponent} from './pages/main/main.component';
+import {WebviewDirective} from '../providers/webview.directive';
+import {IPFSTestPageComponent} from '../pages/ipfs-test/ipfs-test.component';
+import {LoginPageComponent} from '../pages/login/login.component';
+import {MainPageComponent} from '../pages/main/main.component';
 
-import {ElectronService} from './providers/electron.service';
-import {IpcRendererService} from './services/ipc-renderer.service';
+import {ElectronService} from '../providers/electron.service';
+import {IpcRendererService} from '../providers/ipc-renderer.service';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
-import {MuzikaWalletProvider} from './providers/muzika-wallet.provider';
-import {TabService} from './services/tab.service';
-import {ElectronLocalStorage} from './services/electron-localstorage.service';
+import {MuzikaWalletProvider} from '../providers/muzika-wallet.provider';
+import {TabService} from '../providers/tab.service';
+import {ElectronLocalStorage} from '../providers/electron-localstorage.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

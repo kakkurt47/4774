@@ -2,7 +2,7 @@ import {Component, NgZone} from '@angular/core';
 import {BaseComponent, promisify, toBigNumber, unitDown, unitUp, IMuzikaCoin, createTruffleMuzikaCoin} from '@muzika/core';
 import * as ethUtil from 'ethereumjs-util';
 import * as ethWallet from 'ethereumjs-wallet';
-import {ElectronService} from '../../../../app/providers/electron.service';
+import {ElectronService} from '../../../../providers/electron.service';
 import {AlertService} from '../../../alert/alert.service';
 import {WalletStorageService} from '../../services/wallet-storage.service';
 import {Web3WalletProvider} from '../../wallet.provider';
