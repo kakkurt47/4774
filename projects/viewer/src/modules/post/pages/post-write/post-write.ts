@@ -18,6 +18,7 @@ import {
 } from '@muzika/core';
 import {UploadInput, UploadOutput} from 'ngx-uploader';
 import {Observable} from 'rxjs';
+import {IPCUtil} from '../../../../../shared/ipc-utils';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
 import {AlertService} from '../../../alert/alert.service';
 import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
@@ -304,8 +305,8 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
 
       } else {
         this.ipcRendererService
-          .sendAndWaitForResult('File:IPFSUpload', Buffer.from(reader.result), true)
-          .then((hash) => {
+          .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, Buffer.from(reader.result), true)
+          .subscribe((hash) => {
             this.uploadStatus.ipfsFileHash = hash;
 
             const event: UploadInput = {

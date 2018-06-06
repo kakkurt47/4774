@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {BaseComponent} from '@muzika/core';
+import {IPCUtil} from '../../../shared/ipc-utils';
 import {IpcRendererService} from '../../providers/ipc-renderer.service';
 
 // import ipcRenderer = Electron.ipcRenderer;
@@ -28,13 +29,13 @@ export class IPFSTestPageComponent extends BaseComponent {
 
   submitUpload() {
     const reader = new FileReader();
-    reader.onload = (err) => {
-      if (err) {
-        console.log(err);
+    reader.onload = (event) => {
+      if (event) {
+        console.log(event);
       }
       this.ipcRenderer
-        .sendAndWaitForResult('File:IPFSUpload', Buffer.from(reader.result), true)
-        .then(hash => {
+        .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, Buffer.from(reader.result), true)
+        .subscribe(hash => {
           this.uploadedHash = hash;
         });
     };

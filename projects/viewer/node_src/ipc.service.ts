@@ -33,14 +33,18 @@ class IpcMainService {
    */
   eventHandler(eventType: string, listener: Function) {
     ipcMain.on(eventType, (event, uuid, ...args) => {
-      listener((...sendArgs) => {
-        event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), ...sendArgs);
-      }, ...args);
+      const resolve = (...sendArgs) => {
+        event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), null, ...sendArgs);
+      };
+      const reject = (error) => {
+        event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), error);
+      };
+      listener(resolve, reject, ...args);
     });
   }
 
   init() {
-    this.eventHandler('PDFViewer:open', (ipcSender, contractAddress) => {
+    this.eventHandler(IPCUtil.EVENT_PDF_VIEWER_OPEN, (ipcResolve, ipcReject, contractAddress) => {
       // TODO: get file hash from contract address
       const blockKey = new BlockKey('');
 
@@ -78,14 +82,14 @@ class IpcMainService {
             });
             pdfWindow.loadURL('file://' + filename);
 
-            ipcSender(filename);
+            ipcResolve(filename);
           });
         }
       );
     });
 
 
-    this.eventHandler('File:IPFSUpload', (ipcSender, blob, encryption) => {
+    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, blob, encryption) => {
       /**
        * blob : file binary
        * encryption : whether encrypt or not. If true, do block encryption.
@@ -109,11 +113,11 @@ class IpcMainService {
           },
           (peerRequestError, res, body) => {
             if (peerRequestError) {
-              ipcSender(peerRequestError);
+              ipcReject(peerRequestError);
             } else if (res.statusCode !== 200) {
-              ipcSender(new Error('Response is not valid - failed with code: ' + res.statusCode));
+              ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
             } else {
-              ipcSender(null, result[0].hash);
+              ipcResolve(result[0].hash);
             }
           }
         );
@@ -183,37 +187,6 @@ class IpcMainService {
 
     });
 
-    ipcMain.on('File:uploadByIPFS', (event, blob, encryption) => {
-      /**
-       * blob : file binary
-       * encryption : whether encrypt or not. If true, do block encryption.
-       */
-      const ipfs = IpfsServiceInstance;
-      let block = new Block(blob);
-      let blockKey = null;
-
-      if (encryption) {
-        blockKey = new BlockKey(null);
-        const blockRequest = blockKey.generateRequest(null);
-        block = blockRequest.encrypt(block);
-      }
-
-      ipfs.put(block.data, (err, result) => {
-        const helper = ipfs.getRandomPeer();
-        request.post({
-            url: `${helper}/file/${result[0].hash}`,
-            json: true
-          },
-          (peerRequestError, res, body) => {
-            if (res.statusCode === 200) {
-              event.sender.send('File:uploadedByIPFS', peerRequestError, result[0].hash);
-            } else {
-              event.sender.send('File:uploadedByIPFS', peerRequestError, null);
-            }
-          }
-        );
-      });
-    });
   }
 }
 
