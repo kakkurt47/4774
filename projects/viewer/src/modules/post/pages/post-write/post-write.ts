@@ -322,7 +322,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
               },
               data: {
                 type: 'paper',
-                file_hash: hash,
+                ipfs_hash: hash,
                 aes: aesKey.toString('base64')
               }
             };
