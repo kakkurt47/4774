@@ -81,7 +81,7 @@ export class PostSheetItemDetailComponent extends BaseComponent {
           }
         });
 
-        this.postActions.loadPost('sheet', 'id');
+        this.postActions.loadPost('sheet', postId);
       })
     );
   }
