@@ -315,10 +315,15 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
 
             const event: UploadInput = {
               type: 'uploadAll',
-              url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}&aes=${aesKey.toString('base64')}`,
+              url: `${this.apiConfig.apiUrl}/file`,
               method: 'POST',
               headers: {
                 Authorization: `Bearer ${this.localStorage.getItem('token')}`
+              },
+              data: {
+                type: 'paper',
+                file_hash: hash,
+                aes: aesKey.toString('base64')
               }
             };
             this.uploadInput.emit(event);
