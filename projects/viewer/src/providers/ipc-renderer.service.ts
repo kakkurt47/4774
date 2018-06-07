@@ -1,7 +1,7 @@
 import {Injectable, NgZone} from '@angular/core';
 import {IPCUtil} from '../../shared/ipc-utils';
 import {ElectronService} from './electron.service';
-import {from} from 'rxjs';
+import {from, Observable} from 'rxjs';
 
 // console.log(ipcRenderer.sendSync('PDFViewer:open', 'ping')); // prints "pong"
 
@@ -14,7 +14,7 @@ export class IpcRendererService {
   init() {
   }
 
-  sendAsync(eventType: string, ...args) {
+  sendAsync<T = any>(eventType: string, ...args): Observable<T> {
     return from(new Promise<any>((resolve, reject) => {
       const uuid = IPCUtil.uuid();
       this.electronService.ipcRenderer.once(IPCUtil.wrap(eventType + '::received', uuid),
