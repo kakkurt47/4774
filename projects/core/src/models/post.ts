@@ -34,6 +34,7 @@ export interface SheetMusic {
   file_id: number;
   name: string;
   ipfs_file_hash: string;
+  aes_key: string;
   tx_hash: string;
   contract_address?: string;
   original_hash?: string;

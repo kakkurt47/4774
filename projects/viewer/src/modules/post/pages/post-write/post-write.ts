@@ -143,6 +143,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     fileId?: number;
     process?: string;
     ipfsFileHash: string;
+    aesKey: Buffer;
   };
 
   constructor(private injector: Injector,
@@ -250,7 +251,8 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
         fileName: output.file.name,
         progress: 0,
         process: null,
-        ipfsFileHash: null
+        ipfsFileHash: null,
+        aesKey: null
       };
       this.uploadFile(output.file.nativeFile);
 
@@ -285,6 +287,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
         prepared.sheet_music.original_hash
       ).subscribe(txHash => {
         prepared.sheet_music.tx_hash = txHash;
+        prepared.sheet_music.aes_key = this.uploadStatus.aesKey.toString('base64');
 
         this.postActions.write('sheet', prepared).subscribe(() => {
           this.router.navigate(['/board/sheet/write/complete'], {
@@ -308,10 +311,11 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
           .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, Buffer.from(reader.result), true)
           .subscribe(([hash, aesKey]) => {
             this.uploadStatus.ipfsFileHash = hash;
+            this.uploadStatus.aesKey = aesKey;
 
             const event: UploadInput = {
               type: 'uploadAll',
-              url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}&aesKey=${aesKey}`,
+              url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}&aes=${aesKey.toString('base64')}`,
               method: 'POST',
               headers: {
                 Authorization: `Bearer ${this.localStorage.getItem('token')}`
