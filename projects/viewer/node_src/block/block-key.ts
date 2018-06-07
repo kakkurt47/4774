@@ -1,22 +1,36 @@
-import {BlockRequest} from './block-request';
-import {Block} from './block';
+import {Block, BlockUtil} from './block';
 import * as ursa from 'ursa';
-import * as aesjs from 'aes-js';
 
 
 export class BlockKey {
-  blockHash: string;
-  publicKey: any;
+  block: Block;
   privateKey: any;
+  publicKey: any;
+  encryptedAESKey: Buffer = null;
 
-  constructor(blockHash: string) {
-    this.blockHash = blockHash;
-    this.generateKey();
+  private constructor(block: Block, publicKey: any = null) {
+    this.block = block;
+    if (!publicKey) {
+      this.generateKey();
+    } else {
+      this.publicKey = publicKey;
+      this.encryptAESKey();
+    }
+  }
+
+  static forResponse(block: Block, publicKey: any) {
+    // create a block key for response
+    return new BlockKey(block, publicKey);
+  }
+
+  static forRequest(block: Block = null) {
+    // create a block key for request server to send encrypted AES key.
+    return new BlockKey(block);
   }
 
   generateKey() {
     // creates a 2048 bit RSA key
-    const rsaKey = ursa.generatePrivateKey(2048, 65537);
+    const rsaKey = ursa.generatePrivateKey(BlockUtil.RSA_KEY_BIT_SIZE, 65537);
     this.privateKey = rsaKey;
     this.publicKey = rsaKey;
   }
@@ -29,43 +43,52 @@ export class BlockKey {
     return this.publicKey.toPublicPem().toString();
   }
 
-  generateRequest(blockHash) {
-    return new BlockRequest(blockHash, this.publicKey);
+  _encryptByPublicKey(blob: Buffer) {
+    return this.publicKey.encrypt(blob);
   }
 
-  decrypt(block: Block) {
-    // if not encrypted block
-    if (!block.encryptedKey) {
-      return null;
+  _decryptByPrivateKey(blob: Buffer) {
+    return this.privateKey.decrypt(blob);
+  }
+
+  getEncryptedAESKey() {
+    if (!this.encryptedAESKey) {
+      this.encryptAESKey();
     }
+    return this.encryptedAESKey;
+  }
 
-    // TODO: check block hash
-    // if block hash is not the same
-    // if (block.blockHash !== this.blockHash) {
-    //   return null;
-    // }
-
-    let aesKey = this.privateKey.decrypt(block.encryptedKey);
-
-    // if AES key length is invalid (should be 256 bits)
-    if (aesKey.length !== 32) {
-      return null;
+  encryptAESKey() {
+    if (!this.block || !this.block.isEncrypted()) {
+      // if aes key is not set since the block is not encrypted, cannot encrypt
+      throw new Error('The block is not encrypted');
+    } else {
+      this.encryptedAESKey = this._encryptByPublicKey(this.block.aesKey);
     }
+  }
 
-    // get initializer vector in CBC mode from encrypted data and encrypted data
-    let iv = block.data.slice(0, 16);
-    let encryptedData = block.data.slice(16);
+  decryptAESKey() {
+    if (!this.block) {
+      throw new Error('The block does not exist.');
+    } else {
+      this.block.aesKey = this._decryptByPrivateKey(this.encryptedAESKey);
+    }
+  }
 
-    aesKey = aesjs.utils.hex.toBytes(aesjs.utils.hex.fromBytes(aesKey));
-    iv = aesjs.utils.hex.toBytes(aesjs.utils.hex.fromBytes(iv));
-    encryptedData = aesjs.utils.hex.toBytes(aesjs.utils.hex.fromBytes(encryptedData));
+  receiveBlob(blob: Buffer, doDecryption: boolean = true) {
+    // receive blob and translate block.
+    this.encryptedAESKey = blob.slice(0, BlockUtil.RSA_KEY_BIT_SIZE / 8);
 
-    const aesCbc = new aesjs.ModeOfOperation.cbc(aesKey, iv);
-    const decryptedData = Buffer.from(aesCbc.decrypt(encryptedData));
+    // generate an encrypted block from binary
+    this.block = Block.fromEncryptedData(blob.slice(BlockUtil.RSA_KEY_BIT_SIZE / 8));
+    this.decryptAESKey();
 
-    const decryptedBlock = new Block(decryptedData, true);
-    decryptedBlock.unpad();
+    if (doDecryption) {
+      this.block.decrypt();
+    }
+  }
 
-    return decryptedBlock;
+  sendBlob() {
+    return Buffer.concat([this.getEncryptedAESKey(), this.block.data]);
   }
 }

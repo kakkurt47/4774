@@ -35,7 +35,7 @@ export class IPFSTestPageComponent extends BaseComponent {
       }
       this.ipcRenderer
         .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, Buffer.from(reader.result), true)
-        .subscribe(hash => {
+        .subscribe(([hash, aesKey]) => {
           this.uploadedHash = hash;
         });
     };

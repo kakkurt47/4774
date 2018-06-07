@@ -46,7 +46,7 @@ class IpcMainService {
   init() {
     this.eventHandler(IPCUtil.EVENT_PDF_VIEWER_OPEN, (ipcResolve, ipcReject, contractAddress) => {
       // TODO: get file hash from contract address
-      const blockKey = new BlockKey('');
+      const blockKey = BlockKey.forRequest();
 
       // @TODO controls already downloaded file before
       request.post({
@@ -59,13 +59,9 @@ class IpcMainService {
             Authorization: `Bearer ${StorageServiceInstance.get('token')}`
           }
         }, (error, response, body) => {
-          const encryptedKey = new Buffer(body.slice(0, 256));
-          const encryptedData = new Buffer(body.slice(256));
+        blockKey.receiveBlob(body);
 
-          const encryptedBlock = new Block(encryptedData, true, encryptedKey);
-          const decryptedBlock = blockKey.decrypt(encryptedBlock);
-
-          const blob = decryptedBlock.data;
+          const blob = blockKey.block.data;
 
           const filename = tempfile();
           fs.writeFile(filename, blob, (err) => {
@@ -95,13 +91,10 @@ class IpcMainService {
        * encryption : whether encrypt or not. If true, do block encryption.
        */
       const ipfs = IpfsServiceInstance;
-      let block = new Block(blob);
-      let blockKey = null;
+      const block = Block.fromPlainData(blob);
 
       if (encryption) {
-        blockKey = new BlockKey(null);
-        const blockRequest = blockKey.generateRequest(null);
-        block = blockRequest.encrypt(block);
+        block.encrypt();
       }
 
       ipfs.put(block.data, (err, result) => {
@@ -117,7 +110,7 @@ class IpcMainService {
             } else if (res.statusCode !== 200) {
               ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
             } else {
-              ipcResolve(result[0].hash);
+              ipcResolve(result[0].hash, block.aesKey);
             }
           }
         );
@@ -125,26 +118,23 @@ class IpcMainService {
     });
 
     ipcMain.on('File:download', (event, contractAddress) => {
-      // TODO: get file hash from contract address @ksw
-      const blockKey = new BlockKey('');
+      const blockKey = BlockKey.forRequest();
 
       request.post(
         {
           url: `${electronEnvironment.base_api_url}/api/paper/${contractAddress}/download`,
           encoding: null,
           json: {
-            'public_key': blockKey.publicKey
+            'public_key': blockKey.getPublicKey()
           }
         },
         (error, response, body) => {
-          const encryptedKey = new Buffer(body.slice(0, 256));
-          const encryptedData = new Buffer(body.slice(256));
-
-          const encryptedBlock = new Block(encryptedData, true, encryptedKey);
-          const decryptedBlock = blockKey.decrypt(encryptedBlock);
+          // const encryptedKey = new Buffer(body.slice(0, 256));
+          // const encryptedData = new Buffer(body.slice(256));
+          blockKey.receiveBlob(body);
 
           const filename = tempfile();
-          fs.writeFile(filename, decryptedBlock.data, (err) => {
+          fs.writeFile(filename, blockKey.block.data, (err) => {
             if (err) {
               event.sender.send('File:downloaded', null);
             } else {
@@ -157,7 +147,8 @@ class IpcMainService {
 
     // test for file download
     ipcMain.on('File:downloadTest', (event) => {
-      const blockKey = new BlockKey('QmSgRcqRvLukaDzWZTw2kWrUD1eFukDRwJpbB2U4ayDwsz');
+      // const blockKey = new BlockKey('QmSgRcqRvLukaDzWZTw2kWrUD1eFukDRwJpbB2U4ayDwsz');
+      const blockKey = BlockKey.forRequest();
 
       request.post(
         {
@@ -168,14 +159,10 @@ class IpcMainService {
           }
         },
         (error, response, body) => {
-          const encryptedKey = new Buffer(body.slice(0, 256));
-          const encryptedData = new Buffer(body.slice(256));
-
-          const encryptedBlock = new Block(encryptedData, true, encryptedKey);
-          const decryptedBlock = blockKey.decrypt(encryptedBlock);
+          blockKey.receiveBlob(body);
 
           const filename = tempfile();
-          fs.writeFile(filename, decryptedBlock.data, (err) => {
+          fs.writeFile(filename, blockKey.block.data, (err) => {
             if (err) {
               event.sender.send('File:downloaded', null);
             } else {

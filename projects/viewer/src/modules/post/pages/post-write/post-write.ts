@@ -306,19 +306,19 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       } else {
         this.ipcRendererService
           .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, Buffer.from(reader.result), true)
-          .subscribe((hash) => {
+          .subscribe(([hash, aesKey]) => {
             this.uploadStatus.ipfsFileHash = hash;
 
             const event: UploadInput = {
               type: 'uploadAll',
-              url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}`,
+              url: `${this.apiConfig.apiUrl}/file?type=paper&file_hash=${hash}&aesKey=${aesKey}`,
               method: 'POST',
               headers: {
                 Authorization: `Bearer ${this.localStorage.getItem('token')}`
               }
             };
             this.uploadInput.emit(event);
-          });
+           });
       }
     };
     reader.readAsArrayBuffer(file);
