@@ -10,11 +10,10 @@ import {
   User,
   VideoPost
 } from '@muzika/core';
-import {Observable} from 'rxjs/internal/Observable';
 import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {AlertService} from '../../../alert/alert.service';
 import {ActivatedRoute} from '@angular/router';
-import {combineLatest, Subscription} from 'rxjs';
+import {combineLatest, Observable, Subscription} from 'rxjs';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
 
 @Component({
