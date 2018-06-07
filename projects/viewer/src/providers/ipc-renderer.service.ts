@@ -15,7 +15,7 @@ export class IpcRendererService {
   }
 
   sendAsync(eventType: string, ...args) {
-    return new Observable((observer) => {
+    return new Observable<any>((observer) => {
       const uuid = IPCUtil.uuid();
       this.electronService.ipcRenderer.once(IPCUtil.wrap(eventType + '::received', uuid),
         (event, error, ...responseArgs) => {
