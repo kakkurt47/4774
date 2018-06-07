@@ -23,7 +23,11 @@ export class IpcRendererService {
             if (error) {
               reject(error);
             } else {
-              resolve(...responseArgs);
+              if (responseArgs.length <= 1) {
+                resolve(...responseArgs);
+              } else {
+                resolve(responseArgs);
+              }
             }
           });
         });
