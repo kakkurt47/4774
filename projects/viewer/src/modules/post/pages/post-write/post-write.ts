@@ -227,7 +227,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       ...Array.from(this.instruments.values())
     ];
 
-    prepared.sheet_music = <SheetMusic>{
+    prepared.music_files = <SheetMusic>{
       file_id: this.uploadStatus.fileId,
       name: this.uploadStatus.fileName,
       ipfs_file_hash: this.uploadStatus.ipfsFileHash,
@@ -283,11 +283,11 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       this.contractService.createNewPaperContract(
         this.currentUser.address,
         unitDown(prepared.price),
-        prepared.sheet_music.ipfs_file_hash,
-        prepared.sheet_music.original_hash
+        prepared.music_files.ipfs_file_hash,
+        prepared.music_files.original_hash
       ).subscribe(txHash => {
-        prepared.sheet_music.tx_hash = txHash;
-        prepared.sheet_music.aes_key = this.uploadStatus.aesKey.toString('base64');
+        prepared.music_files.tx_hash = txHash;
+        prepared.music_files.aes_key = this.uploadStatus.aesKey.toString('base64');
 
         this.postActions.write('sheet', prepared).subscribe(() => {
           this.router.navigate(['/board/sheet/write/complete'], {

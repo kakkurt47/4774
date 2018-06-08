@@ -73,7 +73,7 @@ export class PostSheetItemDetailComponent extends BaseComponent {
           this.currentUserObs
         ).subscribe(async ([post, user]) => {
           this.post = post;
-          this.paper = this.muzikaPaper.at(post.sheet_music.contract_address);
+          this.paper = this.muzikaPaper.at(post.music_files.contract_address);
 
           if (user) {
             this.isPurchased = await this.paper.isPurchased(user.address);
@@ -97,7 +97,7 @@ export class PostSheetItemDetailComponent extends BaseComponent {
       this.alertService.alert('Should purchase first to download file');
       return;
     } else {
-      this.ipcRenderer.openPDFViewer(this.post.sheet_music.contract_address);
+      this.ipcRenderer.openPDFViewer(this.post.music_files.contract_address);
     }
   }
 
@@ -106,13 +106,13 @@ export class PostSheetItemDetailComponent extends BaseComponent {
 
     try {
       const estimateGas = await coin.increaseApprovalAndCall.estimateGas(
-        this.post.sheet_music.contract_address,
+        this.post.music_files.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address}
       );
       await coin.increaseApprovalAndCall(
-        this.post.sheet_music.contract_address,
+        this.post.music_files.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address, gas: estimateGas + 30000}

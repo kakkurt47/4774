@@ -77,7 +77,7 @@ function createSheet(post_id: number, title: string, author: User): SheetPost {
     tags: [],
     price: rand() * 100,
     created_at: '2018-05-13 16:04:24',
-    sheet_music: <any>{},
+    music_files: <any>{},
   };
 }
 

@@ -26,7 +26,7 @@ export interface VideoPost extends BasePost {
 
 export interface SheetPost extends BasePost {
   price?: number | string;
-  sheet_music?: SheetMusic;
+  music_files?: SheetMusic;
 }
 
 export interface SheetMusic {
