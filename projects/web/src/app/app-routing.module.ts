@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LayoutIntroComponent, LayoutMainComponent} from '../components/layout/layout.component';
+import {IntroLayoutComponent} from '../components/intro-layout/intro-layout.component';
+import {LayoutComponent} from '../modules/shared/components/layout/layout.component';
 import {IntroMainPageComponent} from '../pages/intro-main/intro-main.component';
 import {MainPageComponent} from '../pages/main/main.component';
 
@@ -16,12 +17,12 @@ const routes: Routes = [
   // @TODO Add introduction page routing
   {
     path: '',
-    component: LayoutIntroComponent,
+    component: IntroLayoutComponent,
     children: introRoutes
   },
   {
     path: 'beta',
-    component: LayoutMainComponent,
+    component: LayoutComponent,
     children: mainRoutes
   },
 ];

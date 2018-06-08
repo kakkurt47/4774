@@ -11,16 +11,15 @@ import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule} from '@muzika
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {FooterComponent} from '../components/footer/footer.component';
 import {IntroFooterComponent} from '../components/intro-footer/intro-footer.component';
 import {IntroNavbarComponent} from '../components/intro-navbar/intro-navbar.component';
-import {LayoutIntroComponent, LayoutMainComponent} from '../components/layout/layout.component';
+import {IntroLayoutComponent} from '../components/intro-layout/intro-layout.component';
 import {environment} from '../environments/environment';
+import {PostModule} from '../modules/post/post.module';
+import {SharedModule} from '../modules/shared/shared.module';
 import {IntroMainPageComponent} from '../pages/intro-main/intro-main.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NavbarComponent} from '../components/navbar/navbar.component';
-import {SpinnerComponent} from '../components/spinner/spinner.component';
 import {MainPageComponent} from '../pages/main/main.component';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
 
@@ -34,13 +33,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
 
     /* Reusable Components */
-    LayoutIntroComponent,
-    LayoutMainComponent,
+    IntroLayoutComponent,
     IntroNavbarComponent,
-    NavbarComponent,
     IntroFooterComponent,
-    FooterComponent,
-    SpinnerComponent,
 
     /* Page Components */
     /* For introduction */
@@ -67,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    SharedModule,
 
     /* Bootstrap modules */
     ModalModule.forRoot(),
@@ -82,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     /* Sub-modules */
     MuzikaAlertModule,
+    PostModule,
   ],
   providers: [
     {
