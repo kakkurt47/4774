@@ -1,0 +1,23 @@
+<div class="d-flex p-4 border-bottom">
+  <div class="artist-img pr-4 border-right">
+    <img [src]="sheet.author.profile_image">
+  </div>
+
+  <div class="ml-4">
+    <div class="font-weight-bold h-50">
+      {{sheet.title}}
+    </div>
+    <div class="text-secondary h-50">
+      {{sheet.author.name}}
+    </div>
+  </div>
+
+  <div class="ml-auto d-flex align-items-center text-secondary" style="width: 125px;">
+    <div class="w-50">
+      <i class="fa fa-eye"></i> <span class="ml-2 mr-3"> {{sheet.views}} </span>
+    </div>
+    <div class="w-50">
+      <i class="fa fa-heart"></i> <span class="ml-2"> {{sheet.likes}} </span>
+    </div>
+  </div>
+</div>
