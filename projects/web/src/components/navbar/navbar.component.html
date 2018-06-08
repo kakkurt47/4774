@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand">
+  <div class="container-fluid">
+    <div class="navbar-brand" routerLink="/">
+      <brand-icon-muzika></brand-icon-muzika>
+    </div>
+
+    <div class="navbar-menu">
+      <ul class="main-menu">
+        <!--<li routerLink="/board/video" routerLinkActive="active">-->
+        <!--<i class="fab fa-youtube"></i>-->
+        <!--Video-->
+        <!--</li>-->
+        <!--<li routerLink="/board/community" routerLinkActive="active">-->
+        <!--<i class="fa fa-users"></i>-->
+        <!--Community-->
+        <!--</li>-->
+        <li routerLink="/board/sheet" routerLinkActive="active">
+          PIANO
+        </li>
+        <li routerLink="/board/sheet" routerLinkActive="active">
+          GUITAR
+        </li>
+        <li routerLink="/board/sheet" routerLinkActive="active">
+          ARTIST
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar-collapse">
+      <ng-container *ngIf="currentUser; else loggedInBlock">
+        <div class="ml-auto">
+          <div class="user-profile-img">
+            <img src="assets/person-1.png">
+          </div>
+        </div>
+        <div class="pl-3">
+          <div class="font-weight-bold user-name">
+            {{currentUser.name || 'Unnamed'}}
+          </div>
+          <div class="wallet">
+            {{currentUser.address | slice:0:8}}...{{currentUser.address | slice:-6}}
+          </div>
+        </div>
+        <div class="pl-3">
+          <a class="text-white" style="cursor: pointer" (click)="logout()">
+            <i class="fa fa-sign-out"></i>
+          </a>
+        </div>
+      </ng-container>
+
+      <ng-template #loggedInBlock>
+        <div class="ml-auto pr-4">
+          <a class="btn-login" routerLink="/login">
+            Login
+          </a>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+<!--
+<div class="pt-4">
+  <div class="container font-weight-bold px-0">
+    <ul class="row main-menu">
+      <li class="col" routerLink="/board/video" routerLinkActive="active">
+        <i class="fab fa-youtube"></i>
+        영상
+      </li>
+      <li class="col" routerLink="/board/community" routerLinkActive="active">
+        <i class="fa fa-users"></i>
+        커뮤니티
+      </li>
+      <li class="col" routerLink="/board/sheet" routerLinkActive="active">
+        <i class="fa fa-sheet"></i>
+        악보
+      </li>
+      <li class="col">
+        준비중...
+      </li>
+    </ul>
+  </div>
+</div>
+-->

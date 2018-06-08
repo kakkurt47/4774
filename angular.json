@@ -499,6 +499,172 @@
         }
       }
     },
+    "muzika-web": {
+      "root": "projects/web/",
+      "sourceRoot": "projects/web/",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/web",
+            "index": "projects/web/src/index.html",
+            "main": "projects/web/src/main.ts",
+            "tsConfig": "projects/web/tsconfig.json",
+            "polyfills": "projects/web/src/polyfills.ts",
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/web/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/web/src/assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/web/src/styles.scss",
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/froala-editor/js/froala_editor.min.js",
+              "node_modules/froala-editor/js/languages/ko.js",
+              "node_modules/froala-editor/js/plugins/link.min.js",
+              "node_modules/froala-editor/js/plugins/table.min.js",
+              "node_modules/froala-editor/js/plugins/url.min.js",
+              "node_modules/froala-editor/js/plugins/colors.min.js",
+              "node_modules/froala-editor/js/plugins/align.min.js",
+              "node_modules/froala-editor/js/plugins/emoticons.min.js",
+              "node_modules/froala-editor/js/plugins/font_size.min.js",
+              "node_modules/froala-editor/js/plugins/code_view.min.js",
+              "node_modules/froala-editor/js/plugins/lists.min.js",
+              "node_modules/froala-editor/js/plugins/paragraph_style.min.js",
+              "node_modules/froala-editor/js/plugins/image.min.js",
+              "node_modules/froala-editor/js/plugins/video.min.js",
+              "node_modules/froala-editor/js/plugins/image_manager.min.js"
+            ]
+          },
+          "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/web/src/environments/environment.ts",
+                  "with": "projects/web/src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/web/src/environments/environment.ts",
+                  "with": "projects/web/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "muzika-web:build",
+            "hmr": true,
+            "hmrWarning": false
+          },
+          "configurations": {
+            "stage": {
+              "browserTarget": "muzika-web:build:stage"
+            },
+            "production": {
+              "browserTarget": "muzika-web:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "muzika-web:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/web/src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "projects/web/src/polyfills.ts",
+            "tsConfig": "projects/web/tsconfig.spec.json",
+            "scripts": [],
+            "styles": [
+              "projects/web/src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "scss/fontawesome/css/fontawesome.min.css",
+              "scss/fontawesome/css/fontawesome-all.min.css"
+            ],
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/web/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/web/src/assets",
+                "output": "/assets"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/core/tsconfig.json",
+              "projects/web/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "muzika-web-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "muzika-web:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "app": {
       "root": "",
       "sourceRoot": "src",
