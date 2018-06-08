@@ -1,5 +1,5 @@
 import {select} from '@angular-redux/store';
-import {Component, EventEmitter, Injector} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {
@@ -16,7 +16,6 @@ import {
   User,
   VideoPost
 } from '@muzika/core';
-import {UploadInput, UploadOutput} from 'ngx-uploader';
 import {Observable} from 'rxjs';
 import {IPCUtil} from '../../../../../shared/ipc-utils';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
@@ -134,13 +133,10 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
   genres: Set<string> = new Set();
   instruments: Set<string> = new Set();
 
-  uploadInput: EventEmitter<UploadInput> = new EventEmitter<UploadInput>();
-
+  files: File[] = [];
   uploadStatus: {
     status: string;
     progress: number;
-    fileName: string;
-    fileId?: number;
     process?: string;
     ipfsFileHash: string;
     aesKey: Buffer;
@@ -228,8 +224,6 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     ];
 
     prepared.music_files = <SheetMusic>{
-      file_id: this.uploadStatus.fileId,
-      name: this.uploadStatus.fileName,
       ipfs_file_hash: this.uploadStatus.ipfsFileHash,
       tx_hash: null,
 
@@ -241,96 +235,58 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
     return prepared;
   }
 
-  onUploadOutput(output: UploadOutput): void {
-    if (output.type === 'allAddedToQueue') {
-      // Waiting for IPFS Hash Uploaded (look ngOnInit subscription part of this classes)
-    } else if (output.type === 'addedToQueue' && typeof output.file !== 'undefined') {
-      this.uploadStatus = {
-        status: 'uploading',
-        fileId: null,
-        fileName: output.file.name,
-        progress: 0,
-        process: null,
-        ipfsFileHash: null,
-        aesKey: null
-      };
-      this.uploadFile(output.file.nativeFile);
-
-    } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
-      this.uploadStatus.progress = output.file.progress.data.percentage;
-
-      if (this.uploadStatus.progress === 100) {
-        this.uploadStatus.process = 'pending';
-      }
-
-    } else if (output.type === 'removed') {
-      this.uploadStatus = null;
-
-    } else if (output.type === 'done') {
-      if (output.file.responseStatus === 200 && output.file.response.file_id) {
-        this.uploadStatus.status = 'done';
-        this.uploadStatus.fileId = output.file.response.file_id;
-      } else {
-        this.uploadStatus.status = 'failed';
-      }
-    }
+  addFile($event) {
+    this.files.push($event.target.files[0]);
   }
 
   submit(form: NgForm): void {
-    const prepared = <SheetPost>this.prepare(form);
+    this.uploadStatus = {
+      status: 'uploading',
+      progress: 0,
+      process: null,
+      ipfsFileHash: null,
+      aesKey: null
+    };
 
-    if (prepared !== null) {
-      this.contractService.createNewPaperContract(
-        this.currentUser.address,
-        unitDown(prepared.price),
-        prepared.music_files.ipfs_file_hash,
-        prepared.music_files.original_hash
-      ).subscribe(txHash => {
-        prepared.music_files.tx_hash = txHash;
-        prepared.music_files.aes_key = this.uploadStatus.aesKey.toString('base64');
+    this.uploadFile().subscribe(([hash, aesKey]) => {
+      this.uploadStatus.status = 'done';
+      this.uploadStatus.progress = 100;
+      this.uploadStatus.ipfsFileHash = hash;
+      this.uploadStatus.aesKey = aesKey;
 
-        this.postActions.write('sheet', prepared).subscribe(() => {
-          this.router.navigate(['/board/sheet/write/complete'], {
-            queryParams: {
-              txHash: txHash,
-              title: prepared.title
-            }
+      const prepared = <SheetPost>this.prepare(form);
+
+      if (prepared !== null) {
+        this.contractService.createNewPaperContract(
+          this.currentUser.address,
+          unitDown(prepared.price),
+          prepared.music_files.ipfs_file_hash,
+          prepared.music_files.original_hash
+        ).subscribe(txHash => {
+          prepared.music_files.tx_hash = txHash;
+          prepared.music_files.aes_key = this.uploadStatus.aesKey.toString('base64');
+
+          this.postActions.write('sheet', prepared).subscribe(() => {
+            this.router.navigate(['/board/sheet/write/complete'], {
+              queryParams: {
+                txHash: txHash,
+                title: prepared.title
+              }
+            });
           });
         });
-      });
-    }
+      }
+    });
   }
 
-  private uploadFile(file: File) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.error) {
+  private uploadFile() {
+    const filePaths = [];
 
-      } else {
-        this.ipcRendererService
-          .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, Buffer.from(reader.result), true)
-          .subscribe(([hash, aesKey]) => {
-            this.uploadStatus.ipfsFileHash = hash;
-            this.uploadStatus.aesKey = aesKey;
+    for (const file of this.files) {
+      filePaths.push(file.path);
+    }
 
-            const event: UploadInput = {
-              type: 'uploadAll',
-              url: `${this.apiConfig.apiUrl}/file`,
-              method: 'POST',
-              headers: {
-                Authorization: `Bearer ${this.localStorage.getItem('token')}`
-              },
-              data: {
-                type: 'paper',
-                ipfs_hash: hash,
-                aes: aesKey.toString('base64')
-              }
-            };
-            this.uploadInput.emit(event);
-           });
-      }
-    };
-    reader.readAsArrayBuffer(file);
+    return this.ipcRendererService.sendAsync(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true);
   }
 }
 
