@@ -12,7 +12,11 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {FooterComponent} from '../components/footer/footer.component';
+import {IntroFooterComponent} from '../components/intro-footer/intro-footer.component';
+import {IntroNavbarComponent} from '../components/intro-navbar/intro-navbar.component';
+import {LayoutIntroComponent, LayoutMainComponent} from '../components/layout/layout.component';
 import {environment} from '../environments/environment';
+import {IntroMainPageComponent} from '../pages/intro-main/intro-main.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from '../components/navbar/navbar.component';
@@ -30,11 +34,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
 
     /* Reusable Components */
+    LayoutIntroComponent,
+    LayoutMainComponent,
+    IntroNavbarComponent,
     NavbarComponent,
-    SpinnerComponent,
+    IntroFooterComponent,
     FooterComponent,
+    SpinnerComponent,
 
     /* Page Components */
+    /* For introduction */
+    IntroMainPageComponent,
+
+    /* For main */
     MainPageComponent,
   ],
   imports: [
