@@ -1,32 +1,46 @@
 <nav class="navbar navbar-expand">
   <div class="container-fluid">
+    <div class="navbar-menu">
+      <!-- Sub-menu -->
+      <div class="submenu-group">
+        <div class="subject"> Instrumental Music </div>
+
+        <ul class="menu">
+          <li routerLink="/board/sheet" routerLinkActive="active">
+            PIANO
+          </li>
+          <li routerLink="/board/sheet" routerLinkActive="active">
+            GUITAR
+          </li>
+          <li routerLink="/board/sheet" routerLinkActive="active">
+            ETC <i class="fa fa-caret-down"></i>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sub-menu -->
+      <div class="submenu-group">
+        <div class="subject"> Listening Music </div>
+
+        <ul class="menu">
+          <li routerLink="/board/sheet" routerLinkActive="active">
+            EDM
+          </li>
+          <li routerLink="/board/sheet" routerLinkActive="active">
+            POP
+          </li>
+          <li routerLink="/board/sheet" routerLinkActive="active">
+            ETC <i class="fa fa-caret-down"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div class="navbar-brand" routerLink="/">
       <brand-icon-muzika></brand-icon-muzika>
     </div>
 
-    <div class="navbar-menu">
-      <ul class="main-menu">
-        <!--<li routerLink="/board/video" routerLinkActive="active">-->
-        <!--<i class="fab fa-youtube"></i>-->
-        <!--Video-->
-        <!--</li>-->
-        <!--<li routerLink="/board/community" routerLinkActive="active">-->
-        <!--<i class="fa fa-users"></i>-->
-        <!--Community-->
-        <!--</li>-->
-        <li routerLink="/board/sheet" routerLinkActive="active">
-          PIANO
-        </li>
-        <li routerLink="/board/sheet" routerLinkActive="active">
-          GUITAR
-        </li>
-        <li routerLink="/board/sheet" routerLinkActive="active">
-          ARTIST
-        </li>
-      </ul>
-    </div>
-
-    <div class="navbar-collapse">
+    <div class="ml-auto position-relative">
       <ng-container *ngIf="currentUser; else loggedInBlock">
         <div class="ml-auto">
           <div class="user-profile-img">

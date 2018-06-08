@@ -16,6 +16,7 @@
 }
 
 .navbar-brand {
+  position: relative;
   outline: none;
   cursor: pointer;
   color: #fff;
@@ -38,6 +39,10 @@
   }
 }
 
+.navbar-collapse {
+  position: relative;
+}
+
 .navbar-menu {
   position: absolute;
   left: 0;
@@ -48,34 +53,49 @@
   align-items: center;
   justify-content: center;
 
-  .main-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .submenu-group {
+    position: relative;
+    margin-left: 150px;
 
-    li {
-      text-align: center;
-      text-transform: uppercase;
-      color: white;
-      outline: none;
-      transition: all 0.1s ease-in-out;
-      display: inline-block;
-      font-weight: bold;
-      font-size: 1rem;
-      margin-right: 60px;
+    &:first-child {
+      margin-left: 0;
+    }
 
-      &.active {
-        //border-bottom: 5px solid $primary-color;
-        //font-size: 115%;
-        color: #fff;
-      }
+    .subject {
+      color: #fff;
+      font-size: 0.8rem;
+      // margin-left: -20px;
+    }
 
-      &:last-child {
-        margin-right: 0;
-      }
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
-      &[routerLink] {
-        cursor: pointer;
+      li {
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+        outline: none;
+        transition: all 0.1s ease-in-out;
+        display: inline-block;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-right: 60px;
+
+        &.active {
+          //border-bottom: 5px solid $primary-color;
+          //font-size: 115%;
+          color: #fff;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &[routerLink] {
+          cursor: pointer;
+        }
       }
     }
   }
