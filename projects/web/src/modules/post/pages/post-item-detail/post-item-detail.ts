@@ -104,13 +104,13 @@ export class PostSheetItemDetailComponent extends BaseComponent {
 
     try {
       const estimateGas = await coin.increaseApprovalAndCall.estimateGas(
-        this.post.sheet_music.contract_address,
+        this.post.music_files.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address}
       );
       await coin.increaseApprovalAndCall(
-        this.post.sheet_music.contract_address,
+        this.post.music_files.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address, gas: estimateGas + 30000}

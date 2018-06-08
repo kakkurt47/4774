@@ -7,22 +7,19 @@
         <div class="upload-form">
           <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
             <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet"
-                   ngFileSelect [uploadInput]="uploadInput" (uploadOutput)="onUploadOutput($event)"
-                   [disabled]="uploadStatus?.status === 'uploading'">
+                   ngFileSelect (change)="addFile($event)">
             <span class="btn-text">
               Music File (PDF or MP3)
             </span>
           </label>
+        </div>
 
-          <div class="file-name" *ngIf="uploadStatus" [class.text-danger]="uploadStatus.status === 'failed'">
-            <i class="fa fa-file-pdf"></i> {{uploadStatus.fileName}}
-            <i class="fa fa-check text-success small" *ngIf="uploadStatus.status === 'done'"></i>
-            <i class="fa fas fa-circle-notch fa-spin"
-               *ngIf="uploadStatus.status === 'uploading' && uploadStatus.process === 'pending'"></i>
-
-            <ng-container *ngIf="uploadStatus.status === 'failed'">
-              <i class="fa fa-times text-danger small"></i> failed!
-            </ng-container>
+        <div class="position-relative">
+          <div *ngFor="let file of files" class="row m-1">
+            <span class="file-name">
+              <i class="fa fa-file-pdf"></i>
+              {{file.name}}
+            </span>
           </div>
         </div>
 

@@ -40,11 +40,13 @@
         }
       }
     }
+  }
 
-    .file-name {
-      position: absolute;
-      bottom: 8px;
-    }
+  .file-name {
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .upload-progress {

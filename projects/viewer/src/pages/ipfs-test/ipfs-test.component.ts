@@ -13,7 +13,7 @@ import {IpcRendererService} from '../../providers/ipc-renderer.service';
 })
 export class IPFSTestPageComponent extends BaseComponent {
   ipfsHash: string;
-  ipfsFile: File;
+  pathsForUpload: string[] = [];
   uploadedHash: string;
 
   constructor(private ipcRenderer: IpcRendererService) {
@@ -24,22 +24,15 @@ export class IPFSTestPageComponent extends BaseComponent {
   }
 
   changeFile(event: any) {
-    this.ipfsFile = event.target.files[0];
+    this.pathsForUpload.push(event.target.files[0].path);
   }
 
   submitUpload() {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      if (event) {
-        console.log(event);
-      }
-      this.ipcRenderer
-        .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, Buffer.from(reader.result), true)
-        .subscribe(([hash, aesKey]) => {
-          this.uploadedHash = hash;
-        });
-    };
-    reader.readAsArrayBuffer(this.ipfsFile);
+    this.ipcRenderer
+      .sendAsync(IPCUtil.EVENT_FILE_UPLOAD, this.pathsForUpload, true)
+      .subscribe(([hash, aesKey]) => {
+        this.uploadedHash = hash;
+      });
   }
 
   submitDownload() {

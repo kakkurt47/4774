@@ -3,11 +3,13 @@ import * as fs from 'fs';
 import * as request from 'request';
 import * as tempfile from 'tempfile';
 import {IPCUtil} from '../shared/ipc-utils';
-import {Block} from './block/block';
+import {Block, BlockUtil} from './block/block';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
 import {StorageServiceInstance} from './storage.service';
+import * as path from 'path';
+import {createReadStream} from 'fs';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -85,23 +87,36 @@ class IpcMainService {
     });
 
 
-    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, blob, encryption) => {
+    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, files, encryption: boolean) => {
       /**
-       * blob : file binary
+       * files : files array
        * encryption : whether encrypt or not. If true, do block encryption.
        */
       const ipfs = IpfsServiceInstance;
-      const block = Block.fromPlainData(blob);
+      const uploadFiles = [];
 
-      if (encryption) {
-        block.encrypt();
+      // TODO : encrypt by AES stream. (need to refactor block module)
+      const aesKey = BlockUtil.generateAESKey();
+      for (const file of files) {
+        uploadFiles.push({
+          path: path.join('/ipfs', path.basename(file)),
+          content: createReadStream(file)
+        });
       }
 
-      ipfs.put(block.data, (err, result) => {
-        const helper = ipfs.getRandomPeer();
+      ipfs.put(uploadFiles, (err, result) => {
+        // find root object from uploaded objects in IPFS
+        const rootObject = result.find((object) => {
+          return object.path === 'ipfs';
+        });
+
+        // get random peer from server
+        const uploadHelper = ipfs.getRandomPeer();
+
+        // request to a helper, which downloads the user's files, so helps to spread them out.
         request.post(
           {
-            url: `${helper}/file/${result[0].hash}`,
+            url: `${uploadHelper}/file/${rootObject.hash}`,
             json: true
           },
           (peerRequestError, res, body) => {
@@ -110,7 +125,7 @@ class IpcMainService {
             } else if (res.statusCode !== 200) {
               ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
             } else {
-              ipcResolve(result[0].hash, block.aesKey);
+              ipcResolve(rootObject.hash, aesKey);
             }
           }
         );
