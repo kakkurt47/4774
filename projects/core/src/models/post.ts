@@ -31,8 +31,7 @@ export interface SheetPost extends BasePost {
 
 export interface SheetMusic {
   paper_id: number;
-  file_id: number;
-  name: string;
+  file_id?: number;
   ipfs_file_hash: string;
   aes_key: string;
   tx_hash: string;

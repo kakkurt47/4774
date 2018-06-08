@@ -7,11 +7,19 @@
 
       <label class="btn btn-primary mb-0">
         <input type="file" class="d-none" id="ipfsFile" name="ipfsFile" (change)="changeFile($event)">
-        Select File {{ipfsFile?.name}}
+        Select File
       </label>
 
       <div class="mt-4">
         Hash: {{uploadedHash}}
+      </div>
+
+      <div class="mt-4">
+        <table class="table">
+          <tr *ngFor="let filePath of pathsForUpload">
+            <td>{{filePath}}</td>
+          </tr>
+        </table>
       </div>
 
       <div class="mt-4">
