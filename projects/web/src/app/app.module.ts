@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN, SharedModule} from '@muzika/core';
+import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule} from '@muzika/core';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
@@ -77,7 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatRadioModule,
 
     /* Muzika Modules */
-    SharedModule,
+    MuzikaCommonModule,
     MuzikaCoreModule.forRoot(environment.env),
 
     /* Sub-modules */

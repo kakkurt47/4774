@@ -3,7 +3,7 @@ import {NgModule, PLATFORM_ID, Inject} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MuzikaCoreModule, SharedModule, PLATFORM_TYPE_TOKEN} from '@muzika/core';
+import {MuzikaCoreModule, MuzikaCommonModule, PLATFORM_TYPE_TOKEN} from '@muzika/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
 
@@ -31,7 +31,7 @@ import {WalletPageComponent} from './page/wallet/wallet.component';
     ReactiveFormsModule,
     AppRouteModule,
     ModalModule.forRoot(),
-    SharedModule,
+    MuzikaCommonModule,
     MuzikaCoreModule.forRoot(environment.env),
   ],
   bootstrap: [AppComponent],

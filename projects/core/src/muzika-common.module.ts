@@ -10,6 +10,6 @@ import {BrandIconModule} from './brand-icon.module';
     BrandIconModule
   ]
 })
-export class SharedModule {
+export class MuzikaCommonModule {
 
 }

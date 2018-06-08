@@ -10,7 +10,7 @@ export * from './reducers/index';
 export * from './services/index';
 export * from './brand-icon.module';
 export * from './muzika-core.module';
-export * from './shared.module';
+export * from './muzika-common.module';
 export * from './utils';
 export * from './web3.provider';
 export * from './web3.service';
