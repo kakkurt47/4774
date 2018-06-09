@@ -1,15 +1,17 @@
-import {ipcMain, BrowserWindow} from 'electron';
+import {BrowserWindow, ipcMain} from 'electron';
 import * as fs from 'fs';
+import {createReadStream} from 'fs';
 import * as request from 'request';
 import * as tempfile from 'tempfile';
 import {IPCUtil} from '../shared/ipc-utils';
-import {Block, BlockUtil} from './block/block';
+import {BlockUtil} from './block/block';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
 import {StorageServiceInstance} from './storage.service';
 import * as path from 'path';
-import {createReadStream} from 'fs';
+import {BlockPaddingStream} from './cipher/block-stream';
+import {AESCBCEncryptionStream} from './cipher/aes-stream';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -100,7 +102,12 @@ class IpcMainService {
       for (const file of files) {
         uploadFiles.push({
           path: path.join('/ipfs', path.basename(file)),
-          content: createReadStream(file)
+          content:
+            (encryption) ?
+              // if encryption parameter is true, push ipfs with encrypted
+              createReadStream(file).pipe(new BlockPaddingStream({})).pipe(new AESCBCEncryptionStream({key: aesKey}))
+              // if not encryption, push ipfs with plain
+              : createReadStream(file)
         });
       }
 
