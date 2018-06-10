@@ -25,10 +25,6 @@ export class UserActions {
               @Inject(PLATFORM_TYPE_TOKEN) private platformType: MuzikaPlatformType) {
   }
 
-  getLoginMessage(address: string): Observable<string> {
-    return this.apiConfig.get(`/user/${address}/sign-message`);
-  }
-
   loadBoardLikes(boardType: string) {
     if (!this.store.getState().user.currentUser) {
       return;
@@ -87,7 +83,7 @@ export class UserActions {
 
   login(address: string): Observable<User> {
     const messagePrefix = `Login to Muzika!\nSignature: `;
-    return this.getLoginMessage(address).pipe(
+    return this.apiConfig.get(`/user/${address}/sign-message`).pipe(
       concatMap((message) => {
         return from(promisify(
           this.web3.personal.sign,
