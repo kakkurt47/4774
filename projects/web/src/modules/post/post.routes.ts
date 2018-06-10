@@ -1,6 +1,6 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LayoutComponent} from '../shared/components/layout/layout.component';
+import {LayoutComponent} from '../../components/layout/layout.component';
 import {PostCommunityListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {
   PostCommunityItemDetailComponent, PostMusicItemDetailComponent,

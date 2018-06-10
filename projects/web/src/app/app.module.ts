@@ -10,6 +10,9 @@ import {MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule} from '@muzika
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import {FooterComponent} from '../components/footer/footer.component';
+import {LayoutComponent} from '../components/layout/layout.component';
+import {NavbarComponent} from '../components/navbar/navbar.component';
 import {environment} from '../environments/environment';
 import {MuzikaAlertModule} from '../modules/alert/alert.module';
 import {MuzikaIntroModule} from '../modules/intro/intro.module';
@@ -31,7 +34,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     /* For main */
     MainPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    LayoutComponent,
+    FooterComponent,
+    NavbarComponent,
   ],
   imports: [
     /* Angular modules */

@@ -59,12 +59,16 @@
 </div>
 -->
 
-<div class="select-account">
-  <h2> Select your account </h2>
+<div class="select-account mt-5 mb-5">
+  <h2> Select your account from Metamask </h2>
+  <p class="small text-center">
+    We highly recommend you to login our platform with using Metamask. <BR />
+    It makes your wallet more secure that your wallet key could not be hijacked from hackers.
+  </p>
   <select class="form-control mt-3" id="account" name="account" [(ngModel)]="selectedAccount">
     <option *ngFor="let account of accounts" [value]="account">
       {{account}}
     </option>
   </select>
-  <button type="button" class="btn btn-primary mt-3" (click)="login()"> Login </button>
+  <button type="button" class="btn btn-primary mt-3" (click)="login()"> <i class="fas fa-shield-check"></i> Login with Metamask </button>
 </div>

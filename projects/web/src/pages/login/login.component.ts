@@ -1,7 +1,7 @@
 import {Component, QueryList, ViewChildren} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {BaseComponent, promisify, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core';
 import {Router} from '@angular/router';
+import {BaseComponent, promisify, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core';
 
 @Component({
   selector: 'app-page-login',
@@ -25,8 +25,10 @@ export class LoginPageComponent extends BaseComponent {
 
   ngOnInit() {
     super.ngOnInit();
-    promisify(this.web3.eth.getAccounts).then(accounts => {
-      this.accounts = accounts;
+    this.web3Service.usingMetamask().subscribe(() => {
+      promisify(this.web3.eth.getAccounts).then(accounts => {
+        this.accounts = accounts;
+      });
     });
   }
 
