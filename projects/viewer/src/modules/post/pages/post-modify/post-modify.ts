@@ -10,11 +10,11 @@ export class PostCommunityModifyComponent {
 }
 
 @Component({
-  selector: 'app-post-sheet-modify',
-  templateUrl: './sheet/post-sheet-modify.component.html',
-  styleUrls: ['./post-modify.scss', './sheet/post-sheet-modify.component.scss']
+  selector: 'app-post-music-modify',
+  templateUrl: './music/post-music-modify.component.html',
+  styleUrls: ['./post-modify.scss', './music/post-music-modify.component.scss']
 })
-export class PostSheetModifyComponent {
+export class PostMusicModifyComponent {
 
 }
 

@@ -1,0 +1,23 @@
+
+<mat-card>
+  <mat-card-content>
+    <mat-card-header>
+      <div mat-card-avatar [style.background-image]="'url(' + music.author.profile_image + ')'"></div>
+      <mat-card-title class="font-weight-bold"> {{music.author.name}} </mat-card-title>
+      <mat-card-subtitle> {{music.author.area}} </mat-card-subtitle>
+    </mat-card-header>
+
+    <div class="sheet-title mt-3 font-weight-bold">
+      {{music.title}}
+    </div>
+
+    <div class="extra mt-2 text-right text-secondary">
+      <span class="ml-auto">
+        <i class="fa fa-eye"></i> {{music.views}}
+      </span>
+      <span>
+        <i class="fa fa-heart"></i> {{music.likes}}
+      </span>
+    </div>
+  </mat-card-content>
+</mat-card>

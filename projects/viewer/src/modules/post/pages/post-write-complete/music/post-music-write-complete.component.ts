@@ -4,11 +4,11 @@ import {BaseComponent} from '@muzika/core';
 import {ElectronService} from '../../../../../providers/electron.service';
 
 @Component({
-  selector: 'app-post-sheet-write-complete',
-  templateUrl: './post-sheet-write-complete.component.html',
-  styleUrls: ['./post-sheet-write-complete.component.scss']
+  selector: 'app-post-music-write-complete',
+  templateUrl: './post-music-write-complete.component.html',
+  styleUrls: ['./post-music-write-complete.component.scss']
 })
-export class PostSheetWriteCompleteComponent extends BaseComponent {
+export class PostMusicWriteCompleteComponent extends BaseComponent {
   txHash: string;
   sheetTitle: string;
 

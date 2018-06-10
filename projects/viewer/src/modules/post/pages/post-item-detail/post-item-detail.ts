@@ -5,12 +5,12 @@ import {
   CommunityPost, IAppState, IMuzikaPaperContract,
   MuzikaCoin,
   MuzikaPaperContract, PostActions,
-  SheetPost,
+  MusicPost,
   unitDown, unitUp,
   User,
   VideoPost
 } from '@muzika/core';
-import {CommunityPostsMock, SheetPostsMock, VideoPostsMock} from '../../../../mock/posts';
+import {CommunityPostsMock, MusicPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {AlertService} from '../../../alert/alert.service';
 import {ActivatedRoute} from '@angular/router';
 import {combineLatest, Observable, Subscription} from 'rxjs';
@@ -26,11 +26,11 @@ export class PostCommunityItemDetailComponent {
 }
 
 @Component({
-  selector: 'app-post-sheet-item-detail',
-  templateUrl: './sheet/post-sheet-item-detail.component.html',
-  styleUrls: ['./post-item-detail.scss', './sheet/post-sheet-item-detail.component.scss']
+  selector: 'app-post-music-item-detail',
+  templateUrl: './music/post-music-item-detail.component.html',
+  styleUrls: ['./post-item-detail.scss', './music/post-music-item-detail.component.scss']
 })
-export class PostSheetItemDetailComponent extends BaseComponent {
+export class PostMusicItemDetailComponent extends BaseComponent {
   paper: IMuzikaPaperContract;
   isPurchased = false;
 
@@ -38,9 +38,9 @@ export class PostSheetItemDetailComponent extends BaseComponent {
   currentUserObs: Observable<User>;
   currentUser: User;
 
-  postObs: Observable<SheetPost>;
+  postObs: Observable<MusicPost>;
   postSub: Subscription;
-  post: SheetPost;
+  post: MusicPost;
 
   constructor(private muzikaPaper: MuzikaPaperContract,
               private muzikaCoin: MuzikaCoin,
@@ -69,11 +69,11 @@ export class PostSheetItemDetailComponent extends BaseComponent {
         }
 
         this.postSub = combineLatest(
-          this.store.select<SheetPost>(['post', 'post', 'sheet', postId]),
+          this.store.select<MusicPost>(['post', 'post', 'music', postId]),
           this.currentUserObs
         ).subscribe(async ([post, user]) => {
           this.post = post;
-          this.paper = this.muzikaPaper.at(post.music_files.contract_address);
+          this.paper = this.muzikaPaper.at(post.music_contract.contract_address);
 
           if (user) {
             this.isPurchased = await this.paper.isPurchased(user.address);
@@ -81,7 +81,7 @@ export class PostSheetItemDetailComponent extends BaseComponent {
           }
         });
 
-        this.postActions.loadPost('sheet', postId);
+        this.postActions.loadPost('music', postId);
       })
     );
   }
@@ -97,7 +97,7 @@ export class PostSheetItemDetailComponent extends BaseComponent {
       this.alertService.alert('Should purchase first to download file');
       return;
     } else {
-      this.ipcRenderer.openPDFViewer(this.post.music_files.contract_address);
+      this.ipcRenderer.openPDFViewer(this.post.music_contract.contract_address);
     }
   }
 
@@ -106,13 +106,13 @@ export class PostSheetItemDetailComponent extends BaseComponent {
 
     try {
       const estimateGas = await coin.increaseApprovalAndCall.estimateGas(
-        this.post.music_files.contract_address,
+        this.post.music_contract.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address}
       );
       await coin.increaseApprovalAndCall(
-        this.post.music_files.contract_address,
+        this.post.music_contract.contract_address,
         unitDown(this.post.price),
         '0x',
         {from: this.currentUser.address, gas: estimateGas + 30000}

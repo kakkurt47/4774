@@ -27,19 +27,19 @@ export interface PostState {
 const initialState: PostState = {
   posts: {
     community: {total: 0, page: [], list: []},
-    sheet: {total: 0, page: [], list: []},
+    music: {total: 0, page: [], list: []},
     video: {total: 0, page: [], list: []}
   },
   infPosts: {
     community: {after: null, before: null, list: []},
-    sheet: {after: null, before: null, list: []},
+    music: {after: null, before: null, list: []},
     video: {after: null, before: null, list: []}
   },
   post: {
-    community: {}, sheet: {}, video: {}
+    community: {}, music: {}, video: {}
   },
   postAddition: {
-    community: {}, sheet: {}, video: {}
+    community: {}, music: {}, video: {}
   }
 };
 

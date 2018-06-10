@@ -5,8 +5,8 @@
 
         <!--
         <div class="row pt-3">
-          <div class="col" *ngFor="let sheet of topSheets">
-            <app-artist-sheet [sheet]="sheet"></app-artist-sheet>
+          <div class="col" *ngFor="let music of topSheets">
+            <app-artist-music [music]="music"></app-artist-music>
           </div>
         </div>
         -->
@@ -16,8 +16,8 @@
         </div>
 
         <div class="bg-white border border-bottom-0">
-          <ul class="sheets">
-            <li app-post-sheet [sheet]="sheet" *ngFor="let sheet of sheets"></li>
+          <ul class="musics">
+            <li app-post-music [music]="music" *ngFor="let music of musics"></li>
           </ul>
         </div>
 

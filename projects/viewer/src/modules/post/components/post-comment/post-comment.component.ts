@@ -10,7 +10,7 @@ import {PostCommentsMock} from '../../../../mock/comments';
 })
 export class PostCommentComponent extends AbstractPostCommentComponent {
   @Input()
-  boardType: 'community' | 'sheet' | 'video';
+  boardType: 'community' | 'musicmusic' | 'video';
   @Input()
   boardID: number;
 

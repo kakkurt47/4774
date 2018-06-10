@@ -17,7 +17,7 @@
     <div class="col-4 pb-4">
       <div class="attached">
         <h4> Contract Address </h4>
-        <p> {{post.music_files.contract_address}} </p>
+        <p> {{post.music_contract.contract_address}} </p>
 
         <h4> Price </h4>
         <p> {{post.price | number}} MZK </p>
@@ -34,5 +34,5 @@
     </div>
   </div>
 
-  <app-post-comment boardType="sheet"></app-post-comment>
+  <app-post-comment boardType="music"></app-post-comment>
 </div>

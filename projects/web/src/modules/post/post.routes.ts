@@ -1,9 +1,9 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from '../shared/components/layout/layout.component';
-import {PostCommunityListComponent, PostSheetListComponent, PostVideoListComponent} from './pages/post-list/post-list';
+import {PostCommunityListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {
-  PostCommunityItemDetailComponent, PostSheetItemDetailComponent,
+  PostCommunityItemDetailComponent, PostMusicItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
 
@@ -14,10 +14,10 @@ const routes: Routes = [
     children: [{ path: ':id', component: PostCommunityItemDetailComponent }]
   },
   {
-    path: 'board/sheet',
+    path: 'board/music',
     children: [
-      { path: '', component: PostSheetListComponent },
-      { path: ':id', component: PostSheetItemDetailComponent }
+      { path: '', component: PostMusicListComponent },
+      { path: ':id', component: PostMusicItemDetailComponent }
     ]
   },
   {

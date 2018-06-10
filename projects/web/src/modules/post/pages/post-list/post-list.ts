@@ -1,6 +1,6 @@
 import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
-import {BaseComponent, CommunityPost, PaginationResult, PostActions, SheetPost, VideoPost} from '@muzika/core';
+import {BaseComponent, CommunityPost, PaginationResult, PostActions, MusicPost, VideoPost} from '@muzika/core';
 import {Observable} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {CommunityTagsMock, VideoTagsMock} from '../../../../mock/tags';
@@ -18,16 +18,16 @@ export class PostCommunityListComponent {
 
 
 @Component({
-  selector: 'app-post-list-sheet',
-  templateUrl: './sheet/post-sheet.component.html',
-  styleUrls: ['./post-list.scss', './sheet/post-sheet.component.scss']
+  selector: 'app-post-list-music',
+  templateUrl: './music/post-music.component.html',
+  styleUrls: ['./post-list.scss', './music/post-music.component.scss']
 })
-export class PostSheetListComponent extends BaseComponent {
+export class PostMusicListComponent extends BaseComponent {
   tags: { name: string, value: string }[] = GenreSelections;
 
-  @select(['post', 'posts', 'sheet'])
-  postsObs: Observable<PaginationResult<SheetPost>>;
-  posts: PaginationResult<SheetPost>;
+  @select(['post', 'posts', 'music'])
+  postsObs: Observable<PaginationResult<MusicPost>>;
+  posts: PaginationResult<MusicPost>;
 
   constructor(private postActions: PostActions) {
     super();
@@ -45,7 +45,7 @@ export class PostSheetListComponent extends BaseComponent {
   }
 
   loadPosts(page?: string | number) {
-    this.postActions.loadPosts('sheet', page.toString(), {});
+    this.postActions.loadPosts('music', page.toString(), {});
   }
 }
 

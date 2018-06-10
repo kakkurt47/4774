@@ -20,7 +20,7 @@ import {WalletModule} from '../modules/wallet/wallet.module';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MuzikaAppsComponent} from '../components/muzika-apps/muzika-apps.component';
-import {ArtistSheetComponent} from '../components/artist-sheet/artist-sheet.component';
+import {ArtistMusicComponent} from '../components/artist-music/artist-music.component';
 import {FooterComponent} from '../components/footer/footer.component';
 import {NavbarComponent} from '../components/navbar/navbar.component';
 import {SpinnerComponent} from '../components/spinner/spinner.component';
@@ -53,7 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     SpinnerComponent,
     FooterComponent,
-    ArtistSheetComponent,
+    ArtistMusicComponent,
 
     /* Page Components */
     MainPageComponent,

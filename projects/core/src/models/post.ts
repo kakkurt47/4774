@@ -24,13 +24,13 @@ export interface VideoPost extends BasePost {
   youtube_url: string;
 }
 
-export interface SheetPost extends BasePost {
+export interface MusicPost extends BasePost {
   price?: number | string;
-  music_files?: SheetMusic;
+  music_contract?: MusicContract;
 }
 
-export interface SheetMusic {
-  paper_id: number;
+export interface MusicContract {
+  contract_id: number;
   file_id?: number;
   ipfs_file_hash: string;
   aes_key: string;

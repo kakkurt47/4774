@@ -1,4 +1,4 @@
-import {SheetMusic} from '@muzika/core';
+import {MusicContract} from '@muzika/core';
 import {UsersMock} from './users';
 
-export const SheetsMock: SheetMusic[] = [];
+export const MusicsMock: MusicContract[] = [];

@@ -11,7 +11,7 @@ export const CommunityTagsMock: string[] = [
   'news'
 ];
 
-export const SheetTagsMock: string[] = [
+export const MusicTagsMock: string[] = [
   'life',
   'story',
   'summer',

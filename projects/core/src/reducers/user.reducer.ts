@@ -7,20 +7,20 @@ export interface UserState {
 
   boardLikes: {
     community: number[],
-    sheet: number[],
+    music: number[],
     video: number[]
   };
   commentLikes: {
     community: number[],
-    sheet: number[],
+    music: number[],
     video: number[]
   };
 }
 
 const initialState: UserState = {
   currentUser: null,
-  boardLikes: {community: [], sheet: [], video: []},
-  commentLikes: {community: [], sheet: [], video: []},
+  boardLikes: {community: [], music: [], video: []},
+  commentLikes: {community: [], music: [], video: []},
 };
 
 export function UserReducer(state: UserState = initialState, action: PayloadAction): UserState {

@@ -12,7 +12,7 @@ export interface CommentState {
 
 export const initialState: CommentState = {
   community: {},
-  sheet: {},
+  music: {},
   video: {}
 };
 

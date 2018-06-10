@@ -10,8 +10,8 @@ import {
   LocalStorage,
   MuzikaContractService,
   PostActions,
-  SheetMusic,
-  SheetPost,
+  MusicContract,
+  MusicPost,
   unitDown,
   User,
   VideoPost
@@ -111,12 +111,12 @@ export class PostCommunityWriteComponent extends BasePostWriteComponent {
 }
 
 @Component({
-  selector: 'app-post-sheet-write',
-  templateUrl: './sheet/post-sheet-write.component.html',
-  styleUrls: ['./post-write.scss', './sheet/post-sheet-write.component.scss']
+  selector: 'app-post-music-write',
+  templateUrl: './music/post-music-write.component.html',
+  styleUrls: ['./post-write.scss', './music/post-music-write.component.scss']
 })
-export class PostSheetWriteComponent extends BasePostWriteComponent {
-  post: SheetPost = <any>{
+export class PostMusicWriteComponent extends BasePostWriteComponent {
+  post: MusicPost = <any>{
     tags: [],
     price: 0,
   };
@@ -181,7 +181,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
 
   // @TODO check if file uploaded
   prepare(form: NgForm): BasePost {
-    const prepared = <SheetPost>super.prepare(form);
+    const prepared = <MusicPost>super.prepare(form);
 
     if (prepared === null) {
       return null;
@@ -223,7 +223,7 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       ...Array.from(this.instruments.values())
     ];
 
-    prepared.music_files = <SheetMusic>{
+    prepared.music_contract = <MusicContract>{
       ipfs_file_hash: this.uploadStatus.ipfsFileHash,
       tx_hash: null,
 
@@ -254,20 +254,20 @@ export class PostSheetWriteComponent extends BasePostWriteComponent {
       this.uploadStatus.ipfsFileHash = hash;
       this.uploadStatus.aesKey = aesKey;
 
-      const prepared = <SheetPost>this.prepare(form);
+      const prepared = <MusicPost>this.prepare(form);
 
       if (prepared !== null) {
         this.contractService.createNewPaperContract(
           this.currentUser.address,
           unitDown(prepared.price),
-          prepared.music_files.ipfs_file_hash,
-          prepared.music_files.original_hash
+          prepared.music_contract.ipfs_file_hash,
+          prepared.music_contract.original_hash
         ).subscribe(txHash => {
-          prepared.music_files.tx_hash = txHash;
-          prepared.music_files.aes_key = this.uploadStatus.aesKey.toString('base64');
+          prepared.music_contract.tx_hash = txHash;
+          prepared.music_contract.aes_key = this.uploadStatus.aesKey.toString('base64');
 
-          this.postActions.write('sheet', prepared).subscribe(() => {
-            this.router.navigate(['/board/sheet/write/complete'], {
+          this.postActions.write('music', prepared).subscribe(() => {
+            this.router.navigate(['/board/music/write/complete'], {
               queryParams: {
                 txHash: txHash,
                 title: prepared.title

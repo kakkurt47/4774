@@ -1,8 +1,8 @@
 import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
-import {BaseComponent, CommunityPost, ExtendedWeb3, MuzikaCoin, SheetPost, unitUp, User} from '@muzika/core';
+import {BaseComponent, CommunityPost, ExtendedWeb3, MuzikaCoin, MusicPost, unitUp, User} from '@muzika/core';
 import {Observable, combineLatest, from} from 'rxjs';
-import {BestPostsMock, SheetPostsMock} from '../../mock/posts';
+import {BestPostsMock, MusicPostsMock} from '../../mock/posts';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,10 +11,10 @@ import {Router} from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 export class MainPageComponent extends BaseComponent {
-  sheets: SheetPost[] = SheetPostsMock.slice(0, 5);
+  musics: MusicPost[] = MusicPostsMock.slice(0, 5);
   posts: CommunityPost[] = BestPostsMock;
 
-  topSheets: SheetPost[];
+  topMusics: MusicPost[];
 
   @select(['user', 'currentUser'])
   currentUserObs: Observable<User>;
@@ -28,14 +28,14 @@ export class MainPageComponent extends BaseComponent {
               private router: Router,
               private web3: ExtendedWeb3) {
     super();
-    this.topSheets = this.sheets.slice(0, 3);
+    this.topMusics = this.musics.slice(0, 3);
     this.balances = <any>{};
   }
 
   ngOnInit() {
     this.muzikaCoin.deployed();
 
-    this.router.navigateByUrl('/board/sheet/write');
+    this.router.navigateByUrl('/board/music/write');
 
     this._sub.push(
       combineLatest(

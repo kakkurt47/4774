@@ -1,4 +1,4 @@
-import {CommunityPost, SheetPost, User, VideoPost} from '@muzika/core';
+import {CommunityPost, MusicPost, User, VideoPost} from '@muzika/core';
 import {UsersMock} from './users';
 
 /* tslint:disable */
@@ -63,7 +63,7 @@ function createVideo(post_id: number, title: string, author: User): VideoPost {
   };
 }
 
-function createSheet(post_id: number, title: string, author: User): SheetPost {
+function createMusic(post_id: number, title: string, author: User): MusicPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
     post_id,
@@ -77,7 +77,7 @@ function createSheet(post_id: number, title: string, author: User): SheetPost {
     tags: [],
     price: rand() * 100,
     created_at: '2018-05-13 16:04:24',
-    sheet_music: <any>{},
+    music_contract: <any>{},
   };
 }
 
@@ -116,16 +116,16 @@ export const VideoPostsMock: VideoPost[] = [
   createVideo(11, 'Cras pulvinar ipsum luctus', UsersMock[2]),
 ];
 
-export const SheetPostsMock: SheetPost[] = [
-  createSheet(1, 'aliquet sagittis id consectetur', UsersMock[2]),
-  createSheet(2, 'nibh venenatis cras sed', UsersMock[1]),
-  createSheet(3, 'pellentesque pulvinar pellentesque habitant', UsersMock[1]),
-  createSheet(4, 'tincidunt eget nullam non', UsersMock[2]),
-  createSheet(5, 'sapien faucibus et molestie', UsersMock[3]),
-  createSheet(6, 'lacus sed turpis tincidunt', UsersMock[3]),
-  createSheet(7, 'mauris pharetra et ultrices', UsersMock[3]),
-  createSheet(8, 'cras fermentum odio eu', UsersMock[2]),
-  createSheet(9, 'lorem ipsum dolor sit', UsersMock[3]),
-  createSheet(10, 'amet nisl suscipit adipiscing', UsersMock[1]),
-  createSheet(11, 'volutpat lacus laoreet non', UsersMock[1]),
+export const MusicPostsMock: MusicPost[] = [
+  createMusic(1, 'aliquet sagittis id consectetur', UsersMock[2]),
+  createMusic(2, 'nibh venenatis cras sed', UsersMock[1]),
+  createMusic(3, 'pellentesque pulvinar pellentesque habitant', UsersMock[1]),
+  createMusic(4, 'tincidunt eget nullam non', UsersMock[2]),
+  createMusic(5, 'sapien faucibus et molestie', UsersMock[3]),
+  createMusic(6, 'lacus sed turpis tincidunt', UsersMock[3]),
+  createMusic(7, 'mauris pharetra et ultrices', UsersMock[3]),
+  createMusic(8, 'cras fermentum odio eu', UsersMock[2]),
+  createMusic(9, 'lorem ipsum dolor sit', UsersMock[3]),
+  createMusic(10, 'amet nisl suscipit adipiscing', UsersMock[1]),
+  createMusic(11, 'volutpat lacus laoreet non', UsersMock[1]),
 ];
