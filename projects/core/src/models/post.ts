@@ -1,5 +1,6 @@
 import {PostComment} from './comment';
 import {User} from './user';
+import {IpfsFile} from './file';
 
 export interface BasePost {
   post_id: number;
@@ -27,13 +28,14 @@ export interface VideoPost extends BasePost {
 export interface MusicPost extends BasePost {
   price?: number | string;
   music_contract?: MusicContract;
+  ipfs_file?: IpfsFile;
 }
 
 export interface MusicContract {
   contract_id: number;
-  file_id?: number;
-  ipfs_file_hash: string;
-  aes_key: string;
+  ipfs_file_id?: number;
+  ipfs_file_hash?: string;
+  aes_key?: string;
   tx_hash: string;
   contract_address?: string;
   original_hash?: string;
