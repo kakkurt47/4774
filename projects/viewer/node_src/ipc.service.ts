@@ -41,6 +41,7 @@ class IpcMainService {
         event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), null, ...sendArgs);
       };
       const reject = (error) => {
+        // @TODO If needed, serializeError
         event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), error);
       };
       listener(resolve, reject, ...args);
@@ -101,7 +102,7 @@ class IpcMainService {
       const aesKey = BlockUtil.generateAESKey();
       for (const file of files) {
         uploadFiles.push({
-          path: path.join('/ipfs', path.basename(file)),
+          path: path.join('/ipfs', path.basename(file)).replace(/\\/g, '/'),
           content:
             (encryption) ?
               // if encryption parameter is true, push ipfs with encrypted
@@ -112,6 +113,11 @@ class IpcMainService {
       }
 
       ipfs.put(uploadFiles, (err, result) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
         // find root object from uploaded objects in IPFS
         const rootObject = result.find((object) => {
           return object.path === 'ipfs';
