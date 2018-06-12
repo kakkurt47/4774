@@ -137,6 +137,9 @@ Main Components
   background-color: black;
   border-color: black;
 }
+.cd-horizontal-timeline .events a.current::after {
+  border-color: #0ec254;
+}
 .cd-horizontal-timeline .events a.older-event::after {
   border-color: black;
 }

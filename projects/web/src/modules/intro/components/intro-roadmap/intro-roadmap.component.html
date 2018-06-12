@@ -21,9 +21,14 @@
           <div class="events">
             <ol>
               <li *ngFor="let timeline of timelineList; let i = index">
-                <a href="#0" [attr.data-date]="timeline.date" [attr.data-index]="i" [class.selected]="timeline.selected">
-                  <div class="topic-summary" [attr.data-date]="timeline.date" [attr.data-index]="i">PLATFORM TESTING</div>
+                <a href="#0" [attr.data-date]="timeline.date" [attr.data-index]="i" [class.selected]="timeline.selected" [class.current]="timeline.current">
+                  <div class="topic-summary" [attr.data-date]="timeline.date" [attr.data-index]="i">
+                    {{timeline.topicTitle}}
+                  </div>
                   {{timeline.topic}}
+                  <ng-container *ngIf="timeline.current">
+                    (Current)
+                  </ng-container>
                 </a>
               </li>
             </ol>

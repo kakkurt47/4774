@@ -49,28 +49,6 @@
   font-size: 12px;
 }
 
-#leadership-team {
-  .testimonial-client-img {
-    width: 130px;
-    height: 130px;
-    margin: 0 0 0 auto;
-  }
-
-  ul {
-    padding-left: 0;
-
-    li {
-      word-break: break-all;
-
-      &:first-child {
-        font-weight:bold;
-      }
-    }
-  }
-}
-
-
-
 @media (min-width: 200px) and (max-width: 768px) {
   .bg-home-full {
     min-height: 660px;

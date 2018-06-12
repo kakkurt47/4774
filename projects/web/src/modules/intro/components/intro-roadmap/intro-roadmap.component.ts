@@ -26,14 +26,17 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
   timelineList: {
     date: string,
     topic: string,
+    topicTitle: string,
     title: string,
     subtitle: string,
     description: string,
-    selected: boolean
+    selected: boolean,
+    current?: boolean
   }[] = [
     {
       date: '01/01/2017',
       topic: 'Q1, 2017',
+      topicTitle: 'STARTING POINT',
       title: 'Horizontal Timeline',
       subtitle: 'January 16th, 2014',
       description: 'Hello World',
@@ -42,6 +45,7 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
     {
       date: '03/01/2017',
       topic: 'Q3, 2017',
+      topicTitle: 'SYSTEM MODELING',
       title: 'Horizontal Timeline',
       subtitle: 'January 16th, 2014',
       description: 'Hello World',
@@ -50,6 +54,7 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
     {
       date: '06/01/2017',
       topic: 'Q4, 2017',
+      topicTitle: 'PLATFORM TESTING',
       title: 'Horizontal Timeline',
       subtitle: 'January 16th, 2014',
       description: 'Hello World',
@@ -58,22 +63,26 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
     {
       date: '09/01/2017',
       topic: 'Q1, 2018',
+      topicTitle: 'ICO',
+      title: 'Horizontal Timeline',
+      subtitle: 'January 16th, 2014',
+      description: 'Hello World',
+      selected: true,
+      current: true
+    },
+    {
+      date: '12/01/2017',
+      topic: 'Q4, 2018',
+      topicTitle: 'LAUNCHING',
       title: 'Horizontal Timeline',
       subtitle: 'January 16th, 2014',
       description: 'Hello World',
       selected: false
     },
     {
-      date: '12/01/2017',
-      topic: 'Q4, 2018',
-      title: 'Horizontal Timeline',
-      subtitle: 'January 16th, 2014',
-      description: 'Hello World',
-      selected: true
-    },
-    {
       date: '03/01/2018',
       topic: '2019 ~ 2020',
+      topicTitle: 'RESHAPING GLOBAL MUSIC INDUSTRY',
       title: 'Horizontal Timeline',
       subtitle: 'January 16th, 2014',
       description: 'Hello World',
@@ -131,7 +140,7 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
       timelineComponents['eventsWrapper'].on('click', 'a', (event) => {
         event.preventDefault();
         timelineComponents['timelineEvents'].removeClass('selected');
-        const clickElement = jQuery(event.target);
+        const clickElement = (jQuery(event.target).prop('tagName') === 'A') ? jQuery(event.target) : jQuery(event.target).parent();
         clickElement.addClass('selected');
         this.updateOlderEvents(clickElement);
         this.updateFilling(clickElement, timelineComponents['fillingLine'], timelineTotWidth);
@@ -217,9 +226,12 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
       : timelineComponents['timelineNavigation'].find('.next').removeClass('inactive');
   }
 
-  private updateFilling(selectedEvent, filling, totWidth) {
+  private updateFilling(selectedElement, filling, totWidth) {
     // change .filling-line length according to the selected event
-    const eventStyle = window.getComputedStyle(selectedEvent.get(0), null),
+    if (!(selectedElement instanceof Element)) {
+      selectedElement = selectedElement[0];
+    }
+    const eventStyle = window.getComputedStyle(selectedElement, null),
       eventWidth = eventStyle.getPropertyValue('width');
     let eventLeft: any = eventStyle.getPropertyValue('left');
     eventLeft = +eventLeft.replace('px', '') + +eventWidth.replace('px', '') / 2;
@@ -231,7 +243,7 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
     for (let i = 0; i < timelineComponents['timelineDates'].length; i++) {
       const distance = this.daydiff(timelineComponents['timelineDates'][0], timelineComponents['timelineDates'][i]);
       // const distanceNorm = Math.round(distance / timelineComponents['eventsMinLapse']) + 2;
-      const distanceNorm = i * 2 + 2;
+      const distanceNorm = i * 2 + 2; // Sangmin Customize
       timelineComponents['timelineEvents'].eq(i).css('left', distanceNorm * min + 'px');
     }
   }
@@ -241,7 +253,7 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
       timelineComponents['timelineDates'][0],
       timelineComponents['timelineDates'][timelineComponents['timelineDates'].length - 1]
     );
-    let timeSpanNorm = timelineComponents['timelineDates'].length * 2;
+    const timeSpanNorm = timelineComponents['timelineDates'].length * 2; // Sangmin Customize
     const totalWidth = timeSpanNorm * width;
     timelineComponents['eventsWrapper'].css('width', totalWidth + 'px');
     this.updateFilling(timelineComponents['eventsWrapper'].find('a.selected'), timelineComponents['fillingLine'], totalWidth);

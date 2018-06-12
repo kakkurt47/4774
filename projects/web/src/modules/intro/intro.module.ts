@@ -13,6 +13,8 @@ import {SharedModule} from '../shared/shared.module';
 import {IntroRoutingModule} from './intro-routing.module';
 import {IntroRoadmapComponent} from './components/intro-roadmap/intro-roadmap.component';
 import {IntroTeamComponent} from './components/intro-team/intro-team.component';
+import {IntroAdvisorsComponent} from './components/intro-advisors/intro-advisors.component';
+import {IntroLeadershipComponent} from './components/intro-leadership/intro-leadership.component';
 
 @NgModule({
   imports: [
@@ -37,6 +39,8 @@ import {IntroTeamComponent} from './components/intro-team/intro-team.component';
 
     IntroRoadmapComponent,
     IntroTeamComponent,
+    IntroAdvisorsComponent,
+    IntroLeadershipComponent,
 
     /* Page Components */
     /* For introduction */
