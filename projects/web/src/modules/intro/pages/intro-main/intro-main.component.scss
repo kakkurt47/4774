@@ -1,6 +1,6 @@
 
 .bg-home-full {
-  min-height: 480px;
+  min-height: 520px;
 }
 
 .bg-home {
@@ -16,7 +16,7 @@
 .home-center {
   position: absolute;
   z-index: 1;
-  top: 105px;
+  top: 125px;
   left: 0;
 }
 
@@ -75,11 +75,15 @@
   .team-box {
     .team-img {
       float: left;
+      img {
+        border: 1px solid #d4d4d4;
+        margin-right: 5px;
+      }
     }
 
     .team-desc  {
       .team-name {
-        font-size: 15px;
+        font-size: 14px;
       }
       .team-work {
         font-size: 12px;
@@ -90,7 +94,7 @@
 
 @media (min-width: 200px) and (max-width: 768px) {
   .bg-home-full {
-    min-height: 640px;
+    min-height: 660px;
   }
 
   .home-center {

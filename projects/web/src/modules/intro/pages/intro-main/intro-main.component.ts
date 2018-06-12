@@ -84,64 +84,64 @@ export class IntroMainPageComponent extends BaseComponent {
     image: string
   }[] = [
     {
-      name: 'Jihyun Kim',
-      position: 'Lead Blockchain Developer',
-      image: ''
+      name: 'Seungwon Kang',
+      position: 'Blockchain Engineer',
+      image: '강승원.jpg'
+    },
+    {
+      name: 'Chaehong Jeong',
+      position: 'Blockchain Engineer',
+      image: '정채홍.jpg'
     },
     {
       name: 'Jungwoo Lee',
       position: 'Lead Blockchain Architecture',
-      image: ''
+      image: '이정우.jpg'
     },
     {
-      name: 'Seungwon Kang',
-      position: 'Senior Software Developer',
-      image: ''
-    },
-    {
-      name: 'Chaehong Jeong',
-      position: 'Senior Software Developer',
-      image: ''
+      name: 'Jihyun Kim',
+      position: 'DevOps/Server Engineer',
+      image: '김지현.jpg'
     },
     {
       name: 'Hyunju Hwang',
-      position: 'Software Developer',
-      image: ''
+      position: 'Frontend Developer',
+      image: '황현주.jpg'
     },
     {
       name: 'Kyunghee Chang',
-      position: 'Software Developer',
-      image: ''
+      position: 'Frontend Developer',
+      image: '장경희.jpg'
     },
     {
       name: 'Jaechan Ahn',
-      position: 'Senior Software Developer',
-      image: ''
+      position: 'AI/ML Researcher & Server Developer',
+      image: '안재찬.jpg'
     },
     {
       name: 'Minkyung Lee',
       position: 'Brand & UX Designer',
-      image: ''
+      image: '이민경.jpg'
     },
     {
       name: 'Sukyung Na',
       position: 'Head of Global Business',
-      image: ''
+      image: '나수경.jpg'
     },
     {
-      name: 'William Wu ',
+      name: 'William Wu',
       position: 'Head of Global PR',
-      image: ''
+      image: '윌리엄.jpg'
     },
     {
       name: 'Yeji Chung',
       position: 'Head of Music Management',
-      image: ''
+      image: '정예지.jpg'
     },
     {
       name: 'Seongheon Cho',
       position: 'Head of Compliance',
-      image: ''
+      image: '조성헌.jpg'
     }
   ];
 
