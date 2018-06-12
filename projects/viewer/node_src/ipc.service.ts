@@ -90,27 +90,45 @@ class IpcMainService {
     });
 
 
-    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, files, encryption: boolean) => {
+    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, _files, encryption: boolean) => {
       /**
-       * files : files array
-       * encryption : whether encrypt or not. If true, do block encryption.
+       * @param {Object[]} files Array of files having absolute path
+       * @param {boolean} encryption Whether encrypt or not. If true, do block encryption.
        */
+      const files: {path: string, previews: string[]}[] = _files;
       const ipfs = IpfsServiceInstance;
-      const uploadFiles = [];
+      let uploadFiles = [];
 
       // TODO : encrypt by AES stream. (need to refactor block module)
       const aesKey = BlockUtil.generateAESKey();
-      for (const file of files) {
+
+      files.forEach(file => {
         uploadFiles.push({
-          path: path.join('/ipfs', path.basename(file)).replace(/\\/g, '/'),
+          path: path.join('/ipfs', path.basename(file.path)),
           content:
             (encryption) ?
               // if encryption parameter is true, push ipfs with encrypted
-              createReadStream(file).pipe(new BlockPaddingStream({})).pipe(new AESCBCEncryptionStream({key: aesKey}))
+              createReadStream(file.path).pipe(new BlockPaddingStream({})).pipe(new AESCBCEncryptionStream({key: aesKey}))
               // if not encryption, push ipfs with plain
-              : createReadStream(file)
+              : createReadStream(file.path)
         });
-      }
+
+        file.previews.forEach((preview, idx) => {
+          uploadFiles.push({
+            path: path.join('/preview', path.basename(file.path), `${idx}${path.extname(preview)}`),
+            content: createReadStream(preview)
+          });
+        });
+      });
+
+      // Wrapping paths into single folder
+      // (e.g. [/ipfs/sheet.pdf, /preview/img.png] => [/muzika/ipfs/sheet.pdf, /muzika/preview/img.png]
+      // Because of getting hash of root folder
+      uploadFiles = uploadFiles.map(file => {
+        file.path = path.join('/muzika', file.path).replace(/\\/g, '/');
+
+        return file;
+      });
 
       ipfs.put(uploadFiles, (err, result) => {
         if (err) {
@@ -120,7 +138,7 @@ class IpcMainService {
 
         // find root object from uploaded objects in IPFS
         const rootObject = result.find((object) => {
-          return object.path === 'ipfs';
+          return object.path === 'muzika';
         });
 
         // get random peer from server

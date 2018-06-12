@@ -15,11 +15,29 @@
         </div>
 
         <div class="position-relative">
-          <div *ngFor="let file of files" class="row m-1">
-            <span class="file-name">
-              <i class="fa fa-file-pdf"></i>
-              {{file.name}}
-            </span>
+          <div *ngFor="let file of files; let i = index" class="m-1">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="file-name">
+                <i class="fa fa-file-pdf"></i>
+                {{file.file.name}}
+              </span>
+
+              <label class="btn btn-primary btn-sm">
+                <input type="file" [id]="'upload-preview' + i" class="upload-sheet d-none" name="upload-sheet"
+                       ngFileSelect (change)="addPreview(i, $event)">
+                <span class="btn-text">
+                  <i class="fa fa-plus"></i>
+                  Add Preview
+                </span>
+              </label>
+            </div>
+
+            <div *ngFor="let preview of file.previews; let i = index" class="preview-item pl-1">
+              <span class="file-name">
+                <i class="fa fa-file-image"></i>
+                {{preview.name}}
+              </span>
+            </div>
           </div>
         </div>
 

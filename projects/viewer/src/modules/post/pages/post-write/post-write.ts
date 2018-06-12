@@ -133,7 +133,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   genres: Set<string> = new Set();
   instruments: Set<string> = new Set();
 
-  files: File[] = [];
+  files: {file: File, previews: File[]}[] = [];
   uploadStatus: {
     status: string;
     progress: number;
@@ -235,8 +235,12 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
     return prepared;
   }
 
-  addFile($event) {
-    this.files.push($event.target.files[0]);
+  addFile($event: any) {
+    this.files.push({file: $event.target.files[0], previews: []});
+  }
+
+  addPreview(idx: number, $event: any) {
+    this.files[idx].previews.push($event.target.files[0]);
   }
 
   submit(form: NgForm): void {
@@ -280,11 +284,12 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   }
 
   private uploadFile() {
-    const filePaths = [];
-
-    for (const file of this.files) {
-      filePaths.push(file.path);
-    }
+    const filePaths = this.files.map(file => {
+      return {
+        path: file.file.path,
+        previews: file.previews.map(preview => preview.path)
+      }
+    });
 
     return this.ipcRendererService.sendAsync(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true);
   }

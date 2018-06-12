@@ -63,4 +63,17 @@
       }
     }
   }
+
+  .preview-item {
+    &:before {
+      content: ' ';
+      border-bottom: 1px dotted #000000;
+      width: 11px;
+      display: inline-block;
+      height: 12px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      border-left: 1px dotted #000;
+    }
+  }
 }
