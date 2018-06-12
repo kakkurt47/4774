@@ -292,7 +292,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
       return {
         path: file.file.path,
         previews: file.previews.map(preview => preview.path)
-      }
+      };
     });
 
     return this.ipcRendererService.sendAsync(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true);

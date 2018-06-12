@@ -33,6 +33,13 @@
   }
 }
 
+.navbar-nav li.divider {
+  border-right: 1px solid white;
+  height: 17px;
+  margin: 11px 8px 0 8px;
+}
+
+
 /*********************
     15.RESPONSIVE
 **********************/
@@ -64,6 +71,9 @@
     height: auto;
   }
 
+  .navbar-nav li.divider {
+    border-right: 1px solid #BBB;
+  }
 }
 
 @media (max-width: 991px) {
@@ -94,10 +104,10 @@
   transition: all 0.5s ease-in-out;
 }
 
-.navbar-custom .navbar-nav li a {
-  color: #fff !important;
+.navbar-custom .navbar-nav li > a {
+  color: #fff;
   font-size: 14px;
-  background-color: transparent !important;
+  background-color: transparent;
   margin: 0 5px;
   letter-spacing: 0.03em;
   line-height: 24px;
@@ -125,13 +135,13 @@
 }
 
 .navbar-custom .navbar-brand {
-  color: #fff !important;
+  color: #fff;
   font-family: libre baskerville, serif;
   letter-spacing: 2px;
 }
 
-.navbar-custom .nav-social li a {
-  color: #fff !important;
+.navbar-custom .nav-social li > a {
+  color: #fff;
 }
 
 .navbar-custom .navbar-toggler {
@@ -150,12 +160,12 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.nav-sticky .navbar-nav li a {
-  color: #000 !important;
+.nav-sticky .navbar-nav li > a {
+  color: #000;
 }
 
 .nav-sticky .navbar-brand {
-  color: #000 !important;
+  color: #000;
   brand-icon-muzika {
 
     /deep/ .muzika-icon-striped-primary {
@@ -165,5 +175,11 @@
     /deep/ .muzika-icon-striped-secondary {
       fill: black;
     }
+  }
+}
+
+.navbar-nav li a {
+  .dropdown-menu a.dropdown-item {
+    color: black;
   }
 }

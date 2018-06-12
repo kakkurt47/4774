@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {MuzikaCommonModule, MuzikaCoreModule} from '@muzika/core';
 import {SpinnerComponent} from './components/spinner/spinner.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import {SpinnerComponent} from './components/spinner/spinner.component';
     MuzikaCommonModule,
     MuzikaCoreModule,
     RouterModule,
+    TranslateModule,
   ],
   declarations: [
     SpinnerComponent,
