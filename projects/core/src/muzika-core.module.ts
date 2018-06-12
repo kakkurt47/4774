@@ -14,7 +14,7 @@ import {environmentDev} from './environments/environment';
 import {environmentProd} from './environments/environment.prod';
 import {environmentStage} from './environments/environment.stage';
 import {IAppState, rootReducer} from './reducers';
-import {LocalStorage, MuzikaContractService} from './services';
+import {LocalStorage, MuzikaContractService, MuzikaHLSLoader} from './services';
 import {MuzikaWeb3Service} from './web3.service';
 
 const STORE_DIRECTIVES = [
