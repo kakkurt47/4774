@@ -236,7 +236,11 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   }
 
   addFile($event: any) {
-    this.files.push({file: $event.target.files[0], previews: []});
+    if (this.files.some(file => file.file.name === $event.target.files[0].name)) {
+      this.alertService.alert('File is already added');
+    } else {
+      this.files.push({file: $event.target.files[0], previews: []});
+    }
   }
 
   addPreview(idx: number, $event: any) {
