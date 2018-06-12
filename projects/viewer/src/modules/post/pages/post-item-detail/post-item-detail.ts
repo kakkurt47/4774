@@ -101,26 +101,18 @@ export class PostMusicItemDetailComponent extends BaseComponent {
     }
   }
 
-  private async _purchase() {
-    const coin = await this.muzikaCoin.deployed();
-
-    try {
-      const estimateGas = await coin.increaseApprovalAndCall.estimateGas(
-        this.post.music_contract.contract_address,
-        unitDown(this.post.price),
-        '0x',
-        {from: this.currentUser.address}
+  private _purchase() {
+    this.postActions
+      .purchase(this.post.music_contract.contract_address, this.currentUser.address)
+      .subscribe(
+        txHash => {
+          // @TODO process after purchase
+        },
+        err => {
+          this.alertService.alert(err.message);
+          console.error(err);
+        }
       );
-      await coin.increaseApprovalAndCall(
-        this.post.music_contract.contract_address,
-        unitDown(this.post.price),
-        '0x',
-        {from: this.currentUser.address, gas: estimateGas + 30000}
-      );
-    } catch (e) {
-      this.alertService.alert(e.message);
-      console.error(e);
-    }
   }
 }
 @Component({

@@ -2,8 +2,9 @@ import {NgRedux} from '@angular-redux/store';
 import {isPlatformBrowser} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, from} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {MuzikaCoin, MuzikaPaperContract} from '../contracts';
 import {APIConfig, ParamsBuilder} from '../config';
 import {BasePost, InfPaginationResult, PaginationResult} from '../models';
 import {IAppState} from '../reducers';
@@ -23,6 +24,8 @@ export class PostActions {
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,
               private userActions: UserActions,
+              private muzikaPaper: MuzikaPaperContract,
+              private muzikaCoin: MuzikaCoin,
               @Inject(PLATFORM_ID) private platformId) {
   }
 
@@ -59,17 +62,33 @@ export class PostActions {
     return this.apiConfig.delete(`/board/${boardType}/${boardID}`);
   }
 
-  purchase(isFree: number, boardID: number, payType: 'pdf' | 'point' | 'cash') {
-    if (isFree === 0) {
-      return this.apiConfig.get<any>(`/post/product-buy/${boardID}`, {
-        params: ParamsBuilder.from({payType})
-      });
-    } else {
-      return this.apiConfig
-        .get<any>(`/post/paper-buy/${boardID}`, {
-          params: ParamsBuilder.from({payType})
-        });
-    }
+  /**
+   * Purchase music. If success, returns transaction hash
+   *
+   * @param {string} contractAddress
+   * @param {string} buyer
+   * @returns {Observable<string>} transaction hash
+   */
+  purchase(contractAddress: string, buyer: string): Observable<string> {
+    const func = async () => {
+      const coin = await this.muzikaCoin.deployed();
+      const paper = await this.muzikaPaper.at(contractAddress);
+      const price = (await paper.price()).toString(10);
+      const estimateGas = await coin.increaseApprovalAndCall.estimateGas(
+        contractAddress,
+        price,
+        '0x',
+        {from: buyer}
+      );
+      return await coin.increaseApprovalAndCall.sendTransaction(
+        contractAddress,
+        price,
+        '0x',
+        {from: buyer, gas: estimateGas + 30000}
+      );
+    };
+
+    return from(func());
   }
 
   violation(boardType, boardID, commentID, reason: string) {
