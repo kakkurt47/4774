@@ -1,12 +1,8 @@
-import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
-import {BaseComponent, CommunityPost, ExtendedWeb3, MuzikaCoin, MusicPost, unitUp, User} from '@muzika/core';
-import {Observable, combineLatest, from} from 'rxjs';
-import {BestPostsMock, MusicPostsMock} from '../../mock/posts';
-import {Router} from '@angular/router';
+import {BaseComponent} from '@muzika/core';
 
 @Component({
-  selector: 'app-main',
+  selector: 'web-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })

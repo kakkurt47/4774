@@ -1,27 +1,21 @@
 @import '../../../../theme/variables';
 
 :host {
-  background-color: $navbar-background;
   display: block;
   position: relative;
-  height: 87px;
-}
-
-.navbar {
-  height: 100%;
-}
-
-.container-fluid {
-  padding: 0 32px;
 }
 
 .navbar-brand {
   outline: none;
   cursor: pointer;
   color: #fff;
+  vertical-align: middle;
 
   brand-icon-muzika {
-    display: inline-block;
+    display: block;
+    float: left;
+    margin-top: 3px;
+    margin-right: 15px;
     height: $navbar-brand-size;
 
     /deep/ .muzika-icon-striped-primary {
@@ -35,105 +29,131 @@
 
   span {
     line-height: $navbar-brand-size;
+    font-size: 18px;
   }
 }
 
-.navbar-menu {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/*********************
+    15.RESPONSIVE
+**********************/
 
-  .main-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      text-align: center;
-      text-transform: uppercase;
-      color: white;
-      outline: none;
-      transition: all 0.1s ease-in-out;
-      display: inline-block;
-      font-weight: bold;
-      font-size: 1rem;
-      margin-right: 60px;
-
-      &.active {
-        //border-bottom: 5px solid $primary-color;
-        //font-size: 115%;
-        color: #fff;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      &[routerLink] {
-        cursor: pointer;
-      }
-    }
+@media (min-width: 200px) and (max-width: 768px) {
+  .navbar-custom {
+    background-color: #262829;
+    padding: 10px 0px !important;
   }
-}
-
-.wallet {
-  text-transform: lowercase;
-  color: map-get($secondary-palette, 500);
-}
-
-.btn-login {
-  display: block;
-  color: white;
-}
-
-.user-profile-img {
-  img {
-    height: 2.8rem;
-    border-radius: 50%;
+  .navbar-custom .container {
+    width: 95%;
   }
-}
-
-.search {
-  position: relative;
-
-  .search-wrapper {
-    background: #fff;
-    border-radius: 4px;
-    width: 360px;
-    color: #404040;
-
-    .search-icon {
-      float: left;
-      padding: 0 16px;
-
-      i {
-        padding: 0;
-        margin: 0;
-      }
-    }
-
-    .search-input {
-      overflow: hidden;
-
-      input {
-        background: transparent;
-        border: none;
-        outline: none;
-        height: 100%;
-      }
-    }
+  .home-title {
+    font-size: 34px;
   }
+
+  .price-box-active {
+    transform: scale(1.0);
+  }
+  .nav-sticky .navbar-toggler {
+    color: #000;
+  }
+
+  .bg-home {
+    height: auto;
+  }
+
+  .home-form {
+    height: auto;
+  }
+
 }
 
-.user-name {
+@media (max-width: 991px) {
+  .nav-sticky .navbar-toggler {
+    color: #000;
+  }
+
+  .bg-backslide, .bg-home-full, .home-slider .carousel-item, .home-slider .carousel {
+    height: auto;
+  }
+
+}
+
+/*********************
+    2.NAVBAR-CUSTOM
+**********************/
+
+.navbar-custom {
+  background: #333030;
+  padding: 12px 0;
+  width: 100%;
+  border-radius: 0;
+  z-index: 999;
+  margin-bottom: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.navbar-custom .navbar-nav li a {
+  color: #fff !important;
+  font-size: 14px;
+  background-color: transparent !important;
+  margin: 0 5px;
+  letter-spacing: 0.03em;
+  line-height: 24px;
+  transition: all 0.5s;
+}
+
+.navbar-custom .logo img {
+  height: 38px;
+}
+
+.logo .logo-light {
+  display: inline-block;
+}
+
+.nav-sticky .logo .logo-dark {
+  display: inline-block;
+}
+
+.nav-sticky .logo .logo-light {
+  display: none !important;
+}
+
+.logo .logo-dark {
+  display: none;
+}
+
+.navbar-custom .navbar-brand {
+  color: #fff !important;
+  font-family: libre baskerville, serif;
+  letter-spacing: 2px;
+}
+
+.navbar-custom .nav-social li a {
+  color: #fff !important;
+}
+
+.navbar-custom .navbar-toggler {
   color: #fff;
+  font-size: 23px;
+  padding: 0px;
 }
 
-.wallet {
-  color: #a8a8a8;
+.navbar-custom .nav-social {
+  margin-left: 25px;
+}
+
+.navbar-custom.nav-sticky {
+  background-color: #fff !important;
+  padding: 15px 0px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.nav-sticky .navbar-nav li a {
+  color: #000 !important;
+}
+
+.nav-sticky .navbar-brand {
+  color: #000 !important;
 }

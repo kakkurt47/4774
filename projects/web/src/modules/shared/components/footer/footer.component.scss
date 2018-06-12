@@ -1,4 +1,4 @@
-@import '../../theme/variables';
+@import '../../../../theme/variables';
 
 :host {
   display: block;
@@ -10,7 +10,7 @@ footer {
 
   brand-icon-muzika {
     display: inline-block;
-    height: 16px;
+    height: 15px;
 
     /deep/ .muzika-icon-striped-primary {
       fill: $brand-color-1;
@@ -22,8 +22,7 @@ footer {
   }
 
   .brand-name {
-    font-size: 21px;
-    font-family: "Libre Baskerville";
+    font-size: 18px;
   }
 
   width: 1180px;

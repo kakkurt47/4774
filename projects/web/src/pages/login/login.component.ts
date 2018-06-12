@@ -4,11 +4,11 @@ import {Router} from '@angular/router';
 import {BaseComponent, promisify, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core';
 
 @Component({
-  selector: 'app-page-login',
+  selector: 'web-page-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginPageComponent extends BaseComponent {
+export class WebLoginPageComponent extends BaseComponent {
   currentWalletProvider = 'private';
   selectedAccount: string;
   accounts: string[];

@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {LayoutComponent} from '../components/layout/layout.component';
-import {LoginPageComponent} from '../pages/login/login.component';
+import {LayoutComponent} from '../modules/shared/components/layout/layout.component';
+import {WebLoginPageComponent} from '../pages/login/login.component';
 import {MainPageComponent} from '../pages/main/main.component';
 
 const mainRoutes: Routes = [
   {path: '', component: MainPageComponent},
-  {path: 'login', component: LoginPageComponent}
+  {path: 'login', component: WebLoginPageComponent},
 ];
 
 const routes: Routes = [

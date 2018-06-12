@@ -139,63 +139,6 @@ class IpcMainService {
       });
     });
 
-    ipcMain.on('File:download', (event, contractAddress) => {
-      const blockKey = BlockKey.forRequest();
-
-      request.post(
-        {
-          url: `${electronEnvironment.base_api_url}/api/paper/${contractAddress}/download`,
-          encoding: null,
-          json: {
-            'public_key': blockKey.getPublicKey()
-          }
-        },
-        (error, response, body) => {
-          // const encryptedKey = new Buffer(body.slice(0, 256));
-          // const encryptedData = new Buffer(body.slice(256));
-          blockKey.receiveBlob(body);
-
-          const filename = tempfile();
-          fs.writeFile(filename, blockKey.block.data, (err) => {
-            if (err) {
-              event.sender.send('File:downloaded', null);
-            } else {
-              event.sender.send('File:downloaded', filename);
-            }
-          });
-        }
-      );
-    });
-
-    // test for file download
-    ipcMain.on('File:downloadTest', (event) => {
-      // const blockKey = new BlockKey('QmSgRcqRvLukaDzWZTw2kWrUD1eFukDRwJpbB2U4ayDwsz');
-      const blockKey = BlockKey.forRequest();
-
-      request.post(
-        {
-          url: `${electronEnvironment.base_api_url}/test/paper/download`,
-          encoding: null,
-          json: {
-            'public_key': blockKey.publicKey
-          }
-        },
-        (error, response, body) => {
-          blockKey.receiveBlob(body);
-
-          const filename = tempfile();
-          fs.writeFile(filename, blockKey.block.data, (err) => {
-            if (err) {
-              event.sender.send('File:downloaded', null);
-            } else {
-              event.sender.send('File:downloaded', filename);
-            }
-          });
-        }
-      );
-
-    });
-
   }
 }
 

@@ -221,15 +221,22 @@
                 "glob": "**/*",
                 "input": "projects/web/src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "particles.js",
+                "input": "node_modules/particles.js/",
+                "output": "/assets"
               }
             ],
             "styles": [
               "projects/web/src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "scss/fontawesome/css/fontawesome.min.css",
               "scss/fontawesome/css/fontawesome-all.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/froala-editor/js/froala_editor.min.js",
               "node_modules/froala-editor/js/languages/ko.js",
               "node_modules/froala-editor/js/plugins/link.min.js",
@@ -307,7 +314,7 @@
             "scripts": [],
             "styles": [
               "projects/web/src/styles.scss",
-              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "scss/fontawesome/css/fontawesome.min.css",
               "scss/fontawesome/css/fontawesome-all.min.css"
             ],

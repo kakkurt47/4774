@@ -6,7 +6,7 @@ import {BestPostsMock, MusicPostsMock} from '../../mock/posts';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-main',
+  selector: 'web-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })

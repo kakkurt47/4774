@@ -12,6 +12,7 @@
     "module": "es2015",
     "types": ["node", "web3"],
     "typeRoots": [
+      "./src/typings.d.ts",
       "../../node_modules/@types",
       "../../node_modules/@0xproject/typescript-typings/types"
     ],
