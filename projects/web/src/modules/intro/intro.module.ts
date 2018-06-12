@@ -11,6 +11,8 @@ import {environment} from '../../environments/environment';
 import {IntroMainPageComponent} from './pages/intro-main/intro-main.component';
 import {SharedModule} from '../shared/shared.module';
 import {IntroRoutingModule} from './intro-routing.module';
+import {IntroRoadmapComponent} from './components/intro-roadmap/intro-roadmap.component';
+import {IntroTeamComponent} from './components/intro-team/intro-team.component';
 
 @NgModule({
   imports: [
@@ -32,6 +34,9 @@ import {IntroRoutingModule} from './intro-routing.module';
     IntroLayoutComponent,
     IntroNavbarComponent,
     IntroFooterComponent,
+
+    IntroRoadmapComponent,
+    IntroTeamComponent,
 
     /* Page Components */
     /* For introduction */

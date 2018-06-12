@@ -1,0 +1,22 @@
+
+section {
+  border-top: 1px solid #d4d4d4;
+  .team-box {
+    .team-img {
+      float: left;
+      img {
+        border: 1px solid #d4d4d4;
+        margin-right: 5px;
+      }
+    }
+
+    .team-desc  {
+      .team-name {
+        font-size: 14px;
+      }
+      .team-work {
+        font-size: 12px;
+      }
+    }
+  }
+}
