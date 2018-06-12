@@ -3,40 +3,30 @@
 :host {
   display: block;
   background-color: #1a1a1a;
-  color: #e5e5e5;
+  background: #242424 !important;
 }
 
 footer {
   max-width: 1180px;
   margin: 0 auto;
-  .qna {
-    text-align: center;
-    height: 70px;
-    border-bottom: 1px solid #e5e5e5;
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
+  /*********************
+      14.Footer
+  **********************/
 
-      li {
-        display: inline-block;
-        line-height: 70px;
-        font-size: 0.75rem;
+  .footer-alt p{
+    color: #858585;
+  }
 
-        &:after {
-          content: '|';
-          margin-left: 15px;
-          margin-right: 15px;
-        }
+  .footer-content .footerlink  li a{
+    color: #858585;
+    margin: 0 8px;
+    transition: all 0.5s;
+    font-size: 15px;
+  }
 
-        &:last-child {
-          &:after {
-            display: none;
-          }
-        }
-      }
-    }
+  .footer-content .footerlink  li a:hover{
+    color: #b7b7b7;
   }
 
   .company {
@@ -44,4 +34,21 @@ footer {
     font-size: 0.625rem;
     margin: 0 auto;
   }
+}
+
+.social-icon > li a {
+  background-color: rgba(103, 120, 125, 0.15);
+  border-radius: 35px;
+  color: #adb1b5;
+  display: inline-block;
+  height: 35px;
+  line-height: 36px;
+  text-align: center;
+  width: 35px;
+  margin-left: 12px;
+  transition: all 0.5s;
+}
+
+.social-icon > li a:hover {
+  color: #fff !important;
 }
