@@ -43,7 +43,11 @@ $border-radius-sm: 2px;
 
 html, body {
   background-color: $background-color;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Roboto', sans-serif;
 }
 
 .bg-primary {

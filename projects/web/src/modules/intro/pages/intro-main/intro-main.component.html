@@ -6,24 +6,20 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <div class="text-black">
-              <h1 class="home-title mx-auto mt-4">Muzika</h1>
-              <p class="home-subtitle mx-auto pt-2 pr-5">
-                A blockchain-based self-sustaining ecosystem that will revolutionize the digital music industry.
-              </p>
-              <div>
-                <a href="#" class="btn btn-custom btn-round">Whitepaper (ENG)</a>
-                <a href="#" class="btn btn-custom btn-round ml-3">Project Teaser (ENG)</a>
-                <a href="#" class="btn btn-custom btn-round m-3">Project Teaser (KOR)</a>
-              </div>
+            <h1 class="home-title mx-auto mt-4">Muzika</h1>
+            <p class="home-subtitle mx-auto pt-2">
+              A blockchain-based self-sustaining ecosystem that will revolutionize the digital music industry.
+            </p>
+            <div>
+              <a href="#" class="btn btn-custom btn-round mr-3 mb-3">Whitepaper (ENG)</a>
+              <a href="#" class="btn btn-custom btn-round mr-3 mb-3">Project Teaser (ENG)</a>
+              <a href="#" class="btn btn-custom btn-round mb-3">Project Teaser (KOR)</a>
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="video-play-bar">
-              <a href="https://vimeo.com/109054393" class="video-play-icon">
-                <i class="play-video-btn fas fa-play play-position"></i>
-              </a>
-              <img src="images/more-features.jpg" alt="" class="img-fluid mx-auto d-block">
+            <div class="videoWrapper">
+              <!-- Copy & Pasted from YouTube -->
+              <iframe width="560" height="349" src="//www.youtube.com/embed/Df2JgpM9zQA?rel=0&hd=1" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -34,7 +30,6 @@
 
 </section>
 <!-- home end -->
-
 
 
 <!-- Cta  Start-->
@@ -51,3 +46,83 @@
   </div>
 </section>
 <!-- Cta end  -->
+
+
+<!-- LEADERSHIP TEAM Start -->
+<section class="section" id="leadership-team">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title text-center mx-auto">
+          <div class="section-title-icon">
+            <i class="pe-7s-micro text-custom"></i>
+          </div>
+          <h2> LEADERSHIP TEAM</h2>
+          <p class="mt-4 text-muted">
+            Co-founders are averagely aged at 22 among the youngest and <BR/>
+            the most successful entrepreneurs in South Korea startup history
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-lg-4" *ngFor="let leader of leaders">
+        <div class="pt-4 pb-4 pr-3 pl-3">
+          <div class="row">
+            <div class="col-xs-6 text-right">
+              <div class="testimonial-client-img text-center pt-3 mb-3">
+                <img [src]="leader.imagePath" class="img-fluid  rounded-circle img-thumbnail">
+              </div>
+            </div>
+            <div class="col-xs-6 pt-5 pl-3">
+              <h6 class="mb-0">
+                {{leader.name}}
+              </h6>
+              <small>{{leader.position}} & Co-Founder</small>
+            </div>
+          </div>
+          <ul class="pt-3 text-muted small">
+            <li class="mt-2" [class.strong]="i == 0" *ngFor="let sentence of leader.sentences; let i =index;">
+              {{sentence}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- LEADERSHIP TEAM end  -->
+
+
+
+<!-- Staff Team start -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="section-title text-center mx-auto">
+          <div class="section-title-icon">
+            <i class="pe-7s-like2 text-custom"></i>
+          </div>
+          <h2>Staff Team</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 pt-3">
+      <div class="col-lg-3 mt-3" *ngFor="let member of members">
+        <div class="team-box p-4">
+          <div class="team-img">
+            <img [src]="'assets/images/leader-jangwon.png'" alt="" class="mx-auto d-block rounded-circle " height="90">
+          </div>
+          <div class="team-desc text-center mt-4">
+            <h6 class="team-name text-custom mb-1">{{member.name}}</h6>
+            <p class="team-work text-muted">{{member.position}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Team end  -->
