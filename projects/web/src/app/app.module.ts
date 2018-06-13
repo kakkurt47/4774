@@ -22,6 +22,7 @@ import {WebLoginPageComponent} from '../pages/login/login.component';
 import {MainPageComponent} from '../pages/main/main.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {TestModule} from '../modules/test/test.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
 
     MuzikaIntroModule,
+    TestModule,
 
     AppRoutingModule,
     TranslateModule.forRoot({
