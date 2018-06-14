@@ -1,7 +1,7 @@
 import {isPlatformBrowser} from '@angular/common';
-import {Component, PLATFORM_ID, Inject, NgZone, AfterViewInit, ChangeDetectorRef} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
-import {BaseComponent, ExtendedWeb3, UserActions} from '@muzika/core';
+import {Component, PLATFORM_ID, Inject, NgZone, AfterViewInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {BaseComponent, ExtendedWeb3, UserActions} from '@muzika/core/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {interval} from 'rxjs';
 import {environment} from '../environments/environment';

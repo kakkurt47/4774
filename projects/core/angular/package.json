@@ -1,4 +1,5 @@
 {
+  "main": "public_api.js",
   "ngPackage": {
     "dest": "../../dist/muzika-core/angular",
     "deleteDestPath": false,

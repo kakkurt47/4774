@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material';
-import {MuzikaCoreModule} from '@muzika/core';
+import {MuzikaCoreModule} from '@muzika/core/angular';
 import {WalletAddressOnlyComponent} from './components/wallet-address-only/wallet-address-only.component';
 import {WalletKeystoreComponent} from './components/wallet-keystore/wallet-keystore.component';
 import {WalletLedgerComponent} from './components/wallet-ledger/wallet-ledger.component';

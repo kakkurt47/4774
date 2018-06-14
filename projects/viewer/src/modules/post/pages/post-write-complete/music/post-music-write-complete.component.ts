@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BaseComponent} from '@muzika/core';
+import {BaseComponent} from '@muzika/core/angular';
 import {ElectronService} from '../../../../../providers/electron.service';
 
 @Component({

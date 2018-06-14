@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {BaseComponent} from '@muzika/core';
-import {UUIDEvent, WalletStorageService} from '../../services/wallet-storage.service';
+import {Component} from '@angular/core';
+import {BaseComponent} from '@muzika/core/angular';
 import * as sigUtil from 'eth-sig-util';
 import * as ethUtil from 'ethereumjs-util';
+import {UUIDEvent, WalletStorageService} from '../../services/wallet-storage.service';
 
 @Component({
   selector: 'wallet-sign-personal-message',

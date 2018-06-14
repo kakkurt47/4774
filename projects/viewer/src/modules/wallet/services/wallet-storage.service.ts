@@ -1,20 +1,25 @@
-import {EventEmitter, Injectable} from '@angular/core';
-import {LocalStorage} from '@muzika/core';
+import {Injectable} from '@angular/core';
+import {LocalStorage} from '@muzika/core/angular';
 import * as ethUtil from 'ethereumjs-util';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {AlertService} from '../../alert/alert.service';
 import * as serializeError from 'serialize-error';
+import {AlertService} from '../../alert/alert.service';
 
 @Injectable({providedIn: 'root'})
 export class WalletStorageService {
   private _stateChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private _eventSignPersonalMessage: BehaviorSubject<UUIDEvent> = new BehaviorSubject(null);
-  private _eventSignTransaction: BehaviorSubject<UUIDEvent> = new BehaviorSubject(null);
 
   // @TODO currently use localstorage
   constructor(private localStorage: LocalStorage,
               private alertService: AlertService) {
+  }
+
+  private _eventSignTransaction: BehaviorSubject<UUIDEvent> = new BehaviorSubject(null);
+
+  get eventSignTransaction(): Observable<UUIDEvent> {
+    return this._eventSignTransaction.asObservable();
   }
 
   get accounts(): string[] {
@@ -25,6 +30,18 @@ export class WalletStorageService {
 
       return ethUtil.toChecksumAddress(ethUtil.bufferToHex(address));
     });
+  }
+
+  get walletsObs(): Observable<string[]> {
+    return this._stateChange.asObservable().pipe(
+      map(() => {
+        return JSON.parse(this.localStorage.getItem('wallets', '[]'));
+      })
+    );
+  }
+
+  get eventSignMessage(): Observable<UUIDEvent> {
+    return this._eventSignPersonalMessage.asObservable();
   }
 
   addWallet(privateKey: string): void {
@@ -42,14 +59,6 @@ export class WalletStorageService {
     } else {
       this.alertService.alert('Invalid Private key');
     }
-  }
-
-  get walletsObs(): Observable<string[]> {
-    return this._stateChange.asObservable().pipe(
-      map(() => {
-        return JSON.parse(this.localStorage.getItem('wallets', '[]'));
-      })
-    );
   }
 
   hasPrivateKeyOf(address: string): boolean {
@@ -74,10 +83,6 @@ export class WalletStorageService {
     }
   }
 
-  get eventSignMessage(): Observable<UUIDEvent> {
-    return this._eventSignPersonalMessage.asObservable();
-  }
-
   emitSignMessageEvent(event: UUIDEvent) {
     const previous = this._eventSignPersonalMessage.value;
     if (previous !== null) {
@@ -98,10 +103,6 @@ export class WalletStorageService {
     } else {
       event.event.sender.send('WalletProvider:signPersonalMessage', event.uuid, null, event.data);
     }
-  }
-
-  get eventSignTransaction(): Observable<UUIDEvent> {
-    return this._eventSignTransaction.asObservable();
   }
 
   emitSignTransactionEvent(event: UUIDEvent) {

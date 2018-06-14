@@ -9,7 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "module": "es2015",
+    "module": "commonjs",
     "types": ["node", "web3"],
     "typeRoots": [
       "./node_modules/@types",
@@ -22,10 +22,8 @@
       "dom"
     ],
     "paths": {
-      "stream": ["./node_modules/stream-browserify/index.js"],
-      "vm": ["./node_modules/vm-browserify/index.js"],
-      "crypto": ["./node_modules/crypto-browserify/index.js"],
-      "@muzika/core": ["projects/core/index.ts"]
+      "@muzika/core": ["projects/core/index.ts"],
+      "@muzika/core/angular": ["projects/core/angular/index.ts"]
     }
   },
   "files": [

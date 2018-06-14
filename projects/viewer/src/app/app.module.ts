@@ -8,34 +8,34 @@ import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {LocalStorage, MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule} from '@muzika/core';
+import {LocalStorage, MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule} from '@muzika/core/angular';
 // NG Translate
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {environment} from '../environments/environment';
-import {PostModule} from '../modules/post/post.module';
-import {WalletModule} from '../modules/wallet/wallet.module';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {MuzikaAppsComponent} from '../components/muzika-apps/muzika-apps.component';
 import {ArtistMusicComponent} from '../components/artist-music/artist-music.component';
 import {FooterComponent} from '../components/footer/footer.component';
+import {MuzikaAppsComponent} from '../components/muzika-apps/muzika-apps.component';
 import {NavbarComponent} from '../components/navbar/navbar.component';
 import {SpinnerComponent} from '../components/spinner/spinner.component';
-
-import {WebviewDirective} from '../providers/webview.directive';
+import {environment} from '../environments/environment';
+import {MuzikaAlertModule} from '../modules/alert/alert.module';
+import {PostModule} from '../modules/post/post.module';
+import {WalletModule} from '../modules/wallet/wallet.module';
 import {IPFSTestPageComponent} from '../pages/ipfs-test/ipfs-test.component';
 import {LoginPageComponent} from '../pages/login/login.component';
 import {MainPageComponent} from '../pages/main/main.component';
+import {ElectronLocalStorage} from '../providers/electron-localstorage.service';
 
 import {ElectronService} from '../providers/electron.service';
 import {IpcRendererService} from '../providers/ipc-renderer.service';
-import {MuzikaAlertModule} from '../modules/alert/alert.module';
 import {MuzikaWalletProvider} from '../providers/muzika-wallet.provider';
 import {TabService} from '../providers/tab.service';
-import {ElectronLocalStorage} from '../providers/electron-localstorage.service';
+
+import {WebviewDirective} from '../providers/webview.directive';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

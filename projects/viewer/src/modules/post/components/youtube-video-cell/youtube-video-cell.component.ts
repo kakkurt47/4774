@@ -1,5 +1,6 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {VideoPost, PostActions} from '@muzika/core';
+import {VideoPost} from '@muzika/core';
+import {PostActions} from '@muzika/core/angular';
 
 
 // PC Only Component

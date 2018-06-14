@@ -2,20 +2,8 @@ import {select} from '@angular-redux/store';
 import {Component, Injector} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {
-  APIConfig,
-  BaseComponent,
-  BasePost,
-  CommunityPost,
-  LocalStorage,
-  MuzikaContractService,
-  PostActions,
-  MusicContract,
-  MusicPost,
-  unitDown,
-  User,
-  VideoPost
-} from '@muzika/core';
+import {BasePost, CommunityPost, MusicContract, MusicPost, unitDown, User, VideoPost} from '@muzika/core';
+import {APIConfig, BaseComponent, LocalStorage, MuzikaContractService, PostActions} from '@muzika/core/angular';
 import {Observable} from 'rxjs';
 import {IPCUtil} from '../../../../../shared/ipc-utils';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
@@ -133,7 +121,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   genres: Set<string> = new Set();
   instruments: Set<string> = new Set();
 
-  files: {file: File, previews: File[]}[] = [];
+  files: { file: File, previews: File[] }[] = [];
   uploadStatus: {
     status: string;
     progress: number;

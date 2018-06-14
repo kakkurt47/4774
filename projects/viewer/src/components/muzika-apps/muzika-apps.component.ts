@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
-import {BaseComponent} from '@muzika/core';
+import {BaseComponent} from '@muzika/core/angular';
 import {MuzikaTabs, TabService} from '../../providers/tab.service';
 
 @Component({

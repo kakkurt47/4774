@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
-import {MuzikaCommonModule, MuzikaCoreModule} from '@muzika/core';
+import {MuzikaCommonModule, MuzikaCoreModule} from '@muzika/core/angular';
 import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 import {PostCommentComponent} from './components/post-comment/post-comment.component';
 import {PostItemDetailHeaderComponent} from './components/post-item-detail-header/post-item-detail-header.component';

@@ -6,7 +6,7 @@ var path = require('path');
 var profile = process.env.ENV || 'dev';
 
 console.log('Moving environment configuration ...');
-const projectEnvironmentPath = path.resolve(__dirname, '../projects/core/src/environments/');
+const projectEnvironmentPath = path.resolve(__dirname, '../projects/core/common/environments/');
 const targetEnvironmentPath = path.resolve(__dirname,'../projects/viewer/node_src/environment.ts');
 
 switch (profile) {

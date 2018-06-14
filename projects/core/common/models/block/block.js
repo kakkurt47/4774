@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var crypto = require("crypto");
 var aesjs = require("aes-js");
 var BlockUtil = /** @class */ (function () {
@@ -29,7 +29,7 @@ var Block = /** @class */ (function () {
         // cannot construct the instance of this class directly.
         // Instead, use fromPlainData if the data is not encrypted,
         // or use fromEncryptedData if the data is encrypted.
-        this.data = data;
+        this.data = Buffer.from(data);
         this.padded = padded;
         if (this.padded) {
             // if padded, parse front garbage size from data
@@ -130,3 +130,4 @@ var Block = /** @class */ (function () {
     return Block;
 }());
 exports.Block = Block;
+//# sourceMappingURL=block.js.map

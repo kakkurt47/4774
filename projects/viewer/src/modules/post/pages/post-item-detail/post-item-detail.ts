@@ -1,20 +1,12 @@
 import {NgRedux, select} from '@angular-redux/store';
 import {Component} from '@angular/core';
-import {
-  BaseComponent,
-  CommunityPost, IAppState, IMuzikaPaperContract,
-  MuzikaCoin,
-  MuzikaPaperContract, PostActions,
-  MusicPost,
-  unitDown, unitUp,
-  User,
-  VideoPost
-} from '@muzika/core';
-import {CommunityPostsMock, MusicPostsMock, VideoPostsMock} from '../../../../mock/posts';
-import {AlertService} from '../../../alert/alert.service';
 import {ActivatedRoute} from '@angular/router';
+import {CommunityPost, IAppState, MusicPost, unitUp, User, VideoPost} from '@muzika/core';
+import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions} from '@muzika/core/angular';
 import {combineLatest, Observable, Subscription} from 'rxjs';
+import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
+import {AlertService} from '../../../alert/alert.service';
 
 @Component({
   selector: 'app-post-community-item-detail',
@@ -115,6 +107,7 @@ export class PostMusicItemDetailComponent extends BaseComponent {
       );
   }
 }
+
 @Component({
   selector: 'app-post-video-item-detail',
   templateUrl: './video/post-video-item-detail.component.html',

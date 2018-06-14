@@ -1,5 +1,6 @@
 import {Component, NgZone} from '@angular/core';
-import {BaseComponent, promisify, toBigNumber, unitDown, unitUp, IMuzikaCoin, createTruffleMuzikaCoin} from '@muzika/core';
+import {promisify, toBigNumber, unitDown, unitUp} from '@muzika/core';
+import {BaseComponent, IMuzikaCoin, createTruffleMuzikaCoin} from '@muzika/core/angular';
 import * as ethUtil from 'ethereumjs-util';
 import * as ethWallet from 'ethereumjs-wallet';
 import {ElectronService} from '../../../../providers/electron.service';
