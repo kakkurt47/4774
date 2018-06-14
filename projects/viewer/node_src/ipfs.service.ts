@@ -43,15 +43,19 @@ export class IpfsService {
           json: true
         },
         (error, response, body) => {
-          for (const ipfsNode of body) {
-            this.node.swarm.connect(ipfsNode.ID, (err) => {
-              if (err) {
-                console.log(err);
-              }
-              // if one of the IPFS is connected, ready status to true
-              this.muzikaPeers.push(ipfsNode.APIServer);
-              this.isReady = true;
-            });
+          if (!error) {
+            for (const ipfsNode of body) {
+              this.node.swarm.connect(ipfsNode.ID, (err) => {
+                if (err) {
+                  console.log(err);
+                }
+                // if one of the IPFS is connected, ready status to true
+                this.muzikaPeers.push(ipfsNode.APIServer);
+                this.isReady = true;
+              });
+            }
+          } else {
+            console.error('Not connected with muzika-platform-server..');
           }
         }
       );
