@@ -46,7 +46,8 @@ export class IntroLeadershipComponent extends BaseComponent {
 
         'The sole developer and  owner of  the famous Korean college-based social media “The Bamboo Network”.',
 
-        'A winner  of  multiple  awards including  the Korean  Olympiad  in  Informatics(2nd),  Korea  Intel  Science  Engineering  Fair(1st), ' +
+        'A winner  of  multiple  awards including  the Korean  Olympiad  in  Informatics(2nd),  ' +
+        'Korea  Intel  Science  Engineering  Fair(1st), ' +
         'a national  candidate  for  Intel  Science  Fair International  Competition Software Division, ' +
         'continuously involved in open source projects of Google on Github since 2015.'
         // 'A prodigy programmer and developer who built his web game and earned a small fortune at the age of 15. ' +
