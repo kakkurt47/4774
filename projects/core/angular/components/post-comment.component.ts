@@ -1,10 +1,11 @@
 import {NgRedux} from '@angular-redux/store';
 import {isPlatformBrowser} from '@angular/common';
 import {ElementRef, NgZone, OnChanges, SimpleChanges} from '@angular/core';
-import {AlertifyInstnace, PostComment, PaginationResult, User, IAppState} from '@muzika/core';
+import {PostComment, PaginationResult, User, IAppState} from '@muzika/core';
 import {Observable, combineLatest, Subscription} from 'rxjs';
 import {CommentActions} from '../actions/comment.action';
 import {PostActions} from '../actions/post.action';
+import {AlertifyInstnace} from '../providers/alertify-instance';
 import {BaseComponent} from './base.component';
 
 export abstract class AbstractPostCommentComponent extends BaseComponent implements OnChanges {
