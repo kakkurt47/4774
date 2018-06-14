@@ -89,23 +89,37 @@ export class MuzikaIPFSFile {
   removeTempFiles(callback: (err) => void) {
     // this function must be called after uploaded
     async.each(this.tempDirs, (tempDir, rmCallback) => {
-      console.log('REMOVING TEMPORARY DIRECTORY : ', tempDir);
       fs.readdir(tempDir, (readErr, tempFiles) => {
         if (readErr) {
           return rmCallback(readErr);
         } else {
-          // remove files
-          tempFiles.forEach((file) => {
-            fs.unlink(path.join(tempDir, file), (unlinkErr) => {
-              if (unlinkErr) {
-                return rmCallback(unlinkErr);
+          async.each(tempFiles, (tempFile, unlinkCallback) => {
+            // remove files
+            fs.unlink(path.join(tempDir, tempFile), (unlinkErr) => {
+              return unlinkCallback(unlinkErr);
+            });
+          }, (unlinkErr) => {
+            if (unlinkErr) {
+              return rmCallback(unlinkErr);
+            }
+
+            // remove empty directory after removing files
+            fs.rmdir(tempDir, (rmdirErr) => {
+
+              // if having errors and error is not ENOENT(NO ENTRY ERROR)
+              if (rmdirErr && rmdirErr.code !== 'ENOENT') {
+                return rmCallback(rmdirErr);
+              } else {
+                return rmCallback();
               }
             });
           });
         }
       });
     }, (rmErr) => {
-      return callback(rmErr);
+      if (rmErr) {
+        return callback(rmErr);
+      }
     });
   }
 
