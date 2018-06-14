@@ -33,7 +33,7 @@
             </div>
           </div>
           <ul class="pt-3 text-muted small">
-            <li class="mt-2" [class.strong]="i == 0" *ngFor="let sentence of leader.sentences; let i =index;">
+            <li class="mt-2" *ngFor="let sentence of leader.sentences; let i =index;">
               {{sentence}}
             </li>
           </ul>
