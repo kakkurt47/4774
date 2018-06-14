@@ -39,7 +39,13 @@ export class MuzikaIPFSFile {
   private fileBaseName: string;
   private fileExt: string;
 
-  constructor(filePath: string, preview: any, cipherKey?: Buffer) {
+  /**
+   * Constructs an instance for building paramters for uploading to IPFS.
+   * @param {string} filePath the real path of the file in local.
+   * @param preview preview files info for the file.
+   * @param {Buffer} cipherKey Buffer instance that represents AES-256 key or null for not encryption.
+   */
+  constructor(filePath: string, preview: any, cipherKey: Buffer = null) {
     this.filePath = filePath;
     this.cipherKey = cipherKey;
     this.preview = preview;
@@ -48,6 +54,13 @@ export class MuzikaIPFSFile {
     this.fileExt = path.extname(this.fileBaseName);
   }
 
+  /**
+   * Returns a callback function that preprocesses something such as deciding path in IPFS object, generating stream files, and etc before
+   * uploading to IPFS.
+   *
+   * @param uploadQueue upload queue for uploading to IPFS.
+   * @returns {(callback) => any} a function that preprocesses before uploading to IPFS and call callback function.
+   */
   ready(uploadQueue: any) {
     /**
      * Return a callback function that processes something such as deciding path in IPFS object, generating stream files, and etc before
@@ -68,6 +81,11 @@ export class MuzikaIPFSFile {
     };
   }
 
+  /**
+   * Removes temporary directories including the files of directories. This must be called when finishing to upload to IPFS.
+   *
+   * @param {(err) => void} callback
+   */
   removeTempFiles(callback: (err) => void) {
     // this function must be called after uploaded
     async.each(this.tempDirs, (tempDir, rmCallback) => {
@@ -91,7 +109,12 @@ export class MuzikaIPFSFile {
     });
   }
 
-  _readyOriginFile(uploadQueue: any) {
+  /**
+   * Adds original files to the upload queue. The original files will be encrypted if having cipher key.
+   *
+   * @param uploadQueue upload queue for uploading to IPFS.
+   */
+  private _readyOriginFile(uploadQueue: any) {
     uploadQueue.push({
       path: this._buildFilePath(!!this.cipherKey, MuzikaFileUtil.ORIGIN_FILE_DIRECTORY, this.fileBaseName),
       content:
@@ -105,7 +128,12 @@ export class MuzikaIPFSFile {
     });
   }
 
-  _readyPreviewFile(uploadQueue: any) {
+  /**
+   * Adds preview files to the upload queue. Preview files will not be encrypted.
+   *
+   * @param uploadQueue upload queue for uploading to IPFS.
+   */
+  private _readyPreviewFile(uploadQueue: any) {
     this.preview.forEach((preview, idx) => {
       uploadQueue.push({
         // Never encrypt preview files even though the cipher key taken
@@ -115,7 +143,12 @@ export class MuzikaIPFSFile {
     });
   }
 
-  _readyStreamingFile(uploadQueue: any, callback: (err) => void) {
+  /**
+   * Generates streaming files and upload all streaming files to the upload queue. They will be encrypted if having cipher key.
+   *
+   * @param uploadQueue upload queue for uploading to IPFS.
+   */
+  private _readyStreamingFile(uploadQueue: any, callback: (err) => void) {
     ffmpeg.setFfmpegPath(MuzikaFileUtil.FFMPEG_BIN_PATH);
 
     // generate a temporary directory for save streaming files generated
@@ -175,11 +208,12 @@ export class MuzikaIPFSFile {
 
   /**
    * Build a file path in IPFS.
+   *
    * @param {boolean} encryption add ".encrypted" extension if true.
    * @param args path arguments.
    * @returns {string} the file path in IPFS.
    */
-  _buildFilePath(encryption: boolean, ...args) {
+  private _buildFilePath(encryption: boolean, ...args) {
     // joining path parameters and convert it into IPFS file path
 
     // if encryption is true, add "encrypted" extension to the file.
