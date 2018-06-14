@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent, UserActions} from '@muzika/core';
+import {BaseComponent, UserActions} from '@muzika/core/angular';
 
 @Component({
   selector: 'app-page-about',

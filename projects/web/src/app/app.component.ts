@@ -1,7 +1,5 @@
-import {isPlatformBrowser} from '@angular/common';
 import {Component} from '@angular/core';
-import {BaseComponent} from '@muzika/core';
-import {interval} from 'rxjs';
+import {BaseComponent} from '@muzika/core/angular';
 
 @Component({
   selector: 'app-root',

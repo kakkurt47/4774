@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
-import {BaseComponent, ExtendedWeb3, MuzikaCoin, promisify, AddressOnlyProvider} from '@muzika/core';
+import {BaseComponent, ExtendedWeb3, MuzikaCoin} from '@muzika/core/angular';
 import * as _alertify from 'alertify.js';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');

@@ -1,6 +1,6 @@
 import {isPlatformBrowser} from '@angular/common';
 import {Component, Inject, PLATFORM_ID, AfterViewInit} from '@angular/core';
-import {BaseComponent} from '@muzika/core';
+import {BaseComponent} from '@muzika/core/angular';
 
 declare const jQuery;
 

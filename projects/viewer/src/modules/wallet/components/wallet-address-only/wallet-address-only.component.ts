@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {BaseComponent, MuzikaWeb3Service, AlertifyInstnace} from '@muzika/core';
+import {BaseComponent, MuzikaWeb3Service} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core';
 
 @Component({
   selector: 'wallet-address-only-selector',

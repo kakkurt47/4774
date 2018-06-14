@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent} from '@muzika/core';
+import {BaseComponent} from '@muzika/core/angular';
 import {IPCUtil} from '../../../shared/ipc-utils';
 import {IpcRendererService} from '../../providers/ipc-renderer.service';
 

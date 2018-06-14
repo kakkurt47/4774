@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent} from '@muzika/core';
+import {BaseComponent} from '@muzika/core/angular';
 
 @Component({
   selector: 'intro-team',

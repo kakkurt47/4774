@@ -1,6 +1,7 @@
 import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
-import {BaseComponent, CommunityPost, PaginationResult, PostActions, MusicPost, VideoPost} from '@muzika/core';
+import {CommunityPost, PaginationResult, MusicPost, VideoPost} from '@muzika/core';
+import {BaseComponent, PostActions} from '@muzika/core/angular';
 import {Observable} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {CommunityTagsMock, VideoTagsMock} from '../../../../mock/tags';

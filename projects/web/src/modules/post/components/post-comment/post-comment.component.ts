@@ -1,6 +1,7 @@
 import {NgRedux} from '@angular-redux/store';
 import {Component, ElementRef, Inject, Input, NgZone, PLATFORM_ID} from '@angular/core';
-import {IAppState, AbstractPostCommentComponent, CommentActions, PostActions} from '@muzika/core';
+import {IAppState} from '@muzika/core';
+import {AbstractPostCommentComponent, CommentActions, PostActions} from '@muzika/core/angular';
 import {PostCommentsMock} from '../../../../mock/comments';
 
 @Component({

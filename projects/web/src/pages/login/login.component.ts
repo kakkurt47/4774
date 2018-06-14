@@ -1,7 +1,8 @@
 import {Component, QueryList, ViewChildren} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {BaseComponent, promisify, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core';
+import {promisify} from '@muzika/core';
+import {BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core/angular';
 
 @Component({
   selector: 'web-page-login',

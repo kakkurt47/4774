@@ -1,7 +1,5 @@
-import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
-import {BaseComponent, User, UserActions} from '@muzika/core';
-import {Observable} from 'rxjs';
+import {BaseComponent, UserActions} from '@muzika/core/angular';
 
 @Component({
   selector: 'app-footer',

@@ -1,6 +1,6 @@
 import {isPlatformBrowser} from '@angular/common';
 import {Component, PLATFORM_ID, Inject, AfterViewInit} from '@angular/core';
-import {BaseComponent} from '@muzika/core';
+import {BaseComponent} from '@muzika/core/angular';
 import * as particleConfig from './particles.json';
 
 declare const particlesJS, jQuery;

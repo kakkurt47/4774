@@ -10,7 +10,10 @@
     "experimentalDecorators": true,
     "target": "es5",
     "module": "es2015",
-    "types": ["node", "web3"],
+    "types": [
+      "node",
+      "web3"
+    ],
     "typeRoots": [
       "./src/typings.d.ts",
       "../../node_modules/@types",
@@ -23,10 +26,21 @@
       "dom"
     ],
     "paths": {
-      "stream": ["../../node_modules/stream-browserify/index.js"],
-      "vm": ["../../node_modules/vm-browserify/index.js"],
-      "crypto": ["../../node_modules/crypto-browserify/index.js"],
-      "@muzika/core": ["../core/index.ts"]
+      "stream": [
+        "../../node_modules/stream-browserify/index.js"
+      ],
+      "vm": [
+        "../../node_modules/vm-browserify/index.js"
+      ],
+      "crypto": [
+        "../../node_modules/crypto-browserify/index.js"
+      ],
+      "@muzika/core": [
+        "../core/public_api.ts"
+      ],
+      "@muzika/core/angular": [
+        "../core/angular/public_api.ts"
+      ]
     }
   },
   "exclude": [

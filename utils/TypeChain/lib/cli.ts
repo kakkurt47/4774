@@ -74,7 +74,7 @@ async function main() {
 /* tslint:disable */
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Provider } from '@angular/core';
-import { ExtendedWeb3 } from '../web3.provider';
+import { ExtendedWeb3 } from '../providers/extended-web3.provider';
 
 ${importString.join('\n')}
 

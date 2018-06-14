@@ -24,7 +24,12 @@
     "paths": {
       "stream": ["../../node_modules/stream-browserify/index.js"],
       "vm": ["../../node_modules/vm-browserify/index.js"],
-      "@muzika/core": ["../core/index.ts"]
+      "@muzika/core": [
+        "../core/public_api.ts"
+      ],
+      "@muzika/core/angular": [
+        "../core/angular/public_api.ts"
+      ]
     }
   },
   "exclude": [
