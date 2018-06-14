@@ -7,18 +7,38 @@
     "icon": "dist/muzika-viewer",
     "target": [
       "portable"
+    ],
+    "files": [
+      "node_modules/ffmpeg-static/bin/win32/${arch}${/*}",
+      "!node_modules/ffmpeg-static/bin/darwin${/*}",
+      "!node_modules/ffmpeg-static/bin/linux${/*}"
     ]
   },
   "mac": {
     "icon": "dist/muzika-viewer",
     "target": [
       "dmg"
+    ],
+    "files": [
+      "node_modules/ffmpeg-static/bin/darwin/${arch}${/*}",
+      "!node_modules/ffmpeg-static/bin/win32${/*}",
+      "!node_modules/ffmpeg-static/bin/linux${/*}"
     ]
   },
   "linux": {
     "icon": "dist/muzika-viewer",
     "target": [
       "AppImage"
+    ],
+    "files": [
+      "node_modules/ffmpeg-static/bin/linux/${arch}${/*}",
+      "!node_modules/ffmpeg-static/bin/darwin${/*}",
+      "!node_modules/ffmpeg-static/bin/win32${/*}"
     ]
-  }
+  },
+  "files": [
+    "**/*",
+    "node_modules/ffmpeg-static/index.js",
+    "node_modules/ffmpeg-static/package.json"
+  ]
 }
