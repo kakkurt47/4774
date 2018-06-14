@@ -1,9 +1,12 @@
 
 import * as Hls from 'hls.js';
+import {Block} from '../../../viewer/node_src/block/block';
 
 
 export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
-  ipfsPath: any;
+  fileName: string;
+  ipfsHash: any;
+  cipherKey: Buffer;
   stats: any;
 
   private context: any;
@@ -13,7 +16,10 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
 
   constructor(config) {
     super(config);
-    this.ipfsPath = config.ipfsPath;
+    this.ipfsHash = config.ipfsHash;
+    this.fileName = config.fileName;
+    this.cipherKey = config.cipherKey || null;
+    console.log(config.cipherKey);
   }
 
   destory() {
@@ -41,10 +47,10 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
     stats.loaded = 0;
 
     const urlParts = context.url.split('/');
-    const filename = urlParts[urlParts.length - 1];
+    const streamFilename = urlParts[urlParts.length - 1];
     // context.url = `https://ipfs.io/ipfs/${this.ipfsURL}/${filename}`;
 
-    getFile(this.ipfsPath, filename, (err, res) => {
+    this._getFile(this.ipfsHash, this.fileName, streamFilename, (err, res) => {
       if (err) {
         console.log(err);
         return;
@@ -65,34 +71,44 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
       callbacks.onSuccess(response, stats, context);
     });
   }
-}
 
-function getFile(url, filename, callback) {
-  if (!callback) {
-    callback = (err, res) => {};
-  }
+  private _getFile(ipfsHash, filename, streamingFileName, callback) {
+    const nameAppend = (this.cipherKey) ? '.encrypted' : '';
 
-  const xmlHttpRequest = new XMLHttpRequest();
-  xmlHttpRequest.responseType = 'arraybuffer';
-
-  xmlHttpRequest.onreadystatechange = () => {
-    if (xmlHttpRequest.readyState === 4) {
-      // if completely download the data
-      if (xmlHttpRequest.status === 200) {
-        callback(null, xmlHttpRequest.response);
-      } else {
-        callback(new Error('Failed to response'));
-      }
-    } else {
+    if (!callback) {
+      callback = (err, res) => {};
     }
-  };
 
-  xmlHttpRequest.open(
-    'GET',
-    `https://ipfs.io/ipfs/${url}/${filename}`,
-    true
-  );
-  xmlHttpRequest.send(null);
+    const xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.responseType = 'arraybuffer';
+
+    xmlHttpRequest.onreadystatechange = () => {
+      if (xmlHttpRequest.readyState === 4) {
+        // if completely download the data
+        if (xmlHttpRequest.status === 200) {
+          if (this.cipherKey) {
+            const encryptedBlock = Block.fromEncryptedData(xmlHttpRequest.response, this.cipherKey);
+            encryptedBlock.decrypt();
+            callback(null, encryptedBlock.data);
+          } else {
+            callback(null, xmlHttpRequest.response);
+          }
+        } else {
+          callback(new Error('Failed to response'));
+        }
+      } else {
+      }
+    };
+
+    console.log('GET FILE', `${ipfsHash}/streaming/${filename}/${streamingFileName}${nameAppend}`);
+
+    xmlHttpRequest.open(
+      'GET',
+      `https://ipfs.io/ipfs/${ipfsHash}/streaming/${filename}/${streamingFileName}${nameAppend}`,
+      true
+    );
+    xmlHttpRequest.send(null);
+  }
 }
 
 function buf2str(buf) {
