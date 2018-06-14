@@ -34,6 +34,7 @@ export class VideoPageComponent extends BaseComponent implements AfterViewInit {
       // let video = null;
       const video: HTMLMediaElement = document.querySelector('#videoTest');
       hls.attachMedia(video);
+      // TODO: Error Handling (Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first.)
       hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
     }
 

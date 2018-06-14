@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as request from 'request';
 import * as tempfile from 'tempfile';
 import {IPCUtil} from '../shared/ipc-utils';
-import {BlockUtil} from './block/block';
+import {BlockUtil} from '@muzika/core';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
@@ -62,7 +62,7 @@ class IpcMainService {
             Authorization: `Bearer ${StorageServiceInstance.get('token')}`
           }
         }, (error, response, body) => {
-        blockKey.receiveBlob(body);
+          blockKey.receiveBlob(body);
 
           const blob = blockKey.block.data;
 
@@ -93,7 +93,7 @@ class IpcMainService {
        * @param {Object[]} files Array of files having absolute path
        * @param {boolean} encryption Whether encrypt or not. If true, do block encryption.
        */
-      const files: {path: string, previews: string[]}[] = _files;
+      const files: { path: string, previews: string[] }[] = _files;
       const ipfs = IpfsServiceInstance;
       const uploadFiles = [];
       const uploadQueue = [];

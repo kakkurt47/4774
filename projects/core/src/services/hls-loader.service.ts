@@ -1,6 +1,6 @@
 
 import * as Hls from 'hls.js';
-import {Block} from '../../../viewer/node_src/block/block';
+import {Block} from '../models/block';
 
 
 export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
@@ -19,7 +19,6 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
     this.ipfsHash = config.ipfsHash;
     this.fileName = config.fileName;
     this.cipherKey = config.cipherKey || null;
-    console.log(config.cipherKey);
   }
 
   destory() {

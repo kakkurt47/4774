@@ -1,4 +1,4 @@
-import {Block, BlockUtil} from './block';
+import {Block, BlockUtil} from '@muzika/core';
 import * as ursa from 'ursa';
 
 

@@ -4,7 +4,7 @@
 
 import {Transform} from 'stream';
 import * as crypto from 'crypto';
-import {BlockUtil} from '../block/block';
+import {BlockUtil} from '@muzika/core';
 
 
 export class BlockPaddingStream extends Transform {
