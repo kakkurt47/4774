@@ -93,6 +93,7 @@
     "ethereumjs-wallet": "^0.6.0",
     "ethereumjs-wallet-browser": "^0.6.0",
     "ffmpeg-static": "^2.3.0",
+    "ffprobe-static": "^2.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "froala-editor": "^2.8.1",
     "fs-extra": "^5.0.0",

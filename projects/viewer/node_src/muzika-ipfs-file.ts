@@ -6,6 +6,7 @@ import {AESCBCEncryptionStream} from './cipher/aes-stream';
 import * as _ from 'lodash';
 import * as ffmpeg from 'fluent-ffmpeg';
 import * as ffmpegStatic from 'ffmpeg-static';
+import * as ffprobeStatic from 'ffprobe-static';
 import * as os from 'os';
 import * as async from 'async';
 
@@ -25,6 +26,7 @@ export class MuzikaFileUtil {
   public static PREVIEW_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'preview');
 
   public static FFMPEG_BIN_PATH = ffmpegStatic.path;
+  public static FFPROBE_BIN_PATH = ffprobeStatic.path;
 }
 
 export class MuzikaIPFSFile {
@@ -164,6 +166,7 @@ export class MuzikaIPFSFile {
    */
   private _readyStreamingFile(uploadQueue: any, callback: (err) => void) {
     ffmpeg.setFfmpegPath(MuzikaFileUtil.FFMPEG_BIN_PATH);
+    ffmpeg.setFfprobePath(MuzikaFileUtil.FFPROBE_BIN_PATH);
 
     // generate a temporary directory for save streaming files generated
     const tempDir = os.tmpdir();

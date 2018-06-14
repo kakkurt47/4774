@@ -11,7 +11,10 @@
     "files": [
       "node_modules/ffmpeg-static/bin/win32/${arch}${/*}",
       "!node_modules/ffmpeg-static/bin/darwin${/*}",
-      "!node_modules/ffmpeg-static/bin/linux${/*}"
+      "!node_modules/ffmpeg-static/bin/linux${/*}",
+      "node_modules/ffprobe-static/bin/win32/${arch}${/*}",
+      "!node_modules/ffprobe-static/bin/darwin${/*}",
+      "!node_modules/ffprobe-static/bin/linux${/*}"
     ]
   },
   "mac": {
@@ -22,7 +25,10 @@
     "files": [
       "node_modules/ffmpeg-static/bin/darwin/${arch}${/*}",
       "!node_modules/ffmpeg-static/bin/win32${/*}",
-      "!node_modules/ffmpeg-static/bin/linux${/*}"
+      "!node_modules/ffmpeg-static/bin/linux${/*}",
+      "node_modules/ffprobe-static/bin/darwin/${arch}${/*}",
+      "!node_modules/ffprobe-static/bin/win32${/*}",
+      "!node_modules/ffprobe-static/bin/linux${/*}"
     ]
   },
   "linux": {
@@ -33,12 +39,17 @@
     "files": [
       "node_modules/ffmpeg-static/bin/linux/${arch}${/*}",
       "!node_modules/ffmpeg-static/bin/darwin${/*}",
-      "!node_modules/ffmpeg-static/bin/win32${/*}"
+      "!node_modules/ffmpeg-static/bin/win32${/*}",
+      "node_modules/ffprobe-static/bin/linux/${arch}${/*}",
+      "!node_modules/ffprobe-static/bin/darwin${/*}",
+      "!node_modules/ffprobe-static/bin/win32${/*}"
     ]
   },
   "files": [
     "**/*",
     "node_modules/ffmpeg-static/index.js",
-    "node_modules/ffmpeg-static/package.json"
+    "node_modules/ffmpeg-static/package.json",
+    "node_modules/ffprobe-static/index.js",
+    "node_modules/ffprobe-static/package.json"
   ]
 }
