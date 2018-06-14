@@ -1,6 +1,5 @@
 import {BrowserWindow, ipcMain} from 'electron';
 import * as fs from 'fs';
-import {createReadStream} from 'fs';
 import * as request from 'request';
 import * as tempfile from 'tempfile';
 import {IPCUtil} from '../shared/ipc-utils';
@@ -9,9 +8,8 @@ import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
 import {StorageServiceInstance} from './storage.service';
-import * as path from 'path';
-import {BlockPaddingStream} from './cipher/block-stream';
-import {AESCBCEncryptionStream} from './cipher/aes-stream';
+import * as async from 'async';
+import {MuzikaIPFSFile} from './muzika-ipfs-file';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -97,69 +95,63 @@ class IpcMainService {
        */
       const files: {path: string, previews: string[]}[] = _files;
       const ipfs = IpfsServiceInstance;
-      let uploadFiles = [];
+      const uploadFiles = [];
+      const uploadQueue = [];
 
-      // TODO : encrypt by AES stream. (need to refactor block module)
-      const aesKey = BlockUtil.generateAESKey();
+      // if encryption parameter is set, generate random AES-256 key for encryption.
+      let aesKey = null;
+      if (encryption) {
+        aesKey = BlockUtil.generateAESKey();
+      }
 
+      // preprocess before uploading to IPFS.
       files.forEach(file => {
-        uploadFiles.push({
-          path: path.join('/ipfs', path.basename(file.path)),
-          content:
-            (encryption) ?
-              // if encryption parameter is true, push ipfs with encrypted
-              createReadStream(file.path).pipe(new BlockPaddingStream({})).pipe(new AESCBCEncryptionStream({key: aesKey}))
-              // if not encryption, push ipfs with plain
-              : createReadStream(file.path)
-        });
+        const muzikaFile = new MuzikaIPFSFile(file.path, file.previews, aesKey);
+        uploadFiles.push(muzikaFile);
+      });
 
-        file.previews.forEach((preview, idx) => {
-          uploadFiles.push({
-            path: path.join('/preview', path.basename(file.path), `${idx}${path.extname(preview)}`),
-            content: createReadStream(preview)
+      async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue)), (err) => {
+        ipfs.put(uploadQueue, (ipfsErr, result) => {
+          // remove temporary files since finishing to upload files.
+          // this is called even if failed to upload.
+          uploadFiles.forEach((uploadFile) => {
+            uploadFile.removeTempFiles((rmTempErr) => {
+              if (rmTempErr) {
+                console.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
+              }
+            });
           });
-        });
-      });
 
-      // Wrapping paths into single folder
-      // (e.g. [/ipfs/sheet.pdf, /preview/img.png] => [/muzika/ipfs/sheet.pdf, /muzika/preview/img.png]
-      // Because of getting hash of root folder
-      uploadFiles = uploadFiles.map(file => {
-        file.path = path.join('/muzika', file.path).replace(/\\/g, '/');
-
-        return file;
-      });
-
-      ipfs.put(uploadFiles, (err, result) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        // find root object from uploaded objects in IPFS
-        const rootObject = result.find((object) => {
-          return object.path === 'muzika';
-        });
-
-        // get random peer from server
-        const uploadHelper = ipfs.getRandomPeer();
-
-        // request to a helper, which downloads the user's files, so helps to spread them out.
-        request.post(
-          {
-            url: `${uploadHelper}/file/${rootObject.hash}`,
-            json: true
-          },
-          (peerRequestError, res, body) => {
-            if (peerRequestError) {
-              ipcReject(peerRequestError);
-            } else if (res.statusCode !== 200) {
-              ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
-            } else {
-              ipcResolve(rootObject.hash, aesKey);
-            }
+          if (ipfsErr) {
+            console.error(ipfsErr);
+            return;
           }
-        );
+
+          // find root object from uploaded objects in IPFS
+          const rootObject = result.find((object) => {
+            return object.path === 'muzika';
+          });
+
+          // get random peer from server
+          const uploadHelper = ipfs.getRandomPeer();
+
+          // request to a helper, which downloads the user's files, so helps to spread them out.
+          request.post(
+            {
+              url: `${uploadHelper}/file/${rootObject.hash}`,
+              json: true
+            },
+            (peerRequestError, res, body) => {
+              if (peerRequestError) {
+                ipcReject(peerRequestError);
+              } else if (res.statusCode !== 200) {
+                ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
+              } else {
+                ipcResolve(rootObject.hash, aesKey);
+              }
+            }
+          );
+        });
       });
     });
 
