@@ -6,7 +6,7 @@
 import * as crypto from 'crypto';
 import * as aesjs from 'aes-js';
 import {Transform} from 'stream';
-import {BlockUtil} from '@muzika/core';
+import {BlockUtil} from '../../../core/common/models/block';
 
 
 export class AESCBCEncryptionStream extends Transform {
