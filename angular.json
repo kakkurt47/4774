@@ -336,7 +336,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/core/tsconfig.json",
+              "projects/core/common/tsconfig.json",
               "projects/web/tsconfig.json"
             ],
             "exclude": [

@@ -2,7 +2,7 @@ import {NgRedux, select} from '@angular-redux/store';
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommunityPost, IAppState, MusicPost, unitDown, unitUp, User, VideoPost} from '@muzika/core';
-import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions,} from '@muzika/core/angular';
+import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions} from '@muzika/core/angular';
 import {combineLatest, Observable, Subscription} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {AlertService} from '../../../alert/alert.service';
