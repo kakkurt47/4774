@@ -3,6 +3,7 @@ import * as async from 'async';
 import {BrowserWindow, ipcMain} from 'electron';
 import * as fs from 'fs';
 import * as request from 'request';
+import {combineLatest} from 'rxjs';
 import * as tempfile from 'tempfile';
 import {IPCUtil} from '../shared/ipc-utils';
 import {BlockKey} from './block/block-key';
@@ -95,7 +96,7 @@ class IpcMainService {
        */
       const files: { path: string, previews: string[] }[] = _files;
       const ipfs = IpfsServiceInstance;
-      const uploadFiles = [];
+      const uploadFiles: MuzikaIPFSFile[] = [];
       const uploadQueue = [];
 
       // if encryption parameter is set, generate random AES-256 key for encryption.
@@ -109,6 +110,11 @@ class IpcMainService {
         const muzikaFile = new MuzikaIPFSFile(file.path, file.previews, aesKey);
         uploadFiles.push(muzikaFile);
       });
+
+      combineLatest(...uploadFiles.map(file => file.totalProgress.onChange))
+        .subscribe(percents => {
+          console.log(percents);
+        });
 
       async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue)), (err) => {
         ipfs.put(uploadQueue, (ipfsErr, result) => {
