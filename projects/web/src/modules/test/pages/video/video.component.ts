@@ -1,6 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
-import {MuzikaHLSLoader} from '@muzika/core';
 import {BaseComponent} from '@muzika/core/angular';
+import {MuzikaHLSLoader} from '@muzika/core/browser';
 import * as Hls from 'hls.js';
 
 

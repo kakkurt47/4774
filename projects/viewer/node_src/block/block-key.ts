@@ -1,5 +1,5 @@
+import {Block, BlockUtil} from '@muzika/core';
 import * as ursa from 'ursa';
-import {Block, BlockUtil} from '../../../core/common/models/block';
 
 
 export class BlockKey {

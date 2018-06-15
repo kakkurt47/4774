@@ -1,3 +1,4 @@
+import {BlockUtil} from '@muzika/core';
 import * as async from 'async';
 import {BrowserWindow, ipcMain} from 'electron';
 import * as fs from 'fs';
@@ -9,7 +10,6 @@ import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
 import {MuzikaIPFSFile} from './muzika-ipfs-file';
 import {StorageServiceInstance} from './storage.service';
-import {BlockUtil} from '../../core/common/models/block/block';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"

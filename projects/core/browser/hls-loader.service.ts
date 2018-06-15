@@ -1,5 +1,5 @@
+import {Block} from '@muzika/core';
 import * as Hls from 'hls.js';
-import {Block} from '../models/block';
 
 export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
   fileName: string;

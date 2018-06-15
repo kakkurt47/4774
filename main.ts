@@ -1,9 +1,10 @@
 import {app, BrowserWindow, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+
 import {IpcWalletServiceInstance} from './projects/viewer/node_src/ipc-wallet.service';
-import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
 import {IpcMainServiceInstance} from './projects/viewer/node_src/ipc.service';
+import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
 import {StorageServiceInstance} from './projects/viewer/node_src/storage.service';
 
 let win, serve;
