@@ -47,6 +47,21 @@ class IpcMainService {
     });
   }
 
+  eventHandlerWithProgress(eventType: string, listener: Function) {
+    ipcMain.on(eventType, (event, uuid, ...args) => {
+      const progress = (...sendArgs) => {
+        event.sender.send(IPCUtil.wrap(eventType + '::progress', uuid), ...sendArgs);
+      };
+      const resolve = (...sendArgs) => {
+        event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), null, ...sendArgs);
+      };
+      const reject = (error) => {
+        event.sender.send(IPCUtil.wrap(eventType + '::received', uuid), error);
+      };
+      listener(progress, resolve, reject, ...args);
+    });
+  }
+
   init() {
     this.eventHandler(IPCUtil.EVENT_PDF_VIEWER_OPEN, (ipcResolve, ipcReject, contractAddress) => {
       // TODO: get file hash from contract address
@@ -89,7 +104,8 @@ class IpcMainService {
     });
 
 
-    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, _files: MuzikaFilePath[], encryption: boolean) => {
+    this.eventHandlerWithProgress(IPCUtil.EVENT_FILE_UPLOAD,
+      (ipcProgress, ipcResolve, ipcReject, _files: MuzikaFilePath[], encryption: boolean) => {
       /**
        * @param {Object[]} files Array of files having absolute path
        * @param {boolean} encryption Whether encrypt or not. If true, do block encryption.
@@ -110,11 +126,10 @@ class IpcMainService {
 
       combineLatest(...uploadFiles.map(file => file.totalProgress.onChange))
         .subscribe(percents => {
-          console.log(percents);
+          ipcProgress(percents);
         });
 
       async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue)), (err) => {
-        console.log(uploadQueue);
         ipfs.put(uploadQueue, (ipfsErr, result) => {
           // remove temporary files since finishing to upload files.
           // this is called even if failed to upload.
@@ -151,7 +166,7 @@ class IpcMainService {
               } else if (res.statusCode !== 200) {
                 ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
               } else {
-                ipcResolve(rootObject.hash, aesKey);
+                ipcResolve(1, rootObject.hash, aesKey);
               }
             }
           );

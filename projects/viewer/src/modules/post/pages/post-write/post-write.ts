@@ -124,7 +124,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   files: { file: File, previews: File[] }[] = [];
   uploadStatus: {
     status: string;
-    progress: number;
+    progress: number[];
     process?: string;
     ipfsFileHash: string;
     aesKey: Buffer;
@@ -238,39 +238,43 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   submit(form: NgForm): void {
     this.uploadStatus = {
       status: 'uploading',
-      progress: 0,
+      progress: Array(this.files.length).fill(0),
       process: null,
       ipfsFileHash: null,
       aesKey: null
     };
 
-    this.uploadFile().subscribe(([hash, aesKey]) => {
-      this.uploadStatus.status = 'done';
-      this.uploadStatus.progress = 100;
-      this.uploadStatus.ipfsFileHash = hash;
-      this.uploadStatus.aesKey = aesKey;
+    this.uploadFile().subscribe(([type, progress, hash, aesKey]) => {
+      if (type === 'progress') {
+        progress.map((percent, idx) => this.uploadStatus.progress[idx] = Math.round(percent * 10000) / 100);
+      } else {
+        this.uploadStatus.status = 'done';
+        this.uploadStatus.progress.map((_, idx) => this.uploadStatus.progress[idx] = 100);
+        this.uploadStatus.ipfsFileHash = hash;
+        this.uploadStatus.aesKey = aesKey;
 
-      const prepared = <MusicPost>this.prepare(form);
+        const prepared = <MusicPost>this.prepare(form);
 
-      if (prepared !== null) {
-        this.contractService.createNewPaperContract(
-          this.currentUser.address,
-          unitDown(prepared.price),
-          prepared.music_contract.ipfs_file_hash,
-          prepared.music_contract.original_hash
-        ).subscribe(txHash => {
-          prepared.music_contract.tx_hash = txHash;
-          prepared.music_contract.aes_key = this.uploadStatus.aesKey.toString('base64');
+        if (prepared !== null) {
+          this.contractService.createNewPaperContract(
+            this.currentUser.address,
+            unitDown(prepared.price),
+            prepared.music_contract.ipfs_file_hash,
+            prepared.music_contract.original_hash
+          ).subscribe(txHash => {
+            prepared.music_contract.tx_hash = txHash;
+            prepared.music_contract.aes_key = this.uploadStatus.aesKey.toString('base64');
 
-          this.postActions.write('music', prepared).subscribe(() => {
-            this.router.navigate(['/board/music/write/complete'], {
-              queryParams: {
-                txHash: txHash,
-                title: prepared.title
-              }
+            this.postActions.write('music', prepared).subscribe(() => {
+              this.router.navigate(['/board/music/write/complete'], {
+                queryParams: {
+                  txHash: txHash,
+                  title: prepared.title
+                }
+              });
             });
           });
-        });
+        }
       }
     });
   }
@@ -283,7 +287,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
       };
     });
 
-    return this.ipcRendererService.sendAsync(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true);
+    return this.ipcRendererService.sendAsyncWithProgress(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true);
   }
 }
 
