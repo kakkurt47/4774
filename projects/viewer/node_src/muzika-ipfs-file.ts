@@ -32,10 +32,7 @@ export class MuzikaFileUtil {
 export class MuzikaIPFSFile {
   filePath: string;
   cipherKey: Buffer = null;
-  preview: {
-    preview: string,
-    idx: number
-  }[] = [];
+  preview: string[] = [];
   tempDirs: string[] = [];
   totalProgress: ProgressSet;
   private _fileBaseName: string;
@@ -49,7 +46,7 @@ export class MuzikaIPFSFile {
    * @param preview preview files info for the file.
    * @param {Buffer} cipherKey Buffer instance that represents AES-256 key or null for not encryption.
    */
-  constructor(filePath: string, preview: any[], cipherKey: Buffer = null) {
+  constructor(filePath: string, preview: string[], cipherKey: Buffer = null) {
     this.filePath = filePath;
     this.cipherKey = cipherKey;
     this.preview = preview;
@@ -65,8 +62,8 @@ export class MuzikaIPFSFile {
     if ((MuzikaFileUtil.HLS_CONVERSION_EXTENSION).includes(this._fileExt)) {
       this._streamProgress = new ManualProgress();
       this.totalProgress.registerProgress(this._streamProgress);
-      this.totalProgress.start();
     }
+    this.totalProgress.start();
   }
 
   /**
@@ -94,6 +91,7 @@ export class MuzikaIPFSFile {
           callback(err, null);
         });
       } else {
+        console.log(uploadQueue);
         this._uploadProgress.start();
         return callback(null, null);
       }
@@ -164,7 +162,7 @@ export class MuzikaIPFSFile {
       uploadQueue.push({
         // Never encrypt preview files even though the cipher key taken
         path: this._buildFilePath(false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}${this._fileExt}`),
-        content: this._buildContent(this.filePath, false)
+        content: this._buildContent(preview, false)
       });
     });
   }

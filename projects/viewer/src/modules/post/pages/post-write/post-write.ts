@@ -2,7 +2,7 @@ import {select} from '@angular-redux/store';
 import {Component, Injector} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {BasePost, CommunityPost, MusicContract, MusicPost, unitDown, User, VideoPost} from '@muzika/core';
+import {BasePost, CommunityPost, MusicContract, MusicPost, unitDown, User, VideoPost, MuzikaFilePath} from '@muzika/core';
 import {APIConfig, BaseComponent, LocalStorage, MuzikaContractService, PostActions} from '@muzika/core/angular';
 import {Observable} from 'rxjs';
 import {IPCUtil} from '../../../../../shared/ipc-utils';
@@ -276,7 +276,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   }
 
   private uploadFile() {
-    const filePaths = this.files.map(file => {
+    const filePaths: MuzikaFilePath[] = this.files.map(file => {
       return {
         path: file.file.path,
         previews: file.previews.map(preview => preview.path)

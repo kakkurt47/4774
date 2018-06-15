@@ -1,4 +1,4 @@
-import {BlockUtil} from '@muzika/core';
+import {BlockUtil, MuzikaFilePath} from '@muzika/core';
 import * as async from 'async';
 import {BrowserWindow, ipcMain} from 'electron';
 import * as fs from 'fs';
@@ -89,15 +89,15 @@ class IpcMainService {
     });
 
 
-    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, _files, encryption: boolean) => {
+    this.eventHandler(IPCUtil.EVENT_FILE_UPLOAD, (ipcResolve, ipcReject, _files: MuzikaFilePath[], encryption: boolean) => {
       /**
        * @param {Object[]} files Array of files having absolute path
        * @param {boolean} encryption Whether encrypt or not. If true, do block encryption.
        */
-      const files: { path: string, previews: string[] }[] = _files;
+      const files: MuzikaFilePath[] = _files;
       const ipfs = IpfsServiceInstance;
-      const uploadFiles: MuzikaIPFSFile[] = [];
       const uploadQueue = [];
+      let uploadFiles: MuzikaIPFSFile[] = [];
 
       // if encryption parameter is set, generate random AES-256 key for encryption.
       let aesKey = null;
@@ -106,10 +106,7 @@ class IpcMainService {
       }
 
       // preprocess before uploading to IPFS.
-      files.forEach(file => {
-        const muzikaFile = new MuzikaIPFSFile(file.path, file.previews, aesKey);
-        uploadFiles.push(muzikaFile);
-      });
+      uploadFiles = files.map(file => new MuzikaIPFSFile(file.path, file.previews, aesKey));
 
       combineLatest(...uploadFiles.map(file => file.totalProgress.onChange))
         .subscribe(percents => {
@@ -117,6 +114,7 @@ class IpcMainService {
         });
 
       async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue)), (err) => {
+        console.log(uploadQueue);
         ipfs.put(uploadQueue, (ipfsErr, result) => {
           // remove temporary files since finishing to upload files.
           // this is called even if failed to upload.

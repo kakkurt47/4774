@@ -11,3 +11,8 @@ export interface IpfsFile {
   status: 'untracked' | 'tracked' | 'disabled';
   aes_key?: string;
 }
+
+export interface MuzikaFilePath {
+  path: string;
+  previews: string[];
+}
