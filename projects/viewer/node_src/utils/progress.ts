@@ -8,6 +8,12 @@ import {Transform} from 'stream';
  */
 export interface Progress {
   /**
+   * callback function that is called when the percent is changed.
+   * @param percent current percent.
+   */
+  callbackOnProgress: (percent: number) => any;
+
+  /**
    * Returns how the work done.
    * @returns {number} the floating number between 0 and 1. 0 means the work is
    * not started yet and 1 means the work is completely done.
@@ -21,15 +27,54 @@ export interface Progress {
  * it doesn't have progresses (progress array is empty), it always return 0.
  */
 export class ProgressSet implements Progress {
+  callbackOnProgress: (percent: number) => any;
   progresses: Progress[];
+  isStarted = false;
 
-  constructor(progresses: Progress[]) {
+  constructor(progresses: Progress[], callbackOnProgress?: (percent) => any) {
     this.progresses = progresses;
+    this.callbackOnProgress = callbackOnProgress || ((percent: number) => {});
+
+    this.progresses.forEach((progress) => {
+      const originCallback = progress.callbackOnProgress;
+      progress.callbackOnProgress = (percent: number) => {
+        originCallback(percent);
+        this.onChangeChildProgress();
+      };
+    });
+  }
+
+  onChangeChildProgress() {
+    if (this.isStarted) {
+      this.callbackOnProgress(this.getProgressPercent());
+    }
+  }
+
+  /**
+   * Starts to track this progress. The onProgressCallback that is called when
+   * the percentage changed after start() method called.
+   */
+  start() {
+    this.isStarted = true;
+    this.callbackOnProgress(this.getProgressPercent());
+  }
+
+  /**
+   * Adds an additional progress.
+   * @param {Progress} progress addtional progress to be tracked.
+   */
+  registerProgress(progress: Progress) {
+    const originCallback = progress.callbackOnProgress;
+    progress.callbackOnProgress = (percent: number) => {
+      originCallback(percent);
+      this.onChangeChildProgress();
+    }
+    this.progresses.push(progress);
   }
 
   getProgressPercent(): number {
-    // if no progress, return 0.
-    if (!this.progresses.length) {
+    // if no progress or not started tracking yet, return 0.
+    if (!this.progresses.length || !this.isStarted) {
       return 0;
     }
 
@@ -47,7 +92,12 @@ export class ProgressSet implements Progress {
  * function setProgressPercent() function.
  */
 export class ManualProgress implements Progress {
+  callbackOnProgress: (percent: number) => any;
   percent = 0;
+
+  constructor(callbackOnProgress?: (percent: number) => any) {
+    this.callbackOnProgress = callbackOnProgress || ((percent: number) => {});
+  }
 
   /**
    * Sets the percent of the progress.
@@ -63,6 +113,7 @@ export class ManualProgress implements Progress {
     }
 
     this.percent = percent;
+    this.callbackOnProgress(this.percent);
   }
 
   getProgressPercent(): number {
@@ -76,17 +127,20 @@ export class ManualProgress implements Progress {
  * options.
  */
 export class ProgressStream extends Transform implements Progress {
+  callbackOnProgress: (percent: number) => any;
   totalSize: number;
   readLength = 0;
 
-  constructor(options) {
+  constructor(options, callbackOnProgress?: (percent: number) => any) {
     super(options);
     this.totalSize = options.totalSize;
+    this.callbackOnProgress = callbackOnProgress || ((percent: number) => {});
   }
 
   _transform(data, encoding, callback) {
     this.readLength += data.length;
     this.push(data);
+    this.callbackOnProgress(this.getProgressPercent());
     callback();
   }
 
