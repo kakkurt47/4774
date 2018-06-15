@@ -63,9 +63,11 @@ export class ProgressSet implements Progress {
         if (!this.progresses.length || !this.isStarted) {
           return;
         }
-        this._onChangeSubject.next(percents.reduce((prev, current) => {
-          return (current) ? (prev + current) : prev;
-        }, 0) / this.progresses.length);
+        this._onChangeSubject.next(percents.reduce((prev, current, idx) => {
+          return (current) ? prev + current * this.progresses[idx].percentageWeight : prev;
+        }, 0) / this.progresses.reduce((prevPercent, current) => {
+          return prevPercent + current.percentageWeight;
+        }, 0));
       });
   }
 }
@@ -79,9 +81,10 @@ export class ManualProgress implements Progress {
   onChange: Observable<number>;
   _onChangeSubject: BehaviorSubject<number>;
 
-  constructor() {
+  constructor(weight = 1) {
     this._onChangeSubject = new BehaviorSubject<number>(0);
     this.onChange = this._onChangeSubject.asObservable();
+    this.percentageWeight = weight;
   }
 
   /**
@@ -118,6 +121,7 @@ export class ProgressStream extends Transform implements Progress {
     this._totalSize = options.totalSize;
     this._onChangeSubject = new BehaviorSubject<number>(0);
     this.onChange = this._onChangeSubject.asObservable();
+    this.percentageWeight = options.weight || options.totalSize;
   }
 
   _transform(data, encoding, callback) {
