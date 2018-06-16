@@ -4,7 +4,7 @@ import {BaseComponent, IMuzikaCoin, createTruffleMuzikaCoin} from '@muzika/core/
 import * as ethUtil from 'ethereumjs-util';
 import * as ethWallet from 'ethereumjs-wallet';
 import {ElectronService} from '../../../../providers/electron.service';
-import {AlertService} from '../../../alert/alert.service';
+import {AlertService} from '../../../../providers/alert.service';
 import {WalletStorageService} from '../../services/wallet-storage.service';
 import {Web3WalletProvider} from '../../wallet.provider';
 

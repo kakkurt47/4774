@@ -5,7 +5,7 @@ import {CommunityPost, IAppState, MusicPost, unitDown, unitUp, User, VideoPost} 
 import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions} from '@muzika/core/angular';
 import {combineLatest, Observable, Subscription} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
-import {AlertService} from '../../../alert/alert.service';
+import {AlertService} from '../../../../providers/alert.service';
 
 @Component({
   selector: 'app-post-community-item-detail',

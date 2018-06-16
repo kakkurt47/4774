@@ -18,7 +18,6 @@ import {MuzikaAppsComponent} from '../components/muzika-apps/muzika-apps.compone
 import {NavbarComponent} from '../components/navbar/navbar.component';
 import {SpinnerComponent} from '../components/spinner/spinner.component';
 import {environment} from '../environments/environment';
-import {MuzikaAlertModule} from '../modules/alert/alert.module';
 import {PostModule} from '../modules/post/post.module';
 import {WalletModule} from '../modules/wallet/wallet.module';
 import {IPFSTestPageComponent} from '../pages/ipfs-test/ipfs-test.component';
@@ -88,7 +87,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MuzikaCoreModule.forRoot(environment.env),
 
     /* Sub-modules */
-    MuzikaAlertModule,
     PostModule,
   ],
   providers: [

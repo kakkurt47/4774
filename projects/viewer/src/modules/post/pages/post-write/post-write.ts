@@ -7,7 +7,7 @@ import {APIConfig, BaseComponent, LocalStorage, MuzikaContractService, PostActio
 import {Observable} from 'rxjs';
 import {IPCUtil} from '../../../../../shared/ipc-utils';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
-import {AlertService} from '../../../alert/alert.service';
+import {AlertService} from '../../../../providers/alert.service';
 import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
 
 export class BasePostWriteComponent extends BaseComponent {

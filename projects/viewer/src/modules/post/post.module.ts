@@ -19,7 +19,6 @@ import {PostMusicWriteCompleteComponent} from './pages/post-write-complete/music
 import {PostCommunityWriteComponent, PostMusicWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
 import {AppPostRouteModule} from './post.routes';
 import {YoutubeVideoCellComponent} from './components/youtube-video-cell/youtube-video-cell.component';
-import {MuzikaAlertModule} from '../alert/alert.module';
 import {NgUploaderModule} from 'ngx-uploader';
 
 @NgModule({
@@ -33,7 +32,6 @@ import {NgUploaderModule} from 'ngx-uploader';
 
     MuzikaCoreModule,
     MatButtonModule,
-    MuzikaAlertModule,
     NgUploaderModule,
 
     FroalaEditorModule.forRoot(),

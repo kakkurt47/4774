@@ -4,7 +4,7 @@ import * as ethUtil from 'ethereumjs-util';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as serializeError from 'serialize-error';
-import {AlertService} from '../../alert/alert.service';
+import {AlertService} from '../../../providers/alert.service';
 
 @Injectable({providedIn: 'root'})
 export class WalletStorageService {

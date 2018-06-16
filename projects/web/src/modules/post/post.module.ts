@@ -5,7 +5,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {MuzikaCommonModule, MuzikaCoreModule} from '@muzika/core/angular';
 import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 import {NgUploaderModule} from 'ngx-uploader';
-import {MuzikaAlertModule} from '../alert/alert.module';
 import {SharedModule} from '../shared/shared.module';
 import {PostCommentComponent} from './components/post-comment/post-comment.component';
 import {PostItemDetailHeaderComponent} from './components/post-item-detail-header/post-item-detail-header.component';
@@ -38,7 +37,6 @@ import {AppPostRouteModule} from './post.routes';
     FroalaViewModule.forRoot(),
 
     /* Dependencies */
-    MuzikaAlertModule,
     SharedModule,
     AppPostRouteModule,
   ],

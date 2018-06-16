@@ -11,7 +11,6 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
-import {MuzikaAlertModule} from '../modules/alert/alert.module';
 import {MuzikaIntroModule} from '../modules/intro/intro.module';
 import {PostModule} from '../modules/post/post.module';
 import {FooterComponent} from '../modules/shared/components/footer/footer.component';
@@ -75,7 +74,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MuzikaCoreModule.forRoot(environment.env),
 
     /* Sub-modules */
-    MuzikaAlertModule,
     PostModule,
   ],
   providers: [

@@ -6,7 +6,7 @@ import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, Po
 import {combineLatest, Observable, Subscription} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
-import {AlertService} from '../../../alert/alert.service';
+import {AlertService} from '../../../../providers/alert.service';
 
 @Component({
   selector: 'app-post-community-item-detail',
