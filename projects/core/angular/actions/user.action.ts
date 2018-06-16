@@ -8,7 +8,7 @@ import {PLATFORM_TYPE_TOKEN} from '../config/injection.tokens';
 import {ExtendedWeb3} from '../providers/extended-web3.provider';
 import {LocalStorage} from '../providers/local-storage.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UserActions {
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,

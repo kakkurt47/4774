@@ -5,35 +5,10 @@ import {Inject, ModuleWithProviders, NgModule, PLATFORM_ID} from '@angular/core'
 import {BrowserTransferStateModule, TransferState} from '@angular/platform-browser';
 import {IAppState, rootReducer, environmentProd, environmentStage, environmentDev} from '@muzika/core';
 import {createStore} from 'redux';
-import {CommentActions, PostActions} from './actions';
-import {UserActions} from './actions/user.action';
 import {PaginationComponent} from './components/pagination/pagination.component';
-import {APIConfig} from './config/api.config';
 import {EnvironmentToken, BASE_API_URL, MUZIKA_REDUX_STATE_KEY} from './config/injection.tokens';
 import {JWTInterceptor} from './config/jwt-interceptor';
 import {ContractProviders} from './contracts/index';
-import {MuzikaContractService} from './providers/contract.service';
-import {LocalStorage} from './providers/local-storage.service';
-import {MuzikaWeb3Service} from './providers/web3.service';
-
-const STORE_DIRECTIVES = [
-  MuzikaWeb3Service,
-  MuzikaContractService,
-  ...ContractProviders,
-
-  APIConfig,
-  UserActions,
-  LocalStorage,
-
-  PostActions,
-  CommentActions,
-
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: JWTInterceptor,
-    multi: true
-  }
-];
 
 @NgModule({
   imports: [
@@ -48,7 +23,15 @@ const STORE_DIRECTIVES = [
   exports: [
     PaginationComponent
   ],
-  providers: STORE_DIRECTIVES
+  providers: [
+    ...ContractProviders,
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JWTInterceptor,
+      multi: true
+    }
+  ]
 })
 export class MuzikaCoreModule {
   constructor(@Inject(PLATFORM_ID) private platformId,

@@ -3,7 +3,7 @@ import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {BASE_API_URL} from './injection.tokens';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class APIConfig {
   constructor(@Inject(BASE_API_URL) public apiUrl: string,
               private http: HttpClient) {

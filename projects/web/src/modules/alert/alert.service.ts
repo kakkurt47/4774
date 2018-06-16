@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as _alertify from 'alertify.js';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AlertService {
   private alertify: any;
 

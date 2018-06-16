@@ -2,7 +2,7 @@ import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import {ElectronService} from './electron.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ElectronLocalStorage {
 
   constructor(@Inject(PLATFORM_ID) protected platformId: Object,

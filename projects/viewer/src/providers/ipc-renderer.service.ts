@@ -5,7 +5,7 @@ import {ElectronService} from './electron.service';
 
 // console.log(ipcRenderer.sendSync('PDFViewer:open', 'ping')); // prints "pong"
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class IpcRendererService {
   constructor(private electronService: ElectronService,
               private zone: NgZone) {

@@ -7,7 +7,7 @@ import * as HookedWalletEthTxSubprovider from 'web3-provider-engine/subproviders
 import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import {WalletStorageService} from './services/wallet-storage.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class Web3WalletProvider implements Web3Provider {
   private engine: ProviderEngine;
   private selectedAddress: string;

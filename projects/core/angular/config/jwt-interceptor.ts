@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {LocalStorage} from '../providers/local-storage.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class JWTInterceptor implements HttpInterceptor {
 
   constructor(private localStorage: LocalStorage) {

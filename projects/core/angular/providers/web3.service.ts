@@ -7,7 +7,7 @@ import {EnvironmentToken} from '../config/injection.tokens';
 import {MuzikaCoin} from '../contracts/interface/MuzikaCoin';
 import {ExtendedWeb3} from './extended-web3.provider';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MuzikaWeb3Service {
   constructor(private web3: ExtendedWeb3,
               private muzikaCoin: MuzikaCoin,

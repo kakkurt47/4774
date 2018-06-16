@@ -11,7 +11,7 @@ import {MuzikaCoin} from '../contracts/interface/MuzikaCoin';
 import {MuzikaPaperContract} from '../contracts/interface/MuzikaPaperContract';
 import {UserActions} from './user.action';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class PostActions {
 
   constructor(private store: NgRedux<IAppState>,

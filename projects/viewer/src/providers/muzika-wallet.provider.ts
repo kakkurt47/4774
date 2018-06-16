@@ -10,7 +10,7 @@ import {TabService} from './tab.service';
 import {ElectronService} from './electron.service';
 import * as deserializeError from 'deserialize-error';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MuzikaWalletProvider implements Web3Provider {
   private engine: ProviderEngine;
 

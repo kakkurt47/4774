@@ -5,7 +5,7 @@ import {Dispatcher} from '../contracts/interface/Dispatcher';
 import {MuzikaPaperContract} from '../contracts/interface/MuzikaPaperContract';
 import {ExtendedWeb3} from './extended-web3.provider';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MuzikaContractService {
   constructor(private web3: ExtendedWeb3,
               private dispatcher: Dispatcher,

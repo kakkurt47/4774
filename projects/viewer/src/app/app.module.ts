@@ -9,7 +9,6 @@ import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-brows
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {LocalStorage, MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule} from '@muzika/core/angular';
-// NG Translate
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
@@ -26,11 +25,7 @@ import {IPFSTestPageComponent} from '../pages/ipfs-test/ipfs-test.component';
 import {LoginPageComponent} from '../pages/login/login.component';
 import {MainPageComponent} from '../pages/main/main.component';
 import {ElectronLocalStorage} from '../providers/electron-localstorage.service';
-
-import {ElectronService} from '../providers/electron.service';
 import {IpcRendererService} from '../providers/ipc-renderer.service';
-import {MuzikaWalletProvider} from '../providers/muzika-wallet.provider';
-import {TabService} from '../providers/tab.service';
 
 import {WebviewDirective} from '../providers/webview.directive';
 
@@ -97,10 +92,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     PostModule,
   ],
   providers: [
-    ElectronService,
-    IpcRendererService,
-    TabService,
-    MuzikaWalletProvider,
     {
       provide: PLATFORM_TYPE_TOKEN,
       useValue: 'electron'

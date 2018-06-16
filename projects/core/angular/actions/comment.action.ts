@@ -7,7 +7,7 @@ import {APIConfig} from '../config/api.config';
 import {ParamsBuilder} from '../config/params.builder';
 import {UserActions} from './user.action';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CommentActions {
 
   constructor(private store: NgRedux<IAppState>,
