@@ -2,10 +2,10 @@ import {NgRedux} from '@angular-redux/store';
 import {isPlatformBrowser} from '@angular/common';
 import {ElementRef, NgZone, OnChanges, SimpleChanges} from '@angular/core';
 import {PostComment, PaginationResult, User, IAppState} from '@muzika/core';
+import {AlertifyInstnace} from '@muzika/core/browser';
 import {Observable, combineLatest, Subscription} from 'rxjs';
 import {CommentActions} from '../actions/comment.action';
 import {PostActions} from '../actions/post.action';
-import {AlertifyInstnace} from '../providers/alertify-instance';
 import {BaseComponent} from './base.component';
 
 export abstract class AbstractPostCommentComponent extends BaseComponent implements OnChanges {
@@ -154,7 +154,7 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
   }
 
   violation(commentID) {
-    // this.alertService.openDialogConfirmMessage({
+    // AlertifyInstnace.openDialogConfirmMessage({
     //   title: '신고',
     //   content: '올바른 신고 시 감사의 의미로 포인트 지급되며, 허위 신고 시 일정 기간동안 신고 불가능합니다.',
     //   confirmMessage: '신고하기',

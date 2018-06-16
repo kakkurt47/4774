@@ -1,18 +1,17 @@
 import {Component, NgZone} from '@angular/core';
 import {promisify, toBigNumber, unitDown, unitUp} from '@muzika/core';
 import {BaseComponent, IMuzikaCoin, createTruffleMuzikaCoin} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
 import * as ethUtil from 'ethereumjs-util';
 import * as ethWallet from 'ethereumjs-wallet';
 import {ElectronService} from '../../../../providers/electron.service';
-import {AlertService} from '../../../../providers/alert.service';
 import {WalletStorageService} from '../../services/wallet-storage.service';
 import {Web3WalletProvider} from '../../wallet.provider';
 
 @Component({
   selector: 'wallet-list-page',
   templateUrl: './wallet-list.component.html',
-  styleUrls: ['./wallet-list.component.scss'],
-  providers: [Web3WalletProvider]
+  styleUrls: ['./wallet-list.component.scss']
 })
 export class WalletListComponent extends BaseComponent {
   accounts: {
@@ -35,7 +34,6 @@ export class WalletListComponent extends BaseComponent {
 
   constructor(private walletStorage: WalletStorageService,
               private walletProvider: Web3WalletProvider,
-              private alertService: AlertService,
               private zone: NgZone,
               private electronService: ElectronService) {
     super();
@@ -92,16 +90,16 @@ export class WalletListComponent extends BaseComponent {
   sendMZK() {
     const tx = this.tx;
     if (this._submitted) {
-      this.alertService.alert('Already submitted. Please wait for a second');
+      AlertifyInstnace.alert('Already submitted. Please wait for a second');
       return;
     }
 
     if (!tx.to || !tx.value) {
-      this.alertService.alert('Please fill `To` and `Amount`');
+      AlertifyInstnace.alert('Please fill `To` and `Amount`');
       return;
     }
 
-    this.alertService.confirm(
+    AlertifyInstnace.confirm(
       'Are you sure to transfer? Please make sure that you provided information is correct.',
       async () => {
         this._submitted = true;
@@ -120,7 +118,7 @@ export class WalletListComponent extends BaseComponent {
             gasPrice: ''
           };
         } catch (e) {
-          this.alertService.alert('Out of gas or your Muzika is not enough to transfer');
+          AlertifyInstnace.alert('Out of gas or your Muzika is not enough to transfer');
           console.error(e);
         } finally {
           this._submitted = false;
@@ -167,7 +165,7 @@ export class WalletListComponent extends BaseComponent {
 
   importWallet() {
     // @TODO Now only for private key
-    this.alertService.prompt('Enter the wallet private key', (key) => {
+    AlertifyInstnace.prompt('Enter the wallet private key', (key) => {
       this.walletStorage.addWallet(key);
     });
   }

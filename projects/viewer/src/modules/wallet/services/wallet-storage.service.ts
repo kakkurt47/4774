@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {LocalStorage} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
 import * as ethUtil from 'ethereumjs-util';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as serializeError from 'serialize-error';
-import {AlertService} from '../../../providers/alert.service';
 
 @Injectable({providedIn: 'root'})
 export class WalletStorageService {
@@ -12,8 +12,7 @@ export class WalletStorageService {
   private _eventSignPersonalMessage: BehaviorSubject<UUIDEvent> = new BehaviorSubject(null);
 
   // @TODO currently use localstorage
-  constructor(private localStorage: LocalStorage,
-              private alertService: AlertService) {
+  constructor(private localStorage: LocalStorage) {
   }
 
   private _eventSignTransaction: BehaviorSubject<UUIDEvent> = new BehaviorSubject(null);
@@ -54,10 +53,10 @@ export class WalletStorageService {
         this.localStorage.setItem('wallets', JSON.stringify(currentState));
         this._stateChange.next(true);
       } else {
-        this.alertService.alert('Already exists in your wallets');
+        AlertifyInstnace.alert('Already exists in your wallets');
       }
     } else {
-      this.alertService.alert('Invalid Private key');
+      AlertifyInstnace.alert('Invalid Private key');
     }
   }
 

@@ -3,10 +3,10 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommunityPost, IAppState, MusicPost, unitUp, User, VideoPost} from '@muzika/core';
 import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
 import {combineLatest, Observable, Subscription} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
-import {AlertService} from '../../../../providers/alert.service';
 
 @Component({
   selector: 'app-post-community-item-detail',
@@ -36,7 +36,6 @@ export class PostMusicItemDetailComponent extends BaseComponent {
 
   constructor(private muzikaPaper: MuzikaPaperContract,
               private muzikaCoin: MuzikaCoin,
-              private alertService: AlertService,
               private route: ActivatedRoute,
               private postActions: PostActions,
               private store: NgRedux<IAppState>,
@@ -79,14 +78,14 @@ export class PostMusicItemDetailComponent extends BaseComponent {
   }
 
   purchase() {
-    this.alertService.confirm('Are you sure to purchase this music?', () => {
+    AlertifyInstnace.confirm('Are you sure to purchase this music?', () => {
       this._purchase();
     });
   }
 
   sheetView() {
     if (!this.isPurchased) {
-      this.alertService.alert('Should purchase first to download file');
+      AlertifyInstnace.alert('Should purchase first to download file');
       return;
     } else {
       this.ipcRenderer.openPDFViewer(this.post.music_contract.contract_address);
@@ -101,7 +100,7 @@ export class PostMusicItemDetailComponent extends BaseComponent {
           // @TODO process after purchase
         },
         err => {
-          this.alertService.alert(err.message);
+          AlertifyInstnace.alert(err.message);
           console.error(err);
         }
       );

@@ -3,11 +3,11 @@ import {Component, Injector} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BasePost, CommunityPost, MusicContract, MusicPost, unitDown, User, VideoPost, MuzikaFilePath} from '@muzika/core';
-import {APIConfig, BaseComponent, LocalStorage, MuzikaContractService, PostActions} from '@muzika/core/angular';
+import {BaseComponent, MuzikaContractService, PostActions} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
 import {Observable} from 'rxjs';
 import {IPCUtil} from '../../../../../shared/ipc-utils';
 import {IpcRendererService} from '../../../../providers/ipc-renderer.service';
-import {AlertService} from '../../../../providers/alert.service';
 import {FroalaEditorOptions, GenreSelections, InstrumentSelections} from '../../post.constant';
 
 export class BasePostWriteComponent extends BaseComponent {
@@ -17,14 +17,8 @@ export class BasePostWriteComponent extends BaseComponent {
     tags: []
   };
 
-  /* Should provide services */
-  private _alertService: AlertService;
-
   constructor(injector: Injector) {
     super();
-
-    /* provide */
-    this._alertService = injector.get(AlertService);
   }
 
   addTag(name: string) {
@@ -63,9 +57,9 @@ export class BasePostWriteComponent extends BaseComponent {
     const c = form.controls;
 
     if (c.title.invalid) {
-      this._alertService.alert('Fill the blank in title');
+      AlertifyInstnace.alert('Fill the blank in title');
     } else if (!this.post.content) {
-      this._alertService.alert('Fill content');
+      AlertifyInstnace.alert('Fill content');
     } else {
       /* All of elements are passed */
       return this.post;
@@ -131,9 +125,6 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
   };
 
   constructor(private injector: Injector,
-              private alertService: AlertService,
-              private apiConfig: APIConfig,
-              private localStorage: LocalStorage,
               private ipcRendererService: IpcRendererService,
               private contractService: MuzikaContractService,
               private router: Router,
@@ -177,31 +168,31 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
 
     /* check song type */
     if (['~cover', '~original'].indexOf(this.songType) === -1) {
-      this.alertService.alert('Choose the song type, cover or original');
+      AlertifyInstnace.alert('Choose the song type, cover or original');
       return null;
     }
 
     /* check genre */
     if (this.genres.size === 0) {
-      this.alertService.alert('The number of genres should be between 1 and 3');
+      AlertifyInstnace.alert('The number of genres should be between 1 and 3');
       return null;
     }
 
     /* check instruments */
     if (this.instruments.size === 0) {
-      this.alertService.alert('The number of instruments should be more than 1');
+      AlertifyInstnace.alert('The number of instruments should be more than 1');
       return null;
     }
 
     /* check price */
     if (form.controls.price.invalid || this.post.price < 0) {
-      this.alertService.alert('Price must be more than 0');
+      AlertifyInstnace.alert('Price must be more than 0');
       return null;
     }
 
     /* only file upload finished */
     if (this.uploadStatus.status !== 'done') {
-      this.alertService.alert('Music file is not yet uploaded');
+      AlertifyInstnace.alert('Music file is not yet uploaded');
       return null;
     }
 
@@ -225,7 +216,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
 
   addFile($event: any) {
     if (this.files.some(file => file.file.name === $event.target.files[0].name)) {
-      this.alertService.alert('File is already added');
+      AlertifyInstnace.alert('File is already added');
     } else {
       this.files.push({file: $event.target.files[0], previews: []});
     }
@@ -301,8 +292,7 @@ export class PostVideoWriteComponent extends BasePostWriteComponent {
   youtubeUrlRegExp = /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w-_]+)/;
   currentYoutubeVideoId: string;
 
-  constructor(private injector: Injector,
-              private alertService: AlertService) {
+  constructor(private injector: Injector) {
     super(injector);
   }
 
@@ -326,7 +316,7 @@ export class PostVideoWriteComponent extends BasePostWriteComponent {
     }
 
     if (!this.youtubeUrlRegExp.test(this.post.youtube_url)) {
-      this.alertService.alert('Invalid Youtube URL');
+      AlertifyInstnace.alert('Invalid Youtube URL');
       return null;
     }
 

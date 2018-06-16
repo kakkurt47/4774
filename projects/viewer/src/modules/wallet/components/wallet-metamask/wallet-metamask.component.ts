@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {AlertifyInstnace, BaseComponent, MuzikaWeb3Service} from '@muzika/core/angular';
+import {BaseComponent, MuzikaWeb3Service} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
 
 @Component({
   selector: 'wallet-metamask-selector',

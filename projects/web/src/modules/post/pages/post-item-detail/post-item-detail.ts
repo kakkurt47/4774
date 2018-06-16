@@ -3,9 +3,9 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommunityPost, IAppState, MusicPost, unitDown, unitUp, User, VideoPost} from '@muzika/core';
 import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
 import {combineLatest, Observable, Subscription} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
-import {AlertService} from '../../../../providers/alert.service';
 
 @Component({
   selector: 'app-post-community-item-detail',
@@ -35,7 +35,6 @@ export class PostMusicItemDetailComponent extends BaseComponent {
 
   constructor(private muzikaPaper: MuzikaPaperContract,
               private muzikaCoin: MuzikaCoin,
-              private alertService: AlertService,
               private route: ActivatedRoute,
               private postActions: PostActions,
               private store: NgRedux<IAppState>) {
@@ -77,14 +76,14 @@ export class PostMusicItemDetailComponent extends BaseComponent {
   }
 
   purchase() {
-    this.alertService.confirm('Are you sure to purchase this music?', () => {
+    AlertifyInstnace.confirm('Are you sure to purchase this music?', () => {
       this._purchase();
     });
   }
 
   sheetView() {
     if (!this.isPurchased) {
-      this.alertService.alert('Should purchase first to download file');
+      AlertifyInstnace.alert('Should purchase first to download file');
       return;
     } else {
       // @TODO Add music view
@@ -108,7 +107,7 @@ export class PostMusicItemDetailComponent extends BaseComponent {
         {from: this.currentUser.address, gas: estimateGas + 30000}
       );
     } catch (e) {
-      this.alertService.alert(e.message);
+      AlertifyInstnace.alert(e.message);
       console.error(e);
     }
   }

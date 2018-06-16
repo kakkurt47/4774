@@ -13,7 +13,6 @@ import {WalletSignPersonalMessageComponent} from './pages/sign-personal-message/
 import {WalletSignTransactionComponent} from './pages/sign-transaction/sign-transaction.component';
 import {WalletListComponent} from './pages/wallet-list/wallet-list.component';
 import {HexToNumberPipe} from './pipes/hexToNumber.pipe';
-import {WalletStorageService} from './services/wallet-storage.service';
 import {WalletRoutesModule} from './wallet.routes';
 
 @NgModule({
@@ -36,9 +35,6 @@ import {WalletRoutesModule} from './wallet.routes';
     WalletSignPersonalMessageComponent,
     WalletSignTransactionComponent,
     HexToNumberPipe,
-  ],
-  providers: [
-    WalletStorageService
   ]
 })
 export class WalletModule {

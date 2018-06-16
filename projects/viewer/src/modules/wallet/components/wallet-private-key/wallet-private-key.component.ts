@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AlertifyInstnace, BaseComponent, MuzikaWeb3Service, UserActions} from '@muzika/core/angular';
+import {BaseComponent, MuzikaWeb3Service, UserActions} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
 
 @Component({
   selector: 'wallet-private-key-selector',
