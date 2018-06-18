@@ -17,6 +17,8 @@ stages:
 test:contract:
   stage: test
   before_script:
+    - apt-get update && apt-get install -y libmagick++-dev
+    - ln -s `ls /usr/lib/x86_64-linux-gnu/ImageMagick-*/bin-Q16/Magick++-config | head -n 1` /usr/local/bin/
     - npm install -g ganache-cli truffle
     - npm install
 
