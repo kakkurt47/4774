@@ -9,6 +9,8 @@ import * as path from 'path';
 import {AESCBCEncryptionStream} from './cipher/aes-stream';
 import {BlockPaddingStream} from './cipher/block-stream';
 import {ProgressSet, ManualProgress, ProgressStream} from './utils/progress';
+import * as imagemagick from 'imagemagick-native';
+import {BufferStream} from './utils/buffer-stream';
 
 
 export class MuzikaFileUtil {
@@ -80,21 +82,24 @@ export class MuzikaIPFSFile {
      */
     return (callback) => {
       this._readyOriginFile(uploadQueue);
-      this._readyPreviewFile(uploadQueue);
-
-      // if the file is audio or video file like mp3, mp4, or etc, generate streaming files.
-      if ((MuzikaFileUtil.HLS_CONVERSION_EXTENSION).includes(this._fileExt)) {
-        this._readyStreamingFile(uploadQueue).then(() => {
+      this._readyPreviewFile(uploadQueue).then(() => {
+        // if the file is audio or video file like mp3, mp4, or etc, generate streaming files.
+        if ((MuzikaFileUtil.HLS_CONVERSION_EXTENSION).includes(this._fileExt)) {
+          this._readyStreamingFile(uploadQueue).then(() => {
+            this._uploadProgress.start();
+            callback(null, null);
+          }, err => {
+            callback(err, null);
+          });
+        } else {
+          console.log(uploadQueue);
           this._uploadProgress.start();
-          callback(null, null);
-        }, err => {
-          callback(err, null);
-        });
-      } else {
-        console.log(uploadQueue);
-        this._uploadProgress.start();
-        return callback(null, null);
-      }
+          return callback(null, null);
+        }
+      }).catch((err) => {
+        console.log(err);
+        return callback(err, null);
+      });
     };
   }
 
@@ -157,13 +162,40 @@ export class MuzikaIPFSFile {
    *
    * @param uploadQueue upload queue for uploading to IPFS.
    */
-  private _readyPreviewFile(uploadQueue: any[]) {
-    this.preview.forEach((preview, idx) => {
-      uploadQueue.push({
-        // Never encrypt preview files even though the cipher key taken
-        path: this._buildFilePath(false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}${this._fileExt}`),
-        content: this._buildContent(preview, false)
-      });
+  private _readyPreviewFile(uploadQueue: any[]): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (this.preview.length) {
+        // if preview exists, only upload the preview file
+        this.preview.forEach((preview, idx) => {
+          uploadQueue.push({
+            // Never encrypt preview files even though the cipher key taken
+            path: this._buildFilePath(false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}${this._fileExt}`),
+            content: this._buildContent(preview, false)
+          });
+        });
+        return resolve(null);
+      } else {
+        // if preview does not exist and it's PDF file, generate preview images for it.
+        if (this._fileExt.toLowerCase() !== '.pdf') {
+          return resolve(null);
+        }
+
+        imagemagick.generatePreview({
+          pdfPath: this.filePath
+        }, (err, previewPNGImages) => {
+          if (err) {
+            return reject(err);
+          }
+
+          previewPNGImages.forEach((previewImage, idx) => {
+            uploadQueue.push({
+              path: this._buildFilePath(false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}.png`),
+              content: this._buildContent(previewImage, false)
+            });
+            return resolve(null);
+          });
+        });
+      }
     });
   }
 
@@ -252,27 +284,42 @@ export class MuzikaIPFSFile {
    * @param {string} filePath real file path in local.
    * @param {boolean} encryption True for encryption or false if not.
    */
-  private _buildContent(filePath: string, encryption: boolean) {
-    const stats = fs.statSync(filePath);
-    const progressStream = new ProgressStream({
-      totalSize: stats.size + (
-        // if encrypted, addtional padding and data will be added
-        (encryption && this.cipherKey) ?
-          BlockUtil.GARBAGE_PADDING_SIZE + BlockUtil.IV_SIZE + BlockUtil.BLOCK_SIZE - stats.size % BlockUtil.BLOCK_SIZE
-          : 0
-      )
-    });
-    this._uploadProgress.registerProgress(progressStream);
-    console.log(`STREAM REGISTERED (${filePath})`);
+  private _buildContent(file: string | Buffer, encryption: boolean) {
+    let fromStream;
+    let progressStream;
+    if (typeof file === 'string') {
+      const stats = fs.statSync(file);
+      progressStream = new ProgressStream({
+        totalSize: stats.size + (
+          // if encrypted, addtional padding and data will be added
+          (encryption && this.cipherKey) ?
+            BlockUtil.GARBAGE_PADDING_SIZE + BlockUtil.IV_SIZE + BlockUtil.BLOCK_SIZE - stats.size % BlockUtil.BLOCK_SIZE
+            : 0
+        )
+      });
+      this._uploadProgress.registerProgress(progressStream);
+      fromStream = fs.createReadStream(file);
+    } else {
+      // maybe type is buffer.
+      progressStream = new ProgressStream({
+        totalSize: file.length + (
+          // if encrypted, addtional padding and data will be added
+          (encryption && this.cipherKey) ?
+            BlockUtil.GARBAGE_PADDING_SIZE + BlockUtil.IV_SIZE + BlockUtil.BLOCK_SIZE - file.length % BlockUtil.BLOCK_SIZE
+            : 0
+        )
+      });
+      fromStream = new BufferStream({buffer: file});
+    }
 
     // Although encryption parameter is true, don't encrypt if the cipher key not existing.
     if (encryption && this.cipherKey) {
-      return fs.createReadStream(filePath)
+      return fromStream
         .pipe(new BlockPaddingStream({}))
         .pipe(new AESCBCEncryptionStream({key: this.cipherKey}))
         .pipe(progressStream);
     } else {
-      return fs.createReadStream(filePath)
+      return fromStream
         .pipe(progressStream);
     }
   }
