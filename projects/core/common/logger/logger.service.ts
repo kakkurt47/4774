@@ -64,7 +64,15 @@ export class MuzikaLogger {
 
     const color = MuzikaLoggerUtils.getColor(level);
 
-    console.log(`%c${metaString}`, `color:${color}`, message, ...(additional || []));
+    if (this._isElectronBrowser()) {
+      console.log(metaString, message, ...(additional || []));
+    } else {
+      console.log(`%c${metaString}`, `color:${color}`, message, ...(additional || []));
+    }
+  }
+
+  private _isElectronBrowser() {
+    return process.type === 'browser';
   }
 }
 
