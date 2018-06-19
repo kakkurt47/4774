@@ -2,7 +2,7 @@ import {NgRedux} from '@angular-redux/store';
 import {isPlatformBrowser} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {BasePost, InfPaginationResult, PaginationResult, PostActionType, IAppState} from '@muzika/core';
+import {BasePost, InfPaginationResult, PaginationResult, PostActionType, IAppState, BoardType} from '@muzika/core';
 import {Observable, from} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {APIConfig} from '../config/api.config';
@@ -144,6 +144,11 @@ export class PostActions {
     this.requestPosts(boardType, PostActionType.INSERT_POSTS_LIST, params);
   }
 
+  loadMyPosts(boardType: string, page: string, params: Object) {
+    params['page'] = page;
+    this.requestPosts(boardType, PostActionType.INSERT_POSTS_LIST, params, true);
+  }
+
   loadAdditional(boardType: string, boardID: number, is_modify: boolean): Observable<any> {
     return this.apiConfig
       .get(`/board/${boardType}/${boardID}/additional`, {
@@ -170,13 +175,19 @@ export class PostActions {
     });
   }
 
-  private requestPosts(boardType: string, dispatchType: string, params: Object) {
+  private requestPosts(boardType: string, dispatchType: string, params: Object, onlyUser?: boolean) {
+    const frontURL = (onlyUser) ? '/user' : '';
+
     this.apiConfig
-      .get<PaginationResult<BasePost> | InfPaginationResult<BasePost>>(`/board/${boardType}`, {
+      .get<PaginationResult<BasePost> | InfPaginationResult<BasePost>>(`${frontURL}/board/${boardType}`, {
         params: ParamsBuilder.from(params)
       })
       .subscribe((data: any) => {
-        data.boardType = boardType;
+        if (onlyUser) {
+          data.boardType = BoardType.OWN(boardType);
+        } else {
+          data.boardType = boardType;
+        }
 
         // trigger post inserting
         this.store.dispatch({

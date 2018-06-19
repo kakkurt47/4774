@@ -8,8 +8,8 @@ export class PostActionType {
   static INSERT_POSTS_LIST = '[posts] Insert posts list';
   static INSERT_POSTS_BEFORE_LIST = '[posts] Insert posts into bottom of list';
   static INSERT_POSTS_AFTER_LIST = '[posts] Insert posts into top of list';
-  static RESET_POSTS = '[posts] Reset list';
-  static RESET_INF_POSTS = '[posts] Reset inf list';
+  static RESET_POSTS = '[posts] Reset posts list';
+  static RESET_INF_POSTS = '[posts] Reset inf posts list';
   static LIKE_TOGGLE_POST = '[posts] like toggle post';
   static SAVE_POSTS = '[posts] save posts';
   static SAVE_POST_ADDITION = '[posts] save post additional info';
