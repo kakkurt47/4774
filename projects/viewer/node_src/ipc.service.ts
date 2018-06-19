@@ -147,7 +147,7 @@ class IpcMainService {
         // push meta data for contract description
         uploadQueue.push({
           path: '/muzika/meta.json',
-          content: new BufferStream({ buffer: JSON.stringify(contractInfo) })
+          content: new BufferStream(Buffer.from(JSON.stringify(contractInfo)))
         });
 
         ipfs.put(uploadQueue)

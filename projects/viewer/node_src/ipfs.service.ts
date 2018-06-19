@@ -1,6 +1,6 @@
 import * as IPFS from 'ipfs';
 import * as request from 'request';
-import {Observable, throwError} from 'rxjs';
+import {Observable} from 'rxjs';
 import {electronEnvironment} from './environment';
 
 export class IpfsService {

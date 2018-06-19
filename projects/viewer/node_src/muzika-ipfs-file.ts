@@ -195,6 +195,7 @@ export class MuzikaIPFSFile {
    * Adds original files to the upload queue. The original files will be encrypted if having cipher key.
    *
    * @param uploadQueue upload queue for uploading to IPFS.
+   * @param summary meta data that represents contract IPFS object structure.
    */
   private _readyOriginFile(uploadQueue: any[], summary: MuzikaContractSummary) {
     const ipfsPath = this._buildFilePath(!!this.cipherKey, MuzikaFileUtil.ORIGIN_FILE_DIRECTORY, this._fileBaseName);
@@ -361,7 +362,7 @@ export class MuzikaIPFSFile {
             : 0
         )
       });
-      fromStream = new BufferStream({buffer: file});
+      fromStream = new BufferStream(file);
     }
 
     // Although encryption parameter is true, don't encrypt if the cipher key not existing.

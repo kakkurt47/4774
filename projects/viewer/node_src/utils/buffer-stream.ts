@@ -2,14 +2,17 @@
 import * as stream from 'stream';
 
 
+/**
+ * Streamify the Buffer instance.
+ */
 export class BufferStream extends stream.Readable {
   private _buffer: Buffer;
   private _currentIndex = 0;
   private _totalSize: number;
 
-  constructor(opts?: any) {
+  constructor(buffer: Buffer, opts?: any) {
     super(opts);
-    this._buffer = opts.buffer;
+    this._buffer = buffer;
     this._totalSize = this._buffer.length;
   }
 
