@@ -36,6 +36,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
   instruments: Set<string> = new Set();
 
   files: { file: File, previews: File[] }[] = [];
+  coverImageFile: File;
   uploadStatus: {
     status: string;
     progress: number[];
@@ -223,8 +224,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
       description: this.post.content,
       author: this.currentUser.name,
       authorAddress: this.currentUser.address,
-      // TODO: add cover image
-      coverImagePath: '/Users/w.kang/Desktop/0.png'
+      coverImagePath: (this.coverImageFile) ? this.coverImageFile.path : null
     });
   }
 }

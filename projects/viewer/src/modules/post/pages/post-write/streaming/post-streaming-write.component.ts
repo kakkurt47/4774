@@ -35,6 +35,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   instruments: Set<string> = new Set();
 
   files: { file: File, previews: File[] }[] = [];
+  coverImageFile: File;
   uploadStatus: {
     status: string;
     progress: number[];
@@ -201,8 +202,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
       description: this.post.content,
       author: this.currentUser.name,
       authorAddress: this.currentUser.address,
-      // TODO: add cover image
-      coverImagePath: ''
+      coverImagePath: (this.coverImageFile) ? this.coverImageFile.path : null
     });
   }
 }
