@@ -42,7 +42,7 @@ export interface MuzikaContractSummary {
 
 
 export class MuzikaFileUtil {
-  public static SHEET_EXTENSION = ['.pdf', 'jpg', 'jpeg', 'png', 'gif'];
+  public static SHEET_EXTENSION = ['.pdf', '.jpg', '.jpeg', '.png', '.gif'];
   public static AUDIO_EXTENSION = ['.mp3', '.wav'];
   public static VIDEO_EXTENSION = ['.mp4'];
   public static HLS_CONVERSION_EXTENSION = MuzikaFileUtil.AUDIO_EXTENSION.concat(MuzikaFileUtil.VIDEO_EXTENSION);
@@ -225,7 +225,7 @@ export class MuzikaIPFSFile {
    */
   private _readyOriginFile(uploadQueue: any[], summary: MuzikaContractSummary) {
     const ipfsPath = this._buildFilePath(!!this.cipherKey, MuzikaFileUtil.ORIGIN_FILE_DIRECTORY, this._fileBaseName);
-    const fileType = MuzikaFileUtil.getFileType(this._fileExt);
+    const fileType = MuzikaFileUtil.getFileType(this._fileBaseName);
     uploadQueue.push({
       path: ipfsPath,
       content: this._buildContent(this.filePath, true)
