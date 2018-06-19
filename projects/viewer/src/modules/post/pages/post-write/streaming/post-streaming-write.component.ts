@@ -150,7 +150,11 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
     this.uploadFile().subscribe(([type, progress, hash, aesKey]) => {
       if (type === 'progress') {
-        progress.map((percent, idx) => this.uploadStatus.progress[idx] = Math.round(percent * 10000) / 100);
+        progress.map((percent, idx) => {
+          if (idx < this.uploadStatus.progress.length) {
+            this.uploadStatus.progress[idx] = Math.round(percent * 10000) / 100;
+          }
+        });
       } else {
         this.uploadStatus.status = 'done';
         this.uploadStatus.progress.map((_, idx) => this.uploadStatus.progress[idx] = 100);

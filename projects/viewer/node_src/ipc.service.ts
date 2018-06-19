@@ -9,9 +9,11 @@ import {IPCUtil} from '../shared/ipc-utils';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
-import {MuzikaIPFSFile} from './muzika-ipfs-file';
+import {MuzikaMusicFile} from './file/muzika-music-file';
 import {StorageServiceInstance} from './storage.service';
 import {BufferStream} from './utils/buffer-stream';
+import {MuzikaCoverFile} from './file/muzika-cover-file';
+import {FileUploadInterface} from './file/ipfs-file';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -114,7 +116,7 @@ class IpcMainService {
       const files: MuzikaFilePath[] = _files;
       const ipfs = IpfsServiceInstance;
       const uploadQueue = [];
-      let uploadFiles: MuzikaIPFSFile[] = [];
+      let uploadFiles: FileUploadInterface[] = [];
 
       // TODO: initialize meta data
       const contractInfo: MuzikaContractSummary = {
@@ -124,7 +126,7 @@ class IpcMainService {
         description: meta.description || '',
         author: meta.author || '',
         authorAddress: meta.authorAddress || '',
-        coverImagePath: meta.coverImagePath || '',
+        coverImage: {},
         files: [],
         videos: []
       };
@@ -136,7 +138,12 @@ class IpcMainService {
       }
 
       // preprocess before uploading to IPFS.
-      uploadFiles = files.map(file => new MuzikaIPFSFile(file.path, file.previews, aesKey));
+      uploadFiles = files.map(file => new MuzikaMusicFile(file.path, file.previews, aesKey));
+
+      // if cover image exists, push it.
+      if (meta.coverImagePath) {
+        uploadFiles.push(new MuzikaCoverFile(meta.coverImagePath));
+      }
 
       combineLatest(...uploadFiles.map(file => file.totalProgress.onChange))
         .subscribe(percents => {

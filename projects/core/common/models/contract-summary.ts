@@ -11,7 +11,10 @@ export interface MuzikaContractSummary {
   description: string;                      // contract description.
   author: string;                           // author name. (uploader name)
   authorAddress: string;                    // uploader's wallet address.
-  coverImagePath: string;                   // cover image. (main image)
+
+  coverImage: {
+    [imagePath: string]: string;            // cover image path
+  };
 
   files: {
     type: 'sheet' | 'video' | 'audio';      // file type.

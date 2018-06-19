@@ -6,40 +6,14 @@ import * as ffmpeg from 'fluent-ffmpeg';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import {AESCBCEncryptionStream} from './cipher/aes-stream';
-import {BlockPaddingStream} from './cipher/block-stream';
-import {ProgressSet, ManualProgress, ProgressStream} from './utils/progress';
+import {AESCBCEncryptionStream} from '../cipher/aes-stream';
+import {BlockPaddingStream} from '../cipher/block-stream';
+import {ProgressSet, ManualProgress, ProgressStream} from '../utils/progress';
 import * as imagemagick from 'imagemagick-native';
-import {BufferStream} from './utils/buffer-stream';
+import {BufferStream} from '../utils/buffer-stream';
 import {MuzikaContractSummary} from '@muzika/core';
+import {FileUploadInterface, MuzikaFileUtil} from './ipfs-file';
 
-
-export class MuzikaFileUtil {
-  public static SHEET_EXTENSION = ['.pdf', '.jpg', '.jpeg', '.png', '.gif'];
-  public static AUDIO_EXTENSION = ['.mp3', '.wav'];
-  public static VIDEO_EXTENSION = ['.mp4'];
-  public static HLS_CONVERSION_EXTENSION = MuzikaFileUtil.AUDIO_EXTENSION.concat(MuzikaFileUtil.VIDEO_EXTENSION);
-
-  // Wrapping paths into single folder
-  // (e.g. [/ipfs/sheet.pdf, /preview/img.png] => [/muzika/ipfs/sheet.pdf, /muzika/preview/img.png]
-  // Because of getting hash of root folder
-  public static ROOT_DIRECTORY = '/muzika';
-
-  public static ORIGIN_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'ipfs');
-  public static STREAMING_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'streaming');
-  public static PREVIEW_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'preview');
-
-  public static getFileType(filename: string) {
-    const ext = path.extname(filename).toLowerCase();
-    if (this.SHEET_EXTENSION.includes(ext)) {
-      return 'sheet';
-    } else if (this.AUDIO_EXTENSION.includes(ext)) {
-      return 'audio';
-    } else if (this.VIDEO_EXTENSION.includes(ext)) {
-      return 'video';
-    }
-  }
-}
 
 /**
  * Utils for streaming conversion. It defines several quality of options of streaming convertion for audio and video.
@@ -77,7 +51,8 @@ export class StreamingUtil {
   };
 }
 
-export class MuzikaIPFSFile {
+
+export class MuzikaMusicFile implements FileUploadInterface {
   filePath: string;
   cipherKey: Buffer = null;
   preview: string[] = [];
@@ -89,7 +64,7 @@ export class MuzikaIPFSFile {
   private _uploadProgress: ProgressSet;
 
   /**
-   * Constructs an instance for building paramters for uploading to IPFS.
+   * Constructs an instance for building parameters for uploading music files to IPFS.
    * @param {string} filePath the real path of the file in local.
    * @param preview preview files info for the file.
    * @param {Buffer} cipherKey Buffer instance that represents AES-256 key or null for not encryption.
@@ -111,23 +86,11 @@ export class MuzikaIPFSFile {
       this._streamProgress = new ManualProgress();
       this.totalProgress.registerProgress(this._streamProgress);
     }
-    this.totalProgress.start();
   }
 
-  /**
-   * Returns a callback function that preprocesses something such as deciding path in IPFS object, generating stream files, and etc before
-   * uploading to IPFS.
-   *
-   * @param uploadQueue upload queue for uploading to IPFS.
-   * @param summary information instance for the IPFS object structure of a contract
-   * @returns {(callback) => any} a function that preprocesses before uploading to IPFS and call callback function.
-   */
   ready(uploadQueue: any[], summary: MuzikaContractSummary) {
-    /**
-     * Return a callback function that processes something such as deciding path in IPFS object, generating stream files, and etc before
-     * uploading to IPFS.
-     */
     return (callback) => {
+      this.totalProgress.start();
       this._readyOriginFile(uploadQueue, summary);
       this._readyPreviewFile(uploadQueue).then(() => {
         // if the file is audio or video file like mp3, mp4, or etc, generate streaming files.
@@ -149,11 +112,6 @@ export class MuzikaIPFSFile {
     };
   }
 
-  /**
-   * Removes temporary directories including the files of directories. This must be called when finishing to upload to IPFS.
-   *
-   * @param {(err) => void} callback
-   */
   removeTempFiles(callback: (err) => void) {
     // this function must be called after uploaded
     async.each(this.tempDirs, (tempDir, rmCallback) => {
@@ -198,7 +156,9 @@ export class MuzikaIPFSFile {
    * @param summary meta data that represents contract IPFS object structure.
    */
   private _readyOriginFile(uploadQueue: any[], summary: MuzikaContractSummary) {
-    const ipfsPath = this._buildFilePath(!!this.cipherKey, MuzikaFileUtil.ORIGIN_FILE_DIRECTORY, this._fileBaseName);
+    const ipfsPath = MuzikaFileUtil.buildFilePath(
+      !!this.cipherKey, MuzikaFileUtil.ORIGIN_FILE_DIRECTORY, this._fileBaseName
+    );
     const fileType = MuzikaFileUtil.getFileType(this._fileBaseName);
     uploadQueue.push({
       path: ipfsPath,
@@ -229,7 +189,9 @@ export class MuzikaIPFSFile {
         this.preview.forEach((preview, idx) => {
           uploadQueue.push({
             // Never encrypt preview files even though the cipher key taken
-            path: this._buildFilePath(false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}${this._fileExt}`),
+            path: MuzikaFileUtil.buildFilePath(
+              false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}${this._fileExt}`
+            ),
             content: this._buildContent(preview, false)
           });
         });
@@ -249,7 +211,9 @@ export class MuzikaIPFSFile {
 
           previewPNGImages.forEach((previewImage, idx) => {
             uploadQueue.push({
-              path: this._buildFilePath(false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}.png`),
+              path: MuzikaFileUtil.buildFilePath(
+                false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}.png`
+              ),
               content: this._buildContent(previewImage, false)
             });
             return resolve(null);
@@ -298,7 +262,9 @@ export class MuzikaIPFSFile {
               async.each(streamingFiles, (streamFileName, streamUploadCallback) => {
                 const streamFilePath = path.join(tempDirPath, streamFileName);
                 uploadQueue.push({
-                  path: this._buildFilePath(!!this.cipherKey, MuzikaFileUtil.STREAMING_FILE_DIRECTORY, this._fileBaseName, streamFileName),
+                  path: MuzikaFileUtil.buildFilePath(
+                    !!this.cipherKey, MuzikaFileUtil.STREAMING_FILE_DIRECTORY, this._fileBaseName, streamFileName
+                  ),
                   content: this._buildContent(streamFilePath, true)
                 });
                 streamUploadCallback();
@@ -315,65 +281,12 @@ export class MuzikaIPFSFile {
   }
 
   /**
-   * Build a file path in IPFS.
-   *
-   * @param {boolean} encryption add ".encrypted" extension if true.
-   * @param args path arguments.
-   * @returns {string} the file path in IPFS.
-   */
-  private _buildFilePath(encryption: boolean, ...args) {
-    // joining path parameters and convert it into IPFS file path
-
-    // if encryption is true, add "encrypted" extension to the file.
-    if (encryption) {
-      args[args.length - 1] = `${args[args.length - 1]}.encrypted`;
-    }
-
-    return path.join(...args).replace(/\\/g, '/');
-  }
-
-  /**
    * Build a file content in IPFS.
-   * @param {string} filePath real file path in local.
+   * @param {string | Buffer} file real file path in local.
    * @param {boolean} encryption True for encryption or false if not.
    */
   private _buildContent(file: string | Buffer, encryption: boolean) {
-    let fromStream;
-    let progressStream;
-    if (typeof file === 'string') {
-      const stats = fs.statSync(file);
-      progressStream = new ProgressStream({
-        totalSize: stats.size + (
-          // if encrypted, addtional padding and data will be added
-          (encryption && this.cipherKey) ?
-            BlockUtil.GARBAGE_PADDING_SIZE + BlockUtil.IV_SIZE + BlockUtil.BLOCK_SIZE - stats.size % BlockUtil.BLOCK_SIZE
-            : 0
-        )
-      });
-      this._uploadProgress.registerProgress(progressStream);
-      fromStream = fs.createReadStream(file);
-    } else {
-      // maybe type is buffer.
-      progressStream = new ProgressStream({
-        totalSize: file.length + (
-          // if encrypted, addtional padding and data will be added
-          (encryption && this.cipherKey) ?
-            BlockUtil.GARBAGE_PADDING_SIZE + BlockUtil.IV_SIZE + BlockUtil.BLOCK_SIZE - file.length % BlockUtil.BLOCK_SIZE
-            : 0
-        )
-      });
-      fromStream = new BufferStream(file);
-    }
-
-    // Although encryption parameter is true, don't encrypt if the cipher key not existing.
-    if (encryption && this.cipherKey) {
-      return fromStream
-        .pipe(new BlockPaddingStream({}))
-        .pipe(new AESCBCEncryptionStream({key: this.cipherKey}))
-        .pipe(progressStream);
-    } else {
-      return fromStream
-        .pipe(progressStream);
-    }
+    return MuzikaFileUtil.buildContent(file, (encryption && this.cipherKey) ? this.cipherKey : null, this._uploadProgress);
+    // }
   }
 }

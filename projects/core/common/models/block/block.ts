@@ -18,6 +18,17 @@ export class BlockUtil {
   public static generateIV() {
     return crypto.randomBytes(BlockUtil.IV_SIZE);
   }
+
+  /**
+   * Gets the encrypted block size from the length of plain Buffer or file.
+   *
+   * @param {number} length the plain buffer or file length.
+   * @returns {number} Returns the encrypted block size.
+   */
+  public static getEncryptedSize(length: number) {
+    // if encrypted, addtional padding and data will be added
+    return length + BlockUtil.GARBAGE_PADDING_SIZE + BlockUtil.IV_SIZE + BlockUtil.BLOCK_SIZE - length % BlockUtil.BLOCK_SIZE;
+  }
 }
 
 export class Block {
