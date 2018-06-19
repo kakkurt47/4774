@@ -8,7 +8,6 @@ import { NgForm } from '@angular/forms';
 import { AlertifyInstnace } from '@muzika/core/browser';
 import { IPCUtil } from '../../../../../../shared/ipc-utils';
 import { BasePostWriteComponent } from '../post-write';
-import {MuzikaContractSummary} from '../../../../../../node_src/muzika-ipfs-file';
 
 @Component({
   selector: 'app-post-music-write',
