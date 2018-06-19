@@ -1,11 +1,11 @@
-import {NgRedux, select} from '@angular-redux/store';
-import {Component} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {CommunityPost, IAppState, MusicPost, unitDown, unitUp, User, VideoPost} from '@muzika/core';
-import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions} from '@muzika/core/angular';
-import {AlertifyInstnace} from '@muzika/core/browser';
-import {combineLatest, Observable, Subscription} from 'rxjs';
-import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
+import { NgRedux, select } from '@angular-redux/store';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CommunityPost, IAppState, MusicPost, unitUp, User, VideoPost } from '@muzika/core';
+import { BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions } from '@muzika/core/angular';
+import { AlertifyInstnace } from '@muzika/core/browser';
+import { combineLatest, Observable, Subscription } from 'rxjs';
+import { CommunityPostsMock, VideoPostsMock } from '../../../../mock/posts';
 
 @Component({
   selector: 'app-post-community-item-detail',
@@ -62,11 +62,14 @@ export class PostMusicItemDetailComponent extends BaseComponent {
           this.currentUserObs
         ).subscribe(async ([post, user]) => {
           this.post = post;
-          // this.paper = this.muzikaPaper.at(post.sheet_music.contract_address);
 
-          if (user) {
-            this.isPurchased = await this.paper.isPurchased(user.address);
-            this.post.price = unitUp(await this.paper.price());
+          if (post) {
+            this.paper = this.muzikaPaper.at(post.music_contract.contract_address);
+
+            if (user) {
+              this.isPurchased = await this.paper.isPurchased(user.address);
+              this.post.price = unitUp(await this.paper.price());
+            }
           }
         });
 
@@ -91,25 +94,13 @@ export class PostMusicItemDetailComponent extends BaseComponent {
   }
 
   private async _purchase() {
-    const coin = await this.muzikaCoin.deployed();
+    this.postActions.purchase(this.post.music_contract.contract_address, this.currentUser.address)
+      .subscribe(txHash => {
 
-    try {
-      const estimateGas = await coin.increaseApprovalAndCall.estimateGas(
-        this.post.music_contract.contract_address,
-        unitDown(this.post.price),
-        '0x',
-        {from: this.currentUser.address}
-      );
-      await coin.increaseApprovalAndCall(
-        this.post.music_contract.contract_address,
-        unitDown(this.post.price),
-        '0x',
-        {from: this.currentUser.address, gas: estimateGas + 30000}
-      );
-    } catch (e) {
-      AlertifyInstnace.alert(e.message);
-      console.error(e);
-    }
+      }, (e) => {
+        AlertifyInstnace.alert(e.message);
+        console.error(e);
+      });
   }
 }
 
