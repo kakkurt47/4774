@@ -120,40 +120,27 @@ export class IpfsService {
     });
   }
 
-  put(blob, callback) {
-    if (callback) {
-      this.node.files.add(blob, (err, result) => callback(err, result));
-    } else {
-      return Observable.create(observer => {
-        try {
-          // this.node.add();
-          this.node.files.add(blob, (err, result) => {
-            if (err) {
-              throw throwError('Failed to upload file to IPFS');
-            }
-            observer.next(result);
-            observer.complete();
-          });
-        } catch (e) {
-          throw throwError(e);
+  put(uploadQueue): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.node.files.add(uploadQueue, (err, result) => {
+        if (err) {
+          return reject(err);
         }
+
+        return resolve(result);
       });
-    }
+    });
   }
 
-  get(hash) {
-    return Observable.create(observer => {
-      try {
-        this.node.files.get(hash, (err, files) => {
-          if (err) {
-            throw throwError('Not found');
-          }
-          observer.next(files);
-          observer.complete();
-        });
-      } catch (e) {
-        throw throwError(e);
-      }
+  get(hash): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.node.files.get(hash, (err, files) => {
+        if (err) {
+          return reject(err);
+        }
+
+        return resolve(files);
+      });
     });
   }
 
