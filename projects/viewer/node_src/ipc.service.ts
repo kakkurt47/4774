@@ -1,4 +1,4 @@
-import {BlockUtil, MuzikaFilePath} from '@muzika/core';
+import {BlockUtil, MuzikaContractSummary, MuzikaFilePath} from '@muzika/core';
 import * as async from 'async';
 import {BrowserWindow, ipcMain} from 'electron';
 import * as fs from 'fs';
@@ -9,7 +9,7 @@ import {IPCUtil} from '../shared/ipc-utils';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
-import {MuzikaContractSummary, MuzikaIPFSFile} from './muzika-ipfs-file';
+import {MuzikaIPFSFile} from './muzika-ipfs-file';
 import {StorageServiceInstance} from './storage.service';
 import {BufferStream} from './utils/buffer-stream';
 
