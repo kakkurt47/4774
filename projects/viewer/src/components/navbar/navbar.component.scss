@@ -5,23 +5,6 @@
   display: block;
 }
 
-.navbar-brand {
-  outline: none;
-  cursor: pointer;
-
-  brand-icon-muzika {
-    height: $navbar-brand-size;
-
-    /deep/ .muzika-icon-striped-primary {
-      fill: $brand-color-1;
-    }
-
-    /deep/ .muzika-icon-striped-secondary {
-      fill: $brand-color-2;
-    }
-  }
-}
-
 .wallet {
   text-transform: lowercase;
   color: map-get($secondary-palette, 500);
@@ -33,6 +16,7 @@
   margin: 0;
 
   li {
+    font-size: 13px;
     padding: 0 10px;
     margin: 0 10px;
     line-height: 40px;

@@ -1,8 +1,8 @@
 import { NgRedux, select } from '@angular-redux/store';
 import {Injectable, Inject} from '@angular/core';
 import {MuzikaPlatformType, User, IAppState, UserActionType, promisify} from '@muzika/core';
-import {Observable, from} from 'rxjs';
-import {concatMap, map, tap} from 'rxjs/operators';
+import { Observable, from, of } from 'rxjs';
+import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import {APIConfig} from '../config/api.config';
 import {PLATFORM_TYPE_TOKEN} from '../config/injection.tokens';
 import {ExtendedWeb3} from '../providers/extended-web3.provider';
@@ -59,6 +59,15 @@ export class UserActions {
         });
 
         return user;
+      }),
+      catchError(err => {
+        if (err.error && err.error.state === 402) { // Invalid Signature
+          this.localStorage.removeItem('token');
+        }
+        if (err.status === 406) { // Authorization failed
+          this.localStorage.removeItem('token');
+        }
+        return of(null);
       })
     );
   }
