@@ -45,14 +45,13 @@ export class IpfsService {
         (error, response, body) => {
           if (!error) {
             for (const ipfsNode of body) {
-              this.node.swarm.connect(ipfsNode.ID, (err) => {
-                if (err) {
-                  console.log(err);
-                }
-                // if one of the IPFS is connected, ready status to true
-                this.muzikaPeers.push(ipfsNode.APIServer);
-                this.isReady = true;
-              });
+              this.connectPeer(ipfsNode.ID)
+                .then(() => {
+                  console.log('CONNECTED WITH MUZIKA RELAY NODE : ', ipfsNode.ID);
+                  // if one of the IPFS is connected, ready status to true
+                  this.muzikaPeers.push(ipfsNode.APIServer);
+                  this.isReady = true;
+                });
             }
           } else {
             console.error('Not connected with muzika-platform-server..');
@@ -62,7 +61,7 @@ export class IpfsService {
     });
   }
 
-  sub(arg) {
+  sub(arg): Promise<any> {
     return Observable.create(observer => {
       this.node.pubsub.subscribe(arg, {discover: true}, (msg) => {
         observer.next(msg.data);
@@ -74,48 +73,39 @@ export class IpfsService {
     this.node.pubsub.publish(arg, new this.node.types.Buffer(msg));
   }
 
-  addresses(): Observable<Array<string>> {
-    return Observable.create(observer => {
-      this.node.id((err, identity) => {
+  connectPeer(peer): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.node.swarm.connect(peer, (err) => {
         if (err) {
-          throw err;
+          return reject(err);
         }
-        observer.next(identity.addresses);
-        observer.complete();
+
+        return resolve();
       });
     });
   }
 
-  connectPeer(peer) {
-    this.node.swarm.connect(peer, (err) => {
-      if (err) {
-        console.log('Cannot connect to ' + peer);
-        return;
-      }
-    });
-  }
-
-  peers() {
-    return Observable.create(observer => {
+  peers(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
       this.node._libp2pNode.on('peer:connect', peer => {
         this.node.swarm.peers((err, peerInfos) => {
           if (err) {
-            throw err;
+            return reject(err);
           }
+          return resolve(peerInfos);
         });
-        observer.next(peer);
       });
     });
   }
 
-  id() {
-    return Observable.create(observer => {
-      this.node.id((err, identity) => {
+  id(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.node.id((err, identities) => {
         if (err) {
-          throw err;
+          return reject(err);
         }
-        observer.next(identity);
-        observer.complete();
+
+        return resolve(identities);
       });
     });
   }
