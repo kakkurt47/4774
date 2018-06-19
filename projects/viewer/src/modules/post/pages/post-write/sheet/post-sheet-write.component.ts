@@ -1,5 +1,5 @@
-import { Component, Injector } from '@angular/core';
-import { BasePost, MusicContract, MusicPost, MuzikaFilePath, unitDown, User } from '@muzika/core';
+import { Component, ElementRef, Inject, Injector, PLATFORM_ID } from '@angular/core';
+import { BasePost, MusicContract, MusicPost, MuzikaConsole, MuzikaFilePath, unitDown, User } from '@muzika/core';
 import { GenreSelections, InstrumentSelections } from '../../../post.constant';
 import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
 import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { AlertifyInstnace } from '@muzika/core/browser';
 import { IPCUtil } from '../../../../../../shared/ipc-utils';
 import { BasePostWriteComponent } from '../post-write';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-post-sheet-write',
@@ -47,7 +48,9 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
               private ipcRendererService: IpcRendererService,
               private contractService: MuzikaContractService,
               private router: Router,
-              private postActions: PostActions) {
+              private postActions: PostActions,
+              private elementRef: ElementRef,
+              @Inject(PLATFORM_ID) private platformId: string) {
     super(injector);
   }
 
@@ -59,6 +62,19 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
         this.currentUser = user;
       })
     );
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.elementRef.nativeElement
+        .ondrop = (e) => {
+        e.preventDefault();
+
+        for (const f of e.dataTransfer.files) {
+          MuzikaConsole.log('File(s) you dragged here: ', f.path);
+        }
+
+        return false;
+      };
+    }
   }
 
   toggleGenre(value: string) {

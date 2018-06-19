@@ -14,11 +14,11 @@ export interface MuzikaContractSummary {
   coverImagePath: string;                   // cover image. (main image)
 
   files: {
-    type: 'sheet' | 'video' | 'audio';    // file type.
-    path: string;                         // IPFS file path.
-    encrypted: boolean;                   // whether being encrypted.
-    hasPreview: boolean;                  // whether the file has preview image or not.
-    streamingSupportList: string[];       // streaming support list. If no streaming files, it is empty array.
+    type: 'sheet' | 'video' | 'audio';      // file type.
+    path: string;                           // IPFS file path.
+    encrypted: boolean;                     // whether being encrypted.
+    hasPreview: boolean;                    // whether the file has preview image or not.
+    streamingSupportList: string[];         // streaming support list. If no streaming files, it is empty array.
   }[];                                      // files list for sell.
 
   videos: {

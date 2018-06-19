@@ -1,7 +1,8 @@
-import {isPlatformBrowser} from '@angular/common';
-import {Component, PLATFORM_ID, Inject, AfterViewInit} from '@angular/core';
-import {BaseComponent} from '@muzika/core/angular';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { BaseComponent } from '@muzika/core/angular';
 import * as particleConfig from './particles.json';
+import { MuzikaConsole } from '@muzika/core';
 
 declare const particlesJS, jQuery;
 
@@ -43,7 +44,7 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
     if (isPlatformBrowser(this.platformId)) {
       /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
       particlesJS('home', particleConfig, () => {
-        console.log('callback - particles.js config loaded');
+        MuzikaConsole.log('callback - particles.js config loaded');
       });
     }
   }

@@ -1,4 +1,4 @@
-import {BlockUtil, MuzikaContractSummary, MuzikaFilePath} from '@muzika/core';
+import { BlockUtil, MuzikaConsole, MuzikaContractSummary, MuzikaFilePath } from '@muzika/core';
 import * as async from 'async';
 import {BrowserWindow, ipcMain} from 'electron';
 import * as fs from 'fs';
@@ -152,13 +152,13 @@ class IpcMainService {
 
         ipfs.put(uploadQueue)
           .then((result) => {
-            console.log(result);
+            MuzikaConsole.log(result);
             // remove temporary files since finishing to upload files.
             // this is called even if failed to upload.
             uploadFiles.forEach((uploadFile) => {
               uploadFile.removeTempFiles((rmTempErr) => {
                 if (rmTempErr) {
-                  console.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
+                  MuzikaConsole.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
                 }
               });
             });
@@ -189,7 +189,7 @@ class IpcMainService {
             );
           })
           .catch((ipfsErr) => {
-            console.log('UPLOAD ERROR', ipfsErr);
+            MuzikaConsole.log('UPLOAD ERROR', ipfsErr);
             ipcReject(ipfsErr);
           });
       });

@@ -1,7 +1,7 @@
 import {NgRedux} from '@angular-redux/store';
 import {isPlatformBrowser} from '@angular/common';
 import {ElementRef, NgZone, OnChanges, SimpleChanges} from '@angular/core';
-import {PostComment, PaginationResult, User, IAppState} from '@muzika/core';
+import { PostComment, PaginationResult, User, IAppState, MuzikaConsole } from '@muzika/core';
 import {AlertifyInstnace} from '@muzika/core/browser';
 import {Observable, combineLatest, Subscription} from 'rxjs';
 import {CommentActions} from '../actions/comment.action';
@@ -129,7 +129,7 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
         setTimeout(() => {
 
           const commentElem = this.element.nativeElement.querySelector('#comment-section-' + this.activeCommentID);
-          console.log(commentElem);
+          MuzikaConsole.log(commentElem);
           if (commentElem) {
             commentElem.scrollIntoView(true);
             commentElem.classList.add('active');
@@ -196,7 +196,7 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
           AlertifyInstnace.alert(res.msg);
         }
       }, err => {
-        console.log(err);
+        MuzikaConsole.log(err);
       });
   }
 

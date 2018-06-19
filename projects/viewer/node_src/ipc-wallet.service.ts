@@ -2,7 +2,7 @@ import {ipcMain, BrowserWindow} from 'electron';
 import {IPCUtil} from '../shared/ipc-utils';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
-//   console.log(arg); // prints "ping"
+//   MuzikaConsole.log(arg); // prints "ping"
 //   event.returnValue = 'pong';
 // });
 

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {BaseComponent, MuzikaWeb3Service, UserActions} from '@muzika/core/angular';
 import {AlertifyInstnace} from '@muzika/core/browser';
+import { MuzikaConsole } from '@muzika/core';
 
 @Component({
   selector: 'wallet-private-key-selector',
@@ -19,7 +20,7 @@ export class WalletPrivateKeyComponent extends BaseComponent {
         .usingPrivateKey(form.value.privKey)
         .subscribe(accounts => {
           this.userActions.login(accounts[0]).subscribe(user => {
-            console.log(user);
+            MuzikaConsole.log(user);
           });
         });
     } else {

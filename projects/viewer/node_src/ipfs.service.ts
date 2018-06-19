@@ -2,6 +2,7 @@ import * as IPFS from 'ipfs';
 import * as request from 'request';
 import {Observable} from 'rxjs';
 import {electronEnvironment} from './environment';
+import { MuzikaConsole } from '@muzika/core';
 
 export class IpfsService {
   node: IPFS;
@@ -47,14 +48,14 @@ export class IpfsService {
             for (const ipfsNode of body) {
               this.connectPeer(ipfsNode.ID)
                 .then(() => {
-                  console.log('CONNECTED WITH MUZIKA RELAY NODE : ', ipfsNode.ID);
+                  MuzikaConsole.log('CONNECTED WITH MUZIKA RELAY NODE : ', ipfsNode.ID);
                   // if one of the IPFS is connected, ready status to true
                   this.muzikaPeers.push(ipfsNode.APIServer);
                   this.isReady = true;
                 });
             }
           } else {
-            console.error('Not connected with muzika-platform-server..');
+            MuzikaConsole.error('Not connected with muzika-platform-server..');
           }
         }
       );

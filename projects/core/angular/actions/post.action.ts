@@ -2,7 +2,7 @@ import {NgRedux} from '@angular-redux/store';
 import {isPlatformBrowser} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {BasePost, InfPaginationResult, PaginationResult, PostActionType, IAppState, BoardType} from '@muzika/core';
+import { BasePost, InfPaginationResult, PaginationResult, PostActionType, IAppState, BoardType, MuzikaConsole } from '@muzika/core';
 import {Observable, from} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {APIConfig} from '../config/api.config';
@@ -120,9 +120,9 @@ export class PostActions {
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.log('An error occurred:', err.error.message);
+            MuzikaConsole.log('An error occurred:', err.error.message);
           } else {
-            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            MuzikaConsole.log(`Backend returned code ${err.status}, body was: ${err.error}`);
           }
         });
   }

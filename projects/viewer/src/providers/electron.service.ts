@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 // If you import a module but never use any of the imported values other than as TypeScript types,
 // the resulting javascript file will look as if you never imported the module at all.
@@ -18,6 +18,8 @@ export class ElectronService {
   fs: typeof fs;
   ipfs: typeof ipfs;
   storage: { get: (key: string) => any, set: (key: string, value: any) => void, remove: (key: string) => void };
+
+  onDragFile: EventEmitter<File> = new EventEmitter<File>();
 
   constructor() {
     // Conditional imports

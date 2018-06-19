@@ -1,7 +1,7 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { promisify } from '@muzika/core';
+import { MuzikaConsole, promisify } from '@muzika/core';
 import { BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions } from '@muzika/core/angular';
 
 @Component({
@@ -44,10 +44,10 @@ export class WebLoginPageComponent extends BaseComponent {
   login() {
     this.userActions.login(this.selectedAccount).subscribe(
       user => {
-        console.log('Success to sign in, it will automatically move to main');
+        MuzikaConsole.log('Success to sign in, it will automatically move to main');
       },
       error => {
-        console.error(error);
+        MuzikaConsole.error(error);
       }
     );
   }

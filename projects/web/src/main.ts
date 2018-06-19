@@ -5,6 +5,7 @@ import {AppModule} from './app/app.module';
 import {environment} from './environments/environment';
 
 import {hmrBootstrap} from './hmr';
+import { MuzikaConsole } from '@muzika/core';
 
 if (environment.production) {
   enableProdMode();
@@ -16,8 +17,8 @@ if (environment.env === 'dev') {
   if (module[ 'hot' ]) {
     hmrBootstrap(module, bootstrap);
   } else {
-    console.error('HMR is not enabled for webpack-dev-server!');
-    console.log('Are you using the --hmr flag for ng serve?');
+    MuzikaConsole.error('HMR is not enabled for webpack-dev-server!');
+    MuzikaConsole.log('Are you using the --hmr flag for ng serve?');
   }
 } else {
   document.addEventListener('DOMContentLoaded', () => {

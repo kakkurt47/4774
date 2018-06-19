@@ -1,6 +1,6 @@
 import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
-import {CommunityPost, PaginationResult, MusicPost, VideoPost} from '@muzika/core';
+import { CommunityPost, PaginationResult, MusicPost, VideoPost, MuzikaConsole } from '@muzika/core';
 import {BaseComponent, PostActions} from '@muzika/core/angular';
 import {Observable} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
@@ -38,7 +38,7 @@ export class PostMusicListComponent extends BaseComponent {
     this._sub.push(
       this.postsObs.subscribe(posts => {
         this.posts = posts;
-        console.log(posts);
+        MuzikaConsole.log(posts);
       })
     );
 

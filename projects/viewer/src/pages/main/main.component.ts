@@ -1,7 +1,7 @@
 import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {CommunityPost, MusicPost, unitUp, User} from '@muzika/core';
+import { CommunityPost, MusicPost, MuzikaConsole, unitUp, User } from '@muzika/core';
 import { BaseComponent, MuzikaCoin, ExtendedWeb3, UserActions } from '@muzika/core/angular';
 import {Observable, combineLatest, from} from 'rxjs';
 import {BestPostsMock, MusicPostsMock} from '../../mock/posts';
@@ -41,7 +41,7 @@ export class MainPageComponent extends BaseComponent {
         from(this.muzikaCoin.deployed()),
         UserActions.currentUserObs
       ).subscribe(async ([coin, user]) => {
-        console.log('33', user);
+        MuzikaConsole.log('33', user);
         if (user) {
           const rawBalance = await coin.balanceOf(user.address);
           this.balances = {

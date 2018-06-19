@@ -1,13 +1,14 @@
-import {isPlatformBrowser} from '@angular/common';
-import {Component, PLATFORM_ID, Inject, NgZone, AfterViewInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {BaseComponent, ExtendedWeb3, UserActions} from '@muzika/core/angular';
-import {TranslateService} from '@ngx-translate/core';
-import {interval} from 'rxjs';
-import {environment} from '../environments/environment';
-import {ElectronService} from '../providers/electron.service';
-import {MuzikaWalletProvider} from '../providers/muzika-wallet.provider';
-import {MuzikaTabs, TabService} from '../providers/tab.service';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, NgZone, PLATFORM_ID } from '@angular/core';
+import { Router } from '@angular/router';
+import { BaseComponent, ExtendedWeb3, UserActions } from '@muzika/core/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { interval } from 'rxjs';
+import { environment } from '../environments/environment';
+import { ElectronService } from '../providers/electron.service';
+import { MuzikaWalletProvider } from '../providers/muzika-wallet.provider';
+import { MuzikaTabs, TabService } from '../providers/tab.service';
+import { MuzikaConsole } from '@muzika/core';
 
 @Component({
   selector: 'app-root',
@@ -28,14 +29,14 @@ export class AppComponent extends BaseComponent implements AfterViewInit {
               private walletProvider: MuzikaWalletProvider) {
     super();
     translate.setDefaultLang('en');
-    console.log('AppConfig', environment);
+    MuzikaConsole.log('AppConfig', environment);
 
     if (electronService.isElectron()) {
-      console.log('Mode electron');
-      console.log('Electron ipcRenderer', electronService.ipcRenderer);
-      console.log('NodeJS childProcess', electronService.childProcess);
+      MuzikaConsole.log('Mode electron');
+      MuzikaConsole.log('Electron ipcRenderer', electronService.ipcRenderer);
+      MuzikaConsole.log('NodeJS childProcess', electronService.childProcess);
     } else {
-      console.log('Mode web');
+      MuzikaConsole.log('Mode web');
     }
   }
 

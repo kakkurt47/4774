@@ -1,4 +1,4 @@
-import { Block } from '@muzika/core';
+import { Block, MuzikaConsole } from '@muzika/core';
 import * as Hls from 'hls.js';
 
 export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
@@ -122,24 +122,23 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
             data = xhr.response;
             len = data.length;
           }
-          if (context.responseType === 'arraybuffer') {
-          } else {
+          if (context.responseType !== 'arraybuffer') {
             data = buf2str(data);
             len = data.length;
           }
           stats.loaded = stats.total = len;
           const response = { url: this.context.url, data: data };
-          console.log(xhr, response, context, this);
+          MuzikaConsole.log(xhr, response, context, this);
           this.callbacks.onSuccess(response, stats, context, xhr);
         } else {
           // if max nb of retries reached or if http status between 400 and 499
           // (such error cannot be recovered, retrying is useless), return error
           if (stats.retry >= config.maxRetry || (status >= 400 && status < 499)) {
-            console.error(`${status} while loading ${context.url}`);
+            MuzikaConsole.error(`${status} while loading ${context.url}`);
             this.callbacks.onError({ code: status, text: xhr.statusText }, context, xhr);
           } else {
             // retry
-            console.warn(`${status} while loading ${context.url}, retrying in ${this.retryDelay}...`);
+            MuzikaConsole.warn(`${status} while loading ${context.url}, retrying in ${this.retryDelay}...`);
             // aborts and resets internal state
             this.destroy();
             // schedule retry

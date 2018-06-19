@@ -1,4 +1,4 @@
-import {BlockUtil} from '@muzika/core';
+import { BlockUtil, MuzikaConsole } from '@muzika/core';
 import * as async from 'async';
 import * as ffmpegStatic from 'ffmpeg-static';
 import * as ffprobeStatic from 'ffprobe-static';
@@ -143,7 +143,7 @@ export class MuzikaIPFSFile {
           return callback(null, null);
         }
       }).catch((err) => {
-        console.log(err);
+        MuzikaConsole.log(err);
         return callback(err, null);
       });
     };
@@ -282,7 +282,7 @@ export class MuzikaIPFSFile {
         // TODO: support various streaming options for audio and video file
         ffmpeg(this.filePath).addOptions(StreamingUtil.VIDEO_OPTION.MIDDLE_QUALITY).output(path.join(tempDirPath, 'master.m3u8'))
           .on('error', (ffmpegErr) => {
-            console.log('FAILED TO GENERATE STREAM FILES : ', ffmpegErr);
+            MuzikaConsole.log('FAILED TO GENERATE STREAM FILES : ', ffmpegErr);
             return reject(ffmpegErr);
           })
           .on('end', () => {
@@ -306,7 +306,7 @@ export class MuzikaIPFSFile {
             });
           })
           .on('progress', (progress) => {
-            console.log(`generating stream files (${progress.percent}%)`);
+            MuzikaConsole.log(`generating stream files (${progress.percent}%)`);
             this._streamProgress.setProgressPercent(progress.percent / 100);
           })
           .run();

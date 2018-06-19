@@ -1,8 +1,8 @@
-import {Component, QueryList, ViewChildren} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {Router} from '@angular/router';
-import {promisify} from '@muzika/core';
-import {BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core/angular';
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MuzikaConsole, promisify } from '@muzika/core';
+import { BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions } from '@muzika/core/angular';
 
 @Component({
   selector: 'app-page-login',
@@ -36,10 +36,10 @@ export class LoginPageComponent extends BaseComponent {
     // this.userActions.login('metamask').subscribe();
     this.userActions.login(this.selectedAccount).subscribe(
       user => {
-        console.log(user);
+        MuzikaConsole.log(user);
       },
       error => {
-        console.error(error);
+        MuzikaConsole.error(error);
       }
     );
   }

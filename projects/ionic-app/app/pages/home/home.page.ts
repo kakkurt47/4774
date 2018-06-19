@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {BaseComponent, ExtendedWeb3, MuzikaCoin} from '@muzika/core/angular';
 import * as _alertify from 'alertify.js';
+import { AddressOnlyProvider, MuzikaConsole } from '@muzika/core';
 
 const alertify = _alertify.okBtn('확인').cancelBtn('취소');
 
@@ -41,7 +42,7 @@ export class HomePageComponent extends BaseComponent {
     this.storage.getItem('myitem')
       .then(
         data => {
-          console.log(data);
+          MuzikaConsole.log(data);
         },
         error => {
           // this.web3.accounts.create();
