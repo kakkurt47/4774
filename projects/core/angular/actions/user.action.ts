@@ -1,4 +1,4 @@
-import {NgRedux} from '@angular-redux/store';
+import { NgRedux, select } from '@angular-redux/store';
 import {Injectable, Inject} from '@angular/core';
 import {MuzikaPlatformType, User, IAppState, UserActionType, promisify} from '@muzika/core';
 import {Observable, from} from 'rxjs';
@@ -10,6 +10,9 @@ import {LocalStorage} from '../providers/local-storage.service';
 
 @Injectable({providedIn: 'root'})
 export class UserActions {
+  @select(['user', 'currentUser'])
+  public static currentUserObs: Observable<User>;
+
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,
               private web3: ExtendedWeb3,

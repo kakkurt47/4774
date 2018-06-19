@@ -2,7 +2,7 @@ import {select} from '@angular-redux/store';
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {CommunityPost, MusicPost, unitUp, User} from '@muzika/core';
-import {BaseComponent, MuzikaCoin, ExtendedWeb3} from '@muzika/core/angular';
+import { BaseComponent, MuzikaCoin, ExtendedWeb3, UserActions } from '@muzika/core/angular';
 import {Observable, combineLatest, from} from 'rxjs';
 import {BestPostsMock, MusicPostsMock} from '../../mock/posts';
 
@@ -17,8 +17,6 @@ export class MainPageComponent extends BaseComponent {
 
   topMusics: MusicPost[];
 
-  @select(['user', 'currentUser'])
-  currentUserObs: Observable<User>;
   currentUser: User;
   balances: {
     mzk: number | string;
@@ -41,7 +39,7 @@ export class MainPageComponent extends BaseComponent {
     this._sub.push(
       combineLatest(
         from(this.muzikaCoin.deployed()),
-        this.currentUserObs
+        UserActions.currentUserObs
       ).subscribe(async ([coin, user]) => {
         console.log('33', user);
         if (user) {

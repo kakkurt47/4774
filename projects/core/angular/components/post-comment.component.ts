@@ -7,6 +7,7 @@ import {Observable, combineLatest, Subscription} from 'rxjs';
 import {CommentActions} from '../actions/comment.action';
 import {PostActions} from '../actions/post.action';
 import {BaseComponent} from './base.component';
+import { UserActions } from '../actions';
 
 export abstract class AbstractPostCommentComponent extends BaseComponent implements OnChanges {
   boardType: string;
@@ -15,7 +16,6 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
 
   commentResult: PaginationResult<PostComment>;
 
-  currentUserObs: Observable<User>;
   currentUser: User;
 
   replyShow: { [key: number]: boolean };
@@ -33,7 +33,6 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
               protected element: ElementRef,
               protected zone: NgZone) {
     super();
-    this.currentUserObs = this.store.select(state => state.user.currentUser);
   }
 
   ngOnInit() {
@@ -44,7 +43,7 @@ export abstract class AbstractPostCommentComponent extends BaseComponent impleme
     this.replyContent = {};
 
     this._sub.push(
-      this.currentUserObs.subscribe((user: User) => {
+      UserActions.currentUserObs.subscribe((user: User) => {
         this.currentUser = user;
       })
     );

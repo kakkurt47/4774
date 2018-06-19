@@ -2,7 +2,7 @@ import {NgRedux, select} from '@angular-redux/store';
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommunityPost, IAppState, MusicPost, unitUp, User, VideoPost} from '@muzika/core';
-import {BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions} from '@muzika/core/angular';
+import { BaseComponent, IMuzikaPaperContract, MuzikaCoin, MuzikaPaperContract, PostActions, UserActions } from '@muzika/core/angular';
 import {AlertifyInstnace} from '@muzika/core/browser';
 import {combineLatest, Observable, Subscription} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
@@ -26,8 +26,6 @@ export class PostMusicItemDetailComponent extends BaseComponent {
   paper: IMuzikaPaperContract;
   isPurchased = false;
 
-  @select(['user', 'currentUser'])
-  currentUserObs: Observable<User>;
   currentUser: User;
 
   postObs: Observable<MusicPost>;
@@ -46,7 +44,7 @@ export class PostMusicItemDetailComponent extends BaseComponent {
   ngOnInit() {
 
     this._sub.push(
-      this.currentUserObs.subscribe(async user => {
+      UserActions.currentUserObs.subscribe(async user => {
         this.currentUser = user;
       })
     );
@@ -61,7 +59,7 @@ export class PostMusicItemDetailComponent extends BaseComponent {
 
         this.postSub = combineLatest(
           this.store.select<MusicPost>(['post', 'post', 'music', postId]),
-          this.currentUserObs
+          UserActions.currentUserObs
         ).subscribe(async ([post, user]) => {
           this.post = post;
           this.paper = this.muzikaPaper.at(post.music_contract.contract_address);

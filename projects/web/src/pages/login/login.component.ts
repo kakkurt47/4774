@@ -1,8 +1,8 @@
-import {Component, QueryList, ViewChildren} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {Router} from '@angular/router';
-import {promisify} from '@muzika/core';
-import {BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzika/core/angular';
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { promisify } from '@muzika/core';
+import { BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions } from '@muzika/core/angular';
 
 @Component({
   selector: 'web-page-login',
@@ -10,7 +10,6 @@ import {BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions} from '@muzi
   styleUrls: ['./login.component.scss']
 })
 export class WebLoginPageComponent extends BaseComponent {
-  currentWalletProvider = 'private';
   selectedAccount: string;
   accounts: string[];
 
@@ -26,19 +25,26 @@ export class WebLoginPageComponent extends BaseComponent {
 
   ngOnInit() {
     super.ngOnInit();
+
     this.web3Service.usingMetamask().subscribe(() => {
       promisify(this.web3.eth.getAccounts).then(accounts => {
         this.accounts = accounts;
       });
     });
+
+    this._sub.push(
+      UserActions.currentUserObs.subscribe(user => {
+        if (user) {
+          this.router.navigateByUrl('/beta');
+        }
+      })
+    );
   }
 
-
   login() {
-    // this.userActions.login('metamask').subscribe();
     this.userActions.login(this.selectedAccount).subscribe(
       user => {
-        console.log(user);
+        console.log('Success to sign in, it will automatically move to main');
       },
       error => {
         console.error(error);

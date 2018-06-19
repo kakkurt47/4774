@@ -10,8 +10,6 @@ import {Observable} from 'rxjs';
   styleUrls: ['./intro-navbar.component.scss']
 })
 export class IntroNavbarComponent extends BaseComponent {
-  @select(['user', 'currentUser'])
-  currentUserObs: Observable<User>;
   currentUser: User;
 
   constructor(private userActions: UserActions) {
@@ -20,7 +18,7 @@ export class IntroNavbarComponent extends BaseComponent {
 
   ngOnInit() {
     this._sub.push(
-      this.currentUserObs.subscribe(user => {
+      UserActions.currentUserObs.subscribe(user => {
         this.currentUser = user;
       })
     );

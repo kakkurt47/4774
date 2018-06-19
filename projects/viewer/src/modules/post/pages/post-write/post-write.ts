@@ -3,7 +3,7 @@ import {Component, Injector} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BasePost, CommunityPost, MusicContract, MusicPost, unitDown, User, VideoPost, MuzikaFilePath} from '@muzika/core';
-import {BaseComponent, MuzikaContractService, PostActions} from '@muzika/core/angular';
+import { BaseComponent, MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
 import {AlertifyInstnace} from '@muzika/core/browser';
 import {Observable} from 'rxjs';
 import {IPCUtil} from '../../../../../shared/ipc-utils';
@@ -103,8 +103,6 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
     price: 0,
   };
 
-  @select(['user', 'currentUser'])
-  currentUserObs: Observable<User>;
   currentUser: User;
 
   songType: '~cover' | '~original' = '~original';
@@ -136,7 +134,7 @@ export class PostMusicWriteComponent extends BasePostWriteComponent {
     super.ngOnInit();
 
     this._sub.push(
-      this.currentUserObs.subscribe(user => {
+      UserActions.currentUserObs.subscribe(user => {
         this.currentUser = user;
       })
     );
