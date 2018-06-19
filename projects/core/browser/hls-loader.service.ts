@@ -14,6 +14,7 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
   private retryTimeout: any;
   private requestTimeout: any;
   private xhrSetup: any;
+  private loader: any;
 
   constructor(config) {
     super(config);
@@ -31,12 +32,9 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
   }
 
   load(context, config, callbacks) {
-    this.context = Object.assign(context, {
-      responseType: 'arraybuffer'
-    });
+    this.context = context;
     this.config = config;
     this.callbacks = callbacks;
-    console.log(callbacks);
     this.stats = { trequest: performance.now(), retry: 0 };
     this.retryDelay = config.retryDelay;
     this.loadInternal();
@@ -50,7 +48,41 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
 
     context.url = `https://ipfs.io/ipfs/${this.ipfsHash}/streaming/${this.fileName}/${streamFilename}${nameAppend}`;
 
-    super.loadInternal();
+    let xhr;
+    xhr = this.loader = new XMLHttpRequest();
+
+    const stats = this.stats;
+    stats.tfirst = 0;
+    stats.loaded = 0;
+    const xhrSetup = this.xhrSetup;
+
+    try {
+      if (xhrSetup) {
+        try {
+          xhrSetup(xhr, context.url);
+        } catch (e) {
+          // fix xhrSetup: (xhr, url) => {xhr.setRequestHeader("Content-Language", "test");}
+          // not working, as xhr.setRequestHeader expects xhr.readyState === OPEN
+          xhr.open('GET', context.url, true);
+          xhrSetup(xhr, context.url);
+        }
+      }
+      if (!xhr.readyState) {
+        xhr.open('GET', context.url, true);
+      }
+    } catch (e) {
+      // IE11 throws an exception on xhr.open if attempting to access an HTTP resource over HTTPS
+      this.callbacks.onError({ code: xhr.status, text: e.message }, context, xhr);
+      return;
+    }
+
+    xhr.onreadystatechange = this.readystatechange.bind(this);
+    xhr.onprogress = this.loadprogress.bind(this);
+    xhr.responseType = 'arraybuffer';
+
+    // setup timeout before we perform request
+    this.requestTimeout = window.setTimeout(this.loadtimeout.bind(this), this.config.timeout);
+    xhr.send(null);
   }
 
 
@@ -87,7 +119,12 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
             data = encryptedBlock.data;
             len = data.length;
           } else {
-            data = buf2str(xhr.response);
+            data = xhr.response;
+            len = data.length;
+          }
+          if (context.responseType === 'arraybuffer') {
+          } else {
+            data = buf2str(data);
             len = data.length;
           }
           stats.loaded = stats.total = len;
@@ -119,61 +156,10 @@ export class MuzikaHLSLoader extends Hls.DefaultConfig.loader {
     }
   }
 
-  //
-  // private _getFile(ipfsHash, filename, streamingFileName) {
-  //
-  //   const xhr = new XMLHttpRequest();
-  //
-  //   console.log('GET FILE', `${ipfsHash}/streaming/${filename}/${streamingFileName}${nameAppend}`);
-  //   xhr.open(
-  //     'GET',
-  //     `https://ipfs.io/ipfs/${ipfsHash}/streaming/${filename}/${streamingFileName}${nameAppend}`,
-  //     true
-  //   );
-  //   xhr.responseType = 'arraybuffer';
-  //
-  //   xhr.onreadystatechange = () => {
-  //     if (xhr.readyState === 4) {
-  //       // if completely download the data
-  //       const status = xhr.status;
-  //       let data;
-  //       if (status >= 200 && status < 300) {
-  //         if (this.cipherKey) {
-  //           const encryptedBlock = Block.fromEncryptedData(xhr.response, this.cipherKey);
-  //           encryptedBlock.decrypt();
-  //           data = encryptedBlock.data;
-  //         } else {
-  //           data = xhr.response;
-  //         }
-  //         const response = { url: this.context.url, data };
-  //         this.callbacks.onSuccess(response, this.stats, this.context);
-  //       } else {
-  //         // if max nb of retries reached or if http status between 400 and 499 (such error cannot be recovered, retrying is useless), return error
-  //         if (this.stats.retry >= this.config.maxRetry || (status >= 400 && status < 499)) {
-  //           console.error(`${status} while loading`);
-  //           this.callbacks.onError({ code: status, text: xhr.statusText }, this.context, xhr);
-  //         } else {
-  //           // retry
-  //           // aborts and resets internal state
-  //           this.destroy();
-  //           // schedule retry
-  //           this.retryTimeout = window.setTimeout(this.loadInternal.bind(this), this.retryDelay);
-  //           // set exponential backoff
-  //           this.retryDelay = Math.min(2 * this.retryDelay, this.config.maxRetryDelay);
-  //           this.stats.retry++;
-  //         }
-  //
-  //         callback(new Error('Failed to response'));
-  //       }
-  //     } else {
-  //     }
-  //   };
-  //
-  //   // setup timeout before we perform request
-  //   this.requestTimeout = window.setTimeout(this.loadtimeout.bind(this), this.config.timeout);
-  //   xhr.send(null);
-  // }
-  //
+  loadprogress(event) {
+    super.loadprogress(event);
+  }
+
   loadtimeout() {
     super.loadtimeout();
   }
