@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { AlertifyInstnace } from '@muzika/core/browser';
 import { IPCUtil } from '../../../../../../shared/ipc-utils';
 import { BasePostWriteComponent } from '../post-write';
+import {MuzikaContractSummary} from '../../../../../../node_src/muzika-ipfs-file';
 
 @Component({
   selector: 'app-post-music-write',
@@ -191,6 +192,14 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
       };
     });
 
-    return this.ipcRendererService.sendAsyncWithProgress(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true);
+    return this.ipcRendererService.sendAsyncWithProgress(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true, {
+      type: 'music',
+      title: this.post.title,
+      description: this.post.content,
+      author: this.currentUser.name,
+      authorAddress: this.currentUser.address,
+      // TODO: add cover image
+      coverImagePath: ''
+    });
   }
 }

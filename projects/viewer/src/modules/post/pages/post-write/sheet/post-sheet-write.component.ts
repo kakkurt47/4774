@@ -197,6 +197,14 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
       };
     });
 
-    return this.ipcRendererService.sendAsyncWithProgress(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true);
+    return this.ipcRendererService.sendAsyncWithProgress(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true, {
+      type: 'sheet',
+      title: this.post.title,
+      description: this.post.content,
+      author: this.currentUser.name,
+      authorAddress: this.currentUser.address,
+      // TODO: add cover image
+      coverImagePath: ''
+    });
   }
 }
