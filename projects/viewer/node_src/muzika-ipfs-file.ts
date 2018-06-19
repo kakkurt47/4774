@@ -26,9 +26,42 @@ export class MuzikaFileUtil {
   public static ORIGIN_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'ipfs');
   public static STREAMING_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'streaming');
   public static PREVIEW_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'preview');
+}
 
+/**
+ * Utils for streaming conversion. It defines several quality of options of streaming convertion for audio and video.
+ */
+export class StreamingUtil {
   public static FFMPEG_BIN_PATH = ffmpegStatic.path;
   public static FFPROBE_BIN_PATH = ffprobeStatic.path;
+
+  // TODO : setting proper options for several quality.
+  public static VIDEO_OPTION = {
+    HIGH_QUALITY: [],
+    MIDDLE_QUALITY: [
+      '-profile:v baseline',    // baseline profile (level 3.0) for H264 video codec
+      '-level 3.0',
+      '-s 640x360',             // 640px width, 360px height output video dimensions
+      '-start_number 0',        // start the first .ts segment at index 0
+      '-hls_time 3',            // 3 second segment duration
+      '-hls_list_size 0',       // Maxmimum number of playlist entries (0 means all entries/infinite)
+      '-f hls'                  // HLS format
+    ],
+    LOW_QUALITY: []
+  };
+
+  public static AUDIO_OPTION = {
+    HIGH_QUALITY: [],
+    MIDDLE_QUALITY: [
+      '-profile:v baseline',    // native FFmpeg AAC encoder
+      '-level 3.0',
+      '-start_number 0',        // start the first .ts segment at index 0
+      '-hls_time 3',            // 3 second segment duration
+      '-hls_list_size 0',       // Maxmimum number of playlist entries (0 means all entries/infinite)
+      '-f hls'                  // HLS format
+    ],
+    LOW_QUALITY: []
+  };
 }
 
 export class MuzikaIPFSFile {
@@ -206,8 +239,8 @@ export class MuzikaIPFSFile {
    */
   private _readyStreamingFile(uploadQueue: any[]): Promise<void> {
     return new Promise((resolve, reject) => {
-      ffmpeg.setFfmpegPath(MuzikaFileUtil.FFMPEG_BIN_PATH);
-      ffmpeg.setFfprobePath(MuzikaFileUtil.FFPROBE_BIN_PATH);
+      ffmpeg.setFfmpegPath(StreamingUtil.FFMPEG_BIN_PATH);
+      ffmpeg.setFfprobePath(StreamingUtil.FFPROBE_BIN_PATH);
 
       // generate a temporary directory for save streaming files generated
       const tempDir = os.tmpdir();
@@ -219,15 +252,8 @@ export class MuzikaIPFSFile {
         this.tempDirs.push(tempDirPath);
 
         // conversion
-        ffmpeg(this.filePath).addOptions([
-          '-profile:v baseline', // baseline profile (level 3.0) for H264 video codec
-          '-level 3.0',
-          '-s 640x360',          // 640px width, 360px height output video dimensions
-          '-start_number 0',     // start the first .ts segment at index 0
-          '-hls_time 3',        // 10 second segment duration
-          '-hls_list_size 0',    // Maxmimum number of playlist entries (0 means all entries/infinite)
-          '-f hls'               // HLS format
-        ]).output(path.join(tempDirPath, 'master.m3u8'))
+        // TODO: support various streaming options for audio and video file
+        ffmpeg(this.filePath).addOptions(StreamingUtil.VIDEO_OPTION.MIDDLE_QUALITY).output(path.join(tempDirPath, 'master.m3u8'))
           .on('error', (ffmpegErr) => {
             console.log('FAILED TO GENERATE STREAM FILES : ', ffmpegErr);
             return reject(ffmpegErr);
