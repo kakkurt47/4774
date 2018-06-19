@@ -106,7 +106,7 @@ class IpcMainService {
 
 
     this.eventHandlerWithProgress(IPCUtil.EVENT_FILE_UPLOAD,
-      (ipcProgress, ipcResolve, ipcReject, _files: MuzikaFilePath[], encryption: boolean) => {
+      (ipcProgress, ipcResolve, ipcReject, _files: MuzikaFilePath[], encryption: boolean, meta?: any) => {
       /**
        * @param {Object[]} files Array of files having absolute path
        * @param {boolean} encryption Whether encrypt or not. If true, do block encryption.
@@ -119,12 +119,12 @@ class IpcMainService {
       // TODO: initialize meta data
       const contractInfo: MuzikaContractSummary = {
         version: '1.0',
-        type: 'sheet',
-        title: '',
-        description: '',
-        author: '',
-        authorAddress: '',
-        coverImagePath: '',
+        type: meta.type || 'sheet',
+        title: meta.title || '',
+        description: meta.description || '',
+        author: meta.author || '',
+        authorAddress: meta.authorAddress || '',
+        coverImagePath: meta.coverImagePath || '',
         files: [],
         videos: []
       };
