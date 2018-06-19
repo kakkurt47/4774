@@ -9,8 +9,9 @@ import {IPCUtil} from '../shared/ipc-utils';
 import {BlockKey} from './block/block-key';
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
-import {MuzikaIPFSFile} from './muzika-ipfs-file';
+import {MuzikaContractSummary, MuzikaIPFSFile} from './muzika-ipfs-file';
 import {StorageServiceInstance} from './storage.service';
+import {BufferStream} from './utils/buffer-stream';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -115,6 +116,19 @@ class IpcMainService {
       const uploadQueue = [];
       let uploadFiles: MuzikaIPFSFile[] = [];
 
+      // TODO: initialize meta data
+      const contractInfo: MuzikaContractSummary = {
+        version: '1.0',
+        type: 'sheet',
+        title: '',
+        description: '',
+        author: '',
+        authorAddress: '',
+        coverImagePath: '',
+        files: [],
+        videos: []
+      };
+
       // if encryption parameter is set, generate random AES-256 key for encryption.
       let aesKey = null;
       if (encryption) {
@@ -129,48 +143,55 @@ class IpcMainService {
           ipcProgress(percents);
         });
 
-      async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue)), (err) => {
-        ipfs.put(uploadQueue, (ipfsErr, result) => {
-          // remove temporary files since finishing to upload files.
-          // this is called even if failed to upload.
-          uploadFiles.forEach((uploadFile) => {
-            uploadFile.removeTempFiles((rmTempErr) => {
-              if (rmTempErr) {
-                console.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
-              }
-            });
-          });
-
-          if (ipfsErr) {
-            console.error(ipfsErr);
-            return;
-          }
-
-          // find root object from uploaded objects in IPFS
-          const rootObject = result.find((object) => {
-            return object.path === 'muzika';
-          });
-
-          // get random peer from server
-          const uploadHelper = ipfs.getRandomPeer();
-
-          // request to a helper, which downloads the user's files, so helps to spread them out.
-          request.post(
-            {
-              url: `${uploadHelper}/file/${rootObject.hash}`,
-              json: true
-            },
-            (peerRequestError, res, body) => {
-              if (peerRequestError) {
-                ipcReject(peerRequestError);
-              } else if (res.statusCode !== 200) {
-                ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
-              } else {
-                ipcResolve(1, rootObject.hash, aesKey);
-              }
-            }
-          );
+      async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue, contractInfo)), (err) => {
+        // push meta data for contract description
+        uploadQueue.push({
+          path: '/muzika/meta.json',
+          content: new BufferStream({ buffer: JSON.stringify(contractInfo) })
         });
+
+        ipfs.put(uploadQueue)
+          .then((result) => {
+            console.log(result);
+            // remove temporary files since finishing to upload files.
+            // this is called even if failed to upload.
+            uploadFiles.forEach((uploadFile) => {
+              uploadFile.removeTempFiles((rmTempErr) => {
+                if (rmTempErr) {
+                  console.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
+                }
+              });
+            });
+
+            // find root object from uploaded objects in IPFS
+            const rootObject = result.find((object) => {
+              return object.path === 'muzika';
+            });
+
+            // get random peer from server
+            const uploadHelper = ipfs.getRandomPeer();
+
+            // request to a helper, which downloads the user's files, so helps to spread them out.
+            request.post(
+              {
+                url: `${uploadHelper}/file/${rootObject.hash}`,
+                json: true
+              },
+              (peerRequestError, res, body) => {
+                if (peerRequestError) {
+                  ipcReject(peerRequestError);
+                } else if (res.statusCode !== 200) {
+                  ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
+                } else {
+                  ipcResolve(1, rootObject.hash, aesKey);
+                }
+              }
+            );
+          })
+          .catch((ipfsErr) => {
+            console.log('UPLOAD ERROR', ipfsErr);
+            ipcReject(ipfsErr);
+          });
       });
     });
 

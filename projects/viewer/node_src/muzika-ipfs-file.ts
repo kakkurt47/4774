@@ -13,10 +13,39 @@ import * as imagemagick from 'imagemagick-native';
 import {BufferStream} from './utils/buffer-stream';
 
 
+/**
+ * MuzikaContractSummary has information for the IPFS files structure of a muzika contract. This is saved in the root directory in IPFS
+ * object that the muzika contract points.
+ */
+export interface MuzikaContractSummary {
+  version: string;                          // muzika contract files structure version. For legacy support.
+  type: 'sheet' | 'music';                  // type of this contract file.
+  title: string;                            // contract title.
+  description: string;                      // contract description.
+  author: string;                           // author name. (uploader name)
+  authorAddress: string;                    // uploader's wallet address.
+  coverImagePath: string;                   // cover image. (main image)
+
+  files: {
+      type: 'sheet' | 'video' | 'audio';    // file type.
+      path: string;                         // IPFS file path.
+      encrypted: boolean;                   // whether being encrypted.
+      hasPreview: boolean;                  // whether the file has preview image or not.
+      streamingSupportList: string[];       // streaming support list. If no streaming files, it is empty array.
+  }[];                                      // files list for sell.
+
+  videos: {
+    type: 'ipfs' | 'youtube';               // video type that represents the video is in IPFS or youtube channel.
+    path: string;                           // path or URL for the video.
+  }[];                                      // video for contract description.
+}
+
+
 export class MuzikaFileUtil {
-  public static SOUND_EXTENSION = ['.mp3', '.wav'];
+  public static SHEET_EXTENSION = ['.pdf', 'jpg', 'jpeg', 'png', 'gif'];
+  public static AUDIO_EXTENSION = ['.mp3', '.wav'];
   public static VIDEO_EXTENSION = ['.mp4'];
-  public static HLS_CONVERSION_EXTENSION = MuzikaFileUtil.SOUND_EXTENSION.concat(MuzikaFileUtil.VIDEO_EXTENSION);
+  public static HLS_CONVERSION_EXTENSION = MuzikaFileUtil.AUDIO_EXTENSION.concat(MuzikaFileUtil.VIDEO_EXTENSION);
 
   // Wrapping paths into single folder
   // (e.g. [/ipfs/sheet.pdf, /preview/img.png] => [/muzika/ipfs/sheet.pdf, /muzika/preview/img.png]
@@ -26,6 +55,17 @@ export class MuzikaFileUtil {
   public static ORIGIN_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'ipfs');
   public static STREAMING_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'streaming');
   public static PREVIEW_FILE_DIRECTORY = path.join(MuzikaFileUtil.ROOT_DIRECTORY, 'preview');
+
+  public static getFileType(filename: string) {
+    const ext = path.extname(filename).toLowerCase();
+    if (this.SHEET_EXTENSION.includes(ext)) {
+      return 'sheet';
+    } else if (this.AUDIO_EXTENSION.includes(ext)) {
+      return 'audio';
+    } else if (this.VIDEO_EXTENSION.includes(ext)) {
+      return 'video';
+    }
+  }
 }
 
 /**
@@ -106,15 +146,16 @@ export class MuzikaIPFSFile {
    * uploading to IPFS.
    *
    * @param uploadQueue upload queue for uploading to IPFS.
+   * @param summary information instance for the IPFS object structure of a contract
    * @returns {(callback) => any} a function that preprocesses before uploading to IPFS and call callback function.
    */
-  ready(uploadQueue: any[]) {
+  ready(uploadQueue: any[], summary: MuzikaContractSummary) {
     /**
      * Return a callback function that processes something such as deciding path in IPFS object, generating stream files, and etc before
      * uploading to IPFS.
      */
     return (callback) => {
-      this._readyOriginFile(uploadQueue);
+      this._readyOriginFile(uploadQueue, summary);
       this._readyPreviewFile(uploadQueue).then(() => {
         // if the file is audio or video file like mp3, mp4, or etc, generate streaming files.
         if ((MuzikaFileUtil.HLS_CONVERSION_EXTENSION).includes(this._fileExt)) {
@@ -125,7 +166,6 @@ export class MuzikaIPFSFile {
             callback(err, null);
           });
         } else {
-          console.log(uploadQueue);
           this._uploadProgress.start();
           return callback(null, null);
         }
@@ -183,10 +223,23 @@ export class MuzikaIPFSFile {
    *
    * @param uploadQueue upload queue for uploading to IPFS.
    */
-  private _readyOriginFile(uploadQueue: any[]) {
+  private _readyOriginFile(uploadQueue: any[], summary: MuzikaContractSummary) {
+    const ipfsPath = this._buildFilePath(!!this.cipherKey, MuzikaFileUtil.ORIGIN_FILE_DIRECTORY, this._fileBaseName);
+    const fileType = MuzikaFileUtil.getFileType(this._fileExt);
     uploadQueue.push({
-      path: this._buildFilePath(!!this.cipherKey, MuzikaFileUtil.ORIGIN_FILE_DIRECTORY, this._fileBaseName),
+      path: ipfsPath,
       content: this._buildContent(this.filePath, true)
+    });
+
+    summary.files.push({
+      type: fileType,
+      path: ipfsPath,
+      encrypted: !!this.cipherKey,
+      // if preview file that user uploads exists or file type is sheet (if file type is sheet, it automatically generates preview files
+      // although it has no preview files), set true else set to false.
+      hasPreview: (this.preview.length > 0 || fileType === 'sheet'),
+      // TODO: various type streaming supports
+      streamingSupportList: []
     });
   }
 
