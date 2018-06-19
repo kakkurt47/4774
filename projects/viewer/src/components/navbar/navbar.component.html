@@ -14,19 +14,13 @@
           <!--<i class="fa fa-users"></i>-->
           <!--Community-->
         <!--</li>-->
-        <li routerLink="/board/music" routerLinkActive="active">
+        <li routerLink="/board/streaming/write" routerLinkActive="active">
           <i class="fa fa-music"></i>
-          Music
+          Upload Streaming Music
         </li>
-        <li class="search">
-          <div class="search-wrapper">
-            <div class="search-icon">
-              <i class="fa fa-search"></i>
-            </div>
-            <div class="search-input">
-              <input type="text" class="w-100" placeholder="Search">
-            </div>
-          </div>
+        <li routerLink="/board/sheet/write" routerLinkActive="active">
+          <i class="fa fa-file-pdf"></i>
+          Upload Sheet Music
         </li>
       </ul>
       <ng-container *ngIf="currentUser; else loggedInBlock">

@@ -1,0 +1,121 @@
+<section class="post-write bg-white h-100">
+  <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="row h-100 mx-0">
+      <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
+        <h5> Upload Sheet Music </h5>
+
+        <div class="file-select-form">
+          <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
+            <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet"
+                     ngFileSelect (change)="addFile($event)" accept=".pdf">
+            <span class="btn-text">
+              Choose pdf file / Drag & drop <BR />
+              <small> Support extension: pdf </small>
+            </span>
+          </label>
+        </div>
+
+        <div class="position-relative">
+          <div *ngFor="let file of files; let i = index" class="m-1">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="file-name">
+                <i class="fa fa-file-pdf"></i>
+                {{file.file.name}}
+              </span>
+
+              <label class="btn btn-primary btn-sm">
+                <input type="file" [id]="'upload-preview' + i" class="upload-sheet d-none" name="upload-sheet"
+                       ngFileSelect (change)="addPreview(i, $event)">
+                <span class="btn-text">
+                  <i class="fa fa-plus"></i>
+                  Add Preview
+                </span>
+              </label>
+            </div>
+
+            <div *ngFor="let preview of file.previews; let i = index" class="preview-item pl-1">
+              <span class="file-name">
+                <i class="fa fa-file-image"></i>
+                {{preview.name}}
+              </span>
+            </div>
+
+            <div class="progress upload-progress position-relative" *ngIf="uploadStatus">
+              <div class="progress-bar"
+                   role="progressbar"
+                   [attr.aria-valuenow]="uploadStatus.progress[i]" aria-valuemin="0" aria-valuemax="100"
+                   [style.width]="uploadStatus.progress[i] + '%'">
+                <div style="position: absolute; left: 0; right: 0">
+                  {{uploadStatus.progress[i]}}%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5> Song Type </h5>
+
+        <div class="song-type-form">
+          <div class="btn-group">
+            <button class="btn btn-secondary" type="button"
+                    [class.active]="songType === '~cover'"
+                    (click)="songType = '~cover'"> Cover </button>
+            <button class="btn btn-secondary" type="button"
+                    [class.active]="songType === '~original'"
+                    (click)="songType = '~original'"> Original </button>
+          </div>
+        </div>
+
+        <h5> Genre </h5>
+
+        <div class="tag-selector genre-form">
+          <ul>
+            <li *ngFor="let genre of genreSelections"
+                [class.active]="genres.has(genre.value)" (click)="toggleGenre(genre.value)">
+              {{genre.name}}
+            </li>
+          </ul>
+        </div>
+
+        <h5> Instrument </h5>
+
+        <div class="tag-selector instrument-form">
+          <ul>
+            <li *ngFor="let instrument of instrumentSelections"
+                [class.active]="instruments.has(instrument.value)" (click)="toggleInstrument(instrument.value)">
+              {{instrument.name}}
+            </li>
+          </ul>
+        </div>
+
+        <h5> Price </h5>
+
+        <div class="price-form">
+          <div class="input-group">
+            <input type="number" class="form-control" id="price" name="price"
+                   [(ngModel)]="post.price" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                MZK
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="col-6 px-0 write-form border-left">
+        <div class="title">
+          <input type="text" id="title" name="title" class="w-100" placeholder="Title"
+                 required [(ngModel)]="post.title">
+        </div>
+
+        <div class="description">
+          <div [froalaEditor]="options" [(froalaModel)]="post.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-floating">
+      <button mat-raised-button color="accent"> <i class="fa fa-pencil"></i> Upload </button>
+    </div>
+  </form>
+</section>

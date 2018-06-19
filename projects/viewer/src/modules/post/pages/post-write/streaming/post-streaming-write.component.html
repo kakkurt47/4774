@@ -2,14 +2,15 @@
   <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
     <div class="row h-100 mx-0">
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
-        <h5> Upload Music </h5>
+        <h5> Upload Streaming Music </h5>
 
-        <div class="upload-form">
+        <div class="file-select-form">
           <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
             <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet"
-                   ngFileSelect (change)="addFile($event)">
+                   ngFileSelect (change)="addFile($event)" accept=".mp3,.wav">
             <span class="btn-text">
-              Music File (PDF or MP3)
+              Choose audio file / Drag & drop <BR />
+              <small> Support extension: mp3, wav </small>
             </span>
           </label>
         </div>

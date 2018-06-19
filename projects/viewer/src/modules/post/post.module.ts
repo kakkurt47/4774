@@ -16,10 +16,15 @@ import {
 import {PostCommunityListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
 import {PostCommunityModifyComponent, PostMusicModifyComponent, PostVideoModifyComponent} from './pages/post-modify/post-modify';
 import {PostMusicWriteCompleteComponent} from './pages/post-write-complete/music/post-music-write-complete.component';
-import {PostCommunityWriteComponent, PostMusicWriteComponent, PostVideoWriteComponent} from './pages/post-write/post-write';
+import {
+  PostCommunityWriteComponent,
+  PostVideoWriteComponent
+} from './pages/post-write/post-write';
 import {AppPostRouteModule} from './post.routes';
 import {YoutubeVideoCellComponent} from './components/youtube-video-cell/youtube-video-cell.component';
 import {NgUploaderModule} from 'ngx-uploader';
+import { PostSheetMusicWriteComponent } from './pages/post-write/sheet/post-sheet-write.component';
+import { PostStreamingMusicWriteComponent } from './pages/post-write/streaming/post-streaming-write.component';
 
 @NgModule({
   imports: [
@@ -54,9 +59,11 @@ import {NgUploaderModule} from 'ngx-uploader';
 
     PostMusicListComponent,
     PostMusicItemDetailComponent,
-    PostMusicWriteComponent,
+    PostStreamingMusicWriteComponent,
     PostMusicModifyComponent,
     PostMusicWriteCompleteComponent,
+
+    PostSheetMusicWriteComponent,
 
     PostVideoListComponent,
     PostVideoItemDetailComponent,
