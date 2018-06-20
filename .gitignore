@@ -53,6 +53,7 @@ www/
 # Electron & Tsc compiled artifacts
 projects/core/**/*.js
 projects/core/**/*.js.map
+projects/core/package-lock.json
 projects/viewer/**/*.js.map
 projects/viewer/**/*.js
 main.js
