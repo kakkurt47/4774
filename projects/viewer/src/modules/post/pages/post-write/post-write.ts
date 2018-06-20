@@ -1,9 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BasePost, CommunityPost, VideoPost } from '@muzika/core';
-import { BaseComponent } from '@muzika/core/angular';
+import { BaseComponent, UserActions } from '@muzika/core/angular';
 import { AlertifyInstnace } from '@muzika/core/browser';
 import { FroalaEditorOptions } from '../../post.constant';
+import { Router } from '@angular/router';
 
 export class BasePostWriteComponent extends BaseComponent {
   options = FroalaEditorOptions;
@@ -12,8 +13,28 @@ export class BasePostWriteComponent extends BaseComponent {
     tags: []
   };
 
+  private _router: Router;
+
   constructor(injector: Injector) {
     super();
+    this._router = injector.get(Router);
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+
+    this._sub.push(
+      UserActions.currentUserObs
+        .subscribe(user => {
+          if (!user) {
+            this._router.navigateByUrl('/login', {
+              queryParams: {
+                redirectTo: this._router.url
+              }
+            });
+          }
+        })
+    );
   }
 
   addTag(name: string) {

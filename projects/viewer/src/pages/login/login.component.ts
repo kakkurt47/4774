@@ -1,6 +1,6 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MuzikaConsole, promisify } from '@muzika/core';
 import { BaseComponent, ExtendedWeb3, MuzikaWeb3Service, UserActions } from '@muzika/core/angular';
 
@@ -19,6 +19,7 @@ export class LoginPageComponent extends BaseComponent {
 
   constructor(private userActions: UserActions,
               private router: Router,
+              private route: ActivatedRoute,
               private web3Service: MuzikaWeb3Service,
               private web3: ExtendedWeb3) {
     super();
@@ -37,6 +38,8 @@ export class LoginPageComponent extends BaseComponent {
     this.userActions.login(this.selectedAccount).subscribe(
       user => {
         MuzikaConsole.log(user);
+        const redirectTo = this.route.snapshot.queryParams['redirectTo'] || '/';
+        this.router.navigateByUrl(redirectTo);
       },
       error => {
         MuzikaConsole.error(error);
