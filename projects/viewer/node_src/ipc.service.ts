@@ -151,6 +151,11 @@ class IpcMainService {
         });
 
       async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue, contractInfo)), (err) => {
+        // if failed to ready for uploading data
+        if (err) {
+          return ipcReject(err);
+        }
+
         // push meta data for contract description
         uploadQueue.push({
           path: '/muzika/meta.json',

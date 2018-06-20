@@ -2,6 +2,9 @@ import {FileUploadInterface, MuzikaFileUtil} from './ipfs-file';
 import {ProgressSet} from '../utils/progress';
 import {MuzikaContractSummary} from '@muzika/core';
 import * as path from 'path';
+import * as async from 'async';
+import * as imagemagick from 'imagemagick-native';
+import * as fs from 'fs';
 
 
 export class MuzikaCoverFile implements FileUploadInterface {
@@ -28,7 +31,9 @@ export class MuzikaCoverFile implements FileUploadInterface {
         .then(() => {
           this.totalProgress.start();
           callback();
-        });
+        }).catch((err) => {
+          callback(err);
+      });
     };
   }
 
@@ -45,14 +50,61 @@ export class MuzikaCoverFile implements FileUploadInterface {
         false, MuzikaFileUtil.COVER_FILE_DIRECTORY, this._fileBaseName
       );
 
-      uploadQueue.push({
-        path: coverImagePath,
-        content: MuzikaFileUtil.buildContent(this.filePath, null, this.totalProgress)
+      fs.readFile(this.filePath, (err, data) => {
+        if (err) {
+          return reject(err);
+        }
+
+        async.parallel([
+          (callback) => {
+            imagemagick.convert({
+              srcData: data,
+              format: 'png',
+              width: MuzikaFileUtil.COVER_IMAGE.RECT.WIDTH,
+              height: MuzikaFileUtil.COVER_IMAGE.RECT.HEIGHT
+            }, (convertErr, buffer) => {
+              if (convertErr) {
+                return callback(convertErr);
+              }
+
+              uploadQueue.push({
+                path: MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'rect.png'),
+                content: MuzikaFileUtil.buildContent(buffer, null, this.totalProgress)
+              });
+
+              summary.coverImage.rect = '/cover/rect.png';
+              callback();
+            });
+          },
+
+          (callback) => {
+            imagemagick.convert({
+              srcData: data,
+              format: 'png',
+              width: MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH,
+              height: MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT
+            }, (convertErr, buffer) => {
+              if (convertErr) {
+                return callback(convertErr);
+              }
+
+              uploadQueue.push({
+                path: MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'square.png'),
+                content: MuzikaFileUtil.buildContent(buffer, null, this.totalProgress)
+              });
+
+              summary.coverImage.square = '/cover/square.png';
+              callback();
+            });
+          }
+        ], (convertErr) => {
+          if (convertErr) {
+            return reject(convertErr);
+          }
+
+          return resolve();
+        });
       });
-
-      summary.coverImage.default = '/cover/' + this._fileBaseName;
-
-      resolve();
     });
   }
 

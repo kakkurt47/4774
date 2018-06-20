@@ -48,6 +48,18 @@ export class MuzikaFileUtil {
   public static PREVIEW_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/preview';
   public static COVER_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/cover';
 
+  public static COVER_IMAGE = {
+    SQUARE: {
+      WIDTH: 512,
+      HEIGHT: 512
+    },
+
+    RECT: {
+      WIDTH: 512,
+      HEIGHT: 288
+    }
+  };
+
   public static getFileType(filename: string) {
     const ext = path.extname(filename).toLowerCase();
     if (this.SHEET_EXTENSION.includes(ext)) {
