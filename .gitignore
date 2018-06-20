@@ -49,3 +49,11 @@ projects/viewer/node_src/**/*.js
 platforms/
 plugins/
 www/
+
+# Electron & Tsc compiled artifacts
+projects/core/**/*.js
+projects/core/**/*.js.map
+projects/viewer/**/*.js.map
+projects/viewer/**/*.js
+main.js
+main.js.map
