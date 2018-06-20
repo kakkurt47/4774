@@ -1,10 +1,10 @@
-import {ProgressSet, ProgressStream} from '../utils/progress';
-import {BlockUtil, MuzikaContractSummary} from '@muzika/core';
+import { ProgressSet, ProgressStream } from '../utils/progress';
 import * as path from 'path';
-import {BlockPaddingStream} from '../cipher/block-stream';
+import { BlockPaddingStream } from '../cipher/block-stream';
 import * as fs from 'fs';
-import {BufferStream} from '../utils/buffer-stream';
-import {AESCBCEncryptionStream} from '../cipher/aes-stream';
+import { BufferStream } from '../utils/buffer-stream';
+import { AESCBCEncryptionStream } from '../cipher/aes-stream';
+import { BlockUtil, MuzikaContractSummary } from '@muzika/core';
 
 /**
  * This class generates parameter in add function in js-ipfs node instance.

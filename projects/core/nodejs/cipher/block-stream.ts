@@ -2,9 +2,9 @@
  * Converts read data to block data.
  */
 
-import {BlockUtil} from '@muzika/core';
+import { BlockUtil } from '@muzika/core';
 import * as crypto from 'crypto';
-import {Transform} from 'stream';
+import { Transform } from 'stream';
 
 
 export class BlockPaddingStream extends Transform {

@@ -1,19 +1,15 @@
 import { BlockUtil, MuzikaConsole, MuzikaContractSummary, MuzikaFilePath } from '@muzika/core';
 import * as async from 'async';
-import {BrowserWindow, ipcMain} from 'electron';
+import { BrowserWindow, ipcMain } from 'electron';
 import * as fs from 'fs';
 import * as request from 'request';
-import {combineLatest} from 'rxjs';
+import { combineLatest } from 'rxjs';
 import * as tempfile from 'tempfile';
-import {IPCUtil} from '../shared/ipc-utils';
-import {BlockKey} from './block/block-key';
-import {electronEnvironment} from './environment';
-import {IpfsServiceInstance} from './ipfs.service';
-import {MuzikaMusicFile} from './file/muzika-music-file';
-import {StorageServiceInstance} from './storage.service';
-import {BufferStream} from './utils/buffer-stream';
-import {MuzikaCoverFile} from './file/muzika-cover-file';
-import {FileUploadInterface} from './file/ipfs-file';
+import { IPCUtil } from '../shared/ipc-utils';
+import { BlockKey, BufferStream, FileUploadInterface, MuzikaCoverFile, MuzikaMusicFile } from '@muzika/core/nodejs';
+import { electronEnvironment } from './environment';
+import { IpfsServiceInstance } from './ipfs.service';
+import { StorageServiceInstance } from './storage.service';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -95,8 +91,8 @@ class IpcMainService {
               width: 1024,
               height: 800,
               webPreferences: {
-                plugins: true,
-              },
+                plugins: true
+              }
             });
             pdfWindow.loadURL('file://' + filename);
 
@@ -109,103 +105,103 @@ class IpcMainService {
 
     this.eventHandlerWithProgress(IPCUtil.EVENT_FILE_UPLOAD,
       (ipcProgress, ipcResolve, ipcReject, _files: MuzikaFilePath[], encryption: boolean, meta?: any) => {
-      /**
-       * @param {Object[]} files Array of files having absolute path
-       * @param {boolean} encryption Whether encrypt or not. If true, do block encryption.
-       */
-      const files: MuzikaFilePath[] = _files;
-      const ipfs = IpfsServiceInstance;
-      const uploadQueue = [];
-      let uploadFiles: FileUploadInterface[] = [];
+        /**
+         * @param {Object[]} files Array of files having absolute path
+         * @param {boolean} encryption Whether encrypt or not. If true, do block encryption.
+         */
+        const files: MuzikaFilePath[] = _files;
+        const ipfs = IpfsServiceInstance;
+        const uploadQueue = [];
+        let uploadFiles: FileUploadInterface[] = [];
 
-      // TODO: initialize meta data
-      const contractInfo: MuzikaContractSummary = {
-        version: '1.0',
-        type: meta.type || 'sheet',
-        title: meta.title || '',
-        description: meta.description || '',
-        author: meta.author || '',
-        authorAddress: meta.authorAddress || '',
-        coverImage: {},
-        files: [],
-        videos: []
-      };
+        // TODO: initialize meta data
+        const contractInfo: MuzikaContractSummary = {
+          version: '1.0',
+          type: meta.type || 'sheet',
+          title: meta.title || '',
+          description: meta.description || '',
+          author: meta.author || '',
+          authorAddress: meta.authorAddress || '',
+          coverImage: {},
+          files: [],
+          videos: []
+        };
 
-      // if encryption parameter is set, generate random AES-256 key for encryption.
-      let aesKey = null;
-      if (encryption) {
-        aesKey = BlockUtil.generateAESKey();
-      }
-
-      // preprocess before uploading to IPFS.
-      uploadFiles = files.map(file => new MuzikaMusicFile(file.path, file.previews, aesKey));
-
-      // if cover image exists, push it.
-      if (meta.coverImagePath) {
-        uploadFiles.push(new MuzikaCoverFile(meta.coverImagePath));
-      }
-
-      combineLatest(...uploadFiles.map(file => file.totalProgress.onChange))
-        .subscribe(percents => {
-          ipcProgress(percents);
-        });
-
-      async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue, contractInfo)), (err) => {
-        // if failed to ready for uploading data
-        if (err) {
-          return ipcReject(err);
+        // if encryption parameter is set, generate random AES-256 key for encryption.
+        let aesKey = null;
+        if (encryption) {
+          aesKey = BlockUtil.generateAESKey();
         }
 
-        // push meta data for contract description
-        uploadQueue.push({
-          path: '/muzika/meta.json',
-          content: new BufferStream(Buffer.from(JSON.stringify(contractInfo)))
-        });
+        // preprocess before uploading to IPFS.
+        uploadFiles = files.map(file => new MuzikaMusicFile(file.path, file.previews, aesKey));
 
-        ipfs.put(uploadQueue)
-          .then((result) => {
-            MuzikaConsole.log(result);
-            // remove temporary files since finishing to upload files.
-            // this is called even if failed to upload.
-            uploadFiles.forEach((uploadFile) => {
-              uploadFile.removeTempFiles((rmTempErr) => {
-                if (rmTempErr) {
-                  MuzikaConsole.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
-                }
-              });
-            });
+        // if cover image exists, push it.
+        if (meta.coverImagePath) {
+          uploadFiles.push(new MuzikaCoverFile(meta.coverImagePath));
+        }
 
-            // find root object from uploaded objects in IPFS
-            const rootObject = result.find((object) => {
-              return object.path === 'muzika';
-            });
-
-            // get random peer from server
-            const uploadHelper = ipfs.getRandomPeer();
-
-            // request to a helper, which downloads the user's files, so helps to spread them out.
-            request.post(
-              {
-                url: `${uploadHelper}/file/${rootObject.hash}`,
-                json: true
-              },
-              (peerRequestError, res, body) => {
-                if (peerRequestError) {
-                  ipcReject(peerRequestError);
-                } else if (res.statusCode !== 200) {
-                  ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
-                } else {
-                  ipcResolve(1, rootObject.hash, aesKey);
-                }
-              }
-            );
-          })
-          .catch((ipfsErr) => {
-            MuzikaConsole.log('UPLOAD ERROR', ipfsErr);
-            ipcReject(ipfsErr);
+        combineLatest(...uploadFiles.map(file => file.totalProgress.onChange))
+          .subscribe(percents => {
+            ipcProgress(percents);
           });
+
+        async.parallel(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue, contractInfo)), (err) => {
+          // if failed to ready for uploading data
+          if (err) {
+            return ipcReject(err);
+          }
+
+          // push meta data for contract description
+          uploadQueue.push({
+            path: '/muzika/meta.json',
+            content: new BufferStream(Buffer.from(JSON.stringify(contractInfo)))
+          });
+
+          ipfs.put(uploadQueue)
+            .then((result) => {
+              MuzikaConsole.log(result);
+              // remove temporary files since finishing to upload files.
+              // this is called even if failed to upload.
+              uploadFiles.forEach((uploadFile) => {
+                uploadFile.removeTempFiles((rmTempErr) => {
+                  if (rmTempErr) {
+                    MuzikaConsole.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
+                  }
+                });
+              });
+
+              // find root object from uploaded objects in IPFS
+              const rootObject = result.find((object) => {
+                return object.path === 'muzika';
+              });
+
+              // get random peer from server
+              const uploadHelper = ipfs.getRandomPeer();
+
+              // request to a helper, which downloads the user's files, so helps to spread them out.
+              request.post(
+                {
+                  url: `${uploadHelper}/file/${rootObject.hash}`,
+                  json: true
+                },
+                (peerRequestError, res, body) => {
+                  if (peerRequestError) {
+                    ipcReject(peerRequestError);
+                  } else if (res.statusCode !== 200) {
+                    ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
+                  } else {
+                    ipcResolve(1, rootObject.hash, aesKey);
+                  }
+                }
+              );
+            })
+            .catch((ipfsErr) => {
+              MuzikaConsole.log('UPLOAD ERROR', ipfsErr);
+              ipcReject(ipfsErr);
+            });
+        });
       });
-    });
 
   }
 }

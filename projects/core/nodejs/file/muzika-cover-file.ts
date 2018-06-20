@@ -1,6 +1,6 @@
-import {FileUploadInterface, MuzikaFileUtil} from './ipfs-file';
-import {ProgressSet} from '../utils/progress';
-import {MuzikaContractSummary} from '@muzika/core';
+import { FileUploadInterface, MuzikaFileUtil } from './ipfs-file';
+import { ProgressSet } from '../utils';
+import { MuzikaContractSummary } from '@muzika/core';
 import * as path from 'path';
 import * as async from 'async';
 import * as imagemagick from 'imagemagick-native';
@@ -32,7 +32,7 @@ export class MuzikaCoverFile implements FileUploadInterface {
           this.totalProgress.start();
           callback();
         }).catch((err) => {
-          callback(err);
+        callback(err);
       });
     };
   }

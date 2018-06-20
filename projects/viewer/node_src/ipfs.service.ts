@@ -1,7 +1,7 @@
 import * as IPFS from 'ipfs';
 import * as request from 'request';
-import {Observable} from 'rxjs';
-import {electronEnvironment} from './environment';
+import { Observable } from 'rxjs';
+import { electronEnvironment } from './environment';
 import { MuzikaConsole } from '@muzika/core';
 
 export class IpfsService {

@@ -27,7 +27,10 @@
       "crypto": ["../../node_modules/crypto-browserify/index.js"],
       "@muzika/core": ["../core/public_api.ts"],
       "@muzika/core/angular": ["../core/angular/public_api.ts"],
-      "@muzika/core/browser": ["../core/browser/public_api.ts"]
+      "@muzika/core/browser": ["../core/browser/public_api.ts"],
+      "@muzika/core/nodejs": [
+        "../core/nodejs/public_api.ts"
+      ]
     }
   },
   "exclude": [

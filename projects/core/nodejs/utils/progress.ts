@@ -1,5 +1,5 @@
-import {combineLatest, Subscription, BehaviorSubject, Observable} from 'rxjs';
-import {Transform} from 'stream';
+import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
+import { Transform } from 'stream';
 
 
 /**
