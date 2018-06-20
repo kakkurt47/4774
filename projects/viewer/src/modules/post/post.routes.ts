@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostCommunityListComponent, PostMusicListComponent, PostVideoListComponent } from './pages/post-list/post-list';
 import {
   PostCommunityItemDetailComponent,
-  PostMusicItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
 import { PostMusicWriteCompleteComponent } from './pages/post-write-complete/music/post-music-write-complete.component';
@@ -16,6 +15,8 @@ import { PostSheetMusicWriteComponent } from './pages/post-write/sheet/post-shee
 import { PostStreamingMusicWriteComponent } from './pages/post-write/streaming/post-streaming-write.component';
 import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.component';
 import { PostMyStreamingsComponent } from './pages/post-my-streamings/post-my-streamings.component';
+import { PostStreamingItemDetailComponent } from './pages/post-item-detail/music/post-streaming-item-detail.component';
+import { PostSheetItemDetailComponent } from './pages/post-item-detail/sheets/post-sheet-item-detail.component';
 
 const routes: Routes = [
   { path: 'board/community/write', component: PostCommunityWriteComponent },
@@ -38,9 +39,14 @@ const routes: Routes = [
     children: [{ path: ':id', component: PostCommunityItemDetailComponent }]
   },
   {
-    path: 'board/music',
+    path: 'board/streaming',
     component: PostMusicListComponent,
-    children: [{ path: ':id', component: PostMusicItemDetailComponent }]
+    children: [{ path: ':id', component: PostStreamingItemDetailComponent }]
+  },
+  {
+    path: 'board/sheet',
+    component: PostMusicListComponent,
+    children: [{ path: ':id', component: PostSheetItemDetailComponent }]
   },
   {
     path: 'board/video',

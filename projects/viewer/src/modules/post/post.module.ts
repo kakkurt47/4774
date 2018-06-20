@@ -10,7 +10,6 @@ import {PostListItemComponent} from './components/post-list-item/post-list-item.
 import {PostMusicComponent} from './components/post-music/post-music.component';
 import {
   PostCommunityItemDetailComponent,
-  PostMusicItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
 import {PostCommunityListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
@@ -27,6 +26,8 @@ import { PostSheetMusicWriteComponent } from './pages/post-write/sheet/post-shee
 import { PostStreamingMusicWriteComponent } from './pages/post-write/streaming/post-streaming-write.component';
 import { PostMyStreamingsComponent } from './pages/post-my-streamings/post-my-streamings.component';
 import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.component';
+import { PostStreamingItemDetailComponent } from './pages/post-item-detail/music/post-streaming-item-detail.component';
+import { PostSheetItemDetailComponent } from './pages/post-item-detail/sheets/post-sheet-item-detail.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.com
     PostMusicComponent,
     PostItemDetailHeaderComponent,
 
+    PostSheetItemDetailComponent,
     PostCommentComponent,
 
     YoutubeVideoCellComponent,
@@ -60,7 +62,7 @@ import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.com
     PostCommunityWriteComponent,
 
     PostMusicListComponent,
-    PostMusicItemDetailComponent,
+    PostStreamingItemDetailComponent,
     PostStreamingMusicWriteComponent,
     PostMusicModifyComponent,
     PostMusicWriteCompleteComponent,
@@ -69,6 +71,7 @@ import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.com
 
     PostMyStreamingsComponent,
     PostMySheetsComponent,
+
 
     PostVideoListComponent,
     PostVideoItemDetailComponent,
