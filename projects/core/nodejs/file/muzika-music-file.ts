@@ -2,7 +2,6 @@ import { MuzikaConsole, MuzikaContractSummary } from '@muzika/core';
 import * as async from 'async';
 import * as ffmpegStatic from 'ffmpeg-static';
 import * as ffprobeStatic from 'ffprobe-static';
-import * as ffmpeg from 'fluent-ffmpeg';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
@@ -10,6 +9,7 @@ import { ManualProgress, ProgressSet } from '../utils/progress';
 import * as imagemagick from 'imagemagick-native';
 import { FileUploadInterface, MuzikaFileUtil } from './ipfs-file';
 
+const ffmpeg = require('fluent-ffmpeg');
 
 /**
  * Utils for streaming conversion. It defines several quality of options of streaming convertion for audio and video.
