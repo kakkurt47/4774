@@ -28,16 +28,16 @@
         </li>
       </ul>
       <ng-container *ngIf="currentUser; else loggedInBlock">
-        <div class="ml-auto">
+        <div class="ml-auto" routerLink="/settings">
           <div class="user-profile-img">
             <img src="assets/person-1.png">
           </div>
         </div>
-        <div class="pl-3">
+        <div class="pl-3" routerLink="/settings">
           <div class="font-weight-bold user-name">
             {{currentUser.name || 'Unnamed'}}
           </div>
-          <div class="wallet">
+          <div class="wallet" routerLink="/settings">
             {{currentUser.address | slice:0:8}}...{{currentUser.address | slice:-6}}
           </div>
         </div>

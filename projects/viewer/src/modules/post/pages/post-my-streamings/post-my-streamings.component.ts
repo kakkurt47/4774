@@ -25,4 +25,10 @@ export class PostMyStreamingsComponent extends BaseComponent {
     //   })
     // );
   }
+
+  changePage(page: number) {
+    this.postActions.loadMyPosts('music', `${page}`, {
+      type: 'streaming'
+    });
+  }
 }

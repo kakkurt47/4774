@@ -25,6 +25,13 @@ export class PostMySheetsComponent extends BaseComponent {
     //
     //   })
     // );
+    this.changePage(1);
+  }
+
+  changePage(page: number) {
+    this.postActions.loadMyPosts('music', `${page}`, {
+      type: 'sheet'
+    });
   }
 }
 

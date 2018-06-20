@@ -32,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ElectronService } from '../providers/electron.service';
 import { MuzikaConsole } from '@muzika/core';
+import { UserSettingsComponent } from '../pages/settings/settings.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,6 +57,7 @@ declare const document;
     /* Page Components */
     MainPageComponent,
     LoginPageComponent,
+    UserSettingsComponent,
     IPFSTestPageComponent
   ],
   imports: [
