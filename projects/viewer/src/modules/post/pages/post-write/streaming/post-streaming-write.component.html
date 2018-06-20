@@ -7,7 +7,7 @@
         <div class="file-select-form">
           <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
             <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet"
-                   ngFileSelect (change)="addFile($event)" accept=".mp3,.wav">
+                   ngFileSelect (change)="addFile($event.target.files[0])" accept=".mp3,.wav">
             <span class="btn-text">
               Choose audio file / Drag & drop <BR />
               <small> Support extension: mp3, wav </small>
@@ -23,14 +23,14 @@
                 {{file.file.name}}
               </span>
 
-              <label class="btn btn-primary btn-sm">
+              <button type="button" class="btn btn-primary btn-sm">
                 <input type="file" [id]="'upload-preview' + i" class="upload-sheet d-none" name="upload-sheet"
                        ngFileSelect (change)="addPreview(i, $event)">
                 <span class="btn-text">
                   <i class="fa fa-plus"></i>
                   Add Preview
                 </span>
-              </label>
+              </button>
             </div>
 
             <div *ngFor="let preview of file.previews; let i = index" class="preview-item pl-1">
@@ -102,6 +102,7 @@
           </div>
         </div>
       </section>
+
       <div class="col-6 px-0 write-form border-left">
         <div class="title">
           <input type="text" id="title" name="title" class="w-100" placeholder="Title"

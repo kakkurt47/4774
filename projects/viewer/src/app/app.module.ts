@@ -1,6 +1,6 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Inject, NgModule, PLATFORM_ID } from '@angular/core';
+import { Inject, NgModule, NgZone, PLATFORM_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
@@ -108,6 +108,7 @@ declare const document;
 export class AppModule {
   constructor(ipcService: IpcRendererService,
               electronService: ElectronService,
+              private zone: NgZone,
               @Inject(PLATFORM_ID) private platformId: string) {
     ipcService.init();
 
@@ -118,7 +119,9 @@ export class AppModule {
 
       document.body.ondrop = (ev) => {
         MuzikaConsole.log(ev.dataTransfer.files[0].path + ' File selected');
-        electronService.onDragFile.next(ev.dataTransfer.files[0]);
+        this.zone.run(() => {
+          electronService.onDragFile.emit(ev.dataTransfer.files[0]);
+        });
         ev.preventDefault();
       };
     }

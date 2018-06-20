@@ -1,5 +1,5 @@
-import { Component, ElementRef, Inject, Injector, PLATFORM_ID } from '@angular/core';
-import { BasePost, MusicContract, MusicPost, MuzikaConsole, MuzikaFilePath, unitDown, User } from '@muzika/core';
+import { Component, Injector } from '@angular/core';
+import { BasePost, MusicContract, MusicPost, MuzikaFilePath, unitDown, User } from '@muzika/core';
 import { GenreSelections, InstrumentSelections } from '../../../post.constant';
 import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
 import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 import { AlertifyInstnace } from '@muzika/core/browser';
 import { IPCUtil } from '../../../../../../shared/ipc-utils';
 import { BasePostWriteComponent } from '../post-write';
-import { isPlatformBrowser } from '@angular/common';
+import { ElectronService } from '../../../../../providers/electron.service';
 
 @Component({
   selector: 'app-post-sheet-write',
@@ -50,8 +50,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
               private contractService: MuzikaContractService,
               private router: Router,
               private postActions: PostActions,
-              private elementRef: ElementRef,
-              @Inject(PLATFORM_ID) private platformId: string) {
+              private electronService: ElectronService) {
     super(injector);
   }
 
@@ -59,23 +58,19 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
     super.ngOnInit();
 
     this._sub.push(
+      this.electronService.onDragFile
+        .subscribe(file => {
+          console.log('addFile', file);
+          this.addFile(file);
+        })
+    );
+
+    this._sub.push(
       UserActions.currentUserObs.subscribe(user => {
         this.currentUser = user;
       })
     );
 
-    if (isPlatformBrowser(this.platformId)) {
-      this.elementRef.nativeElement
-        .ondrop = (e) => {
-        e.preventDefault();
-
-        for (const f of e.dataTransfer.files) {
-          MuzikaConsole.log('File(s) you dragged here: ', f.path);
-        }
-
-        return false;
-      };
-    }
   }
 
   toggleGenre(value: string) {
@@ -150,11 +145,11 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
     return prepared;
   }
 
-  addFile($event: any) {
-    if (this.files.some(file => file.file.name === $event.target.files[0].name)) {
+  addFile(selectedFile: File) {
+    if (this.files.some(file => file.file.name === selectedFile.name)) {
       AlertifyInstnace.alert('File is already added');
     } else {
-      this.files.push({ file: $event.target.files[0], previews: [] });
+      this.files.push({ file: selectedFile, previews: [] });
     }
   }
 

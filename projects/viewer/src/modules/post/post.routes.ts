@@ -14,6 +14,8 @@ import {
 import { PostCommunityModifyComponent, PostMusicModifyComponent, PostVideoModifyComponent } from './pages/post-modify/post-modify';
 import { PostSheetMusicWriteComponent } from './pages/post-write/sheet/post-sheet-write.component';
 import { PostStreamingMusicWriteComponent } from './pages/post-write/streaming/post-streaming-write.component';
+import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.component';
+import { PostMyStreamingsComponent } from './pages/post-my-streamings/post-my-streamings.component';
 
 const routes: Routes = [
   { path: 'board/community/write', component: PostCommunityWriteComponent },
@@ -26,6 +28,9 @@ const routes: Routes = [
   { path: 'board/community/modify', component: PostCommunityModifyComponent },
   { path: 'board/music/modify', component: PostMusicModifyComponent },
   { path: 'board/video/modify', component: PostVideoModifyComponent },
+
+  { path: 'board/sheet/my', component: PostMySheetsComponent },
+  { path: 'board/streaming/my', component: PostMyStreamingsComponent },
 
   {
     path: 'board/community',

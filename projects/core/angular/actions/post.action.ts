@@ -1,17 +1,17 @@
-import {NgRedux} from '@angular-redux/store';
-import {isPlatformBrowser} from '@angular/common';
-import {HttpErrorResponse} from '@angular/common/http';
-import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
+import { isPlatformBrowser } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BasePost, InfPaginationResult, PaginationResult, PostActionType, IAppState, BoardType, MuzikaConsole } from '@muzika/core';
-import {Observable, from} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {APIConfig} from '../config/api.config';
-import {ParamsBuilder} from '../config/params.builder';
-import {MuzikaCoin} from '../contracts/interface/MuzikaCoin';
-import {MuzikaPaperContract} from '../contracts/interface/MuzikaPaperContract';
-import {UserActions} from './user.action';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { APIConfig } from '../config/api.config';
+import { ParamsBuilder } from '../config/params.builder';
+import { MuzikaCoin } from '../contracts/interface/MuzikaCoin';
+import { MuzikaPaperContract } from '../contracts/interface/MuzikaPaperContract';
+import { UserActions } from './user.action';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class PostActions {
 
   constructor(private store: NgRedux<IAppState>,
@@ -71,13 +71,13 @@ export class PostActions {
         contractAddress,
         price,
         '0x',
-        {from: buyer}
+        { from: buyer }
       );
       return await coin.increaseApprovalAndCall.sendTransaction(
         contractAddress,
         price,
         '0x',
-        {from: buyer, gas: estimateGas + 30000}
+        { from: buyer, gas: estimateGas + 30000 }
       );
     };
 
@@ -99,14 +99,14 @@ export class PostActions {
   resetPosts(boardType: string) {
     this.store.dispatch({
       type: PostActionType.RESET_POSTS,
-      payload: {boardType}
+      payload: { boardType }
     });
   }
 
   resetInfPosts(boardType: string) {
     this.store.dispatch({
       type: PostActionType.RESET_INF_POSTS,
-      payload: {boardType}
+      payload: { boardType }
     });
   }
 
@@ -146,13 +146,14 @@ export class PostActions {
 
   loadMyPosts(boardType: string, page: string, params: Object) {
     params['page'] = page;
-    this.requestPosts(boardType, PostActionType.INSERT_POSTS_LIST, params, true);
+    params['onlyUser'] = true;
+    this.requestPosts(boardType, PostActionType.INSERT_POSTS_LIST, params);
   }
 
   loadAdditional(boardType: string, boardID: number, is_modify: boolean): Observable<any> {
     return this.apiConfig
       .get(`/board/${boardType}/${boardID}/additional`, {
-        params: ParamsBuilder.from({is_modify})
+        params: ParamsBuilder.from({ is_modify })
       })
       .pipe(
         map(data => {
@@ -171,11 +172,12 @@ export class PostActions {
     this.store.dispatch({
       type: PostActionType.SAVE_POSTS,
       boardType, update_column,
-      posts: [post],
+      posts: [post]
     });
   }
 
-  private requestPosts(boardType: string, dispatchType: string, params: Object, onlyUser?: boolean) {
+  private requestPosts(boardType: string, dispatchType: string, params: Object) {
+    const onlyUser = params['onlyUser'];
     const frontURL = (onlyUser) ? '/user' : '';
 
     this.apiConfig

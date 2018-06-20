@@ -35,13 +35,12 @@ export class MuzikaConsole {
 
     const metaString = MuzikaLoggerUtils.prepareMetaString(timestamp, logLevelString, callerDetails.fileName, callerDetails.lineNumber);
 
-
     if (MuzikaConsole._isElectronBrowser()) {
       const color = MuzikaLoggerUtils.getChalkColor(level);
-      console.log(color(metaString, message), ...(additional || []));
+      this.log(color(metaString, message), ...(additional || []));
     } else {
       const color = MuzikaLoggerUtils.getColor(level);
-      console.log(`%c${metaString}`, `color:${color}`, message, ...(additional || []));
+      this.log(`%c${metaString}`, `color:${color}`, message, ...(additional || []));
     }
   }
 
@@ -50,26 +49,26 @@ export class MuzikaConsole {
   }
 
   public static trace(message, ...additional: any[]): void {
-    MuzikaConsole._log(MuzikaLoggerLevel.TRACE, message, additional);
+    MuzikaConsole._log.apply(console, [MuzikaLoggerLevel.TRACE, message, additional]);
   }
 
   public static debug(message, ...additional: any[]): void {
-    MuzikaConsole._log(MuzikaLoggerLevel.DEBUG, message, additional);
+    MuzikaConsole._log.apply(console, [MuzikaLoggerLevel.DEBUG, message, additional]);
   }
 
   public static info(message, ...additional: any[]): void {
-    MuzikaConsole._log(MuzikaLoggerLevel.INFO, message, additional);
+    MuzikaConsole._log.apply(console, [MuzikaLoggerLevel.INFO, message, additional]);
   }
 
   public static log(message, ...additional: any[]): void {
-    MuzikaConsole._log(MuzikaLoggerLevel.LOG, message, additional);
+    MuzikaConsole._log.apply(console, [MuzikaLoggerLevel.LOG, message, additional]);
   }
 
   public static warn(message, ...additional: any[]): void {
-    MuzikaConsole._log(MuzikaLoggerLevel.WARN, message, additional);
+    MuzikaConsole._log.apply(console, [MuzikaLoggerLevel.WARN, message, additional]);
   }
 
   public static error(message, ...additional: any[]): void {
-    MuzikaConsole._log(MuzikaLoggerLevel.ERROR, message, additional);
+    MuzikaConsole._log.apply(console, [MuzikaLoggerLevel.ERROR, message, additional]);
   }
 }

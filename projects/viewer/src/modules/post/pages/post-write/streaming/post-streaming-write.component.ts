@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { AlertifyInstnace } from '@muzika/core/browser';
 import { IPCUtil } from '../../../../../../shared/ipc-utils';
 import { BasePostWriteComponent } from '../post-write';
+import { ElectronService } from '../../../../../providers/electron.service';
 
 @Component({
   selector: 'app-post-music-write',
@@ -48,12 +49,21 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
               private ipcRendererService: IpcRendererService,
               private contractService: MuzikaContractService,
               private router: Router,
+              private electronService: ElectronService,
               private postActions: PostActions) {
     super(injector);
   }
 
   ngOnInit() {
     super.ngOnInit();
+
+    this._sub.push(
+      this.electronService.onDragFile
+        .subscribe(file => {
+          console.log('addFile', file);
+          this.addFile(file);
+        })
+    );
 
     this._sub.push(
       UserActions.currentUserObs.subscribe(user => {
@@ -128,11 +138,11 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
     return prepared;
   }
 
-  addFile($event: any) {
-    if (this.files.some(file => file.file.name === $event.target.files[0].name)) {
+  addFile(selectedFile: File) {
+    if (this.files.some(file => file.file.name === selectedFile.name)) {
       AlertifyInstnace.alert('File is already added');
     } else {
-      this.files.push({ file: $event.target.files[0], previews: [] });
+      this.files.push({ file: selectedFile, previews: [] });
     }
   }
 

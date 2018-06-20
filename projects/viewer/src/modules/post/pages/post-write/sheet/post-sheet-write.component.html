@@ -7,7 +7,7 @@
         <div class="file-select-form">
           <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
             <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet"
-                     ngFileSelect (change)="addFile($event)" accept=".pdf">
+                     ngFileSelect (change)="addFile($event.target.files[0])" accept=".pdf">
             <span class="btn-text">
               Choose pdf file / Drag & drop <BR />
               <small> Support extension: pdf </small>

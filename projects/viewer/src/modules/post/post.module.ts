@@ -25,6 +25,8 @@ import {YoutubeVideoCellComponent} from './components/youtube-video-cell/youtube
 import {NgUploaderModule} from 'ngx-uploader';
 import { PostSheetMusicWriteComponent } from './pages/post-write/sheet/post-sheet-write.component';
 import { PostStreamingMusicWriteComponent } from './pages/post-write/streaming/post-streaming-write.component';
+import { PostMyStreamingsComponent } from './pages/post-my-streamings/post-my-streamings.component';
+import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.component';
 
 @NgModule({
   imports: [
@@ -64,6 +66,9 @@ import { PostStreamingMusicWriteComponent } from './pages/post-write/streaming/p
     PostMusicWriteCompleteComponent,
 
     PostSheetMusicWriteComponent,
+
+    PostMyStreamingsComponent,
+    PostMySheetsComponent,
 
     PostVideoListComponent,
     PostVideoItemDetailComponent,
