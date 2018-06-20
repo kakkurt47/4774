@@ -1,13 +1,12 @@
 import { NgRedux, select } from '@angular-redux/store';
 import {Injectable, Inject} from '@angular/core';
-import {MuzikaPlatformType, User, IAppState, UserActionType, promisify} from '@muzika/core';
+import {MuzikaPlatformType, User, IAppState, UserActionType, promisify, ERR} from '@muzika/core';
 import { Observable, from, of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import {APIConfig} from '../config/api.config';
 import {PLATFORM_TYPE_TOKEN} from '../config/injection.tokens';
 import {ExtendedWeb3} from '../providers/extended-web3.provider';
 import {LocalStorage} from '../providers/local-storage.service';
-import {ERR} from '../../common/error';
 
 @Injectable({providedIn: 'root'})
 export class UserActions {
@@ -83,6 +82,12 @@ export class UserActions {
         return token;
       }),
       concatMap(token => this.refreshMe())
+    );
+  }
+
+  modifyUserInfo(userInfo: User): Observable<User> {
+    return this.apiConfig.put<string>(`/user`, userInfo).pipe(
+      concatMap(response => this.refreshMe())
     );
   }
 
