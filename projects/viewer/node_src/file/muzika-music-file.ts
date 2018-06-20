@@ -196,10 +196,11 @@ export class MuzikaMusicFile implements FileUploadInterface {
       if (this.preview.length) {
         // if preview exists, only upload the preview file
         this.preview.forEach((preview, idx) => {
+          const previewFileExt = path.extname(preview);
           uploadQueue.push({
             // Never encrypt preview files even though the cipher key taken
             path: MuzikaFileUtil.buildFilePath(
-              false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}${this._fileExt}`
+              false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}${previewFileExt}`
             ),
             content: this._buildContent(preview, false)
           });
