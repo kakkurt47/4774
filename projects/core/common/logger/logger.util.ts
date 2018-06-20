@@ -1,11 +1,12 @@
 import { MuzikaLoggerLevel } from './logger.level';
+import chalk from 'chalk';
 
 export class MuzikaLoggerUtils {
 
   static prepareMetaString(timestamp: string, logLevel: string, fileName: string, lineNumber: string) {
     const fileDetails = fileName ? ` [${fileName}:${lineNumber}]` : '';
 
-    return `${timestamp} ${logLevel}${fileDetails}`;
+    return `[${timestamp}] ${logLevel}${fileDetails}`;
   }
 
   static getColor(level: MuzikaLoggerLevel): 'blue' | 'teal' | 'gray' | 'red' | undefined {
@@ -26,6 +27,23 @@ export class MuzikaLoggerUtils {
     }
   }
 
+  static getChalkColor(level: MuzikaLoggerLevel): any {
+    switch (level) {
+      case MuzikaLoggerLevel.TRACE:
+        return chalk.blue;
+      case MuzikaLoggerLevel.DEBUG:
+        return chalk.yellow;
+      case MuzikaLoggerLevel.INFO:
+      case MuzikaLoggerLevel.LOG:
+        return chalk.gray;
+      case MuzikaLoggerLevel.WARN:
+      case MuzikaLoggerLevel.ERROR:
+        return chalk.red;
+      case MuzikaLoggerLevel.OFF:
+      default:
+        return chalk.white;
+    }
+  }
 
   /**
    *  This allows us to see who called the logger
@@ -57,9 +75,9 @@ export class MuzikaLoggerUtils {
 
   static prepareMessage(message) {
     try {
-      if (typeof message !== 'string' && !(message instanceof Error)) {
-        message = JSON.stringify(message, null, 2);
-      }
+      // if (typeof message !== 'string' && !(message instanceof Error)) {
+      //   message = JSON.stringify(message, null, 2);
+      // }
     } catch (e) {
       // additional = [message, ...additional];
       message = 'The provided "message" value could not be parsed with JSON.stringify().';

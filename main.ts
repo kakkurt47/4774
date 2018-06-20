@@ -6,6 +6,7 @@ import {IpcWalletServiceInstance} from './projects/viewer/node_src/ipc-wallet.se
 import {IpcMainServiceInstance} from './projects/viewer/node_src/ipc.service';
 import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
 import {StorageServiceInstance} from './projects/viewer/node_src/storage.service';
+import { MuzikaConsole } from './projects/core/common';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -37,6 +38,8 @@ function createWindow() {
 
   // disable menu
   win.setMenu(null);
+
+  MuzikaConsole.info('test');
 
   if (serve) {
     require('electron-reload')(__dirname, {

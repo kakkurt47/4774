@@ -1,6 +1,7 @@
 import {isPlatformBrowser} from '@angular/common';
 import {Component, Inject, PLATFORM_ID, AfterViewInit} from '@angular/core';
 import {BaseComponent} from '@muzika/core/angular';
+import { MuzikaConsole } from '@muzika/core';
 
 declare const jQuery;
 
@@ -106,6 +107,7 @@ export class IntroRoadmapComponent extends BaseComponent implements AfterViewIni
 
   private initTimeline(timelines) {
     console.log(timelines);
+    MuzikaConsole.log(timelines);
     timelines.each((timelineEvent, element) => {
       const timeline = jQuery(element),
         timelineComponents = {};

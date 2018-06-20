@@ -11,35 +11,11 @@ export const Levels = [
   'OFF'
 ];
 
-export class MuzikaLogger {
+export class MuzikaConsole {
   constructor(private accessLevel: MuzikaLoggerLevel) {
   }
 
-  public trace(message, ...additional: any[]): void {
-    this._log(MuzikaLoggerLevel.TRACE, message, additional);
-  }
-
-  public debug(message, ...additional: any[]): void {
-    this._log(MuzikaLoggerLevel.DEBUG, message, additional);
-  }
-
-  public info(message, ...additional: any[]): void {
-    this._log(MuzikaLoggerLevel.INFO, message, additional);
-  }
-
-  public log(message, ...additional: any[]): void {
-    this._log(MuzikaLoggerLevel.LOG, message, additional);
-  }
-
-  public warn(message, ...additional: any[]): void {
-    this._log(MuzikaLoggerLevel.WARN, message, additional);
-  }
-
-  public error(message, ...additional: any[]): void {
-    this._log(MuzikaLoggerLevel.ERROR, message, additional);
-  }
-
-  private _log(level: MuzikaLoggerLevel, message, additional: any[] = [], logOnServer: boolean = true): void {
+  public static _log(level: MuzikaLoggerLevel, message, additional: any[] = []): void {
     if (!message) {
       return;
     }
@@ -48,32 +24,52 @@ export class MuzikaLogger {
 
     message = MuzikaLoggerUtils.prepareMessage(message);
 
-    // only use validated parameters for HTTP requests
-    const validatedAdditionalParameters = MuzikaLoggerUtils.prepareAdditionalParameters(additional);
-
     const timestamp = new Date().toISOString();
 
     const callerDetails = MuzikaLoggerUtils.getCallerDetails();
 
     // if no message or the log level is less than the environ
-    if (level < this.accessLevel) {
+    if (level < MuzikaLoggerLevel.LOG) {
       return;
     }
 
     const metaString = MuzikaLoggerUtils.prepareMetaString(timestamp, logLevelString, callerDetails.fileName, callerDetails.lineNumber);
 
-    const color = MuzikaLoggerUtils.getColor(level);
 
-    if (this._isElectronBrowser()) {
-      console.log(metaString, message, ...(additional || []));
+    if (MuzikaConsole._isElectronBrowser()) {
+      const color = MuzikaLoggerUtils.getChalkColor(level);
+      console.log(color(metaString, message), ...(additional || []));
     } else {
+      const color = MuzikaLoggerUtils.getColor(level);
       console.log(`%c${metaString}`, `color:${color}`, message, ...(additional || []));
     }
   }
 
-  private _isElectronBrowser() {
-    return process.type === 'browser';
+  public static _isElectronBrowser() {
+    return process && (process as any).type === 'browser';
+  }
+
+  public static trace(message, ...additional: any[]): void {
+    MuzikaConsole._log(MuzikaLoggerLevel.TRACE, message, additional);
+  }
+
+  public static debug(message, ...additional: any[]): void {
+    MuzikaConsole._log(MuzikaLoggerLevel.DEBUG, message, additional);
+  }
+
+  public static info(message, ...additional: any[]): void {
+    MuzikaConsole._log(MuzikaLoggerLevel.INFO, message, additional);
+  }
+
+  public static log(message, ...additional: any[]): void {
+    MuzikaConsole._log(MuzikaLoggerLevel.LOG, message, additional);
+  }
+
+  public static warn(message, ...additional: any[]): void {
+    MuzikaConsole._log(MuzikaLoggerLevel.WARN, message, additional);
+  }
+
+  public static error(message, ...additional: any[]): void {
+    MuzikaConsole._log(MuzikaLoggerLevel.ERROR, message, additional);
   }
 }
-
-export const MuzikaConsole = new MuzikaLogger(MuzikaLoggerLevel.LOG);
