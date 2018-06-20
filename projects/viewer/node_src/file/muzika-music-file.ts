@@ -62,6 +62,7 @@ export class MuzikaMusicFile implements FileUploadInterface {
   private _fileExt: string;
   private _streamProgress: ManualProgress;
   private _uploadProgress: ProgressSet;
+  private _previewGenProgress: ManualProgress;
 
   /**
    * Constructs an instance for building parameters for uploading music files to IPFS.
@@ -86,11 +87,19 @@ export class MuzikaMusicFile implements FileUploadInterface {
       this._streamProgress = new ManualProgress();
       this.totalProgress.registerProgress(this._streamProgress);
     }
+
+    // if preview file exists, register preview progress.
+    if (this._needPreviewGeneration()) {
+      // if it has preview, add progress for preview.
+      this._previewGenProgress = new ManualProgress(0.5);
+      this.totalProgress.registerProgress(this._previewGenProgress);
+    }
   }
 
   ready(uploadQueue: any[], summary: MuzikaContractSummary) {
     return (callback) => {
       this.totalProgress.start();
+
       this._readyOriginFile(uploadQueue, summary);
       this._readyPreviewFile(uploadQueue).then(() => {
         // if the file is audio or video file like mp3, mp4, or etc, generate streaming files.
@@ -202,6 +211,8 @@ export class MuzikaMusicFile implements FileUploadInterface {
           return resolve(null);
         }
 
+        // TODO: need to track preview generation progress correctly.
+        this._previewGenProgress.setProgressPercent(0.2);
         imagemagick.generatePreview({
           pdfPath: this.filePath
         }, (err, previewPNGImages) => {
@@ -216,11 +227,22 @@ export class MuzikaMusicFile implements FileUploadInterface {
               ),
               content: this._buildContent(previewImage, false)
             });
+
+            this._previewGenProgress.setProgressPercent(1.0);
             return resolve(null);
           });
         });
       }
     });
+  }
+
+  /**
+   * Returns whether this file need to be generated previews.
+   *
+   * @returns {boolean} whether this file need to be generated previews.
+   */
+  private _needPreviewGeneration() {
+    return this.preview.length === 0 && this._fileExt.toLowerCase() === '.pdf';
   }
 
   /**
