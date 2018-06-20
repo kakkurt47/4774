@@ -7,6 +7,7 @@ import {APIConfig} from '../config/api.config';
 import {PLATFORM_TYPE_TOKEN} from '../config/injection.tokens';
 import {ExtendedWeb3} from '../providers/extended-web3.provider';
 import {LocalStorage} from '../providers/local-storage.service';
+import {ERR} from '../../common/error';
 
 @Injectable({providedIn: 'root'})
 export class UserActions {
@@ -61,10 +62,10 @@ export class UserActions {
         return user;
       }),
       catchError(err => {
-        if (err.error && err.error.state === 402) { // Invalid Signature
+        if (err.error && err.error.state === ERR.CODE.INVALID_SIGNATURE) {
           this.localStorage.removeItem('token');
         }
-        if (err.status === 406) { // Authorization failed
+        if (err.status === ERR.CODE.AUTHENTICATION_FAILED) {
           this.localStorage.removeItem('token');
         }
         return of(null);
