@@ -5,7 +5,7 @@ import {BaseComponent, PostActions} from '@muzika/core/angular';
 import {Observable} from 'rxjs';
 import {CommunityPostsMock, VideoPostsMock} from '../../../../mock/posts';
 import {CommunityTagsMock, VideoTagsMock} from '../../../../mock/tags';
-import {GenreSelections} from '../../post.constant';
+import {SheetMusicGenreSelections} from '../../post.constant';
 
 @Component({
   selector: 'app-post-list-community',
@@ -24,7 +24,7 @@ export class PostCommunityListComponent {
   styleUrls: ['./post-list.scss', './music/post-music.component.scss']
 })
 export class PostMusicListComponent extends BaseComponent {
-  tags: { name: string, value: string }[] = GenreSelections;
+  tags: { name: string, value: string }[] = SheetMusicGenreSelections;
 
   @select(['post', 'posts', 'music'])
   postsObs: Observable<PaginationResult<MusicPost>>;

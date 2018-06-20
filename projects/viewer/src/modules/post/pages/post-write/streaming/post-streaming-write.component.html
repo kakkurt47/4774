@@ -4,15 +4,15 @@
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
         <h5> Upload Streaming Music </h5>
 
-        <div class="file-select-form">
-          <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
-            <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet"
-                   ngFileSelect (change)="addFile($event.target.files[0])" accept=".mp3,.wav">
+        <div class="file-select-form" (click)="fileSelector.click();">
+          <div class="upload-btn" [class.disabled]="uploadStatus?.status === 'uploading'">
+            <input type="file" id="upload-sheet" class="upload-sheet" #fileSelector name="upload-sheet"
+                   (change)="addFile($event.target.files[0])" accept=".mp3,.wav" />
             <span class="btn-text">
               Choose audio file / Drag & drop <BR />
               <small> Support extension: mp3, wav </small>
             </span>
-          </label>
+          </div>
         </div>
 
         <div class="position-relative">
@@ -25,7 +25,7 @@
 
               <button type="button" class="btn btn-primary btn-sm">
                 <input type="file" [id]="'upload-preview' + i" class="upload-sheet d-none" name="upload-sheet"
-                       ngFileSelect (change)="addPreview(i, $event)">
+                       (change)="addPreview(i, $event)">
                 <span class="btn-text">
                   <i class="fa fa-plus"></i>
                   Add Preview
@@ -53,16 +53,21 @@
           </div>
         </div>
 
-        <h5> Song Type </h5>
+        <h5> Cover Image </h5>
 
-        <div class="song-type-form">
-          <div class="btn-group">
-            <button class="btn btn-secondary" type="button"
-                    [class.active]="songType === '~cover'"
-                    (click)="songType = '~cover'"> Cover </button>
-            <button class="btn btn-secondary" type="button"
-                    [class.active]="songType === '~original'"
-                    (click)="songType = '~original'"> Original </button>
+        <div class="cover-image-form">
+          <div class="input-group">
+            <input type="file" id="upload-cover-image" class="upload-cover-image" #coverImageSelector name="upload-cover-image"
+                   (change)="addCoverImage($event.target.files[0])" accept=".jpg,.jpeg,.gif,.png" />
+          </div>
+        </div>
+
+        <h5> Music Video <small>(if not exists, you don't have to choose)</small> </h5>
+
+        <div class="music-video-form">
+          <div class="input-group">
+            <input type="file" id="upload-music-video" class="upload-music-video" #musicVideoSelector name="upload-music-video"
+                   (change)="addMusicVideo($event.target.files[0])" accept=".mp4" />
           </div>
         </div>
 
@@ -73,17 +78,6 @@
             <li *ngFor="let genre of genreSelections"
                 [class.active]="genres.has(genre.value)" (click)="toggleGenre(genre.value)">
               {{genre.name}}
-            </li>
-          </ul>
-        </div>
-
-        <h5> Instrument </h5>
-
-        <div class="tag-selector instrument-form">
-          <ul>
-            <li *ngFor="let instrument of instrumentSelections"
-                [class.active]="instruments.has(instrument.value)" (click)="toggleInstrument(instrument.value)">
-              {{instrument.name}}
             </li>
           </ul>
         </div>
@@ -101,11 +95,12 @@
             </div>
           </div>
         </div>
+
       </section>
 
       <div class="col-6 px-0 write-form border-left">
         <div class="title">
-          <input type="text" id="title" name="title" class="w-100" placeholder="Title"
+          <input type="text" id="title" name="title" class="w-100" placeholder="Song Title"
                  required [(ngModel)]="post.title">
         </div>
 

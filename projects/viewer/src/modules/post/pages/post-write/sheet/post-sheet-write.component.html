@@ -4,15 +4,15 @@
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
         <h5> Upload Sheet Music </h5>
 
-        <div class="file-select-form">
-          <label class="upload-btn" for="upload-sheet" [class.disabled]="uploadStatus?.status === 'uploading'">
-            <input type="file" id="upload-sheet" class="upload-sheet d-none" name="upload-sheet"
-                     ngFileSelect (change)="addFile($event.target.files[0])" accept=".pdf">
+        <div class="file-select-form" (click)="fileSelector.click();">
+          <div class="upload-btn" [class.disabled]="uploadStatus?.status === 'uploading'">
+            <input type="file" id="upload-sheet" class="upload-sheet" #fileSelector name="upload-sheet"
+                     (change)="addFile($event.target.files[0])" accept=".pdf" />
             <span class="btn-text">
               Choose pdf file / Drag & drop <BR />
               <small> Support extension: pdf </small>
             </span>
-          </label>
+          </div>
         </div>
 
         <div class="position-relative">
@@ -25,7 +25,7 @@
 
               <label class="btn btn-primary btn-sm">
                 <input type="file" [id]="'upload-preview' + i" class="upload-sheet d-none" name="upload-sheet"
-                       ngFileSelect (change)="addPreview(i, $event)">
+                       (change)="addPreview(i, $event)">
                 <span class="btn-text">
                   <i class="fa fa-plus"></i>
                   Add Preview

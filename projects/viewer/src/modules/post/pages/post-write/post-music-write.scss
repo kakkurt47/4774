@@ -1,9 +1,12 @@
 @import '../../../../theme/variables';
 
+.upload-sheet {
+  display: none;
+}
 
 .file-select-form {
   height: 7rem;
-  color: #666;
+  color: #999;
   border: 5px dotted #eee;
   border-radius: 4px;
   display: flex;
@@ -11,14 +14,17 @@
   justify-content: center;
   background-color: #fff;
   position: relative;
+  cursor: pointer;
+  transition-timing-function: ease-in-out;
+  transition-property: background-color, color;
+  transition-duration: 0.2s;
+
+  &:hover {
+    color: black;
+  }
 
   .upload-btn {
     cursor: pointer;
-    background: #EEE;
-    transition-timing-function: ease-in-out;
-    transition-property: background-color, color;
-    transition-duration: 0.2s;
-
     .btn-text {
       display: block;
       text-align: center;
@@ -26,18 +32,8 @@
       border-radius: 4px;
     }
 
-    &:hover {
-      background-color: $primary-color;
-      color: #fff;
-    }
-
     &.disabled {
       cursor: not-allowed;
-
-      .btn-text {
-        background-color: #eee;
-        color: #aaa;
-      }
     }
   }
 }

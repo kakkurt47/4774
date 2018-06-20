@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { BasePost, MusicContract, MusicPost, MuzikaFilePath, unitDown, User } from '@muzika/core';
-import { GenreSelections, InstrumentSelections } from '../../../post.constant';
+import { SheetMusicGenreSelections, InstrumentSelections } from '../../../post.constant';
 import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
 import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
 import { Router } from '@angular/router';
@@ -29,7 +29,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
 
   songType: '~cover' | '~original' = '~original';
 
-  genreSelections = GenreSelections;
+  genreSelections = SheetMusicGenreSelections;
   instrumentSelections = InstrumentSelections;
 
   genres: Set<string> = new Set();

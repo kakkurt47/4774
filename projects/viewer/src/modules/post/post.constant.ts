@@ -96,7 +96,7 @@ export const FroalaEditorOptions = {
   imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif']
 };
 
-export const GenreSelections: { name: string, value: string }[] = [
+export const SheetMusicGenreSelections: { name: string, value: string }[] = [
   { name: 'EDM', value: '~edm' },
   { name: 'New-age', value: '~newage' },
   { name: 'Classic', value: '~classic' },
@@ -105,6 +105,18 @@ export const GenreSelections: { name: string, value: string }[] = [
   { name: 'Four-hand', value: '~fourhand' },
   { name: 'Animation', value: '~animation' },
   { name: 'OST', value: '~ost' },
+  { name: 'CCM', value: '~ccm' },
+];
+
+export const StreamingMusicGenreSelections: { name: string, value: string }[] = [
+  { name: 'K-POP', value: '~kpop' },
+  { name: 'Pop', value: '~pop' },
+  { name: 'OST', value: '~ost' },
+  { name: 'Jazz', value: '~jazz' },
+  { name: 'Dance', value: '~dance' },
+  { name: 'EDM', value: '~edm' },
+  { name: 'Classic', value: '~classic' },
+  { name: 'R&B / Soul', value: '~rnb' },
   { name: 'CCM', value: '~ccm' },
 ];
 

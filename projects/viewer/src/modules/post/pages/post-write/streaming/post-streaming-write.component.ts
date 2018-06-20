@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { BasePost, MusicContract, MusicPost, MuzikaFilePath, unitDown, User } from '@muzika/core';
-import { GenreSelections, InstrumentSelections } from '../../../post.constant';
+import { InstrumentSelections, StreamingMusicGenreSelections } from '../../../post.constant';
 import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
 import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
 import { Router } from '@angular/router';
@@ -29,14 +29,13 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
   songType: '~cover' | '~original' = '~original';
 
-  genreSelections = GenreSelections;
-  instrumentSelections = InstrumentSelections;
+  genreSelections = StreamingMusicGenreSelections;
 
   genres: Set<string> = new Set();
-  instruments: Set<string> = new Set();
 
   files: { file: File, previews: File[] }[] = [];
   coverImageFile: File;
+  musicVideoFile: File;
   uploadStatus: {
     status: string;
     progress: number[];
@@ -80,14 +79,6 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
     }
   }
 
-  toggleInstrument(value: string) {
-    if (this.instruments.has(value)) {
-      this.instruments.delete(value);
-    } else {
-      this.instruments.add(value);
-    }
-  }
-
   // @TODO check if file uploaded
   prepare(form: NgForm): BasePost {
     const prepared = <MusicPost>super.prepare(form);
@@ -99,12 +90,6 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
     /* check genre */
     if (this.genres.size === 0) {
       AlertifyInstnace.alert('The number of genres should be between 1 and 3');
-      return null;
-    }
-
-    /* check instruments */
-    if (this.instruments.size === 0) {
-      AlertifyInstnace.alert('The number of instruments should be more than 1');
       return null;
     }
 
@@ -122,8 +107,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
     prepared.tags = [
       this.songType,
-      ...Array.from(this.genres.values()),
-      ...Array.from(this.instruments.values())
+      ...Array.from(this.genres.values())
     ];
 
     prepared.music_contract = <MusicContract>{
@@ -144,6 +128,14 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
     } else {
       this.files.push({ file: selectedFile, previews: [] });
     }
+  }
+
+  addCoverImage(selectedFile: File) {
+    this.coverImageFile = selectedFile;
+  }
+
+  addMusicVideo(selectedFile: File) {
+    this.musicVideoFile = selectedFile;
   }
 
   addPreview(idx: number, $event: any) {
