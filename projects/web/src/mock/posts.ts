@@ -63,7 +63,7 @@ function createVideo(post_id: number, title: string, author: User): VideoPost {
   };
 }
 
-function createMusic(post_id: number, title: string, author: User): MusicPost {
+function createMusic(post_id: number, type:'sheet' | 'streaming', title: string, author: User): MusicPost {
   const rand = () => Math.floor(Math.random() * 100);
   return {
     post_id,
@@ -77,6 +77,7 @@ function createMusic(post_id: number, title: string, author: User): MusicPost {
     tags: [],
     price: rand() * 100,
     created_at: '2018-05-13 16:04:24',
+    type: type,
     music_contract: <any>{},
   };
 }
@@ -116,16 +117,30 @@ export const VideoPostsMock: VideoPost[] = [
   createVideo(11, 'Cras pulvinar ipsum luctus', UsersMock[2]),
 ];
 
-export const MusicPostsMock: MusicPost[] = [
-  createMusic(1, 'aliquet sagittis id consectetur', UsersMock[2]),
-  createMusic(2, 'nibh venenatis cras sed', UsersMock[1]),
-  createMusic(3, 'pellentesque pulvinar pellentesque habitant', UsersMock[1]),
-  createMusic(4, 'tincidunt eget nullam non', UsersMock[2]),
-  createMusic(5, 'sapien faucibus et molestie', UsersMock[3]),
-  createMusic(6, 'lacus sed turpis tincidunt', UsersMock[3]),
-  createMusic(7, 'mauris pharetra et ultrices', UsersMock[3]),
-  createMusic(8, 'cras fermentum odio eu', UsersMock[2]),
-  createMusic(9, 'lorem ipsum dolor sit', UsersMock[3]),
-  createMusic(10, 'amet nisl suscipit adipiscing', UsersMock[1]),
-  createMusic(11, 'volutpat lacus laoreet non', UsersMock[1]),
+export const MusicSheetPostsMock: MusicPost[] = [
+  createMusic(1, 'sheet', 'aliquet sagittis id consectetur', UsersMock[2]),
+  createMusic(2, 'sheet', 'nibh venenatis cras sed', UsersMock[1]),
+  createMusic(3, 'sheet', 'pellentesque pulvinar pellentesque habitant', UsersMock[1]),
+  createMusic(4, 'sheet', 'tincidunt eget nullam non', UsersMock[2]),
+  createMusic(5, 'sheet', 'sapien faucibus et molestie', UsersMock[3]),
+  createMusic(6, 'sheet', 'lacus sed turpis tincidunt', UsersMock[3]),
+  createMusic(7, 'sheet', 'mauris pharetra et ultrices', UsersMock[3]),
+  createMusic(8, 'sheet', 'cras fermentum odio eu', UsersMock[2]),
+  createMusic(9, 'sheet', 'lorem ipsum dolor sit', UsersMock[3]),
+  createMusic(10, 'sheet', 'amet nisl suscipit adipiscing', UsersMock[1]),
+  createMusic(11, 'sheet', 'volutpat lacus laoreet non', UsersMock[1]),
+];
+
+export const MusicStreamingPostsMock: MusicPost[] = [
+  createMusic(1, 'streaming', 'aliquet sagittis id consectetur', UsersMock[2]),
+  createMusic(2, 'streaming', 'nibh venenatis cras sed', UsersMock[1]),
+  createMusic(3, 'streaming', 'pellentesque pulvinar pellentesque habitant', UsersMock[1]),
+  createMusic(4, 'streaming', 'tincidunt eget nullam non', UsersMock[2]),
+  createMusic(5, 'streaming', 'sapien faucibus et molestie', UsersMock[3]),
+  createMusic(6, 'streaming', 'lacus sed turpis tincidunt', UsersMock[3]),
+  createMusic(7, 'streaming', 'mauris pharetra et ultrices', UsersMock[3]),
+  createMusic(8, 'streaming', 'cras fermentum odio eu', UsersMock[2]),
+  createMusic(9, 'streaming', 'lorem ipsum dolor sit', UsersMock[3]),
+  createMusic(10, 'streaming', 'amet nisl suscipit adipiscing', UsersMock[1]),
+  createMusic(11, 'streaming', 'volutpat lacus laoreet non', UsersMock[1]),
 ];

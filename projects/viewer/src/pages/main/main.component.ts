@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import { CommunityPost, MusicPost, MuzikaConsole, unitUp, User } from '@muzika/core';
 import { BaseComponent, MuzikaCoin, ExtendedWeb3, UserActions } from '@muzika/core/angular';
 import {Observable, combineLatest, from} from 'rxjs';
-import {BestPostsMock, MusicPostsMock} from '../../mock/posts';
+import {BestPostsMock, MusicSheetPostsMock, MusicStreamingPostsMock} from '../../mock/posts';
 
 @Component({
   selector: 'web-main',
@@ -12,10 +12,12 @@ import {BestPostsMock, MusicPostsMock} from '../../mock/posts';
   styleUrls: ['./main.component.scss']
 })
 export class MainPageComponent extends BaseComponent {
-  musics: MusicPost[] = MusicPostsMock.slice(0, 5);
+  musicSheets: MusicPost[] = MusicSheetPostsMock.slice(0, 5);
+  musicStreamings: MusicPost[] = MusicStreamingPostsMock.slice(0, 5);
   posts: CommunityPost[] = BestPostsMock;
 
-  topMusics: MusicPost[];
+  topMusicSheets: MusicPost[];
+  topMusicStreamings: MusicPost[];
 
   currentUser: User;
   balances: {
@@ -27,7 +29,8 @@ export class MainPageComponent extends BaseComponent {
               private router: Router,
               private web3: ExtendedWeb3) {
     super();
-    this.topMusics = this.musics.slice(0, 3);
+    this.topMusicSheets = this.musicSheets.slice(0, 3);
+    this.topMusicStreamings = this.musicStreamings.slice(0, 3);
     this.balances = <any>{};
   }
 

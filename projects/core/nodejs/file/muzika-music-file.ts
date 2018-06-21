@@ -8,44 +8,9 @@ import * as path from 'path';
 import { ManualProgress, ProgressSet } from '../utils/progress';
 import * as imagemagick from 'imagemagick-native';
 import { FileUploadInterface, MuzikaFileUtil } from './ipfs-file';
+import { StreamingUtil } from '../utils';
 
 const ffmpeg = require('fluent-ffmpeg');
-
-/**
- * Utils for streaming conversion. It defines several quality of options of streaming convertion for audio and video.
- */
-export class StreamingUtil {
-  public static FFMPEG_BIN_PATH = ffmpegStatic.path;
-  public static FFPROBE_BIN_PATH = ffprobeStatic.path;
-
-  // TODO : setting proper options for several quality.
-  public static VIDEO_OPTION = {
-    HIGH_QUALITY: [],
-    MIDDLE_QUALITY: [
-      '-profile:v baseline',    // baseline profile (level 3.0) for H264 video codec
-      '-level 3.0',
-      '-s 640x360',             // 640px width, 360px height output video dimensions
-      '-start_number 0',        // start the first .ts segment at index 0
-      '-hls_time 3',            // 3 second segment duration
-      '-hls_list_size 0',       // Maxmimum number of playlist entries (0 means all entries/infinite)
-      '-f hls'                  // HLS format
-    ],
-    LOW_QUALITY: []
-  };
-
-  public static AUDIO_OPTION = {
-    HIGH_QUALITY: [],
-    MIDDLE_QUALITY: [
-      '-profile:v baseline',    // native FFmpeg AAC encoder
-      '-level 3.0',
-      '-start_number 0',        // start the first .ts segment at index 0
-      '-hls_time 3',            // 3 second segment duration
-      '-hls_list_size 0',       // Maxmimum number of playlist entries (0 means all entries/infinite)
-      '-f hls'                  // HLS format
-    ],
-    LOW_QUALITY: []
-  };
-}
 
 
 export class MuzikaMusicFile implements FileUploadInterface {
@@ -249,9 +214,6 @@ export class MuzikaMusicFile implements FileUploadInterface {
    */
   private _readyStreamingFile(uploadQueue: any[]): Promise<void> {
     return new Promise((resolve, reject) => {
-      ffmpeg.setFfmpegPath(StreamingUtil.FFMPEG_BIN_PATH);
-      ffmpeg.setFfprobePath(StreamingUtil.FFPROBE_BIN_PATH);
-
       // generate a temporary directory for save streaming files generated
       const tempDir = os.tmpdir();
       fs.mkdtemp(tempDir, (mkdErr, tempDirPath) => {
@@ -261,41 +223,37 @@ export class MuzikaMusicFile implements FileUploadInterface {
 
         this.tempDirs.push(tempDirPath);
 
-        // conversion
-        // TODO: support various streaming options for audio and video file
-        ffmpeg(this.filePath).addOptions(StreamingUtil.VIDEO_OPTION.MIDDLE_QUALITY).output(path.join(tempDirPath, 'master.m3u8'))
-          .on('error', (ffmpegErr) => {
-            MuzikaConsole.log('FAILED TO GENERATE STREAM FILES : ', ffmpegErr);
-            return reject(ffmpegErr);
-          })
-          .on('end', () => {
-            // query temporary directory
-            fs.readdir(tempDirPath, (readDirErr, streamingFiles) => {
-              if (readDirErr) {
-                return reject(readDirErr);
-              }
+        // TODO: support various options in conversion
+        StreamingUtil.convert(this.filePath, StreamingUtil.VIDEO_OPTION.MIDDLE_QUALITY, tempDirPath)
+          .subscribe(
+            (progress) => {
+              this._streamProgress.setProgressPercent(progress.percent / 100);
+            },
+            (err) => {
+              return reject(err);
+            },
+            () => {
+              fs.readdir(tempDirPath, (readDirErr, streamingFiles) => {
+                if (readDirErr) {
+                  return reject(readDirErr);
+                }
 
-              // set streaming conversion completed
-              this._streamProgress.setProgressPercent(1);
+                // set streaming conversion completed
+                this._streamProgress.setProgressPercent(1);
 
-              async.each(streamingFiles, (streamFileName, streamUploadCallback) => {
-                const streamFilePath = path.join(tempDirPath, streamFileName);
-                uploadQueue.push({
-                  path: MuzikaFileUtil.buildFilePath(
-                    !!this.cipherKey, MuzikaFileUtil.STREAMING_FILE_DIRECTORY, this._fileBaseName, streamFileName
-                  ),
-                  content: this._buildContent(streamFilePath, true)
-                });
-                streamUploadCallback();
-              }, () => resolve(null));
+                async.each(streamingFiles, (streamFileName, streamUploadCallback) => {
+                  const streamFilePath = path.join(tempDirPath, streamFileName);
+                  uploadQueue.push({
+                    path: MuzikaFileUtil.buildFilePath(
+                      !!this.cipherKey, MuzikaFileUtil.STREAMING_FILE_DIRECTORY, this._fileBaseName, streamFileName
+                    ),
+                    content: this._buildContent(streamFilePath, true)
+                  });
+                  streamUploadCallback();
+                }, () => resolve(null));
+              });
             });
-          })
-          .on('progress', (progress) => {
-            MuzikaConsole.log(`generating stream files (${progress.percent}%)`);
-            this._streamProgress.setProgressPercent(progress.percent / 100);
-          })
-          .run();
-      });
+        });
     });
   }
 

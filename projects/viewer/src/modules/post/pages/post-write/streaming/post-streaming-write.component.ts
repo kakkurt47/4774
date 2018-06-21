@@ -167,6 +167,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
         const prepared = <MusicPost>this.prepare(form);
 
         if (prepared !== null) {
+          prepared.type = 'streaming';
           this.contractService.createNewPaperContract(
             this.currentUser.address,
             unitDown(prepared.price),

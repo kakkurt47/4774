@@ -182,6 +182,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
         const prepared = <MusicPost>this.prepare(form);
 
         if (prepared !== null) {
+          prepared.type = 'sheet';
           this.contractService.createNewPaperContract(
             this.currentUser.address,
             unitDown(prepared.price),
