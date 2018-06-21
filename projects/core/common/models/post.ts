@@ -40,6 +40,7 @@ export interface VideoPost extends BasePost {
 }
 
 export interface MusicPost extends BasePost {
+  type: 'sheet' | 'streaming';
   price?: number | string;
   music_contract?: MusicContract;
   ipfs_file?: IpfsFile;

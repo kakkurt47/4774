@@ -180,6 +180,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
         this.uploadStatus.aesKey = aesKey;
 
         const prepared = <MusicPost>this.prepare(form);
+        prepared.type = 'sheet';
 
         if (prepared !== null) {
           this.contractService.createNewPaperContract(
