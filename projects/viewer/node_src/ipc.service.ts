@@ -160,7 +160,7 @@ class IpcMainService {
 
           ipfs.put(uploadQueue)
             .then((result) => {
-              MuzikaConsole.log(result);
+              MuzikaConsole.log('Finished to upload all files to IPFS.');
               // remove temporary files since finishing to upload files.
               // this is called even if failed to upload.
               uploadFiles.forEach((uploadFile) => {
@@ -176,8 +176,11 @@ class IpcMainService {
                 return object.path === 'muzika';
               });
 
+              MuzikaConsole.log('IPFS Root Hash : ', rootObject.hash);
+
               // get random peer from server
               const uploadHelper = ipfs.getRandomPeer();
+              MuzikaConsole.log('IPFS PROPAGATOR : ', uploadHelper);
 
               // request to a helper, which downloads the user's files, so helps to spread them out.
               request.post(
@@ -187,10 +190,13 @@ class IpcMainService {
                 },
                 (peerRequestError, res, body) => {
                   if (peerRequestError) {
+                    MuzikaConsole.error('Failed to request to prapagator.');
                     ipcReject(peerRequestError);
                   } else if (res.statusCode !== 200) {
+                    MuzikaConsole.error(`Failed to request to prapagator. (ERROR CODE : ${res.statusCode})`);
                     ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
                   } else {
+                    MuzikaConsole.log('Success to request to prapagator!');
                     ipcResolve(1, rootObject.hash, aesKey);
                   }
                 }
