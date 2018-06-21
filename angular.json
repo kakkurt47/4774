@@ -238,6 +238,7 @@
               "projects/web/src/assets/scrollspy.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/froala-editor/js/froala_editor.min.js",
+              "node_modules/froala-editor/js/froala_editor.pkgd.min.js",
               "node_modules/froala-editor/js/languages/ko.js",
               "node_modules/froala-editor/js/plugins/link.min.js",
               "node_modules/froala-editor/js/plugins/table.min.js",

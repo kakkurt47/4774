@@ -45,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     /* Muzika Modules */
     MuzikaCommonModule,
-    MuzikaCoreModule.forRoot(environment.env),
+    MuzikaCoreModule
   ],
   declarations: [
     /* Reusable Components */

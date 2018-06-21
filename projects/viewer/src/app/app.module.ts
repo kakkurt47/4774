@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LocalStorage, MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule } from '@muzika/core/angular';
+import { LocalStorage, MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule, EnvironmentTypeToken } from '@muzika/core/angular';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -90,12 +90,16 @@ declare const document;
 
     /* Muzika Modules */
     MuzikaCommonModule,
-    MuzikaCoreModule.forRoot(environment.env),
+    MuzikaCoreModule,
 
     /* Sub-modules */
     PostModule
   ],
   providers: [
+    {
+      provide: EnvironmentTypeToken,
+      useValue: environment.env
+    },
     {
       provide: PLATFORM_TYPE_TOKEN,
       useValue: 'electron'

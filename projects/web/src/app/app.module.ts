@@ -6,7 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MuzikaCommonModule, MuzikaCoreModule, PLATFORM_TYPE_TOKEN} from '@muzika/core/angular';
+import { EnvironmentTypeToken, MuzikaCommonModule, MuzikaCoreModule, PLATFORM_TYPE_TOKEN } from '@muzika/core/angular';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
@@ -48,6 +48,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     HttpClientModule,
 
+
+    /* Muzika Modules */
+    MuzikaCommonModule,
+    MuzikaCoreModule,
+
     MuzikaIntroModule,
     TestModule,
 
@@ -69,14 +74,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatCardModule,
     MatRadioModule,
 
-    /* Muzika Modules */
-    MuzikaCommonModule,
-    MuzikaCoreModule.forRoot(environment.env),
-
     /* Sub-modules */
     PostModule,
   ],
   providers: [
+    {
+      provide: EnvironmentTypeToken,
+      useValue: environment.env
+    },
     {
       provide: PLATFORM_TYPE_TOKEN,
       useValue: 'web'

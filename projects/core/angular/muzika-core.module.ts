@@ -1,26 +1,28 @@
-import {NgRedux, NgReduxModule} from '@angular-redux/store';
-import {isPlatformBrowser, isPlatformServer, CommonModule} from '@angular/common';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {Inject, ModuleWithProviders, NgModule, PLATFORM_ID} from '@angular/core';
-import {BrowserTransferStateModule, TransferState} from '@angular/platform-browser';
-import {IAppState, rootReducer, environmentProd, environmentStage, environmentDev} from '@muzika/core';
-import {createStore} from 'redux';
-import {PaginationComponent} from './components/pagination/pagination.component';
-import {EnvironmentToken, BASE_API_URL, MUZIKA_REDUX_STATE_KEY} from './config/injection.tokens';
-import {JWTInterceptor} from './config/jwt-interceptor';
-import {ContractProviders} from './contracts/index';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ApplicationModule, Inject, NgModule, PLATFORM_ID } from '@angular/core';
+import { BrowserTransferStateModule, TransferState } from '@angular/platform-browser';
+import { environmentDev, environmentProd, environmentStage, EnvironmentType, IAppState, rootReducer } from '@muzika/core';
+import { createStore } from 'redux';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { BASE_API_URL, EnvironmentToken, EnvironmentTypeToken, MUZIKA_REDUX_STATE_KEY } from './config/injection.tokens';
+import { JWTInterceptor } from './config/jwt-interceptor';
+import { ContractProviders } from './contracts/index';
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserTransferStateModule,
     HttpClientModule,
-    NgReduxModule,
-    BrowserTransferStateModule
+    NgReduxModule
   ],
   declarations: [
     PaginationComponent
   ],
   exports: [
+    CommonModule,
+    ApplicationModule,
     PaginationComponent
   ],
   providers: [
@@ -30,11 +32,36 @@ import {ContractProviders} from './contracts/index';
       provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptor,
       multi: true
+    },
+    {
+      provide: EnvironmentToken,
+      useFactory: (environmentType: string) => {
+        return {
+          dev: environmentDev,
+          stage: environmentStage,
+          prod: environmentProd
+        }[environmentType] || environmentDev;
+      },
+      deps: [[EnvironmentTypeToken]]
+    },
+    {
+      provide: 'RPC_URL',
+      useFactory: (environment: EnvironmentType) => {
+        return `${environment.rpcUrl}/${environment.infuraAccessToken}`;
+      },
+      deps: [[EnvironmentToken]]
+    },
+    {
+      provide: BASE_API_URL,
+      useFactory: (environment: EnvironmentType) => {
+        return environment.base_api_url;
+      },
+      deps: [[EnvironmentToken]]
     }
   ]
 })
 export class MuzikaCoreModule {
-  constructor(@Inject(PLATFORM_ID) private platformId,
+  constructor(@Inject(PLATFORM_ID) private platformId: string,
               private transferState: TransferState,
               private ngRedux: NgRedux<IAppState>) {
 
@@ -53,31 +80,5 @@ export class MuzikaCoreModule {
         this.ngRedux.provideStore(createStore(rootReducer));
       }
     }
-  }
-
-  static forRoot(environmentType: string): ModuleWithProviders {
-    const environment = {
-      dev: environmentDev,
-      stage: environmentStage,
-      prod: environmentProd
-    }[environmentType] || environmentDev;
-
-    return {
-      ngModule: MuzikaCoreModule,
-      providers: [
-        {
-          provide: EnvironmentToken,
-          useValue: environment
-        },
-        {
-          provide: 'RPC_URL',
-          useValue: `${environment.rpcUrl}/${environment.infuraAccessToken}`
-        },
-        {
-          provide: BASE_API_URL,
-          useValue: environment.base_api_url
-        }
-      ]
-    };
   }
 }
