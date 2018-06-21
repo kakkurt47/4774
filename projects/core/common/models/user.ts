@@ -7,4 +7,5 @@ export interface User {
   facebook_url?: string;
   soundcloud_url?: string;
   spotify_url?: string;
+  profile_file_id?: number;
 }

@@ -30,7 +30,7 @@
       <ng-container *ngIf="currentUser; else loggedInBlock">
         <div class="ml-auto" routerLink="/settings">
           <div class="user-profile-img">
-            <img src="assets/person-1.png">
+            <img [src]="currentUser.profile_image || 'assets/person-1.png'">
           </div>
         </div>
         <div class="pl-3" routerLink="/settings">
