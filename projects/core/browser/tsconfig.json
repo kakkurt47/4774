@@ -16,7 +16,7 @@
       "../../node_modules/@0xproject/typescript-typings/types"
     ],
     "paths": {
-      "@muzika/core": ["../common/public_api.ts"]
+      "@muzika/core": ["../public_api.ts"]
     },
     "lib": [
       "es2017",
