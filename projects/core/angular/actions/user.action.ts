@@ -1,14 +1,14 @@
 import { NgRedux, select } from '@angular-redux/store';
-import {Injectable, Inject} from '@angular/core';
-import {MuzikaPlatformType, User, IAppState, UserActionType, promisify, ERR} from '@muzika/core';
+import { Injectable, Inject } from '@angular/core';
+import { MuzikaPlatformType, User, IAppState, UserActionType, promisify, ERR } from '@muzika/core';
 import { Observable, from, of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
-import {APIConfig} from '../config/api.config';
-import {PLATFORM_TYPE_TOKEN} from '../config/injection.tokens';
-import {ExtendedWeb3} from '../providers/extended-web3.provider';
-import {LocalStorage} from '../providers/local-storage.service';
+import { APIConfig } from '../config/api.config';
+import { PLATFORM_TYPE_TOKEN } from '../config/injection.tokens';
+import { ExtendedWeb3 } from '../providers/extended-web3.provider';
+import { LocalStorage } from '../providers/local-storage.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class UserActions {
   @select(['user', 'currentUser'])
   public static currentUserObs: Observable<User>;
@@ -29,7 +29,9 @@ export class UserActions {
       .subscribe(likes => {
         this.store.dispatch({
           type: UserActionType.SET_BOARD_LIKES,
-          likes, boardType
+          payload: {
+            likes, boardType
+          }
         });
       });
   }
@@ -73,7 +75,7 @@ export class UserActions {
   }
 
   register(address: string, message: string, signature: string, user_name: string): Observable<User> {
-    return this.apiConfig.post<string>(`/register`, {address, message, signature, user_name}).pipe(
+    return this.apiConfig.post<string>(`/register`, { address, message, signature, user_name }).pipe(
       map(token => {
         if (token) {
           this.localStorage.setItem('token', token);
@@ -86,9 +88,8 @@ export class UserActions {
   }
 
   modifyUserInfo(userInfo: User): Observable<User> {
-    return this.apiConfig.put<string>(`/user`, userInfo).pipe(
-      concatMap(response => this.refreshMe())
-    );
+    return this.apiConfig.put<string>(`/user`, userInfo)
+      .pipe(concatMap(response => this.refreshMe()));
   }
 
   login(address: string): Observable<User> {
@@ -103,7 +104,7 @@ export class UserActions {
       }),
       concatMap((signature) => {
         return this.apiConfig
-          .post<string>(`/login`, {address, signature, platform_type: this.platformType})
+          .post<string>(`/login`, { address, signature, platform_type: this.platformType })
           .pipe(
             tap(token => {
               if (token) {
