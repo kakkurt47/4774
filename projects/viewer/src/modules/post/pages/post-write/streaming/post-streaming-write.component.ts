@@ -165,9 +165,9 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
         this.uploadStatus.aesKey = aesKey;
 
         const prepared = <MusicPost>this.prepare(form);
-        prepared.type = 'streaming';
 
         if (prepared !== null) {
+          prepared.type = 'streaming';
           this.contractService.createNewPaperContract(
             this.currentUser.address,
             unitDown(prepared.price),
