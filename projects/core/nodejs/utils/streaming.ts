@@ -41,11 +41,11 @@ export class StreamingUtil {
   };
 
   /**
-   *
-   * @param {string} filePath
-   * @param {string[]} options
-   * @param {string} output
-   * @returns {Observable<any>}
+   * Convert video or audio files into streaming files.
+   * @param {string} filePath path of the video or audio file.
+   * @param {string[]} options conversion options.
+   * @param {string} outputDir output directory that converted files are saved.
+   * @param {string} masterName streaming info file name.
    */
   public static convert(filePath: string, options: string[], outputDir: string, masterName?: string): Observable<any> {
     masterName = masterName || 'master.m3u8';

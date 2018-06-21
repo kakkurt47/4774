@@ -35,7 +35,10 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
   files: { file: File, previews: File[] }[] = [];
   coverImageFile: File;
-  musicVideoFile: File;
+  musicVideo: {
+    type: 'ipfs' | 'youtube';
+    path: string;
+  };
   uploadStatus: {
     status: string;
     progress: number[];
@@ -135,7 +138,10 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   }
 
   addMusicVideo(selectedFile: File) {
-    this.musicVideoFile = selectedFile;
+    this.musicVideo = {
+      type: 'ipfs',
+      path: selectedFile.path
+    };
   }
 
   addPreview(idx: number, $event: any) {
@@ -205,7 +211,8 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
       description: this.post.content,
       author: this.currentUser.name,
       authorAddress: this.currentUser.address,
-      coverImagePath: (this.coverImageFile) ? this.coverImageFile.path : null
+      coverImagePath: (this.coverImageFile) ? this.coverImageFile.path : null,
+      musicVideo: this.musicVideo
     });
   }
 }

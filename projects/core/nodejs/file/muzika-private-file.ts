@@ -1,7 +1,5 @@
 import { MuzikaConsole, MuzikaContractSummary } from '@muzika/core';
 import * as async from 'async';
-import * as ffmpegStatic from 'ffmpeg-static';
-import * as ffprobeStatic from 'ffprobe-static';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
@@ -10,10 +8,8 @@ import * as imagemagick from 'imagemagick-native';
 import { FileUploadInterface, MuzikaFileUtil } from './ipfs-file';
 import { StreamingUtil } from '../utils';
 
-const ffmpeg = require('fluent-ffmpeg');
 
-
-export class MuzikaMusicFile implements FileUploadInterface {
+export class MuzikaPrivateFile implements FileUploadInterface {
   filePath: string;
   cipherKey: Buffer = null;
   preview: string[] = [];
@@ -60,6 +56,7 @@ export class MuzikaMusicFile implements FileUploadInterface {
   ready(uploadQueue: any[], summary: MuzikaContractSummary) {
     return (callback) => {
       this.totalProgress.start();
+      MuzikaConsole.log('Start to ready private file', this._fileBaseName);
 
       this._readyOriginFile(uploadQueue, summary);
       this._readyPreviewFile(uploadQueue).then(() => {
@@ -174,11 +171,13 @@ export class MuzikaMusicFile implements FileUploadInterface {
         }
 
         // TODO: need to track preview generation progress correctly.
+        MuzikaConsole.log('Generating Prview Files for ', this._fileBaseName);
         this._previewGenProgress.setProgressPercent(0.2);
         imagemagick.generatePreview({
           pdfPath: this.filePath
         }, (err, previewPNGImages) => {
           if (err) {
+            MuzikaConsole.error('Failed to generate previews for ', this._fileBaseName, err);
             return reject(err);
           }
 
@@ -193,6 +192,8 @@ export class MuzikaMusicFile implements FileUploadInterface {
             this._previewGenProgress.setProgressPercent(1.0);
             return resolve(null);
           });
+
+          MuzikaConsole.log('Complete to generate previews for ', this._fileBaseName);
         });
       }
     });
@@ -227,6 +228,7 @@ export class MuzikaMusicFile implements FileUploadInterface {
         StreamingUtil.convert(this.filePath, StreamingUtil.VIDEO_OPTION.MIDDLE_QUALITY, tempDirPath)
           .subscribe(
             (progress) => {
+              MuzikaConsole.log(`Generating private stream files for ${this._fileBaseName} (${progress.percent}%)`);
               this._streamProgress.setProgressPercent(progress.percent / 100);
             },
             (err) => {
@@ -241,7 +243,7 @@ export class MuzikaMusicFile implements FileUploadInterface {
                 // set streaming conversion completed
                 this._streamProgress.setProgressPercent(1);
 
-                async.each(streamingFiles, (streamFileName, streamUploadCallback) => {
+                streamingFiles.forEach((streamFileName) => {
                   const streamFilePath = path.join(tempDirPath, streamFileName);
                   uploadQueue.push({
                     path: MuzikaFileUtil.buildFilePath(
@@ -249,8 +251,10 @@ export class MuzikaMusicFile implements FileUploadInterface {
                     ),
                     content: this._buildContent(streamFilePath, true)
                   });
-                  streamUploadCallback();
-                }, () => resolve(null));
+                });
+
+                MuzikaConsole.log(`Complete to generate private stream files for ${this._fileBaseName}`);
+                resolve(null);
               });
             });
         });

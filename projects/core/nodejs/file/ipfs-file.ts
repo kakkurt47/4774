@@ -37,6 +37,7 @@ export class MuzikaFileUtil {
   public static AUDIO_EXTENSION = ['.mp3', '.wav'];
   public static VIDEO_EXTENSION = ['.mp4'];
   public static HLS_CONVERSION_EXTENSION = MuzikaFileUtil.AUDIO_EXTENSION.concat(MuzikaFileUtil.VIDEO_EXTENSION);
+  public static PUBLIC_FILE_EXTENSION = MuzikaFileUtil.VIDEO_EXTENSION;
 
   // Wrapping paths into single folder
   // (e.g. [/ipfs/sheet.pdf, /preview/img.png] => [/muzika/ipfs/sheet.pdf, /muzika/preview/img.png]
@@ -47,6 +48,7 @@ export class MuzikaFileUtil {
   public static STREAMING_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/streaming';
   public static PREVIEW_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/preview';
   public static COVER_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/cover';
+  public static PUBLIC_FILE_DIRETORY = MuzikaFileUtil.ROOT_DIRECTORY + '/public';
 
   public static COVER_IMAGE = {
     SQUARE: {

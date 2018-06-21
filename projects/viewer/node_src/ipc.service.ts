@@ -6,10 +6,11 @@ import * as request from 'request';
 import { combineLatest } from 'rxjs';
 import * as tempfile from 'tempfile';
 import { IPCUtil } from '../shared/ipc-utils';
-import { BlockKey, BufferStream, FileUploadInterface, MuzikaCoverFile, MuzikaMusicFile } from '@muzika/core/nodejs';
+import { BlockKey, BufferStream, FileUploadInterface, MuzikaCoverFile, MuzikaPrivateFile } from '@muzika/core/nodejs';
 import { electronEnvironment } from './environment';
 import { IpfsServiceInstance } from './ipfs.service';
 import { StorageServiceInstance } from './storage.service';
+import {MuzikaPublicFile} from '../../core/nodejs/file/muzika-public-file';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -134,11 +135,25 @@ class IpcMainService {
         }
 
         // preprocess before uploading to IPFS.
-        uploadFiles = files.map(file => new MuzikaMusicFile(file.path, file.previews, aesKey));
+        uploadFiles = files.map(file => new MuzikaPrivateFile(file.path, file.previews, aesKey));
 
         // if cover image exists, push it.
         if (meta.coverImagePath) {
           uploadFiles.push(new MuzikaCoverFile(meta.coverImagePath));
+        }
+
+        if (meta.musicVideo) {
+          switch (meta.musicVideo.type) {
+            case 'ipfs':
+              // if the music video will be uploaded to IPFS
+              uploadFiles.push(new MuzikaPublicFile(meta.musicVideo.path));
+              break;
+
+            case 'youtube':
+              // if the music video is in the youtube
+              contractInfo.videos.push(meta.musicVideo);
+              break;
+          }
         }
 
         combineLatest(...uploadFiles.map(file => file.totalProgress.onChange))
@@ -196,7 +211,7 @@ class IpcMainService {
                     MuzikaConsole.error(`Failed to request to prapagator. (ERROR CODE : ${res.statusCode})`);
                     ipcReject(new Error('Response is not valid - failed with code: ' + res.statusCode));
                   } else {
-                    MuzikaConsole.log('Success to request to prapagator!');
+                    MuzikaConsole.log(`Success to request to prapagator! (https://ipfs.io/ipfs/${rootObject.hash})`);
                     ipcResolve(1, rootObject.hash, aesKey);
                   }
                 }
