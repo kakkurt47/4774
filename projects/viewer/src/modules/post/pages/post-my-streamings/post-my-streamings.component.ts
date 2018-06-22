@@ -38,6 +38,6 @@ export class PostMyStreamingsComponent extends BaseComponent {
   }
 
   changePage(page: number) {
-    this.userActions.loadMyPosts('streaming', `${page}`).subscribe();
+    this.userActions.loadMyPosts('streaming', page).subscribe();
   }
 }

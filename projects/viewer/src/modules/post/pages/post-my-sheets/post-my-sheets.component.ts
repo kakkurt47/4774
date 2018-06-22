@@ -39,7 +39,7 @@ export class PostMySheetsComponent extends BaseComponent {
   }
 
   changePage(page: number) {
-    this.userActions.loadMyPosts('sheet', `${page}`).subscribe();
+    this.userActions.loadMyPosts('sheet', page).subscribe();
   }
 }
 

@@ -86,7 +86,7 @@ export class UserActions {
       }));
   }
 
-  loadMyPosts(boardType: string, page: string, params: Object = {}) {
+  loadMyPosts(boardType: string, page: number, params: Object = {}) {
     params['page'] = page;
     return this.apiConfig.get<PaginationResult<MusicPost>>(`/user/board/${boardType}`)
       .pipe(map(result => {
