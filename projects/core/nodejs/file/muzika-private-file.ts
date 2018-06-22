@@ -65,9 +65,7 @@ export class MuzikaPrivateFile implements IpfsUploadInterface {
           this._readyStreamingFile(uploadQueue).then(() => {
             this._uploadProgress.start();
             callback(null, null);
-          }, err => {
-            callback(err, null);
-          });
+          }, err => callback(err, null));
         } else {
           MuzikaConsole.log('Success to ready private file ', this.filePath);
           this._uploadProgress.start();

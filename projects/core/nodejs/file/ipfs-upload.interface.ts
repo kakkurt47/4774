@@ -38,16 +38,11 @@ export class MuzikaFileUtil {
   public static HLS_CONVERSION_EXTENSION = MuzikaFileUtil.AUDIO_EXTENSION.concat(MuzikaFileUtil.VIDEO_EXTENSION);
   public static PUBLIC_FILE_EXTENSION = MuzikaFileUtil.VIDEO_EXTENSION;
 
-  // Wrapping paths into single folder
-  // (e.g. [/ipfs/sheet.pdf, /preview/img.png] => [/muzika/ipfs/sheet.pdf, /muzika/preview/img.png]
-  // Because of getting hash of root folder
-  public static ROOT_DIRECTORY = '/muzika';
-
-  public static ORIGIN_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/ipfs';
-  public static STREAMING_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/streaming';
-  public static PREVIEW_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/preview';
-  public static COVER_FILE_DIRECTORY = MuzikaFileUtil.ROOT_DIRECTORY + '/cover';
-  public static PUBLIC_FILE_DIRETORY = MuzikaFileUtil.ROOT_DIRECTORY + '/public';
+  public static ORIGIN_FILE_DIRECTORY = '/ipfs';
+  public static STREAMING_FILE_DIRECTORY = '/streaming';
+  public static PREVIEW_FILE_DIRECTORY = '/preview';
+  public static COVER_FILE_DIRECTORY = '/cover';
+  public static PUBLIC_FILE_DIRETORY = '/public';
 
   public static COVER_IMAGE = {
     SQUARE: {
@@ -81,13 +76,8 @@ export class MuzikaFileUtil {
    */
   public static buildFilePath(encryption: boolean, ...args) {
     // joining path parameters and convert it into IPFS file path
-
     // if encryption is true, add "encrypted" extension to the file.
-    if (encryption) {
-      args[args.length - 1] = `${args[args.length - 1]}.encrypted`;
-    }
-
-    return path.join(...args).replace(/\\/g, '/');
+    return path.join(...args).replace(/\\/g, '/') + ((encryption) ? '.encrypted' : '');
   }
 
   /**

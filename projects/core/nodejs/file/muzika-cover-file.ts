@@ -1,6 +1,6 @@
 import { IpfsUploadInterface, MuzikaFileUtil } from './ipfs-upload.interface';
 import { ProgressSet } from '../utils';
-import { MuzikaContractSummary } from '@muzika/core';
+import {MuzikaContractSummary, promisify} from '@muzika/core';
 import * as path from 'path';
 import * as async from 'async';
 import * as imagemagick from 'imagemagick-native';
@@ -31,9 +31,7 @@ export class MuzikaCoverFile implements IpfsUploadInterface {
         .then(() => {
           this.totalProgress.start();
           callback();
-        }).catch((err) => {
-        callback(err);
-      });
+        }).catch((err) => callback(err));
     };
   }
 
@@ -50,61 +48,47 @@ export class MuzikaCoverFile implements IpfsUploadInterface {
         false, MuzikaFileUtil.COVER_FILE_DIRECTORY, this._fileBaseName
       );
 
-      fs.readFile(this.filePath, (err, data) => {
-        if (err) {
-          return reject(err);
-        }
-
+      promisify(fs.readFile, this.filePath).then(data => {
         async.parallel([
           (callback) => {
-            imagemagick.convert({
+            promisify(imagemagick.convert, {
               srcData: data,
               format: 'png',
               width: MuzikaFileUtil.COVER_IMAGE.RECT.WIDTH,
               height: MuzikaFileUtil.COVER_IMAGE.RECT.HEIGHT
-            }, (convertErr, buffer) => {
-              if (convertErr) {
-                return callback(convertErr);
-              }
+            }).then(buffer => {
+              const ipfsFilePath = MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'rect.png');
 
               uploadQueue.push({
-                path: MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'rect.png'),
+                path: ipfsFilePath,
                 content: MuzikaFileUtil.buildContent(buffer, null, this.totalProgress)
               });
 
-              summary.coverImage.rect = '/cover/rect.png';
+              summary.coverImage.rect = ipfsFilePath;
               callback();
-            });
+            }).catch(err => callback(err));
           },
 
           (callback) => {
-            imagemagick.convert({
+            promisify(imagemagick.convert, {
               srcData: data,
               format: 'png',
               width: MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH,
               height: MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT
-            }, (convertErr, buffer) => {
-              if (convertErr) {
-                return callback(convertErr);
-              }
+            }).then(buffer => {
+              const ipfsFilePath = MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'rect.png');
 
               uploadQueue.push({
-                path: MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'square.png'),
+                path: ipfsFilePath,
                 content: MuzikaFileUtil.buildContent(buffer, null, this.totalProgress)
               });
 
-              summary.coverImage.square = '/cover/square.png';
+              summary.coverImage.rect = ipfsFilePath;
               callback();
-            });
+            }).catch(err => callback(err));
           }
-        ], (convertErr) => {
-          if (convertErr) {
-            return reject(convertErr);
-          }
-
-          return resolve();
-        });
-      });
+        ], (err) => (err) ? reject(err) : resolve());
+      }).catch(err => reject(err));
     });
   }
 

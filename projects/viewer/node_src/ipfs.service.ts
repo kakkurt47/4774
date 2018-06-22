@@ -21,11 +21,11 @@ export class IpfsService {
             '/ip4/0.0.0.0/tcp/4004/ws',
           ]
         },
-        'EXPERIMENTAL': {
-          'relay': {
-            'enabled': true,
-            'hop': {
-              'enabled': true
+        EXPERIMENTAL: {
+          relay: {
+            enabled: true,
+            hop: {
+              enabled: true
             }
           }
         },
@@ -75,64 +75,29 @@ export class IpfsService {
   }
 
   connectPeer(peer): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.node.swarm.connect(peer, (err) => {
-        if (err) {
-          return reject(err);
-        }
-
-        return resolve();
-      });
-    });
+    return this.node.swarm.connect(peer);
   }
 
   peers(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.node._libp2pNode.on('peer:connect', peer => {
-        this.node.swarm.peers((err, peerInfos) => {
-          if (err) {
-            return reject(err);
-          }
-          return resolve(peerInfos);
-        });
+        this.node.swarm.peers()
+          .then((peerInfos) => resolve(peerInfos))
+          .catch(err => reject(err));
       });
     });
   }
 
   id(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.node.id((err, identities) => {
-        if (err) {
-          return reject(err);
-        }
-
-        return resolve(identities);
-      });
-    });
+    return this.node.id();
   }
 
-  put(uploadQueue): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.node.files.add(uploadQueue, (err, result) => {
-        if (err) {
-          return reject(err);
-        }
-
-        return resolve(result);
-      });
-    });
+  put(uploadQueue, options: any = {}): Promise<any> {
+    return this.node.files.add(uploadQueue, options);
   }
 
   get(hash): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.node.files.get(hash, (err, files) => {
-        if (err) {
-          return reject(err);
-        }
-
-        return resolve(files);
-      });
-    });
+    return this.node.files.get(hash);
   }
 
   getRandomPeer() {

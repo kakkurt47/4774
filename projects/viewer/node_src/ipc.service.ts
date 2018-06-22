@@ -10,7 +10,7 @@ import {BlockKey, BufferStream, IpfsUploadInterface, MuzikaCoverFile, MuzikaPriv
 import {electronEnvironment} from './environment';
 import {IpfsServiceInstance} from './ipfs.service';
 import {StorageServiceInstance} from './storage.service';
-import {MuzikaPublicFile} from '../../core/nodejs/file/muzika-public-file';
+import {MuzikaPublicFile} from '@muzika/core/nodejs';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   console.log(arg); // prints "ping"
@@ -165,11 +165,11 @@ class IpcMainService {
           .then(() => {
             // push meta data for contract description
             uploadQueue.push({
-              path: '/muzika/meta.json',
+              path: '/meta.json',
               content: new BufferStream(Buffer.from(JSON.stringify(contractInfo)))
             });
 
-            ipfs.put(uploadQueue)
+            ipfs.put(uploadQueue, {wrapWithDirectory: true})
               .then((result) => {
                 MuzikaConsole.log('Finished to upload all files to IPFS.');
                 // remove temporary files since finishing to upload files.
@@ -178,7 +178,7 @@ class IpcMainService {
 
                 // find root object from uploaded objects in IPFS
                 const rootObject = result.find((object) => {
-                  return object.path === 'muzika';
+                  return ['', '/'].includes(object.path);
                 });
 
                 MuzikaConsole.log('IPFS Root Hash : ', rootObject.hash);

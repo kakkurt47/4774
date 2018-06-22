@@ -42,7 +42,7 @@ export class MuzikaPublicFile implements IpfsUploadInterface {
         this._readyStreamingFile(uploadQueue).then(() => {
           summary.videos.push({
             type: 'ipfs',
-            path: `/public/${this._fileBaseName}/master.m3u8`
+            path: `${MuzikaFileUtil.PUBLIC_FILE_DIRETORY}/${this._fileBaseName}/master.m3u8`
           });
 
           MuzikaConsole.log('Success to ready public file ', this.filePath);
