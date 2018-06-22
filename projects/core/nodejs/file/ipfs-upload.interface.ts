@@ -5,12 +5,12 @@ import * as fs from 'fs';
 import * as async from 'async';
 import { BufferStream } from '../utils/buffer-stream';
 import { AESCBCEncryptionStream } from '../cipher/aes-stream';
-import {BlockUtil, MuzikaConsole, MuzikaContractSummary} from '@muzika/core';
+import {BlockUtil, MuzikaConsole, MuzikaContractSummary, promisify} from '@muzika/core';
 
 /**
  * This class generates parameter in add function in js-ipfs node instance.
  */
-export interface FileUploadInterface {
+export interface IpfsUploadInterface {
   filePath: string;
   totalProgress: ProgressSet;
 
@@ -26,8 +26,6 @@ export interface FileUploadInterface {
 
   /**
    * Removes temporary directories including the files of directories. This must be called when finishing to upload to IPFS.
-   *
-   * @param {(err) => void} callback
    */
   removeTempFiles(): Promise<any>;
 }
@@ -134,50 +132,59 @@ export class MuzikaFileUtil {
    */
   public static removeDirectory(dirPath: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      fs.readdir(dirPath, (err, files) => {
 
+      // query all files and directories in the directory to remove.
+      promisify(fs.readdir, dirPath).then(files => {
+
+        // convert file paths to absolute path
         files = files.map((file) => path.join(dirPath, file));
 
-        async.each((files), (file, callback) => {
-          fs.lstat(file, (statErr, stats) => {
-            if (statErr) {
-              MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, statErr);
-              return callback(statErr);
-            }
+        // remove each files
+        promisify(async.each, files, (file, callback) => {
+
+          // check if the file is directory or file.
+          promisify(fs.lstat, file).then((stats) => {
 
             if (stats.isDirectory()) {
+              // if directory, remove by calling this function recursively.
               this.removeDirectory(file).then(() => {
                 callback();
-              }).catch((rmDirErr) => {
-                callback(rmDirErr);
+              }).catch((err) => {
+                callback(err);
               });
 
             } else if (stats.isFile()) {
-              fs.unlink(file, (rmErr) => {
-                if (rmErr) {
-                  MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, rmErr);
-                  return callback(rmErr);
-                }
-
+              // if file, unlink it.
+              promisify(fs.unlink, file).then(() => {
                 callback();
+              }).catch((err) => {
+                MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
+                return callback(err);
               });
+
             }
+          }).catch(err => {
+            // failed to query stat
+            MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
+            return callback(err);
           });
-        }, (rmErr) => {
-          if (rmErr) {
-            return reject(rmErr);
-          } else {
-            fs.rmdir(dirPath, (rmdirErr) => {
-              if (rmdirErr) {
-                MuzikaConsole.error(`Failed to remove temporary directory.. (${dirPath})`, rmdirErr);
-                return reject(rmdirErr);
-              } else {
-                MuzikaConsole.log(`Success to remove temporary directory (${dirPath})`);
-                return resolve();
-              }
-            });
-          }
+
+        }).then(() => {
+          // if success to remove files and directories in the directory, finally remove the empty directory.
+          promisify(fs.rmdir, dirPath).then(() => {
+            MuzikaConsole.log(`Success to remove temporary directory (${dirPath})`);
+            return resolve();
+          }).catch(err => {
+            MuzikaConsole.error(`Failed to remove temporary directory.. (${dirPath})`, err);
+            return reject(err);
+          });
+        }).catch(err => {
+          return reject(err);
         });
+
+      }).catch(err => {
+        MuzikaConsole.error(`Failed to remove temporary directory.. (${dirPath})`);
+        return reject(err);
       });
     });
   }

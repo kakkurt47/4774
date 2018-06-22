@@ -1,13 +1,13 @@
-import {FileUploadInterface, MuzikaFileUtil} from './ipfs-file';
+import {IpfsUploadInterface, MuzikaFileUtil} from './ipfs-upload.interface';
 import {ManualProgress, ProgressSet, ProgressStream} from '../utils';
-import {MuzikaConsole, MuzikaContractSummary} from '@muzika/core';
+import {MuzikaConsole, MuzikaContractSummary, promisify} from '@muzika/core';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as async from 'async';
 import {StreamingUtil} from '../utils';
 import * as os from 'os';
 
-export class MuzikaPublicFile implements FileUploadInterface {
+export class MuzikaPublicFile implements IpfsUploadInterface {
   filePath: string;
   totalProgress: ProgressSet;
   tempDirs: string[] = [];
@@ -62,16 +62,10 @@ export class MuzikaPublicFile implements FileUploadInterface {
     // this function must be called after uploaded
     return new Promise((resolve, reject) => {
       async.each(this.tempDirs,
-        (tempDir, cb) => {
-          MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err));
-        },
-        (err) => {
-          if (err) {
-            return reject(err);
-          } else {
-            return resolve();
-          }
-        });
+        // remove each temporary directory recursively
+        (tempDir, cb) => MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err)),
+        // after removing, return
+        (err) => (err) ? reject(err) : resolve());
     });
   }
 
@@ -79,12 +73,8 @@ export class MuzikaPublicFile implements FileUploadInterface {
     return new Promise((resolve, reject) => {
       // generate a temporary directory for save streaming files generated
       const tempDir = os.tmpdir();
-      fs.mkdtemp(tempDir, (mkdErr, tempDirPath) => {
-        if (mkdErr) {
-          MuzikaConsole.error(mkdErr);
-          return reject(mkdErr);
-        }
 
+      promisify(fs.mkdtemp, tempDir).then((tempDirPath) => {
         this.tempDirs.push(tempDirPath);
         StreamingUtil.convert(this.filePath, StreamingUtil.VIDEO_OPTION.MIDDLE_QUALITY, tempDirPath).subscribe(
           (progress) => {
@@ -95,12 +85,7 @@ export class MuzikaPublicFile implements FileUploadInterface {
             return reject(err);
           },
           () => {
-            fs.readdir(tempDirPath, (readDirErr, streamingFiles) => {
-              if (readDirErr) {
-                return reject(readDirErr);
-              }
-
-              // set streaming conversion completed
+            promisify(fs.readdir, tempDirPath).then((streamingFiles) => {
               this._streamProgress.setProgressPercent(1);
 
               streamingFiles.forEach((streamFileName) => {
@@ -115,8 +100,13 @@ export class MuzikaPublicFile implements FileUploadInterface {
 
               MuzikaConsole.log(`Complete to generate public stream files for ${this._fileBaseName}`);
               resolve(null);
+            }).catch(err => {
+              return reject(err);
             });
           });
+      }).catch(err => {
+        MuzikaConsole.error(err);
+        return reject(err);
       });
     });
   }

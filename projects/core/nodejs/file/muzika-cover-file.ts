@@ -1,4 +1,4 @@
-import { FileUploadInterface, MuzikaFileUtil } from './ipfs-file';
+import { IpfsUploadInterface, MuzikaFileUtil } from './ipfs-upload.interface';
 import { ProgressSet } from '../utils';
 import { MuzikaContractSummary } from '@muzika/core';
 import * as path from 'path';
@@ -7,7 +7,7 @@ import * as imagemagick from 'imagemagick-native';
 import * as fs from 'fs';
 
 
-export class MuzikaCoverFile implements FileUploadInterface {
+export class MuzikaCoverFile implements IpfsUploadInterface {
   filePath: string;
   totalProgress: ProgressSet;
   private _fileBaseName: string;
@@ -110,7 +110,7 @@ export class MuzikaCoverFile implements FileUploadInterface {
 
   removeTempFiles(): Promise<void> {
     // cover file does not have any temp files
-    return new Promise((resolve, reject) => resolve());
+    return new Promise((resolve) => resolve());
   }
 
 }

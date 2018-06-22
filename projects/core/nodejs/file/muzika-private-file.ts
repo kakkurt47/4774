@@ -1,15 +1,15 @@
-import { MuzikaConsole, MuzikaContractSummary } from '@muzika/core';
+import {MuzikaConsole, MuzikaContractSummary, promisify} from '@muzika/core';
 import * as async from 'async';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { ManualProgress, ProgressSet } from '../utils/progress';
 import * as imagemagick from 'imagemagick-native';
-import { FileUploadInterface, MuzikaFileUtil } from './ipfs-file';
+import { IpfsUploadInterface, MuzikaFileUtil } from './ipfs-upload.interface';
 import {StreamingUtil} from '../utils';
 
 
-export class MuzikaPrivateFile implements FileUploadInterface {
+export class MuzikaPrivateFile implements IpfsUploadInterface {
   filePath: string;
   cipherKey: Buffer = null;
   preview: string[] = [];
@@ -69,11 +69,12 @@ export class MuzikaPrivateFile implements FileUploadInterface {
             callback(err, null);
           });
         } else {
+          MuzikaConsole.log('Success to ready private file ', this.filePath);
           this._uploadProgress.start();
           return callback(null, null);
         }
       }).catch((err) => {
-        MuzikaConsole.log(err);
+        MuzikaConsole.error('Failed to ready public file ', this.filePath);
         return callback(err, null);
       });
     };
@@ -82,17 +83,11 @@ export class MuzikaPrivateFile implements FileUploadInterface {
   removeTempFiles(): Promise<void> {
     // this function must be called after uploaded
     return new Promise((resolve, reject) => {
-    async.each(this.tempDirs,
-      (tempDir, cb) => {
-        MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err));
-      },
-      (err) => {
-        if (err) {
-          return reject(err);
-        } else {
-          return resolve();
-        }
-      });
+      async.each(this.tempDirs,
+        // remove each temporary directory recursively
+        (tempDir, cb) => MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err)),
+        // after removing, return
+        (err) => (err) ? reject(err) : resolve());
     });
   }
 
@@ -153,27 +148,23 @@ export class MuzikaPrivateFile implements FileUploadInterface {
         // TODO: need to track preview generation progress correctly.
         MuzikaConsole.log('Generating Prview Files for ', this._fileBaseName);
         this._previewGenProgress.setProgressPercent(0.2);
-        imagemagick.generatePreview({
-          pdfPath: this.filePath
-        }, (err, previewPNGImages) => {
-          if (err) {
-            MuzikaConsole.error('Failed to generate previews for ', this._fileBaseName, err);
-            return reject(err);
-          }
 
-          previewPNGImages.forEach((previewImage, idx) => {
+        promisify(imagemagick.generatePreview, { pdfPath: this.filePath }).then(previewImages => {
+          previewImages.forEach((previewImage, idx) => {
             uploadQueue.push({
               path: MuzikaFileUtil.buildFilePath(
                 false, MuzikaFileUtil.PREVIEW_FILE_DIRECTORY, this._fileBaseName, `${idx}.png`
               ),
               content: this._buildContent(previewImage, false)
             });
-
-            this._previewGenProgress.setProgressPercent(1.0);
-            return resolve(null);
           });
 
+          this._previewGenProgress.setProgressPercent(1.0);
           MuzikaConsole.log('Complete to generate previews for ', this._fileBaseName);
+          return resolve(null);
+        }).catch(err => {
+          MuzikaConsole.error('Failed to generate previews for ', this._fileBaseName, err);
+          return reject(err);
         });
       }
     });
@@ -197,11 +188,8 @@ export class MuzikaPrivateFile implements FileUploadInterface {
     return new Promise((resolve, reject) => {
       // generate a temporary directory for save streaming files generated
       const tempDir = os.tmpdir();
-      fs.mkdtemp(tempDir, (mkdErr, tempDirPath) => {
-        if (mkdErr) {
-          return reject(mkdErr);
-        }
-
+      promisify(fs.mkdtemp, tempDir).then(tempDirPath => {
+        MuzikaConsole.log('Make a temporary directory', tempDirPath);
         this.tempDirs.push(tempDirPath);
 
         // TODO: support various options in conversion
@@ -215,11 +203,7 @@ export class MuzikaPrivateFile implements FileUploadInterface {
               return reject(err);
             },
             () => {
-              fs.readdir(tempDirPath, (readDirErr, streamingFiles) => {
-                if (readDirErr) {
-                  return reject(readDirErr);
-                }
-
+              promisify(fs.readdir, tempDirPath).then(streamingFiles => {
                 // set streaming conversion completed
                 this._streamProgress.setProgressPercent(1);
 
@@ -235,9 +219,13 @@ export class MuzikaPrivateFile implements FileUploadInterface {
 
                 MuzikaConsole.log(`Complete to generate private stream files for ${this._fileBaseName}`);
                 resolve(null);
+              }).catch(err => {
+                return reject(err);
               });
             });
-        });
+      }).catch(err => {
+        return reject(err);
+      });
     });
   }
 
@@ -248,6 +236,5 @@ export class MuzikaPrivateFile implements FileUploadInterface {
    */
   private _buildContent(file: string | Buffer, encryption: boolean) {
     return MuzikaFileUtil.buildContent(file, (encryption && this.cipherKey) ? this.cipherKey : null, this._uploadProgress);
-    // }
   }
 }
