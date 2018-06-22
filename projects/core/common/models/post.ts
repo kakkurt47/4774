@@ -6,14 +6,6 @@ export class BoardType {
   static MUSIC = 'music';
   static VIDEO = 'video';
   static COMMUNITY = 'community';
-
-  static OWN(ownType) {
-    return 'own' + ownType;
-  }
-
-  static SEARCH(searchType) {
-    return 'searched' + searchType;
-  }
 }
 
 export interface BasePost {

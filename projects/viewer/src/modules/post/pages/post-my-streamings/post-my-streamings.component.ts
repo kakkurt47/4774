@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { BaseComponent, PostActions } from '@muzika/core/angular';
+import { BaseComponent, UserActions } from '@muzika/core/angular';
+import { MusicPost, PaginationResult } from '@muzika/core';
 
 @Component({
   selector: 'post-my-streaming',
   templateUrl: './post-my-streamings.component.html'
 })
 export class PostMyStreamingsComponent extends BaseComponent {
-  constructor(private postActions: PostActions) {
+  posts: PaginationResult<MusicPost>;
+
+  constructor(private userActions: UserActions) {
     super();
   }
 
@@ -24,11 +27,17 @@ export class PostMyStreamingsComponent extends BaseComponent {
     //
     //   })
     // );
+    this._sub.push(
+      UserActions.myStreamingPostsObs
+        .subscribe(posts => {
+          this.posts = posts;
+        })
+    );
+
+    this.changePage(1);
   }
 
   changePage(page: number) {
-    this.postActions.loadMyPosts('music', `${page}`, {
-      type: 'streaming'
-    });
+    this.userActions.loadMyPosts('streaming', `${page}`).subscribe();
   }
 }

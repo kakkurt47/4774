@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { BaseComponent, PostActions } from '@muzika/core/angular';
+import { BaseComponent, UserActions } from '@muzika/core/angular';
+import { MusicPost, PaginationResult } from '@muzika/core';
 
 
 @Component({
@@ -7,7 +8,9 @@ import { BaseComponent, PostActions } from '@muzika/core/angular';
   templateUrl: './post-my-sheets.component.html'
 })
 export class PostMySheetsComponent extends BaseComponent {
-  constructor(private postActions: PostActions) {
+  posts: PaginationResult<MusicPost>;
+
+  constructor(private userActions: UserActions) {
     super();
   }
 
@@ -25,13 +28,18 @@ export class PostMySheetsComponent extends BaseComponent {
     //
     //   })
     // );
+    this._sub.push(
+      UserActions.mySheetPostsObs
+        .subscribe(posts => {
+          this.posts = posts;
+        })
+    );
+
     this.changePage(1);
   }
 
   changePage(page: number) {
-    this.postActions.loadMyPosts('music', `${page}`, {
-      type: 'sheet'
-    });
+    this.userActions.loadMyPosts('sheet', `${page}`).subscribe();
   }
 }
 

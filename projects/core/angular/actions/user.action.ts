@@ -1,7 +1,17 @@
 import { NgRedux, select } from '@angular-redux/store';
-import { Injectable, Inject } from '@angular/core';
-import { MuzikaPlatformType, User, IAppState, UserActionType, promisify, ERR } from '@muzika/core';
-import { Observable, from, of } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import {
+  ERR,
+  IAppState,
+  MusicPost,
+  MuzikaPlatformType,
+  PaginationResult,
+  PostActionType,
+  promisify,
+  User,
+  UserActionType
+} from '@muzika/core';
+import { from, Observable, of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { APIConfig } from '../config/api.config';
 import { PLATFORM_TYPE_TOKEN } from '../config/injection.tokens';
@@ -12,6 +22,18 @@ import { LocalStorage } from '../providers/local-storage.service';
 export class UserActions {
   @select(['user', 'currentUser'])
   public static currentUserObs: Observable<User>;
+
+  @select(['post', 'posts', PostActionType.PurchasedPosts('sheet')])
+  public static purchasedSheetPostsObs: Observable<MusicPost[]>;
+
+  @select(['post', 'posts', PostActionType.PurchasedPosts('streaming')])
+  public static purchasedStreamingPostsObs: Observable<MusicPost[]>;
+
+  @select(['post', 'postResult', PostActionType.MyPosts('sheet')])
+  public static mySheetPostsObs: Observable<PaginationResult<MusicPost>>;
+
+  @select(['post', 'postResult', PostActionType.MyPosts('streaming')])
+  public static myStreamingPostsObs: Observable<PaginationResult<MusicPost>>;
 
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,
@@ -29,9 +51,7 @@ export class UserActions {
       .subscribe(likes => {
         this.store.dispatch({
           type: UserActionType.SET_BOARD_LIKES,
-          payload: {
-            likes, boardType
-          }
+          payload: { likes, boardType }
         });
       });
   }
@@ -45,11 +65,37 @@ export class UserActions {
       .subscribe(likes => {
         this.store.dispatch({
           type: UserActionType.SET_COMMENT_LIKES,
-          payload: {
-            likes, boardType
-          }
+          payload: { likes, boardType }
         });
       });
+  }
+
+  loadPurchasedPosts(boardType: 'sheet' | 'streaming') {
+    return this.apiConfig.get<MusicPost[]>(`/user/board/${boardType}/purchased`)
+      .pipe(map(result => {
+        this.store.dispatch({
+          type: PostActionType.INSERT_POSTS_LIST,
+          payload: {
+            boardType,
+            total: result.length,
+            list: result,
+            page: []
+          }
+        });
+        return result;
+      }));
+  }
+
+  loadMyPosts(boardType: string, page: string, params: Object = {}) {
+    params['page'] = page;
+    return this.apiConfig.get<PaginationResult<MusicPost>>(`/user/board/${boardType}`)
+      .pipe(map(result => {
+        this.store.dispatch({
+          type: PostActionType.INSERT_POSTS_RESULT,
+          payload: Object.assign(result, { boardType })
+        });
+        return result;
+      }));
   }
 
   refreshMe(): Observable<User> {
@@ -59,6 +105,9 @@ export class UserActions {
           type: UserActionType.SET_CURRENT_USER,
           payload: user
         });
+
+        this.loadPurchasedPosts('sheet').subscribe();
+        this.loadPurchasedPosts('streaming').subscribe();
 
         return user;
       }),
@@ -123,18 +172,26 @@ export class UserActions {
       type: UserActionType.SET_CURRENT_USER,
       payload: null
     });
-    /*
+    ['sheet', 'streaming'].forEach(type => {
+      this.store.dispatch({
+        type: PostActionType.RESET_POSTS_RESULT,
+        payload: PostActionType.PurchasedPosts(type)
+      });
+      this.store.dispatch({
+        type: PostActionType.RESET_POSTS_RESULT,
+        payload: PostActionType.MyPosts(type)
+      });
+    });
     // 게시글 좋아요 목록 리셋
     this.store.dispatch({
       type: UserActionType.SET_BOARD_LIKES,
-      likes: {free: [], video: [], music: []}
+      likes: { free: [], video: [], music: [] }
     });
     // 댓글 좋아요 목록 리셋
     this.store.dispatch({
       type: UserActionType.SET_COMMENT_LIKES,
-      likes: {free: [], video: [], music: []}
+      likes: { free: [], video: [], music: [] }
     });
-    */
   }
 
 }

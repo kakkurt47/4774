@@ -1,23 +1,37 @@
-import {Action} from 'redux';
-import {tassign} from 'tassign';
-import {InfPaginationResult, PaginationResult} from '../models/pagination';
-import {BasePost} from '../models/post';
-import {PayloadAction} from '../models/redux-action';
+import { Action } from 'redux';
+import { tassign } from 'tassign';
+import { InfPaginationResult, PaginationResult } from '../models/pagination';
+import { BasePost } from '../models/post';
+import { PayloadAction } from '../models/redux-action';
 
 export class PostActionType {
   static INSERT_POSTS_LIST = '[posts] Insert posts list';
   static INSERT_POSTS_BEFORE_LIST = '[posts] Insert posts into bottom of list';
   static INSERT_POSTS_AFTER_LIST = '[posts] Insert posts into top of list';
-  static RESET_POSTS = '[posts] Reset posts list';
+  static INSERT_POSTS_RESULT = '[posts] Insert post result';
+  static RESET_POSTS_RESULT = '[posts] Reset posts result';
+  static RESET_POSTS_LIST = '[posts] Reset posts list';
   static RESET_INF_POSTS = '[posts] Reset inf posts list';
   static LIKE_TOGGLE_POST = '[posts] like toggle post';
   static SAVE_POSTS = '[posts] save posts';
-  static SAVE_POST_ADDITION = '[posts] save post additional info';
+
+  static PurchasedPosts (boardType: string) {
+    return 'purchased-' + boardType;
+  }
+  static MyPosts (boardType: string) {
+    return 'my-' + boardType;
+  }
+  static SearchedPosts (boardType: string) {
+    return 'searched-' + boardType;
+  }
 }
 
 export interface PostState {
   posts: {
-    [boardType: string]: PaginationResult<BasePost>
+    [type: string]: BasePost[]
+  };
+  postResult: {
+    [type: string]: PaginationResult<BasePost>
   };
   infPosts: {
     [boardType: string]: InfPaginationResult<BasePost>
@@ -27,28 +41,21 @@ export interface PostState {
       [postId: string]: BasePost
     }
   };
-  postAddition: {
-    [boardType: string]: {
-      [postId: string]: any
-    }
-  };
 }
 
 const initialState: PostState = {
-  posts: {
-    community: {total: 0, page: [], list: []},
-    music: {total: 0, page: [], list: []},
-    video: {total: 0, page: [], list: []}
+  postResult: {
+    community: { total: 0, page: [], list: [] },
+    music: { total: 0, page: [], list: [] },
+    video: { total: 0, page: [], list: [] }
   },
+  posts: {},
   infPosts: {
-    community: {after: null, before: null, list: []},
-    music: {after: null, before: null, list: []},
-    video: {after: null, before: null, list: []}
+    community: { after: null, before: null, list: [] },
+    music: { after: null, before: null, list: [] },
+    video: { after: null, before: null, list: [] }
   },
   post: {
-    community: {}, music: {}, video: {}
-  },
-  postAddition: {
     community: {}, music: {}, video: {}
   }
 };
@@ -59,21 +66,11 @@ export interface PostLikeAction extends Action {
   diff: number;
 }
 
-export interface ResetPostsAction extends Action {
-  boardType: string;
-}
-
 export interface SavePostAction extends Action {
   boardType: string;
   boardID: string;
   posts: BasePost[];
   update_column: string;
-}
-
-export interface PostAdditionAction extends Action {
-  boardType: string;
-  boardID: string;
-  additionalInfo: any;
 }
 
 function syncPostToState(postState, boardType, posts: BasePost[], update_column: string = null) {
@@ -103,7 +100,7 @@ function InfPaginationResultCombine<T>(target: InfPaginationResult<T>,
                                        source: InfPaginationResult<T>,
                                        insertType: 'after' | 'before',
                                        compareType: string | null = null): InfPaginationResult<T> {
-  const nextResult: InfPaginationResult<any> = {list: [], after: null, before: null};
+  const nextResult: InfPaginationResult<any> = { list: [], after: null, before: null };
 
   switch (insertType) {
     case 'after':
@@ -147,7 +144,14 @@ function InfPaginationResultCombine<T>(target: InfPaginationResult<T>,
 }
 
 // Infinite Scroll list 처리
-function postsActionState(state, payload: any, insertType: 'after' | 'before') {
+function postsActionState(state,
+                          payload: {
+                            boardType: string,
+                            after: string,
+                            before: string,
+                            list: any
+                          },
+                          insertType: 'after' | 'before') {
   return tassign(state, {
     infPosts: tassign(state.infPosts, {
       [payload.boardType]: InfPaginationResultCombine<BasePost>(state.infPosts[payload.boardType],
@@ -160,26 +164,33 @@ function postsActionState(state, payload: any, insertType: 'after' | 'before') {
   });
 }
 
-export const PostReducer = function (state: PostState = initialState, _action: Action): PostState {
+export const PostReducer = function(state: PostState = initialState, _action: Action): PostState {
   const action: PayloadAction = <PayloadAction>_action;
   switch (_action.type) {
-    case PostActionType.RESET_POSTS:
+    case PostActionType.RESET_POSTS_RESULT:
       return tassign(state, {
-        posts: tassign(state.posts, {
-          [action.payload.boardType]: {total: 0, page: [], list: []} as PaginationResult<BasePost>
+        postResult: tassign(state.postResult, {
+          [action.payload.boardType]: { total: 0, page: [], list: [] } as PaginationResult<BasePost>
         })
       });
 
     case PostActionType.RESET_INF_POSTS:
       return tassign(state, {
         infPosts: tassign(state.infPosts, {
-          [action.payload.boardType]: {after: null, before: null, list: []}
+          [action.payload.boardType]: { after: null, before: null, list: [] }
         })
       });
 
     case PostActionType.INSERT_POSTS_LIST:
       return tassign(state, {
         posts: tassign(state.posts, {
+          [action.payload.boardType]: action.payload.list
+        })
+      });
+
+    case PostActionType.INSERT_POSTS_RESULT:
+      return tassign(state, {
+        postResult: tassign(state.postResult, {
           [action.payload.boardType]: <PaginationResult<BasePost>>{
             ...action.payload,
             ...{
@@ -214,17 +225,6 @@ export const PostReducer = function (state: PostState = initialState, _action: A
       }
 
       return state;
-
-    case PostActionType.SAVE_POST_ADDITION:
-      const postAdditionAction = (<PostAdditionAction> _action);
-
-      return tassign(state, {
-        postAddition: tassign(state.postAddition, {
-          [postAdditionAction.boardType]: tassign(state.postAddition[postAdditionAction.boardType], {
-            [postAdditionAction.boardID]: postAdditionAction.additionalInfo
-          })
-        })
-      });
 
     default:
       return state;

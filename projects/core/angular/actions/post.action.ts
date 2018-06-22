@@ -2,8 +2,8 @@ import { NgRedux } from '@angular-redux/store';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BasePost, InfPaginationResult, PaginationResult, PostActionType, IAppState, BoardType, MuzikaConsole } from '@muzika/core';
-import { Observable, from } from 'rxjs';
+import { BasePost, IAppState, InfPaginationResult, MuzikaConsole, PaginationResult, PostActionType } from '@muzika/core';
+import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APIConfig } from '../config/api.config';
 import { ParamsBuilder } from '../config/params.builder';
@@ -28,10 +28,7 @@ export class PostActions {
 
   visit(boardType: string, boardID: number) {
     if (isPlatformBrowser(this.platformId)) { // Server side rendering에서는 업데이트 안함
-      this.apiConfig
-        .post('board/row/update', {
-          boardType, boardID
-        }).subscribe();
+      this.apiConfig.post('board/row/update', { boardType, boardID }).subscribe();
     }
   }
 
@@ -84,21 +81,9 @@ export class PostActions {
     return from(func());
   }
 
-  violation(boardType, boardID, commentID, reason: string) {
-    // return this.http
-    //   .post<any>(this.apiConfig.legacy_api_url, {
-    //     mode: 'violationRequest',
-    //     boardType: boardType,
-    //     boardID: boardID,
-    //     commentID: commentID,
-    //     reason: reason
-    //   })
-    //   .pipe(map((res: any) => res.request));
-  }
-
   resetPosts(boardType: string) {
     this.store.dispatch({
-      type: PostActionType.RESET_POSTS,
+      type: PostActionType.RESET_POSTS_RESULT,
       payload: { boardType }
     });
   }
@@ -114,7 +99,12 @@ export class PostActions {
     this.apiConfig.get<BasePost>(`/board/${boardType}/${boardID}`)
       .subscribe(
         (post) => {
-          this.savePost(boardType, post);
+          this.store.dispatch({
+            type: PostActionType.SAVE_POSTS,
+            boardType,
+            update_column: 'all',
+            posts: [post]
+          });
           this.visit(boardType, +boardID);
         },
         (err: HttpErrorResponse) => {
@@ -134,67 +124,26 @@ export class PostActions {
     } else if (currentPosts.before !== null) {
       params['before'] = currentPosts.before;
     }
-    this.requestPosts(boardType,
+    this._requestPosts(boardType,
       (mode === 'after') ? PostActionType.INSERT_POSTS_AFTER_LIST : PostActionType.INSERT_POSTS_BEFORE_LIST,
       params);
   }
 
   loadPosts(boardType: string, page: string, params: Object) {
     params['page'] = page;
-    this.requestPosts(boardType, PostActionType.INSERT_POSTS_LIST, params);
+    this._requestPosts(boardType, PostActionType.INSERT_POSTS_RESULT, params);
   }
 
-  loadMyPosts(boardType: string, page: string, params: Object) {
-    params['page'] = page;
-    params['onlyUser'] = true;
-    this.requestPosts(boardType, PostActionType.INSERT_POSTS_LIST, params);
-  }
-
-  loadAdditional(boardType: string, boardID: number, is_modify: boolean): Observable<any> {
-    return this.apiConfig
-      .get(`/board/${boardType}/${boardID}/additional`, {
-        params: ParamsBuilder.from({ is_modify })
-      })
-      .pipe(
-        map(data => {
-          this.store.dispatch({
-            type: PostActionType.SAVE_POST_ADDITION,
-            boardType: boardType,
-            boardID: boardID,
-            additionalInfo: data
-          });
-          return data;
-        })
-      );
-  }
-
-  private savePost(boardType: string, post: BasePost, update_column = 'all') {
-    this.store.dispatch({
-      type: PostActionType.SAVE_POSTS,
-      boardType, update_column,
-      posts: [post]
-    });
-  }
-
-  private requestPosts(boardType: string, dispatchType: string, params: Object) {
-    const onlyUser = params['onlyUser'];
-    const frontURL = (onlyUser) ? '/user' : '';
-
+  private _requestPosts(boardType: string, dispatchType: string, params: Object) {
     this.apiConfig
-      .get<PaginationResult<BasePost> | InfPaginationResult<BasePost>>(`${frontURL}/board/${boardType}`, {
+      .get<PaginationResult<BasePost> | InfPaginationResult<BasePost>>(`/board/${boardType}`, {
         params: ParamsBuilder.from(params)
       })
       .subscribe((data: any) => {
-        if (onlyUser) {
-          data.boardType = BoardType.OWN(boardType);
-        } else {
-          data.boardType = boardType;
-        }
-
         // trigger post inserting
         this.store.dispatch({
           type: dispatchType,
-          payload: data
+          payload: Object.assign(data, { boardType })
         });
       });
   }
