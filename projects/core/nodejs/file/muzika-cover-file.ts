@@ -108,8 +108,9 @@ export class MuzikaCoverFile implements FileUploadInterface {
     });
   }
 
-  removeTempFiles(callback: (err) => void) {
-    return callback(null);
+  removeTempFiles(): Promise<void> {
+    // cover file does not have any temp files
+    return new Promise((resolve, reject) => resolve());
   }
 
 }

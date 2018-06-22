@@ -2,9 +2,10 @@ import { ProgressSet, ProgressStream } from '../utils/progress';
 import * as path from 'path';
 import { BlockPaddingStream } from '../cipher/block-stream';
 import * as fs from 'fs';
+import * as async from 'async';
 import { BufferStream } from '../utils/buffer-stream';
 import { AESCBCEncryptionStream } from '../cipher/aes-stream';
-import { BlockUtil, MuzikaContractSummary } from '@muzika/core';
+import {BlockUtil, MuzikaConsole, MuzikaContractSummary} from '@muzika/core';
 
 /**
  * This class generates parameter in add function in js-ipfs node instance.
@@ -28,7 +29,7 @@ export interface FileUploadInterface {
    *
    * @param {(err) => void} callback
    */
-  removeTempFiles(callback: (err) => void);
+  removeTempFiles(): Promise<any>;
 }
 
 
@@ -125,5 +126,59 @@ export class MuzikaFileUtil {
       return fromStream
         .pipe(progressStream);
     }
+  }
+
+  /**
+   * Remove directory with all files in it.
+   * @param {string} dirPath the directory path to remove.
+   */
+  public static removeDirectory(dirPath: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      fs.readdir(dirPath, (err, files) => {
+
+        files = files.map((file) => path.join(dirPath, file));
+
+        async.each((files), (file, callback) => {
+          fs.lstat(file, (statErr, stats) => {
+            if (statErr) {
+              MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, statErr);
+              return callback(statErr);
+            }
+
+            if (stats.isDirectory()) {
+              this.removeDirectory(file).then(() => {
+                callback();
+              }).catch((rmDirErr) => {
+                callback(rmDirErr);
+              });
+
+            } else if (stats.isFile()) {
+              fs.unlink(file, (rmErr) => {
+                if (rmErr) {
+                  MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, rmErr);
+                  return callback(rmErr);
+                }
+
+                callback();
+              });
+            }
+          });
+        }, (rmErr) => {
+          if (rmErr) {
+            return reject(rmErr);
+          } else {
+            fs.rmdir(dirPath, (rmdirErr) => {
+              if (rmdirErr) {
+                MuzikaConsole.error(`Failed to remove temporary directory.. (${dirPath})`, rmdirErr);
+                return reject(rmdirErr);
+              } else {
+                MuzikaConsole.log(`Success to remove temporary directory (${dirPath})`);
+                return resolve();
+              }
+            });
+          }
+        });
+      });
+    });
   }
 }

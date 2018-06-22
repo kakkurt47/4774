@@ -178,13 +178,7 @@ class IpcMainService {
               MuzikaConsole.log('Finished to upload all files to IPFS.');
               // remove temporary files since finishing to upload files.
               // this is called even if failed to upload.
-              uploadFiles.forEach((uploadFile) => {
-                uploadFile.removeTempFiles((rmTempErr) => {
-                  if (rmTempErr) {
-                    MuzikaConsole.log('ERROR WHEN REMOVING TEMP FILES!', rmTempErr);
-                  }
-                });
-              });
+              uploadFiles.forEach((uploadFile) => uploadFile.removeTempFiles());
 
               // find root object from uploaded objects in IPFS
               const rootObject = result.find((object) => {

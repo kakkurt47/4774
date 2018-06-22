@@ -58,40 +58,20 @@ export class MuzikaPublicFile implements FileUploadInterface {
     };
   }
 
-  removeTempFiles(callback: (err) => void) {
+  removeTempFiles(): Promise<void> {
     // this function must be called after uploaded
-    async.each(this.tempDirs, (tempDir, rmCallback) => {
-      fs.readdir(tempDir, (readErr, tempFiles) => {
-        if (readErr) {
-          return rmCallback(readErr);
-        } else {
-          async.each(tempFiles, (tempFile, unlinkCallback) => {
-            // remove files
-            fs.unlink(path.join(tempDir, tempFile), (unlinkErr) => {
-              return unlinkCallback(unlinkErr);
-            });
-          }, (unlinkErr) => {
-            if (unlinkErr) {
-              return rmCallback(unlinkErr);
-            }
-
-            // remove empty directory after removing files
-            fs.rmdir(tempDir, (rmdirErr) => {
-
-              // if having errors and error is not ENOENT(NO ENTRY ERROR)
-              if (rmdirErr && rmdirErr.code !== 'ENOENT') {
-                return rmCallback(rmdirErr);
-              } else {
-                return rmCallback();
-              }
-            });
-          });
-        }
-      });
-    }, (rmErr) => {
-      if (rmErr) {
-        return callback(rmErr);
-      }
+    return new Promise((resolve, reject) => {
+      async.each(this.tempDirs,
+        (tempDir, cb) => {
+          MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err));
+        },
+        (err) => {
+          if (err) {
+            return reject(err);
+          } else {
+            return resolve();
+          }
+        });
     });
   }
 

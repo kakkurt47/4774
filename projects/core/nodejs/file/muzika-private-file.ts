@@ -6,7 +6,7 @@ import * as path from 'path';
 import { ManualProgress, ProgressSet } from '../utils/progress';
 import * as imagemagick from 'imagemagick-native';
 import { FileUploadInterface, MuzikaFileUtil } from './ipfs-file';
-import { StreamingUtil } from '../utils';
+import {StreamingUtil} from '../utils';
 
 
 export class MuzikaPrivateFile implements FileUploadInterface {
@@ -79,40 +79,20 @@ export class MuzikaPrivateFile implements FileUploadInterface {
     };
   }
 
-  removeTempFiles(callback: (err) => void) {
+  removeTempFiles(): Promise<void> {
     // this function must be called after uploaded
-    async.each(this.tempDirs, (tempDir, rmCallback) => {
-      fs.readdir(tempDir, (readErr, tempFiles) => {
-        if (readErr) {
-          return rmCallback(readErr);
+    return new Promise((resolve, reject) => {
+    async.each(this.tempDirs,
+      (tempDir, cb) => {
+        MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err));
+      },
+      (err) => {
+        if (err) {
+          return reject(err);
         } else {
-          async.each(tempFiles, (tempFile, unlinkCallback) => {
-            // remove files
-            fs.unlink(path.join(tempDir, tempFile), (unlinkErr) => {
-              return unlinkCallback(unlinkErr);
-            });
-          }, (unlinkErr) => {
-            if (unlinkErr) {
-              return rmCallback(unlinkErr);
-            }
-
-            // remove empty directory after removing files
-            fs.rmdir(tempDir, (rmdirErr) => {
-
-              // if having errors and error is not ENOENT(NO ENTRY ERROR)
-              if (rmdirErr && rmdirErr.code !== 'ENOENT') {
-                return rmCallback(rmdirErr);
-              } else {
-                return rmCallback();
-              }
-            });
-          });
+          return resolve();
         }
       });
-    }, (rmErr) => {
-      if (rmErr) {
-        return callback(rmErr);
-      }
     });
   }
 
