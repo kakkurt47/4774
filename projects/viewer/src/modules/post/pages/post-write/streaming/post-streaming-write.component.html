@@ -7,9 +7,9 @@
         <div class="file-select-form" (click)="fileSelector.click();">
           <div class="upload-btn" [class.disabled]="uploadStatus?.status === 'uploading'">
             <input type="file" id="upload-sheet" class="upload-sheet" #fileSelector name="upload-sheet"
-                   (change)="addFile($event.target.files[0])" accept=".mp3,.wav" />
+                   (change)="addFile($event.target.files[0])" accept=".mp3,.wav"/>
             <span class="btn-text">
-              Choose audio file / Drag & drop <BR />
+              Choose audio file / Drag & drop <BR/>
               <small> Support extension: mp3, wav </small>
             </span>
           </div>
@@ -57,17 +57,36 @@
 
         <div class="cover-image-form">
           <div class="input-group">
-            <input type="file" id="upload-cover-image" class="upload-cover-image" #coverImageSelector name="upload-cover-image"
-                   (change)="addCoverImage($event.target.files[0])" accept=".jpg,.jpeg,.gif,.png" />
+            <input type="file" id="upload-cover-image" class="upload-cover-image" #coverImageSelector
+                   name="upload-cover-image"
+                   (change)="addCoverImage($event.target.files[0])" accept=".jpg,.jpeg,.gif,.png"/>
           </div>
         </div>
 
-        <h5> Music Video <small>(if not exists, you don't have to choose)</small> </h5>
+        <h5> Music Video
+          <small>(if not exists, you don't have to choose)</small>
+        </h5>
 
         <div class="music-video-form">
-          <div class="input-group">
-            <input type="file" id="upload-music-video" class="upload-music-video" #musicVideoSelector name="upload-music-video"
-                   (change)="addMusicVideo($event.target.files[0])" accept=".mp4" />
+          <div class="btn-group">
+            <button type="button" class="btn btn-xs"
+                    (click)="musicVideo = {type: 'youtube', path: undefined}"
+                    [class.btn-default]="musicVideo.type !== 'youtube'"
+                    [class.btn-primary]="musicVideo.type === 'youtube'">
+              <i class="fab fa-youtube"></i> Youtube URL
+            </button>
+            <button type="button" class="btn btn-xs"
+                    (click)="musicVideo = {type: 'ipfs', path: undefined}"
+                    [class.btn-default]="musicVideo.type !== 'ipfs'"
+                    [class.btn-primary]="musicVideo.type === 'ipfs'">
+              <i class="fal fa-file-video"></i> File
+            </button>
+            <input type="file" id="upload-music-video-file" class="form-control-file upload-music-video-file"
+                   *ngIf="musicVideo.type === 'ipfs'" name="upload-music-video-file"
+                   (change)="addMusicVideo($event.target.files[0])" accept=".mp4"/>
+            <input *ngIf="musicVideo.type === 'youtube'"
+                   type="text" id="upload-music-video-youtube" [(ngModel)]="musicVideo.path"
+                   class="form-control upload-music-video-youtube" name="upload-music-video">
           </div>
         </div>
 
@@ -111,7 +130,7 @@
     </div>
 
     <div class="submit-floating">
-      <button mat-raised-button color="accent"> <i class="fa fa-pencil"></i> Upload </button>
+      <button mat-raised-button color="accent"><i class="fa fa-pencil"></i> Upload</button>
     </div>
   </form>
 </section>

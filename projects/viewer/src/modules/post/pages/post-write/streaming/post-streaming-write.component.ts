@@ -59,6 +59,11 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   ngOnInit() {
     super.ngOnInit();
 
+    this.musicVideo = {
+      type: 'ipfs',
+      path: undefined
+    };
+
     this._sub.push(
       this.electronService.onDragFile
         .subscribe(file => {
