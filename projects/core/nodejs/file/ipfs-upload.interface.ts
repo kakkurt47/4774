@@ -41,7 +41,7 @@ export class MuzikaFileUtil {
   public static STREAMING_FILE_DIRECTORY = '/streaming';
   public static PREVIEW_FILE_DIRECTORY = '/preview';
   public static COVER_FILE_DIRECTORY = '/cover';
-  public static PUBLIC_FILE_DIRETORY = '/public';
+  public static PUBLIC_FILE_DIRECTORY = '/public';
 
   public static COVER_IMAGE = {
     SQUARE: {
