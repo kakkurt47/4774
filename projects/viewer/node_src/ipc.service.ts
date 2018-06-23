@@ -142,7 +142,8 @@ class IpcMainService {
           uploadFiles.push(new MuzikaCoverFile(meta.coverImagePath));
         }
 
-        if (meta.musicVideo) {
+        // if public music video exists, insert music video into the ipfs directory or youtube URL.
+        if (meta.musicVideo && meta.musicVideo.path) {
           switch (meta.musicVideo.type) {
             case 'ipfs':
               // if the music video will be uploaded to IPFS
@@ -161,7 +162,7 @@ class IpcMainService {
             ipcProgress(percents);
           });
 
-        promisify(async.parallel, uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue, contractInfo)))
+        Promise.all(uploadFiles.map((uploadFile) => uploadFile.ready(uploadQueue, contractInfo)))
           .then(() => {
             // push meta data for contract description
             uploadQueue.push({

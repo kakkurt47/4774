@@ -33,8 +33,8 @@ export class MuzikaPublicFile implements IpfsUploadInterface {
     }
   }
 
-  ready(uploadQueue: any[], summary: MuzikaContractSummary): (err) => void {
-    return (callback) => {
+  ready(uploadQueue: any[], summary: MuzikaContractSummary): Promise<void> {
+    return new Promise((resolve, reject) => {
       this.totalProgress.start();
       MuzikaConsole.log('Start to ready public file', this._fileBaseName);
 
@@ -46,26 +46,24 @@ export class MuzikaPublicFile implements IpfsUploadInterface {
           });
 
           MuzikaConsole.log('Success to ready public file ', this.filePath);
-          return callback(null);
+          return resolve();
         }).catch((err) => {
           MuzikaConsole.error('Failed to ready public file ', this.filePath);
-          return callback(err);
+          return reject(err);
         });
       } else {
         MuzikaConsole.error('Allowed Extension : ', MuzikaFileUtil.PUBLIC_FILE_EXTENSION);
-        return callback(new Error('Not allowed extension'));
+        return reject(new Error('Not allowed extension'));
       }
-    };
+    });
   }
 
   removeTempFiles(): Promise<void> {
     // this function must be called after uploaded
     return new Promise((resolve, reject) => {
-      async.each(this.tempDirs,
-        // remove each temporary directory recursively
-        (tempDir, cb) => MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err)),
-        // after removing, return
-        (err) => (err) ? reject(err) : resolve());
+      Promise.all(this.tempDirs.map(tempDir => MuzikaFileUtil.removeDirectory(tempDir)))
+        .then(() => resolve())
+        .catch(err => reject(err));
     });
   }
 

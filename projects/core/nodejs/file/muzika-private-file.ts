@@ -53,8 +53,8 @@ export class MuzikaPrivateFile implements IpfsUploadInterface {
     }
   }
 
-  ready(uploadQueue: any[], summary: MuzikaContractSummary) {
-    return (callback) => {
+  ready(uploadQueue: any[], summary: MuzikaContractSummary): Promise<void> {
+    return new Promise((resolve, reject) => {
       this.totalProgress.start();
       MuzikaConsole.log('Start to ready private file', this._fileBaseName);
 
@@ -64,28 +64,26 @@ export class MuzikaPrivateFile implements IpfsUploadInterface {
         if ((MuzikaFileUtil.HLS_CONVERSION_EXTENSION).includes(this._fileExt)) {
           this._readyStreamingFile(uploadQueue).then(() => {
             this._uploadProgress.start();
-            callback(null, null);
-          }, err => callback(err, null));
+            resolve();
+          }, err => reject(err));
         } else {
           MuzikaConsole.log('Success to ready private file ', this.filePath);
           this._uploadProgress.start();
-          return callback(null, null);
+          return resolve();
         }
       }).catch((err) => {
         MuzikaConsole.error('Failed to ready public file ', this.filePath);
-        return callback(err, null);
+        return reject(err);
       });
-    };
+    });
   }
 
   removeTempFiles(): Promise<void> {
     // this function must be called after uploaded
     return new Promise((resolve, reject) => {
-      async.each(this.tempDirs,
-        // remove each temporary directory recursively
-        (tempDir, cb) => MuzikaFileUtil.removeDirectory(tempDir).then(() => cb()).catch((err) => cb(err)),
-        // after removing, return
-        (err) => (err) ? reject(err) : resolve());
+      Promise.all(this.tempDirs.map(tempDir => MuzikaFileUtil.removeDirectory(tempDir)))
+        .then(() => resolve())
+        .catch(err => reject(err));
     });
   }
 

@@ -25,14 +25,14 @@ export class MuzikaCoverFile implements IpfsUploadInterface {
     this._fileExt = path.extname(this._fileBaseName);
   }
 
-  ready(uploadQueue: any[], summary: MuzikaContractSummary): (err) => void {
-    return (callback) => {
+  ready(uploadQueue: any[], summary: MuzikaContractSummary): Promise<void> {
+    return new Promise((resolve, reject) => {
       this._readyForCoverImage(uploadQueue, summary)
         .then(() => {
           this.totalProgress.start();
-          callback();
-        }).catch((err) => callback(err));
-    };
+          resolve();
+        }).catch(err => reject(err));
+    });
   }
 
   /**
@@ -49,45 +49,39 @@ export class MuzikaCoverFile implements IpfsUploadInterface {
       );
 
       promisify(fs.readFile, this.filePath).then(data => {
-        async.parallel([
-          (callback) => {
-            promisify(imagemagick.convert, {
-              srcData: data,
-              format: 'png',
-              width: MuzikaFileUtil.COVER_IMAGE.RECT.WIDTH,
-              height: MuzikaFileUtil.COVER_IMAGE.RECT.HEIGHT
-            }).then(buffer => {
-              const ipfsFilePath = MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'rect.png');
+        Promise.all([
+          this._createCoverImage(data,
+            MuzikaFileUtil.COVER_IMAGE.RECT.WIDTH, MuzikaFileUtil.COVER_IMAGE.RECT.HEIGHT,
+            'rect.png', uploadQueue, summary),
+          this._createCoverImage(data,
+            MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH, MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT,
+            'square.png', uploadQueue, summary),
+        ]).then(() => resolve());
+      }).catch(err => reject(err));
+    });
+  }
 
-              uploadQueue.push({
-                path: ipfsFilePath,
-                content: MuzikaFileUtil.buildContent(buffer, null, this.totalProgress)
-              });
+  /**
+   * Creates a Promise for converting and creating a new cover image from original image.
+   */
+  private _createCoverImage(data: Buffer, width: number, height: number, filename: string,
+                            uploadQueue: any[], summary: MuzikaContractSummary): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      promisify(imagemagick.convert, {
+        srcData: data,
+        format: 'png',
+        width: width,
+        height: height
+      }).then(buffer => {
+        const ipfsFilePath = MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, filename);
 
-              summary.coverImage.rect = ipfsFilePath;
-              callback();
-            }).catch(err => callback(err));
-          },
+        uploadQueue.push({
+          path: ipfsFilePath,
+          content: MuzikaFileUtil.buildContent(buffer, null, this.totalProgress)
+        });
 
-          (callback) => {
-            promisify(imagemagick.convert, {
-              srcData: data,
-              format: 'png',
-              width: MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH,
-              height: MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT
-            }).then(buffer => {
-              const ipfsFilePath = MuzikaFileUtil.buildFilePath(false, MuzikaFileUtil.COVER_FILE_DIRECTORY, 'rect.png');
-
-              uploadQueue.push({
-                path: ipfsFilePath,
-                content: MuzikaFileUtil.buildContent(buffer, null, this.totalProgress)
-              });
-
-              summary.coverImage.rect = ipfsFilePath;
-              callback();
-            }).catch(err => callback(err));
-          }
-        ], (err) => (err) ? reject(err) : resolve());
+        summary.coverImage.rect = ipfsFilePath;
+        resolve();
       }).catch(err => reject(err));
     });
   }

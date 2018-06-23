@@ -22,7 +22,7 @@ export interface IpfsUploadInterface {
    * @param summary information instance for the IPFS object structure of a contract
    * @returns {(callback) => any} a function that preprocesses before uploading to IPFS and call callback function.
    */
-  ready(uploadQueue: any[], summary: MuzikaContractSummary): (err) => void;
+  ready(uploadQueue: any[], summary: MuzikaContractSummary): Promise<void>;
 
   /**
    * Removes temporary directories including the files of directories. This must be called when finishing to upload to IPFS.
@@ -122,7 +122,6 @@ export class MuzikaFileUtil {
    */
   public static removeDirectory(dirPath: string): Promise<any> {
     return new Promise((resolve, reject) => {
-
       // query all files and directories in the directory to remove.
       promisify(fs.readdir, dirPath).then(files => {
 
@@ -130,36 +129,29 @@ export class MuzikaFileUtil {
         files = files.map((file) => path.join(dirPath, file));
 
         // remove each files
-        promisify(async.each, files, (file, callback) => {
+        Promise.all(files.map((file) => {
+          return new Promise((rsv, rej) => {
+            // check if the file is directory or file.
+            promisify(fs.lstat, file).then((stats) => {
 
-          // check if the file is directory or file.
-          promisify(fs.lstat, file).then((stats) => {
+              if (stats.isDirectory()) {
+                // if directory, remove by calling this function recursively.
+                this.removeDirectory(file).then(() => rsv()).catch((err) => rej(err));
 
-            if (stats.isDirectory()) {
-              // if directory, remove by calling this function recursively.
-              this.removeDirectory(file).then(() => {
-                callback();
-              }).catch((err) => {
-                callback(err);
-              });
-
-            } else if (stats.isFile()) {
-              // if file, unlink it.
-              promisify(fs.unlink, file).then(() => {
-                callback();
-              }).catch((err) => {
-                MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
-                return callback(err);
-              });
-
-            }
-          }).catch(err => {
-            // failed to query stat
-            MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
-            return callback(err);
+              } else if (stats.isFile()) {
+                // if file, unlink it.
+                promisify(fs.unlink, file).then(() => rsv()).catch((err) => {
+                  MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
+                  return rej(err);
+                });
+              }
+            }).catch(err => {
+              // failed to query stat
+              MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
+              return rej(err);
+            });
           });
-
-        }).then(() => {
+        })).then(() => {
           // if success to remove files and directories in the directory, finally remove the empty directory.
           promisify(fs.rmdir, dirPath).then(() => {
             MuzikaConsole.log(`Success to remove temporary directory (${dirPath})`);
