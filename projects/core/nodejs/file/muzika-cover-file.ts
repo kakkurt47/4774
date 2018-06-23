@@ -1,8 +1,7 @@
-import { IpfsUploadInterface, MuzikaFileUtil } from './ipfs-upload.interface';
-import { ProgressSet } from '../utils';
+import {IpfsUploadInterface, MuzikaFileUtil} from './ipfs-upload.interface';
+import {ProgressSet} from '../utils';
 import {MuzikaContractSummary, promisify} from '@muzika/core';
 import * as path from 'path';
-import * as async from 'async';
 import * as imagemagick from 'imagemagick-native';
 import * as fs from 'fs';
 

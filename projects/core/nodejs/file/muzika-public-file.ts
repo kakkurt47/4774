@@ -1,10 +1,8 @@
 import {IpfsUploadInterface, MuzikaFileUtil} from './ipfs-upload.interface';
-import {ManualProgress, ProgressSet, ProgressStream} from '../utils';
+import {ManualProgress, ProgressSet, StreamingUtil} from '../utils';
 import {MuzikaConsole, MuzikaContractSummary, promisify} from '@muzika/core';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as async from 'async';
-import {StreamingUtil} from '../utils';
 import * as os from 'os';
 
 export class MuzikaPublicFile implements IpfsUploadInterface {

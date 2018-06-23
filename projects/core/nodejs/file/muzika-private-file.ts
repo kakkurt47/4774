@@ -1,11 +1,10 @@
 import {MuzikaConsole, MuzikaContractSummary, promisify} from '@muzika/core';
-import * as async from 'async';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { ManualProgress, ProgressSet } from '../utils/progress';
+import {ManualProgress, ProgressSet} from '../utils/progress';
 import * as imagemagick from 'imagemagick-native';
-import { IpfsUploadInterface, MuzikaFileUtil } from './ipfs-upload.interface';
+import {IpfsUploadInterface, MuzikaFileUtil} from './ipfs-upload.interface';
 import {StreamingUtil} from '../utils';
 
 
