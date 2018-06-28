@@ -146,7 +146,6 @@ class IpcMainService {
           MuzikaConsole.log(`TOTAL PERCENT : ${percent}%`);
           ipcProgress(percent);
         });
-        totalProgress.start();
 
         fileUploader.ready().then(() => {
           fileUploader.upload(IpfsServiceInstance.node).then(hash => {

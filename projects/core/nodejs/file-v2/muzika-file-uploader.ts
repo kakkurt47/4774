@@ -1,14 +1,14 @@
-import {BlockUtil, MuzikaConsole, MuzikaContractSummary, promisify} from '@muzika/core';
-import {ManualProgress, Progress, ProgressSet, ProgressStream, StreamingUtil} from '../utils';
+import { BlockUtil, MuzikaConsole, MuzikaContractSummary, promisify } from '@muzika/core';
+import { ManualProgress, Progress, ProgressSet, ProgressStream, StreamingUtil } from '../utils';
 import * as path from 'path';
-import {BlockPaddingStream} from '../cipher/block-stream';
-import {AESCBCEncryptionStream} from '../cipher/aes-stream';
+import { BlockPaddingStream } from '../cipher/block-stream';
+import { AESCBCEncryptionStream } from '../cipher/aes-stream';
 import * as fs from 'fs';
-import {BufferStream} from '../utils/buffer-stream';
+import { BufferStream } from '../utils/buffer-stream';
 import * as imagemagick from 'imagemagick-native';
-import {MuzikaFileUtil} from './ipfs-upload.interface';
+import { MuzikaFileUtil } from './ipfs-upload.interface';
 import * as os from 'os';
-import {IPFS} from 'ipfs';
+import { IPFS } from 'ipfs';
 
 export interface IpfsUploadTask {
   path: string;
@@ -71,11 +71,11 @@ export class MuzikaFileTask {
       path: ipfsPath,
       content:
         (!!this.cipherKey) ?
-        fromStream
-        .pipe(new BlockPaddingStream({}))
-        .pipe(new AESCBCEncryptionStream({key: this.cipherKey}))
-        .pipe(progressStream)
-      : fromStream.pipe(progressStream),
+          fromStream
+            .pipe(new BlockPaddingStream({}))
+            .pipe(new AESCBCEncryptionStream({ key: this.cipherKey }))
+            .pipe(progressStream)
+          : fromStream.pipe(progressStream),
       uploadProgress: progressStream
     };
   }
@@ -103,10 +103,14 @@ export class MuzikaFileTask {
    */
   ready(): Promise<IpfsUploadTask[]> {
     switch (this._mode) {
-      case 'ipfs': return this._readyIpfs();
-      case 'preview': return this._readyPreview();
-      case 'streaming': return this._readyStreaming();
-      case 'coverImage': return this._readyCover();
+      case 'ipfs':
+        return this._readyIpfs();
+      case 'preview':
+        return this._readyPreview();
+      case 'streaming':
+        return this._readyStreaming();
+      case 'coverImage':
+        return this._readyCover();
     }
   }
 
@@ -130,18 +134,17 @@ export class MuzikaFileTask {
    * @private
    */
   private _readyPreview(): Promise<IpfsUploadTask[]> {
-    return new Promise<IpfsUploadTask[]>((resolve, reject) => {
-      if (this._file instanceof Buffer) {
-        return reject(new Error('the file type should be file path string in generating preview task.'));
-      }
+    if (this._file instanceof Buffer) {
+      return Promise.reject(new Error('the file type should be file path string in generating preview task.'));
+    }
 
-      this.progress.setProgressPercent(0.2);
+    this.progress.setProgressPercent(0.2);
 
-      promisify(imagemagick.generatePreview, { pdfPath: this._file }).then((previewFiles) => {
-        resolve(previewFiles.map((previewFile, idx) => this.buildFile(this.buildFilePath(`${idx}.png`), previewFile)));
+    return promisify(imagemagick.generatePreview, { pdfPath: this._file })
+      .then((previewFiles) => {
         this.progress.setProgressPercent(1);
-      }).catch((err) => reject(err));
-    });
+        return previewFiles.map((previewFile, idx) => this.buildFile(this.buildFilePath(`${idx}.png`), previewFile));
+      });
   }
 
   /**
@@ -174,9 +177,9 @@ export class MuzikaFileTask {
             promisify(fs.readdir, tempDirPath).then((streamingFiles) => {
               this.progress.setProgressPercent(1);
 
-            resolve(streamingFiles.map((streamingFile) =>
-              this.buildFile(this.buildFilePath(streamingFile), path.join(tempDirPath, streamingFile))));
-            MuzikaConsole.log(`Complete to generate public stream files for ${this._fileBaseName}`);
+              resolve(streamingFiles.map((streamingFile) =>
+                this.buildFile(this.buildFilePath(streamingFile), path.join(tempDirPath, streamingFile))));
+              MuzikaConsole.log(`Complete to generate public stream files for ${this._fileBaseName}`);
             }).catch(err => {
               return reject(err);
             });
@@ -204,10 +207,10 @@ export class MuzikaFileTask {
         this.progress.setProgressPercent(0.2);
         Promise.all([
           this._createCoverImage(data, MuzikaFileUtil.COVER_IMAGE.RECT.WIDTH, MuzikaFileUtil.COVER_IMAGE.RECT.HEIGHT),
-          this._createCoverImage(data, MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH, MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT),
+          this._createCoverImage(data, MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH, MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT)
         ]).then(([rectImgBuf, squareImgBuf]) => {
           resolve([rectImgBuf, squareImgBuf].map((buf, idx) =>
-            this.buildFile(this.buildFilePath((idx === 0) ? 'rect.png' : 'square.png'), buf)))
+            this.buildFile(this.buildFilePath((idx === 0) ? 'rect.png' : 'square.png'), buf)));
           this.progress.setProgressPercent(1);
         });
       }).catch(err => reject(err));
@@ -344,10 +347,10 @@ export class MuzikaFileUploader {
           filePath,
           null)
         );
-        this.contractSummary.videos.push({type: 'ipfs', path: `/streaming/${fileBaseName}`});
+        this.contractSummary.videos.push({ type: 'ipfs', path: `/streaming/${fileBaseName}` });
         break;
       case 'youtube':
-        this.contractSummary.videos.push({type: 'youtube', path: filePath});
+        this.contractSummary.videos.push({ type: 'youtube', path: filePath });
         break;
       case 'cover':
         this._taskQueue.push(new MuzikaFileTask(
@@ -370,12 +373,11 @@ export class MuzikaFileUploader {
    * @returns {Promise<void>}
    */
   ready(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      this._taskQueue.forEach(task => this.readyProgress.registerProgress(task.progress));
-      this.readyProgress.start();
-      MuzikaConsole.log('Tasking before uploading files to IPFS.', this._taskQueue);
+    this._taskQueue.forEach(task => this.readyProgress.registerProgress(task.progress));
+    MuzikaConsole.log('Tasking before uploading files to IPFS.', this._taskQueue);
 
-      return Promise.all(this._taskQueue.map(task => task.ready())).then((uploadTasks) => {
+    return Promise.all(this._taskQueue.map(task => task.ready()))
+      .then((uploadTasks) => {
         uploadTasks.forEach((uploadObjects) => {
           this._uploadQueue.push(...uploadObjects);
           this.uploadProgress.registerProgress(...uploadObjects.map((uploadObject) => uploadObject.uploadProgress));
@@ -385,10 +387,7 @@ export class MuzikaFileUploader {
           path: '/meta.json',
           content: Buffer.from(JSON.stringify(this.contractSummary))
         });
-
-        resolve();
-      }).catch(err => reject(err));
-    });
+      });
   }
 
   /**
@@ -397,23 +396,20 @@ export class MuzikaFileUploader {
    * @returns {Promise<string>}
    */
   upload(ipfsNode: IPFS): Promise<string> {
-    this.uploadProgress.start();
-    return new Promise<string>((resolve, reject) => {
-      ipfsNode.files.add(this._uploadQueue, { wrapWithDirectory: true })
-        .then(result => {
-          this._taskQueue.forEach(task => task.finalize());
-          MuzikaConsole.log('UPLOAD TO IPFS : ', result);
+    return ipfsNode.files.add(this._uploadQueue, { wrapWithDirectory: true })
+      .then(result => {
+        this._taskQueue.forEach(task => task.finalize());
+        MuzikaConsole.log('UPLOAD TO IPFS : ', result);
 
-          const rootObject = result.find((object) => {
-            return ['', '/'].includes(object.path);
-          });
-
-          resolve(rootObject.hash);
-        })
-        .catch(err => {
-          this._taskQueue.forEach(task => task.finalize());
-          reject(err);
+        const rootObject = result.find((object) => {
+          return ['', '/'].includes(object.path);
         });
-    });
+
+        return rootObject.hash;
+      })
+      .catch(err => {
+        this._taskQueue.forEach(task => task.finalize());
+        throw err;
+      });
   }
 }

@@ -26,7 +26,6 @@ export class ProgressSet implements Progress {
   onChange: Observable<number>;
   _onChangeSubject: BehaviorSubject<number>;
   progresses: Progress[] = [];
-  isStarted = false;
   private _onChangeSubscription: Subscription;
 
   constructor(progresses: Progress[] = [], weight = 1) {
@@ -39,15 +38,6 @@ export class ProgressSet implements Progress {
   }
 
   /**
-   * Starts to track this progress. The onProgressCallback that is called when
-   * the percentage changed after start() method called.
-   */
-  start() {
-    this.isStarted = true;
-    this._onChangeSetup();
-  }
-
-  /**
    * Adds an additional progress.
    * @param {Progress[]} progresses addtional progress to be tracked.
    */
@@ -57,19 +47,22 @@ export class ProgressSet implements Progress {
   }
 
   private _onChangeSetup() {
+    if (!this.progresses.length) {
+      return;
+    }
     if (this._onChangeSubscription) { // remove previous subscription
       this._onChangeSubscription.unsubscribe();
     }
+
+    const percentageWeight = this.progresses.reduce((prevPercent, current) => {
+      return prevPercent + current.percentageWeight;
+    }, 0);
+
     this._onChangeSubscription = combineLatest(...this.progresses.map(progress => progress.onChange))
       .subscribe((percents: number[]) => {
-        if (!this.progresses.length || !this.isStarted) {
-          return;
-        }
         this._onChangeSubject.next(percents.reduce((prev, current, idx) => {
           return (current) ? prev + current * this.progresses[idx].percentageWeight : prev;
-        }, 0) / this.progresses.reduce((prevPercent, current) => {
-          return prevPercent + current.percentageWeight;
-        }, 0));
+        }, 0) / percentageWeight);
       });
   }
 }
