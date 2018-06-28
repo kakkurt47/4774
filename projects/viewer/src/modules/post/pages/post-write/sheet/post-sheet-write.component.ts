@@ -39,7 +39,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
   coverImageFile: File;
   uploadStatus: {
     status: string;
-    progress: number[];
+    progress: number;
     process?: string;
     ipfsFileHash: string;
     aesKey: Buffer;
@@ -160,7 +160,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
   submit(form: NgForm): void {
     this.uploadStatus = {
       status: 'uploading',
-      progress: Array(this.files.length).fill(0),
+      progress: 0,
       process: null,
       ipfsFileHash: null,
       aesKey: null
@@ -168,14 +168,10 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
 
     this.uploadFile().subscribe(([type, progress, hash, aesKey]) => {
       if (type === 'progress') {
-        progress.map((percent, idx) => {
-          if (idx < this.uploadStatus.progress.length) {
-            this.uploadStatus.progress[idx] = Math.round(percent * 10000) / 100;
-          }
-        });
+        this.uploadStatus.progress = Math.round(progress * 10000) / 100;
       } else {
         this.uploadStatus.status = 'done';
-        this.uploadStatus.progress.map((_, idx) => this.uploadStatus.progress[idx] = 100);
+        this.uploadStatus.progress = 100;
         this.uploadStatus.ipfsFileHash = hash;
         this.uploadStatus.aesKey = aesKey;
 

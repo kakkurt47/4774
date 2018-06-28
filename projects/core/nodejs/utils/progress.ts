@@ -25,15 +25,17 @@ export class ProgressSet implements Progress {
   percentageWeight: number;
   onChange: Observable<number>;
   _onChangeSubject: BehaviorSubject<number>;
-  progresses: Progress[];
+  progresses: Progress[] = [];
   isStarted = false;
   private _onChangeSubscription: Subscription;
 
-  constructor(progresses: Progress[], weight = 1) {
-    this.progresses = progresses;
+  constructor(progresses: Progress[] = [], weight = 1) {
     this._onChangeSubject = new BehaviorSubject<number>(0);
     this.onChange = this._onChangeSubject.asObservable();
     this.percentageWeight = weight;
+    if (progresses.length > 0) {
+      this.registerProgress(...progresses);
+    }
   }
 
   /**
@@ -47,10 +49,10 @@ export class ProgressSet implements Progress {
 
   /**
    * Adds an additional progress.
-   * @param {Progress} progress addtional progress to be tracked.
+   * @param {Progress[]} progresses addtional progress to be tracked.
    */
-  registerProgress(progress: Progress) {
-    this.progresses.push(progress);
+  registerProgress(...progresses: Progress[]) {
+    this.progresses.push(...progresses);
     this._onChangeSetup();
   }
 

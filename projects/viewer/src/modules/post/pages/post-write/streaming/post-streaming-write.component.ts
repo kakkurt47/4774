@@ -41,7 +41,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   };
   uploadStatus: {
     status: string;
-    progress: number[];
+    progress: number;
     process?: string;
     ipfsFileHash: string;
     aesKey: Buffer;
@@ -156,7 +156,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   submit(form: NgForm): void {
     this.uploadStatus = {
       status: 'uploading',
-      progress: Array(this.files.length).fill(0),
+      progress: 0,
       process: null,
       ipfsFileHash: null,
       aesKey: null
@@ -164,14 +164,10 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
     this.uploadFile().subscribe(([type, progress, hash, aesKey]) => {
       if (type === 'progress') {
-        progress.map((percent, idx) => {
-          if (idx < this.uploadStatus.progress.length) {
-            this.uploadStatus.progress[idx] = Math.round(percent * 10000) / 100;
-          }
-        });
+        this.uploadStatus.progress = Math.round(progress * 10000) / 100;
       } else {
         this.uploadStatus.status = 'done';
-        this.uploadStatus.progress.map((_, idx) => this.uploadStatus.progress[idx] = 100);
+        this.uploadStatus.progress = 100;
         this.uploadStatus.ipfsFileHash = hash;
         this.uploadStatus.aesKey = aesKey;
 
@@ -211,7 +207,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
     });
 
     return this.ipcRendererService.sendAsyncWithProgress(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true, {
-      type: 'music',
+      type: 'media',
       title: this.post.title,
       description: this.post.content,
       author: this.currentUser.name,

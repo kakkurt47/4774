@@ -92,7 +92,7 @@ export class IpfsService {
     return this.node.id();
   }
 
-  put(uploadQueue, options: any = {}): Promise<any> {
+  add(uploadQueue, options: any = {}): Promise<any> {
     return this.node.files.add(uploadQueue, options);
   }
 

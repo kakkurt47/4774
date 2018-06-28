@@ -6,7 +6,7 @@
  */
 export interface MuzikaContractSummary {
   version: string;                          // muzika contract files structure version. For legacy support.
-  type: 'sheet' | 'music';                  // type of this contract file.
+  type: 'sheet' | 'music' | 'unknown';      // type of this contract file.
   title: string;                            // contract title.
   description: string;                      // contract description.
   author: string;                           // author name. (uploader name)

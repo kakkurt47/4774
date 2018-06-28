@@ -39,15 +39,15 @@
                 {{preview.name}}
               </span>
             </div>
+          </div>
 
-            <div class="progress upload-progress position-relative" *ngIf="uploadStatus">
-              <div class="progress-bar"
-                   role="progressbar"
-                   [attr.aria-valuenow]="uploadStatus.progress[i]" aria-valuemin="0" aria-valuemax="100"
-                   [style.width]="uploadStatus.progress[i] + '%'">
-                <div style="position: absolute; left: 0; right: 0">
-                  {{uploadStatus.progress[i]}}%
-                </div>
+          <div class="progress upload-progress position-relative" *ngIf="uploadStatus">
+            <div class="progress-bar"
+                 role="progressbar"
+                 [attr.aria-valuenow]="uploadStatus.progress" aria-valuemin="0" aria-valuemax="100"
+                 [style.width]="uploadStatus.progress + '%'">
+              <div style="position: absolute; left: 0; right: 0">
+                {{uploadStatus.progress}}%
               </div>
             </div>
           </div>
