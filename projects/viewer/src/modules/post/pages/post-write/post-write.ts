@@ -1,15 +1,15 @@
-import { Component, Injector } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { BasePost, CommunityPost, VideoPost } from '@muzika/core';
-import { BaseComponent, UserActions } from '@muzika/core/angular';
-import { AlertifyInstnace } from '@muzika/core/browser';
-import { FroalaEditorOptions } from '../../post.constant';
-import { Router } from '@angular/router';
+import {Component, Injector} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {BasePost, BasePostDraft, CommunityPost, VideoPost} from '@muzika/core';
+import {BaseComponent, UserActions} from '@muzika/core/angular';
+import {AlertifyInstnace} from '@muzika/core/browser';
+import {FroalaEditorOptions} from '../../post.constant';
+import {Router} from '@angular/router';
 
 export class BasePostWriteComponent extends BaseComponent {
   options = FroalaEditorOptions;
 
-  post: BasePost = <any>{
+  post: BasePostDraft = <any>{
     tags: []
   };
 
@@ -69,7 +69,7 @@ export class BasePostWriteComponent extends BaseComponent {
     return;
   }
 
-  protected prepare(form: NgForm): BasePost | null {
+  protected prepare(form: NgForm): BasePostDraft | null {
     const c = form.controls;
 
     if (c.title.invalid) {

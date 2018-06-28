@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { BasePost, MusicContract, MusicPost, MuzikaFilePath, unitDown, User } from '@muzika/core';
+import {BasePost, MusicContract, MusicPost, MusicPostDraft, MusicVideo, MuzikaFilePath, unitDown, User} from '@muzika/core';
 import { InstrumentSelections, StreamingMusicGenreSelections } from '../../../post.constant';
 import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
 import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
@@ -9,6 +9,7 @@ import { AlertifyInstnace } from '@muzika/core/browser';
 import { IPCUtil } from '../../../../../../shared/ipc-utils';
 import { BasePostWriteComponent } from '../post-write';
 import { ElectronService } from '../../../../../providers/electron.service';
+import {FileBaseNamePipe} from '@muzika/core/angular';
 
 @Component({
   selector: 'app-post-music-write',
@@ -20,9 +21,13 @@ import { ElectronService } from '../../../../../providers/electron.service';
   ]
 })
 export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
-  post: MusicPost = <any>{
+  post: MusicPostDraft = <MusicPostDraft>{
+    type: 'streaming',
     tags: [],
-    price: 0
+    price: 0,
+    files: [],
+    cover_image_path: null,
+    music_video: null
   };
 
   currentUser: User;
@@ -33,12 +38,6 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
   genres: Set<string> = new Set();
 
-  files: { file: File, previews: File[] }[] = [];
-  coverImageFile: File;
-  musicVideo: {
-    type: 'ipfs' | 'youtube';
-    path: string;
-  };
   uploadStatus: {
     status: string;
     progress: number;
@@ -59,7 +58,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   ngOnInit() {
     super.ngOnInit();
 
-    this.musicVideo = {
+    this.post.music_video = {
       type: 'ipfs',
       path: undefined
     };
@@ -131,26 +130,28 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   }
 
   addFile(selectedFile: File) {
-    if (this.files.some(file => file.file.name === selectedFile.name)) {
-      AlertifyInstnace.alert('File is already added');
-    } else {
-      this.files.push({ file: selectedFile, previews: [] });
+    if (typeof selectedFile !== 'undefined') {
+      if (this.post.files.some(file => file.path === selectedFile.name)) {
+        AlertifyInstnace.alert('File is already added');
+      } else {
+        this.post.files.push({path: selectedFile.path, previews: []});
+      }
     }
   }
 
   addCoverImage(selectedFile: File) {
-    this.coverImageFile = selectedFile;
+    this.post.cover_image_path = selectedFile.path;
   }
 
   addMusicVideo(selectedFile: File) {
-    this.musicVideo = {
+    this.post.music_video = {
       type: 'ipfs',
       path: selectedFile.path
     };
   }
 
   addPreview(idx: number, $event: any) {
-    this.files[idx].previews.push($event.target.files[0]);
+    this.post.files[idx].previews.push($event.target.files[0]);
   }
 
   submit(form: NgForm): void {
@@ -199,10 +200,10 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   }
 
   private uploadFile() {
-    const filePaths: MuzikaFilePath[] = this.files.map(file => {
+    const filePaths: MuzikaFilePath[] = this.post.files.map(file => {
       return {
-        path: file.file.path,
-        previews: file.previews.map(preview => preview.path)
+        path: file.path,
+        previews: file.previews
       };
     });
 
@@ -212,8 +213,8 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
       description: this.post.content,
       author: this.currentUser.name,
       authorAddress: this.currentUser.address,
-      coverImagePath: (this.coverImageFile) ? this.coverImageFile.path : null,
-      musicVideo: this.musicVideo
+      coverImagePath: (this.post.cover_image_path) ? this.post.cover_image_path : null,
+      musicVideo: this.post.music_video
     });
   }
 }

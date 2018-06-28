@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { BasePost, MusicContract, MusicPost, MuzikaFilePath, unitDown, User } from '@muzika/core';
+import {BasePost, BasePostDraft, MusicContract, MusicPost, MusicPostDraft, MuzikaFilePath, unitDown, User} from '@muzika/core';
 import { SheetMusicGenreSelections, InstrumentSelections } from '../../../post.constant';
 import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
 import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
@@ -20,9 +20,13 @@ import { ElectronService } from '../../../../../providers/electron.service';
   ]
 })
 export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
-  post: MusicPost = <any>{
+  post: MusicPostDraft = <MusicPostDraft>{
+    type: 'sheet',
     tags: [],
-    price: 0
+    price: 0,
+    files: [],
+    cover_image_path: null,
+    music_video: null
   };
 
   currentUser: User;
@@ -146,10 +150,12 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
   }
 
   addFile(selectedFile: File) {
-    if (this.files.some(file => file.file.name === selectedFile.name)) {
-      AlertifyInstnace.alert('File is already added');
-    } else {
-      this.files.push({ file: selectedFile, previews: [] });
+    if (typeof selectedFile !== 'undefined') {
+      if (this.files.some(file => file.file.name === selectedFile.name)) {
+        AlertifyInstnace.alert('File is already added');
+      } else {
+        this.files.push({file: selectedFile, previews: []});
+      }
     }
   }
 

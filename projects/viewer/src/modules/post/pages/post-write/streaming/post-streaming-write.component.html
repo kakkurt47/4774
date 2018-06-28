@@ -16,11 +16,11 @@
         </div>
 
         <div class="position-relative">
-          <div *ngFor="let file of files; let i = index" class="m-1">
+          <div *ngFor="let file of post.files; let i = index" class="m-1">
             <div class="d-flex justify-content-between align-items-center">
               <span class="file-name">
                 <i class="fa fa-file-pdf"></i>
-                {{file.file.name}}
+                {{file.path | basename }}
               </span>
 
               <button type="button" class="btn btn-primary btn-sm">
@@ -71,21 +71,21 @@
           <div class="btn-group">
             <button type="button" class="btn btn-xs"
                     (click)="musicVideo = {type: 'youtube', path: undefined}"
-                    [class.btn-default]="musicVideo.type !== 'youtube'"
-                    [class.btn-primary]="musicVideo.type === 'youtube'">
+                    [class.btn-default]="post.music_video.type !== 'youtube'"
+                    [class.btn-primary]="post.music_video.type === 'youtube'">
               <i class="fab fa-youtube"></i> Youtube URL
             </button>
             <button type="button" class="btn btn-xs"
                     (click)="musicVideo = {type: 'ipfs', path: undefined}"
-                    [class.btn-default]="musicVideo.type !== 'ipfs'"
-                    [class.btn-primary]="musicVideo.type === 'ipfs'">
+                    [class.btn-default]="post.music_video.type !== 'ipfs'"
+                    [class.btn-primary]="post.music_video.type === 'ipfs'">
               <i class="fal fa-file-video"></i> File
             </button>
             <input type="file" id="upload-music-video-file" class="form-control-file upload-music-video-file"
-                   *ngIf="musicVideo.type === 'ipfs'" name="upload-music-video-file"
+                   *ngIf="post.music_video.type === 'ipfs'" name="upload-music-video-file"
                    (change)="addMusicVideo($event.target.files[0])" accept=".mp4"/>
-            <input *ngIf="musicVideo.type === 'youtube'"
-                   type="text" id="upload-music-video-youtube" [(ngModel)]="musicVideo.path"
+            <input *ngIf="post.music_video.type === 'youtube'"
+                   type="text" id="upload-music-video-youtube" [(ngModel)]="post.music_video.path"
                    class="form-control upload-music-video-youtube" name="upload-music-video">
           </div>
         </div>

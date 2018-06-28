@@ -1,6 +1,7 @@
 import {PostComment} from './comment';
 import {User} from './user';
-import {IpfsFile} from './file';
+import {IpfsFile, MuzikaFilePath} from './file';
+import {BasePostDraft, CommunityPostDraft, MusicPostDraft, VideoPostDraft} from './draftbox';
 
 export class BoardType {
   static MUSIC = 'music';
@@ -8,7 +9,13 @@ export class BoardType {
   static COMMUNITY = 'community';
 }
 
-export interface BasePost {
+export interface MusicVideo {
+  type: 'ipfs' | 'youtube';
+  path: string;
+}
+
+export interface BasePost extends BasePostDraft {
+  version?: string;
   post_id: number;
   title: string;
   content: string;
@@ -27,15 +34,20 @@ export interface CommunityPost extends BasePost {
 }
 
 export interface VideoPost extends BasePost {
-  video_thumb: string;
+  video_thumb?: string;
   youtube_url: string;
 }
 
 export interface MusicPost extends BasePost {
   type: 'sheet' | 'streaming';
   price?: number | string;
-  music_contract?: MusicContract;
+
   ipfs_file?: IpfsFile;
+  music_contract?: MusicContract;
+
+  files?: MuzikaFilePath[];
+  cover_image_path?: string;
+  music_video?: MusicVideo;
 }
 
 export interface MusicContract {
