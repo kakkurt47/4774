@@ -67,54 +67,36 @@ export class MuzikaFileUtil {
    * Remove directory with all files in it.
    * @param {string} dirPath the directory path to remove.
    */
-  public static removeDirectory(dirPath: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      // query all files and directories in the directory to remove.
-      promisify(fs.readdir, dirPath).then(files => {
+  public static removeDirectory(dirPath: string): Promise<void> {
+    // query all files and directories in the directory to remove.
+    return promisify(fs.readdir, dirPath).then(files => {
 
-        // convert file paths to absolute path
-        files = files.map((file) => path.join(dirPath, file));
+      // convert file paths to absolute path
+      files = files.map((file) => path.join(dirPath, file));
 
-        // remove each files
-        Promise.all(files.map((file) => {
-          return new Promise((rsv, rej) => {
-            // check if the file is directory or file.
-            promisify(fs.lstat, file).then((stats) => {
+      // remove each files
+      return Promise.all(files.map((file) => {
+          // check if the file is directory or file.
+          return promisify(fs.lstat, file).then((stats) => {
+            if (stats.isDirectory()) {
+              // if directory, remove by calling this function recursively.
+              return this.removeDirectory(file);
 
-              if (stats.isDirectory()) {
-                // if directory, remove by calling this function recursively.
-                this.removeDirectory(file).then(() => rsv()).catch((err) => rej(err));
-
-              } else if (stats.isFile()) {
-                // if file, unlink it.
-                promisify(fs.unlink, file).then(() => rsv()).catch((err) => {
-                  MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
-                  return rej(err);
-                });
-              }
-            }).catch(err => {
-              // failed to query stat
-              MuzikaConsole.error(`Failed to remove temporary file.. (${file})`, err);
-              return rej(err);
-            });
+            } else if (stats.isFile()) {
+              // if file, unlink it.
+              return promisify(fs.unlink, file);
+            }
           });
-        })).then(() => {
-          // if success to remove files and directories in the directory, finally remove the empty directory.
-          promisify(fs.rmdir, dirPath).then(() => {
-            MuzikaConsole.log(`Success to remove temporary directory (${dirPath})`);
-            return resolve();
-          }).catch(err => {
-            MuzikaConsole.error(`Failed to remove temporary directory.. (${dirPath})`, err);
-            return reject(err);
-          });
-        }).catch(err => {
-          return reject(err);
+      })).then(() => {
+        // if success to remove files and directories in the directory, finally remove the empty directory.
+        return promisify(fs.rmdir, dirPath).then(() => {
+          MuzikaConsole.log(`Success to remove temporary directory (${dirPath})`);
+          return Promise.resolve();
         });
-
-      }).catch(err => {
-        MuzikaConsole.error(`Failed to remove temporary directory.. (${dirPath})`);
-        return reject(err);
       });
+    }).catch(err => {
+      MuzikaConsole.error(`Failed to remove temporary directory.. (${dirPath})`);
+      return Promise.reject(err);
     });
   }
 }

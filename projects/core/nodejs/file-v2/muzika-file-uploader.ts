@@ -85,15 +85,12 @@ export class MuzikaFileTask {
    *
    * @returns {Promise<void>}
    */
-  finalize() {
-    return new Promise<void>((resolve, reject) => {
-      Promise.all(this.tempDirs.map(tempDir => MuzikaFileUtil.removeDirectory(tempDir)))
-        .then(() => {
-          this.tempDirs = [];
-          resolve();
-        })
-        .catch((err) => reject(err));
-    });
+  finalize(): Promise<void> {
+    return Promise.all(this.tempDirs.map(tempDir => MuzikaFileUtil.removeDirectory(tempDir)))
+      .then(() => {
+        this.tempDirs = [];
+        return;
+      });
   }
 
   /**
@@ -121,10 +118,8 @@ export class MuzikaFileTask {
    * @private
    */
   private _readyIpfs(): Promise<IpfsUploadTask[]> {
-    return new Promise<IpfsUploadTask[]>((resolve, reject) => {
-      resolve([this.buildFile(this.buildFilePath(), this._file)]);
       this.progress.setProgressPercent(1);
-    });
+      return Promise.resolve([this.buildFile(this.buildFilePath(), this._file)]);
   }
 
   /**
@@ -154,39 +149,34 @@ export class MuzikaFileTask {
    * @private
    */
   private _readyStreaming(): Promise<IpfsUploadTask[]> {
-    return new Promise((resolve, reject) => {
-      // generate a temporary directory for save streaming files generated
-      const tempDir = os.tmpdir();
+    // generate a temporary directory for save streaming files generated
+    const tempDir = os.tmpdir();
 
-      promisify(fs.mkdtemp, tempDir).then((tempDirPath) => {
-        this.tempDirs.push(tempDirPath);
+    return promisify(fs.mkdtemp, tempDir).then((tempDirPath) => {
+      this.tempDirs.push(tempDirPath);
 
+      return new Promise<IpfsUploadTask[]>((resolve, reject) => {
         if (this._file instanceof Buffer) {
           return reject(new Error('the file type should be file path string in streaming conversion task.'));
         }
 
         StreamingUtil.convert(this._file, StreamingUtil.VIDEO_OPTION.MIDDLE_QUALITY, tempDirPath).subscribe(
           (progress) => {
-            MuzikaConsole.log(`Generating public stream files for ${this._fileBaseName} (${progress.percent}%)`);
+            MuzikaConsole.log(`Generating stream files for ${this._fileBaseName} (${progress.percent}%)`);
             this.progress.setProgressPercent(progress.percent / 100);
           },
           (err) => {
-            return reject(err);
+            throw err;
           },
           () => {
             promisify(fs.readdir, tempDirPath).then((streamingFiles) => {
               this.progress.setProgressPercent(1);
 
-              resolve(streamingFiles.map((streamingFile) =>
-                this.buildFile(this.buildFilePath(streamingFile), path.join(tempDirPath, streamingFile))));
               MuzikaConsole.log(`Complete to generate public stream files for ${this._fileBaseName}`);
-            }).catch(err => {
-              return reject(err);
+              return resolve(streamingFiles.map((streamingFile) =>
+                this.buildFile(this.buildFilePath(streamingFile), path.join(tempDirPath, streamingFile))));
             });
           });
-      }).catch(err => {
-        MuzikaConsole.error(err);
-        return reject(err);
       });
     });
   }
@@ -198,22 +188,20 @@ export class MuzikaFileTask {
    * @private
    */
   private _readyCover(): Promise<IpfsUploadTask[]> {
-    return new Promise<IpfsUploadTask[]>((resolve, reject) => {
-      if (this._file instanceof Buffer) {
-        return reject(new Error('the file type should be file path string in cover image task.'));
-      }
+    if (this._file instanceof Buffer) {
+      return Promise.reject(new Error('the file type should be file path string in cover image task.'));
+    }
 
-      promisify(fs.readFile, this._file).then(data => {
-        this.progress.setProgressPercent(0.2);
-        Promise.all([
-          this._createCoverImage(data, MuzikaFileUtil.COVER_IMAGE.RECT.WIDTH, MuzikaFileUtil.COVER_IMAGE.RECT.HEIGHT),
-          this._createCoverImage(data, MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH, MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT)
-        ]).then(([rectImgBuf, squareImgBuf]) => {
-          resolve([rectImgBuf, squareImgBuf].map((buf, idx) =>
-            this.buildFile(this.buildFilePath((idx === 0) ? 'rect.png' : 'square.png'), buf)));
-          this.progress.setProgressPercent(1);
-        });
-      }).catch(err => reject(err));
+    return promisify(fs.readFile, this._file).then(data => {
+      this.progress.setProgressPercent(0.2);
+      return Promise.all([
+        this._createCoverImage(data, MuzikaFileUtil.COVER_IMAGE.RECT.WIDTH, MuzikaFileUtil.COVER_IMAGE.RECT.HEIGHT),
+        this._createCoverImage(data, MuzikaFileUtil.COVER_IMAGE.SQUARE.WIDTH, MuzikaFileUtil.COVER_IMAGE.SQUARE.HEIGHT)
+      ]).then(([rectImgBuf, squareImgBuf]) => {
+        this.progress.setProgressPercent(1);
+        return Promise.resolve([rectImgBuf, squareImgBuf].map((buf, idx) =>
+          this.buildFile(this.buildFilePath((idx === 0) ? 'rect.png' : 'square.png'), buf)));
+      });
     });
   }
 
@@ -227,13 +215,11 @@ export class MuzikaFileTask {
    * @private
    */
   private _createCoverImage(data: Buffer, width: number, height: number): Promise<Buffer> {
-    return new Promise<Buffer>((resolve, reject) => {
-      promisify(imagemagick.convert, {
-        srcData: data,
-        format: 'png',
-        width: width,
-        height: height
-      }).then(buffer => resolve(buffer)).catch(err => reject(err));
+    return promisify(imagemagick.convert, {
+      srcData: data,
+      format: 'png',
+      width: width,
+      height: height
     });
   }
 }
@@ -387,6 +373,8 @@ export class MuzikaFileUploader {
           path: '/meta.json',
           content: Buffer.from(JSON.stringify(this.contractSummary))
         });
+
+        return Promise.resolve();
       });
   }
 
