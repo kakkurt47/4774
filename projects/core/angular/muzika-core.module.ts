@@ -9,6 +9,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { BASE_API_URL, EnvironmentToken, EnvironmentTypeToken, MUZIKA_REDUX_STATE_KEY } from './config/injection.tokens';
 import { JWTInterceptor } from './config/jwt-interceptor';
 import { ContractProviders } from './contracts/index';
+import {FileBaseNamePipe} from './pipes';
 
 @NgModule({
   imports: [
@@ -18,12 +19,14 @@ import { ContractProviders } from './contracts/index';
     NgReduxModule
   ],
   declarations: [
-    PaginationComponent
+    PaginationComponent,
+    FileBaseNamePipe
   ],
   exports: [
     CommonModule,
     ApplicationModule,
-    PaginationComponent
+    PaginationComponent,
+    FileBaseNamePipe
   ],
   providers: [
     ...ContractProviders,
