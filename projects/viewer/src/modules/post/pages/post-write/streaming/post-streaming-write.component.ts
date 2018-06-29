@@ -1,15 +1,14 @@
-import { Component, Injector } from '@angular/core';
-import {BasePost, MusicContract, MusicPost, MusicPostDraft, MusicVideo, MuzikaFilePath, unitDown, User} from '@muzika/core';
-import { InstrumentSelections, StreamingMusicGenreSelections } from '../../../post.constant';
-import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
-import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { AlertifyInstnace } from '@muzika/core/browser';
-import { IPCUtil } from '../../../../../../shared/ipc-utils';
-import { BasePostWriteComponent } from '../post-write';
-import { ElectronService } from '../../../../../providers/electron.service';
-import {FileBaseNamePipe} from '@muzika/core/angular';
+import {Component, Injector} from '@angular/core';
+import {BasePost, MusicContract, MusicPost, MusicPostDraft, MuzikaFilePath, unitDown, User} from '@muzika/core';
+import {StreamingMusicGenreSelections} from '../../../post.constant';
+import {IpcRendererService} from '../../../../../providers/ipc-renderer.service';
+import {MuzikaContractService, PostActions, UserActions} from '@muzika/core/angular';
+import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
+import {AlertifyInstnace} from '@muzika/core/browser';
+import {IPCUtil} from '../../../../../../shared/ipc-utils';
+import {BasePostWriteComponent} from '../post-write';
+import {ElectronService} from '../../../../../providers/electron.service';
 
 @Component({
   selector: 'app-post-music-write',

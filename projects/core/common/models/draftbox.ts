@@ -41,9 +41,8 @@ export interface MusicPostDraft extends BasePostDraft {
   music_video?: MusicVideo;
 }
 
-export interface PostDraftBox {
-  [boardType: string]: BasePostDraft[];
-  community: CommunityPostDraft[];
-  video: VideoPostDraft[];
-  music: MusicPostDraft[];
+export interface PostDraft {
+  [boardType: string]: {
+    [id: string]: BasePostDraft
+  };
 }

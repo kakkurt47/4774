@@ -3,6 +3,7 @@ import { tassign } from 'tassign';
 import { InfPaginationResult, PaginationResult } from '../models/pagination';
 import { BasePost } from '../models/post';
 import { PayloadAction } from '../models/redux-action';
+import {BasePostDraft, PostDraft} from '../models';
 
 export class PostActionType {
   static INSERT_POSTS_LIST = '[posts] Insert posts list';
@@ -14,6 +15,9 @@ export class PostActionType {
   static RESET_INF_POSTS = '[posts] Reset inf posts list';
   static LIKE_TOGGLE_POST = '[posts] like toggle post';
   static SAVE_POSTS = '[posts] save posts';
+  static INSERT_POST_DRAFTS = '[posts] save post drafts';
+  static RESET_POST_DRAFTS = '[posts] reset post drafts';
+  static DELETE_POST_DRAFT = '[posts] delete post draft';
 
   static PurchasedPosts (boardType: string) {
     return 'purchased-' + boardType;
@@ -30,6 +34,7 @@ export interface PostState {
   posts: {
     [type: string]: BasePost[]
   };
+  postDrafts: PostDraft;
   postResult: {
     [type: string]: PaginationResult<BasePost>
   };
@@ -50,6 +55,7 @@ const initialState: PostState = {
     video: { total: 0, page: [], list: [] }
   },
   posts: {},
+  postDrafts: {},
   infPosts: {
     community: { after: null, before: null, list: [] },
     music: { after: null, before: null, list: [] },
@@ -185,6 +191,30 @@ export const PostReducer = function(state: PostState = initialState, _action: Ac
       return tassign(state, {
         posts: tassign(state.posts, {
           [action.payload.boardType]: action.payload.list
+        })
+      });
+
+    case PostActionType.INSERT_POST_DRAFTS:
+      return tassign(state, {
+        postDrafts: tassign(state.postDrafts, {
+          [action.payload.boardType]: tassign(state.postDrafts[action.payload.boardType], action.payload.data)
+        })
+      });
+
+    case PostActionType.RESET_POST_DRAFTS:
+      return tassign(state, {
+        postDrafts: tassign(state.postDrafts, {
+          [action.payload.boardType]: {}
+        })
+      });
+
+    case PostActionType.DELETE_POST_DRAFT:
+      const postDrafts = tassign(state.postDrafts[action.payload.boardType]);
+      delete postDrafts[action.payload.id];
+
+      return tassign(state, {
+        postDrafts: tassign(state.postDrafts, {
+          [action.payload.boardType]: postDrafts
         })
       });
 
