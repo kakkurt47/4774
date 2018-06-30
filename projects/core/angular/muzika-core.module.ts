@@ -9,7 +9,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { BASE_API_URL, EnvironmentToken, EnvironmentTypeToken, MUZIKA_REDUX_STATE_KEY } from './config/injection.tokens';
 import { JWTInterceptor } from './config/jwt-interceptor';
 import { ContractProviders } from './contracts/index';
-import {FileBaseNamePipe} from './pipes';
+import {FileBaseNamePipe, ObjectIteratorPipe} from './pipes';
 
 @NgModule({
   imports: [
@@ -20,13 +20,15 @@ import {FileBaseNamePipe} from './pipes';
   ],
   declarations: [
     PaginationComponent,
-    FileBaseNamePipe
+    FileBaseNamePipe,
+    ObjectIteratorPipe
   ],
   exports: [
     CommonModule,
     ApplicationModule,
     PaginationComponent,
-    FileBaseNamePipe
+    FileBaseNamePipe,
+    ObjectIteratorPipe
   ],
   providers: [
     ...ContractProviders,
