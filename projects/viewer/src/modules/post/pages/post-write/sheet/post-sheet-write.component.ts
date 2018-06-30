@@ -20,6 +20,7 @@ import { ElectronService } from '../../../../../providers/electron.service';
   ]
 })
 export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
+  boardType = 'sheet';
   post: MusicPostDraft = <MusicPostDraft>{
     type: 'sheet',
     tags: [],
@@ -206,6 +207,15 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
         }
       }
     });
+  }
+
+  protected _resetPost() {
+    super._resetPost();
+    this.post.cover_image_path = null;
+    this.post.music_video = {
+      type: 'ipfs',
+      path: undefined
+    };
   }
 
   private uploadFile() {

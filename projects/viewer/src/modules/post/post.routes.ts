@@ -17,8 +17,10 @@ import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.com
 import { PostMyStreamingsComponent } from './pages/post-my-streamings/post-my-streamings.component';
 import { PostStreamingItemDetailComponent } from './pages/post-item-detail/music/post-streaming-item-detail.component';
 import { PostSheetItemDetailComponent } from './pages/post-item-detail/sheets/post-sheet-item-detail.component';
+import {PostDraftListComponent} from './pages/post-draft-list/post-draft-list.component';
 
 const routes: Routes = [
+  { path: 'board/:type/draft', component: PostDraftListComponent },
   { path: 'board/community/write', component: PostCommunityWriteComponent },
   { path: 'board/streaming/write', component: PostStreamingMusicWriteComponent },
   { path: 'board/streaming/write/complete', component: PostMusicWriteCompleteComponent },

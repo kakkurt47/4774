@@ -28,6 +28,7 @@ import { PostMyStreamingsComponent } from './pages/post-my-streamings/post-my-st
 import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.component';
 import { PostStreamingItemDetailComponent } from './pages/post-item-detail/music/post-streaming-item-detail.component';
 import { PostSheetItemDetailComponent } from './pages/post-item-detail/sheets/post-sheet-item-detail.component';
+import {PostDraftListComponent} from './pages/post-draft-list/post-draft-list.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { PostSheetItemDetailComponent } from './pages/post-item-detail/sheets/po
     YoutubeVideoCellComponent,
 
     /* Pages */
+    PostDraftListComponent,
     PostCommunityListComponent,
     PostCommunityItemDetailComponent,
     PostCommunityModifyComponent,
