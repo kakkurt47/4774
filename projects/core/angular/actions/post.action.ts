@@ -4,13 +4,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import {
   BasePost,
-  BasePostDraft,
+  BasePostDraft, CommunityPostDraft,
   IAppState,
   InfPaginationResult,
   MusicPostDraft,
   MuzikaConsole,
   PaginationResult,
-  PostActionType
+  PostActionType, VideoPostDraft
 } from '@muzika/core';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -23,7 +23,23 @@ import { UserActions } from './user.action';
 @Injectable({ providedIn: 'root' })
 export class PostActions {
   @select(['post', 'postDrafts', 'streaming'])
-  public static streamingPostDraftObs: Observable<any[]>;
+  public static streamingPostDraftObs: Observable<any>;
+
+  @select(['post', 'postDrafts', 'sheet'])
+  public static sheetPostDraftObs: Observable<any>;
+
+  @select(['post', 'postDrafts', 'community'])
+  public static communityPostDraftObs: Observable<any>;
+
+  @select(['post', 'postDrafts', 'video'])
+  public static videoPostDraftObs: Observable<any>;
+
+  public obs = {
+    streaming: PostActions.streamingPostDraftObs,
+    sheet: PostActions.sheetPostDraftObs,
+    community: PostActions.communityPostDraftObs,
+    video: PostActions.videoPostDraftObs
+  };
 
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,
@@ -149,6 +165,7 @@ export class PostActions {
     this.apiConfig
       .get<BasePostDraft[]>(`/user/draftbox/${boardType}`)
       .subscribe((data: BasePostDraft[]) => {
+        MuzikaConsole.log(`Load ${boardType} draftbox from server`, data);
         this.store.dispatch({
           type: PostActionType.INSERT_POST_DRAFTS,
           payload: { boardType: boardType, data: data }
@@ -165,6 +182,7 @@ export class PostActions {
     });
 
     this._savePostDraft(boardType);
+    return id;
   }
 
   deletePostDraft(boardType: string, draftId: string) {
