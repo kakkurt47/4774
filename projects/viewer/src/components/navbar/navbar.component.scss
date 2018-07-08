@@ -10,34 +10,6 @@
   color: map-get($secondary-palette, 500);
 }
 
-.main-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    font-size: 13px;
-    padding: 0 10px;
-    margin: 0 10px;
-    line-height: 40px;
-    text-align: center;
-    //padding-bottom: 1.5rem;
-    color: white;
-    outline: none;
-    transition: all 0.1s ease-in-out;
-
-    &.active {
-      //border-bottom: 5px solid $primary-color;
-      //font-size: 115%;
-      color: #fff;
-    }
-
-    &[routerLink] {
-      cursor: pointer;
-    }
-  }
-}
-
 .btn-login {
   display: block;
   color: white;

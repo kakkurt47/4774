@@ -64,8 +64,8 @@
             ],
             "styles": [
               "projects/viewer/src/styles.scss",
-              "scss/fontawesome/css/fontawesome.min.css",
-              "scss/fontawesome/css/fontawesome-all.min.css",
+              "scss/fontawesome/css/fontawesome.css",
+              "scss/fontawesome/css/all.css",
               "node_modules/froala-editor/css/froala_editor.min.css",
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
@@ -146,8 +146,8 @@
             "scripts": [],
             "styles": [
               "projects/viewer/src/styles.scss",
-              "scss/fontawesome/css/fontawesome.min.css",
-              "scss/fontawesome/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.css",
+              "scss/fontawesome/css/all.css"
             ],
             "assets": [
               "projects/viewer/src/assets",
@@ -230,8 +230,8 @@
             "styles": [
               "projects/web/src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "scss/fontawesome/css/fontawesome.min.css",
-              "scss/fontawesome/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.css",
+              "scss/fontawesome/css/all.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -316,8 +316,8 @@
             "styles": [
               "projects/web/src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "scss/fontawesome/css/fontawesome.min.css",
-              "scss/fontawesome/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.css",
+              "scss/fontawesome/css/all.css"
             ],
             "assets": [
               {
@@ -412,8 +412,8 @@
               {
                 "input": "projects/ionic-app/global.scss"
               },
-              "scss/fontawesome/css/fontawesome.min.css",
-              "scss/fontawesome/css/fontawesome-all.min.css"
+              "scss/fontawesome/css/fontawesome.css",
+              "scss/fontawesome/css/all.css"
             ],
             "scripts": []
           },

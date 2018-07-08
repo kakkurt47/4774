@@ -1,32 +1,37 @@
-import {Component, Injector} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {BasePost, BasePostDraft, CommunityPost, CommunityPostDraft, VideoPost, VideoPostDraft} from '@muzika/core';
-import {BaseComponent, PostActions, UserActions} from '@muzika/core/angular';
-import {AlertifyInstnace} from '@muzika/core/browser';
-import {FroalaEditorOptions} from '../../post.constant';
-import {Router} from '@angular/router';
+import { Component, Injector } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { BasePost, BasePostDraft, CommunityPost, CommunityPostDraft, IAppState, VideoPost, VideoPostDraft } from '@muzika/core';
+import { BaseComponent, PostActions, PostDraftAction, UserActions } from '@muzika/core/angular';
+import { AlertifyInstnace } from '@muzika/core/browser';
+import { FroalaEditorOptions } from '../../post.constant';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import { NgRedux } from '@angular-redux/store';
+import { map } from 'rxjs/operators';
 
 export class BasePostWriteComponent extends BaseComponent {
   options = FroalaEditorOptions;
 
-  post: BasePostDraft = <any>{
+  post: BasePostDraft = {
     tags: []
   };
 
   // override boardType in the classes extending this base component.
   boardType = '';
 
-  selectedDraftId = '';
-  currentDraftId = '';
-  drafts: any = {};
-
+  private _store: NgRedux<IAppState>;
   private _router: Router;
+  private _route: ActivatedRoute;
   private _postActions: PostActions;
+  private _postDraftActions: PostDraftAction;
 
   constructor(injector: Injector) {
     super();
+    this._store = injector.get(NgRedux);
+    this._route = injector.get(ActivatedRoute);
     this._router = injector.get(Router);
     this._postActions = injector.get(PostActions);
+    this._postDraftActions = injector.get(PostDraftAction);
   }
 
   ngOnInit() {
@@ -36,22 +41,31 @@ export class BasePostWriteComponent extends BaseComponent {
       UserActions.currentUserObs
         .subscribe(user => {
           if (!user) {
-            this._router.navigateByUrl('/login', {
-              queryParams: {
-                redirectTo: this._router.url
-              }
-            });
+            // this._router.navigateByUrl('/login', {
+            //   queryParams: {
+            //     redirectTo: this._router.url
+            //   }
+            // });
           }
         })
     );
 
     this._sub.push(
-      this._postActions.obs[this.boardType].subscribe(drafts => {
-        this.drafts = drafts;
+      combineLatest(
+        this._route.queryParams,
+        PostDraftAction.postDraftsObs
+          .pipe(map(drafts => drafts[this.boardType]))
+      ).subscribe(([params, postDrafts]) => {
+        const draftId = params['draftId'];
+
+        // draftId가 있는 상태에서 this.post의 draftId가 다른 경우 (아직 assign되지 않은 경우)
+        if (postDrafts && postDrafts[draftId] && postDrafts[draftId] !== this.post.draft_id) {
+          this.post = postDrafts[draftId];
+        }
       })
     );
 
-    this._postActions.loadPostDrafts(this.boardType);
+    this._postDraftActions.loadPostDrafts(this.boardType);
   }
 
   addTag(name: string) {
@@ -86,38 +100,22 @@ export class BasePostWriteComponent extends BaseComponent {
     return;
   }
 
-  askSaveQuestion() {
-    AlertifyInstnace.confirm('Do you save the post to the draftbox?', () => {
-      this.savePost();
-    });
-  }
-
   savePost() {
     if (!this.post.title) {
       AlertifyInstnace.alert('Fill the title to save.');
       return;
     }
 
-    let draftId = this.currentDraftId;
-    if (this.currentDraftId) {
-      this._postActions.insertPostDraft(this.boardType, this.post, this.currentDraftId);
+    if (this.post.draft_id) {
+      this._postDraftActions
+        .updatePostDraft(this.boardType, this.post)
+        .subscribe();
     } else {
-      draftId = this._postActions.insertPostDraft(this.boardType, this.post);
-    }
-    this.selectedDraftId = draftId;
-  }
-
-  changeDraft() {
-    if (this.currentDraftId) {
-      this._postActions.insertPostDraft(this.boardType, this.post, this.currentDraftId);
-    }
-
-    if (this.selectedDraftId) {
-      this.post = this.drafts[this.selectedDraftId];
-      this.currentDraftId = this.selectedDraftId;
-    } else {
-      this._resetPost();
-      this.currentDraftId = '';
+      this._postDraftActions
+        .insertPostDraft(this.boardType, this.post)
+        .subscribe(draft_id => {
+          this.post.draft_id = draft_id;
+        });
     }
   }
 
@@ -126,7 +124,7 @@ export class BasePostWriteComponent extends BaseComponent {
       type: 'streaming',
       tags: [],
       price: 0,
-      files: [],
+      files: []
     };
   }
 
@@ -143,6 +141,18 @@ export class BasePostWriteComponent extends BaseComponent {
     }
 
     return null;
+  }
+
+  goToStep(step: number) {
+    switch (step) {
+      case 1:
+
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+    }
   }
 }
 

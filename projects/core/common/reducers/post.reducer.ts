@@ -3,7 +3,7 @@ import { tassign } from 'tassign';
 import { InfPaginationResult, PaginationResult } from '../models/pagination';
 import { BasePost } from '../models/post';
 import { PayloadAction } from '../models/redux-action';
-import {BasePostDraft, PostDraft} from '../models';
+import { BasePostDraft } from '../models/draftbox';
 
 export class PostActionType {
   static INSERT_POSTS_LIST = '[posts] Insert posts list';
@@ -11,21 +11,21 @@ export class PostActionType {
   static INSERT_POSTS_AFTER_LIST = '[posts] Insert posts into top of list';
   static INSERT_POSTS_RESULT = '[posts] Insert post result';
   static RESET_POSTS_RESULT = '[posts] Reset posts result';
-  static RESET_POSTS_LIST = '[posts] Reset posts list';
   static RESET_INF_POSTS = '[posts] Reset inf posts list';
   static LIKE_TOGGLE_POST = '[posts] like toggle post';
   static SAVE_POSTS = '[posts] save posts';
-  static INSERT_POST_DRAFTS = '[posts] save post drafts';
-  static RESET_POST_DRAFTS = '[posts] reset post drafts';
-  static DELETE_POST_DRAFT = '[posts] delete post draft';
 
-  static PurchasedPosts (boardType: string) {
+  static INSERT_POST_DRAFTS = '[posts] save post drafts';
+
+  static PurchasedPosts(boardType: string) {
     return 'purchased-' + boardType;
   }
-  static MyPosts (boardType: string) {
+
+  static MyPosts(boardType: string) {
     return 'my-' + boardType;
   }
-  static SearchedPosts (boardType: string) {
+
+  static SearchedPosts(boardType: string) {
     return 'searched-' + boardType;
   }
 }
@@ -34,7 +34,11 @@ export interface PostState {
   posts: {
     [type: string]: BasePost[]
   };
-  postDrafts: PostDraft;
+  postDrafts: {
+    [boardType: string]: {
+      [draft_id: string]: BasePostDraft
+    };
+  };
   postResult: {
     [type: string]: PaginationResult<BasePost>
   };
@@ -197,24 +201,9 @@ export const PostReducer = function(state: PostState = initialState, _action: Ac
     case PostActionType.INSERT_POST_DRAFTS:
       return tassign(state, {
         postDrafts: tassign(state.postDrafts, {
-          [action.payload.boardType]: tassign(state.postDrafts[action.payload.boardType], action.payload.data)
-        })
-      });
-
-    case PostActionType.RESET_POST_DRAFTS:
-      return tassign(state, {
-        postDrafts: tassign(state.postDrafts, {
-          [action.payload.boardType]: {}
-        })
-      });
-
-    case PostActionType.DELETE_POST_DRAFT:
-      const postDrafts = tassign(state.postDrafts[action.payload.boardType]);
-      delete postDrafts[action.payload.id];
-
-      return tassign(state, {
-        postDrafts: tassign(state.postDrafts, {
-          [action.payload.boardType]: postDrafts
+          [action.payload.boardType]: tassign(state.postDrafts[action.payload.boardType], {
+            [action.payload.draft.draft_id]: action.payload.draft
+          })
         })
       });
 

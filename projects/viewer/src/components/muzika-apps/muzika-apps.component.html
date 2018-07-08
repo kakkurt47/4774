@@ -1,21 +1,8 @@
-<ul class="app-list">
-  <li [class.active]="currentTab === 'viewer'" (click)="changeTab('viewer')">
-    <brand-icon-muzika></brand-icon-muzika>
-    Muzika
-  </li>
-  <li [class.active]="currentTab === 'wallet'" (click)="changeTab('wallet')">
-    <i class="fas fa-desktop-alt" style="display: block;font-size: 40px;"></i>
-    Wallet
-    <!--<span class="unread"> 3 </span>-->
-  </li>
-  <!--<li [class.active]="currentTab === 'ipfs-test'" (click)="changeTab('ipfs-test')">-->
-    <!--<i class="fas fa-archive" style="display: block;font-size: 40px;"></i>-->
-    <!--IPFS-->
-  <!--</li>-->
-  <!--
-  <li [class.active]="currentTab === 'floating-wallet'" (click)="changeTab('floating-wallet')">
-    <i class="fas fa-desktop-alt" style="display: block;font-size: 40px;"></i>
-    Floating Wallet
-  </li>
-  -->
-</ul>
+<a [class.active]="currentTab === 'viewer'" (click)="changeTab('viewer')">
+  <brand-icon-muzika></brand-icon-muzika>
+  Muzika Artist Studio
+</a>
+<a [class.active]="currentTab === 'wallet'" (click)="changeTab('wallet')">
+  <i class="fas fa-wallet"></i>
+  Muzika Wallet
+</a>

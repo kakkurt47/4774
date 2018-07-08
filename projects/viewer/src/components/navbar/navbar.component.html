@@ -1,61 +1,35 @@
 <nav class="navbar navbar-expand">
   <div class="container-fluid">
-    <div class="navbar-collapse">
-      <ul class="row main-menu flex-grow-1">
-        <!--<li routerLink="/board/video" routerLinkActive="active">-->
-          <!--<i class="fab fa-youtube"></i>-->
-          <!--Video-->
-        <!--</li>-->
-        <!--<li routerLink="/board/community" routerLinkActive="active">-->
-          <!--<i class="fa fa-users"></i>-->
-          <!--Community-->
-        <!--</li>-->
-        <li routerLink="/board/streaming/write" routerLinkActive="active">
-          <i class="fa fa-music"></i>
-          Upload Song
-        </li>
-        <li routerLink="/board/streaming/my" routerLinkActive="active">
-          <i class="fa fa-music"></i>
-          My Songs
-        </li>
-        <li routerLink="/board/sheet/write" routerLinkActive="active">
-          <i class="fa fa-file-pdf"></i>
-          Upload Sheet Music
-        </li>
-        <li routerLink="/board/sheet/my" routerLinkActive="active">
-          <i class="fa fa-file-pdf"></i>
-          My Sheet Music
-        </li>
-      </ul>
-      <ng-container *ngIf="currentUser; else loggedInBlock">
-        <div class="ml-auto" routerLink="/settings">
-          <div class="user-profile-img">
-            <img [src]="currentUser.profile_image || 'assets/person-1.png'">
-          </div>
-        </div>
-        <div class="pl-3" routerLink="/settings">
-          <div class="font-weight-bold user-name">
-            {{currentUser.name || 'Unnamed'}}
-          </div>
-          <div class="wallet" routerLink="/settings">
-            {{currentUser.address | slice:0:8}}...{{currentUser.address | slice:-6}}
-          </div>
-        </div>
-        <div class="pl-3">
-          <a class="text-white" style="cursor: pointer" (click)="logout()">
-            <i class="fa fa-sign-out"></i>
-          </a>
-        </div>
-      </ng-container>
+    <muzika-apps></muzika-apps>
 
-      <ng-template #loggedInBlock>
-        <div class="ml-auto pr-4">
-          <a class="btn-login" routerLink="/login">
-            Login
-          </a>
+    <ng-container *ngIf="currentUser; else loggedInBlock">
+      <div class="ml-auto" routerLink="/settings">
+        <div class="user-profile-img">
+          <img [src]="currentUser.profile_image || 'assets/person-1.png'">
         </div>
-      </ng-template>
-    </div>
+      </div>
+      <div class="pl-3" routerLink="/settings">
+        <div class="font-weight-bold user-name">
+          {{currentUser.name || 'Unnamed'}}
+        </div>
+        <div class="wallet" routerLink="/settings">
+          {{currentUser.address | slice:0:8}}...{{currentUser.address | slice:-6}}
+        </div>
+      </div>
+      <div class="pl-3">
+        <a class="text-white" style="cursor: pointer" (click)="logout()">
+          <i class="fa fa-sign-out"></i>
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-template #loggedInBlock>
+      <div class="ml-auto pr-4">
+        <a class="btn-login" routerLink="/login">
+          Login
+        </a>
+      </div>
+    </ng-template>
   </div>
 </nav>
 <!--

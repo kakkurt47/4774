@@ -1,17 +1,8 @@
-import {NgRedux, select} from '@angular-redux/store';
+import { dispatch, NgRedux } from '@angular-redux/store';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import {
-  BasePost,
-  BasePostDraft, CommunityPostDraft,
-  IAppState,
-  InfPaginationResult,
-  MusicPostDraft,
-  MuzikaConsole,
-  PaginationResult,
-  PostActionType, VideoPostDraft
-} from '@muzika/core';
+import { BasePost, IAppState, InfPaginationResult, MuzikaConsole, PaginationResult, PostActionType } from '@muzika/core';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APIConfig } from '../config/api.config';
@@ -22,25 +13,6 @@ import { UserActions } from './user.action';
 
 @Injectable({ providedIn: 'root' })
 export class PostActions {
-  @select(['post', 'postDrafts', 'streaming'])
-  public static streamingPostDraftObs: Observable<any>;
-
-  @select(['post', 'postDrafts', 'sheet'])
-  public static sheetPostDraftObs: Observable<any>;
-
-  @select(['post', 'postDrafts', 'community'])
-  public static communityPostDraftObs: Observable<any>;
-
-  @select(['post', 'postDrafts', 'video'])
-  public static videoPostDraftObs: Observable<any>;
-
-  public obs = {
-    streaming: PostActions.streamingPostDraftObs,
-    sheet: PostActions.sheetPostDraftObs,
-    community: PostActions.communityPostDraftObs,
-    video: PostActions.videoPostDraftObs
-  };
-
   constructor(private store: NgRedux<IAppState>,
               private apiConfig: APIConfig,
               private userActions: UserActions,
@@ -108,18 +80,20 @@ export class PostActions {
     return from(func());
   }
 
+  @dispatch()
   resetPosts(boardType: string) {
-    this.store.dispatch({
+    return {
       type: PostActionType.RESET_POSTS_RESULT,
       payload: { boardType }
-    });
+    };
   }
 
+  @dispatch()
   resetInfPosts(boardType: string) {
-    this.store.dispatch({
+    return {
       type: PostActionType.RESET_INF_POSTS,
       payload: { boardType }
-    });
+    };
   }
 
   loadPost(boardType, boardID) {
@@ -159,61 +133,6 @@ export class PostActions {
   loadPosts(boardType: string, page: string, params: Object) {
     params['page'] = page;
     this._requestPosts(boardType, PostActionType.INSERT_POSTS_RESULT, params);
-  }
-
-  loadPostDrafts(boardType: string) {
-    this.apiConfig
-      .get<BasePostDraft[]>(`/user/draftbox/${boardType}`)
-      .subscribe((data: BasePostDraft[]) => {
-        MuzikaConsole.log(`Load ${boardType} draftbox from server`, data);
-        this.store.dispatch({
-          type: PostActionType.INSERT_POST_DRAFTS,
-          payload: { boardType: boardType, data: data }
-        });
-      });
-  }
-
-  insertPostDraft(boardType: string, postDraft: BasePostDraft, draftId?: string) {
-    const id = (!!draftId) ? draftId : Math.random().toString(36).slice(2, 8) + Math.random().toString(36).slice(2, 8);
-
-    this.store.dispatch({
-      type: PostActionType.INSERT_POST_DRAFTS,
-      payload: { boardType: boardType, data: { [id]: postDraft } }
-    });
-
-    this._savePostDraft(boardType);
-    return id;
-  }
-
-  deletePostDraft(boardType: string, draftId: string) {
-    this.store.dispatch({
-      type: PostActionType.DELETE_POST_DRAFT,
-      payload: { boardType: boardType, id: draftId }
-    });
-
-    this._savePostDraft(boardType);
-  }
-
-  resetPostDraft(boardType: string) {
-    this.apiConfig
-      .delete(`/user/draftbox/${boardType}`)
-      .subscribe(() => {
-        this.store.dispatch({
-          type: PostActionType.RESET_POST_DRAFTS,
-          payload: { boardType: boardType }
-        });
-      });
-  }
-
-  private _savePostDraft(boardType: string) {
-    const state = <IAppState> this.store.getState();
-    console.log(state.post.postDrafts[boardType]);
-
-    this.apiConfig
-      .put(`/user/draftbox/${boardType}`, state.post.postDrafts[boardType])
-      .subscribe(() => {
-        MuzikaConsole.log('Saved post to server!');
-      });
   }
 
   private _requestPosts(boardType: string, dispatchType: string, params: Object) {

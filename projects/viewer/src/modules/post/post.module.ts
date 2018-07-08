@@ -29,6 +29,8 @@ import { PostMySheetsComponent } from './pages/post-my-sheets/post-my-sheets.com
 import { PostStreamingItemDetailComponent } from './pages/post-item-detail/music/post-streaming-item-detail.component';
 import { PostSheetItemDetailComponent } from './pages/post-item-detail/sheets/post-sheet-item-detail.component';
 import {PostDraftListComponent} from './pages/post-draft-list/post-draft-list.component';
+import { PostLayoutComponent } from './layout/post-layout.component';
+import { PostLayoutSidebarComponent } from './layout/post-layout-sidebar.component';
 
 @NgModule({
   imports: [
@@ -47,6 +49,7 @@ import {PostDraftListComponent} from './pages/post-draft-list/post-draft-list.co
     FroalaViewModule.forRoot(),
   ],
   declarations: [
+
     PostListItemComponent,
     PostMusicComponent,
     PostItemDetailHeaderComponent,
@@ -55,6 +58,9 @@ import {PostDraftListComponent} from './pages/post-draft-list/post-draft-list.co
     PostCommentComponent,
 
     YoutubeVideoCellComponent,
+
+    PostLayoutComponent,
+    PostLayoutSidebarComponent,
 
     /* Pages */
     PostDraftListComponent,

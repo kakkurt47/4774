@@ -1,10 +1,10 @@
-import {CommunityPostDraft, MusicPostDraft, MuzikaConsole, PostDraft, VideoPostDraft} from '@muzika/core';
+import {CommunityPostDraft, MusicPostDraft, MuzikaConsole, VideoPostDraft} from '@muzika/core';
 import * as fs from 'fs';
 import {promisify} from '@muzika/core';
 
 export class PostDraftBox {
 
-  postDrafts: PostDraft = {
+  postDrafts = {
     community: {},
     video: {},
     streaming: {},
@@ -17,7 +17,7 @@ export class PostDraftBox {
    * @param {string} filePath draft box file path.
    * @param data JSON format string or object for draft box.
    */
-  private constructor(filePath?: string, data?: string | PostDraft) {
+  private constructor(filePath?: string, data?: string) {
     if (filePath) {
       promisify(fs.readFile, filePath).then(draftData => Object.assign(this.postDrafts, draftData));
     } else if (data) {
@@ -52,7 +52,7 @@ export class PostDraftBox {
    * @param {string | PostDraft} data object or JSON string with PostDraftBox format.
    * @returns {PostDraftBox}
    */
-  public static loadFromJSON(data: string | PostDraft) {
+  public static loadFromJSON(data: string) {
     const draftBox = new PostDraftBox(null, data);
     draftBox._validate();
     return draftBox;

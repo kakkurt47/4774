@@ -10,6 +10,7 @@ export interface BasePostDraft {
   // content?: string;
   // tags?: string[];
 
+  draft_id?: number;
   version?: string;
   post_id?: number;
   title?: string;
@@ -39,10 +40,4 @@ export interface MusicPostDraft extends BasePostDraft {
   files?: MuzikaFilePath[];
   cover_image_path?: string;
   music_video?: MusicVideo;
-}
-
-export interface PostDraft {
-  [boardType: string]: {
-    [id: string]: BasePostDraft
-  };
 }

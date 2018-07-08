@@ -1,12 +1,9 @@
-import {Component, Injector} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {BasePost, BasePostDraft, CommunityPost, VideoPost} from '@muzika/core';
-import {BaseComponent, PostActions, UserActions} from '@muzika/core/angular';
-import {AlertifyInstnace} from '@muzika/core/browser';
-import {FroalaEditorOptions} from '../../post.constant';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {select} from '@angular-redux/store';
+import { Component } from '@angular/core';
+import { BasePostDraft } from '@muzika/core';
+import { BaseComponent, PostDraftAction, UserActions } from '@muzika/core/angular';
+import { FroalaEditorOptions } from '../../post.constant';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
 
 
 @Component({
@@ -24,13 +21,10 @@ export class PostDraftListComponent extends BaseComponent {
     [draftId: string]: BasePostDraft
   };
 
-  private _router: Router;
-
-  constructor(injector: Injector,
+  constructor(private _router: Router,
               private _route: ActivatedRoute,
-              private _postActions: PostActions) {
+              private _postDraftActions: PostDraftAction) {
     super();
-    this._router = injector.get(Router);
   }
 
   ngOnInit() {
@@ -40,11 +34,11 @@ export class PostDraftListComponent extends BaseComponent {
       UserActions.currentUserObs
         .subscribe(user => {
           if (!user) {
-            this._router.navigateByUrl('/login', {
-              queryParams: {
-                redirectTo: this._router.url
-              }
-            });
+            // this._router.navigateByUrl('/login', {
+            //   queryParams: {
+            //     redirectTo: this._router.url
+            //   }
+            // });
           }
         })
     );
@@ -54,20 +48,17 @@ export class PostDraftListComponent extends BaseComponent {
     // );
 
     this._sub.push(
-      this._route.params.subscribe((params) => {
-        const draftObs = this._postActions.obs[params.type];
+      combineLatest(
+        this._route.params,
+        PostDraftAction.postDraftsObs
+      ).subscribe(([params, postDrafts]) => {
         this.boardType = params.type;
 
-        if (draftObs) {
-          this._sub.push(
-            draftObs.subscribe(drafts => {
-              this.drafts = drafts;
-              console.log(this.boardType, this.drafts);
-            })
-          );
+        if (postDrafts[this.boardType]) {
+          this.drafts = postDrafts[this.boardType];
         }
 
-        this._postActions.loadPostDrafts(this.boardType);
+        this._postDraftActions.loadPostDrafts(this.boardType);
       })
     );
   }

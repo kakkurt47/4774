@@ -20,7 +20,6 @@ import { SpinnerComponent } from '../components/spinner/spinner.component';
 import { environment } from '../environments/environment';
 import { PostModule } from '../modules/post/post.module';
 import { WalletModule } from '../modules/wallet/wallet.module';
-import { IPFSTestPageComponent } from '../pages/ipfs-test/ipfs-test.component';
 import { LoginPageComponent } from '../pages/login/login.component';
 import { MainPageComponent } from '../pages/main/main.component';
 import { ElectronLocalStorage } from '../providers/electron-localstorage.service';
@@ -33,6 +32,7 @@ import { AppComponent } from './app.component';
 import { ElectronService } from '../providers/electron.service';
 import { MuzikaConsole } from '@muzika/core';
 import { UserSettingsComponent } from '../pages/settings/settings.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -57,8 +57,7 @@ declare const document;
     /* Page Components */
     MainPageComponent,
     LoginPageComponent,
-    UserSettingsComponent,
-    IPFSTestPageComponent
+    UserSettingsComponent
   ],
   imports: [
     /* Angular modules */
@@ -82,6 +81,7 @@ declare const document;
 
     /* Bootstrap modules */
     ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
 
     /* Material modules */
     MatButtonModule,

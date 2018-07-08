@@ -1,7 +1,7 @@
-import {tassign} from 'tassign';
-import {PostComment} from '../models/comment';
-import {PaginationResult} from '../models/pagination';
-import {PayloadAction} from '../models/redux-action';
+import { tassign } from 'tassign';
+import { PostComment } from '../models/comment';
+import { PaginationResult } from '../models/pagination';
+import { PayloadAction } from '../models/redux-action';
 
 export class CommentActionType {
   public static SET_COMMENTS_RESULT = '[comments] SET COMMENT LIST';
@@ -19,7 +19,7 @@ export const initialState: CommentState = {
   video: {}
 };
 
-export const CommentReducer = function (state: CommentState = initialState, action: PayloadAction): CommentState {
+export const CommentReducer = function(state: CommentState = initialState, action: PayloadAction): CommentState {
   switch (action.type) {
     case CommentActionType.SET_COMMENTS_RESULT:
       return tassign(state, {

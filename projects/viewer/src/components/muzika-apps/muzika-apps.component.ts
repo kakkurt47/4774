@@ -22,7 +22,6 @@ export class MuzikaAppsComponent extends BaseComponent {
     this._sub.push(
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          // @TODO @brcps12 You should change this router url to signing url
           // (or change it to regex patterns of urls which should be shown as floating modal)
           if (event.url === '/(wallet:home)') {
             // this.changeTab('floating-wallet');

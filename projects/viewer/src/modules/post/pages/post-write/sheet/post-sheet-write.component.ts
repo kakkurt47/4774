@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import {BasePost, BasePostDraft, MusicContract, MusicPost, MusicPostDraft, MuzikaFilePath, unitDown, User} from '@muzika/core';
-import { SheetMusicGenreSelections, InstrumentSelections } from '../../../post.constant';
+import { BasePost, MusicContract, MusicPost, MusicPostDraft, MuzikaFilePath, unitDown, User } from '@muzika/core';
+import { InstrumentSelections, SheetMusicGenreSelections } from '../../../post.constant';
 import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
 import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
 import { Router } from '@angular/router';
@@ -155,7 +155,7 @@ export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
       if (this.files.some(file => file.file.name === selectedFile.name)) {
         AlertifyInstnace.alert('File is already added');
       } else {
-        this.files.push({file: selectedFile, previews: []});
+        this.files.push({ file: selectedFile, previews: [] });
       }
     }
   }

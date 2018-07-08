@@ -2,8 +2,6 @@
 @import 'theme/variables';
 
 /* Customize Bootstrap */
-$primary: $primary-color;
-$secondary: $secondary-color;
 
 $container-max-widths: (
   sm: 540px,
@@ -12,9 +10,7 @@ $container-max-widths: (
   xl: 1280px
 );
 
-$border-radius: 2px;
-$border-radius-lg: 2px;
-$border-radius-sm: 2px;
+@import './theme/bootstrap/variables';
 
 @import '~bootstrap/scss/bootstrap';
 
@@ -195,4 +191,9 @@ button:focus {
 .pagination-sm > li:last-child > span {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+}
+
+
+ul, li {
+  list-style: none;
 }

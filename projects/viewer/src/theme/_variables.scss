@@ -7,7 +7,7 @@
 /**
  * Main colors
  */
-$background-color: #f0f0f0;
+$background-color: #fff;
 
 $primary-palette: $mat-blue-grey;
 $secondary-palette: (
@@ -51,7 +51,7 @@ $color-black: #33333D;
 /**
  * Navbar Configuration
  */
-$navbar-background: $primary-color;
+$navbar-background: white;
 $navbar-text-color: mat-color($primary-palette, 700);
 // $navbar-height: 75px;
 $navbar-brand-size: 38px;

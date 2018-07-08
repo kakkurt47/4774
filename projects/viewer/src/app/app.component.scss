@@ -15,13 +15,6 @@
   display: flex;
   flex-direction: column;
 
-  &:not(.viewer):not(.floating-wallet) {
-    app-navbar,
-    .main-content {
-      display: none;
-    }
-  }
-
   &:not(.wallet):not(.floating-wallet) {
     .wallet-content {
       display: none;
@@ -33,12 +26,6 @@
       .floating-close {
         display: none;
       }
-    }
-  }
-
-  &:not(.ipfs-test) {
-    .ipfs-content {
-      display: none;
     }
   }
 
@@ -65,6 +52,10 @@
   }
 
   &.wallet {
+    .main-content {
+      display: none;
+    }
+
     .wallet-content {
       height: 100%;
       flex-grow: 1;
@@ -97,11 +88,4 @@
     }
   }
 
-  .ipfs-content {
-    height: 100%;
-  }
-}
-
-.apps {
-  width: 85px;
 }

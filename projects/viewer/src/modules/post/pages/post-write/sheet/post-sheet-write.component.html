@@ -2,16 +2,6 @@
   <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
     <div class="row h-100 mx-0">
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Draft</span>
-          </div>
-          <select class="form-control" [(ngModel)]="selectedDraftId" (change)="changeDraft()" name="draft-control">
-            <option value="">New</option>
-            <option *ngFor="let draft of drafts | objiter" value="{{draft.key}}">{{draft.value.title}}</option>
-          </select>
-        </div>
-
         <h5> Upload Sheet Music </h5>
 
         <div class="file-select-form" (click)="fileSelector.click();">

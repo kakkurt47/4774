@@ -16,4 +16,4 @@ export class TabService {
   }
 }
 
-export type MuzikaTabs = 'viewer' | 'wallet' | 'floating-wallet' | 'ipfs-test';
+export type MuzikaTabs = 'viewer' | 'wallet' | 'floating-wallet';
