@@ -43,9 +43,9 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-      particlesJS('home', particleConfig, () => {
-        MuzikaConsole.log('callback - particles.js config loaded');
-      });
+      // particlesJS('home', particleConfig, () => {
+      //   MuzikaConsole.log('callback - particles.js config loaded');
+      // });
     }
   }
 }

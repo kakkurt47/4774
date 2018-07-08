@@ -2,7 +2,7 @@
   <form class="form h-100" #form="ngForm" (ngSubmit)="submit(form)">
     <div class="row h-100 mx-0">
       <section class="col extra-section sale-sheet-section" id="sale-sheet-section">
-        <h5> Upload Streaming Music </h5>
+        <h2> Upload Streaming Music </h2>
 
         <div class="file-select-form" (click)="fileSelector.click();">
           <div class="upload-btn" [class.disabled]="uploadStatus?.status === 'uploading'">
@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <h5> Cover Image </h5>
+        <h2> Cover Image </h2>
 
         <div class="cover-image-form">
           <div class="input-group">
@@ -63,9 +63,10 @@
           </div>
         </div>
 
-        <h5> Music Video
+        <h2>
+          Music Video
           <small>(if not exists, you don't have to choose)</small>
-        </h5>
+        </h2>
 
         <div class="music-video-form">
           <div class="btn-group">
@@ -90,7 +91,7 @@
           </div>
         </div>
 
-        <h5> Genre </h5>
+        <h2> Genre </h2>
 
         <div class="tag-selector genre-form">
           <ul>
@@ -101,7 +102,7 @@
           </ul>
         </div>
 
-        <h5> Price </h5>
+        <h2> Price </h2>
 
         <div class="price-form">
           <div class="input-group">

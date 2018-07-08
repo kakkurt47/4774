@@ -11,6 +11,7 @@
 
 .home-title {
   font-size: 3.1rem;
+  font-weight: 700;
 }
 
 .home-center {
@@ -21,7 +22,25 @@
 }
 
 .home-subtitle {
-  color: #727070;
+  color: #4d5256;
+}
+
+.heme-btn {
+  font-size: 16px;
+
+  > a:first-child {
+    display: inline-block;
+    color: #4d5256;
+    min-width: 115px;
+  }
+
+  .btn-custom { // English, 한국어, 중국어 버튼
+    background: #18b76f;
+    box-shadow: 0 1px 9px 0 #4d5256;
+    transition: box-shadow 0.3s ease-out;
+    border: none;
+    color: white;
+  }
 }
 
 /deep/ canvas {

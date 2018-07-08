@@ -2,7 +2,8 @@
 
 :host {
   display: block;
-  background-color: white;
+  background-color: #35495e;
+  color: white;
   border-top: 1px solid #edeff2;
 }
 
@@ -14,19 +15,11 @@ footer {
       14.Footer
   **********************/
 
-  .footer-alt p{
-    color: black;
-  }
-
-  .footer-content .footerlink  li a{
-    color: #858585;
-    margin: 0 8px;
-    transition: all 0.5s;
-    font-size: 15px;
-  }
-
-  .footer-content .footerlink  li a:hover{
-    color: #b7b7b7;
+  .footer-alt p {
+    color: white;
+    font-family: 'Libre Baskerville';
+    font-size: 26px;
+    font-weight: 700;
   }
 
   .company {
@@ -34,40 +27,52 @@ footer {
     font-size: 0.625rem;
     margin: 0 auto;
   }
-}
 
-.social-icon {
-  border-top: 1px solid #edeff2;
-  max-width: 380px;
-  margin: 0 auto;
-}
 
-.social-icon > li a {
-  color: black;
-  display: inline-block;
-  height: 35px;
-  line-height: 36px;
-  text-align: center;
-  padding-top: 15px;
-  width: 35px;
-  margin-left: 12px;
-  transition: all 0.5s;
-}
+  .footer-alt {
+    border-bottom: 1px solid #edeff2;
+    margin: 0 auto;
 
-.social-icon > li a:hover {
-  color: #fff !important;
-}
+  }
 
+  .submenu {
+    margin: 0 auto;
+    max-width: 800px;
+
+    h5 {
+      font-size: 17px;
+      color: #fff;
+    }
+
+    ul, li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+
+      > a {
+        font-size: 16px;
+        color: #878d91;
+      }
+    }
+  }
+
+}
 
 brand-icon-muzika {
   display: inline;
   height: 30px;
 
   /deep/ .muzika-icon-striped-primary {
-    fill: black;
+    fill: white;
   }
 
   /deep/ .muzika-icon-striped-secondary {
-    fill: black;
+    fill: white;
   }
+}
+
+.copyright-text {
+  color: #878d91;
+  font-size: 15px;
 }
