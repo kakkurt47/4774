@@ -210,6 +210,11 @@
             "main": "projects/web/src/main.ts",
             "tsConfig": "projects/web/tsconfig.json",
             "polyfills": "projects/web/src/polyfills.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/web/src/modules/intro/scss"
+              ]
+            },
             "assets": [
               {
                 "glob": "favicon.ico",

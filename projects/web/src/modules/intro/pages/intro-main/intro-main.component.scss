@@ -1,3 +1,4 @@
+@import 'helper';
 
 .bg-home-full {
   min-height: 520px;
@@ -7,10 +8,11 @@
   background-size: cover;
   background-position: center center;
   position: relative;
+  border-bottom: 1px solid #EFEFEF;
 }
 
 .home-title {
-  font-size: 3.1rem;
+  font-size: $px2rem_60;
   font-weight: 700;
 }
 
@@ -22,10 +24,11 @@
 }
 
 .home-subtitle {
-  color: #4d5256;
+  font-size: 18px;
+  color: #4D5256;
 }
 
-.heme-btn {
+.home-btn {
   font-size: 16px;
 
   > a:first-child {
@@ -39,7 +42,11 @@
     box-shadow: 0 1px 9px 0 #4d5256;
     transition: box-shadow 0.3s ease-out;
     border: none;
+    font-size: 18px;
     color: white;
+    width: 98px;
+    border-radius: 8px 8px;
+    padding: 10.5px 16px;
   }
 }
 
