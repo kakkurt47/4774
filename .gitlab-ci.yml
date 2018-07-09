@@ -61,6 +61,5 @@ test:contract:
     - npm run build:core
     - npm run build:web:prod
     - npm run build:viewer
-    - aws s3 sync ./dist/web/ s3://$AWS_BUCKET --delete
   tags:
     - frontend

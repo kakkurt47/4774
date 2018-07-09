@@ -8,7 +8,7 @@ import { BaseComponent } from '@muzika/core/angular';
     <section class="section" id="ecosystem">
       <div class="container">
         <div class="row">
-          <div class="col-6">
+          <div class="col-7">
             <h2 class="text-left intro-section-title">
               THE MUZIKA ECOSYSTEM
             </h2>
