@@ -29,7 +29,7 @@ import { BaseComponent } from '@muzika/core/angular';
       border-right: 50vw solid transparent;
 
       border-top: 100px solid #35495e;
-      background-color: white;
+      background-color: #f8fafb;
     }
     
     section {

@@ -138,7 +138,8 @@ Main Components
   border-color: black;
 }
 .cd-horizontal-timeline .events a.current::after {
-  border-color: #0ec254;
+  background-color: #32db64;
+  border-color: #32db64;
 }
 .cd-horizontal-timeline .events a.older-event::after {
   border-color: black;

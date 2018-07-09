@@ -68,11 +68,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
       imagePath: 'assets/images/leader-jangwon.png',
       position: 'COO',
       sentences: [
-        'winner of multiple awards spanning diverse  areas of  academia  from  language studies ' +
-        'to economics and business administration to art  management, ' +
-        'and fluent with Chinese, English and Korean languages.',
-
-        'founded Piano Group The Serendipity, a professional piano group well-known in South Korea for piano duets;  ' +
+        'Fluent with Chinese, English and Korean languages, ' +
+        'and founded Piano Group The Serendipity, a professional piano group well-known in South Korea for piano duets;  ' +
         'co-founded YouthGlobe Korea, the Korean division of the international ' +
         'NGO YouthGlobe aiming at enhancing educational conditions in Burundi; ' +
         'co-founded Shadal Inc., the largest college-based food delivery ' +
