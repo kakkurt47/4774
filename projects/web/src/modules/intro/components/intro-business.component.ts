@@ -12,7 +12,14 @@ import { BaseComponent } from '@muzika/core/angular';
         South Korea's largest <BR />
         music platform
       </p>
-      <img src="assets/images/business-preview.png">
+      <div class="row">
+        <div class="col-5">
+          <img src="assets/images/business-preview.png" class="img-fluid">
+        </div>
+        <div class="col-7">
+          
+        </div>
+      </div>
     </section>
   `,
   styles: [`
