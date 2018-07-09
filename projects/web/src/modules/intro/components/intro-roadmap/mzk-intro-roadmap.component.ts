@@ -14,14 +14,14 @@ declare const jQuery;
  */
 @Component({
   selector: 'intro-roadmap',
-  templateUrl: './intro-roadmap.component.html',
+  templateUrl: './mzk-intro-roadmap.component.html',
   styleUrls: [
     '../../scss/helper.scss',
     './horizontal-timeline.scss',
-    './intro-roadmap.component.scss'
+    './mzk-intro-roadmap.component.scss'
   ]
 })
-export class IntroRoadmapComponent extends BaseComponent implements AfterViewInit {
+export class MzkIntroRoadmapComponent extends BaseComponent implements AfterViewInit {
   eventsMinDistance = 120;
 
   timelineList: {

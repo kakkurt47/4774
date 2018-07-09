@@ -3,13 +3,13 @@ import {BaseComponent} from '@muzika/core/angular';
 
 @Component({
   selector: 'intro-team',
-  templateUrl: './intro-team.component.html',
+  templateUrl: './mzk-intro-team.component.html',
   styleUrls: [
     '../../scss/helper.scss',
-    './intro-team.component.scss'
+    './mzk-intro-team.component.scss'
   ]
 })
-export class IntroTeamComponent extends BaseComponent {
+export class MzkIntroTeamComponent extends BaseComponent {
 
   members: {
     name: string,

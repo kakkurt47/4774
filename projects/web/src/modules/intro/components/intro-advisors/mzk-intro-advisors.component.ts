@@ -5,13 +5,13 @@ import {BaseComponent} from '@muzika/core/angular';
 
 @Component({
   selector: 'intro-advisors',
-  templateUrl: './intro-advisors.component.html',
+  templateUrl: './mzk-intro-advisors.component.html',
   styleUrls: [
     '../../scss/helper.scss',
-    './intro-advisors.component.scss'
+    './mzk-intro-advisors.component.scss'
   ]
 })
-export class IntroAdvisorsComponent extends BaseComponent {
+export class MzkIntroAdvisorsComponent extends BaseComponent {
   advisors: any[] = [
     {
       name: 'Michael Cho',

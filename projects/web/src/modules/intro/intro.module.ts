@@ -9,15 +9,19 @@ import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {environment} from '../../environments/environment';
 import {SharedModule} from '../shared/shared.module';
-import {IntroAdvisorsComponent} from './components/intro-advisors/intro-advisors.component';
+import {MzkIntroAdvisorsComponent} from './components/intro-advisors/mzk-intro-advisors.component';
 import {IntroFooterComponent} from './components/intro-footer/intro-footer.component';
 import {IntroLayoutComponent} from './components/intro-layout/intro-layout.component';
-import {IntroLeadershipComponent} from './components/intro-leadership/intro-leadership.component';
+import {MzkIntroLeadershipComponent} from './components/intro-leadership/mzk-intro-leadership.component';
 import {IntroNavbarComponent} from './components/intro-navbar/intro-navbar.component';
-import {IntroRoadmapComponent} from './components/intro-roadmap/intro-roadmap.component';
-import {IntroTeamComponent} from './components/intro-team/intro-team.component';
+import {MzkIntroRoadmapComponent} from './components/intro-roadmap/mzk-intro-roadmap.component';
+import {MzkIntroTeamComponent} from './components/intro-team/mzk-intro-team.component';
 import {IntroRoutingModule} from './intro-routing.module';
 import {IntroMainPageComponent} from './pages/intro-main/intro-main.component';
+import { MzkIntroBusinessComponent } from './components/intro-business.component';
+import { MzkIntroMZKCoinComponent } from './components/intro-mzk-coins.component';
+import { MzkIntroEcosystemComponent } from './components/intro-ecosystem.component';
+import { MzkIntroInvestorComponent } from './components/intro-investor.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -53,10 +57,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     IntroNavbarComponent,
     IntroFooterComponent,
 
-    IntroRoadmapComponent,
-    IntroTeamComponent,
-    IntroAdvisorsComponent,
-    IntroLeadershipComponent,
+    MzkIntroRoadmapComponent,
+    MzkIntroTeamComponent,
+    MzkIntroAdvisorsComponent,
+    MzkIntroLeadershipComponent,
+    MzkIntroBusinessComponent,
+    MzkIntroEcosystemComponent,
+    MzkIntroMZKCoinComponent,
+    MzkIntroInvestorComponent,
 
     /* Page Components */
     /* For introduction */

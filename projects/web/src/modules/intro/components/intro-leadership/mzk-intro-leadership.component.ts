@@ -3,13 +3,13 @@ import {BaseComponent} from '@muzika/core/angular';
 
 @Component({
   selector: 'intro-leadership-team',
-  templateUrl: './intro-leadership.component.html',
+  templateUrl: './mzk-intro-leadership.component.html',
   styleUrls: [
     '../../scss/helper.scss',
-    './intro-leadership.component.scss'
+    './mzk-intro-leadership.component.scss'
   ]
 })
-export class IntroLeadershipComponent extends BaseComponent {
+export class MzkIntroLeadershipComponent extends BaseComponent {
   leaders: any[] = [
     {
       name: 'Inseo Chung',
