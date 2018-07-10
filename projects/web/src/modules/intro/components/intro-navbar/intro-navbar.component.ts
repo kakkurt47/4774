@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class IntroNavbarComponent extends BaseComponent {
   currentUser: User;
+  lang: string;
 
   constructor(private userActions: UserActions, private translateService: TranslateService) {
     super();
@@ -19,6 +20,14 @@ export class IntroNavbarComponent extends BaseComponent {
     this._sub.push(
       UserActions.currentUserObs.subscribe(user => {
         this.currentUser = user;
+      })
+    );
+
+    this.lang = this.translateService.currentLang;
+
+    this._sub.push(
+      this.translateService.onLangChange.subscribe(lang => {
+        this.lang = this.translateService.currentLang;
       })
     );
   }

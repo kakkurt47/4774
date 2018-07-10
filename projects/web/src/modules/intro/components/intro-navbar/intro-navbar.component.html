@@ -11,40 +11,48 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#ecosystem">Ecosystem</a>
+          <a class="nav-link" href="#ecosystem">{{'intro-navbar.ecosystem' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#mzk-coins">MZK Coin Usage</a>
+          <a class="nav-link" href="#mzk-coins">{{'intro-navbar.mzk-coins' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#investor">Investors</a>
+          <a class="nav-link" href="#investor">{{'intro-navbar.investors' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#leadership-team">Team</a>
+          <a class="nav-link" href="#leadership-team">{{'intro-navbar.team' | translate}}</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#advisors">Advisors</a>
+          <a class="nav-link" href="#advisors">{{'intro-navbar.advisors' | translate}}</a>
         </li>
 
        <li class="nav-item">
-          <a class="nav-link" href="#roadmap">Roadmap</a>
+          <a class="nav-link" href="#roadmap">{{'intro-navbar.roadmap' | translate}}</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/beta">Services</a>
+          <a class="nav-link" routerLink="/beta">{{'intro-navbar.services' | translate}}</a>
         </li>
 
         <li class="divider">&nbsp;</li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            ENG
+            <ng-container *ngIf="lang === 'en'">
+              ENG
+            </ng-container>
+            <ng-container *ngIf="lang === 'ch'">
+              中文
+            </ng-container>
+            <ng-container *ngIf="lang === 'ko'">
+              한국어
+            </ng-container>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" (click)="changeLang('en')">English</a>
-            <a class="dropdown-item" (click)="changeLang('ch')">中文</a>
-            <a class="dropdown-item" (click)="changeLang('ko')">한국어</a>
+            <a class="dropdown-item" [class.active]="lang === 'en'" (click)="changeLang('en')">English</a>
+            <a class="dropdown-item" [class.active]="lang === 'ch'" (click)="changeLang('ch')">中文</a>
+            <a class="dropdown-item" [class.active]="lang === 'ko'" (click)="changeLang('ko')">한국어</a>
           </div>
         </li>
       </ul>

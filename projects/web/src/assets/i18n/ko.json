@@ -2,8 +2,17 @@
   "intro-main": {
     "home-subtitle-1": "Revolution and Redemption of Digital Music World",
     "home-subtitle-2": "through a decentralized blockchain-based ecosystem.",
-    "project-teaser": "Project Teaser",
-    "whitepaper": "Whitepaper"
+    "project-teaser": "프로젝트 티저",
+    "whitepaper": "백서"
+  },
+  "intro-navbar": {
+    "ecosystem": "생태계",
+    "mzk-coins": "MZK 코인",
+    "investors": "투자사",
+    "team": "팀",
+    "advisors": "어드바이저",
+    "roadmap": "로드맵",
+    "services": "서비스"
   },
   "intro-ecosystem": {
     "title": "MUZIKA 생태계",

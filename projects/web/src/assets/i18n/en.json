@@ -5,6 +5,15 @@
     "project-teaser": "Project Teaser",
     "whitepaper": "Whitepaper"
   },
+  "intro-navbar": {
+    "ecosystem": "Ecosystem",
+    "mzk-coins": "MZK Coin Usage",
+    "investors": "Investors",
+    "team": "Team",
+    "advisors": "Advisors",
+    "roadmap": "Roadmap",
+    "services": "Services"
+  },
   "intro-ecosystem": {
     "title": "THE MUZIKA ECOSYSTEM",
     "subtitle-1": "Muzika's core concept is that of an autonomous, self-sustaining ecosystem driven by content creators (music artists) and their fans in tandem. Prior to the advent of blockchain technology in 2009 with the release of Bitcoin, such a revolutionary technology to drive evolution of the music industry remained out of the world's grasp.",
