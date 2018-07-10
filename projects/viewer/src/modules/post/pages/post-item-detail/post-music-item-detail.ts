@@ -28,7 +28,7 @@ export class AbstractPostMusicItemDetail extends BaseComponent {
     this._muzikaPaper = injector.get<MuzikaPaperContract>(MuzikaPaperContract);
     this._muzikaCoin = injector.get<MuzikaCoin>(MuzikaCoin);
     this._postActions = injector.get<PostActions>(PostActions);
-    this._store = injector.get<NgRedux<IAppState>>(NgRedux);
+    this._store = injector.get(NgRedux);
   }
 
   ngOnInit() {

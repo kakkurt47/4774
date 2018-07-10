@@ -27,7 +27,7 @@ export class BasePostWriteComponent extends BaseComponent {
 
   constructor(injector: Injector) {
     super();
-    this._store = injector.get<NgRedux<IAppState>>(NgRedux);
+    this._store = injector.get(NgRedux);
     this._route = injector.get<ActivatedRoute>(ActivatedRoute);
     this._router = injector.get<Router>(Router);
     this._postActions = injector.get<PostActions>(PostActions);
