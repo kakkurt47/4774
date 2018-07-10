@@ -58,7 +58,7 @@ test:contract:
     - cd muzika-contract/ && npm install && cd ../
   artifacts:
     paths:
-      - www/
+      - dist/web/
   script:
     - npm run contract:compile
     - npm run lint
