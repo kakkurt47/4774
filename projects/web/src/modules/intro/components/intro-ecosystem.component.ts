@@ -47,6 +47,12 @@ import { BaseComponent } from '@muzika/core/angular';
       background-color: #f8fafb;
       padding: 100px 0 60px 0;
     }
+    
+    @media (max-width: 768px) {
+      section {
+        padding: 50px 0 30px 0;
+      }
+    }
   `]
 })
 export class MzkIntroEcosystemComponent extends BaseComponent {

@@ -33,6 +33,13 @@ import { BaseComponent } from '@muzika/core/angular';
       background-color: #d5dbe0;
       padding: 100px 0;
     }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 50px 0;
+      }
+    }
+    
     .intro-section-subtitle {
       color: #4d5256;
       max-width: 530px;

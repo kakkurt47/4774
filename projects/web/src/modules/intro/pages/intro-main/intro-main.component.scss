@@ -49,6 +49,22 @@
   }
 }
 
+@media (max-width: 768px) {
+  .home-btn {
+    font-size: 14px;
+    > a:first-child {
+      min-width: 90px;
+    }
+
+    .btn-custom {
+      font-size: 15px;
+      width: 75px;
+      padding: 6px 10px;
+    }
+  }
+}
+
+
 /deep/ canvas {
   position: absolute;
   left: 0;

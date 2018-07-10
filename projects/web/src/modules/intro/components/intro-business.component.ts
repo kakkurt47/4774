@@ -84,6 +84,20 @@ import { BaseComponent } from '@muzika/core/angular';
       font-weight: 400;
       color: #4d5256;
     }
+    
+    @media (max-width: 768px) {
+      .highlight-title {
+        font-size: 20px;
+      }
+      
+      .highlight-num {
+        font-size: 20px;
+      }
+
+      .highlight-name {
+        font-size: 16px;
+      }
+    }
 
   `]
 })
