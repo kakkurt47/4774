@@ -13,13 +13,9 @@ import { BaseComponent } from '@muzika/core/angular';
               THE MUZIKA ECOSYSTEM
             </h2>
             <p class="text-left intro-section-subtitle pt-4">
-              Muzika's core concept is that of an autonomous, self-sustaining ecosystem 
-              driven by content creators (music artists) and their fans in tandem.
-              Prior to the advent of blockchain technology in 2009 with the release of Bitcoin,
-              such a revolutionary technology to drive evolution of the music industry remained out of the world's grasp.
+              {{'intro-ecosystem.subtitle-1' | translate}}
               <BR/><BR/>
-              With the creation of a new decentralized digital music ecosystem where anyone can participate in the production,
-              investment, consumption, and distribution cycle of the music industry, Muzika will realize its goal of revolution.
+              {{'intro-ecosystem.subtitle-2' | translate}}
             </p>
           </div>
           <div class="col-5">

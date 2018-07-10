@@ -9,7 +9,7 @@ import { BaseComponent } from '@muzika/core/angular';
         OUR BUSINESS
       </h2>
       <p class="text-center intro-section-subtitle mt-4">
-        Global No. 1 Instrumental Music Platform 
+        {{'intro-business.subtitle' | translate}}
       </p>
       <div class="row">
         <div class="col-5">
@@ -19,28 +19,25 @@ import { BaseComponent } from '@muzika/core/angular';
           <div class="row highlight-box mt-5">
             <div class="col-6 mb-4">
               <div class="highlight-num">3</div>
-              <div class="highlight-name text-left">Years of experience</div>
+              <div class="highlight-name text-left">{{'intro-business.year-of-exp' | translate}}</div>
             </div>
             <div class="col-6 mb-4">
               <div class="highlight-num">170 +</div>
-              <div class="highlight-name text-left">User nations</div>
+              <div class="highlight-name text-left">{{'intro-business.user-nations' | translate}}</div>
             </div>
             <div class="col-6 mb-5">
               <div class="highlight-num">2,000,000 +</div>
-              <div class="highlight-name text-left">Users</div>
+              <div class="highlight-name text-left">{{'intro-business.users' | translate}}</div>
             </div>
             <div class="col-6 mb-5">
               <div class="highlight-num">17,000 +</div>
-              <div class="highlight-name text-left">Artists</div>
+              <div class="highlight-name text-left">{{'intro-business.artists' | translate}}</div>
             </div>
           </div>
-          <h4 class="highlight-title mb-3">What makes Muzika unique</h4>
+          <h4 class="highlight-title mb-3">{{'intro-business.what-makes-muzika-unique' | translate}}</h4>
           <p class="highlight-summary">
-            Unlike hundreds of ICOs without proof of practicality, Muzika is not starting from scratch.
-            The token economy is strongly built on the backs of our existing, profit-generating, and privately & publicly funded business
-            with 2,000,000 active users & subscribers from 170+ nations and artists from 30+ nations. <BR /><BR />
-            Through years of experience, we have learned the precise ways to build a community run by loyal and 
-            incentivized individuals: a key to success of any community-based ICO projects.
+            {{'intro-business.highlight-text-1' | translate}}<BR/><BR/>
+            {{'intro-business.highlight-text-2' | translate}}
           </p>
         </div>
       </div>
@@ -54,7 +51,7 @@ import { BaseComponent } from '@muzika/core/angular';
       background-color: #f8fafb;
       padding-bottom: 50px;
     }
-    
+
     .highlight-title {
       max-width: 600px;
       margin: 0 auto;
@@ -73,20 +70,21 @@ import { BaseComponent } from '@muzika/core/angular';
       margin: 0 auto;
       text-align: center;
     }
-    
+
     .highlight-num {
       text-align: left;
       font-size: 2rem;
       color: #18b76f;
       font-weight: 600;
     }
+
     .highlight-name {
       text-align: left;
       font-size: 1.3rem;
       font-weight: 400;
       color: #4d5256;
     }
-    
+
   `]
 })
 export class MzkIntroBusinessComponent extends BaseComponent {

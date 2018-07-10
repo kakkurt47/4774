@@ -10,11 +10,8 @@ import { BaseComponent } from '@muzika/core/angular';
           The MZK Coin
         </h2>
         <p class="intro-section-subtitle mt-4 mb-3">
-          Muzika coin(MZK) was deliberately designed as the backbone of this new ecosystem. 
-          The team has analyzed both successful and failed cryptocurrencies, past and present, 
-          and established a clear vision of what is necessary to make this project a success <BR/> <BR/>
-          MZK will serve as the sole medium of exchange for all economic activity within the ecosystem, facilitating investments, trades,
-          and the allocation of investment returns, all while assisting growth via a few free services targeted at community novices.
+          {{'intro-mzk-coins.subtitle-1' | translate}}<BR/> <BR/>
+          {{'intro-mzk-coins.subtitle-2' | translate}}
         </p>
         <img src="assets/images/diagram.png" class="mt-5 img-fluid">
       </div>

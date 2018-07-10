@@ -1,3 +1,41 @@
 {
+  "intro-main": {
+    "home-subtitle-1": "Revolution and Redemption of Digital Music World",
+    "home-subtitle-2": "through a decentralized blockchain-based ecosystem.",
+    "project-teaser": "프로젝트 티저",
+    "whitepaper": "백서"
+  },
+  "intro-ecosystem": {
+    "subtitle-1": "Muzika's core concept is that of an autonomous, self-sustaining ecosystem driven by content creators (music artists) and their fans in tandem. Prior to the advent of blockchain technology in 2009 with the release of Bitcoin, such a revolutionary technology to drive evolution of the music industry remained out of the world's grasp.",
+    "subtitle-2": "With the creation of a new decentralized digital music ecosystem where anyone can participate in the production, investment, consumption, and distribution cycle of the music industry, Muzika will realize its goal of revolution."
+  },
+  "intro-mzk-coins": {
+    "subtitle-1": "Muzika coin(MZK) was deliberately designed as the backbone of this new ecosystem. The team has analyzed both successful and failed cryptocurrencies, past and present, and established a clear vision of what is necessary to make this project a success. ",
+    "subtitle-2": "MZK will serve as the sole medium of exchange for all economic activity within the ecosystem, facilitating investments, trades, and the allocation of investment returns, all while assisting growth via a few free services targeted at community novices."
+  },
+  "intro-business": {
+    "subtitle": "글로벌 No. 1 연주음악 플랫폼 ",
+    "year-of-exp": "년 경험",
+    "user-nations": "국가",
+    "users": "유저 수",
+    "artists": "아티스트 수",
+    "what-makes-muzika-unique": "What makes Muzika unique",
+    "highlight-text-1": "Unlike hundreds of ICOs without proof of practicality, Muzika is not starting from scratch. The token economy is strongly built on the backs of our existing, profit-generating, and privately & publicly funded business with 2,000,000 active users & subscribers from 170+ nations and artists from 30+ nations. ",
+    "highlight-text-2": "Through years of experience, we have learned the precise ways to build a community run by loyal and incentivized individuals: a key to success of any community-based ICO projects."
+  },
+  "intro-footer": {
+    "whitepapers": "백서",
+    "advisors": "어드바이저",
+    "teams": "팀",
+    "roadmap": "로드맵",
+    "services": "서비스",
 
+    "community": "커뮤니티",
+    "medium": "Medium",
+    "twitter": "Twitter",
+    "telegram": "Telegram",
+    "telegram-kr": "Telegram (KOR)",
+
+    "websites": "웹사이트"
+  }
 }

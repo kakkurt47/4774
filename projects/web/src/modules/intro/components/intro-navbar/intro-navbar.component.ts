@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '@muzika/core';
 import { BaseComponent, UserActions } from '@muzika/core/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-intro-navbar',
@@ -10,7 +11,7 @@ import { BaseComponent, UserActions } from '@muzika/core/angular';
 export class IntroNavbarComponent extends BaseComponent {
   currentUser: User;
 
-  constructor(private userActions: UserActions) {
+  constructor(private userActions: UserActions, private translateService: TranslateService) {
     super();
   }
 
@@ -20,6 +21,10 @@ export class IntroNavbarComponent extends BaseComponent {
         this.currentUser = user;
       })
     );
+  }
+
+  changeLang(lang: 'en' | 'ko' | 'ch') {
+    this.translateService.use(lang);
   }
 
   logout() {
