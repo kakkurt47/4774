@@ -1,13 +1,13 @@
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
+import { Inject, NgModule, PLATFORM_ID } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { EnvironmentTypeToken, MuzikaCommonModule, MuzikaCoreModule, PLATFORM_TYPE_TOKEN } from '@muzika/core/angular';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { EnvironmentTypeToken, LocalStorage, MuzikaCommonModule, MuzikaCoreModule, PLATFORM_TYPE_TOKEN } from '@muzika/core/angular';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {environment} from '../environments/environment';
@@ -22,6 +22,8 @@ import {WebLoginPageComponent} from '../pages/login/login.component';
 import {MainPageComponent} from '../pages/main/main.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import { isPlatformBrowser } from '@angular/common';
+import { Lang } from '@muzika/core';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -90,6 +92,20 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) private platformId,
+              private localStorage: LocalStorage,
+              private translateService: TranslateService) {
+    this.translateService.setDefaultLang('en');
+    const currentLang = (isPlatformBrowser(this.platformId)) ?
+      this.localStorage.getItem('currentLang', this.translateService.getBrowserLang()) : Lang.ENG;
+    switch (currentLang) {
+      case Lang.ENG:
+      case Lang.KOR:
+      case Lang.CHN:
+        this.translateService.use(currentLang as string);
+        break;
+      default:
+        this.translateService.use('en');
+    }
   }
 }

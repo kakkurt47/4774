@@ -28,7 +28,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
     },
     {
       name: 'Jungwoo Lee',
-      position: 'Lead Blockchain Architecture',
+      position: 'Lead Blockchain Architect',
       image: '이정우.jpg'
     },
     {

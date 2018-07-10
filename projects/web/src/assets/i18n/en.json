@@ -1,7 +1,17 @@
 {
-  "PAGES": {
-      "HOME": {
-          "TITLE": "App works ! Ready for IPFS PDF Viewer"
-      }
+  "intro-footer": {
+    "whitepapers": "Whitepapers",
+    "advisors": "Advisors",
+    "teams": "Teams",
+    "roadmap": "Roadmap",
+    "services": "Services",
+
+    "community": "Community",
+    "medium": "Medium",
+    "twitter": "Twitter",
+    "telegram": "Telegram",
+    "telegram-kr": "Telegram (KOR)",
+
+    "websites": "Websites"
   }
 }

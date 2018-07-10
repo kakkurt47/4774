@@ -20,12 +20,13 @@ import { BaseComponent } from '@muzika/core/angular';
   styles: [`
     section {
       display: block;
-      background-color: #f8fafb;
+      background-color: white;
+      border-top: 1px solid #E9E9E9;
       padding: 100px 0;
     }
 
     img {
-      background: white;
+      background: #f8fafb;
       border-radius: 8px 8px;
     }
   `]
