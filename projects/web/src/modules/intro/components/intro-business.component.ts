@@ -118,14 +118,13 @@ export class MzkIntroBusinessComponent extends BaseComponent {
         },
 
         {
-
-          duration: 8000,
+          duration: 2000,
           easing: 'linear',
           step: function() {
-            $this.text(Math.floor(this.countNum));
+            $this.text(Math.floor(this.countNum).toLocaleString());
           },
           complete: function() {
-            $this.text(this.countNum.toLocaleString());
+            $this.text(this.countNum.toLocaleString() + '+');
           }
         });
     });

@@ -34,7 +34,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'JoonKee Hong',
       imagePath: 'JoonkeeHong.png',
-      position: 'Non-executive Director of Kakao',
+      position: 'Non-executive Director of Kakao Bank',
       sentences: [
         '(EX) Asia Head of Global Finance(Capital Markets), Nomura International',
 
@@ -112,7 +112,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'JoonKee Hong',
       imagePath: 'JoonkeeHong.png',
-      position: 'Non-executive Director of Kakao',
+      position: '카카오뱅크 사외이사',
       sentences: [
         '(EX) Asia Head of Global Finance(Capital Markets), Nomura International',
 
@@ -132,7 +132,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Inkyu Choi',
       imagePath: 'InkyuChoi.png',
-      position: 'Naver Venture Capital',
+      position: '네이버 VC 스프링캠프 대표',
       sentences: [
         '(EX) Team Leader, Seoul Techno Holdings',
         '(EX) Partner Patent Attoney, Maps Intellectual Property Law Firm',

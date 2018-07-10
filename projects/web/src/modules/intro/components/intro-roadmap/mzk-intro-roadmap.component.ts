@@ -65,7 +65,7 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
         {date: '2019.01', text: 'Muzika Ecosystem beta launch (consumption-oriented)'},
         {date: '2019.02', text: 'Muzika Ecosystem beta launch (production-oriented)'},
         {date: '2019.04', text: 'Official global launch of the full-version of the Muzika Ecosystem'},
-        {date: '2020-', text: 'The Muzika ecosystembegins reshaping the global music industry'}
+        {date: '2020-', text: 'The Muzika ecosystem begins reshaping the global music industry'}
       ]
     },
   ];
