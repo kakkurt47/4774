@@ -91,7 +91,8 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       position: 'Global Blockchain News Facilitator',
       sentences: [
         'Influential global blockchain news based out of China and the United States.',
-        'Advisory arm has been providing insights to leaders in blockchain industry, as well as creating synergy across markets and between organizations.\n',
+        'Advisory arm has been providing insights to leaders in blockchain industry, ' +
+        'as well as creating synergy across markets and between organizations.\n',
         'The team comprises earliest cryptocurrency adopters and seasoned consultants.'
       ]
     }
@@ -168,7 +169,8 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       position: 'Global Blockchain News Facilitator',
       sentences: [
         'Influential global blockchain news based out of China and the United States.\n',
-        'Advisory arm has been providing insights to leaders in blockchain industry, as well as creating synergy across markets and between organizations.\n',
+        'Advisory arm has been providing insights to leaders in blockchain industry, ' +
+        'as well as creating synergy across markets and between organizations.\n',
         'The team comprises earliest cryptocurrency adopters and seasoned consultants.'
       ]
     }

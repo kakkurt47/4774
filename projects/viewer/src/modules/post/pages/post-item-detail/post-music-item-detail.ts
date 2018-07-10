@@ -24,11 +24,11 @@ export class AbstractPostMusicItemDetail extends BaseComponent {
   constructor(private boardType: string,
               injector: Injector) {
     super();
-    this._route = injector.get(ActivatedRoute);
-    this._muzikaPaper = injector.get(MuzikaPaperContract);
-    this._muzikaCoin = injector.get(MuzikaCoin);
-    this._postActions = injector.get(PostActions);
-    this._store = injector.get(NgRedux);
+    this._route = injector.get<ActivatedRoute>(ActivatedRoute);
+    this._muzikaPaper = injector.get<MuzikaPaperContract>(MuzikaPaperContract);
+    this._muzikaCoin = injector.get<MuzikaCoin>(MuzikaCoin);
+    this._postActions = injector.get<PostActions>(PostActions);
+    this._store = injector.get<NgRedux<IAppState>>(NgRedux);
   }
 
   ngOnInit() {
