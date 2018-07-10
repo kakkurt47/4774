@@ -1,8 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
-import * as particleConfig from './particles.json';
-import { MuzikaConsole } from '@muzika/core';
 
 declare const particlesJS, jQuery;
 
@@ -23,8 +21,20 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      jQuery('#navbarCollapse').scrollspy({
-        offset: 70
+      jQuery('#navbarCollapse ul li a[href^=\'#\']').on('click', function(e) {
+
+        // prevent default anchor click behavior
+        e.preventDefault();
+
+        // store hash
+        const hash = this.hash;
+
+        // animate
+        jQuery('html, body').stop().animate({
+          scrollTop: jQuery(hash).offset().top
+        }, 1000, () => {
+
+        });
       });
 
       jQuery(window).scroll(function() {

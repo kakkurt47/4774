@@ -2,40 +2,45 @@
   "intro-main": {
     "home-subtitle-1": "Revolution and Redemption of Digital Music World",
     "home-subtitle-2": "through a decentralized blockchain-based ecosystem.",
-    "project-teaser": "프로젝트 티저",
-    "whitepaper": "백서"
+    "project-teaser": "Project Teaser",
+    "whitepaper": "Whitepaper"
   },
   "intro-ecosystem": {
-    "subtitle-1": "Muzika's core concept is that of an autonomous, self-sustaining ecosystem driven by content creators (music artists) and their fans in tandem. Prior to the advent of blockchain technology in 2009 with the release of Bitcoin, such a revolutionary technology to drive evolution of the music industry remained out of the world's grasp.",
-    "subtitle-2": "With the creation of a new decentralized digital music ecosystem where anyone can participate in the production, investment, consumption, and distribution cycle of the music industry, Muzika will realize its goal of revolution."
+    "title": "MUZIKA 생태계",
+    "subtitle-1": "Muzika는 음악가들과 팬들이 주도하는 자생적이고 지속가능한 생태계를 창조할 것입니다. 2009년 비트코인과 함께 등장한 블록체인 기술을 토대로 우리는 음악 산업을 새롭게 변화시키고자 합니다. ",
+    "subtitle-2": "분산화된 디지털 음악 생태계는 누구나 음악의 생산, 투자, 소비, 그리고 수익의 분배에 이르기까지 음악 산업의 전 과정에 참여할 수 있게 할 것입니다. 그리고 이를 토대로 Muzika는 음악 산업에서 변혁을 이루어낼 것입니다.  "
   },
   "intro-mzk-coins": {
-    "subtitle-1": "Muzika coin(MZK) was deliberately designed as the backbone of this new ecosystem. The team has analyzed both successful and failed cryptocurrencies, past and present, and established a clear vision of what is necessary to make this project a success. ",
-    "subtitle-2": "MZK will serve as the sole medium of exchange for all economic activity within the ecosystem, facilitating investments, trades, and the allocation of investment returns, all while assisting growth via a few free services targeted at community novices."
+    "subtitle-1": "Muzika 코인(MZK)은 새로운 Muzika 생태계에서 중추적인 역할을 담당할 것입니다. 우리는 과거와 현재의 수많은 가상화폐들의 성공과 실패 사례들을 분석하였고, 프로젝트를 성공으로 이끌기 위한 요소들에 대해 뚜렷한 시각을 얻을 수 있었습니다.",
+    "subtitle-2": "MZK는 Muzika 생태계 내 모든 경제활동의 유일한 수단으로써 기능할 것입니다. 생태계에 처음 발을 들인 구성원을 위한 일부 서비스를 제외하고, 팬들이 아티스트에게 투자하고, 커뮤니티에서 음악을 구매하고, 아티스트로부터 수익을 분배받는 등 생태계 내 거의 대부분의 활동에서 MZK가 사용될 것입니다.  "
+  },
+  "intro-leadership": {
+    "subtitle-1": "Co-founders are one of the youngest and most successful entrepreneurs in South Korea startup history, averagely aged at 22.",
+    "subtitle-2": "All of them were awarded Forbes 30 Under 30 Asia 2018."
   },
   "intro-business": {
-    "subtitle": "글로벌 No. 1 연주음악 플랫폼 ",
-    "year-of-exp": "년 경험",
-    "user-nations": "국가",
-    "users": "유저 수",
-    "artists": "아티스트 수",
+    "subtitle": "Global No. 1 Instrumental Music Platform ",
+    "year-of-exp": "년의 경험",
+    "user-nations": "서비스되는 국가의 수",
+    "users": "사용자",
+    "artists": "아티스트",
     "what-makes-muzika-unique": "What makes Muzika unique",
-    "highlight-text-1": "Unlike hundreds of ICOs without proof of practicality, Muzika is not starting from scratch. The token economy is strongly built on the backs of our existing, profit-generating, and privately & publicly funded business with 2,000,000 active users & subscribers from 170+ nations and artists from 30+ nations. ",
-    "highlight-text-2": "Through years of experience, we have learned the precise ways to build a community run by loyal and incentivized individuals: a key to success of any community-based ICO projects."
+    "highlight-text-1": "Muzika는 실행가능성이 담보되지 않는 수많은 ICO 프로젝트들과 다릅니다. 우리의 생태계는 수익을 창출하는, 많은 민간투자자들과 대한민국 정부로부터 투자받은 플랫폼 비즈니스를 바탕으로 구성됩니다. 전세계 170개국 이상에서 2,000,000명의 이용자와 17,000명 이상의 아티스트들이 우리의 플랫폼을 사용하고 있습니다. ",
+    "highlight-text-2": "다년간의 경험을 토대로, 우리는 또한 어떻게 하면 충성도가 높은 커뮤니티 이용자들을 확보하고 그들에게 인센티브를 제공할 수 있는지를 명확히 배워왔습니다. 그리고 이러한 능력은 커뮤니티를 기반으로 한 ICO 프로젝트의 성공에 매우 중요한 역할을 할 것입니다. "
   },
   "intro-footer": {
-    "whitepapers": "백서",
-    "advisors": "어드바이저",
-    "teams": "팀",
-    "roadmap": "로드맵",
-    "services": "서비스",
+    "whitepapers": "Whitepapers",
+    "advisors": "Advisors",
+    "teams": "Teams",
+    "roadmap": "Roadmap",
+    "services": "Services",
 
-    "community": "커뮤니티",
+    "community": "Community",
     "medium": "Medium",
     "twitter": "Twitter",
     "telegram": "Telegram",
     "telegram-kr": "Telegram (KOR)",
 
-    "websites": "웹사이트"
+    "websites": "Websites"
   }
 }

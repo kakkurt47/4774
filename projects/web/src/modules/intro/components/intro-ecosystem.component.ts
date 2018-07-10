@@ -10,7 +10,7 @@ import { BaseComponent } from '@muzika/core/angular';
         <div class="row">
           <div class="col-7">
             <h2 class="text-left intro-section-title">
-              THE MUZIKA ECOSYSTEM
+              {{'intro-ecosystem.title' | translate}}
             </h2>
             <p class="text-left intro-section-subtitle pt-4">
               {{'intro-ecosystem.subtitle-1' | translate}}
