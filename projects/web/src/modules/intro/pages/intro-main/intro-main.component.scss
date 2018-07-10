@@ -13,6 +13,9 @@
 .home-title {
   font-size: $px2rem_60;
   font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
 }
 
 .home-center {
@@ -25,6 +28,10 @@
 .home-subtitle {
   font-size: 18px;
   color: #4D5256;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .home-btn {
@@ -99,9 +106,4 @@
   .home-center {
     top: 55px;
   }
-}
-
-@media (max-width: 991px) {
-
-
 }
