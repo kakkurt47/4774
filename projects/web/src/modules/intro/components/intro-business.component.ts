@@ -12,10 +12,10 @@ import { BaseComponent } from '@muzika/core/angular';
         {{'intro-business.subtitle' | translate}}
       </p>
       <div class="row">
-        <div class="col-5">
-          <img src="assets/images/business-preview.png" class="img-fluid mt-5">
+        <div class="col-sm-5">
+          <img src="assets/images/business-preview.png" class="img-fluid mt-5 pr-sm-0 pr-5">
         </div>
-        <div class="col-7">
+        <div class="col-sm-7">
           <div class="row highlight-box mt-5">
             <div class="col-6 mb-4">
               <div class="highlight-num">3</div>

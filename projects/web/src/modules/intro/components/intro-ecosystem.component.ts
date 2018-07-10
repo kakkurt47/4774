@@ -8,7 +8,7 @@ import { BaseComponent } from '@muzika/core/angular';
     <section class="section" id="ecosystem">
       <div class="container">
         <div class="row">
-          <div class="col-7">
+          <div class="col-sm-7">
             <h2 class="text-left intro-section-title">
               {{'intro-ecosystem.title' | translate}}
             </h2>
@@ -18,8 +18,8 @@ import { BaseComponent } from '@muzika/core/angular';
               {{'intro-ecosystem.subtitle-2' | translate}}
             </p>
           </div>
-          <div class="col-5">
-            <img src="assets/images/diagram-ecosystem2.png" class="img-fluid ml-5">
+          <div class="col-sm-5">
+            <img src="assets/images/diagram-ecosystem2.png" class="img-fluid ml-sm-5">
           </div>
         </div>
       </div>

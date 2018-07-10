@@ -10,7 +10,7 @@ import { BaseComponent } from '@muzika/core/angular';
           PARTNERS
         </h2>
         <div class="row mt-5">
-          <div class="col-3">
+          <div class="col-sm-4 col-6">
             <img src="assets/images/partners/logo-blackhorse.png" class="img-fluid">
           </div>
         </div>
