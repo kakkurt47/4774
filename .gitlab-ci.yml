@@ -9,13 +9,14 @@ cache:
 # Test - Run tests
 # Deploy - Deploy application to S3/ElasticBeanstalk
 stages:
-  - test
+  - build
+  - deploy
 
 # Job: Build
 # Installs npm packages, transpiles ES6 -> ES5
 # Passes node_modules/, dist/ onto next steps using artifacts
 test:contract:
-  stage: test
+  stage: build
   before_script:
     - apt-get update && apt-get install -y libmagick++-dev
     - ln -s `ls /usr/lib/x86_64-linux-gnu/ImageMagick-*/bin-Q16/Magick++-config | head -n 1` /usr/local/bin/
@@ -55,13 +56,26 @@ test:contract:
     - git submodule update --init --recursive
     - git submodule foreach --recursive git submodule update --init
     - cd muzika-contract/ && npm install && cd ../
+  artifacts:
+    paths:
+      - www/
   script:
     - npm run contract:compile
     - npm run lint
     - npm run build:core
     - npm run build:web:prod
     - npm run build:viewer
-    - python -m pip install awscli
-    - aws s3 sync ./dist/web/ s3://$AWS_BUCKET --delete
   tags:
     - frontend
+
+deploy:stage:
+  image: python:3.6
+  stage: deploy
+  script:
+    - python -m pip install awscli
+    - aws s3 sync ./www/ s3://$AWS_BUCKET --delete
+  only:
+    - master
+  tags:
+    - frontend
+

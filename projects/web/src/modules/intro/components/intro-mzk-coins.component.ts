@@ -13,7 +13,7 @@ import { BaseComponent } from '@muzika/core/angular';
           {{'intro-mzk-coins.subtitle-1' | translate}}<BR/> <BR/>
           {{'intro-mzk-coins.subtitle-2' | translate}}
         </p>
-        <img src="assets/images/diagram.png" class="mt-5 img-fluid">
+        <img src="assets/images/diagram-coin.png" class="mt-5 img-fluid">
       </div>
     </section>
     <div class="triangle-down"></div>
@@ -25,19 +25,16 @@ import { BaseComponent } from '@muzika/core/angular';
       border-left: 50vw solid transparent;
       border-right: 50vw solid transparent;
 
-      border-top: 100px solid #35495e;
+      border-top: 100px solid #d5dbe0;
       background-color: #f8fafb;
     }
     
     section {
-      background-color: #35495e;
+      background-color: #d5dbe0;
       padding: 100px 0;
     }
-    .intro-section-title {
-      color: #fff;
-    }
     .intro-section-subtitle {
-      color: #e2dfde;
+      color: #4d5256;
       max-width: 530px;
     }
   `]

@@ -8,7 +8,7 @@
   "intro-navbar": {
     "ecosystem": "Ecosystem",
     "mzk-coins": "MZK Coin Usage",
-    "investors": "Investors",
+    "partners": "Partners",
     "team": "Team",
     "advisors": "Advisors",
     "roadmap": "Roadmap",
@@ -25,7 +25,8 @@
   },
   "intro-leadership": {
     "subtitle-1": "Co-founders are one of the youngest and most successful entrepreneurs in South Korea startup history, averagely aged at 22.",
-    "subtitle-2": "All of them were awarded Forbes 30 Under 30 Asia 2018."
+    "subtitle-2": "All of them were awarded Forbes 30 Under 30 Asia 2018.",
+    "co-founders": "Co-Founder"
   },
   "intro-business": {
     "subtitle": "Global No. 1 Instrumental Music Platform ",

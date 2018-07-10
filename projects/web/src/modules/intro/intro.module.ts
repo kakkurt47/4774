@@ -18,7 +18,7 @@ import { IntroMainPageComponent } from './pages/intro-main/intro-main.component'
 import { MzkIntroBusinessComponent } from './components/intro-business.component';
 import { MzkIntroMZKCoinComponent } from './components/intro-mzk-coins.component';
 import { MzkIntroEcosystemComponent } from './components/intro-ecosystem.component';
-import { MzkIntroInvestorComponent } from './components/intro-investor.component';
+import { MzkIntroPartnersComponent } from './components/intro-investor.component';
 
 @NgModule({
   imports: [
@@ -49,7 +49,7 @@ import { MzkIntroInvestorComponent } from './components/intro-investor.component
     MzkIntroBusinessComponent,
     MzkIntroEcosystemComponent,
     MzkIntroMZKCoinComponent,
-    MzkIntroInvestorComponent,
+    MzkIntroPartnersComponent,
 
     /* Page Components */
     /* For introduction */

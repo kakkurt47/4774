@@ -19,7 +19,7 @@ import { BaseComponent } from '@muzika/core/angular';
             </p>
           </div>
           <div class="col-5">
-            <img src="assets/images/diagram-ecosystem.png" class="img-fluid ml-5">
+            <img src="assets/images/diagram-ecosystem2.png" class="img-fluid ml-5">
           </div>
         </div>
       </div>
@@ -34,26 +34,18 @@ import { BaseComponent } from '@muzika/core/angular';
       border-right: 50vw solid transparent;
 
       border-top: 100px solid white;
-      background-color: #47637c;
+      background-color: #f8fafb;
     }
     
     .triangle-bottom {
-      border-top-color: #47637c;
-      background-color: #35495e;
+      border-top-color: #f8fafb;
+      background-color: #d5dbe0;
     } 
 
     section {
       display: block;
-      background-color: #47637c;
+      background-color: #f8fafb;
       padding: 100px 0 60px 0;
-    }
-
-    .intro-section-title {
-      color: white;
-    }
-
-    .intro-section-subtitle { 
-      color: #e2dfde;
     }
   `]
 })

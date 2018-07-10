@@ -8,7 +8,7 @@
   "intro-navbar": {
     "ecosystem": "생태계",
     "mzk-coins": "MZK 코인",
-    "investors": "투자사",
+    "partners": "파트너스",
     "team": "팀",
     "advisors": "어드바이저",
     "roadmap": "로드맵",
@@ -24,8 +24,9 @@
     "subtitle-2": "MZK는 Muzika 생태계 내 모든 경제활동의 유일한 수단으로써 기능할 것입니다. 생태계에 처음 발을 들인 구성원을 위한 일부 서비스를 제외하고, 팬들이 아티스트에게 투자하고, 커뮤니티에서 음악을 구매하고, 아티스트로부터 수익을 분배받는 등 생태계 내 거의 대부분의 활동에서 MZK가 사용될 것입니다.  "
   },
   "intro-leadership": {
-    "subtitle-1": "Co-founders are one of the youngest and most successful entrepreneurs in South Korea startup history, averagely aged at 22.",
-    "subtitle-2": "All of them were awarded Forbes 30 Under 30 Asia 2018."
+    "subtitle-1": "한국 역사상 평균 나이 22세로 가장 어린 성공한 사업가들",
+    "subtitle-2": "2018 포브스가 선정한 30세 이하 가장 영향력 있는 30인에 선정.",
+    "co-founders": "공동창업자"
   },
   "intro-business": {
     "subtitle": "Global No. 1 Instrumental Music Platform ",

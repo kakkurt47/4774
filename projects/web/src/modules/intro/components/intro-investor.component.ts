@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
 
 @Component({
-  selector: 'mzk-intro-investor',
+  selector: 'mzk-intro-partners',
   template: `
     <section class="section" id="investor">
       <div class="container">
         <h2 class="text-center intro-section-title">
-          INVESTORS
+          PARTNERS
         </h2>
         <div class="row mt-5">
           <div class="col-3">
-            <img src="assets/images/investors/logo-blackhorse.png" class="img-fluid">
+            <img src="assets/images/partners/logo-blackhorse.png" class="img-fluid">
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@ import { BaseComponent } from '@muzika/core/angular';
     }
   `]
 })
-export class MzkIntroInvestorComponent extends BaseComponent {
+export class MzkIntroPartnersComponent extends BaseComponent {
   constructor() {
     super();
   }
