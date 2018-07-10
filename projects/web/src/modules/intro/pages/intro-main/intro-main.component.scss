@@ -64,9 +64,9 @@
     }
 
     .btn-custom {
-      font-size: 15px;
-      width: 75px;
-      padding: 6px 10px;
+      font-size: 13px;
+      width: 70px;
+      padding: 6px 0;
     }
   }
 }
@@ -100,7 +100,7 @@
 
 @media (min-width: 200px) and (max-width: 768px) {
   .bg-home-full {
-    min-height: 660px;
+    min-height: 600px;
   }
 
   .home-center {

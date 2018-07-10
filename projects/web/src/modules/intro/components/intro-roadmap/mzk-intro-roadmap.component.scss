@@ -20,15 +20,88 @@ dl, dt, dd, ol, ul, li {
   vertical-align: baseline;
 }
 
-
 ol, ul {
   list-style: none;
 }
+
 blockquote, q {
   quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
+}
+
+.vertical-timeline {
+  position: relative;
+  border-left: 1px solid #efefef;
+  margin-left: 50%;
+}
+
+.roadmap-box {
+  position: relative;
+
+  .topic {
+    position: absolute;
+    left: -430px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    width: 400px;
+    margin-top: -13px;
+    top: 50%;
+  }
+  .info-box {
+    width: 400px;
+    border-radius: 3px 3px 3px 3px;
+    background-color: rgba(239, 239, 239, 0.2);
+    border: 0 solid rgba(239, 239, 239, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin: 15px 30px;
+    padding: 14px 18px;
+
+    .date {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .text {
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &.right {
+    .topic {
+      left: 0;
+    }
+
+    .info-box {
+      margin-left: -430px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .vertical-timeline {
+    border-left-color: transparent;
+    margin-left: 0;
+  }
+
+  .roadmap-box {
+    .topic {
+      width: 100%;
+      position: relative;
+      left: 0;
+      margin-top: 30px;
+    }
+
+    .info-box {
+      width: 100%;
+      margin-left: 0 !important;
+    }
+  }
 }

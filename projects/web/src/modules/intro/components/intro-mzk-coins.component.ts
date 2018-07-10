@@ -13,7 +13,7 @@ import { BaseComponent } from '@muzika/core/angular';
           {{'intro-mzk-coins.subtitle-1' | translate}}<BR/> <BR/>
           {{'intro-mzk-coins.subtitle-2' | translate}}
         </p>
-        <img src="assets/images/diagram-coin.png" class="mt-5 img-fluid">
+        <img src="assets/images/diagram-coin.png" class="mt-sm-5 img-fluid">
       </div>
     </section>
     <div class="triangle-down"></div>

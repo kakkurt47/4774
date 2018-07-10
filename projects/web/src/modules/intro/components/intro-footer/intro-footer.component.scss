@@ -53,6 +53,9 @@ footer {
       > a {
         font-size: 16px;
         color: #878d91;
+        @media (max-width: 768px) {
+          font-size: 14px;
+        }
       }
     }
   }
