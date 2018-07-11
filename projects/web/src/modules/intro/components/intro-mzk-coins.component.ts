@@ -16,40 +16,34 @@ import { BaseComponent } from '@muzika/core/angular';
         <img src="assets/images/diagram-coin.png" class="mt-sm-5 img-fluid mb-sm-5">
         <BR/>
         <BR/>
-        <h2 class="mt-5 text-center intro-section-title mb-5">4 MAJOR FUNCTIONS</h2>
+        <h2 class="mt-5 text-center intro-section-title mb-5">{{'intro-mzk-coins.major-functions' | translate}}</h2>
         <div class="row">
           <div class="col-6">
-            <h4 class="function-title">Community Building</h4>
+            <h4 class="function-title">{{'intro-mzk-coins.func-1-title' | translate}}</h4>
             <p class="function-desc">
-              In order to be truly self-sustaining, the Muzika ecosystem will contain all of the necessary activities. <BR />
-              These range from creative brainstorming, crowd-funding, the exchange of feedback, and more.
+              {{'intro-mzk-coins.func-1-desc-1' | translate}} <BR />
+              {{'intro-mzk-coins.func-1-desc-2' | translate}}
             </p>
           </div>
           <div class="col-6">
-            <h4 class="function-title">Commercial Items</h4>
+            <h4 class="function-title">{{'intro-mzk-coins.func-2-title' | translate}}</h4>
             <p class="function-desc">
-              Besides community involvement, the ecosystem will also incorporate
-              all of the functions that make the traditional digital music industry otherwise successful.
-              Streaming services, a sheet music marketplace, musical instruments,
-              recording services and much more will all be available through Muzika.
+              {{'intro-mzk-coins.func-2-desc-1' | translate}}
+              {{'intro-mzk-coins.func-2-desc-2' | translate}}
             </p>
           </div>
           <div class="col-6">
-            <h4 class="function-title">Investment and rewards</h4>
+            <h4 class="function-title">{{'intro-mzk-coins.func-3-title' | translate}}</h4>
             <p class="function-desc">
-              Users may invest in artists much like they might a stock in worldly capital markets,
-              or rather lend to a musician to fund their project,
-              much in the same way a loanholder might lend to a government or corporation.
-              And just as with those more traditional modes of investment, investors in the Muzika ecosystem
-              will collect dividends and/or interest according to their investment choices.
+              {{'intro-mzk-coins.func-3-desc-1' | translate}}
+              {{'intro-mzk-coins.func-3-desc-2' | translate}}
             </p>
           </div>
           <div class="col-6">
-            <h4 class="function-title">Community-wide Programs</h4>
+            <h4 class="function-title">{{'intro-mzk-coins.func-4-title' | translate}}</h4>
             <p class="function-desc">
-              The real bread and butter of the Muzika ecosystem will be the spirit of creativity.
-              Community programs and events such as auditions, contests, crowd-funding drives, live-streaming events,
-              and other such activities driven by member involvement will be a focal point of Muzika.
+              {{'intro-mzk-coins.func-4-desc-1' | translate}}
+              {{'intro-mzk-coins.func-4-desc-2' | translate}}
             </p>
           </div>
         </div>
