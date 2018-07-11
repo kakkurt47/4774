@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  background-color: #303740;
+  background-color: #f8fafb;
   color: white;
   border-top: 1px solid #edeff2;
 }
@@ -16,7 +16,7 @@ footer {
   **********************/
 
   .footer-alt p {
-    color: white;
+    color: #192538;
     font-family: 'Libre Baskerville';
     font-size: 26px;
     font-weight: 500;
@@ -30,7 +30,7 @@ footer {
 
 
   .footer-alt {
-    border-bottom: 1px solid #edeff2;
+    border-bottom: 1px solid #192538;
     margin: 0 auto;
 
   }
@@ -41,7 +41,7 @@ footer {
 
     h5 {
       font-size: 17px;
-      color: #fff;
+      color: #192538;
     }
 
     ul, li {
@@ -52,7 +52,7 @@ footer {
 
       > a {
         font-size: 16px;
-        color: #878d91;
+        color: #5a6d86;
         @media (max-width: 768px) {
           font-size: 14px;
         }
@@ -67,15 +67,15 @@ brand-icon-muzika {
   height: 30px;
 
   /deep/ .muzika-icon-striped-primary {
-    fill: white;
+    fill: #192538;
   }
 
   /deep/ .muzika-icon-striped-secondary {
-    fill: white;
+    fill: #192538;
   }
 }
 
 .copyright-text {
-  color: #878d91;
-  font-size: 15px;
+  color: #5a6d86;
+  font-size: 14px;
 }
