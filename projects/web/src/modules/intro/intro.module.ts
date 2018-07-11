@@ -18,7 +18,7 @@ import { IntroMainPageComponent } from './pages/intro-main/intro-main.component'
 import { MzkIntroBusinessComponent } from './components/intro-business.component';
 import { MzkIntroMZKCoinComponent } from './components/intro-mzk-coins.component';
 import { MzkIntroEcosystemComponent } from './components/intro-ecosystem.component';
-import { MzkIntroPartnersComponent } from './components/intro-investor.component';
+import { MzkIntroPartnersComponent } from './components/intro-partners.component';
 
 @NgModule({
   imports: [

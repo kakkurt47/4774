@@ -13,6 +13,9 @@ import { BaseComponent } from '@muzika/core/angular';
           <div class="col-sm-4 col-6">
             <img src="assets/images/partners/logo-blackhorse.png" class="img-fluid">
           </div>
+          <div class="col-sm-4 col-6">
+            <img src="assets/images/partners/logo-panony.png" class="img-fluid">
+          </div>
         </div>
       </div>
     </section>
