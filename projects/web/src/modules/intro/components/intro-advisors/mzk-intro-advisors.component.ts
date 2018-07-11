@@ -93,63 +93,59 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       imagePath: 'MichaelCho.jpg',
       position: '카카오 사외이사',
       sentences: [
-        '(EX) Senior Partner, Samjong KPMG Accounting Corporation',
+        '(前)시니어파트너, 삼정 KPMG 회계법인',
 
-        'Certified Public Accountant'
+        '공인회계사(CPA)'
       ]
     },
     {
-      name: 'JoonKee Hong',
+      name: '홍준기',
       imagePath: 'JoonkeeHong.png',
       position: '카카오뱅크 사외이사',
       sentences: [
-        '(EX) Asia Head of Global Finance(Capital Markets), Nomura International',
+        '(前) 노무라증권 Asia Head of Global Finance(Capital Markets)',
 
-        '(EX) Asia Head of Global Finance(Capital Markets), Lehman Brothers'
+        '(前) 리만브라더스 Asia Head of Global Finance(Capital Markets)'
       ]
     },
     {
-      name: 'Yoonwoo Lee',
+      name: '이윤우',
       imagePath: 'YoonwooLee.png',
-      position: 'CEO & Vice Chairman of Samsung Electronics',
-      sentences: [
-        '(EX) Asia Head of Global Finance(Capital Markets), Nomura International'
-      ]
+      position: '(前) 삼성전자 CEO, 부회장',
+      sentences: []
     },
 
 
     {
-      name: 'Inkyu Choi',
+      name: '최인규',
       imagePath: 'InkyuChoi.png',
       position: '네이버 VC 스프링캠프 대표',
       sentences: [
-        '(EX) Team Leader, Seoul Techno Holdings',
-        '(EX) Partner Patent Attoney, Maps Intellectual Property Law Firm',
-        '(EX) Software Engineer, Empas Search Engine',
-        'Certified Patent Attorney'
+        '(前) 서울테크노홀딩스 팀장',
+        '(前) MAPS 특허법인 파트너 변리사',
+        '(前) 엠파스 검색엔진 소프트웨어 엔지니어',
+        '변리사'
       ]
     },
     {
-      name: 'Jinsoo Park',
+      name: '박진수',
       imagePath: 'jinsoopark.jpg',
-      position: 'Team Leader of YG Entertainment',
+      position: 'YG 엔터테인먼트 팀리더',
       sentences: [
-        '(EX) Director and CFO, YG investment',
-        '(EX) Senior Associate, Samill PricewaterhouseCoopers',
-        'Certified Public Accountant',
-        'Certified Financial Analyst'
+        '(前) YG 인베스트먼트 이사, CFO',
+        '(前) 삼일 PWC 회계법인 시니어 어소시에이트',
+        '공인회계사(CPA)',
+        '국제재무분석사(CFA)'
       ]
     },
     {
-      name: 'Myunsik Cho',
+      name: '조면식',
       imagePath: 'MyunsikCho.png',
-      position: 'Lawyer, Dongnyuk LLC',
+      position: '동녘 LLC 변호사',
       sentences: [
-        'Top legal specialist in music, entertainment, film, and copyright law',
-        '(Ex) Legal Advisor of Korean Film Producers’ Association',
-        '(Ex) Legal Representative of JYP Entertainment, Star Empire, Jellyfish\n' +
-        'Entertainment, Ji Young Baek, amoung other numerous musicians,\n' +
-        'actors, and celebrities'
+        '음악, 엔터테인먼트, 영화, 저작권 법률 전문가',
+        '(前) 한국영화제작가협회 법률고문',
+        '(前) JYP, 스타제국, 젤리피쉬 엔터테인먼트 및 백지영 등 다수 음악가와 배우 법률자문'
       ]
     }
   ];

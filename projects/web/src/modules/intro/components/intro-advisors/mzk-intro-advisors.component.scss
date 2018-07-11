@@ -3,8 +3,8 @@ h2 {
   font-weight: 700;
 }
 
-section {
-  border-top: 1px solid #E9E9E9;
+.section {
+  background: #f8fafb;
 }
 
 .testimonial-client-img {
@@ -21,7 +21,12 @@ ul {
   }
 }
 
+h6 {
+  color: #192538;
+}
+
 .position {
+  color: #5a6d86;
   font-size: 13px;
   line-height: 20px;
 }

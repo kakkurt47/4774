@@ -13,6 +13,7 @@
 .home-title {
   font-size: $px2rem_60;
   font-weight: 600;
+  color: #192538;
   @media (max-width: 768px) {
     font-size: 40px;
   }
@@ -27,7 +28,7 @@
 
 .home-subtitle {
   font-size: 18px;
-  color: #4D5256;
+  color: #5a6d86;
 
   @media (max-width: 768px) {
     font-size: 16px;
@@ -39,20 +40,22 @@
 
   > a:first-child {
     display: inline-block;
-    color: #4d5256;
+    color: #5a6d86;
     min-width: 115px;
   }
 
   .btn-custom { // English, 한국어, 중국어 버튼
-    background: #18b76f;
-    box-shadow: 0 1px 9px 0 #4d5256;
-    transition: box-shadow 0.3s ease-out;
-    border: none;
-    font-size: 18px;
-    color: white;
-    width: 98px;
-    border-radius: 8px 8px;
-    padding: 10.5px 16px;
+    background: white;
+    border: 1px solid #35e8c6;
+    font-size: 16px;
+    color: #35e8c6;
+    width: 120px;
+    border-radius: 25px 25px;
+
+    &:hover {
+      background: #35e8c6;
+      color: white;
+    }
   }
 }
 

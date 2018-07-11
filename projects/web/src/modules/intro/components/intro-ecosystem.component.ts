@@ -4,7 +4,6 @@ import { BaseComponent } from '@muzika/core/angular';
 @Component({
   selector: 'mzk-intro-ecosystem',
   template: `
-    <div class="triangle-down"></div>
     <section class="section" id="ecosystem">
       <div class="container">
         <div class="row">
@@ -19,33 +18,26 @@ import { BaseComponent } from '@muzika/core/angular';
             </p>
           </div>
           <div class="col-sm-5">
-            <img src="assets/images/diagram-ecosystem2.png" class="img-fluid ml-sm-5">
+            <img src="assets/images/diagram-ecosystem.png" class="img-fluid ml-sm-5">
           </div>
         </div>
       </div>
     </section>
-    <div class="triangle-down triangle-bottom"></div>
   `,
-  styles: [`    
-    .triangle-down {
-      width: 100%;
-      height: 0;
-      border-left: 50vw solid transparent;
-      border-right: 50vw solid transparent;
-
-      border-top: 100px solid white;
-      background-color: #f8fafb;
-    }
-    
-    .triangle-bottom {
-      border-top-color: #f8fafb;
-      background-color: #d5dbe0;
-    } 
+  styles: [`   
 
     section {
       display: block;
-      background-color: #f8fafb;
+      background-color: #5a6d86;
       padding: 100px 0 60px 0;
+    }
+    
+    .intro-section-title, .intro-section-subtitle {
+      color: white;
+    }
+    
+    img {
+      max-width: 350px;
     }
     
     @media (max-width: 768px) {

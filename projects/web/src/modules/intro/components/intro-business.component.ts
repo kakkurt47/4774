@@ -55,6 +55,7 @@ declare const jQuery;
     }
 
     .highlight-title {
+      color: #192538;
       max-width: 600px;
       margin: 0 auto;
       padding: 0 15px;
@@ -64,7 +65,7 @@ declare const jQuery;
       max-width: 600px;
       margin: 0 auto;
       padding: 0 15px;
-      color: #4d5256;
+      color: #5a6d86;
     }
 
     .highlight-box {
@@ -76,7 +77,7 @@ declare const jQuery;
     .highlight-num {
       text-align: left;
       font-size: 2rem;
-      color: #18b76f;
+      color: #35e8c6;
       font-weight: 600;
     }
 
@@ -84,7 +85,7 @@ declare const jQuery;
       text-align: left;
       font-size: 1.3rem;
       font-weight: 400;
-      color: #4d5256;
+      color: #5a6d86;
     }
 
     @media (max-width: 768px) {

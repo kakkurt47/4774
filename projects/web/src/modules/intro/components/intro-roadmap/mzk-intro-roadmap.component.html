@@ -22,6 +22,12 @@
           <div class="topic">
             {{roadmap.topic | uppercase}}
           </div>
+          <div class="circle"></div>
+          <div class="horizontal-line"></div>
+          <div class="spinner" *ngIf="roadmap.current">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+          </div>
           <div class="info-box" *ngFor="let info of roadmap.list">
             <span class="date">{{info.date}}</span>
             <p class="text">{{info.text}}</p>

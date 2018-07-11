@@ -23,8 +23,7 @@ import { BaseComponent } from '@muzika/core/angular';
   styles: [`
     section {
       display: block;
-      background-color: white;
-      border-top: 1px solid #E9E9E9;
+      background-color: #f8fafb;
       padding: 100px 0;
     }
 
