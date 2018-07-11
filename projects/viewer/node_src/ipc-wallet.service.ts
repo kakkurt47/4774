@@ -6,7 +6,7 @@ import { IPCUtil } from '../shared/ipc-utils';
 //   event.returnValue = 'pong';
 // });
 
-class IpcWalletService {
+export class IpcWalletService {
   constructor() {
   }
 

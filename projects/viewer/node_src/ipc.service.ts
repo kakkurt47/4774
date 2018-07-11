@@ -14,7 +14,7 @@ import {StorageServiceInstance} from './storage.service';
 //   event.returnValue = 'pong';
 // });
 
-class IpcMainService {
+export class IpcMainService {
   constructor() {
   }
 

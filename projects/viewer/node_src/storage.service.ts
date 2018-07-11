@@ -1,4 +1,4 @@
-class StorageService {
+export class StorageService {
   private static _instance: StorageService;
 
   private _storage: any;
