@@ -18,7 +18,7 @@ import { BaseComponent } from '@muzika/core/angular';
         <BR/>
         <h2 class="mt-5 text-center intro-section-title mb-5">{{'intro-mzk-coins.major-functions' | translate}}</h2>
         <div class="row pt-4">
-          <div class="col-6 mb-sm-4">
+          <div class="col-12 col-sm-6 mb-sm-4">
             <div class="text-center">
               <img class="function-img" src="assets/images/mzk-coins/community-building.png">
             </div>
@@ -28,7 +28,7 @@ import { BaseComponent } from '@muzika/core/angular';
               {{'intro-mzk-coins.func-1-desc-2' | translate}}
             </p>
           </div>
-          <div class="col-6 mb-sm-4">
+          <div class="col-12 col-sm-6 mb-sm-4">
             <div class="text-center">
               <img class="function-img" src="assets/images/mzk-coins/commercial-items.png">
             </div>
@@ -38,7 +38,7 @@ import { BaseComponent } from '@muzika/core/angular';
               {{'intro-mzk-coins.func-2-desc-2' | translate}}
             </p>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6">
             <div class="text-center">
               <img class="function-img" src="assets/images/mzk-coins/investment.png">
             </div>
@@ -48,7 +48,7 @@ import { BaseComponent } from '@muzika/core/angular';
               {{'intro-mzk-coins.func-3-desc-2' | translate}}
             </p>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6">
             <div class="text-center">
               <img class="function-img" src="assets/images/mzk-coins/community-wide.png">
             </div>
