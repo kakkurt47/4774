@@ -28,7 +28,7 @@ import { BaseComponent } from '@muzika/core/angular';
     }
 
     img {
-      background: #f8fafb;
+      background: white;
       border-radius: 8px 8px;
     }
   `]

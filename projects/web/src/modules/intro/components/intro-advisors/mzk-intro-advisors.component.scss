@@ -8,8 +8,11 @@ h2 {
 }
 
 .testimonial-client-img {
-  width: 130px;
-  height: 130px;
+  img {
+    width: 100%;
+    max-width: 130px;
+    max-height: 130px;
+  }
   margin: 0 0 0 auto;
 }
 

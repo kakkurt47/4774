@@ -5,6 +5,7 @@
 }
 
 .bg-home {
+  padding-top: 80px;
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -17,13 +18,6 @@
   @media (max-width: 768px) {
     font-size: 40px;
   }
-}
-
-.home-center {
-  position: absolute;
-  z-index: 1;
-  top: 125px;
-  left: 0;
 }
 
 .home-subtitle {
