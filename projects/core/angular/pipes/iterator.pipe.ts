@@ -7,8 +7,8 @@ export class ObjectIteratorPipe implements PipeTransform {
       return [];
     }
 
-    return Object.entries(obj).map(([key, value]) => {
-      return { key: key, value: value };
+    return Object.keys(obj).map((key) => {
+      return { key: key, value: obj[key] };
     });
   }
 }

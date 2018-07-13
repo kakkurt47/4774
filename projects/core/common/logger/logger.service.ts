@@ -12,6 +12,7 @@ export const Levels = [
 ];
 
 export class MuzikaConsole {
+  public static chalk: any;
   constructor(private accessLevel: MuzikaLoggerLevel) {
   }
 
@@ -36,7 +37,7 @@ export class MuzikaConsole {
     const metaString = MuzikaLoggerUtils.prepareMetaString(timestamp, logLevelString, callerDetails.fileName, callerDetails.lineNumber);
 
     if (MuzikaConsole._isElectronBrowser()) {
-      const color = MuzikaLoggerUtils.getChalkColor(level);
+      const color = MuzikaLoggerUtils.getChalkColor(MuzikaConsole.chalk, level);
       this.log(color(metaString, message), ...(additional || []));
     } else {
       const color = MuzikaLoggerUtils.getColor(level);

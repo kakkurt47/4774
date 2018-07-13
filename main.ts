@@ -8,6 +8,8 @@ import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
 import {StorageServiceInstance} from './projects/viewer/node_src/storage.service';
 import { MuzikaConsole } from './projects/core/common';
 
+MuzikaConsole.chalk = require('chalk');
+
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');

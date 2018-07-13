@@ -1,5 +1,4 @@
 import { MuzikaLoggerLevel } from './logger.level';
-import chalk from 'chalk';
 
 export class MuzikaLoggerUtils {
 
@@ -27,7 +26,7 @@ export class MuzikaLoggerUtils {
     }
   }
 
-  static getChalkColor(level: MuzikaLoggerLevel): any {
+  static getChalkColor(chalk: any, level: MuzikaLoggerLevel): any {
     switch (level) {
       case MuzikaLoggerLevel.TRACE:
         return chalk.blue;
