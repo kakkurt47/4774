@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Lang } from '@muzika/core';
 
 declare const jQuery;
 
@@ -26,6 +27,54 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
   roadmaps = [];
 
   roadmaps_EN = [
+    {
+      topic: 'Conceptualization',
+      list: [
+        { date: '2017.02', text: 'Project conceptualized' }
+      ]
+    },
+    {
+      topic: 'System Modeling',
+      list: [
+        { date: '2017.07', text: 'Commencement of Platform Modeling' },
+        { date: '2017.08', text: 'Establishment of three distinct models for coin economies of music' },
+        { date: '2017.10', text: 'Decided upon development of current ecosystem model' }
+      ]
+    },
+    {
+      topic: 'Platform Testing',
+      list: [
+        { date: '2017.11', text: 'Open platform testing for transactions involving music sheets' },
+        { date: '2017.12', text: 'Open platform testing for transactions of other digital music file types' },
+        { date: '2018.02', text: 'Closed testing of the Muzika token (MZK)' }
+      ]
+    },
+    {
+      topic: 'Token Generation',
+      current: true,
+      list: [
+        { date: '2018.Q2', text: 'Private sales' },
+        { date: '2018.Q3', text: '​Exchange Listing' }
+      ]
+    },
+    {
+      topic: 'Ecosystem Launching',
+      list: [
+        { date: '2018.09', text: 'Launch of the Muzika Ecosystem prototype for testnet' },
+        { date: '2018.11', text: 'Launch of the Muzika Ecosystem prototype for mainnet' },
+        {
+          date: '2018.12', text: 'Integrate Mapianist, MyMusicSheet, and other existing or ' +
+          'soon-to-be-launched platforms developed by Mapiacompany to Muzika Ecosystem'
+        },
+        { date: '2019.01', text: 'Muzika Ecosystem beta launch (consumption-oriented)' },
+        { date: '2019.02', text: 'Muzika Ecosystem beta launch (production-oriented)' },
+        { date: '2019.04', text: 'Official global launch of the full-version of the Muzika Ecosystem' },
+        { date: '2020-', text: 'The Muzika ecosystem begins reshaping the global music industry' }
+      ]
+    }
+  ];
+
+  roadmaps_ZH = [
     {
       topic: 'Conceptualization',
       list: [
@@ -129,12 +178,12 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
     this._sub.push(
       this.translateService.onLangChange.subscribe(lang => {
         switch (this.translateService.currentLang) {
-          case 'ko':
+          case Lang.KOR:
             this.roadmaps = this.roadmaps_KR;
             break;
 
-          case 'ch':
-            this.roadmaps = this.roadmaps_EN;
+          case Lang.CHN:
+            this.roadmaps = this.roadmaps_ZH;
             break;
 
           default:

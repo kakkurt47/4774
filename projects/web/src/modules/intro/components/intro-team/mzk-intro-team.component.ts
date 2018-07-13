@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {BaseComponent} from '@muzika/core/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Lang } from '@muzika/core';
 
 export interface MuzikaMember {
   name: string;
@@ -20,6 +21,69 @@ export class MzkIntroTeamComponent extends BaseComponent {
   members: MuzikaMember[] = [];
 
   members_EN: MuzikaMember[] = [
+    {
+      name: 'Seungwon Kang',
+      position: 'Blockchain Engineer',
+      image: '강승원.jpg'
+    },
+    {
+      name: 'Chaehong Jeong',
+      position: 'Blockchain Engineer',
+      image: '정채홍.jpg'
+    },
+    {
+      name: 'Jungwoo Lee',
+      position: 'Lead Blockchain Architect',
+      image: '이정우.jpg'
+    },
+    {
+      name: 'Jihyun Kim',
+      position: 'DevOps/Server Engineer',
+      image: '김지현.jpg'
+    },
+    {
+      name: 'Hyunju Hwang',
+      position: 'Frontend Developer',
+      image: '황현주.jpg'
+    },
+    {
+      name: 'Kyunghee Chang',
+      position: 'Frontend Developer',
+      image: '장경희.jpg'
+    },
+    {
+      name: 'Jaechan Ahn',
+      position: 'AI/ML Researcher & Server Developer',
+      image: '안재찬.jpg'
+    },
+    {
+      name: 'Minkyung Lee',
+      position: 'Brand & UX Designer',
+      image: '이민경.jpg'
+    },
+    {
+      name: 'Sukyung Na',
+      position: 'Head of Global Business',
+      image: '나수경.jpg'
+    },
+    {
+      name: 'William Wu',
+      position: 'Head of Global PR',
+      image: '윌리엄.jpg'
+    },
+    {
+      name: 'Yeji Chung',
+      position: 'Head of Music Management',
+      image: '정예지.jpg'
+    },
+    {
+      name: 'Seongheon Cho',
+      position: 'Head of Compliance',
+      image: '조성헌.jpg'
+    }
+  ];
+
+  members_ZH: MuzikaMember[] = [
     {
       name: 'Seungwon Kang',
       position: 'Blockchain Engineer',
@@ -155,12 +219,12 @@ export class MzkIntroTeamComponent extends BaseComponent {
     this._sub.push(
       this.translateService.onLangChange.subscribe(lang => {
         switch (this.translateService.currentLang) {
-          case 'ko':
+          case Lang.KOR:
             this.members = this.members_KR;
             break;
 
-          case 'ch':
-            this.members = this.members_KR;
+          case Lang.CHN:
+            this.members = this.members_ZH;
             break;
 
           default:

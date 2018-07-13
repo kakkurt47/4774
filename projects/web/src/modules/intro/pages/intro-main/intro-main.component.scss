@@ -39,17 +39,12 @@
   }
 
   .btn-custom { // English, 한국어, 중국어 버튼
-    background: white;
+    background: #35e8c6;
+    color: white;
     border: 1px solid #35e8c6;
     font-size: 16px;
-    color: #35e8c6;
     width: 120px;
     border-radius: 25px 25px;
-
-    &:hover {
-      background: #35e8c6;
-      color: white;
-    }
   }
 }
 

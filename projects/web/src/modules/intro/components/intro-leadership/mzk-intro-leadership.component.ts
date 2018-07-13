@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Lang } from '@muzika/core';
 
 @Component({
   selector: 'intro-leadership-team',
@@ -114,11 +115,11 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     this._sub.push(
       this.translateService.onLangChange.subscribe(lang => {
         switch (this.translateService.currentLang) {
-          case 'ko':
+          case Lang.KOR:
             this.leaders = this.leaders_KR;
             break;
 
-          case 'ch':
+          case Lang.CHN:
             this.leaders = this.leaders_EN;
             break;
 

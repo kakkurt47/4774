@@ -107,5 +107,9 @@ export class AppModule {
       default:
         this.translateService.use('en');
     }
+
+    this.translateService.onLangChange.subscribe(lang => {
+      this.localStorage.setItem('currentLang', this.translateService.currentLang);
+    });
   }
 }

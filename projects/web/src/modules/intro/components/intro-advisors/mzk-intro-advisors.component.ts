@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Lang } from '@muzika/core';
 
 export interface Advisors {
   name: string;
@@ -84,6 +85,157 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         'Entertainment, Ji Young Baek, amoung other numerous musicians,\n' +
         'actors, and celebrities'
       ]
+    },
+    {
+      name: 'Brian Lee',
+      imagePath: 'blackhorse_brian.jpg',
+      position: 'Managing Director, BlackHorse Group',
+      sentences: [
+        'Former investment banker at China Development Bank and CJSC. ',
+        'President at Digital Asset Investment Association ("DAIA"). ',
+        'Invested over 20 blockchain-based projects, including Quarkchain, Fantom, Open Platform and many others.',
+        'Graduated with Investment and Financial Risk Management from Cass Business School.'
+      ]
+    },
+    {
+      name: 'Adrian Lai',
+      imagePath: 'adrian_lai.png',
+      position: 'Managing Director, BlackHorse Group',
+      sentences: [
+        '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
+        'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
+        'Speaker and guest lecturer at industry events and universities. ',
+        'Former ICO investment lead at Orichal Partners'
+      ]
+    },
+    {
+      name: 'Alyssa Tsai ',
+      imagePath: 'panony_alyssa.jpg',
+      position: 'Founder & CEO of PANONY',
+      sentences: [
+        'Early adopter in blockchain industry. Assisted leading blockchain projects for market-entry and go-global strategies. ',
+        'Former Project Lead at Conde Nast International, Consultant at Isentia ' +
+        '(ASX: ISD) and seasoned communication specialist from Ogilvy.'
+      ]
+    },
+    {
+      name: 'Stella Kung',
+      imagePath: 'qtum_stella.jpg',
+      position: 'CMO of QTUM',
+      sentences: [
+        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
+        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
+        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+      ]
+    }
+  ];
+
+  advisorsZH: Advisors[] = [
+    {
+      name: 'Michael Cho',
+      imagePath: 'MichaelCho.jpg',
+      position: 'Non-executive Director of Kakao',
+      sentences: [
+        '(EX) Senior Partner, Samjong KPMG Accounting Corporation',
+
+        'Certified Public Accountant'
+      ]
+    },
+    {
+      name: 'JoonKee Hong',
+      imagePath: 'JoonkeeHong.png',
+      position: 'Non-executive Director of Kakao Bank',
+      sentences: [
+        '(EX) Asia Head of Global Finance(Capital Markets), Nomura International',
+
+        '(EX) Asia Head of Global Finance(Capital Markets), Lehman Brothers'
+      ]
+    },
+    {
+      name: 'Yoonwoo Lee',
+      imagePath: 'YoonwooLee.png',
+      position: 'CEO & Vice Chairman of Samsung Electronics',
+      sentences: [
+        '(EX) Asia Head of Global Finance(Capital Markets), Nomura International'
+      ]
+    },
+
+
+    {
+      name: 'Inkyu Choi',
+      imagePath: 'InkyuChoi.png',
+      position: 'Naver Venture Capital',
+      sentences: [
+        '(EX) Team Leader, Seoul Techno Holdings',
+        '(EX) Partner Patent Attoney, Maps Intellectual Property Law Firm',
+        '(EX) Software Engineer, Empas Search Engine',
+        'Certified Patent Attorney'
+      ]
+    },
+    {
+      name: 'Jinsoo Park',
+      imagePath: 'jinsoopark.jpg',
+      position: 'Team Leader of YG Entertainment',
+      sentences: [
+        '(EX) Director and CFO, YG investment',
+        '(EX) Senior Associate, Samill PricewaterhouseCoopers',
+        'Certified Public Accountant',
+        'Certified Financial Analyst'
+      ]
+    },
+    {
+      name: 'Myunsik Cho',
+      imagePath: 'MyunsikCho.png',
+      position: 'Lawyer, Dongnyuk LLC',
+      sentences: [
+        'Top legal specialist in music, entertainment, film, and copyright law',
+        '(Ex) Legal Advisor of Korean Film Producers’ Association',
+        '(Ex) Legal Representative of JYP Entertainment, Star Empire, Jellyfish\n' +
+        'Entertainment, Ji Young Baek, amoung other numerous musicians,\n' +
+        'actors, and celebrities'
+      ]
+    },
+    {
+      name: 'Brian Lee',
+      imagePath: 'blackhorse_brian.jpg',
+      position: 'Managing Director, BlackHorse Group',
+      sentences: [
+        'Former investment banker at China Development Bank and CJSC. ',
+        'President at Digital Asset Investment Association ("DAIA"). ',
+        'Invested over 20 blockchain-based projects, including Quarkchain, Fantom, Open Platform and many others.',
+        'Graduated with Investment and Financial Risk Management from Cass Business School.'
+      ]
+    },
+    {
+      name: 'Adrian Lai',
+      imagePath: 'adrian_lai.png',
+      position: 'Managing Director, BlackHorse Group',
+      sentences: [
+        '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
+        'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
+        'Speaker and guest lecturer at industry events and universities. ',
+        'Former ICO investment lead at Orichal Partners'
+      ]
+    },
+    {
+      name: 'Alyssa Tsai ',
+      imagePath: 'panony_alyssa.jpg',
+      position: 'Founder & CEO of PANONY',
+      sentences: [
+        'Early adopter in blockchain industry. Assisted leading blockchain projects for market-entry and go-global strategies. ',
+        'Former Project Lead at Conde Nast International, Consultant at Isentia ' +
+        '(ASX: ISD) and seasoned communication specialist from Ogilvy.'
+      ]
+    },
+    {
+      name: 'Stella Kung',
+      imagePath: 'qtum_stella.jpg',
+      position: 'CMO of QTUM',
+      sentences: [
+        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
+        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
+        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+      ]
     }
   ];
 
@@ -147,6 +299,48 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         '(前) 한국영화제작가협회 법률고문',
         '(前) JYP, 스타제국, 젤리피쉬 엔터테인먼트 및 백지영 등 다수 음악가와 배우 법률자문'
       ]
+    },
+    {
+      name: 'Brian Lee',
+      imagePath: 'blackhorse_brian.jpg',
+      position: 'Managing Director, BlackHorse Group',
+      sentences: [
+        'Former investment banker at China Development Bank and CJSC. ',
+        'President at Digital Asset Investment Association ("DAIA"). ',
+        'Invested over 20 blockchain-based projects, including Quarkchain, Fantom, Open Platform and many others.',
+        'Graduated with Investment and Financial Risk Management from Cass Business School.'
+      ]
+    },
+    {
+      name: 'Adrian Lai',
+      imagePath: 'adrian_lai.png',
+      position: 'Managing Director, BlackHorse Group',
+      sentences: [
+        '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
+        'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
+        'Speaker and guest lecturer at industry events and universities. ',
+        'Former ICO investment lead at Orichal Partners'
+      ]
+    },
+    {
+      name: 'Alyssa Tsai ',
+      imagePath: 'panony_alyssa.jpg',
+      position: 'Founder & CEO of PANONY',
+      sentences: [
+        'Early adopter in blockchain industry. Assisted leading blockchain projects for market-entry and go-global strategies. ',
+        'Former Project Lead at Conde Nast International, Consultant at Isentia ' +
+        '(ASX: ISD) and seasoned communication specialist from Ogilvy.'
+      ]
+    },
+    {
+      name: 'Stella Kung',
+      imagePath: 'qtum_stella.jpg',
+      position: 'CMO of QTUM',
+      sentences: [
+        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
+        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
+        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+      ]
     }
   ];
 
@@ -160,12 +354,12 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     this._sub.push(
       this.translateService.onLangChange.subscribe(lang => {
         switch (this.translateService.currentLang) {
-          case 'ko':
+          case Lang.KOR:
             this.advisors = this.advisorsKR;
             break;
 
-          case 'ch':
-            this.advisors = this.advisorsKR;
+          case Lang.CHN:
+            this.advisors = this.advisorsZH;
             break;
 
           default:

@@ -12,7 +12,7 @@ export class IntroFooterComponent extends BaseComponent {
     super();
   }
 
-  changeLang(lang: 'en' | 'ko' | 'ch') {
+  changeLang(lang: 'en' | 'ko' | 'zh') {
     this.translateService.use(lang);
   }
 }

@@ -45,7 +45,7 @@
             <ng-container *ngIf="lang === 'en'">
               ENG
             </ng-container>
-            <ng-container *ngIf="lang === 'ch'">
+            <ng-container *ngIf="lang === 'zh'">
               中文
             </ng-container>
             <ng-container *ngIf="lang === 'ko'">
@@ -54,7 +54,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" [class.active]="lang === 'en'" (click)="changeLang('en')">English</a>
-            <a class="dropdown-item" [class.active]="lang === 'ch'" (click)="changeLang('ch')">中文</a>
+            <a class="dropdown-item" [class.active]="lang === 'zh'" (click)="changeLang('zh')">中文</a>
             <a class="dropdown-item" [class.active]="lang === 'ko'" (click)="changeLang('ko')">한국어</a>
           </div>
         </li>
