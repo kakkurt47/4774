@@ -63,6 +63,48 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     }
   ];
 
+  leaders_ZH: any[] = [
+    {
+      name: 'Inseo Chung',
+      imagePath: 'assets/images/leader-inseo.png',
+      position: 'CEO',
+      sentences: [
+        '钢琴演奏家，曾荣获韩国全国青年钢琴演奏竞赛亚军头衔\n',
+
+        `17岁时创办了一家电子商务公司和一家著名的社交媒体营销机构。19岁时成立了Mapiacompany Inc. 。`,
+
+        '私人管理和自主拥有一个与钢琴音乐相关超过48万粉丝的“脸书（Facebook）”帐号。',
+
+        '韩国数字货币和区块链领域的早期的以太坊“矿工”，联名拥有以太坊矿池。'
+      ]
+    },
+    {
+      name: 'Sangmin Heo',
+      imagePath: 'assets/images/leader-sangmin.png',
+      position: 'CTO',
+      sentences: [
+        '神童程序员和软件程序开发工程师，15岁时已通过开发网络游戏赚取了自己人生的第一笔财富。\n',
+
+        '韩国著名的高校社交媒体 “The Bamboo Network” 的创建者和所有者。\n',
+
+        '韩国电子信息奥林匹克获奖者、KISEF美国心理学会长奖获奖者、ISEF国际大会软件部门韩国代表、HCLT优秀学术论文第一作者、深度学习和自然语处理、区块链领域的年轻专家。',
+
+        '自2015年以来，一直参与到谷歌 Google 在Github平台上的开源代码项目。'
+      ]
+    },
+    {
+      name: 'Jangwon Lee',
+      imagePath: 'assets/images/leader-jangwon.png',
+      position: 'COO',
+      sentences: [
+        `能说一口流利的英语，中文，韩语，并且是一名专业的钢琴师以及一位有经验的商业发展领导者。创办了钢琴集团之情缘（Piano Group The Serendipity）, 
+        在韩国以钢琴二重奏闻名。联合创建了YouthGlobe Korea， 一个旨在加强布隆迪教育状况的国际非政府组织YouthGlobe的韩国分部。同时，联合创建了Shadal Inc.-韩国最大的高校食品配送移动应用程序。`,
+
+        `在韩国区块链、技术和金融行业领域中拥有广泛和可靠的关键网络与人脉资源关系。`
+      ]
+    }
+  ];
+
   leaders_KR: any[] = [
     {
       name: '정인서',
@@ -120,7 +162,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
             break;
 
           case Lang.CHN:
-            this.leaders = this.leaders_EN;
+            this.leaders = this.leaders_ZH;
             break;
 
           default:

@@ -86,62 +86,62 @@ export class MzkIntroTeamComponent extends BaseComponent {
   members_ZH: MuzikaMember[] = [
     {
       name: 'Seungwon Kang',
-      position: 'Blockchain Engineer',
+      position: '区块链工程师',
       image: '강승원.jpg'
     },
     {
       name: 'Chaehong Jeong',
-      position: 'Blockchain Engineer',
+      position: '区块链工程师',
       image: '정채홍.jpg'
     },
     {
       name: 'Jungwoo Lee',
-      position: 'Lead Blockchain Architect',
+      position: '区块链首席构架师',
       image: '이정우.jpg'
     },
     {
       name: 'Jihyun Kim',
-      position: 'DevOps/Server Engineer',
+      position: 'DevOps / 服务器运营工程师',
       image: '김지현.jpg'
     },
     {
       name: 'Hyunju Hwang',
-      position: 'Frontend Developer',
+      position: '前端开发工程师',
       image: '황현주.jpg'
     },
     {
       name: 'Kyunghee Chang',
-      position: 'Frontend Developer',
+      position: '前端开发工程师',
       image: '장경희.jpg'
     },
     {
       name: 'Jaechan Ahn',
-      position: 'AI/ML Researcher & Server Developer',
+      position: 'AI/ML 研究员 &服务器开发工程师',
       image: '안재찬.jpg'
     },
     {
       name: 'Minkyung Lee',
-      position: 'Brand & UX Designer',
+      position: '品牌与用户体验设计师',
       image: '이민경.jpg'
     },
     {
       name: 'Sukyung Na',
-      position: 'Head of Global Business',
+      position: '国际商务主管',
       image: '나수경.jpg'
     },
     {
       name: 'William Wu',
-      position: 'Head of Global PR',
+      position: '国际PR主管',
       image: '윌리엄.jpg'
     },
     {
       name: 'Yeji Chung',
-      position: 'Head of Music Management',
+      position: '音乐项目管理主管',
       image: '정예지.jpg'
     },
     {
       name: 'Seongheon Cho',
-      position: 'Head of Compliance',
+      position: '合规管理主管',
       image: '조성헌.jpg'
     }
   ];
