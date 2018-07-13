@@ -274,6 +274,7 @@
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
+              "sourceMap": false,
               "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true,
