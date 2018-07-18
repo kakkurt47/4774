@@ -1,5 +1,7 @@
 <div class="p-3 bg-dark">
-  <a routerLink="/" style="color: #fff"> <i class="fa fa-chevron-left" style="margin-right: 6px;"></i> Back to the Muzika </a>
+  <a routerLink="/" style="color: #fff">
+    <i class="fa fa-chevron-left" style="margin-right: 6px;"></i> Back to Muzika Intro
+  </a>
 </div>
 <nav class="navbar navbar-expand">
   <div class="container-fluid">
@@ -23,7 +25,7 @@
 
       <!-- Sub-menu -->
       <div class="submenu-group">
-        <div class="subject"> Listening Music </div>
+        <div class="subject"> Listening Music</div>
 
         <ul class="menu">
           <li routerLink="/board/music" routerLinkActive="active">
@@ -47,7 +49,7 @@
       <ng-container *ngIf="currentUser; else loggedInBlock">
         <div class="ml-auto">
           <div class="user-profile-img">
-            <img src="assets/person-1.png">
+            <img src="assets/prototype/profile-default.png">
           </div>
         </div>
         <div class="pl-3">

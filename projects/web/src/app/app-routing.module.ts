@@ -1,20 +1,13 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {LayoutComponent} from '../modules/shared/components/layout/layout.component';
-import {WebLoginPageComponent} from '../pages/login/login.component';
-import {MainPageComponent} from '../pages/main/main.component';
-
-const mainRoutes: Routes = [
-  {path: '', component: MainPageComponent},
-  {path: 'login', component: WebLoginPageComponent},
-];
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from '../modules/shared/components/layout/layout.component';
 
 const routes: Routes = [
   {
     path: 'beta',
     component: LayoutComponent,
-    children: mainRoutes
-  },
+    loadChildren: '../modules/prototype/prototype.module#PrototypeModule'
+  }
 ];
 
 @NgModule({

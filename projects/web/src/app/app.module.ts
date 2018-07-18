@@ -1,27 +1,27 @@
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Inject, NgModule, PLATFORM_ID } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatRadioModule} from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EnvironmentTypeToken, LocalStorage, MuzikaCommonModule, MuzikaCoreModule, PLATFORM_TYPE_TOKEN } from '@muzika/core/angular';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {ModalModule} from 'ngx-bootstrap/modal';
-import {environment} from '../environments/environment';
-import {MuzikaIntroModule} from '../modules/intro/intro.module';
-import {PostModule} from '../modules/post/post.module';
-import {FooterComponent} from '../modules/shared/components/footer/footer.component';
-import {LayoutComponent} from '../modules/shared/components/layout/layout.component';
-import {NavbarComponent} from '../modules/shared/components/navbar/navbar.component';
-import {SharedModule} from '../modules/shared/shared.module';
-import {TestModule} from '../modules/test/test.module';
-import {WebLoginPageComponent} from '../pages/login/login.component';
-import {MainPageComponent} from '../pages/main/main.component';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { environment } from '../environments/environment';
+import { MuzikaIntroModule } from '../modules/intro/intro.module';
+import { PostModule } from '../modules/post/post.module';
+import { FooterComponent } from '../modules/shared/components/footer/footer.component';
+import { LayoutComponent } from '../modules/shared/components/layout/layout.component';
+import { NavbarComponent } from '../modules/shared/components/navbar/navbar.component';
+import { SharedModule } from '../modules/shared/shared.module';
+import { TestModule } from '../modules/test/test.module';
+import { WebLoginPageComponent } from '../modules/prototype/pages/login/login.component';
+import { MainPageComponent } from '../modules/prototype/pages/main/main.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { isPlatformBrowser } from '@angular/common';
 import { Lang } from '@muzika/core';
 
@@ -34,22 +34,18 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
 
-    /* For main */
-    MainPageComponent,
-    WebLoginPageComponent,
     LayoutComponent,
     FooterComponent,
-    NavbarComponent,
+    NavbarComponent
   ],
   imports: [
     /* Angular modules */
-    BrowserModule.withServerTransition({appId: 'muzika-universal'}),
+    BrowserModule.withServerTransition({ appId: 'muzika-universal' }),
     BrowserTransferStateModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
 
     /* Muzika Modules */
     MuzikaCommonModule,
@@ -77,7 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatRadioModule,
 
     /* Sub-modules */
-    PostModule,
+    PostModule
   ],
   providers: [
     {

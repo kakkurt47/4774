@@ -1,8 +1,6 @@
-import {select} from '@angular-redux/store';
-import {Component} from '@angular/core';
-import {User} from '@muzika/core';
-import {BaseComponent, UserActions} from '@muzika/core/angular';
-import {Observable} from 'rxjs';
+import { Component } from '@angular/core';
+import { User } from '@muzika/core';
+import { BaseComponent, UserActions } from '@muzika/core/angular';
 
 @Component({
   selector: 'app-navbar',
