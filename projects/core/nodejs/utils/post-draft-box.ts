@@ -1,6 +1,5 @@
-import {CommunityPostDraft, MusicPostDraft, MuzikaConsole, VideoPostDraft} from '@muzika/core';
+import { MusicPostDraft, MuzikaConsole, promisify } from '@muzika/core';
 import * as fs from 'fs';
-import {promisify} from '@muzika/core';
 
 export class PostDraftBox {
 
@@ -8,7 +7,7 @@ export class PostDraftBox {
     community: {},
     video: {},
     streaming: {},
-    sheet: {},
+    sheet: {}
   };
 
   /**
@@ -68,24 +67,24 @@ export class PostDraftBox {
 
     Object.keys(this.postDrafts).forEach(postType => {
       Object.keys(this.postDrafts[postType]).forEach(draftId => {
-          const musicPostDraft = <MusicPostDraft> this.postDrafts[postType][draftId];
-          if (musicPostDraft.cover_image_path && !fs.existsSync(musicPostDraft.cover_image_path)) {
-            musicPostDraft.cover_image_path = undefined;
-          }
+        const musicPostDraft = <MusicPostDraft> this.postDrafts[postType][draftId];
+        if (musicPostDraft.cover_image_path && !fs.existsSync(musicPostDraft.cover_image_path)) {
+          musicPostDraft.cover_image_path = undefined;
+        }
 
-          // remove selling files that does not exist in the current storage.
-          if (musicPostDraft.files) {
-            musicPostDraft.files = musicPostDraft.files.filter((file) => {
-              return !fs.existsSync(file.path);
-            });
+        // remove selling files that does not exist in the current storage.
+        if (musicPostDraft.files) {
+          musicPostDraft.files = musicPostDraft.files.filter((file) => {
+            return !fs.existsSync(file.path);
+          });
 
-            // remove preview files that does not exist in the current storage.
-            musicPostDraft.files.forEach((sellingFile) => {
-              sellingFile.previews = sellingFile.previews.filter((file) => {
-                return !fs.existsSync(file);
-              });
+          // remove preview files that does not exist in the current storage.
+          musicPostDraft.files.forEach((sellingFile) => {
+            sellingFile.previews = sellingFile.previews.filter((file) => {
+              return !fs.existsSync(file);
             });
-          }
+          });
+        }
       });
     });
   }

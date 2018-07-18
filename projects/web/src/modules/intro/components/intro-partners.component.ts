@@ -10,11 +10,31 @@ import { BaseComponent } from '@muzika/core/angular';
           PARTNERS
         </h2>
         <div class="row mt-5">
-          <div class="col-sm-4 col-6">
+          <div class="col-sm-3 col-6">
             <img src="assets/images/partners/logo-blackhorse.png" class="img-fluid">
           </div>
-          <div class="col-sm-4 col-6">
+          <div class="col-sm-3 col-6">
             <img src="assets/images/partners/logo-panony.png" class="img-fluid">
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="empty-box"></div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="empty-box"></div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-sm-3 col-6">
+            <div class="empty-box"></div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="empty-box"></div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="empty-box"></div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="empty-box"></div>
           </div>
         </div>
       </div>
@@ -30,6 +50,17 @@ import { BaseComponent } from '@muzika/core/angular';
     img {
       background: white;
       border-radius: 8px 8px;
+    }
+    
+    .empty-box {
+      display: block;
+      background: white;
+      padding-top: 40px;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px 8px;
+      min-height: 110px;
     }
   `]
 })

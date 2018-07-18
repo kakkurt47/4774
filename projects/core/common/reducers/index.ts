@@ -1,7 +1,7 @@
-import {combineReducers, Reducer} from 'redux';
-import {CommentState, CommentReducer} from './comments.reducer';
-import {PostState, PostReducer} from './post.reducer';
-import {UserReducer, UserState} from './user.reducer';
+import { combineReducers, Reducer } from 'redux';
+import { CommentReducer, CommentState } from './comments.reducer';
+import { PostReducer, PostState } from './post.reducer';
+import { UserReducer, UserState } from './user.reducer';
 
 export * from './user.reducer';
 export * from './post.reducer';
@@ -16,5 +16,5 @@ export interface IAppState {
 export const rootReducer: Reducer<IAppState> = combineReducers<IAppState>({
   post: PostReducer,
   comment: CommentReducer,
-  user: UserReducer,
+  user: UserReducer
 });

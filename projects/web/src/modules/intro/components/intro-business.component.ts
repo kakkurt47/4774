@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
 
 declare const jQuery;
@@ -105,8 +105,15 @@ declare const jQuery;
   `]
 })
 export class MzkIntroBusinessComponent extends BaseComponent {
-  constructor() {
+  constructor(private elementRef: ElementRef) {
     super();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  scrollEvent(event) {
+    if (window.scrollY + window.innerHeight < jQuery(this.elementRef.nativeElement).offset().top) {
+      this.ngOnInit();
+    }
   }
 
   ngOnInit() {
@@ -117,7 +124,6 @@ export class MzkIntroBusinessComponent extends BaseComponent {
       jQuery({ countNum: $this.text() }).animate({
           countNum: countTo
         },
-
         {
           duration: 2000,
           easing: 'linear',
