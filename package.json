@@ -34,7 +34,7 @@
     "preelectron:dev": "cross-env ENV=dev node hooks/set_environments.js",
     "electron:dev": "npm run build:viewer && electron .",
     "preelectron:linux": "cross-env ENV=stage node hooks/set_environments.js",
-    "electron:linux": "npm run build:viewer:prod && npx electron-builder build --linux",
+    "electron:linux": "npm run build:viewer:stage && npx electron-builder build --linux",
     "preelectron:windows": "cross-env ENV=stage node hooks/set_environments.js",
     "electron:windows": "npm run build:viewer:stage && npx electron-builder build --windows",
     "preelectron:mac": "cross-env ENV=stage node hooks/set_environments.js",

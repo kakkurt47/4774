@@ -50,6 +50,7 @@
   &#muzika-studio-program {
     .btn-custom {
       vertical-align: top;
+      font-size: 15px;
     }
   }
 }
@@ -67,7 +68,7 @@
     }
 
     .btn-custom {
-      font-size: 13px;
+      font-size: 13px !important;
       min-width: 70px;
       padding: 6px 10px;
     }
