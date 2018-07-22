@@ -125,7 +125,7 @@ export class MzkIntroBusinessComponent extends BaseComponent {
           countNum: countTo
         },
         {
-          duration: 2000,
+          duration: 3000,
           easing: 'linear',
           step: function() {
             $this.text(Math.floor(this.countNum).toLocaleString());

@@ -35,6 +35,8 @@ export class MuzikaAppsComponent extends BaseComponent {
     this.currentTab = tab;
     if (tab === 'wallet') {
       this.router.navigate([{outlets: {wallet: 'home'}}]);
+    } else {
+      this.router.navigateByUrl('/board/sheet/draft');
     }
     this.tabService.changeTab(tab);
   }

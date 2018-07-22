@@ -1,9 +1,10 @@
-import {ModuleWithProviders} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {LayoutComponent} from '../shared/components/layout/layout.component';
-import {PostCommunityListComponent, PostMusicListComponent, PostVideoListComponent} from './pages/post-list/post-list';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from '../shared/components/layout/layout.component';
+import { PostCommunityListComponent, PostMusicListComponent, PostVideoListComponent } from './pages/post-list/post-list';
 import {
-  PostCommunityItemDetailComponent, PostMusicItemDetailComponent,
+  PostCommunityItemDetailComponent,
+  PostMusicItemDetailComponent,
   PostVideoItemDetailComponent
 } from './pages/post-item-detail/post-item-detail';
 
@@ -24,13 +25,22 @@ const routes: Routes = [
     path: 'board/video',
     component: PostVideoListComponent,
     children: [{ path: ':id', component: PostVideoItemDetailComponent }]
-  },
+  }
 ];
 
-export const AppPostRouteModule: ModuleWithProviders = RouterModule.forChild([
-  {
-    path: 'beta',
-    component: LayoutComponent,
-    children: routes
-  }
-]);
+@NgModule({
+  imports: [
+    RouterModule.forChild([
+      {
+        path: 'beta',
+        component: LayoutComponent,
+        children: routes
+      }
+    ])
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppPostRouteModule {
+}
