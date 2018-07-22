@@ -4,7 +4,7 @@ import {MatButtonModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {MuzikaCommonModule, MuzikaCoreModule} from '@muzika/core/angular';
 import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
-import {NgUploaderModule} from 'ngx-uploader';
+import {NgxUploaderModule} from 'ngx-uploader';
 import {SharedModule} from '../shared/shared.module';
 import {PostCommentComponent} from './components/post-comment/post-comment.component';
 import {PostItemDetailHeaderComponent} from './components/post-item-detail-header/post-item-detail-header.component';
@@ -32,7 +32,7 @@ import {AppPostRouteModule} from './post.routes';
 
     /* Material & Bootstrap Modules */
     MatButtonModule,
-    NgUploaderModule,
+    NgxUploaderModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
 
