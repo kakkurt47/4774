@@ -64,12 +64,7 @@ test:contract:
     - npm run lint
     - npm run build:core
     - npm run build:web:prod
-
-    - npm run electron:ready
-    - npm run electron:mac
-    - npm run electron:windows
-    - mv -f ./app-builds/Muzika*.exe ./dist/web/assets/muzika.exe
-    - mv -f ./app-builds/Muzika*.dmg ./dist/web/assets/muzika.dmg
+    - npm run build:viewer
   tags:
     - frontend
 

@@ -18,8 +18,6 @@ import { LayoutComponent } from '../modules/shared/components/layout/layout.comp
 import { NavbarComponent } from '../modules/shared/components/navbar/navbar.component';
 import { SharedModule } from '../modules/shared/shared.module';
 import { TestModule } from '../modules/test/test.module';
-import { WebLoginPageComponent } from '../modules/prototype/pages/login/login.component';
-import { MainPageComponent } from '../modules/prototype/pages/main/main.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { isPlatformBrowser } from '@angular/common';
