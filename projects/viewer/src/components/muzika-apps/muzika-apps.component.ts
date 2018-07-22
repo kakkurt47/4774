@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
-import {BaseComponent} from '@muzika/core/angular';
-import {MuzikaTabs, TabService} from '../../providers/tab.service';
+import { Component } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { BaseComponent } from '@muzika/core/angular';
+import { MuzikaTabs, TabService } from '../../providers/tab.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'muzika-apps',
@@ -20,21 +21,21 @@ export class MuzikaAppsComponent extends BaseComponent {
   ngOnInit() {
     super.ngOnInit();
     this._sub.push(
-      this.router.events.subscribe(event => {
-        if (event instanceof NavigationEnd) {
+      this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe((event: NavigationEnd) => {
           // (or change it to regex patterns of urls which should be shown as floating modal)
           if (event.url === '/(wallet:home)') {
             // this.changeTab('floating-wallet');
           }
-        }
-      })
+        })
     );
   }
 
   changeTab(tab: MuzikaTabs) {
     this.currentTab = tab;
     if (tab === 'wallet') {
-      this.router.navigate([{outlets: {wallet: 'home'}}]);
+      this.router.navigate([{ outlets: { wallet: 'home' } }]);
     } else {
       this.router.navigateByUrl('/board/sheet/draft');
     }
