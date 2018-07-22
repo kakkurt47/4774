@@ -43,8 +43,14 @@
     color: white;
     border: 1px solid #35e8c6;
     font-size: 16px;
-    width: 120px;
+    min-width: 120px;
     border-radius: 25px 25px;
+  }
+
+  &#muzika-studio-program {
+    .btn-custom {
+      vertical-align: top;
+    }
   }
 }
 
@@ -52,17 +58,21 @@
   .home-btn {
     font-size: 14px;
     > a:first-child {
-      min-width: 90px;
+      display: block;
+      margin-bottom: 10px;
+
+      div.small {
+        display: inline-block;
+      }
     }
 
     .btn-custom {
       font-size: 13px;
-      width: 70px;
-      padding: 6px 0;
+      min-width: 70px;
+      padding: 6px 10px;
     }
   }
 }
-
 
 /deep/ canvas {
   position: absolute;
@@ -76,6 +86,7 @@
   padding-top: 25px;
   height: 0;
 }
+
 .videoWrapper img {
   position: absolute;
   top: 0;
