@@ -27,9 +27,12 @@
     }
   }
 
-  span {
+  > span {
     line-height: $navbar-brand-size;
     font-size: 18px;
+    @media(max-width: 738px) {
+      display: none;
+    }
   }
 }
 
@@ -50,10 +53,10 @@
 @media (min-width: 200px) and (max-width: 768px) {
   .navbar-custom {
     background-color: white;
-    padding: 10px 0 !important;
   }
   .navbar-custom .container {
-    width: 95%;
+    width: 90%;
+    padding: 10px 0;
   }
   .home-title {
     font-size: 34px;
@@ -74,6 +77,10 @@
     height: auto;
   }
 
+  .fa-bars { // 맨 오른쪽 메뉴
+    color: white;
+  }
+
   .navbar-nav li.divider {
     border-right: 1px solid #BBB;
   }
@@ -87,7 +94,6 @@
   .bg-backslide, .bg-home-full, .home-slider .carousel-item, .home-slider .carousel {
     height: auto;
   }
-
 }
 
 /*********************
@@ -95,8 +101,8 @@
 **********************/
 
 .navbar-custom {
-  background: transparent;
-  padding: 12px 0;
+  background: #192538;
+  padding: 5px 0;
   width: 100vw;
   border-radius: 0;
   z-index: 999;
@@ -105,6 +111,10 @@
   -moz-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+}
+
+.nav-sticky.navbar-custom {
+  background: white;
 }
 
 .navbar-custom .navbar-nav li > a {
@@ -121,29 +131,13 @@
   }
 }
 
-.navbar-custom .logo img {
-  height: 38px;
-}
-
-.logo .logo-light {
-  display: inline-block;
-}
-
-.nav-sticky .logo .logo-dark {
-  display: inline-block;
-}
-
-.nav-sticky .logo .logo-light {
-  display: none !important;
-}
-
-.logo .logo-dark {
-  display: none;
-}
-
 .navbar-custom .navbar-brand {
   font-family: libre baskerville, serif;
   letter-spacing: 2px;
+  @media(max-width: 738px) {
+    padding-top: 0;
+    margin-top: -4px;
+  }
 }
 
 .navbar-custom .nav-social li > a {
@@ -162,8 +156,11 @@
 
 .navbar-custom.nav-sticky {
   background-color: #fff !important;
-  padding: 12px 0px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+  .fa-bars {
+    color: black;
+  }
 }
 
 .nav-sticky .navbar-nav li > a {
@@ -179,6 +176,12 @@
 
     /deep/ .muzika-icon-striped-secondary {
       fill: black;
+    }
+  }
+
+  @media(max-width: 738px) {
+    span {
+      display: none;
     }
   }
 }
@@ -225,7 +228,6 @@
   z-index: 2050;
 }
 
-
 .dropdown-menu {
   .dropdown-item {
     cursor: pointer;
@@ -237,16 +239,15 @@
   }
 }
 
-
 .mobile-only {
   display: none;
-  position: absolute;
-  top: 18px;
-  right: 40px;
 }
 
 @media(max-width: 738px) {
   .mobile-only {
     display: block;
+    position: absolute;
+    top: 14px;
+    right: 15%;
   }
 }
