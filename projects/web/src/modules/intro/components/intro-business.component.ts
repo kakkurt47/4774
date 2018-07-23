@@ -41,7 +41,7 @@ declare const jQuery;
           </p>
         </div>
         <div class="col-sm-5">
-          <img src="assets/images/business-preview.png" class="img-fluid mt-5 pr-sm-0 pr-5">
+          <img src="assets/images/business-preview.png" class="img-fluid mt-3 pr-sm-0 pr-5">
         </div>
       </div>
     </section>
@@ -97,10 +97,6 @@ declare const jQuery;
       color: white;
     }
     
-    img {
-      transform: scaleX(-1);
-    }
-
     @media (max-width: 768px) {
       .highlight-title {
         font-size: 20px;
