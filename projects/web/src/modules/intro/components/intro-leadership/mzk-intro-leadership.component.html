@@ -11,34 +11,36 @@
         {{'intro-leadership.subtitle-2' | translate}}
       </p>
     </div>
-    <div class="row mt-3 mt-sm-5">
-      <div class="col-lg-4" *ngFor="let leader of leaders">
-        <div class="pt-2 pt-sm-4 pb-4 pr-3 pl-3">
+    <BR />
+    <BR />
+    <div class="row mt-5">
+      <div class="col-lg-4 mt-3 mb-5" *ngFor="let leader of leaders">
+        <div class="pt-2 pb-4 pr-3 pl-3 leader-box">
           <div class="row">
             <div class="col-xs-6 text-right">
               <div class="testimonial-client-img text-center pt-3 mb-3">
                 <img [src]="leader.imagePath" class="img-fluid  rounded-circle img-thumbnail">
               </div>
             </div>
-            <div class="col-xs-6 pt-5 pl-3">
-              <h6 class="mb-0">
+            <div class="col-xs-6 pt-5 pl-4">
+              <h6 class="mb-0 leader-name">
                 {{leader.name}}
               </h6>
-              <div class="position mt-2">
-                {{leader.position}} <BR/>
-                & {{'intro-leadership.co-founders' | translate}}
+              <div class="position mt-1">
+                {{leader.position}} & {{'intro-leadership.co-founders' | translate}}
               </div>
             </div>
           </div>
-          <ul class="pt-3">
-            <li class="mt-2" *ngFor="let sentence of leader.sentences; let i =index;">
+          <ul class="pt-2">
+            <li class="mt-1" *ngFor="let sentence of leader.sentences; let i =index;">
               {{sentence}}
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <p class="awards">
+    <div class="clearfix"></div>
+    <p class="awards pt-5">
       {{'intro-leadership.awards' | translate}}
       <a href="https://www.forbes.com/30-under-30-asia/2018/#33f954aa5aeb" target="_blank">
         <img src="assets/images/forbes.png" class="ml-3" height="45">

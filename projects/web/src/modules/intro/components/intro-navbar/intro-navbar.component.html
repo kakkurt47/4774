@@ -37,11 +37,10 @@
           <a class="nav-link" routerLink="/beta">{{'intro-navbar.services' | translate}}</a>
         </li>
 
-        <li class="divider">&nbsp;</li>
-
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">
+            <i class="icon-lang" [ngClass]="lang"></i>
             <ng-container *ngIf="lang === 'en'">
               ENG
             </ng-container>

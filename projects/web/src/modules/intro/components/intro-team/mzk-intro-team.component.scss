@@ -3,7 +3,16 @@ h2 {
   font-weight: 700;
 }
 
+.section {
+  background: #192538;
+}
+
+.intro-section-title {
+  color: white;
+}
+
 section {
+
   padding-top: 0 !important;
   .team-box {
     .team-img {
@@ -17,11 +26,11 @@ section {
     .team-desc {
       padding-left: 115px;
       .team-name {
-        color: #192538;
+        color: white;
         font-size: 14px;
       }
       .team-position {
-        color: #5a6d86;
+        color: #8196b2;
         font-size: 12px;
       }
     }

@@ -55,12 +55,18 @@ import { BaseComponent } from '@muzika/core/angular';
     .empty-box {
       display: block;
       background: white;
-      padding-top: 40px;
+      margin-top: 40px;
       text-align: center;
       width: 100%;
       height: 100%;
       border-radius: 8px 8px;
       min-height: 110px;
+    }
+    
+    @media(max-width: 738px) {
+      .empty-box {
+        min-height: 50px;
+      }
     }
   `]
 })

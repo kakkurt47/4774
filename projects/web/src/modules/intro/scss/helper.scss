@@ -27,7 +27,7 @@ $px2rem_60: 3.5rem;
   transition: all 0.5s;
   letter-spacing: 0.6px;
   color: black;
-  box-shadow: none !important;
+  box-shadow: none;
   outline: none !important;
 }
 
@@ -112,7 +112,7 @@ $px2rem_60: 3.5rem;
 }
 
 .section-title{
-  max-width: 550px;
+  max-width: 580px;
 }
 
 .section-title h5{

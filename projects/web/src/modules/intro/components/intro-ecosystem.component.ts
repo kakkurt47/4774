@@ -7,18 +7,20 @@ import { BaseComponent } from '@muzika/core/angular';
     <section class="section" id="ecosystem">
       <div class="container">
         <div class="row">
-          <div class="col-sm-7">
-            <h2 class="text-left intro-section-title">
-              {{'intro-ecosystem.title' | translate}}
-            </h2>
-            <p class="text-left intro-section-subtitle pt-4">
-              {{'intro-ecosystem.subtitle-1' | translate}}
-              <BR/><BR/>
-              {{'intro-ecosystem.subtitle-2' | translate}}
-            </p>
+          <div class="col-sm-6  pr-sm-5">
+            <img src="assets/images/diagram-ecosystem.png" class="img-fluid mb-3">
           </div>
-          <div class="col-sm-5">
-            <img src="assets/images/diagram-ecosystem.png" class="img-fluid ml-sm-5">
+          <div class="col-sm-6">
+            <div class="ecosystem-box">
+              <h3 class="text-left intro-section-title">
+                {{'intro-ecosystem.title' | translate}}
+              </h3>
+              <p class="text-left intro-section-subtitle pt-4">
+                {{'intro-ecosystem.subtitle-1' | translate}}
+                <BR/><BR/>
+                {{'intro-ecosystem.subtitle-2' | translate}}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -28,20 +30,35 @@ import { BaseComponent } from '@muzika/core/angular';
 
     section {
       display: block;
-      background-color: #5a6d86;
+      background-color: white;
       padding: 100px 0 60px 0;
     }
     
-    .intro-section-title, .intro-section-subtitle {
-      color: white;
+    .intro-section-title {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    
+    .intro-section-subtitle {
+      font-size: 16px;
     }
     
     img {
-      max-width: 350px;
       width: 100%;
     }
     
+    .ecosystem-box {
+      display: block;
+      padding: 55px 45px;
+      border-radius: 20px 20px;
+      box-shadow: 4px 4px 20px 4px rgba(20, 85, 195, 0.65);
+    }
+    
     @media (max-width: 768px) {
+      .ecosystem-box {
+        padding: 25px 20px;
+      }
+
       section {
         padding: 50px 0 30px 0;
       }

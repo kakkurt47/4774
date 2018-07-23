@@ -1,84 +1,117 @@
 @import 'helper';
 
 .bg-home-full {
-  min-height: 520px;
+  min-height: 600px;
 }
 
 .bg-home {
   padding-top: 80px;
-  background-size: cover;
-  background-position: center center;
+  padding-bottom: 0;
   position: relative;
+  background: url('../../../../assets/images/design/wave-0.jpg') no-repeat #192538;
+  background-size: 100%;
 }
 
-.home-title {
-  font-size: $px2rem_60;
-  font-weight: 600;
-  color: #192538;
-  @media (max-width: 768px) {
-    font-size: 40px;
-  }
-}
+.container {
+  min-height: 600px;
+  padding-top: 80px;
 
-.home-subtitle {
-  font-size: 18px;
-  color: #5a6d86;
+  .row {
+    .home-content {
 
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
-}
 
-.home-btn {
-  font-size: 16px;
-
-  > a:first-child {
-    display: inline-block;
-    color: #5a6d86;
-    min-width: 115px;
-  }
-
-  .btn-custom { // English, 한국어, 중국어 버튼
-    background: #35e8c6;
-    color: white;
-    border: 1px solid #35e8c6;
-    font-size: 16px;
-    min-width: 120px;
-    border-radius: 25px 25px;
-  }
-
-  &#muzika-studio-program {
-    .btn-custom {
-      vertical-align: top;
-      font-size: 15px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .home-btn {
-    font-size: 14px;
-    > a:first-child {
-      display: block;
-      margin-bottom: 10px;
-
-      div.small {
-        display: inline-block;
+      .home-title {
+        font-size: $px2rem_60;
+        font-weight: 600;
+        color: white;
+        @media (max-width: 768px) {
+          font-size: 40px;
+        }
       }
-    }
 
-    .btn-custom {
-      font-size: 13px !important;
-      min-width: 70px;
-      padding: 6px 10px;
+      .home-subtitle {
+        font-size: 18px;
+        color: #8196b2;
+
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
+      }
+
+      .home-btn {
+        font-size: 16px;
+
+        > a:first-child {
+          display: inline-block;
+          color: white;
+          min-width: 115px;
+        }
+
+        .btn-custom { // English, 한국어, 중국어 버튼
+          background: linear-gradient(to right, #2f9db4, #76dbc7);
+          border: none;
+          color: white;
+          padding: 0 -1px;
+          font-size: 16px;
+          min-width: 120px;
+          border-radius: 20px 20px;
+
+          &:hover {
+            box-shadow: 0 3px 8px 0 #2f9db4;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .home-btn {
+          font-size: 14px;
+          > a:first-child {
+            display: block;
+            margin-bottom: 10px;
+
+            div.small {
+              display: inline-block;
+            }
+          }
+
+          .btn-custom {
+            font-size: 13px !important;
+            min-width: 70px;
+            padding: 6px 10px;
+          }
+        }
+      }
+
+
     }
   }
+}
+
+.home-center {
+  background: url('../../../../assets/images/design/wave-1.jpg') no-repeat;
+  background-size: 100%;
+  background-position-y: bottom;
+  padding-bottom: 160px;
 }
 
 /deep/ canvas {
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.line-art {
+  position: absolute;
+  top: -80px;
+  left: -100px;
+  width: 800px;
+  z-index: 1;
+}
+
+@media(max-width: 738px) {
+  .line-art {
+    display: none;
+  }
 }
 
 .videoWrapper {
@@ -89,6 +122,7 @@
 }
 
 .videoWrapper img {
+  z-index: 2;
   position: absolute;
   top: 0;
   left: 0;
@@ -110,4 +144,63 @@
   .home-center {
     top: 55px;
   }
+}
+
+
+/**
+ * Icon for Program
+ **/
+
+#muzika-studio-program {
+  h5 {
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  > div {
+    display: inline-block;
+    color: white;
+    font-weight: 300;
+    min-width: 30%;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    .fa-stack {
+      float: left;
+      margin-right: 8px;
+    }
+
+    .download {
+      display: block;
+      color: white;
+      font-weight: 400;
+      padding: 2px 4px 1px 4px;
+      width: 70px;
+      text-align: center;
+      margin-left: 55px;
+      border-radius: 10px 10px;
+      font-size: 12px;
+      border: 1px solid white;
+
+      &:hover {
+        color: #192538;
+        text-decoration: none;
+        background: white;
+      }
+    }
+  }
+}
+
+.fa-circle {
+  color: white;
+}
+
+.fa-inverse {
+  color: #192538;
+}
+
+.fa-2x {
+  font-size: 24px;
 }

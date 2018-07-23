@@ -19,6 +19,7 @@ import { MzkIntroBusinessComponent } from './components/intro-business.component
 import { MzkIntroMZKCoinComponent } from './components/intro-mzk-coins.component';
 import { MzkIntroEcosystemComponent } from './components/intro-ecosystem.component';
 import { MzkIntroPartnersComponent } from './components/intro-partners.component';
+import { MzkIntroFloatingBtnsComponent } from './components/intro-floating-btns/mzk-intro-floating-btns.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { MzkIntroPartnersComponent } from './components/intro-partners.component
     MzkIntroEcosystemComponent,
     MzkIntroMZKCoinComponent,
     MzkIntroPartnersComponent,
+    MzkIntroFloatingBtnsComponent,
 
     /* Page Components */
     /* For introduction */
