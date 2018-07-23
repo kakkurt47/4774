@@ -33,6 +33,26 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       ]
     },
     {
+      name: 'Yoonwoo Lee',
+      imagePath: 'YoonwooLee.png',
+      position: 'CEO & Vice Chairman of Samsung Electronics',
+      sentences: [
+        '(EX) Asia Head of Global Finance(Capital Markets), Nomura International'
+      ]
+    },
+    {
+      name: 'Stella Kung',
+      imagePath: 'qtum_stella.jpg',
+      position: 'CMO of QTUM',
+      sentences: [
+        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
+        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
+        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+      ]
+    },
+
+
+    {
       name: 'JoonKee Hong',
       imagePath: 'JoonkeeHong.png',
       position: 'Non-executive Director of Kakao Bank',
@@ -42,15 +62,6 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         '(EX) Asia Head of Global Finance(Capital Markets), Lehman Brothers'
       ]
     },
-    {
-      name: 'Yoonwoo Lee',
-      imagePath: 'YoonwooLee.png',
-      position: 'CEO & Vice Chairman of Samsung Electronics',
-      sentences: [
-        '(EX) Asia Head of Global Finance(Capital Markets), Nomura International'
-      ]
-    },
-
 
     {
       name: 'Inkyu Choi',
@@ -65,25 +76,13 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     },
     {
       name: 'Jinsoo Park',
-      imagePath: 'jinsoopark.jpg',
+      imagePath: 'parkjinsoo.jpg',
       position: 'Team Leader of YG Entertainment',
       sentences: [
         '(EX) Director and CFO, YG investment',
         '(EX) Senior Associate, Samill PricewaterhouseCoopers',
         'Certified Public Accountant',
         'Certified Financial Analyst'
-      ]
-    },
-    {
-      name: 'Myunsik Cho',
-      imagePath: 'MyunsikCho.png',
-      position: 'Lawyer, Dongnyuk LLC',
-      sentences: [
-        'Top legal specialist in music, entertainment, film, and copyright law',
-        '(Ex) Legal Advisor of Korean Film Producers’ Association',
-        '(Ex) Legal Representative of JYP Entertainment, Star Empire, Jellyfish\n' +
-        'Entertainment, Ji Young Baek, amoung other numerous musicians,\n' +
-        'actors, and celebrities'
       ]
     },
     {
@@ -97,17 +96,17 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         'Graduated with Investment and Financial Risk Management from Cass Business School.'
       ]
     },
-    {
-      name: 'Adrian Lai',
-      imagePath: 'adrian_lai.png',
-      position: 'Managing Director, BlackHorse Group',
-      sentences: [
-        '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
-        'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
-        'Speaker and guest lecturer at industry events and universities. ',
-        'Former ICO investment lead at Orichal Partners'
-      ]
-    },
+    // {
+    //   name: 'Adrian Lai',
+    //   imagePath: 'adrian_lai.png',
+    //   position: 'Managing Director, BlackHorse Group',
+    //   sentences: [
+    //     '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
+    //     'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
+    //     'Speaker and guest lecturer at industry events and universities. ',
+    //     'Former ICO investment lead at Orichal Partners'
+    //   ]
+    // },
     {
       name: 'Alyssa Tsai ',
       imagePath: 'panony_alyssa.jpg',
@@ -119,13 +118,15 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       ]
     },
     {
-      name: 'Stella Kung',
-      imagePath: 'qtum_stella.jpg',
-      position: 'CMO of QTUM',
+      name: 'Myunsik Cho',
+      imagePath: 'MyunsikCho.png',
+      position: 'Lawyer, Dongnyuk LLC',
       sentences: [
-        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
-        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
-        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+        'Top legal specialist in music, entertainment, film, and copyright law',
+        '(Ex) Legal Advisor of Korean Film Producers’ Association',
+        '(Ex) Legal Representative of JYP Entertainment, Star Empire, Jellyfish\n' +
+        'Entertainment, Ji Young Baek, amoung other numerous musicians,\n' +
+        'actors, and celebrities'
       ]
     }
   ];
@@ -142,6 +143,26 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       ]
     },
     {
+      name: 'Yoonwoo Lee',
+      imagePath: 'YoonwooLee.png',
+      position: ' 三星电子CEO & 副会长',
+      sentences: [
+        '前 野村国际亚洲金融（资本市场）主管'
+      ]
+    },
+    {
+      name: 'Stella Kung',
+      imagePath: 'qtum_stella.jpg',
+      position: 'QTUM量子首席营销官',
+      sentences: [
+        '区块链早期市场营销与公众关系管理业内人士',
+        '拥有丰富的从业经验，协助区块链项目包括 DACx, ZAFED and ChainB. ',
+        '身兼区块链行业专业咨询PANONY公司与 Mithril秘银区块链项目的高级顾问。'
+      ]
+    },
+
+
+    {
       name: 'JoonKee Hong',
       imagePath: 'JoonkeeHong.png',
       position: 'KAKAO BANK 社外董事',
@@ -151,15 +172,6 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         '前 雷曼兄弟国际亚洲金融（资本市场）主管'
       ]
     },
-    {
-      name: 'Yoonwoo Lee',
-      imagePath: 'YoonwooLee.png',
-      position: ' 三星电子CEO & 副会长',
-      sentences: [
-        '前 野村国际亚洲金融（资本市场）主管'
-      ]
-    },
-
 
     {
       name: 'Inkyu Choi',
@@ -174,23 +186,13 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     },
     {
       name: 'Jinsoo Park',
-      imagePath: 'jinsoopark.jpg',
+      imagePath: 'parkjinsoo.jpg',
       position: '韩国 YG Entertainment 娱乐经纪公司 项目主管 ',
       sentences: [
         '前 韩国 YG Investment 投资公司 部门主任 & CFO',
         ' 前 Samil PricewaterhouseCoopers 资深合伙人',
         '注册会计师 （CPA）',
         '注册金融分析师'
-      ]
-    },
-    {
-      name: 'Myunsik Cho',
-      imagePath: 'MyunsikCho.png',
-      position: '韩国 Dongnyuk LLC 律师事务所 代表律师',
-      sentences: [
-        '音乐，娱乐，影视与版权法方面的顶尖法律专家\n',
-        '前 韩国电影制片人协会 法律顾问\n',
-        '前 韩国JYP娱乐有限公司，韩国Star Empire Entertainment 唱片公司，韩国Jellyfish Entertainment 艺人经纪公司，包括白智英在内的多位韩国音乐艺术家，演员和明星的法律代表律师'
       ]
     },
     {
@@ -204,17 +206,17 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         '毕业于卡斯商学院的投资与金融风险管理'
       ]
     },
-    {
-      name: 'Adrian Lai',
-      imagePath: 'adrian_lai.png',
-      position: 'BlackHorse Group 董事总经理',
-      sentences: [
-        '前 贝莱德集团销售、市场营销、金融科技与公司治理领域的专业人士\n',
-        'HKSI 与 Kaplan Financials 数字货币与区块链技术的培训师\n',
-        '业界动态与高校场合的做客演说者\n',
-        '前 Orichal Partners ICO投资项目的主管 '
-      ]
-    },
+    // {
+    //   name: 'Adrian Lai',
+    //   imagePath: 'adrian_lai.png',
+    //   position: 'BlackHorse Group 董事总经理',
+    //   sentences: [
+    //     '前 贝莱德集团销售、市场营销、金融科技与公司治理领域的专业人士\n',
+    //     'HKSI 与 Kaplan Financials 数字货币与区块链技术的培训师\n',
+    //     '业界动态与高校场合的做客演说者\n',
+    //     '前 Orichal Partners ICO投资项目的主管 '
+    //   ]
+    // },
     {
       name: 'Alyssa Tsai ',
       imagePath: 'panony_alyssa.jpg',
@@ -225,13 +227,13 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       ]
     },
     {
-      name: 'Stella Kung',
-      imagePath: 'qtum_stella.jpg',
-      position: 'QTUM量子首席营销官',
+      name: 'Myunsik Cho',
+      imagePath: 'MyunsikCho.png',
+      position: '韩国 Dongnyuk LLC 律师事务所 代表律师',
       sentences: [
-        '区块链早期市场营销与公众关系管理业内人士',
-        '拥有丰富的从业经验，协助区块链项目包括 DACx, ZAFED and ChainB. ',
-        '身兼区块链行业专业咨询PANONY公司与 Mithril秘银区块链项目的高级顾问。'
+        '音乐，娱乐，影视与版权法方面的顶尖法律专家\n',
+        '前 韩国电影制片人协会 法律顾问\n',
+        '前 韩国JYP娱乐有限公司，韩国Star Empire Entertainment 唱片公司，韩国Jellyfish Entertainment 艺人经纪公司，包括白智英在内的多位韩国音乐艺术家，演员和明星的法律代表律师'
       ]
     }
   ];
@@ -248,6 +250,24 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       ]
     },
     {
+      name: '이윤우',
+      imagePath: 'YoonwooLee.png',
+      position: '(前) 삼성전자 CEO, 부회장',
+      sentences: []
+    },
+    {
+      name: 'Stella Kung',
+      imagePath: 'qtum_stella.jpg',
+      position: 'CMO of QTUM',
+      sentences: [
+        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
+        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
+        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+      ]
+    },
+
+
+    {
       name: '홍준기',
       imagePath: 'JoonkeeHong.png',
       position: '카카오뱅크 사외이사',
@@ -257,14 +277,6 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         '(前) 리만브라더스 Asia Head of Global Finance(Capital Markets)'
       ]
     },
-    {
-      name: '이윤우',
-      imagePath: 'YoonwooLee.png',
-      position: '(前) 삼성전자 CEO, 부회장',
-      sentences: []
-    },
-
-
     {
       name: '최인규',
       imagePath: 'InkyuChoi.png',
@@ -278,7 +290,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     },
     {
       name: '박진수',
-      imagePath: 'jinsoopark.jpg',
+      imagePath: 'parkjinsoo.jpg',
       position: 'YG 엔터테인먼트 팀리더',
       sentences: [
         '(前) YG 인베스트먼트 이사, CFO',
@@ -288,18 +300,8 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       ]
     },
     {
-      name: '조면식',
-      imagePath: 'MyunsikCho.png',
-      position: '동녘 LLC 변호사',
-      sentences: [
-        '음악, 엔터테인먼트, 영화, 저작권 법률 전문가',
-        '(前) 한국영화제작가협회 법률고문',
-        '(前) JYP, 스타제국, 젤리피쉬 엔터테인먼트 및 백지영 등 다수 음악가와 배우 법률자문'
-      ]
-    },
-    {
       name: 'Brian Lee',
-      imagePath: 'blackhorse_brian.jpg',
+      imagePath: 'blackhorse-brian.jpg',
       position: 'Managing Director, BlackHorse Group',
       sentences: [
         'Former investment banker at China Development Bank and CJSC. ',
@@ -308,17 +310,17 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         'Graduated with Investment and Financial Risk Management from Cass Business School.'
       ]
     },
-    {
-      name: 'Adrian Lai',
-      imagePath: 'adrian_lai.png',
-      position: 'Managing Director, BlackHorse Group',
-      sentences: [
-        '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
-        'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
-        'Speaker and guest lecturer at industry events and universities. ',
-        'Former ICO investment lead at Orichal Partners'
-      ]
-    },
+    // {
+    //   name: 'Adrian Lai',
+    //   imagePath: 'adrian_lai.png',
+    //   position: 'Managing Director, BlackHorse Group',
+    //   sentences: [
+    //     '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
+    //     'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
+    //     'Speaker and guest lecturer at industry events and universities. ',
+    //     'Former ICO investment lead at Orichal Partners'
+    //   ]
+    // },
     {
       name: 'Alyssa Tsai ',
       imagePath: 'panony_alyssa.jpg',
@@ -330,13 +332,13 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       ]
     },
     {
-      name: 'Stella Kung',
-      imagePath: 'qtum_stella.jpg',
-      position: 'CMO of QTUM',
+      name: '조면식',
+      imagePath: 'MyunsikCho.png',
+      position: '동녘 LLC 변호사',
       sentences: [
-        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
-        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
-        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+        '음악, 엔터테인먼트, 영화, 저작권 법률 전문가',
+        '(前) 한국영화제작가협회 법률고문',
+        '(前) JYP, 스타제국, 젤리피쉬 엔터테인먼트 및 백지영 등 다수 음악가와 배우 법률자문'
       ]
     }
   ];
