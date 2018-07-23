@@ -6,7 +6,7 @@ declare const jQuery;
 @Component({
   selector: 'mzk-intro-business',
   template: `
-    <img src="assets/images/design/wave-2.png" width="100%">
+    <img src="assets/intro-img/design/wave-2.png" width="100%">
     <section class="section" id="business">
       <h2 class="text-center intro-section-title">
         OUR BUSINESS
@@ -41,7 +41,7 @@ declare const jQuery;
           </p>
         </div>
         <div class="col-sm-5">
-          <img src="assets/images/business-preview.png" class="img-fluid mt-3 pr-sm-0 pr-5">
+          <img src="assets/intro-img/business-preview.png" class="img-fluid mt-3 pr-sm-0 pr-5">
         </div>
       </div>
     </section>
@@ -52,7 +52,7 @@ declare const jQuery;
   styles: [`
     section {
       padding-bottom: 50px;
-      background: url('assets/images/design/line-art-0.png') no-repeat #192538;
+      background: url('assets/intro-img/design/line-art-1.png') no-repeat #192538;
       background-position-x: 100px;
       background-position-y: 130px;
       background-size: 600px;

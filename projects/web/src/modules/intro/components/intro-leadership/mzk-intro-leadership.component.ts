@@ -17,7 +17,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
   leaders_EN: any[] = [
     {
       name: 'Inseo Chung',
-      imagePath: 'assets/images/leader-inseo.png',
+      imagePath: 'assets/intro-img/leader-inseo.png',
       position: 'CEO',
       sentences: [
         'An aspiring pianist and a 2nd place winner of the National Student Music Competition',
@@ -32,7 +32,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     },
     {
       name: 'Sangmin Heo',
-      imagePath: 'assets/images/leader-sangmin.png',
+      imagePath: 'assets/intro-img/leader-sangmin.png',
       position: 'CTO',
       sentences: [
         'A prodigy programmer and developer who made his first fortune from his web game at the age of 15.',
@@ -47,7 +47,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     },
     {
       name: 'Jangwon Lee',
-      imagePath: 'assets/images/leader-jangwon.png',
+      imagePath: 'assets/intro-img/leader-jangwon.png',
       position: 'COO',
       sentences: [
         `Fluent with Chinese, English and Korean languages, 
@@ -66,7 +66,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
   leaders_ZH: any[] = [
     {
       name: 'Inseo Chung',
-      imagePath: 'assets/images/leader-inseo.png',
+      imagePath: 'assets/intro-img/leader-inseo.png',
       position: 'CEO',
       sentences: [
         '钢琴演奏家，曾荣获韩国全国青年钢琴演奏竞赛亚军头衔\n',
@@ -80,7 +80,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     },
     {
       name: 'Sangmin Heo',
-      imagePath: 'assets/images/leader-sangmin.png',
+      imagePath: 'assets/intro-img/leader-sangmin.png',
       position: 'CTO',
       sentences: [
         '神童程序员和软件程序开发工程师，15岁时已通过开发网络游戏赚取了自己人生的第一笔财富。\n',
@@ -94,7 +94,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     },
     {
       name: 'Jangwon Lee',
-      imagePath: 'assets/images/leader-jangwon.png',
+      imagePath: 'assets/intro-img/leader-jangwon.png',
       position: 'COO',
       sentences: [
         `能说一口流利的英语，中文，韩语，并且是一名专业的钢琴师以及一位有经验的商业发展领导者。创办了钢琴集团之情缘（Piano Group The Serendipity）, 
@@ -108,7 +108,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
   leaders_KR: any[] = [
     {
       name: '정인서',
-      imagePath: 'assets/images/leader-inseo.png',
+      imagePath: 'assets/intro-img/leader-inseo.png',
       position: 'CEO',
       sentences: [
         '열정적인 피아니스트, 전국학생음악경연대회 2위',
@@ -122,7 +122,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     },
     {
       name: '허상민',
-      imagePath: 'assets/images/leader-sangmin.png',
+      imagePath: 'assets/intro-img/leader-sangmin.png',
       position: 'CTO',
       sentences: [
         '영재 프로그래머로서 15세에 웹게임 제작',
@@ -136,7 +136,7 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     },
     {
       name: '이장원',
-      imagePath: 'assets/images/leader-jangwon.png',
+      imagePath: 'assets/intro-img/leader-jangwon.png',
       position: 'COO',
       sentences: [
         `중국어, 영어, 한국어 구사`,

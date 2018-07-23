@@ -63,7 +63,7 @@
     transform: scale(1.0);
   }
   .nav-sticky .navbar-toggler {
-    color: #000;
+    color: white;
   }
 
   .bg-home {
@@ -184,7 +184,7 @@
 }
 
 .icon-lang {
-  background: url('../../../../assets/images/design/country.png') no-repeat;
+  background: url('../../../../assets/intro-img/design/country.png') no-repeat;
   background-size: 128px 30px;
   width: 27px;
   height: 25px;
@@ -234,5 +234,19 @@
   .dropdown-item.active {
     background: #192538;
     color: white;
+  }
+}
+
+
+.mobile-only {
+  display: none;
+  position: absolute;
+  top: 18px;
+  right: 40px;
+}
+
+@media(max-width: 738px) {
+  .mobile-only {
+    display: block;
   }
 }

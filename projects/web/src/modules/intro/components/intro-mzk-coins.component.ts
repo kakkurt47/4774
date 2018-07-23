@@ -13,14 +13,14 @@ import { BaseComponent } from '@muzika/core/angular';
           {{'intro-mzk-coins.subtitle-1' | translate}}<BR/> <BR/>
           {{'intro-mzk-coins.subtitle-2' | translate}}
         </p>
-        <img src="assets/images/diagram-coin.png" class="mt-sm-5 img-fluid mb-sm-5">
+        <img src="assets/intro-img/diagram-coin.png" class="mt-sm-5 img-fluid mb-sm-5">
         <BR/>
         <BR/>
         <h2 class="mt-5 text-center intro-section-title mb-5">{{'intro-mzk-coins.major-functions' | translate}}</h2>
         <div class="row pt-4">
           <div class="col-12 col-sm-6 mb-sm-4">
             <div class="text-center">
-              <img class="function-img" src="assets/images/mzk-coins/icon_1.png">
+              <img class="function-img" src="assets/intro-img/mzk-coins/icon_1.png">
             </div>
             <h4 class="function-title">{{'intro-mzk-coins.func-1-title' | translate}}</h4>
             <p class="function-desc">
@@ -30,7 +30,7 @@ import { BaseComponent } from '@muzika/core/angular';
           </div>
           <div class="col-12 col-sm-6 mb-sm-4">
             <div class="text-center">
-              <img class="function-img" src="assets/images/mzk-coins/icon_2.png">
+              <img class="function-img" src="assets/intro-img/mzk-coins/icon_2.png">
             </div>
             <h4 class="function-title">{{'intro-mzk-coins.func-2-title' | translate}}</h4>
             <p class="function-desc">
@@ -40,7 +40,7 @@ import { BaseComponent } from '@muzika/core/angular';
           </div>
           <div class="col-12 col-sm-6">
             <div class="text-center">
-              <img class="function-img" src="assets/images/mzk-coins/icon_3.png">
+              <img class="function-img" src="assets/intro-img/mzk-coins/icon_3.png">
             </div>
             <h4 class="function-title">{{'intro-mzk-coins.func-3-title' | translate}}</h4>
             <p class="function-desc">
@@ -50,7 +50,7 @@ import { BaseComponent } from '@muzika/core/angular';
           </div>
           <div class="col-12 col-sm-6">
             <div class="text-center">
-              <img class="function-img" src="assets/images/mzk-coins/icon_4.png">
+              <img class="function-img" src="assets/intro-img/mzk-coins/icon_4.png">
             </div>
             <h4 class="function-title">{{'intro-mzk-coins.func-4-title' | translate}}</h4>
             <p class="function-desc">

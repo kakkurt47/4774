@@ -11,10 +11,10 @@ import { BaseComponent } from '@muzika/core/angular';
         </h2>
         <div class="row mt-5">
           <div class="col-sm-3 col-6">
-            <img src="assets/images/partners/logo-blackhorse.png" class="img-fluid">
+            <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
           </div>
           <div class="col-sm-3 col-6">
-            <img src="assets/images/partners/logo-panony.png" class="img-fluid">
+            <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
           </div>
           <div class="col-sm-3 col-6">
             <div class="empty-box"></div>
@@ -23,6 +23,7 @@ import { BaseComponent } from '@muzika/core/angular';
             <div class="empty-box"></div>
           </div>
         </div>
+        <div class="clearfix"></div>
         <div class="row mt-4">
           <div class="col-sm-3 col-6">
             <div class="empty-box"></div>
@@ -55,7 +56,7 @@ import { BaseComponent } from '@muzika/core/angular';
     .empty-box {
       display: block;
       background: white;
-      margin-top: 40px;
+      padding-top: 40px;
       text-align: center;
       width: 100%;
       height: 100%;
@@ -66,6 +67,7 @@ import { BaseComponent } from '@muzika/core/angular';
     @media(max-width: 738px) {
       .empty-box {
         min-height: 50px;
+        margin-top: 30px;
       }
     }
   `]
