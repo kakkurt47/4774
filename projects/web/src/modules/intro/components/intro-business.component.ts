@@ -46,9 +46,6 @@ declare const jQuery;
       </div>
     </section>
   `,
-  styleUrls: [
-    '../scss/helper.scss'
-  ],
   styles: [`
     .section {
       padding-bottom: 50px;
