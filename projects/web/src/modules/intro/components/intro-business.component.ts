@@ -41,7 +41,7 @@ declare const jQuery;
           </p>
         </div>
         <div class="col-sm-5">
-          <img src="assets/intro-img/business-preview.png" class="img-fluid mt-3 pr-sm-0 pr-5">
+          <img src="assets/intro-img/business-preview.png" class="img-fluid mt-3 pr-sm-0">
         </div>
       </div>
     </section>
