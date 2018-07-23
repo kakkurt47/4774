@@ -52,7 +52,7 @@ declare const jQuery;
   styles: [`
     section {
       padding-bottom: 50px;
-      background: url('../../../assets/images/design/line-art-0.png') no-repeat #192538;
+      background: url('assets/images/design/line-art-0.png') no-repeat #192538;
       background-position-x: 100px;
       background-position-y: 130px;
       background-size: 600px;
