@@ -6,6 +6,7 @@ h2 {
 .section {
   background: url('../../../../assets/intro-img/design/wave-3.png') no-repeat bottom #192538;
   background-size: 100%;
+  padding-top: 0 !important;
   padding-bottom: 160px;
 }
 
@@ -13,28 +14,42 @@ h2 {
   color: white;
 }
 
-section {
+.team-box {
+  .team-img {
+    float: left;
+    img {
+      border: 1px solid #d4d4d4;
+      margin-right: 5px;
+    }
+  }
 
-  padding-top: 0 !important;
+  .team-desc {
+    padding-left: 115px;
+    .team-name {
+      color: white;
+      font-size: 14px;
+    }
+    .team-position {
+      color: #8196b2;
+      font-size: 12px;
+    }
+  }
+}
+
+@media(max-width: 738px) {
+  .section {
+    padding-bottom: 50px;
+  }
+
   .team-box {
+    text-align: center;
+
     .team-img {
-      float: left;
-      img {
-        border: 1px solid #d4d4d4;
-        margin-right: 5px;
-      }
+      float: none;
     }
 
     .team-desc {
-      padding-left: 115px;
-      .team-name {
-        color: white;
-        font-size: 14px;
-      }
-      .team-position {
-        color: #8196b2;
-        font-size: 12px;
-      }
+      padding-left: 0;
     }
   }
 }

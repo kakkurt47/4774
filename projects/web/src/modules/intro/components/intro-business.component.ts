@@ -50,10 +50,10 @@ declare const jQuery;
     '../scss/helper.scss'
   ],
   styles: [`
-    section {
+    .section {
       padding-bottom: 50px;
       background: url('assets/intro-img/design/line-art-1.png') no-repeat #192538;
-      background-position-x: 100px;
+      background-position-x: 70px;
       background-position-y: 130px;
       background-size: 600px;
       position: relative;

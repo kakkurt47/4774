@@ -24,7 +24,7 @@ import { BaseComponent } from '@muzika/core/angular';
           </div>
         </div>
         <div class="clearfix"></div>
-        <div class="row mt-4">
+        <div class="row mt-sm-4">
           <div class="col-sm-3 col-6">
             <div class="empty-box"></div>
           </div>
@@ -47,7 +47,7 @@ import { BaseComponent } from '@muzika/core/angular';
       background-color: #f8fafb;
       padding: 100px 0;
     }
-
+    
     img {
       background: white;
       border-radius: 8px 8px;
@@ -65,9 +65,15 @@ import { BaseComponent } from '@muzika/core/angular';
     }
     
     @media(max-width: 738px) {
+      section {
+        padding: 50px 0;
+      }
+      
       .empty-box {
-        min-height: 50px;
+        padding-top: 0;
+        height: 56px;
         margin-top: 30px;
+        min-height: 56px;
       }
     }
   `]
