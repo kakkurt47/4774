@@ -3,6 +3,8 @@ import { User } from '@muzika/core';
 import { BaseComponent, UserActions } from '@muzika/core/angular';
 import { TranslateService } from '@ngx-translate/core';
 
+declare const jQuery;
+
 @Component({
   selector: 'app-intro-navbar',
   templateUrl: './intro-navbar.component.html',
@@ -14,6 +16,10 @@ export class IntroNavbarComponent extends BaseComponent {
 
   constructor(private userActions: UserActions, private translateService: TranslateService) {
     super();
+  }
+
+  moveToTop() {
+    jQuery('html, body').stop().animate({ scrollTop: 0 }, 1000);
   }
 
   ngOnInit() {
