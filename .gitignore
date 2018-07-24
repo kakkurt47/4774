@@ -6,11 +6,11 @@
 /out-tsc
 
 # dependencies
-/node_modules
-/bower_components
+node_modules/
+bower_components/
 
 # IDEs and editors
-/.idea
+.idea
 .project
 .classpath
 .c9/
@@ -44,7 +44,7 @@ build/
 ipfs-muzika/
 app-builds/
 main.js
-projects/viewer/node_src/**/*.js
+projects/studio-main/node_src/**/*.js
 
 platforms/
 plugins/
@@ -54,7 +54,7 @@ www/
 projects/core/**/*.js
 projects/core/**/*.js.map
 projects/core/package-lock.json
-projects/viewer/**/*.js.map
-projects/viewer/**/*.js
+projects/studio-main/**/*.js.map
+projects/studio-main/**/*.js
 main.js
 main.js.map

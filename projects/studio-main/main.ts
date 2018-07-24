@@ -2,11 +2,11 @@ import {app, BrowserWindow, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
-import {IpcWalletServiceInstance} from './projects/viewer/node_src/ipc-wallet.service';
-import {IpcMainServiceInstance} from './projects/viewer/node_src/ipc.service';
-import {IpfsServiceInstance} from './projects/viewer/node_src/ipfs.service';
-import {StorageServiceInstance} from './projects/viewer/node_src/storage.service';
-import { MuzikaConsole } from './projects/core/common';
+import {IpcWalletServiceInstance} from './src/ipc-wallet.service';
+import {IpcMainServiceInstance} from './src/ipc.service';
+import {IpfsServiceInstance} from './src/ipfs.service';
+import {StorageServiceInstance} from './src/storage.service';
+import { MuzikaConsole } from '@muzika/core';
 
 MuzikaConsole.chalk = require('chalk');
 
@@ -45,12 +45,12 @@ function createWindow() {
 
   if (serve) {
     require('electron-reload')(__dirname, {
-      electron: require(`${__dirname}/node_modules/electron`)
+      electron: require('electron')
     });
     win.loadURL('http://localhost:4200');
   } else {
     win.loadURL(url.format({
-      pathname: path.join(__dirname, 'dist/index.html'),
+      pathname: path.join(__dirname, 'renderer/index.html'),
       protocol: 'file:',
       slashes: true
     }));

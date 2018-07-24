@@ -5,7 +5,7 @@ import * as ProviderEngine from 'web3-provider-engine';
 import * as RpcSubprovider from 'web3-provider-engine/subproviders/rpc';
 import * as HookedWalletSubprovider from 'web3-provider-engine/subproviders/hooked-wallet';
 import * as FiltersSubprovider from 'web3-provider-engine/subproviders/filters';
-import {IPCUtil} from '../../shared/ipc-utils';
+import {IPCUtil} from '../util/ipc-utils';
 import {TabService} from './tab.service';
 import {ElectronService} from './electron.service';
 import * as deserializeError from 'deserialize-error';

@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-import { IPCUtil } from '../shared/ipc-utils';
+import { IPCUtil } from './util/ipc-utils';
 
 // ipcMain.on('synchronous-message', (event, arg) => {
 //   MuzikaConsole.log(arg); // prints "ping"

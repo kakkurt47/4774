@@ -1,7 +1,7 @@
 {
   "productName": "Muzika",
   "directories": {
-    "output": "app-builds"
+    "output": "../../app-builds"
   },
   "nsis": {
     "oneClick": false,
@@ -50,5 +50,14 @@
       "!node_modules/ffprobe-static/bin/darwin${/*}",
       "!node_modules/ffprobe-static/bin/win32${/*}"
     ]
-  }
+  },
+  "files": [
+    "main.js",
+    "node_modules/hash.js",
+    "src/**/*.js",
+    {
+      "from": "../../dist/muzika-studio-renderer",
+      "to": "./renderer"
+    }
+  ]
 }

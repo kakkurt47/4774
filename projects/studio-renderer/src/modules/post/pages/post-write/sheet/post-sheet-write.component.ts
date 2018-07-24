@@ -1,28 +1,28 @@
-import {Component, Injector} from '@angular/core';
-import {BasePost, MusicContract, MusicPost, MusicPostDraft, MuzikaFilePath, unitDown, User} from '@muzika/core';
-import {StreamingMusicGenreSelections} from '../../../post.constant';
-import {IpcRendererService} from '../../../../../providers/ipc-renderer.service';
-import {MuzikaContractService, PostActions, UserActions} from '@muzika/core/angular';
-import {Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
-import {AlertifyInstnace} from '@muzika/core/browser';
-import {IPCUtil} from '../../../../../../shared/ipc-utils';
-import {BasePostWriteComponent} from '../post-write';
-import {ElectronService} from '../../../../../providers/electron.service';
+import { Component, Injector } from '@angular/core';
+import { BasePost, MusicContract, MusicPost, MusicPostDraft, MuzikaFilePath, unitDown, User } from '@muzika/core';
+import { InstrumentSelections, SheetMusicGenreSelections } from '../../../post.constant';
+import { IpcRendererService } from '../../../../../providers/ipc-renderer.service';
+import { MuzikaContractService, PostActions, UserActions } from '@muzika/core/angular';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { AlertifyInstnace } from '@muzika/core/browser';
+import {IPCUtil} from '../../../../../util/ipc-utils';
+import { BasePostWriteComponent } from '../post-write';
+import { ElectronService } from '../../../../../providers/electron.service';
 
 @Component({
-  selector: 'app-post-music-write',
-  templateUrl: './post-streaming-write.component.html',
+  selector: 'app-post-sheet-write',
+  templateUrl: './post-sheet-write.component.html',
   styleUrls: [
     '../post-write.scss',
     '../post-music-write.scss',
-    './post-streaming-write.component.scss'
+    './post-sheet-write.component.scss'
   ]
 })
-export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
-  boardType = 'streaming';
+export class PostSheetMusicWriteComponent extends BasePostWriteComponent {
+  boardType = 'sheet';
   post: MusicPostDraft = <MusicPostDraft>{
-    type: 'streaming',
+    type: 'sheet',
     tags: [],
     price: 0,
     files: [],
@@ -34,10 +34,14 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
   songType: '~cover' | '~original' = '~original';
 
-  genreSelections = StreamingMusicGenreSelections;
+  genreSelections = SheetMusicGenreSelections;
+  instrumentSelections = InstrumentSelections;
 
   genres: Set<string> = new Set();
+  instruments: Set<string> = new Set();
 
+  files: { file: File, previews: File[] }[] = [];
+  coverImageFile: File;
   uploadStatus: {
     status: string;
     progress: number;
@@ -50,18 +54,13 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
               private ipcRendererService: IpcRendererService,
               private contractService: MuzikaContractService,
               private router: Router,
-              private electronService: ElectronService,
-              private postActions: PostActions) {
+              private postActions: PostActions,
+              private electronService: ElectronService) {
     super(injector);
   }
 
   ngOnInit() {
     super.ngOnInit();
-
-    this.post.music_video = {
-      type: 'ipfs',
-      path: undefined
-    };
 
     this._sub.push(
       this.electronService.onDragFile
@@ -76,6 +75,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
         this.currentUser = user;
       })
     );
+
   }
 
   toggleGenre(value: string) {
@@ -83,6 +83,14 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
       this.genres.delete(value);
     } else {
       this.genres.add(value);
+    }
+  }
+
+  toggleInstrument(value: string) {
+    if (this.instruments.has(value)) {
+      this.instruments.delete(value);
+    } else {
+      this.instruments.add(value);
     }
   }
 
@@ -94,9 +102,21 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
       return null;
     }
 
+    /* check song type */
+    if (['~cover', '~original'].indexOf(this.songType) === -1) {
+      AlertifyInstnace.alert('Choose the song type, cover or original');
+      return null;
+    }
+
     /* check genre */
     if (this.genres.size === 0) {
       AlertifyInstnace.alert('The number of genres should be between 1 and 3');
+      return null;
+    }
+
+    /* check instruments */
+    if (this.instruments.size === 0) {
+      AlertifyInstnace.alert('The number of instruments should be more than 1');
       return null;
     }
 
@@ -114,7 +134,8 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
     prepared.tags = [
       this.songType,
-      ...Array.from(this.genres.values())
+      ...Array.from(this.genres.values()),
+      ...Array.from(this.instruments.values())
     ];
 
     prepared.music_contract = <MusicContract>{
@@ -131,27 +152,16 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
 
   addFile(selectedFile: File) {
     if (typeof selectedFile !== 'undefined') {
-      if (this.post.files.some(file => file.path === selectedFile.name)) {
+      if (this.files.some(file => file.file.name === selectedFile.name)) {
         AlertifyInstnace.alert('File is already added');
       } else {
-        this.post.files.push({path: selectedFile.path, previews: []});
+        this.files.push({ file: selectedFile, previews: [] });
       }
     }
   }
 
-  addCoverImage(selectedFile: File) {
-    this.post.cover_image_path = selectedFile.path;
-  }
-
-  addMusicVideo(selectedFile: File) {
-    this.post.music_video = {
-      type: 'ipfs',
-      path: selectedFile.path
-    };
-  }
-
   addPreview(idx: number, $event: any) {
-    this.post.files[idx].previews.push($event.target.files[0]);
+    this.files[idx].previews.push($event.target.files[0]);
   }
 
   submit(form: NgForm): void {
@@ -175,7 +185,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
         const prepared = <MusicPost>this.prepare(form);
 
         if (prepared !== null) {
-          prepared.type = 'streaming';
+          prepared.type = 'sheet';
           this.contractService.createNewPaperContract(
             this.currentUser.address,
             unitDown(prepared.price),
@@ -186,7 +196,7 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
             prepared.music_contract.aes_key = this.uploadStatus.aesKey.toString('base64');
 
             this.postActions.write('music', prepared).subscribe(() => {
-              this.router.navigate(['/board/streaming/write/complete'], {
+              this.router.navigate(['/board/sheet/write/complete'], {
                 queryParams: {
                   txHash: txHash,
                   title: prepared.title
@@ -209,21 +219,20 @@ export class PostStreamingMusicWriteComponent extends BasePostWriteComponent {
   }
 
   private uploadFile() {
-    const filePaths: MuzikaFilePath[] = this.post.files.map(file => {
+    const filePaths: MuzikaFilePath[] = this.files.map(file => {
       return {
-        path: file.path,
-        previews: file.previews
+        path: file.file.path,
+        previews: file.previews.map(preview => preview.path)
       };
     });
 
     return this.ipcRendererService.sendAsyncWithProgress(IPCUtil.EVENT_FILE_UPLOAD, filePaths, true, {
-      type: 'media',
+      type: 'sheet',
       title: this.post.title,
       description: this.post.content,
       author: this.currentUser.name,
       authorAddress: this.currentUser.address,
-      coverImagePath: (this.post.cover_image_path) ? this.post.cover_image_path : null,
-      musicVideo: this.post.music_video
+      coverImagePath: (this.coverImageFile) ? this.coverImageFile.path : null
     });
   }
 }

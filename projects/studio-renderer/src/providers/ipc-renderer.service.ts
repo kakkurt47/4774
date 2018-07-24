@@ -1,6 +1,6 @@
 import {Injectable, NgZone} from '@angular/core';
 import {Observable} from 'rxjs';
-import {IPCUtil} from '../../shared/ipc-utils';
+import {IPCUtil} from '../util/ipc-utils';
 import {ElectronService} from './electron.service';
 
 // console.log(ipcRenderer.sendSync('PDFViewer:open', 'ping')); // prints "pong"
