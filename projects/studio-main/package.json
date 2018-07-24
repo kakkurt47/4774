@@ -30,6 +30,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^5.0.0",
     "hls.js": "^0.9.1",
+    "hash.js": "^1.1.5",
     "imagemagick-native": "git+https://github.com/MuzikaFoundation/node-imagemagick-native.git#genpreview",
     "ipfs": "^0.29.3",
     "popper.js": "^1.14.3",
@@ -43,7 +44,8 @@
     "ursa": "^0.9.4",
     "vm-browserify": "^1.1.0",
     "web3": "^0.20.6",
-    "web3-provider-engine": "^14.0.6"
+    "web3-provider-engine": "^14.0.6",
+    "zcash-bitcore-lib": "git+https://github.com/MuzikaFoundation/zcash-bitcore-lib.git"
   },
   "devDependencies": {
     "electron": "2.0.5"

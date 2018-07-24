@@ -8,8 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LocalStorage, MuzikaCoreModule, PLATFORM_TYPE_TOKEN, MuzikaCommonModule, EnvironmentTypeToken } from '@muzika/core/angular';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { EnvironmentTypeToken, LocalStorage, MuzikaCommonModule, MuzikaCoreModule, PLATFORM_TYPE_TOKEN } from '@muzika/core/angular';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ArtistMusicComponent } from '../components/artist-music/artist-music.component';
