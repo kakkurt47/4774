@@ -244,6 +244,21 @@
 
 .mobile-only {
   display: none;
+
+  .dropdown-menu {
+    min-width: 50px;
+    margin-left: -10px;
+  }
+
+  .dropdown-item {
+    padding: 4px 10px;
+  }
+
+  .dropdown-item > .icon-lang {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 @media(max-width: 738px) {
