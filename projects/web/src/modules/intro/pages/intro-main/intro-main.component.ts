@@ -29,11 +29,13 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
         // store hash
         const hash = this.hash;
 
+        jQuery('.navbar-toggler').removeClass('collapsed');
+        jQuery('.navbar-collapse').removeClass('show');
+
         // animate
         jQuery('html, body').stop().animate({
-          scrollTop: jQuery(hash).offset().top
+          scrollTop: jQuery(hash).offset().top - 40
         }, 1000, () => {
-
         });
       });
 

@@ -94,24 +94,17 @@
   padding-bottom: 160px;
 }
 
+.home-desc-center {
+  background: url('../../../../assets/intro-img/design/line-art-0.png') no-repeat;
+  background-position-x: 80%;
+  background-position-y: 10%;
+  background-size: 800px;
+}
+
 /deep/ canvas {
   position: absolute;
   left: 0;
   top: 0;
-}
-
-.line-art {
-  position: absolute;
-  top: -80px;
-  left: -100px;
-  width: 800px;
-  z-index: 1;
-}
-
-@media(max-width: 738px) {
-  .line-art {
-    display: none;
-  }
 }
 
 .videoWrapper {
