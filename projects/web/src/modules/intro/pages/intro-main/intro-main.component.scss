@@ -101,6 +101,12 @@
   background-size: 800px;
 }
 
+@media(max-width: 738px) {
+  .home-desc-center {
+    background: none;
+  }
+}
+
 /deep/ canvas {
   position: absolute;
   left: 0;
