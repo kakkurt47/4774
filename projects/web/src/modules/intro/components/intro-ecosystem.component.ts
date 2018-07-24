@@ -51,7 +51,11 @@ import { BaseComponent } from '@muzika/core/angular';
       display: block;
       padding: 55px 45px;
       border-radius: 20px 20px;
-      box-shadow: 4px 4px 20px 4px rgba(20, 85, 195, 0.65);
+    }
+    @media(min-width: 738px) {
+      .ecosystem-box {
+        box-shadow: 4px 4px 20px 4px rgba(20, 85, 195, 0.65);
+      }
     }
     
     @media (max-width: 768px) {
