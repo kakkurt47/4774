@@ -1,11 +1,11 @@
-import {app, BrowserWindow, screen} from 'electron';
+import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
-import {IpcWalletServiceInstance} from './src/ipc-wallet.service';
-import {IpcMainServiceInstance} from './src/ipc.service';
-import {IpfsServiceInstance} from './src/ipfs.service';
-import {StorageServiceInstance} from './src/storage.service';
+import { IpcWalletServiceInstance } from './src/ipc-wallet.service';
+import { IpcMainServiceInstance } from './src/ipc.service';
+import { IpfsServiceInstance } from './src/ipfs.service';
+import { StorageServiceInstance } from './src/storage.service';
 import { MuzikaConsole } from '@muzika/core';
 
 MuzikaConsole.chalk = require('chalk');
@@ -75,7 +75,7 @@ try {
   app.on('ready', () => {
     createWindow();
 
-    IpfsServiceInstance.init();
+    IpfsServiceInstance.init((serve) ? '' : app.getPath('userData'));
     IpcMainServiceInstance.init();
     IpcWalletServiceInstance.init();
     StorageServiceInstance.init();

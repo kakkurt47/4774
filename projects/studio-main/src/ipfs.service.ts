@@ -12,9 +12,9 @@ export class IpfsService {
   constructor() {
   }
 
-  init() {
+  init(directoryPath) {
     this.node = new IPFS({
-      repo: 'ipfs-muzika',
+      repo: directoryPath + 'ipfs-muzika',
       config: {
         Addresses: {
           Swarm: [
