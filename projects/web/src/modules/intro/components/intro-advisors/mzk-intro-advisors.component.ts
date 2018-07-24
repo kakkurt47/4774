@@ -37,7 +37,6 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       imagePath: 'YoonwooLee.png',
       position: 'CEO & Vice Chairman of Samsung Electronics',
       sentences: [
-        '(EX) Asia Head of Global Finance(Capital Markets), Nomura International'
       ]
     },
     {
@@ -87,7 +86,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     },
     {
       name: 'Brian Lee',
-      imagePath: 'blackhorse_brian.jpg',
+      imagePath: 'blackhorse-brian.jpg',
       position: 'Managing Director, BlackHorse Group',
       sentences: [
         'Former investment banker at China Development Bank and CJSC. ',
@@ -147,7 +146,6 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       imagePath: 'YoonwooLee.png',
       position: ' 三星电子CEO & 副会长',
       sentences: [
-        '前 野村国际亚洲金融（资本市场）主管'
       ]
     },
     {
@@ -258,11 +256,11 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Stella Kung',
       imagePath: 'qtum_stella.jpg',
-      position: 'CMO of QTUM',
+      position: '퀀텀(QTUM), CMO',
       sentences: [
-        'One of the earliest marketing and public relations practitioners in blockchain industry. ',
-        'Served in different sides of the table from DACx, ZAFED and ChainB. ',
-        'Advisor of leading, next-generation media and consultancy firm PANONY, and an Asia-based project Mithril.'
+        '블록체인 산업 마케팅과 PR의 선구자. ',
+        'DACx, ZAFED, ChainB 등 다양한 산업군에서의 경험 보유. ',
+        '미디어 컨설팅회사 PANONY, 블록체인 프로젝트 Mithril 자문.'
       ]
     },
 
@@ -302,12 +300,12 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Brian Lee',
       imagePath: 'blackhorse-brian.jpg',
-      position: 'Managing Director, BlackHorse Group',
+      position: 'BlackHorse 그룹 이사',
       sentences: [
-        'Former investment banker at China Development Bank and CJSC. ',
-        'President at Digital Asset Investment Association ("DAIA"). ',
-        'Invested over 20 blockchain-based projects, including Quarkchain, Fantom, Open Platform and many others.',
-        'Graduated with Investment and Financial Risk Management from Cass Business School.'
+        '(前) 중국 국가개발은행, CJSC 투자은행 근무 ',
+        'Digital Asset Investment Association ("DAIA") 회장. ',
+        'Quarkchain, Fantom, Open Platform 등 20개 이상의 블록체인 프로젝트에 투자.',
+        'Cass Business School에서 Investment와 Financial Risk Management 전공.'
       ]
     },
     // {
@@ -324,11 +322,12 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Alyssa Tsai ',
       imagePath: 'panony_alyssa.jpg',
-      position: 'Founder & CEO of PANONY',
+      position: 'PANONY의 창립자, 대표이사',
       sentences: [
-        'Early adopter in blockchain industry. Assisted leading blockchain projects for market-entry and go-global strategies. ',
-        'Former Project Lead at Conde Nast International, Consultant at Isentia ' +
-        '(ASX: ISD) and seasoned communication specialist from Ogilvy.'
+        '블록체인 산업 초기부터 주요 프로젝트의 시장 진입과 글로벌 마케팅 전략 지원. ',
+        '(前) Conde Nast international 프로젝트 리더, Istentia 컨설턴트  ' +
+        '(ASX: ISD), Ogilvy 커뮤니케이션 스페셜리스트' +
+        '.'
       ]
     },
     {

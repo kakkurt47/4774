@@ -2,7 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
 
-declare const particlesJS, jQuery;
+declare const jQuery;
 
 @Component({
   selector: 'app-intro-main',

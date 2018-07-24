@@ -15,9 +15,11 @@
           <div class="team-img mr-2">
             <img [src]="'assets/intro-img/team/' + member.image" alt="" class="mx-auto d-block rounded-circle " height="90">
           </div>
-          <div class="team-desc text-left mt-4">
-            <h6 class="team-name text-custom mb-1">{{member.name}}</h6>
-            <p class="team-position">{{member.position}}</p>
+          <div class="team-desc text-left mt-2">
+            <h6 class="team-name text-custom mb-1">{{member.i18nName[currentLang]}}</h6>
+            <p class="team-position">{{member.i18nPosition[currentLang]}}</p>
+            <a class="fab fa-github" *ngIf="member.github" [attr.href]="member.github" target="_blank"></a>
+            <a class="fab fa-linkedin" *ngIf="member.linkedin" [attr.href]="member.linkedin" target="_blank"></a>
           </div>
         </div>
       </div>

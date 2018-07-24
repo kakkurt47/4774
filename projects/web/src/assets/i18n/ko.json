@@ -17,24 +17,24 @@
   "intro-ecosystem": {
     "title": "MUZIKA 생태계",
     "subtitle-1": "Muzika는 음악가들과 팬들이 주도하는 자생적이고 지속가능한 생태계를 창조할 것입니다. 2009년 비트코인과 함께 등장한 블록체인 기술을 토대로 우리는 음악 산업을 새롭게 변화시키고자 합니다. ",
-    "subtitle-2": "분산화된 디지털 음악 생태계는 누구나 음악의 생산, 투자, 소비, 그리고 수익의 분배에 이르기까지 음악 산업의 전 과정에 참여할 수 있게 할 것입니다. 그리고 이를 토대로 Muzika는 음악 산업에서 변혁을 이루어낼 것입니다.  "
+    "subtitle-2": "분산화된 디지털 음악 생태계는 누구나 음악의 생산, 소비, 그리고 분배에 이르기까지 음악 산업의 전 과정에 참여할 수 있게 할 것입니다. 그리고 이를 토대로 Muzika는 음악 산업에서 변혁을 이루어낼 것입니다.  "
   },
   "intro-mzk-coins": {
     "subtitle-1": "Muzika 코인(MZK)은 새로운 Muzika 생태계에서 중추적인 역할을 담당할 것입니다. 우리는 과거와 현재의 수많은 가상화폐들의 성공과 실패 사례들을 분석하였고, 프로젝트를 성공으로 이끌기 위한 요소들에 대해 뚜렷한 시각을 얻을 수 있었습니다.",
-    "subtitle-2": "MZK는 Muzika 생태계 내 모든 경제활동의 유일한 수단으로써 기능할 것입니다. 생태계에 처음 발을 들인 구성원을 위한 일부 서비스를 제외하고, 팬들이 아티스트에게 투자하고, 커뮤니티에서 음악을 구매하고, 아티스트로부터 수익을 분배받는 등 생태계 내 거의 대부분의 활동에서 MZK가 사용될 것입니다.  ",
-    "major-functions": "4 MAJOR FUNCTIONS",
-    "func-1-title": "Community Building",
-    "func-1-desc-1": "In order to be truly self-sustaining, the Muzika ecosystem will contain all of the necessary activities.",
-    "func-1-desc-2": "These range from creative brainstorming, crowd-funding, the exchange of feedback, and more.",
-    "func-2-title": "Commercial Items",
-    "func-2-desc-1": "Besides community involvement, the ecosystem will also incorporate all of the functions that make the traditional digital music industry otherwise successful.",
-    "func-2-desc-2": "Streaming services, a sheet music marketplace, musical instruments, recording services and much more will all be available through Muzika.",
-    "func-3-title": "Investment and rewards",
-    "func-3-desc-1": "Users may invest in artists much like they might a stock in worldly capital markets, or rather lend to a musician to fund their project, much in the same way a loanholder might lend to a government or corporation.",
-    "func-3-desc-2": "And just as with those more traditional modes of investment, investors in the Muzika ecosystem will collect dividends and/or interest according to their investment choices.",
-    "func-4-title": "Community-wide Programs",
-    "func-4-desc-1": "The real bread and butter of the Muzika ecosystem will be the spirit of creativity.",
-    "func-4-desc-2": "Community programs and events such as auditions, contests, crowd-funding drives, live-streaming events, and other such activities driven by member involvement will be a focal point of Muzika."
+    "subtitle-2": "MZK는 Muzika 생태계 내 모든 경제활동의 유일한 수단으로써 기능할 것입니다. 생태계에 처음 발을 들인 구성원을 위한 일부 서비스를 제외하고, 팬들이 커뮤니티에서 음악을 구매하고 아티스트를 후원하는 등 생태계 내 거의 대부분의 활동에서 MZK가 사용될 것입니다.  ",
+    "major-functions": "네 가지 주요 기능",
+    "func-1-title": "커뮤니티 빌딩",
+    "func-1-desc-1": "Muzika 생태계는 자생적 커뮤니티 빌딩을 위한 모든 활동을 지원할 것이며, 이러한 활동에는 크라우드 펀딩, 토론을 통한 의견 교환, 아이디어 공유 등이 포함됩니다.",
+    "func-1-desc-2": "커뮤니티 빌딩에 대한 기여 정도에 따라 이용자들은 Loyalty Point를 보상받게 되며, 이를 정기적으로 MZK로 변환받아 다양한 용도로 사용할 수 있습니다.",
+    "func-2-title": "음원,악보 등 상품과 서비스의 구매",
+    "func-2-desc-1": "우리의 생태계는 디지털 음악 산업의 핵심 요소가 되며, 지금까지 많은 전통적 플랫폼을 성공으로 이끌었던 음원 관련 서비스 또한 제공할 것입니다.",
+    "func-2-desc-2": "이용자는 음원 스트리밍, 음원, 악보, 악기의 구매와 판매, 레코딩 서비스 등 다양한 상품과 서비스를 MZK로 이용할 수 있습니다.",
+    "func-3-title": "아티스트 후원",
+    "func-3-desc-1": "커뮤니티 이용자들은 정기 구독 등의 다양한 형태로 MZK를 아티스트를 직접 후원할 수 있습니다. 후원자는 해당 아티스트로부터 후원자 전용 상품과 서비스를 특별히 제공받을 수 있으며",
+    "func-3-desc-2": "음악의 창작 과정에도 다양한 형태로 관여할 수 있게 됩니다.",
+    "func-4-title": "커뮤니티 내 프로그램 운영",
+    "func-4-desc-1": "창의성의 발현은 Muzika 생태계의 가장 근본적 특징 중 하나라고 할 수 있습니다.",
+    "func-4-desc-2": "커뮤니티 내 오디션, 다양한 형태의 경연, 크라우드펀딩, 라이브 스트리밍 이벤트 등 다양한 프로그램들이 중점적으로 생태계 내에서 운영될 것입니다."
   },
   "intro-leadership": {
     "subtitle-1": "한국 역사상 평균 나이 22세로 가장 어린 성공한 사업가들",

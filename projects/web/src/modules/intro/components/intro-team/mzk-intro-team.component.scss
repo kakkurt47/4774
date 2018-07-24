@@ -32,6 +32,17 @@ h2 {
     .team-position {
       color: #8196b2;
       font-size: 12px;
+      margin-bottom: 0;
+    }
+
+    a {
+      color: white;
+      margin-right: 4px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }

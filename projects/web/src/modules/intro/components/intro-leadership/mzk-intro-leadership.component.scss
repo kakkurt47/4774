@@ -29,6 +29,13 @@
   .leader-name {
     font-size: 16px;
     color: #343c4d;
+
+    a {
+      color: #343c4d;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   .position {

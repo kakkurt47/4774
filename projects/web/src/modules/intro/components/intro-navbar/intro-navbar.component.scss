@@ -101,7 +101,10 @@
 **********************/
 
 .navbar-custom {
-  background: #192538;
+  background: transparent;
+  @media(max-width: 738px) {
+    background: #192538;
+  }
   padding: 5px 0;
   width: 100%;
   border-radius: 0;
