@@ -44,8 +44,9 @@ function createWindow() {
   MuzikaConsole.info('test');
 
   if (serve) {
+    // https://github.com/yan-foto/electron-reload/issues/16
     require('electron-reload')(__dirname, {
-      electron: require('electron')
+      electron: require(`${__dirname}/../../node_modules/electron`)
     });
     win.loadURL('http://localhost:4200');
   } else {
