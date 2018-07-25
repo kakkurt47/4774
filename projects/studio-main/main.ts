@@ -8,11 +8,11 @@ import { IpfsServiceInstance } from './src/ipfs.service';
 import { StorageServiceInstance } from './src/storage.service';
 import { MuzikaConsole } from '@muzika/core';
 
+const isDev = require('electron-is-dev');
+
 MuzikaConsole.chalk = require('chalk');
 
-let win, serve;
-const args = process.argv.slice(1);
-serve = args.some(val => val === '--serve');
+let win;
 
 try {
   require('dotenv').config();
@@ -43,7 +43,7 @@ function createWindow() {
 
   MuzikaConsole.info('test');
 
-  if (serve) {
+  if (isDev) {
     // https://github.com/yan-foto/electron-reload/issues/16
     require('electron-reload')(__dirname, {
       electron: require(`${__dirname}/../../node_modules/electron`)
@@ -75,7 +75,7 @@ try {
   app.on('ready', () => {
     createWindow();
 
-    IpfsServiceInstance.init((serve) ? '' : app.getPath('userData'));
+    IpfsServiceInstance.init((isDev) ? '' : app.getPath('userData'));
     IpcMainServiceInstance.init();
     IpcWalletServiceInstance.init();
     StorageServiceInstance.init();
