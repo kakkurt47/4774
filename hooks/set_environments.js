@@ -7,7 +7,7 @@ var profile = process.env.ENV || 'dev';
 
 console.log('Moving environment configuration ...');
 const projectEnvironmentPath = path.resolve(__dirname, '../projects/core/common/environments/');
-const targetEnvironmentPath = path.resolve(__dirname,'../projects/viewer/node_src/environment.ts');
+const targetEnvironmentPath = path.resolve(__dirname,'../projects/studio-main/src/environment.ts');
 
 switch (profile) {
   case 'prod':

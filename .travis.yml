@@ -19,5 +19,5 @@ script:
   - npm run contract:compile
   - npm run lint
   - npm run build:core
-  - npm run build:viewer
+  - npm run build:studio
   - npm run build:web

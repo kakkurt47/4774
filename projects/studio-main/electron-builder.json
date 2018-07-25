@@ -1,7 +1,7 @@
 {
   "productName": "Muzika",
   "directories": {
-    "output": "app-builds"
+    "output": "../../app-builds"
   },
   "nsis": {
     "oneClick": false,
@@ -9,7 +9,7 @@
   },
   "asar": true,
   "win": {
-    "icon": "dist/muzika-viewer",
+    "icon": "assets/muzika.png",
     "target": [
       "zip",
       "nsis"
@@ -21,12 +21,18 @@
       "node_modules/ffprobe-static/bin/win32/${arch}${/*}",
       "!node_modules/ffprobe-static/bin/darwin${/*}",
       "!node_modules/ffprobe-static/bin/linux${/*}"
-    ]
+    ],
+    "publish": [{
+      "provider": "s3",
+      "bucket": "muzika-release",
+      "path": "/studio/win-${arch}"
+    }]
   },
   "mac": {
-    "icon": "dist/muzika-viewer",
+    "icon": "assets/muzika.png",
     "target": [
-      "dmg"
+      "dmg",
+      "zip"
     ],
     "files": [
       "node_modules/ffmpeg-static/bin/darwin/${arch}${/*}",
@@ -35,10 +41,15 @@
       "node_modules/ffprobe-static/bin/darwin/${arch}${/*}",
       "!node_modules/ffprobe-static/bin/win32${/*}",
       "!node_modules/ffprobe-static/bin/linux${/*}"
-    ]
+    ],
+    "publish": [{
+      "provider": "s3",
+      "bucket": "muzika-release",
+      "path": "/studio/darwin"
+    }]
   },
   "linux": {
-    "icon": "dist/muzika-viewer",
+    "icon": "assets/muzika.png",
     "target": [
       "AppImage"
     ],
@@ -49,6 +60,19 @@
       "node_modules/ffprobe-static/bin/linux/${arch}${/*}",
       "!node_modules/ffprobe-static/bin/darwin${/*}",
       "!node_modules/ffprobe-static/bin/win32${/*}"
-    ]
-  }
+    ],
+    "publish": [{
+      "provider": "s3",
+      "bucket": "muzika-release",
+      "path": "/studio/linux-${arch}"
+    }]
+  },
+  "files": [
+    "main.js",
+    "src/**/*.js",
+    {
+      "from": "../../dist/muzika-studio-renderer",
+      "to": "./renderer"
+    }
+  ]
 }
