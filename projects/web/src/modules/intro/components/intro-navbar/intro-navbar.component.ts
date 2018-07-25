@@ -14,7 +14,8 @@ export class IntroNavbarComponent extends BaseComponent {
   currentUser: User;
   lang: string;
 
-  constructor(private userActions: UserActions, private translateService: TranslateService) {
+  constructor(private userActions: UserActions,
+              private translateService: TranslateService) {
     super();
   }
 

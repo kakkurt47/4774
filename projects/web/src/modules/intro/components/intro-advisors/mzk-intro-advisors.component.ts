@@ -76,7 +76,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Jinsoo Park',
       imagePath: 'parkjinsoo.jpg',
-      position: 'CFO, Huaybrothers Entertainment',
+      position: 'CFO, Huayibrothers Entertainment',
       sentences: [
         '(EX) Director and CFO, YG investment',
         '(EX) Senior Associate, Samill PricewaterhouseCoopers',

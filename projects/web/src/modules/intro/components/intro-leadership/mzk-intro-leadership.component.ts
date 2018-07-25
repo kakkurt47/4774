@@ -28,7 +28,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         'Manager & owner of  a private community Facebook account of piano music  with over 480,000 followers.',
 
         'One of the earliest ETH miners in South Korea & co-owner of Ethereum mining pools'
-      ]
+      ],
+      facebook: 'https://www.facebook.com/thankspinaoman/'
     },
     {
       name: 'Sangmin Heo',
