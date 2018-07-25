@@ -3,6 +3,13 @@
   "packages": [
     "projects/*"
   ],
+  "command": {
+    "bootstrap": {
+      "ignore": [
+        "muzika-studio-main"
+      ]
+    }
+  },
   "version": "0.0.9",
   "hoist": true
 }
