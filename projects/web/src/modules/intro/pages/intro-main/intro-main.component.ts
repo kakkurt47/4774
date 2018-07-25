@@ -1,6 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { BaseComponent } from '@muzika/core/angular';
+import { forkJoin } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 declare const jQuery;
 
@@ -14,10 +16,13 @@ declare const jQuery;
   ]
 })
 export class IntroMainPageComponent extends BaseComponent implements AfterViewInit {
+  macDownloadURL: string;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: string) {
+  constructor(@Inject(PLATFORM_ID) private platformId: string,
+              private http: HttpClient) {
     super();
   }
+
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -53,11 +58,19 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
   }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-      // particlesJS('home', particleConfig, () => {
-      //   MuzikaConsole.log('callback - particles.js config loaded');
-      // });
-    }
+    this._sub.push(
+      forkJoin(
+        this.http.get('https://release.muzika.network/studio/darwin/latest-mac.json')
+      ).subscribe(([macInfo]: [{
+        version: string,
+        releaseDate: string,
+        url: string
+      }]) => {
+        if (macInfo && macInfo.url) {
+          this.macDownloadURL = macInfo.url;
+        }
+        console.log(macInfo);
+      })
+    );
   }
 }
