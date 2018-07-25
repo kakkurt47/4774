@@ -144,7 +144,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Yoonwoo Lee',
       imagePath: 'YoonwooLee.png',
-      position: ' 三星电子CEO & 副会长',
+      position: '(前) 三星电子CEO & 副会长',
       sentences: [
       ]
     },
