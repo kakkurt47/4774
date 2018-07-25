@@ -24,7 +24,7 @@ import { BaseComponent } from '@muzika/core/angular';
           <span class="lang">EN</span>
         </span>
     </a>
-    <a onclick="alert('It will be open soon')" target="_blank"> 
+    <a hre="https://t.me/muzika_korean" target="_blank"> 
         <span class="fa-stack fa-2x">
           <i class="fas fa-circle fa-stack-2x"></i>
           <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
