@@ -35,7 +35,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Yoonwoo Lee',
       imagePath: 'YoonwooLee.png',
-      position: 'CEO & Vice Chairman of Samsung Electronics',
+      position: '(EX) CEO & Vice Chairman of Samsung Electronics',
       sentences: [
       ]
     },
@@ -76,7 +76,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: 'Jinsoo Park',
       imagePath: 'parkjinsoo.jpg',
-      position: 'Team Leader of YG Entertainment',
+      position: 'CFO, Huaybrothers Entertainment',
       sentences: [
         '(EX) Director and CFO, YG investment',
         '(EX) Senior Associate, Samill PricewaterhouseCoopers',
@@ -289,7 +289,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     {
       name: '박진수',
       imagePath: 'parkjinsoo.jpg',
-      position: 'YG 엔터테인먼트 팀리더',
+      position: '화이브라더스 엔터테인먼트 CFO',
       sentences: [
         '(前) YG 인베스트먼트 이사, CFO',
         '(前) 삼일 PWC 회계법인 시니어 어소시에이트',

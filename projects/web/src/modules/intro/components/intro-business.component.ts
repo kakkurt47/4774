@@ -22,7 +22,7 @@ declare const jQuery;
               <div class="highlight-name text-left">{{'intro-business.year-of-exp' | translate}}</div>
             </div>
             <div class="col-6 mb-4">
-              <div class="highlight-num" data-count="170">170 +</div>
+              <div class="highlight-num" data-count="150">150 +</div>
               <div class="highlight-name text-left">{{'intro-business.user-nations' | translate}}</div>
             </div>
             <div class="col-6 mb-5">
