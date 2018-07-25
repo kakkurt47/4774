@@ -1,5 +1,6 @@
 import * as IPFS from 'ipfs';
 import * as request from 'request';
+import * as path from 'path';
 import { Observable } from 'rxjs';
 import { electronEnvironment } from './environment';
 import { MuzikaConsole } from '@muzika/core';
@@ -14,7 +15,7 @@ export class IpfsService {
 
   init(directoryPath) {
     this.node = new IPFS({
-      repo: directoryPath + 'ipfs-muzika',
+      repo: path.join(directoryPath, 'ipfs-muzika'),
       config: {
         Addresses: {
           Swarm: [
