@@ -6,8 +6,8 @@
 /out-tsc
 
 # dependencies
-node_modules/
-bower_components/
+node_modules
+bower_components
 
 # IDEs and editors
 .idea
@@ -58,3 +58,6 @@ projects/studio-main/**/*.js.map
 projects/studio-main/**/*.js
 main.js
 main.js.map
+
+# Logs
+lerna-debug.log
