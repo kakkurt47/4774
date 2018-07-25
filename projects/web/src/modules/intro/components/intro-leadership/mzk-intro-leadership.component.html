@@ -26,6 +26,7 @@
               <h6 class="mb-0 leader-name">
                 {{leader.name}}
                 <a class="fab fa-github" *ngIf="leader.github" [attr.href]="leader.github" target="_blank"></a>
+                <a class="fab fa-linkedin" *ngIf="leader.linkedin" [attr.href]="leader.linkedin" target="_blank"></a>
               </h6>
               <div class="position mt-1">
                 {{leader.position}} & {{'intro-leadership.co-founders' | translate}}

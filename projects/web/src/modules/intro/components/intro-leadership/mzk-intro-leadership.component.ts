@@ -35,6 +35,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
       imagePath: 'assets/intro-img/leader-sangmin.png',
       position: 'CTO',
       sentences: [
+        'Computer Science, Hanyang Univesity',
+
         'A prodigy programmer and developer who made his first fortune from his web game at the age of 15.',
 
         'The sole developer and  owner of  the famous Korean college-based social media “The Bamboo Network”.',
@@ -51,6 +53,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
       imagePath: 'assets/intro-img/leader-jangwon.png',
       position: 'COO',
       sentences: [
+        'Business Administration, Seoul National University + Top Graduate of Daewon Foreign Language Highschool',
+
         `Fluent with Chinese, English and Korean languages, 
         and founded Piano Group The Serendipity, a professional piano group well-known in South Korea for piano duets;  
         co-founded YouthGlobe Korea, the Korean division of the international 
@@ -60,7 +64,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
 
         `maintains substantial  key network across the most brilliant  young  minds  of  blockchain, 
         technology and  the finance  industry in the country.`
-      ]
+      ],
+      linkedin: 'https://www.linkedin.com/in/jang-won-lee-5811b211a/'
     }
   ];
 
@@ -91,7 +96,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         '韩国电子信息奥林匹克获奖者、KISEF美国心理学会长奖获奖者、ISEF国际大会软件部门韩国代表、HCLT优秀学术论文第一作者、深度学习和自然语处理、区块链领域的年轻专家。',
 
         '自2015年以来，一直参与到谷歌 Google 在Github平台上的开源代码项目。'
-      ]
+      ],
+      github: 'https://github.com/leo6104'
     },
     {
       name: 'Jangwon Lee',
@@ -102,7 +108,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         在韩国以钢琴二重奏闻名。联合创建了YouthGlobe Korea， 一个旨在加强布隆迪教育状况的国际非政府组织YouthGlobe的韩国分部。同时，联合创建了Shadal Inc.-韩国最大的高校食品配送移动应用程序。`,
 
         `在韩国区块链、技术和金融行业领域中拥有广泛和可靠的关键网络与人脉资源关系。`
-      ]
+      ],
+      linkedin: 'https://www.linkedin.com/in/jang-won-lee-5811b211a/'
     }
   ];
 
@@ -133,7 +140,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         'NCSoft AI Center NLP Lab 연구원 출신',
 
         `한국정보올림피아드(2위), Intel Science Engineering Fair(1위), Intel Science Fair 소프트웨어 부문 대한민국 국가대표 등 다수의 수상경력 보유`
-      ]
+      ],
+      github: 'https://github.com/leo6104'
     },
     {
       name: '이장원',
@@ -144,7 +152,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         '피아노그룹 ‘The Serendipity’ 창립자',
         `세계적 NGO YouthGlobe의 한국지부 YouthGlobe Korea의 공동창립자, 대한민국 최대 대학교 기반 배달 어플리케이션 샤달의 공동창업자`,
         '블록체인, 기술, 파이낸스 분야의 주요 전문가들과 인적 네트위크 구축'
-      ]
+      ],
+      linkedin: 'https://www.linkedin.com/in/jang-won-lee-5811b211a/'
     }
   ];
 
