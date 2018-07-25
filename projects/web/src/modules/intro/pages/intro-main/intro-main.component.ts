@@ -17,6 +17,8 @@ declare const jQuery;
 })
 export class IntroMainPageComponent extends BaseComponent implements AfterViewInit {
   macDownloadURL: string;
+  winDownloadURL: string;
+  linuxDownloadURL: string;
 
   constructor(@Inject(PLATFORM_ID) private platformId: string,
               private http: HttpClient) {
@@ -58,19 +60,14 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
   }
 
   ngOnInit() {
-    this._sub.push(
-      forkJoin(
-        this.http.get('https://release.muzika.network/studio/darwin/latest-mac.json')
-      ).subscribe(([macInfo]: [{
-        version: string,
-        releaseDate: string,
-        url: string
-      }]) => {
+    jQuery
+      .getJSON('https://release.muzika.network/studio/darwin/latest-mac.json')
+      .then(macInfo => {
         if (macInfo && macInfo.url) {
           this.macDownloadURL = macInfo.url;
         }
-        console.log(macInfo);
-      })
-    );
+      });
+    this.linuxDownloadURL = 'https://release.muzika.network/studio/linux/muzika-0.0.9-x86_64.AppImage';
+    this.winDownloadURL = 'https://release.muzika.network/studio/windows/muzika-0.0.9-x64.exe';
   }
 }
