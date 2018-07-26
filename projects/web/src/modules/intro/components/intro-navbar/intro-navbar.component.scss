@@ -40,6 +40,10 @@
   }
 }
 
+.navbar-nav {
+  position: relative; // It's for dropdownMenu in PC
+}
+
 .navbar-nav li.divider {
   border-right: 1px solid white;
   height: 17px;

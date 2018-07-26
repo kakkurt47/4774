@@ -69,7 +69,7 @@
               한국어
             </ng-container>
           </a>
-          <div class="dropdown-menu" *dropdownMenu aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" [class.active]="lang === 'en'" (click)="changeLang('en')">English</a>
             <a class="dropdown-item" [class.active]="lang === 'zh'" (click)="changeLang('zh')">中文</a>
             <a class="dropdown-item" [class.active]="lang === 'ko'" (click)="changeLang('ko')">한국어</a>
