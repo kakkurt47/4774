@@ -32,13 +32,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
 
   advisors: Advisors[] = [
     {
-      'name': '조민식',
       'imagePath': 'MichaelCho.jpg',
-      'position': '카카오 사외이사',
-      'sentences': [
-        '(前)시니어파트너, 삼정 KPMG 회계법인',
-        '공인회계사(CPA)'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'Non-executive Director of Kakao',
         [Lang.KOR]: '카카오 사외이사',
@@ -64,12 +58,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'name': '이윤우',
       'imagePath': 'YoonwooLee.png',
-      'position': '(前) 삼성전자 CEO, 부회장',
-      'sentences': [
-
-      ],
       'i18nPosition': {
         [Lang.ENG]: '(EX) CEO & Vice Chairman of Samsung Electronics',
         [Lang.KOR]: '(前) 삼성전자 CEO, 부회장',
@@ -93,14 +82,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'name': 'Stella Kung',
       'imagePath': 'qtum_stella.jpg',
-      'position': '퀀텀(QTUM), CMO',
-      'sentences': [
-        '블록체인 산업 마케팅과 PR의 선구자. ',
-        'DACx, ZAFED, ChainB 등 다양한 산업군에서의 경험 보유. ',
-        '미디어 컨설팅회사 PANONY, 블록체인 프로젝트 Mithril 자문.'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'CMO of QTUM',
         [Lang.KOR]: '퀀텀(QTUM), CMO',
@@ -130,13 +112,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'name': '홍준기',
       'imagePath': 'JoonkeeHong.png',
-      'position': '카카오뱅크 사외이사',
-      'sentences': [
-        '(前) 노무라증권 Asia Head of Global Finance(Capital Markets)',
-        '(前) 리만브라더스 Asia Head of Global Finance(Capital Markets)'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'Non-executive Director of Kakao Bank',
         [Lang.KOR]: '카카오뱅크 사외이사',
@@ -163,15 +139,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'name': '최인규',
       'imagePath': 'InkyuChoi.png',
-      'position': '네이버 VC 스프링캠프 대표',
-      'sentences': [
-        '(前) 서울테크노홀딩스 팀장',
-        '(前) MAPS 특허법인 파트너 변리사',
-        '(前) 엠파스 검색엔진 소프트웨어 엔지니어',
-        '변리사'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'Naver Venture Capital',
         [Lang.KOR]: '네이버 VC 스프링캠프 대표',
@@ -245,15 +213,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'name': 'Brian Lee',
       'imagePath': 'blackhorse-brian.jpg',
-      'position': 'BlackHorse 그룹 이사',
-      'sentences': [
-        '(前) 중국 국가개발은행, CJSC 투자은행 근무 ',
-        'Digital Asset Investment Association ("DAIA") 회장. ',
-        'Quarkchain, Fantom, Open Platform 등 20개 이상의 블록체인 프로젝트에 투자.',
-        'Cass Business School에서 Investment와 Financial Risk Management 전공.'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'Managing Director, BlackHorse Group',
         [Lang.KOR]: 'BlackHorse 그룹 이사',
@@ -286,15 +246,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'name': 'Adrian Lai',
       'imagePath': 'adrian_lai.png',
-      'position': 'Managing Director, BlackHorse Group',
-      'sentences': [
-        '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
-        'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
-        'Speaker and guest lecturer at industry events and universities. ',
-        'Former ICO investment lead at Orichal Partners'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'Managing Director, BlackHorse Group',
         [Lang.KOR]: 'Managing Director, BlackHorse Group',
@@ -341,29 +293,25 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       i18nSentences: {
         [Lang.ENG]: [
           'Chief Corporate Officer of Yello Digital Marketing Group (TOP NO.1 digital marketing & ad technology group in South Korea) ',
-          'Business Development Director for WPP Korea',
-          'Key figure for the International Business Division and Corporate Strategy Division at CJ Music/Mnet Media (currently CJ E&M).'
+          '(EX) Business Development Director for WPP Korea',
+          '(EX) Key figure for the International Business Division and ' +
+          'Corporate Strategy Division at CJ Music/Mnet Media (currently CJ E&M).'
         ],
         [Lang.KOR]: [
           'Chief Corporate Officer of Yello Digital Marketing Group (TOP NO.1 digital marketing & ad technology group in South Korea) ',
-          'Business Development Director for WPP Korea',
-          'Key figure for the International Business Division and Corporate Strategy Division at CJ Music/Mnet Media (currently CJ E&M).'
+          '(EX) Business Development Director for WPP Korea',
+          '(EX) Key figure for the International Business Division and ' +
+          'Corporate Strategy Division at CJ Music/Mnet Media (currently CJ E&M).'
         ],
         [Lang.CHN]: [
           'Yello Digital Marketing Group公司的首席运营官 （韩国最大的数字营销与广告技术集团）',
-          'WPP Korea 商务拓展总监',
-          '韩国娱乐传媒集团CJ E&M国际商务部和企业战略部 部门主要负责之一'
+          '前 WPP Korea 商务拓展总监',
+          '前 韩国娱乐传媒集团CJ E&M国际商务部和企业战略部 部门主要负责之一'
         ]
       }
     },
     {
-      'name': 'Alyssa Tsai ',
       'imagePath': 'panony_alyssa.jpg',
-      'position': 'PANONY의 창립자, 대표이사',
-      'sentences': [
-        '블록체인 산업 초기부터 주요 프로젝트의 시장 진입과 글로벌 마케팅 전략 지원. ',
-        '(前) Conde Nast international 프로젝트 리더, Istentia 컨설턴트  (ASX: ISD), Ogilvy 커뮤니케이션 스페셜리스트.'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'Founder & CEO of PANONY',
         [Lang.KOR]: 'PANONY의 창립자, 대표이사',
@@ -391,14 +339,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'name': '조면식',
       'imagePath': 'MyunsikCho.png',
-      'position': '동녘 LLC 변호사',
-      'sentences': [
-        '음악, 엔터테인먼트, 영화, 저작권 법률 전문가',
-        '(前) 한국영화제작가협회 법률고문',
-        '(前) JYP, 스타제국, 젤리피쉬 엔터테인먼트 및 백지영 등 다수 음악가와 배우 법률자문'
-      ],
       'i18nPosition': {
         [Lang.ENG]: 'Lawyer, Dongnyuk LLC',
         [Lang.KOR]: '동녘 LLC 변호사',
