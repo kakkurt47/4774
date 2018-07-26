@@ -62,5 +62,14 @@ h2 {
     .team-desc {
       padding-left: 0;
     }
+
+    .team-position, .team-desc, .team-name, a {
+      text-align: center;
+    }
+
+    a.fab {
+      display: block;
+      margin-top: 5px;
+    }
   }
 }

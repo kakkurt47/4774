@@ -98,8 +98,8 @@ import { BaseComponent } from '../../../models/base.component';
     }
 
     .function-img {
-      width: 95px;
-      height: 95px;
+      width: 80px;
+      height: 80px;
       margin: 0 auto;
     }
 

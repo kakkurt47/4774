@@ -30,6 +30,7 @@
     "build:web": "npm run postinstall:web && ng build muzika-web",
     "build:web:stage": "npm run build:web -- -c stage",
     "build:web:prod": "npm run build:web -- -c production",
+    "build:intro": "ng build muzika-intro -c production",
     "electron:tsc": "npm run tsc:core && npm run tsc:studio-main",
     "electron:ready": "npx electron-builder install-app-deps",
     "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:tsc && electron projects/studio-main --serve --debug --inspect=5858",

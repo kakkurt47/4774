@@ -24,13 +24,13 @@
             </div>
             <div class="col-7 col-sm-6 pt-5 pl-3">
               <h6 class="mb-0">
-                {{advisor.name}}
+                {{advisor.i18nName[currentLang]}}
               </h6>
-              <div class="position mt-2">{{advisor.position}}</div>
+              <div class="position mt-2">{{advisor.i18nPosition[currentLang]}}</div>
             </div>
           </div>
           <ul class="pt-3 text-muted small">
-            <li class="mt-2" *ngFor="let sentence of advisor.sentences; let i =index;">
+            <li class="mt-2" *ngFor="let sentence of advisor.i18nSentences[currentLang]; let i =index;">
               {{sentence}}
             </li>
           </ul>

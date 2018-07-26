@@ -62,7 +62,7 @@ test:contract:
     - npm run build:core
     - npm run build:web:prod
     - npm run build:studio
-    - ng build muzika-intro -c production
+    - npm run build:intro
   artifacts:
     paths:
       - dist/intro/

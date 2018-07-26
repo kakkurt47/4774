@@ -51,6 +51,7 @@ import { BaseComponent } from '../../../models/base.component';
     img {
       background: white;
       border-radius: 8px 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, .03);
     }
 
     .empty-box {
@@ -62,6 +63,7 @@ import { BaseComponent } from '../../../models/base.component';
       height: 100%;
       border-radius: 8px 8px;
       min-height: 110px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, .03);
     }
 
     @media (max-width: 738px) {
