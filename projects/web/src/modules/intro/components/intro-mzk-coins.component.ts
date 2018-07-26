@@ -14,7 +14,7 @@ import { BaseComponent } from '@muzika/core/angular';
           {{'intro-mzk-coins.subtitle-2' | translate}}
         </p>
         <img src="assets/intro-img/diagram_coin_pc.png" class="mt-sm-5 img-fluid mb-sm-5 hidden-pc">
-        <img src="assets/intro-img/diagram_coin_mobile.png" class="mt-sm-5 img-fluid mb-sm-5 hidden-mb">
+        <img src="assets/intro-img/diagram_coin_mobile2.png" class="mt-sm-5 img-fluid mb-sm-5 hidden-mb">
         <BR/>
         <BR/>
         <h2 class="mt-5 text-center intro-section-title mb-5">{{'intro-mzk-coins.major-functions' | translate}}</h2>
