@@ -63,6 +63,7 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
     jQuery
       .getJSON('https://release.muzika.network/studio/darwin/latest-mac.json')
       .then(macInfo => {
+        console.log(macInfo);
         if (macInfo && macInfo.url) {
           this.macDownloadURL = macInfo.url;
         }
