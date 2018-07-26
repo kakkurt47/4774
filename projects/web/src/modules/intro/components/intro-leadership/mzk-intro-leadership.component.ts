@@ -83,7 +83,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         '私人管理和自主拥有一个与钢琴音乐相关超过48万粉丝的“脸书（Facebook）”帐号。',
 
         '韩国数字货币和区块链领域的早期的以太坊“矿工”，联名拥有以太坊矿池。'
-      ]
+      ],
+      facebook: 'https://www.facebook.com/thankspinaoman/'
     },
     {
       name: 'Sangmin Heo',
@@ -127,7 +128,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         '48만명 이상의 팔로워를 보유한 피아노 음악 관련 페이스북 페이지 운영',
 
         '초창기 이더리움 채굴자. 이더리움 마이닝풀 공동소유자'
-      ]
+      ],
+      facebook: 'https://www.facebook.com/thankspinaoman/'
     },
     {
       name: '허상민',
