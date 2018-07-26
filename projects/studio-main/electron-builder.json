@@ -15,9 +15,11 @@
       "nsis"
     ],
     "files": [
+      "!node_modules/ffmpeg-static/bin/win32/!(${arch}${/*})",
       "node_modules/ffmpeg-static/bin/win32/${arch}${/*}",
       "!node_modules/ffmpeg-static/bin/darwin${/*}",
       "!node_modules/ffmpeg-static/bin/linux${/*}",
+      "!node_modules/ffprobe-static/bin/win32/!(${arch}${/*})",
       "node_modules/ffprobe-static/bin/win32/${arch}${/*}",
       "!node_modules/ffprobe-static/bin/darwin${/*}",
       "!node_modules/ffprobe-static/bin/linux${/*}"
@@ -26,7 +28,7 @@
       {
         "from": "/${env.MAGICK_HOME}",
         "to": ".",
-        "filter": "CORE_RL_*.dll"
+        "filter": "./*(CORE_RL_*.dll|msvcr120.dll|msvcp120.dll|vcomp120.dll)"
       },
       {
         "from": "/${env.OPENSSL_HOME}",
@@ -47,9 +49,11 @@
       "zip"
     ],
     "files": [
+      "!node_modules/ffmpeg-static/bin/darwin/!(${arch}${/*})",
       "node_modules/ffmpeg-static/bin/darwin/${arch}${/*}",
       "!node_modules/ffmpeg-static/bin/win32${/*}",
       "!node_modules/ffmpeg-static/bin/linux${/*}",
+      "!node_modules/ffprobe-static/bin/darwin/!(${arch}${/*})",
       "node_modules/ffprobe-static/bin/darwin/${arch}${/*}",
       "!node_modules/ffprobe-static/bin/win32${/*}",
       "!node_modules/ffprobe-static/bin/linux${/*}"
@@ -66,9 +70,11 @@
       "AppImage"
     ],
     "files": [
+      "!node_modules/ffmpeg-static/bin/linux/!(${arch}${/*})",
       "node_modules/ffmpeg-static/bin/linux/${arch}${/*}",
       "!node_modules/ffmpeg-static/bin/darwin${/*}",
       "!node_modules/ffmpeg-static/bin/win32${/*}",
+      "!node_modules/ffprobe-static/bin/linux/!(${arch}${/*})",
       "node_modules/ffprobe-static/bin/linux/${arch}${/*}",
       "!node_modules/ffprobe-static/bin/darwin${/*}",
       "!node_modules/ffprobe-static/bin/win32${/*}"
