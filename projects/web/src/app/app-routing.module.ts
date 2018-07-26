@@ -4,7 +4,7 @@ import { LayoutComponent } from '../modules/shared/components/layout/layout.comp
 
 const routes: Routes = [
   {
-    path: 'beta',
+    path: '',
     component: LayoutComponent,
     loadChildren: '../modules/prototype/prototype.module#PrototypeModule'
   }

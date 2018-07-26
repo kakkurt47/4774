@@ -6,21 +6,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EnvironmentTypeToken, LocalStorage, MuzikaCommonModule, MuzikaCoreModule, PLATFORM_TYPE_TOKEN } from '@muzika/core/angular';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { environment } from '../environments/environment';
-import { PostModule } from '../modules/post/post.module';
-import { FooterComponent } from '../modules/shared/components/footer/footer.component';
-import { LayoutComponent } from '../modules/shared/components/layout/layout.component';
-import { NavbarComponent } from '../modules/shared/components/navbar/navbar.component';
-import { SharedModule } from '../modules/shared/shared.module';
-import { TestModule } from '../modules/test/test.module';
-import { AppRoutingModule } from './app-routing.module';
+import { MuzikaIntroModule } from '../modules/intro/intro.module';
 import { AppComponent } from './app.component';
 import { isPlatformBrowser } from '@angular/common';
-import { Lang } from '@muzika/core';
+import { Lang } from '../models/lang';
+import { LocalStorage } from '../models/localstorage.service';
+import { MuzikaIconComponent } from '../muzika-icon/muzika-icon.component';
+import { RouterModule } from '@angular/router';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,11 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent,
-
-    LayoutComponent,
-    FooterComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     /* Angular modules */
@@ -44,13 +35,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     HttpClientModule,
 
+    RouterModule,
+
     /* Muzika Modules */
-    MuzikaCommonModule,
-    MuzikaCoreModule,
 
-    TestModule,
+    MuzikaIntroModule,
 
-    AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -58,7 +48,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    SharedModule,
 
     /* Bootstrap modules */
     ModalModule.forRoot(),
@@ -66,21 +55,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     /* Material modules */
     MatButtonModule,
     MatCardModule,
-    MatRadioModule,
-
-    /* Sub-modules */
-    PostModule
+    MatRadioModule
   ],
-  providers: [
-    {
-      provide: EnvironmentTypeToken,
-      useValue: environment.env
-    },
-    {
-      provide: PLATFORM_TYPE_TOKEN,
-      useValue: 'web'
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -206,3 +206,28 @@ button:focus {
 }
 
 
+/**
+ * HELPER for Intro
+ **/
+@import 'helper';
+
+h2.intro-section-title {
+  font-size: $px2rem_48;
+  font-weight: 700;
+  color: #343c4d;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
+}
+
+p.intro-section-subtitle {
+  font-size: $px2rem_18;
+  font-weight: 400;
+  color: #8196b2;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+

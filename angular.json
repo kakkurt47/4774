@@ -197,6 +197,155 @@
         }
       }
     },
+    "muzika-intro": {
+      "root": "projects/intro/",
+      "sourceRoot": "projects/intro/",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/intro",
+            "index": "projects/intro/src/index.html",
+            "main": "projects/intro/src/main.ts",
+            "tsConfig": "projects/intro/tsconfig.json",
+            "polyfills": "projects/intro/src/polyfills.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/intro/src/modules/intro/scss"
+              ]
+            },
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/intro/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/intro/src/assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/intro/src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "scss/fontawesome/css/fontawesome.css",
+              "scss/fontawesome/css/all.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/froala-editor/js/froala_editor.min.js",
+              "node_modules/froala-editor/js/froala_editor.pkgd.min.js",
+              "node_modules/froala-editor/js/languages/ko.js",
+              "node_modules/froala-editor/js/plugins/link.min.js",
+              "node_modules/froala-editor/js/plugins/table.min.js",
+              "node_modules/froala-editor/js/plugins/url.min.js",
+              "node_modules/froala-editor/js/plugins/colors.min.js",
+              "node_modules/froala-editor/js/plugins/align.min.js",
+              "node_modules/froala-editor/js/plugins/emoticons.min.js",
+              "node_modules/froala-editor/js/plugins/font_size.min.js",
+              "node_modules/froala-editor/js/plugins/code_view.min.js",
+              "node_modules/froala-editor/js/plugins/lists.min.js",
+              "node_modules/froala-editor/js/plugins/paragraph_style.min.js",
+              "node_modules/froala-editor/js/plugins/image.min.js",
+              "node_modules/froala-editor/js/plugins/video.min.js",
+              "node_modules/froala-editor/js/plugins/image_manager.min.js"
+            ]
+          },
+          "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/intro/src/environments/environment.ts",
+                  "with": "projects/intro/src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "sourceMap": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/intro/src/environments/environment.ts",
+                  "with": "projects/intro/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "muzika-intro:build",
+            "hmr": true,
+            "hmrWarning": false
+          },
+          "configurations": {
+            "stage": {
+              "browserTarget": "muzika-intro:build:stage"
+            },
+            "production": {
+              "browserTarget": "muzika-intro:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "muzika-intro:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/intro/src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "projects/intro/src/polyfills.ts",
+            "tsConfig": "projects/intro/tsconfig.spec.json",
+            "scripts": [],
+            "styles": [
+              "projects/intro/src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "scss/fontawesome/css/fontawesome.css",
+              "scss/fontawesome/css/all.css"
+            ],
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/intro/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/intro/src/assets",
+                "output": "/assets"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/core/common/tsconfig.json",
+              "projects/intro/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "muzika-web": {
       "root": "projects/web/",
       "sourceRoot": "projects/web/",
@@ -211,9 +360,7 @@
             "tsConfig": "projects/web/tsconfig.json",
             "polyfills": "projects/web/src/polyfills.ts",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "projects/web/src/modules/intro/scss"
-              ]
+              "includePaths": []
             },
             "assets": [
               {
@@ -224,11 +371,6 @@
               {
                 "glob": "**/*",
                 "input": "projects/web/src/assets",
-                "output": "/assets"
-              },
-              {
-                "glob": "particles.js",
-                "input": "node_modules/particles.js/",
                 "output": "/assets"
               }
             ],

@@ -56,15 +56,16 @@ test:contract:
     - git submodule update --init --recursive
     - git submodule foreach --recursive git submodule update --init
     - cd muzika-contract/ && npm install && cd ../
-  artifacts:
-    paths:
-      - dist/web/
   script:
     - npm run contract:compile
     - npm run lint
     - npm run build:core
     - npm run build:web:prod
     - npm run build:studio
+    - ng build muzika-intro
+  artifacts:
+    paths:
+      - dist/intro/
   tags:
     - frontend
 
@@ -73,7 +74,7 @@ deploy:stage:
   stage: deploy
   script:
     - python -m pip install awscli
-    - aws s3 sync ./dist/web/ s3://$AWS_BUCKET --delete
+    - aws s3 sync ./dist/intro/ s3://$AWS_BUCKET --delete
     - aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/index.html"
     - aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID_2 --paths "/index.html"
   only:
