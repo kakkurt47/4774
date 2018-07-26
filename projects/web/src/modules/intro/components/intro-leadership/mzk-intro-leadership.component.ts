@@ -12,6 +12,8 @@ import { Lang } from '@muzika/core';
   ]
 })
 export class MzkIntroLeadershipComponent extends BaseComponent {
+  currentLang: string;
+
   leaders: any[] = [];
 
   leaders_EN: any[] = [
@@ -169,6 +171,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
     this.leaders = this.leaders_EN;
     this._sub.push(
       this.translateService.onLangChange.subscribe(lang => {
+        this.currentLang = this.translateService.currentLang;
+
         switch (this.translateService.currentLang) {
           case Lang.KOR:
             this.leaders = this.leaders_KR;

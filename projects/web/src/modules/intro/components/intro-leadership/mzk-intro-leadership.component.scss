@@ -58,6 +58,10 @@ ul {
   }
 }
 
+ul.ko, ul.zh {
+  min-height: 230px;
+}
+
 .awards {
   font-weight: bold;
   color: white;

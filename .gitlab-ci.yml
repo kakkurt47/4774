@@ -75,6 +75,7 @@ deploy:stage:
     - python -m pip install awscli
     - aws s3 sync ./dist/web/ s3://$AWS_BUCKET --delete
     - aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/index.html"
+    - aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID_2 --paths "/index.html"
   only:
     - master
   tags:

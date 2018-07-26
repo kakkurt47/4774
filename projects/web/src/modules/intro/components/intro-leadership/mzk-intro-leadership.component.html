@@ -34,7 +34,7 @@
               </div>
             </div>
           </div>
-          <ul class="pt-2">
+          <ul class="pt-2" [ngClass]="currentLang">
             <li class="mt-1" *ngFor="let sentence of leader.sentences; let i =index;">
               {{sentence}}
             </li>

@@ -60,15 +60,16 @@ export class IntroMainPageComponent extends BaseComponent implements AfterViewIn
   }
 
   ngOnInit() {
-    jQuery
-      .getJSON('https://release.muzika.network/studio/darwin/latest-mac.json')
-      .then(macInfo => {
-        console.log(macInfo);
-        if (macInfo && macInfo.url) {
-          this.macDownloadURL = macInfo.url;
-        }
-      });
+    // jQuery
+    //   .getJSON('https://release.muzika.network/studio/darwin/latest-mac.json')
+    //   .then(macInfo => {
+    //     console.log(macInfo);
+    //     if (macInfo && macInfo.url) {
+    //       this.macDownloadURL = macInfo.url;
+    //     }
+    //   });
+    this.macDownloadURL = 'https://s3.amazonaws.com/muzika-release/studio/darwin/Muzika-0.0.9-mac.zip';
     this.linuxDownloadURL = 'https://release.muzika.network/studio/linux/muzika-0.0.9-x86_64.AppImage';
-    this.winDownloadURL = 'https://release.muzika.network/studio/windows/muzika-0.0.9-x64.exe';
+    this.winDownloadURL = 'https://s3.amazonaws.com/muzika-release/studio/win-x64/Muzika+Setup+0.0.9.exe';
   }
 }
