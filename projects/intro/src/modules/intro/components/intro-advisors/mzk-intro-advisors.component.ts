@@ -265,10 +265,10 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           'Former ICO investment lead at Orichal Partners'
         ],
         [Lang.KOR]: [
-          '(Ex) BlackRock with diversified experience in sales, marketing, fintech and corporate governance. ',
-          'Trainer of HKSI and Kaplan Financials on cryptocurrency and blockchain technology. ',
-          'Speaker and guest lecturer at industry events and universities. ',
-          'Former ICO investment lead at Orichal Partners'
+          '(前) BlackRock 근무',
+          'HKSI와 Kaplan Financials 암호화폐와 블록체인 기술 트레이너',
+          '다수 기업체와 대학교에서 강연 경력 보유 ',
+          '(前) Orichal Partners ICO 투자 리더'
         ],
         [Lang.CHN]: [
           '前 贝莱德集团销售、市场营销、金融科技与公司治理领域的专业人士\n',
@@ -298,10 +298,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           'Corporate Strategy Division at CJ Music/Mnet Media (currently CJ E&M).'
         ],
         [Lang.KOR]: [
-          'Chief Corporate Officer of Yello Digital Marketing Group (TOP NO.1 digital marketing & ad technology group in South Korea) ',
-          '(EX) Business Development Director for WPP Korea',
-          '(EX) Key figure for the International Business Division and ' +
-          'Corporate Strategy Division at CJ Music/Mnet Media (currently CJ E&M).'
+          'COO, 옐로디지털마케팅그룹 (대한민국 1위 디지털 마케팅과 광고기술 회사)',
+          '(前) WPP 코리아 사업개발이사 ',
+          '(前) CJ E&M 해외사업부문, 전략부문 담당'
         ],
         [Lang.CHN]: [
           'Yello Digital Marketing Group公司的首席运营官 （韩国最大的数字营销与广告技术集团）',

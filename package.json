@@ -123,6 +123,7 @@
     "ngx-uploader": "^6.0.1",
     "particles.js": "^2.0.0",
     "popper.js": "^1.14.3",
+    "raven-js": "^3.26.4",
     "redux": "^4.0.0",
     "rxjs": "^6.2.2",
     "safe-buffer": "^5.1.2",
