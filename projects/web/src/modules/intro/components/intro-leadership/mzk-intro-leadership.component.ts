@@ -45,8 +45,8 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
         'The sole developer and  owner of  the famous Korean college-based social media “The Bamboo Network”.',
 
         `A winner  of  multiple  awards including  the Korean  Olympiad  in  Informatics(2nd), 
-        Korea  Intel  Science  Engineering  Fair(1st), 
-        a national  candidate  for  Intel  Science  Fair International  Competition Software Division, 
+        Korea  Intel  Science and Engineering  Fair(1st), 
+        a global finalist  for  Intel  Science and Engineering Fair International  Competition Software Division, 
         continuously involved in open source projects of Google on Github since 2015.`
       ],
       github: 'https://github.com/leo6104'

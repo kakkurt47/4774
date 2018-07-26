@@ -20,6 +20,7 @@ import { MzkIntroMZKCoinComponent } from './components/intro-mzk-coins.component
 import { MzkIntroEcosystemComponent } from './components/intro-ecosystem.component';
 import { MzkIntroPartnersComponent } from './components/intro-partners.component';
 import { MzkIntroFloatingBtnsComponent } from './components/intro-floating-btns/mzk-intro-floating-btns.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   imports: [
@@ -29,6 +30,8 @@ import { MzkIntroFloatingBtnsComponent } from './components/intro-floating-btns/
     HttpClientModule,
 
     IntroRoutingModule,
+
+    BsDropdownModule.forRoot(),
 
     SharedModule,
 
