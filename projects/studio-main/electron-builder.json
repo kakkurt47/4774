@@ -22,6 +22,18 @@
       "!node_modules/ffprobe-static/bin/darwin${/*}",
       "!node_modules/ffprobe-static/bin/linux${/*}"
     ],
+    "extraFiles": [
+      {
+        "from": "/${env.MAGICK_HOME}",
+        "to": ".",
+        "filter": "CORE_RL_*.dll"
+      },
+      {
+        "from": "/${env.OPENSSL_HOME}",
+        "to": ".",
+        "filter": "*.dll"
+      }
+    ],
     "publish": [{
       "provider": "s3",
       "bucket": "muzika-release",
