@@ -16,6 +16,7 @@ import { Lang } from '../models/lang';
 import { LocalStorage } from '../models/localstorage.service';
 import { RouterModule } from '@angular/router';
 import * as Raven from 'raven-js';
+import { AirdropModule } from '../modules/airdrop/airdrop.module';
 
 Raven
   .config('https://940fec8f8e2e49c796e0e6fbf4fb7259@sentry.io/1250399')
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     /* Muzika Modules */
 
     MuzikaIntroModule,
+    AirdropModule,
 
     TranslateModule.forRoot({
       loader: {
