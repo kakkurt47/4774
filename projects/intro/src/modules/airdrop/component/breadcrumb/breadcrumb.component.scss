@@ -1,5 +1,12 @@
 $circle-border-radius: 8px;
 
+:host {
+  display: block;
+  &:after {
+    clear: both;
+  }
+  height: 120px;
+}
 
 .horizontal-line {
   position: relative;
@@ -64,6 +71,10 @@ $circle-border-radius: 8px;
 }
 
 @media(max-width: 738px) {
+  :host {
+    height: 100px;
+  }
+
   .step.one {
     left: 45px;
   }

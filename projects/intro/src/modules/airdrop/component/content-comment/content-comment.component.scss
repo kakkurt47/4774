@@ -1,0 +1,19 @@
+
+.btn-custom { // English, 한국어, 중국어 버튼
+  background: linear-gradient(to right, #2f9db4, #76dbc7);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 6px 23px;
+  font-size: 14px;
+  border-radius: 10px 10px;
+  display: block;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    box-shadow: 0 3px 8px 0 #2f9db4;
+  }
+}
