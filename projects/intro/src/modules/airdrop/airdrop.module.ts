@@ -9,11 +9,13 @@ import { AirdropContentCommentComponent } from './component/content-comment/cont
 import { AirdropContentExchangeComponent } from './component/content-exchange/content-exchange.component';
 import { AirdropMyWalletComponent } from './component/my-wallet/my-wallet.component';
 import { LpModalComponent } from './component/lp-modal/lp-modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     AirdropRoutingModule
   ],
   declarations: [

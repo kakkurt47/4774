@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
       <p class="pb-4 pb-sm-5">
         Muzika를 경험하고 <BR />
-        최대 50MZK를 받아가세요!
+        최대 20MZK를 받아가세요!
       </p>
       <airdrop-breadcrumb [(current)]="contentStep"></airdrop-breadcrumb>
 
@@ -22,7 +22,7 @@ import { Component } from '@angular/core';
                             [(current)]="contentStep"
                             [(selectedArtist)]="selectedArtist"
                             (addLP)="next(contentStep + 1, $event)"></airdrop-content-like>
-      <airdrop-content-exchange *ngIf="contentStep === 4"></airdrop-content-exchange>
+      <airdrop-content-exchange [lp]="lp" *ngIf="contentStep === 4"></airdrop-content-exchange>
       <p class="small pt-4">
         본 화면에 제시된 인터페이스는 실제 Muzika 플랫폼과 차이가 있을 수 있으며, Muzika팀은 예시된 아티스트들이 Muzika 플랫폼에서 활동할 것을 보장하지 않습니다.
       </p>
