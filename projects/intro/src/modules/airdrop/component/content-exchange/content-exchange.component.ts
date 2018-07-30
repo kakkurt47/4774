@@ -31,7 +31,7 @@ import { interval } from 'rxjs';
     <div class="receive-box mt-4">
       <h5 class="text-center">
         수령코드 
-        <i class="receive-code">we932rjgnero2832</i>
+        <i class="receive-code">{{randomCode}}</i>
       </h5>
       <input type="text" class="form-control mt-4" placeholder="이더리움 지갑 주소 입력하기">
       <ul class="mt-4">
@@ -50,12 +50,20 @@ import { interval } from 'rxjs';
 export class AirdropContentExchangeComponent {
   @Input() lp = 0;
 
+  @Input() randomCode: string;
+
+  isStart = false;
+
   mzk = 0;
 
   exchange() {
+    if (this.isStart) {
+      return;
+    }
     const previousLP = this.lp;
     const sub = interval(50)
       .subscribe(i => {
+        this.isStart = true;
         this.lp -= 1;
         this.mzk = Math.floor((i + 1) / 5);
         if (this.lp === 0) {

@@ -20,7 +20,9 @@ import { AirdropApi } from '../../airdrop-api';
       </div>
     </div>
     <div class="content">
-      <iframe *ngIf="videoUrl" [src]="videoUrl" frameborder="0" width="520" height="300"></iframe>
+      <div class="videoWrapper">
+        <iframe *ngIf="videoUrl" [src]="videoUrl" frameborder="0"></iframe>
+      </div>
     </div>
     <div class="song-title pt-3 pb-3">
       {{selectedArtist.title}}
