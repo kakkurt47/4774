@@ -21,7 +21,7 @@ export class MzkIntroCountdownComponent extends BaseComponent {
   secondsLeft: number;
 
   private _currentDate: Date;
-  private _diffTimestamp: number = 0;
+  private _diffTimestamp = 0;
 
   constructor(private translateService: TranslateService) {
     super();

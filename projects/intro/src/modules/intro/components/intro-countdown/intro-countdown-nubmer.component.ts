@@ -11,16 +11,12 @@ export class MzkIntroCountdownNumberComponent extends BaseComponent implements O
   @Input()
   num: number;
 
-  _previousNumber: number = 0;
+  _previousNumber = 0;
 
   animate = false;
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    super.ngOnInit();
   }
 
   ngOnChanges(change: SimpleChanges) {
