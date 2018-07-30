@@ -23,7 +23,7 @@ import { AirdropApi } from '../../airdrop-api';
       <airdrop-content-like *ngIf="contentStep >= 2 && contentStep <= 3"
                             [(current)]="contentStep"
                             [(selectedArtist)]="selectedArtist"
-                            (addLP)="next(contentStep + 1, $event)"></airdrop-content-like>
+                            (addLP)="nextWithHandling(contentStep + 1, $event)"></airdrop-content-like>
       <airdrop-content-exchange [lp]="lp" *ngIf="contentStep === 4"></airdrop-content-exchange>
       <p class="small pt-4">
         본 화면에 제시된 인터페이스는 실제 Muzika 플랫폼과 차이가 있을 수 있으며, Muzika팀은 예시된 아티스트들이 Muzika 플랫폼에서 활동할 것을 보장하지 않습니다.
@@ -48,6 +48,27 @@ export class AirdropEventComponent implements OnInit {
 
   artistSubscribe(artist) {
     this.selectedArtist = artist;
+    console.log(artist);
+    this.api.post<string>('/subscribe', {
+      secret_key: this.secretKey,
+      musician: artist.musician
+    }).subscribe(new_secret_key => {
+      this.secretKey = new_secret_key;
+    });
+  }
+
+  nextWithHandling(step, event) {
+    if (event.lp) {
+      this.next(step, event.lp);
+    }
+    if (event.comment) {
+      this.api.post<string>('/comment', {
+        secret_key: this.secretKey,
+        content: event.comment
+      }).subscribe(res => {
+        this.secretKey = res;
+      });
+    }
   }
 
   next(step, gainedLP) {

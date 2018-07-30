@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AirdropApi } from '../../airdrop-api';
 
 @Component({
   selector: 'airdrop-content-like',
@@ -24,10 +25,12 @@ import { DomSanitizer } from '@angular/platform-browser';
     <div class="song-title pt-3 pb-3">
       {{selectedArtist.title}}
       <div class="heart-btn" [class.active]="alreadyLiked" (click)="like()">
-        <i class="fal fa-heart"></i> 좋아요
+        <i class="fal fa-heart"></i> 좋아요 {{likesCnt + (alreadyLiked ? 0 : -1) | number}}
       </div>
     </div>
-    <airdrop-content-comment *ngIf="current === 3" (addLP)="add($event)"></airdrop-content-comment>
+    <airdrop-content-comment *ngIf="current === 3" 
+                             [musician]="selectedArtist.musician"
+                             (addLP)="writeComment($event)"></airdrop-content-comment>
     <airdrop-lp-modal [class.close]="!modalOpen"
                       (addLP)="add($event)"
                       message="아티스트에게 응원이 전달되었습니다" lp="30"></airdrop-lp-modal>
@@ -39,7 +42,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AirdropContentLikeComponent implements OnInit, OnChanges {
   @Input() selectedArtist: any;
-  @Output() addLP = new EventEmitter<number>();
+  @Output() addLP = new EventEmitter<{
+    lp: number,
+    comment?: string
+  }>();
   @Input() current: number;
 
   alreadyLiked = false;
@@ -48,7 +54,10 @@ export class AirdropContentLikeComponent implements OnInit, OnChanges {
 
   modalOpen = false;
 
-  constructor(private domSanitizer: DomSanitizer) {
+  likesCnt = 0;
+
+  constructor(private domSanitizer: DomSanitizer,
+              private api: AirdropApi) {
   }
 
   like() {
@@ -60,10 +69,28 @@ export class AirdropContentLikeComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.selectedArtist.video);
+
+    this.api.get<{
+      cnt: number,
+      musician: string
+    }[]>('/subscribe').subscribe(result => {
+      result.forEach(artist => {
+        if (this.selectedArtist.musician === artist.musician) {
+          this.likesCnt = artist.cnt;
+        }
+      });
+    });
+  }
+
+  writeComment(event: {
+    lp: number,
+    comment: string
+  }) {
+    this.addLP.emit(event);
   }
 
   add(lp: number) {
-    this.addLP.emit(lp);
+    this.addLP.emit({lp});
     this.modalOpen = false;
   }
 
