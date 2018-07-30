@@ -7,7 +7,7 @@ import { BaseComponent } from '../../../../models/base.component';
   templateUrl: './intro-countdown-number.component.html',
   styleUrls: ['./intro-countdown-number.component.scss']
 })
-export class MzkIntroCountdownNumber extends BaseComponent implements OnChanges {
+export class MzkIntroCountdownNumberComponent extends BaseComponent implements OnChanges {
   @Input()
   num: number;
 

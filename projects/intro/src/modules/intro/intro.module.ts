@@ -5,7 +5,7 @@ import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { MzkIntroAdvisorsComponent } from './components/intro-advisors/mzk-intro-advisors.component';
-import { MzkIntroCountdownNumber } from './components/intro-countdown/intro-countdown-nubmer.component';
+import { MzkIntroCountdownNumberComponent } from './components/intro-countdown/intro-countdown-nubmer.component';
 import { IntroFooterComponent } from './components/intro-footer/intro-footer.component';
 import { IntroLayoutComponent } from './components/intro-layout/intro-layout.component';
 import { MzkIntroLeadershipComponent } from './components/intro-leadership/mzk-intro-leadership.component';
@@ -57,7 +57,7 @@ import { RouterModule } from '@angular/router';
     MzkIntroPartnersComponent,
     MzkIntroFloatingBtnsComponent,
     MzkIntroCountdownComponent,
-    MzkIntroCountdownNumber,
+    MzkIntroCountdownNumberComponent,
 
     /* Page Components */
     /* For introduction */
