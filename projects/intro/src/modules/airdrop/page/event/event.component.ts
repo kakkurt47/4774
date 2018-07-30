@@ -1,24 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AirdropApi } from '../../airdrop-api';
 
 
 @Component({
   selector: 'airdrop-event',
-  template: `
+  template: `    
+    <app-intro-navbar></app-intro-navbar>
     <div class="container">
       <airdrop-my-wallet [(loyaltyPoint)]="lp" [(mzk)]="mzk"></airdrop-my-wallet>
 
       <h3 class="pt-3 pt-sm-5 pb-2 pb-sm-3">Muzika 에어드롭 이벤트</h3>
 
       <p class="pb-4 pb-sm-5">
-        Muzika를 경험하고 <BR />
+        Muzika를 경험하고 <BR/>
         최대 20MZK를 받아가세요!
       </p>
       <airdrop-breadcrumb [(current)]="contentStep"></airdrop-breadcrumb>
 
       <airdrop-content-subscribe *ngIf="contentStep === 1"
-                                 (selectedArtist)="selectedArtist = $event"
+                                 (selectedArtist)="artistSubscribe($event)"
                                  (addLP)="next(2, $event)"></airdrop-content-subscribe>
-      <airdrop-content-like *ngIf="contentStep >= 2 && contentStep <= 3" 
+      <airdrop-content-like *ngIf="contentStep >= 2 && contentStep <= 3"
                             [(current)]="contentStep"
                             [(selectedArtist)]="selectedArtist"
                             (addLP)="next(contentStep + 1, $event)"></airdrop-content-like>
@@ -32,14 +34,32 @@ import { Component } from '@angular/core';
     './event.component.scss'
   ]
 })
-export class AirdropEventComponent {
+export class AirdropEventComponent implements OnInit {
   contentStep = 1;
   lp = 0;
   mzk = 0;
   selectedArtist;
 
+  randomCode: string;
+  secretKey: string;
+
+  constructor(private api: AirdropApi) {
+  }
+
+  artistSubscribe(artist) {
+    this.selectedArtist = artist;
+  }
+
   next(step, gainedLP) {
     this.contentStep = step;
     this.lp = this.lp + +gainedLP;
+  }
+
+  ngOnInit(): void {
+    this.api.get<{ random_code: string, secret_key: string }>('/start')
+      .subscribe(result => {
+        this.randomCode = result.random_code;
+        this.secretKey = result.secret_key;
+      });
   }
 }

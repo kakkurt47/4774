@@ -5,10 +5,19 @@ $artist-list-width: 600px;
   margin: 100px auto 0 auto;
   width: $artist-list-width;
 
+  @media (max-width: 738px) {
+    text-align: center;
+    width: 100%;
+    margin: 20px 0 0 0;
+  }
+
   .artist-row {
     text-align: center;
     display: inline-block;
     width: $artist-list-width / 5;
+    @media (max-width: 738px) {
+      width: 100px;
+    }
 
     img {
       margin: 10px auto;
@@ -27,6 +36,7 @@ $artist-list-width: 600px;
     display: block;
     cursor: pointer;
     text-align: center;
+    background: white;
     border-radius: 15px 15px;
     border: 1px solid #76dbc7;
     color: #76dbc7;

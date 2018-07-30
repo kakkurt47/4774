@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { AirdropApi } from '../../airdrop-api';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'airdrop-content-comment',
@@ -23,13 +25,31 @@ export class AirdropContentCommentComponent {
   @Output() addLP = new EventEmitter<number>();
   modalOpen = false;
 
+  comments: any[];
+
+  musician: string;
+
   comment: string;
+
+  constructor(private api: AirdropApi) {
+  }
 
   write() {
     if (!this.comment || this.comment.length < 5) {
       return alert('응원 댓글은 5글자 이상 작성해주셔야합니다.');
     }
     this.modalOpen = true;
+  }
+
+  getList() {
+    return this.api.get<any[]>('/comment', {
+      params: {
+        musician: this.musician
+      }
+    }).pipe(map(res => {
+      this.comments = res;
+      return res;
+    }));
   }
 
   add(lp: number) {

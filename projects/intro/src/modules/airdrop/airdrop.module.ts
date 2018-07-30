@@ -10,12 +10,14 @@ import { AirdropContentExchangeComponent } from './component/content-exchange/co
 import { AirdropMyWalletComponent } from './component/my-wallet/my-wallet.component';
 import { LpModalComponent } from './component/lp-modal/lp-modal.component';
 import { FormsModule } from '@angular/forms';
+import { MuzikaIntroModule } from '../intro/intro.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    MuzikaIntroModule,
     AirdropRoutingModule
   ],
   declarations: [

@@ -62,6 +62,9 @@ import { RouterModule } from '@angular/router';
     /* Page Components */
     /* For introduction */
     IntroMainPageComponent
+  ],
+  exports: [
+    IntroNavbarComponent
   ]
 })
 export class MuzikaIntroModule {
