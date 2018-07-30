@@ -5,12 +5,14 @@ import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { MzkIntroAdvisorsComponent } from './components/intro-advisors/mzk-intro-advisors.component';
+import { MzkIntroCountdownNumber } from './components/intro-countdown/intro-countdown-nubmer.component';
 import { IntroFooterComponent } from './components/intro-footer/intro-footer.component';
 import { IntroLayoutComponent } from './components/intro-layout/intro-layout.component';
 import { MzkIntroLeadershipComponent } from './components/intro-leadership/mzk-intro-leadership.component';
 import { IntroNavbarComponent } from './components/intro-navbar/intro-navbar.component';
 import { MzkIntroRoadmapComponent } from './components/intro-roadmap/mzk-intro-roadmap.component';
 import { MzkIntroTeamComponent } from './components/intro-team/mzk-intro-team.component';
+import { MzkIntroCountdownComponent } from './components/intro-countdown/intro-countdown.component';
 import { IntroRoutingModule } from './intro-routing.module';
 import { IntroMainPageComponent } from './pages/intro-main/intro-main.component';
 import { MzkIntroBusinessComponent } from './components/intro-business.component';
@@ -54,6 +56,8 @@ import { RouterModule } from '@angular/router';
     MzkIntroMZKCoinComponent,
     MzkIntroPartnersComponent,
     MzkIntroFloatingBtnsComponent,
+    MzkIntroCountdownComponent,
+    MzkIntroCountdownNumber,
 
     /* Page Components */
     /* For introduction */

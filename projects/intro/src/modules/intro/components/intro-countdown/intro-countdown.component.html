@@ -1,0 +1,38 @@
+<div class="date">
+  <div class="mobile-only">
+    <div class="row daysHoursText">
+      <div class="col-6"> DAYS </div>
+      <div class="col-6"> HOURS </div>
+    </div>
+    <div class="row daysHours">
+      <div class="col-6 days">
+        {{daysLeft}}
+      </div>
+      <div class="col-6 hours">
+        {{hoursLeft}}
+      </div>
+    </div>
+    <div class="clock">
+      {{minutesLeft | number:'2.0-0'}}m {{secondsLeft | number:'2.0-0'}}s Left
+    </div>
+  </div>
+  <div class="desktop-only">
+    <div class="row daysHoursText">
+      <div class="col-6"> DAYS </div>
+      <div class="col-6"> HOURS </div>
+    </div>
+    <div class="row daysHours">
+      <div class="col-6 days">
+        <mzk-intro-countdown-number [num]="daysLeft / 10"></mzk-intro-countdown-number>
+        <mzk-intro-countdown-number [num]="daysLeft % 10"></mzk-intro-countdown-number>
+      </div>
+      <div class="col-6 hours">
+        <mzk-intro-countdown-number [num]="hoursLeft / 10"></mzk-intro-countdown-number>
+        <mzk-intro-countdown-number [num]="hoursLeft % 10"></mzk-intro-countdown-number>
+      </div>
+    </div>
+    <div class="clock">
+      {{minutesLeft | number:'2.0-0'}}m {{secondsLeft | number:'2.0-0'}}s Left
+    </div>
+  </div>
+</div>

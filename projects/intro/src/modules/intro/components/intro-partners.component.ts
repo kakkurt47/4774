@@ -11,31 +11,31 @@ import { BaseComponent } from '../../../models/base.component';
         </h2>
         <div class="row mt-5">
           <div class="col-sm-3 col-6">
-            <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
+            <mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>
           </div>
           <div class="col-sm-3 col-6">
-            <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
+            <mzk-intro-countdown [expiredDate]="expiredDates[1]"></mzk-intro-countdown>
           </div>
           <div class="col-sm-3 col-6">
-            <div class="empty-box"></div>
+            <mzk-intro-countdown [expiredDate]="expiredDates[2]"></mzk-intro-countdown>
           </div>
           <div class="col-sm-3 col-6">
-            <div class="empty-box"></div>
+            <mzk-intro-countdown [expiredDate]="expiredDates[3]"></mzk-intro-countdown>
           </div>
         </div>
         <div class="clearfix"></div>
         <div class="row mt-sm-4">
           <div class="col-sm-3 col-6">
-            <div class="empty-box"></div>
+            <mzk-intro-countdown [expiredDate]="expiredDates[4]"></mzk-intro-countdown>
           </div>
           <div class="col-sm-3 col-6">
-            <div class="empty-box"></div>
+            <mzk-intro-countdown [expiredDate]="expiredDates[5]"></mzk-intro-countdown>
           </div>
           <div class="col-sm-3 col-6">
-            <div class="empty-box"></div>
+            <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
           </div>
           <div class="col-sm-3 col-6">
-            <div class="empty-box"></div>
+            <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
           </div>
         </div>
       </div>
@@ -81,9 +81,16 @@ import { BaseComponent } from '../../../models/base.component';
   `]
 })
 export class MzkIntroPartnersComponent extends BaseComponent {
+  expiredDates: Date[] = [
+    new Date('2018-08-03T00:00:00'),
+    new Date('2018-08-06T00:00:00'),
+    new Date('2018-08-10T00:00:00'),
+    new Date('2018-08-13T00:00:00'),
+    new Date('2018-08-17T00:00:00'),
+    new Date('2018-08-20T00:00:00'),
+  ];
+
   constructor() {
     super();
   }
-
-
 }
