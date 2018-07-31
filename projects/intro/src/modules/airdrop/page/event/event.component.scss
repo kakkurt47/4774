@@ -1,7 +1,10 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
 :host {
   display: block;
   background: #192538;
   padding: 50px 0;
+  font-family: 'Nanum Square', 'NanumSquare', sans-serif !important;
 }
 
 /deep/ app-intro-navbar nav {
