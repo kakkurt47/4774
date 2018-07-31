@@ -24,6 +24,13 @@ import { BaseComponent } from '../../../../models/base.component';
           <span class="lang">EN</span>
         </span>
     </a>
+    <a href="https://t.me/muzika_chinese" target="_blank"> 
+        <span class="fa-stack fa-2x">
+          <i class="fas fa-circle fa-stack-2x"></i>
+          <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
+          <span class="lang">CH</span>
+        </span>
+    </a>
     <a href="https://t.me/muzika_korean" target="_blank"> 
         <span class="fa-stack fa-2x">
           <i class="fas fa-circle fa-stack-2x"></i>

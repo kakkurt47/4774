@@ -3,7 +3,8 @@
     "home-subtitle-1": "분산화된 블록체인 기반 생태계를 토대로",
     "home-subtitle-2": "디지털 음악 산업의 새로운 패러다임을 제시합니다.",
     "project-teaser": "프로젝트 티저",
-    "whitepaper": "백서"
+    "whitepaper": "백서",
+    "airdrop-btn-text": "에어드롭 참여하기"
   },
   "intro-navbar": {
     "ecosystem": "생태계",
@@ -66,7 +67,8 @@
     "community": "커뮤니티",
     "medium": "Medium",
     "twitter": "Twitter",
-    "telegram": "Telegram",
+    "telegram-en": "Telegram (ENG)",
+    "telegram-zh": "Telegram (CHN)",
     "telegram-kr": "Telegram (KOR)",
 
     "websites": "웹사이트"

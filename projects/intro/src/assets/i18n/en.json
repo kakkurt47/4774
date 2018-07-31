@@ -3,7 +3,8 @@
     "home-subtitle-1": "Revolution and Redemption of Digital Music World",
     "home-subtitle-2": "through a decentralized blockchain-based ecosystem.",
     "project-teaser": "Project Teaser",
-    "whitepaper": "Whitepaper"
+    "whitepaper": "Whitepaper",
+    "airdrop-btn-text": "Bounty Program"
   },
   "intro-navbar": {
     "ecosystem": "Ecosystem",
@@ -66,7 +67,8 @@
     "community": "Community",
     "medium": "Medium",
     "twitter": "Twitter",
-    "telegram": "Telegram",
+    "telegram-en": "Telegram (ENG)",
+    "telegram-zh": "Telegram (CHN)",
     "telegram-kr": "Telegram (KOR)",
 
     "websites": "Websites"
