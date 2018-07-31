@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
         <div class="circle"></div>
         <div class="vertical-line"></div>
         <div class="head">
-          1단계: 구독하기
+          {{'airdrop.breadcrumb.step-1' | translate}}
         </div>
 
         <div class="spinner" *ngIf="current == 1">
@@ -21,7 +21,7 @@ import { Component, Input } from '@angular/core';
         <div class="circle"></div>
         <div class="vertical-line"></div>
         <div class="head">
-          2단계: 응원하기
+          {{'airdrop.breadcrumb.step-2' | translate}}
         </div>
 
         <div class="spinner" *ngIf="current == 2">
@@ -33,7 +33,7 @@ import { Component, Input } from '@angular/core';
         <div class="circle"></div>
         <div class="vertical-line"></div>
         <div class="head">
-          3단계: 댓글달기
+          {{'airdrop.breadcrumb.step-3' | translate}}
         </div>
 
         <div class="spinner" *ngIf="current == 3">

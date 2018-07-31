@@ -11,6 +11,7 @@ import { AirdropMyWalletComponent } from './component/my-wallet/my-wallet.compon
 import { LpModalComponent } from './component/lp-modal/lp-modal.component';
 import { FormsModule } from '@angular/forms';
 import { MuzikaIntroModule } from '../intro/intro.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MuzikaIntroModule } from '../intro/intro.module';
     CommonModule,
     FormsModule,
     MuzikaIntroModule,
-    AirdropRoutingModule
+    AirdropRoutingModule,
+    TranslateModule
   ],
   declarations: [
     AirdropEventComponent,

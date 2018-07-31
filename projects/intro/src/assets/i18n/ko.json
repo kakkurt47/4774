@@ -72,5 +72,60 @@
     "telegram-kr": "Telegram (KOR)",
 
     "websites": "웹사이트"
+  },
+  "airdrop": {
+    "my-wallet": "내 지갑",
+    "lp-add": "LP 적립",
+    "event": {
+      "title": "Muzika 에어드롭 이벤트",
+      "desc-1": "Muzika를 경험하고 ",
+      "desc-2": "최대 20MZK를 받아가세요!",
+      "warning-message": "본 화면에 제시된 인터페이스는 실제 Muzika 플랫폼과 차이가 있을 수 있으며, Muzika팀은 예시된 아티스트들이 Muzika 플랫폼에서 활동할 것을 보장하지 않습니다."
+    },
+    "breadcrumb": {
+      "step-1": "1단계: 구독하기",
+      "step-2": "2단계: 응원하기",
+      "step-3": "3단계: 댓글달기"
+    },
+    "subscribe": {
+      "desc-1": "Muzika에 오신 것을 환영합니다.",
+      "desc-2": "당신의 아티스트를 구독해주세요!",
+      "subscribe-text": "구독",
+      "lp-modal-message": "구독이 완료되었습니다"
+    },
+    "comment": {
+      "placeholder": "아티스트에게 응원 댓글 한마디 남겨주세요!",
+      "write": "작성",
+      "lp-modal-message": "댓글이 작성되었습니다"
+    },
+    "like": {
+      "step-title": "아티스트의 곡이 마음에 드시나요?",
+      "heart": "하트",
+      "like-text": "좋아요",
+      "heart-desc": "로 마음을 표현해주세요",
+      "step-3-title": "아티스트의 곡이 마음에 드시나요?",
+      "step-3-title-2": "댓글로 응원해주세요!",
+      "lp-modal-message": "아티스트에게 응원이 전달되었습니다"
+    },
+    "exchange": {
+      "title": "LP를 MZK로 전환하세요!",
+      "translate": "전환",
+      "lp-desc": "LP(Loyalty Point)는 여러분의 커뮤니티 내 기여도를 나타내며, LP는 MZK로 교환됩니다.",
+      "lp-desc-2": "더 많은 LP를 획득할수록 여러분은 커뮤니티에 더 많은 영향력을 갖게 됩니다.",
+      "wallet-title": "MyEtherWallet 이더리움 지갑 주소를 입력해주세요.",
+      "wallet-placeholder": "지갑 주소 입력하기",
+      "wallet-submit": "확인",
+      "wallet-warning-message": "주소가 없거나, 거래소 지갑 주소인 경우 수령하실 수 없습니다.",
+      "receive-code": "본인 확인용 수령코드",
+      "instruction-1": "텔래그램 (https://t.me/muzika_korean)에 입장 후 수령코드를 남겨주셔야 중복 확인 후 지급됩니다.",
+      "instruction-2": "MZK코인은 상장 이전에 입력하신 지갑 주소로 분배 될 예정이며, 구체적인 일정은 텔래그램을 통해 공지해드리겠습니다.",
+      "instruction-3": "텔래그램 그룹에서 MZK 상장 등 여러 소식을 확인하세요. 감사합니다.",
+
+      "api": {
+        "already-submitted": "이미 지갑 주소를 입력하셨습니다.",
+        "confirm-message": "정말 이 지갑 주소가 맞나요? \n한번 입력되면 변경할 수 없습니다.",
+        "network-error": "네트워크가 불안정하거나 회원님의 브라우저 보안이 불안정하여 이더리움 지갑 주소를 저장할 수 없습니다. 번거로우시겠지만 다른 컴퓨터/기기를 통해 이용 부탁드립니다."
+      }
+    }
   }
 }

@@ -9,11 +9,11 @@ import { AirdropApi } from '../../airdrop-api';
     <div class="container">
       <airdrop-my-wallet [(loyaltyPoint)]="lp" [(mzk)]="mzk"></airdrop-my-wallet>
 
-      <h3 class="pt-5 pb-2 pb-sm-3">Muzika 에어드롭 이벤트</h3>
+      <h3 class="pt-5 pb-2 pb-sm-3">{{'airdrop.event.title' | translate}}</h3>
 
       <p class="pb-4 pb-sm-5">
-        Muzika를 경험하고 <BR/>
-        최대 20MZK를 받아가세요!
+        {{'airdrop.event.desc-1' | translate}}<BR/>
+        {{'airdrop.event.desc-2' | translate}}
       </p>
       <airdrop-breadcrumb [(current)]="contentStep"></airdrop-breadcrumb>
 
@@ -28,7 +28,7 @@ import { AirdropApi } from '../../airdrop-api';
                                 (changeBudget)="changeBudget($event)"
                                 [lp]="lp" *ngIf="contentStep === 4"></airdrop-content-exchange>
       <p class="small pt-4">
-        본 화면에 제시된 인터페이스는 실제 Muzika 플랫폼과 차이가 있을 수 있으며, Muzika팀은 예시된 아티스트들이 Muzika 플랫폼에서 활동할 것을 보장하지 않습니다.
+        {{'airdrop.event.warning-message' | translate}}
       </p>
     </div>
   `,

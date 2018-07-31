@@ -5,7 +5,7 @@ import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/cor
   template: `
     <div class="alert">
       <h5>{{message}}</h5>
-      <button class="btn-custom" (click)="add()">+{{lp}} LP 적립</button>
+      <button class="btn-custom" (click)="add()">+{{lp}} {{'airdrop.lp-add' | translate}}</button>
     </div>
   `,
   styleUrls: [

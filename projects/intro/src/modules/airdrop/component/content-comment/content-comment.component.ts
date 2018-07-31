@@ -6,10 +6,10 @@ import { map } from 'rxjs/operators';
   selector: 'airdrop-content-comment',
   template: `
     <div class="input-group">
-      <input type="text" [(ngModel)]="comment" class="form-control" placeholder="아티스트에게 응원 댓글 한마디 남겨주세요!">
+      <input type="text" [(ngModel)]="comment" class="form-control" [placeholder]="'airdrop.comment.placeholder' | translate">
       <span class="input-group-append">
         <button class="btn btn-custom" (click)="write()">
-          작성
+          {{'airdrop.comment.write' | translate}}
         </button>
       </span>
     </div>
@@ -34,7 +34,7 @@ import { map } from 'rxjs/operators';
 
     <airdrop-lp-modal [class.close]="!modalOpen"
                       (addLP)="add($event)"
-                      message="댓글이 작성되었습니다" lp="50"></airdrop-lp-modal>
+                      [message]="'airdrop.comment.lp-modal-message' | translate" lp="50"></airdrop-lp-modal>
   `,
   styleUrls: [
     './content-comment.component.scss'

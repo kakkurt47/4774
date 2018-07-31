@@ -6,12 +6,12 @@ import { AirdropApi } from '../../airdrop-api';
   selector: 'airdrop-content-like',
   template: `
     <div class="title" *ngIf="current === 2">
-      아티스트의 곡이 마음에 드시나요? <BR />
-      <i class="fas fa-heart"></i> <span class="heart">하트</span>로 마음을 표현해주세요
+      {{'airdrop.like.step-title' | translate}} <BR />
+      <i class="fas fa-heart"></i> <span class="heart">{{'airdrop.like.heart' | translate}}</span> {{'airdrop.like.heart-desc' | translate}}
     </div>
     <div class="title" *ngIf="current === 3">
-      아티스트의 곡이 마음에 드시나요? <BR />
-      댓글로 응원해주세요!
+      {{'airdrop.like.step-3-title' | translate}} <BR />
+      {{'airdrop.like.step-3-title-2' | translate}}
     </div>
     <div class="header mb-3">
       <img [src]="'assets/airdrop/artist/' + selectedArtist.imgPath">
@@ -27,7 +27,7 @@ import { AirdropApi } from '../../airdrop-api';
     <div class="song-title pt-3 pb-3">
       {{selectedArtist.title}}
       <div class="heart-btn" [class.active]="alreadyLiked" (click)="like()">
-        <i class="fal fa-heart"></i> 좋아요 {{likesCnt + (alreadyLiked ? 0 : -1) | number}}
+        <i class="fal fa-heart"></i> {{'airdrop.like.like-text' | translate}} {{likesCnt + (alreadyLiked ? 0 : -1) | number}}
       </div>
     </div>
     <airdrop-content-comment *ngIf="current === 3" 
@@ -35,7 +35,7 @@ import { AirdropApi } from '../../airdrop-api';
                              (addLP)="writeComment($event)"></airdrop-content-comment>
     <airdrop-lp-modal [class.close]="!modalOpen"
                       (addLP)="add($event)"
-                      message="아티스트에게 응원이 전달되었습니다" lp="30"></airdrop-lp-modal>
+                      [message]="'airdrop.like.lp-modal-message'| translate" lp="30"></airdrop-lp-modal>
   `,
   styleUrls: [
     '../content.component.scss',

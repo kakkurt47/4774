@@ -5,21 +5,21 @@ import { AirdropApi } from '../../airdrop-api';
   selector: 'airdrop-content-subscribe',
   template: `
     <div class="title">
-      Muzika에 오신 것을 환영합니다. <BR/>
-      당신의 아티스트를 구독해주세요!
+      {{'airdrop.subscribe.desc-1' | translate}} <BR/>
+      {{'airdrop.subscribe.desc-2' | translate}}
     </div>
     <div class="artist-list">
       <div class="artist-row" *ngFor="let artist of artistList">
         <img [src]="'assets/airdrop/artist/' + artist.imgPath">
         <span class="name">{{artist.name}}</span>
         <button type="button" class="subscribe" (click)="select(artist)">
-          +구독
+          +{{'airdrop.subscribe.subscribe-text' | translate}}
         </button>
       </div>
     </div>
     <airdrop-lp-modal [class.close]="!modalOpen"
                       (addLP)="add($event)"
-                      message="구독이 완료되었습니다" lp="20"></airdrop-lp-modal>
+                      [message]="'airdrop.subscribe.lp-modal-message' | translate" lp="20"></airdrop-lp-modal>
   `,
   styleUrls: [
     '../content.component.scss',
@@ -69,7 +69,7 @@ export class AirdropContentSubscribeComponent {
       musician: 'bruno_mars',
       name: '브루노마스',
       imgPath: 'bruno-mars.png',
-      video: 'https://www.youtube.com/embed/OPf0YbXqDm0a?autoplay=1',
+      video: 'https://www.youtube.com/embed/OPf0YbXqDm0?autoplay=1',
       title: 'Bruno Mars - Uptown Funk',
       cnt: 0
     },
