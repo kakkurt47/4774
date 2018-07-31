@@ -9,7 +9,7 @@ import { AirdropApi } from '../../airdrop-api';
     <div class="container">
       <airdrop-my-wallet [(loyaltyPoint)]="lp" [(mzk)]="mzk"></airdrop-my-wallet>
 
-      <h3 class="pt-3 pt-sm-5 pb-2 pb-sm-3">Muzika 에어드롭 이벤트</h3>
+      <h3 class="pt-5 pb-2 pb-sm-3">Muzika 에어드롭 이벤트</h3>
 
       <p class="pb-4 pb-sm-5">
         Muzika를 경험하고 <BR/>
