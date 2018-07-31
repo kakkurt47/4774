@@ -36,7 +36,7 @@ import { AirdropApi } from '../../airdrop-api';
   ]
 })
 export class AirdropEventComponent implements OnInit {
-  contentStep = 1;
+  contentStep = 4;
   lp = 0;
   mzk = 0;
   selectedArtist;

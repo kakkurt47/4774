@@ -14,8 +14,11 @@ declare const jQuery;
       <div class="lp-part">
         {{lp}} LP
       </div>
-      <div class="exchange-btn" (click)="exchange()">
+      <div class="exchange-btn tooltip-floating" (click)="exchange()">
         <i class="fal fa-exchange"></i>
+        <div class="tooltip-content" [class.hidden]="step >= 1">
+          전환
+        </div>
       </div>
       <div class="mzk-part">
         {{mzk}} MZK

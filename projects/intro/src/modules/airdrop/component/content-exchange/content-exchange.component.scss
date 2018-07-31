@@ -101,3 +101,51 @@
     }
   }
 }
+
+@keyframes changeBottom {
+  from {
+    bottom: 140%;
+  }
+
+  to {
+    bottom: 155%;
+  }
+}
+
+.tooltip-floating .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+  width: 60px;
+  font-size: 14px;
+  line-height: 30px;
+  background: #76dbc7;
+  color: white;
+  padding: 0;
+  text-align: center;
+  position: absolute;
+  border-radius: 15px 15px;
+  z-index: 1;
+  bottom: 140%;
+  left: 50%;
+  margin-left: -30px;
+  animation-duration: 0.3s;
+  animation-name: changeBottom;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition: opacity ease 0.3s;
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.tooltip-floating .tooltip-content::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #76dbc7 transparent transparent transparent;
+}
