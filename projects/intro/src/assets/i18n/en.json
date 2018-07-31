@@ -83,9 +83,9 @@
       "warning-message": "The interface above is subject to changes in the official service launch. Muzika team does not guarantee participation or endorsement of the suggested artists in the Muzika platform. "
     },
     "breadcrumb": {
-      "step-1": "Step 1 : Subscribe",
-      "step-2": "Step 2 : Vote & Like",
-      "step-3": "Step 3 : Comments"
+      "step-1": "1 : Subscribe",
+      "step-2": "2 : Vote & Like",
+      "step-3": "3 : Comments"
     },
     "subscribe": {
       "desc-1": "Welcome to Muzika. ",
