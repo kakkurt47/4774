@@ -45,7 +45,7 @@ export class MzkIntroCountdownComponent extends BaseComponent {
       if (diffTimestamp < 0) {
         // Coming soon...
       } else {
-        diffTimestamp /= 1000;
+        diffTimestamp = Math.floor(diffTimestamp / 1000);
 
         this.secondsLeft = diffTimestamp % 60;
         diffTimestamp = Math.floor(diffTimestamp / 60);
