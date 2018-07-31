@@ -4,7 +4,7 @@ import { AirdropApi } from '../../airdrop-api';
 
 @Component({
   selector: 'airdrop-event',
-  template: `    
+  template: `
     <app-intro-navbar></app-intro-navbar>
     <div class="container">
       <airdrop-my-wallet [(loyaltyPoint)]="lp" [(mzk)]="mzk"></airdrop-my-wallet>
@@ -25,6 +25,7 @@ import { AirdropApi } from '../../airdrop-api';
                             [(selectedArtist)]="selectedArtist"
                             (addLP)="nextWithHandling(contentStep + 1, $event)"></airdrop-content-like>
       <airdrop-content-exchange [randomCode]="randomCode" [secretKey]="secretKey"
+                                (changeBudget)="changeBudget($event)"
                                 [lp]="lp" *ngIf="contentStep === 4"></airdrop-content-exchange>
       <p class="small pt-4">
         본 화면에 제시된 인터페이스는 실제 Muzika 플랫폼과 차이가 있을 수 있으며, Muzika팀은 예시된 아티스트들이 Muzika 플랫폼에서 활동할 것을 보장하지 않습니다.
@@ -36,7 +37,7 @@ import { AirdropApi } from '../../airdrop-api';
   ]
 })
 export class AirdropEventComponent implements OnInit {
-  contentStep = 4;
+  contentStep = 1;
   lp = 0;
   mzk = 0;
   selectedArtist;
@@ -76,6 +77,11 @@ export class AirdropEventComponent implements OnInit {
   next(step, gainedLP) {
     this.contentStep = step;
     this.lp = this.lp + +gainedLP;
+  }
+
+  changeBudget(budget: { lp: number, mzk: number }) {
+    this.lp = budget.lp;
+    this.mzk = budget.mzk;
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { interval } from 'rxjs';
 import { AirdropApi } from '../../airdrop-api';
 
@@ -73,6 +73,8 @@ export class AirdropContentExchangeComponent {
 
   @Input() secretKey: string;
 
+  @Output() changeBudget = new EventEmitter();
+
   eth_address: string;
 
   step = 0;
@@ -91,6 +93,10 @@ export class AirdropContentExchangeComponent {
         this.step = 1;
         this.lp -= 1;
         this.mzk = Math.floor((i + 1) / 5);
+        this.changeBudget.emit({
+          lp: this.lp,
+          mzk: this.mzk
+        });
         if (this.lp <= 0) {
           sub.unsubscribe();
           jQuery('.receive-box.one').show('slow');

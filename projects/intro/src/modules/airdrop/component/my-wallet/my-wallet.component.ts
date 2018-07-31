@@ -5,8 +5,8 @@ declare const jQuery;
 @Component({
   selector: 'airdrop-my-wallet',
   template: `
-    <h5 class="mb-3">내 지갑</h5>
-    <p>
+    <h5 class="mb-sm-3">내 지갑</h5>
+    <p class="lp-text">
       <span class="loyaltyPoint">0</span> <span class="currency">LP</span>
     </p>
     <p>

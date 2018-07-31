@@ -2,6 +2,10 @@
   :host {
     font-size: 14px;
   }
+
+  .title {
+    font-size: 18px;
+  }
 }
 
 .exchange-bar {
@@ -41,6 +45,16 @@
   .mzk-part {
     right: 25%;
   }
+
+  @media (max-width: 738px) {
+    .lp-part {
+      left: 15%;
+    }
+
+    .mzk-part {
+      right: 10%;
+    }
+  }
 }
 
 .lp-desc {
@@ -74,7 +88,7 @@
 
   &.one {
     background: #f1f1f1;
-    padding: 30px 0;
+    padding: 30px 15px;
     border-radius: 20px 20px;
   }
 
