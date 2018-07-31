@@ -24,7 +24,7 @@ import { AirdropApi } from '../../airdrop-api';
                             [(current)]="contentStep"
                             [(selectedArtist)]="selectedArtist"
                             (addLP)="nextWithHandling(contentStep + 1, $event)"></airdrop-content-like>
-      <airdrop-content-exchange [randomCode]="randomCode" 
+      <airdrop-content-exchange [randomCode]="randomCode" [secretKey]="secretKey"
                                 [lp]="lp" *ngIf="contentStep === 4"></airdrop-content-exchange>
       <p class="small pt-4">
         본 화면에 제시된 인터페이스는 실제 Muzika 플랫폼과 차이가 있을 수 있으며, Muzika팀은 예시된 아티스트들이 Muzika 플랫폼에서 활동할 것을 보장하지 않습니다.
@@ -43,6 +43,7 @@ export class AirdropEventComponent implements OnInit {
 
   randomCode: string;
   secretKey: string;
+  participantCnt: number;
 
   constructor(private api: AirdropApi) {
   }
@@ -78,10 +79,11 @@ export class AirdropEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.api.get<{ random_code: string, secret_key: string }>('/start')
+    this.api.get<{ random_code: string, secret_key: string, participant_cnt: number }>('/start')
       .subscribe(result => {
         this.randomCode = result.random_code;
         this.secretKey = result.secret_key;
+        this.participantCnt = result.participant_cnt;
       });
   }
 }

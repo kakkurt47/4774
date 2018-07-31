@@ -93,6 +93,9 @@
       background: #76dbc7;
       color: white;
       padding-right: 15px;
+    }
+
+    :last-child {
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
     }
