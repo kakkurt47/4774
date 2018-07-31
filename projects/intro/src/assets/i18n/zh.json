@@ -4,7 +4,7 @@
     "home-subtitle-2": "数字音乐世界的革命与未来",
     "project-teaser": "项目简报",
     "whitepaper": "白皮书",
-    "airdrop-btn-text": "Bounty Program"
+    "airdrop-btn-text": "赏金计划"
   },
   "intro-navbar": {
     "ecosystem": "生态系统",
@@ -74,57 +74,57 @@
     "websites": "语言选择"
   },
   "airdrop": {
-    "my-wallet": "내 지갑",
-    "lp-add": "LP 적립",
+    "my-wallet": "我的钱包",
+    "lp-add": "LP积分",
     "event": {
-      "title": "Muzika 에어드롭 이벤트",
-      "desc-1": "Muzika를 경험하고 ",
-      "desc-2": "최대 20MZK를 받아가세요!",
-      "warning-message": "본 화면에 제시된 인터페이스는 실제 Muzika 플랫폼과 차이가 있을 수 있으며, Muzika팀은 예시된 아티스트들이 Muzika 플랫폼에서 활동할 것을 보장하지 않습니다."
+      "title": "Muzika 赏金计划",
+      "desc-1": "体验Muzika生态系统",
+      "desc-2": "获赠20 MZK代币.",
+      "warning-message": "官方服务网站启动后，可能会与以上界面不同，Muzika团队不承诺在这里显示的音乐艺人一定会以公开支持与赞助的身份出现在Muzika官方平台上。"
     },
     "breadcrumb": {
-      "step-1": "1단계: 구독하기",
-      "step-2": "2단계: 응원하기",
-      "step-3": "3단계: 댓글달기"
+      "step-1": "1 : 订阅",
+      "step-2": "2 : 投票&点赞",
+      "step-3": "3 : 留言"
     },
     "subscribe": {
-      "desc-1": "Muzika에 오신 것을 환영합니다.",
-      "desc-2": "당신의 아티스트를 구독해주세요!",
-      "subscribe-text": "구독",
-      "lp-modal-message": "구독이 완료되었습니다"
+      "desc-1": "欢迎来到Muzika ! ",
+      "desc-2": "请选择（订阅）您最喜欢的音乐艺人",
+      "subscribe-text": "订阅",
+      "lp-modal-message": "订阅成功"
     },
     "comment": {
-      "placeholder": "아티스트에게 응원 댓글 한마디 남겨주세요!",
-      "write": "작성",
-      "lp-modal-message": "댓글이 작성되었습니다"
+      "placeholder": "我来说两句！",
+      "write": "发言",
+      "lp-modal-message": "留言成功"
     },
     "like": {
-      "step-title": "아티스트의 곡이 마음에 드시나요?",
-      "heart": "하트",
-      "like-text": "좋아요",
-      "heart-desc": "로 마음을 표현해주세요",
-      "step-3-title": "아티스트의 곡이 마음에 드시나요?",
-      "step-3-title-2": "댓글로 응원해주세요!",
-      "lp-modal-message": "아티스트에게 응원이 전달되었습니다"
+      "step-title": "如果您喜欢这首歌曲， ",
+      "heart": "点赞",
+      "like-text": "请点赞",
+      "heart-desc": "the artist by clicking on the LIKE button below. ",
+      "step-3-title": "如果您喜欢这首歌曲， ",
+      "step-3-title-2": " 请说两句。",
+      "lp-modal-message": "留言成功"
     },
     "exchange": {
-      "title": "LP를 MZK로 전환하세요!",
-      "translate": "전환",
-      "lp-desc": "LP(Loyalty Point)는 여러분의 커뮤니티 내 기여도를 나타내며, LP는 MZK로 교환됩니다.",
-      "lp-desc-2": "더 많은 LP를 획득할수록 여러분은 커뮤니티에 더 많은 영향력을 갖게 됩니다.",
-      "wallet-title": "MyEtherWallet 이더리움 지갑 주소를 입력해주세요.",
-      "wallet-placeholder": "지갑 주소 입력하기",
-      "wallet-submit": "확인",
-      "wallet-warning-message": "주소가 없거나, 거래소 지갑 주소인 경우 수령하실 수 없습니다.",
-      "receive-code": "본인 확인용 수령코드",
-      "instruction-1": "텔래그램 (https://t.me/muzika_korean)에 입장 후 수령코드를 남겨주셔야 중복 확인 후 지급됩니다.",
-      "instruction-2": "MZK코인은 상장 이전에 입력하신 지갑 주소로 분배 될 예정이며, 구체적인 일정은 텔래그램을 통해 공지해드리겠습니다.",
-      "instruction-3": "텔래그램 그룹에서 MZK 상장 등 여러 소식을 확인하세요. 감사합니다.",
+      "title": "转换LP积分为MZK",
+      "translate": "转换",
+      "lp-desc": "LP积分会对您在社区内的活跃等级进行评估，您的LP积分会定期得到被转换成MZK代币的机会。",
+      "lp-desc-2": "您在Muzika生态社区内的活跃度将被累计为您的LP积分。",
+      "wallet-title": "Put your MyEtherWallet address.",
+      "wallet-placeholder": "请输入您的以太坊钱包地址",
+      "wallet-submit": "提交",
+      "wallet-warning-message": "如果您没有可靠的钱包地址，您将无法收到MZK糖果。",
+      "receive-code": "空投口令 ",
+      "instruction-1": "进入官方电报群（https://t.me/muzika_chinese），并且告诉我们你的糖果口令。如果您不在官方电报群里留下您的糖果口令，您将无法得到MZK糖果。 ",
+      "instruction-2": " MZK代币将在上线交易所之前发到您的指定的钱包地址里，具体日期请以官方电报群内通知为准。",
+      "instruction-3": "我们将通过官方电报群告知最新的项目进展消息，请您静候项目进展最新的通告。  ",
 
       "api": {
-        "already-submitted": "이미 지갑 주소를 입력하셨습니다.",
-        "confirm-message": "정말 이 지갑 주소가 맞나요? \n한번 입력되면 변경할 수 없습니다.",
-        "network-error": "네트워크가 불안정하거나 회원님의 브라우저 보안이 불안정하여 이더리움 지갑 주소를 저장할 수 없습니다. 번거로우시겠지만 다른 컴퓨터/기기를 통해 이용 부탁드립니다."
+        "already-submitted": "以太坊钱包地址提交成功",
+        "confirm-message": "请确认您的以太坊钱包地址，一旦提交，您将无法更该信息",
+        "network-error": "Due to instability in network or lack of security in your browser, we cannot save your wallet address. We are sorry for your discorfort, but please use other devices to apply for the bounty program 由于网络不稳定或您的浏览器欠缺安全性，您的钱包地址显示出现故障，给您带来的不便，我们深感歉意，请您更换设备再从新试一次。."
       }
     }
   }
