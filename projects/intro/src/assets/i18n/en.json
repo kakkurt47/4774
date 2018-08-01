@@ -124,7 +124,8 @@
       "api": {
         "already-submitted": "You already submit your Ethereum address",
         "confirm-message": "Are you sure that this is the correct wallet address?\nYou cannot change the address after you make confirmation.",
-        "network-error": "Due to instability in network or lack of security in your browser, we cannot save your wallet address. We are sorry for your discorfort, but please use other devices to apply for the bounty program."
+        "network-error": "Due to instability in network or lack of security in your browser, we cannot save your wallet address. We are sorry for your discorfort, but please use other devices to apply for the bounty program.",
+        "invalid-address": "Please check your Ethereum address is correct."
       }
     }
   }

@@ -124,7 +124,8 @@
       "api": {
         "already-submitted": "以太坊钱包地址提交成功",
         "confirm-message": "请确认您的以太坊钱包地址，一旦提交，您将无法更该信息",
-        "network-error": "Due to instability in network or lack of security in your browser, we cannot save your wallet address. We are sorry for your discorfort, but please use other devices to apply for the bounty program 由于网络不稳定或您的浏览器欠缺安全性，您的钱包地址显示出现故障，给您带来的不便，我们深感歉意，请您更换设备再从新试一次。."
+        "network-error": "由于网络不稳定或您的浏览器欠缺安全性，您的钱包地址显示出现故障，给您带来的不便，我们深感歉意，请您更换设备再从新试一次。.",
+        "invalid-address": "Please check your Ethereum address is correct."
       }
     }
   }
