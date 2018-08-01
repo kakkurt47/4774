@@ -4,7 +4,10 @@
   display: block;
   background: #192538;
   padding: 50px 0;
-  font-family: 'Nanum Square', 'NanumSquare', sans-serif !important;
+
+  &.use-font-family *:not(app-intro-navbar) {
+    font-family: 'Nanum Square', 'NanumSquare', sans-serif !important;
+  }
 
   @media (max-width: 738px) {
     padding-bottom: 50px;

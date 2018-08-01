@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { AirdropApi } from '../../airdrop-api';
 
 
@@ -36,7 +38,7 @@ import { AirdropApi } from '../../airdrop-api';
     './event.component.scss'
   ]
 })
-export class AirdropEventComponent implements OnInit {
+export class AirdropEventComponent implements OnInit, OnDestroy {
   contentStep = 1;
   lp = 0;
   mzk = 0;
@@ -46,7 +48,12 @@ export class AirdropEventComponent implements OnInit {
   secretKey: string;
   participantCnt: number;
 
-  constructor(private api: AirdropApi) {
+  @HostBinding('class.use-font-family')
+  useFontFamily = true;
+
+  private _sub: Subscription[] = [];
+  constructor(private api: AirdropApi,
+              private translateService: TranslateService) {
   }
 
   artistSubscribe(artist) {
@@ -91,5 +98,17 @@ export class AirdropEventComponent implements OnInit {
         this.secretKey = result.secret_key;
         this.participantCnt = result.participant_cnt;
       });
+
+    this.useFontFamily = this.translateService.currentLang !== 'zh';
+    this._sub.push(
+      this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+        this.useFontFamily = event.lang !== 'zh';
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this._sub.forEach(sub => sub.unsubscribe());
+    this._sub = [];
   }
 }
