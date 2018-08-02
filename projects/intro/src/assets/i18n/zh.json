@@ -100,12 +100,12 @@
     },
     "like": {
       "step-title": "如果您喜欢这首歌曲， ",
-      "heart": "点赞",
-      "like-text": "请点赞",
-      "heart-desc": "the artist by clicking on the LIKE button below. ",
+      "heart": "",
+      "like-text": "点赞",
+      "heart-desc": "请点击下面视频链接上的“点赞",
       "step-3-title": "如果您喜欢这首歌曲， ",
       "step-3-title-2": " 请说两句。",
-      "lp-modal-message": "留言成功"
+      "lp-modal-message": "点赞成功"
     },
     "exchange": {
       "title": "转换LP积分为MZK",
