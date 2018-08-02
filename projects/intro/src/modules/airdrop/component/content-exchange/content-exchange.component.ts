@@ -116,7 +116,7 @@ export class AirdropContentExchangeComponent {
       return; // 수정 원할 경우 그냥 취소 처리
     }
 
-    if (!/^0x[a-fA-F0-9]{40}$/.test(this.eth_address)) {
+    if (!/0x[a-fA-F0-9]{40}/.test(this.eth_address)) {
       return alert(this.translateService.instant('airdrop.exchange.api.invalid-address'));
     }
 
