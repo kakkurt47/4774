@@ -19,6 +19,7 @@ import { AirdropApi } from '../../airdrop-api';
       </p>
       <airdrop-breadcrumb [(current)]="contentStep"></airdrop-breadcrumb>
 
+      <airdrop-end-event *ngIf="contentStep === -1"></airdrop-end-event>
       <airdrop-content-subscribe *ngIf="contentStep === 1"
                                  (selectedArtist)="artistSubscribe($event)"
                                  (addLP)="next(2, $event)"></airdrop-content-subscribe>
@@ -52,6 +53,7 @@ export class AirdropEventComponent implements OnInit, OnDestroy {
   useFontFamily = true;
 
   private _sub: Subscription[] = [];
+  private _maximumParticipants = 25000;
   constructor(private api: AirdropApi,
               private translateService: TranslateService) {
   }
@@ -97,6 +99,10 @@ export class AirdropEventComponent implements OnInit, OnDestroy {
         this.randomCode = result.random_code;
         this.secretKey = result.secret_key;
         this.participantCnt = result.participant_cnt;
+
+        if (this._maximumParticipants <= this.participantCnt) {
+          this.contentStep = -1;
+        }
       });
 
     this.useFontFamily = this.translateService.currentLang !== 'zh';
