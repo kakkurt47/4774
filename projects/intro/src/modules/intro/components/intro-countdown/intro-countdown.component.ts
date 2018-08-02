@@ -19,6 +19,7 @@ export class MzkIntroCountdownComponent extends BaseComponent {
   hoursLeft: number;
   minutesLeft: number;
   secondsLeft: number;
+  isExpired = false;
 
   private _currentDate: Date;
   private _diffTimestamp = 0;
@@ -44,6 +45,7 @@ export class MzkIntroCountdownComponent extends BaseComponent {
 
       if (diffTimestamp < 0) {
         // Coming soon...
+        this.isExpired = true;
       } else {
         diffTimestamp = Math.floor(diffTimestamp / 1000);
 

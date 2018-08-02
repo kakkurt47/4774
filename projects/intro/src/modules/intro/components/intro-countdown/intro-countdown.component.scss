@@ -1,7 +1,6 @@
 :host {
   display: block;
   background: white;
-  padding-top: 10px;
   text-align: center;
   width: 100%;
   height: 100%;
@@ -11,6 +10,8 @@
 }
 
 .date {
+  height: 100%;
+
   .daysHoursText {
     margin: 0;
     text-align: center;
@@ -91,6 +92,7 @@ mzk-intro-countdown-number {
 
 .desktop-only {
   display: none;
+  padding-top: 10px;
 }
 
 @media(max-width: 738px) {
