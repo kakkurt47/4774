@@ -49,8 +49,8 @@ export class MzkIntroTeamComponent extends BaseComponent {
         [Lang.CHN]: 'Chaehong Jeong'
       },
       i18nPosition: {
-        [Lang.ENG]: 'Blockchain Engineer',
-        [Lang.KOR]: '블록체인 개발자',
+        [Lang.ENG]: 'Lead Blockchain Engineer',
+        [Lang.KOR]: '블록체인 리드 개발자',
         [Lang.CHN]: '区块链工程师'
       },
       github: 'https://github.com/brcps12'

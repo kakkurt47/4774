@@ -249,7 +249,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       'imagePath': 'adrian_lai.png',
       'i18nPosition': {
         [Lang.ENG]: 'Managing Director, BlackHorse Group',
-        [Lang.KOR]: 'Managing Director, BlackHorse Group',
+        [Lang.KOR]: 'BlackHorse 그룹 이사',
         [Lang.CHN]: 'BlackHorse Group 董事总经理'
       },
       'i18nName': {
@@ -365,6 +365,34 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '音乐，娱乐，影视与版权法方面的顶尖法律专家\n',
           '前 韩国电影制片人协会 法律顾问\n',
           '前 韩国JYP娱乐有限公司，韩国Star Empire Entertainment 唱片公司，韩国Jellyfish Entertainment 艺人经纪公司，包括白智英在内的多位韩国音乐艺术家，演员和明星的法律代表律师'
+        ]
+      }
+    },
+    {
+      'imagePath': 'kevin_yeung.png',
+      'i18nPosition': {
+        [Lang.ENG]: 'Partner, Bitshine Group',
+        [Lang.KOR]: 'Bitshine Group 파트너',
+        [Lang.CHN]: 'Bitshine 合伙人'
+      },
+      'i18nName': {
+        [Lang.ENG]: 'Kevin Yeung',
+        [Lang.KOR]: 'Kevin Yeung',
+        [Lang.CHN]: 'Kevin Yeung'
+      },
+      'i18nSentences': {
+        [Lang.ENG]: [
+          'Diversified background in investment banking, venture capital investment and entrepreneurial venture.',
+          'Started in Morgan Stanley investment banking, also structured IPOs led investments across the Asia TMT field with landmark projects such as Momo, Tokopedia, Webank etc.'
+        ],
+        [Lang.KOR]: [
+          'Investment Banking, 벤처캐피탈, 창업 등 다양한 경험과 배경 보유',
+          '(前) 모건스탠리 투자은행',
+          'Morno, Tokopedia, Webank 등 대표적인 아시아 지역 TMT 회사들의 IPO와 투자자문 경력 보유'
+        ],
+        [Lang.CHN]: [
+          '跨界投资领域资深背景（投资银行、风险投资与创业风险）',
+          '摩根斯坦利投资银行出身，曾参与亚洲多个IPO导向的高科技、媒体和电信领域的投资项目，其中包括陌陌、印尼版淘宝Tokopedia，微众银行。'
         ]
       }
     }
