@@ -383,7 +383,8 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       'i18nSentences': {
         [Lang.ENG]: [
           'Diversified background in investment banking, venture capital investment and entrepreneurial venture.',
-          'Started in Morgan Stanley investment banking, also structured IPOs led investments across the Asia TMT field with landmark projects such as Momo, Tokopedia, Webank etc.'
+          'Started in Morgan Stanley investment banking, also structured IPOs led investments ' +
+          'across the Asia TMT field with landmark projects such as Momo, Tokopedia, Webank etc.'
         ],
         [Lang.KOR]: [
           'Investment Banking, 벤처캐피탈, 창업 등 다양한 경험과 배경 보유',
@@ -392,7 +393,8 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         ],
         [Lang.CHN]: [
           '跨界投资领域资深背景（投资银行、风险投资与创业风险）',
-          '摩根斯坦利投资银行出身，曾参与亚洲多个IPO导向的高科技、媒体和电信领域的投资项目，其中包括陌陌、印尼版淘宝Tokopedia，微众银行。'
+          '摩根斯坦利投资银行出身，曾参与亚洲多个IPO导向的高科技、媒体和电信领域的投资项目，' +
+          '其中包括陌陌、印尼版淘宝Tokopedia，微众银行。'
         ]
       }
     }
