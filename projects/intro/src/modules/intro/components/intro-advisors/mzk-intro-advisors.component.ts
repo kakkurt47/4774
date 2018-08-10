@@ -40,6 +40,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       },
       'i18nName': {
         [Lang.KOR]: '조민식',
+        [Lang.ENG]: 'Michael Cho',
         [Lang.CHN]: 'Michael Cho'
       },
       'i18nSentences': {
