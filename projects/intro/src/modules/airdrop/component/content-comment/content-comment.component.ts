@@ -74,6 +74,7 @@ export class AirdropContentCommentComponent implements OnInit {
 
   add(lp: number) {
     this.addLP.emit({ lp, comment: this.comment });
+    this.modalOpen = false;
   }
 
   ngOnInit(): void {

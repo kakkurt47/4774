@@ -23,6 +23,5 @@ export class LpModalComponent {
 
   add() {
     this.addLP.next(this.lp);
-    this.elementRef.nativeElement.addClass('close');
   }
 }

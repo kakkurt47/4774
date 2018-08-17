@@ -88,6 +88,7 @@ export class AirdropContentSubscribeComponent {
 
   add(lp: number) {
     this.addLP.emit(lp);
+    this.modalOpen = false;
   }
 
   select(artist) {
