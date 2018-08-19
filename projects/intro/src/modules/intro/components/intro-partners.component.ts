@@ -26,16 +26,24 @@ import { BaseComponent } from '../../../models/base.component';
         <div class="clearfix"></div>
         <div class="row mt-sm-4">
           <div class="col-sm-3 col-6">
-            <mzk-intro-countdown [expiredDate]="expiredDates[4]"></mzk-intro-countdown>
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-everest-ventures.png" class="img-fluid">
+            </div>
           </div>
           <div class="col-sm-3 col-6">
-            <mzk-intro-countdown [expiredDate]="expiredDates[5]"></mzk-intro-countdown>
+            <div class="wrap-box">
+            <img src="assets/intro-img/partners/logo-t3-ventures.jpeg" class="img-fluid">
+            </div>
           </div>
           <div class="col-sm-3 col-6">
+            <div class="wrap-box">
             <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
+            </div>
           </div>
           <div class="col-sm-3 col-6">
+            <div class="wrap-box">
             <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
+            </div>
           </div>
         </div>
       </div>
@@ -47,11 +55,21 @@ import { BaseComponent } from '../../../models/base.component';
       background-color: #f8fafb;
       padding: 100px 0;
     }
-
-    img {
+    
+    .wrap-box {
+      width: 255px;
+      height: 110px;
       background: white;
       border-radius: 8px 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, .03);
+      text-align: center;
+      line-height: 110px;
+    }
+
+    img {
+      max-width: 225px;
+      max-height: 95px;
+      margin: 0 auto;
     }
 
     .empty-box {
@@ -82,12 +100,10 @@ import { BaseComponent } from '../../../models/base.component';
 })
 export class MzkIntroPartnersComponent extends BaseComponent {
   expiredDates: Date[] = [
-    new Date('2018-08-03T00:00:00'),
-    new Date('2018-08-06T00:00:00'),
     new Date('2018-08-10T00:00:00'),
     new Date('2018-08-13T00:00:00'),
     new Date('2018-08-17T00:00:00'),
-    new Date('2018-08-20T00:00:00'),
+    new Date('2018-08-20T00:00:00')
   ];
 
   constructor() {
