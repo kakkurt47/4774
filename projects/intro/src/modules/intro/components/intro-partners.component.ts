@@ -88,6 +88,18 @@ import { BaseComponent } from '../../../models/base.component';
       section {
         padding: 50px 0;
       }
+      
+      .wrap-box {
+        width: 150px;
+        height: 48px;
+        line-height: 48px;
+        margin-bottom: 30px;
+      }
+      
+      img {
+        max-width: 130px;
+        max-height: 40px;
+      }
 
       .empty-box {
         padding-top: 0;
