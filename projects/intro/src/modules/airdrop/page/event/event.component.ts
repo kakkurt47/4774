@@ -53,7 +53,7 @@ export class AirdropEventComponent implements OnInit, OnDestroy {
   useFontFamily = true;
 
   private _sub: Subscription[] = [];
-  private _maximumParticipants = 25000;
+  private _maximumParticipants = 19961;
   constructor(private api: AirdropApi,
               private translateService: TranslateService) {
   }
