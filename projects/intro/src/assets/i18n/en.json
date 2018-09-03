@@ -17,19 +17,21 @@
   },
   "intro-ecosystem": {
     "title": "THE MUZIKA ECOSYSTEM",
-    "subtitle-1": "Muzika's core concept is that of an autonomous, self-sustaining ecosystem driven by content creators (music artists) and their fans in tandem. Prior to the advent of blockchain technology in 2009 with the release of Bitcoin, such a revolutionary technology to drive evolution of the music industry remained out of the world's grasp.",
-    "subtitle-2": "With the creation of a new decentralized digital music ecosystem where anyone can participate in the production, consumption, and distribution cycle of the music industry, Muzika will realize its goal of revolution."
+    "subtitle-1": "Muzika will create an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem, where compensations and rewards will become proportional to the level of devotion put into musical creations and ecosystem behind them. ",
+    "subtitle-2": "First, smart contract will allow digital musical products to be transferred directly from artists to fans, ensuring fairer and more transparent economic distribution.",
+    "subtitle-3": "Second, fans will have opportunities to make direct sponsorship to their favorite artists, supporting them and receiving exclusive benefits in return.",
+    "subtitle-4": "Third, fans will be rewarded with loyalty points for their various community activities, which will be regularly converted into MZK coins described in detail below. "
   },
   "intro-mzk-coins": {
     "subtitle-1": "Muzika coin(MZK) was deliberately designed as the backbone of this new ecosystem. The team has analyzed both successful and failed cryptocurrencies, past and present, and established a clear vision of what is necessary to make this project a success. ",
     "subtitle-2": "MZK will serve as the sole medium of exchange for all economic activity within the ecosystem including trades and sponsorship, all while assisting growth via a few free services targeted at community novices.",
     "major-functions": "4 MAJOR FUNCTIONS",
     "func-1-title": "Community Building",
-    "func-1-desc-1": "In order to be truly self-sustaining, the Muzika ecosystem will contain all of the necessary activities.",
+    "func-1-desc-1": "The Muzika ecosystem will contain all the functions and activities necessary to truly achieve self-sustainability. ",
     "func-1-desc-2": "These range from creative brainstorming, crowd-funding, exchange of feedback, and more.",
     "func-2-title": "Commercial Items",
-    "func-2-desc-1": "Besides community involvement, the ecosystem will also incorporate all of the functions that make the traditional digital music industry otherwise successful.",
-    "func-2-desc-2": "Streaming services, a sheet music marketplace, musical instruments, recording services and much more will all be available through Muzika.",
+    "func-2-desc-1": "Muzika will incorporate major features that have made players in the traditional digital music industry successful. ",
+    "func-2-desc-2": "We will provide community members with marketplaces for streaming, sheet music, instruments, and more.",
     "func-3-title": "Sponsorship Opportunities",
     "func-3-desc-1": "Users may sponsor artists and become their patrons in various ways including regular subscriptions. As patrons, users can enjoy exclusive & sponsor-only products, services,",
     "func-3-desc-2": "and opportunities to be inolved in the creative process of a musical product.",

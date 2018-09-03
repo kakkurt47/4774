@@ -17,10 +17,14 @@ import { BaseComponent } from '../../../models/base.component';
             <mzk-intro-countdown [expiredDate]="expiredDates[1]"></mzk-intro-countdown>
           </div>
           <div class="col-sm-3 col-6">
-            <mzk-intro-countdown [expiredDate]="expiredDates[2]"></mzk-intro-countdown>
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-duanemorris.png" class="img-fluid">
+            </div>
           </div>
           <div class="col-sm-3 col-6">
-            <mzk-intro-countdown [expiredDate]="expiredDates[3]"></mzk-intro-countdown>
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-ontology.png" class="img-fluid">
+            </div>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -32,7 +36,7 @@ import { BaseComponent } from '../../../models/base.component';
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-            <img src="assets/intro-img/partners/logo-t3-ventures.jpeg" class="img-fluid">
+            <img src="assets/intro-img/partners/logo-t3-ventures.png" class="img-fluid">
             </div>
           </div>
           <div class="col-sm-3 col-6">

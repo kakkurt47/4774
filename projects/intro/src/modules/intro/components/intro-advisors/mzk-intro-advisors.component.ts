@@ -398,6 +398,39 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '其中包括陌陌、印尼版淘宝Tokopedia，微众银行。'
         ]
       }
+    },
+    {
+      'imagePath': 'JangYoon-Kang.jpg',
+      'i18nPosition': {
+        [Lang.ENG]: 'Associate at CDIB Capital',
+        [Lang.KOR]: 'Associate at CDIB Capital',
+        [Lang.CHN]: '中华开发资本合伙人'
+      },
+      'i18nName': {
+        [Lang.ENG]: 'JangYoon Kang',
+        [Lang.KOR]: '강장윤',
+        [Lang.CHN]: 'JangYoon Kang'
+      },
+      'i18nSentences': {
+        [Lang.ENG]: [
+          'M&A professional with 5+ years of experience in the field',
+          'Associate at CDIB Capital, a private equity arm of China Development Financial Holding Corporation',
+          'Senior Analyst in the cross-border M&A team of KPMG Korea',
+          'Consultant in the M&A valuation team at Deloitte Korea'
+        ],
+        [Lang.KOR]: [
+          '5년 이상의 경험을 가진 M&A 전문가',
+          'Assicoaite, 사모펀드 CDIB Capital',
+          '시니어 애널리스트, Cross-border M&A팀, KPMG 코리아',
+          '컨설턴트, M&A 밸류에이션팀, 딜로이트 코리아'
+        ],
+        [Lang.CHN]: [
+          '从业5年以上的企业并购业内专家。',
+          '中华开发资本合伙人，隶属中华开发金融控股股份有限公司。',
+          'KPMG Korea 资深跨境企业并购分析专家',
+          'Deloitte Korea 企业并购专业顾问'
+        ]
+      }
     }
   ];
 

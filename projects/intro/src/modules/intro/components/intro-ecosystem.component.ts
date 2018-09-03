@@ -16,9 +16,10 @@ import { BaseComponent } from '../../../models/base.component';
                 {{'intro-ecosystem.title' | translate}}
               </h3>
               <p class="text-left intro-section-subtitle pt-4">
-                {{'intro-ecosystem.subtitle-1' | translate}}
-                <BR/><BR/>
-                {{'intro-ecosystem.subtitle-2' | translate}}
+                {{'intro-ecosystem.subtitle-1' | translate}}<BR/>
+                {{'intro-ecosystem.subtitle-2' | translate}}<BR/>
+                {{'intro-ecosystem.subtitle-3' | translate}}<BR/>
+                {{'intro-ecosystem.subtitle-4' | translate}}
               </p>
             </div>
           </div>
