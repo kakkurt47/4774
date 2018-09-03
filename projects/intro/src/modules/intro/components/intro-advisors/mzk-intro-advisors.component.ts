@@ -32,7 +32,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
 
   advisors: Advisors[] = [
     {
-      'imagePath': 'MichaelCho.jpg',
+      'imagePath': 'MichaelCho.png',
       'i18nPosition': {
         [Lang.ENG]: 'Non-executive Director of Kakao',
         [Lang.KOR]: '카카오 사외이사',
@@ -83,7 +83,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'imagePath': 'qtum_stella.jpg',
+      'imagePath': 'qtum_stella.png',
       'i18nPosition': {
         [Lang.ENG]: 'CMO of QTUM',
         [Lang.KOR]: '퀀텀(QTUM), CMO',
@@ -174,7 +174,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
     },
     {
       'name': '박진수',
-      'imagePath': 'parkjinsoo.jpg',
+      'imagePath': 'parkjinsoo.png',
       'position': '화이브라더스 엔터테인먼트 CFO',
       'sentences': [
         '(前) YG 인베스트먼트 이사, CFO',
@@ -214,7 +214,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'imagePath': 'blackhorse-brian.jpg',
+      'imagePath': 'blackhorse-brian.png',
       'i18nPosition': {
         [Lang.ENG]: 'Managing Director, BlackHorse Group',
         [Lang.KOR]: 'BlackHorse 그룹 이사',
@@ -311,7 +311,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'imagePath': 'panony_alyssa.jpg',
+      'imagePath': 'panony_alyssa.png',
       'i18nPosition': {
         [Lang.ENG]: 'Founder & CEO of PANONY',
         [Lang.KOR]: 'PANONY의 창립자, 대표이사',
@@ -400,7 +400,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'imagePath': 'JangYoon-Kang.jpg',
+      'imagePath': 'JangYoon-Kang.png',
       'i18nPosition': {
         [Lang.ENG]: 'Associate at CDIB Capital',
         [Lang.KOR]: 'Associate at CDIB Capital',
