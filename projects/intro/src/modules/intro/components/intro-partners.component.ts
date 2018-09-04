@@ -14,7 +14,9 @@ import { BaseComponent } from '../../../models/base.component';
             <mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>
           </div>
           <div class="col-sm-3 col-6">
-            <mzk-intro-countdown [expiredDate]="expiredDates[1]"></mzk-intro-countdown>
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-ngc.png" class="img-fluid">
+            </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
