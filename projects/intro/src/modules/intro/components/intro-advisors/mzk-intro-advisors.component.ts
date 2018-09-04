@@ -284,7 +284,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       'i18nPosition': {
         [Lang.ENG]: '(Ex) Rocket Internet MD',
         [Lang.KOR]: '(Ex) Rocket Internet MD',
-        [Lang.CHN]: '(Ex) Rocket Internet MD'
+        [Lang.CHN]: '(前) Rocket Internet MD'
       },
       'i18nName': {
         [Lang.ENG]: 'Sam Lang',
@@ -298,7 +298,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           'Rocket Internet'
         ],
         [Lang.KOR]: [
-          '前 Rocket Internet 이사',
+          '(前) Rocket Internet 이사',
           '다수의 San Francisco 기반 스타트업 창업 및 미국과 아시아지역 스타트업 투자 / 자문 ',
           '일본 핀테크 스타트업의 해외진출 리드'
         ],
