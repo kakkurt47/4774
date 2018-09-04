@@ -172,47 +172,47 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         ]
       }
     },
-    {
-      'name': '박진수',
-      'imagePath': 'parkjinsoo.png',
-      'position': '화이브라더스 엔터테인먼트 CFO',
-      'sentences': [
-        '(前) YG 인베스트먼트 이사, CFO',
-        '(前) 삼일 PWC 회계법인 시니어 어소시에이트',
-        '공인회계사(CPA)',
-        '국제재무분석사(CFA)'
-      ],
-      'i18nPosition': {
-        [Lang.ENG]: 'CFO, Huayibrothers Entertainment',
-        [Lang.KOR]: '화이브라더스 엔터테인먼트 CFO',
-        [Lang.CHN]: '韩国 YG Entertainment 娱乐经纪公司 项目主管 '
-      },
-      'i18nName': {
-        [Lang.ENG]: 'Jinsoo Park',
-        [Lang.KOR]: '박진수',
-        [Lang.CHN]: 'Jinsoo Park'
-      },
-      'i18nSentences': {
-        [Lang.ENG]: [
-          '(EX) Director and CFO, YG investment',
-          '(EX) Senior Associate, Samill PricewaterhouseCoopers',
-          'Certified Public Accountant',
-          'Certified Financial Analyst'
-        ],
-        [Lang.KOR]: [
-          '(前) YG 인베스트먼트 이사, CFO',
-          '(前) 삼일 PWC 회계법인 시니어 어소시에이트',
-          '공인회계사(CPA)',
-          '국제재무분석사(CFA)'
-        ],
-        [Lang.CHN]: [
-          '前 韩国 YG Investment 投资公司 部门主任 & CFO',
-          ' 前 Samil PricewaterhouseCoopers 资深合伙人',
-          '注册会计师 （CPA）',
-          '注册金融分析师'
-        ]
-      }
-    },
+    // {
+    //   'name': '박진수',
+    //   'imagePath': 'parkjinsoo.png',
+    //   'position': '화이브라더스 엔터테인먼트 CFO',
+    //   'sentences': [
+    //     '(前) YG 인베스트먼트 이사, CFO',
+    //     '(前) 삼일 PWC 회계법인 시니어 어소시에이트',
+    //     '공인회계사(CPA)',
+    //     '국제재무분석사(CFA)'
+    //   ],
+    //   'i18nPosition': {
+    //     [Lang.ENG]: 'CFO, Huayibrothers Entertainment',
+    //     [Lang.KOR]: '화이브라더스 엔터테인먼트 CFO',
+    //     [Lang.CHN]: '韩国 YG Entertainment 娱乐经纪公司 项目主管 '
+    //   },
+    //   'i18nName': {
+    //     [Lang.ENG]: 'Jinsoo Park',
+    //     [Lang.KOR]: '박진수',
+    //     [Lang.CHN]: 'Jinsoo Park'
+    //   },
+    //   'i18nSentences': {
+    //     [Lang.ENG]: [
+    //       '(EX) Director and CFO, YG investment',
+    //       '(EX) Senior Associate, Samill PricewaterhouseCoopers',
+    //       'Certified Public Accountant',
+    //       'Certified Financial Analyst'
+    //     ],
+    //     [Lang.KOR]: [
+    //       '(前) YG 인베스트먼트 이사, CFO',
+    //       '(前) 삼일 PWC 회계법인 시니어 어소시에이트',
+    //       '공인회계사(CPA)',
+    //       '국제재무분석사(CFA)'
+    //     ],
+    //     [Lang.CHN]: [
+    //       '前 韩国 YG Investment 投资公司 部门主任 & CFO',
+    //       ' 前 Samil PricewaterhouseCoopers 资深合伙人',
+    //       '注册会计师 （CPA）',
+    //       '注册金融分析师'
+    //     ]
+    //   }
+    // },
     {
       'imagePath': 'blackhorse-brian.png',
       'i18nPosition': {
