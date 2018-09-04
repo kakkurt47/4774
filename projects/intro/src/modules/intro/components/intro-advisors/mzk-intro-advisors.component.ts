@@ -280,6 +280,36 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
+      'imagePath': 'sam.png',
+      'i18nPosition': {
+        [Lang.ENG]: '(Ex) Rocket Internet MD',
+        [Lang.KOR]: '(Ex) Rocket Internet MD',
+        [Lang.CHN]: '(Ex) Rocket Internet MD'
+      },
+      'i18nName': {
+        [Lang.ENG]: 'Sam Lang',
+        [Lang.KOR]: 'Sam Lang',
+        [Lang.CHN]: 'Sam Lang'
+      },
+      'i18nSentences': {
+        [Lang.ENG]: [
+          'Founded multiple startups in San Francisco, before investing and advising startups in Asia and the USA',
+          'Recently leading international expansion for the growth stage of a Japanese fintech startup.',
+          'Rocket Internet'
+        ],
+        [Lang.KOR]: [
+          '前 Rocket Internet 이사',
+          '다수의 San Francisco 기반 스타트업 창업 및 미국과 아시아지역 스타트업 투자 / 자문 ',
+          '일본 핀테크 스타트업의 해외진출 리드'
+        ],
+        [Lang.CHN]: [
+          '前董事总经理',
+          '资深企业创始人与投资人，身兼亚洲和美国诸多企业高级商业顾问职位，旗下成立多个品牌公司。',
+          '近期负责日本一家金融科技公司的国际商务'
+        ]
+      }
+    },
+    {
       'imagePath': 'Jonathan-Lee.png',
       i18nName: {
         [Lang.ENG]: 'Jonathan Lee',
