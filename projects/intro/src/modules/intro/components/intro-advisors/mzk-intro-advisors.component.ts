@@ -420,7 +420,7 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         ],
         [Lang.KOR]: [
           '5년 이상의 경험을 가진 M&A 전문가',
-          'Assicoaite, 사모펀드 CDIB Capital',
+          'Associate, 사모펀드 CDIB Capital',
           '시니어 애널리스트, Cross-border M&A팀, KPMG 코리아',
           '컨설턴트, M&A 밸류에이션팀, 딜로이트 코리아'
         ],
