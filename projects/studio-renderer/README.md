@@ -1,2 +1,0 @@
-# Muzika Studio Renderer Process
-

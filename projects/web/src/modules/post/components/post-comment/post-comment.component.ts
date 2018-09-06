@@ -16,7 +16,7 @@ export class PostCommentComponent extends AbstractPostCommentComponent {
 
   constructor(protected commentAction: CommentActions,
               protected postActions: PostActions,
-              protected store: Store<WebAppState>,
+              protected store: Store<any>,
               @Inject(PLATFORM_ID) protected platformId,
               protected element: ElementRef,
               protected zone: NgZone) {

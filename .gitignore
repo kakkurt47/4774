@@ -41,21 +41,10 @@ Thumbs.db
 
 # Truffle build directory
 build/
-ipfs-muzika/
-app-builds/
-main.js
-projects/studio-main/node_src/**/*.js
-projects/studio-main/renderer
-projects/studio-main/.cache
 
 platforms/
 plugins/
 www/
-
-# Electron & Tsc compiled artifacts
-projects/core/package-lock.json
-main.js
-main.js.map
 
 # Logs
 lerna-debug.log
