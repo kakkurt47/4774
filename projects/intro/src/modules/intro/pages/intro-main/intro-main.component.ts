@@ -31,7 +31,7 @@ export class IntroMainPageComponent extends BaseComponent {
     //       this.macDownloadURL = macInfo.url;
     //     }
     //   });
-    this.macDownloadURL = 'https://s3.amazonaws.com/muzika-release/studio/darwin/Muzika-0.0.9-mac.zip';
+    this.macDownloadURL = 'https://s3.amazonaws.com/muzika-release/studio/darwin/Muzika-0.0.9.dmg';
     this.linuxDownloadURL = 'https://release.muzika.network/studio/linux/muzika-0.0.9-x86_64.AppImage';
     this.winDownloadURL = 'https://s3.amazonaws.com/muzika-release/studio/win-x64/Muzika+Setup+0.0.9.exe';
   }
