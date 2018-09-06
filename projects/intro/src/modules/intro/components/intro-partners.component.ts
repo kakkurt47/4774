@@ -10,9 +10,9 @@ import { BaseComponent } from '../../../models/base.component';
           PARTNERS
         </h2>
         <div class="row mt-5">
-          <div class="col-sm-3 col-6">
-            <mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>
-          </div>
+          <!--<div class="col-sm-3 col-6">-->
+            <!--<mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>-->
+          <!--</div>-->
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
               <img src="assets/intro-img/partners/logo-ngc.png" class="img-fluid">
@@ -25,6 +25,11 @@ import { BaseComponent } from '../../../models/base.component';
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-t3-ventures.png" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
               <img src="assets/intro-img/partners/logo-everest-ventures.png" class="img-fluid">
             </div>
           </div>
@@ -33,7 +38,7 @@ import { BaseComponent } from '../../../models/base.component';
         <div class="row mt-sm-4">
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-            <img src="assets/intro-img/partners/logo-t3-ventures.png" class="img-fluid">
+              <img src="assets/intro-img/partners/logo-ulysses-capital.png" class="img-fluid">
             </div>
           </div>
           <div class="col-sm-3 col-6">
