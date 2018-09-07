@@ -13,8 +13,6 @@
 | [`@muzika/core/angular`](/projects/core/angular)       | [![npm version](https://badge.fury.io/js/%40muzika%2Fcore.svg)](https://badge.fury.io/js/%40muzika%2Fcore)      | Angular library for Muzika platform                       |
 | [`@muzika/core/browser`](/projects/core/browser)       | [![npm version](https://badge.fury.io/js/%40muzika%2Fcore.svg)](https://badge.fury.io/js/%40muzika%2Fcore)      | Streaming utils for Muzika platform                       |
 | [`@muzika/core/nodejs`](/projects/core/nodejs)       | *Not published*      | NodeJS Interface for Electron, NodeJS server                       |
-| [`@muzika/web`](/projects/web) | *Not published*      | Prototype for Muzika marketplace                    |
-| [`@muzika/viewer`](/projects/viewer)       | *Not published*      | Muzika platform Minimum Viable Product                 |
 
 
 # Techniques
