@@ -69,50 +69,62 @@ export class MzkIntroPressComponent extends BaseComponent {
   presses: {src: string, link: string}[] = [
     {
       src: 'logo-market-watch.png',
+      // tslint:disable-next-line
       link: 'https://www.marketwatch.com/press-release/blockchain-startup-muzika-backed-by-south-korean-tech-giants-kakao-and-naver-to-revolutionize-music-industry-2018-08-06'
     },
     {
       src: 'logo-business-insider.png',
+      // tslint:disable-next-line
       link: 'https://markets.businessinsider.com/news/stocks/blockchain-startup-muzika-backed-by-south-korean-tech-giants-kakao-and-naver-to-revolutionize-music-industry-1027433467'
     },
     {
       src: 'logo-yahoo-finance.png',
+      // tslint:disable-next-line
       link: 'https://finance.yahoo.com/news/blockchain-startup-muzika-backed-south-104700455.html'
     },
     {
       src: 'logo-blockchain-news.png',
+      // tslint:disable-next-line
       link: 'https://www.the-blockchain.com/2018/08/28/muzika-attracts-industry-leaders-in-korean-music-and-tech-scene-to-advisory-board/'
     },
     {
       src: 'logo-ccn.png',
+      // tslint:disable-next-line
       link: 'https://www.ccn.com/korean-consortium-blockchain-to-revolutionize-music-muzika-attracts-2-million-users-and-high-profile-investors/'
     },
     {
       src: 'logo-fenghuang.png',
+      // tslint:disable-next-line
       link: 'http://biz.ifeng.com/a/20180731/45094179_0.shtml'
     },
     {
       src: 'logo-huoxing.png',
+      // tslint:disable-next-line
       link: 'http://www.huoxing24.com/liveNewsDetail/20180806211751888293.html'
     },
     {
       src: 'logo-jingse.png',
+      // tslint:disable-next-line
       link: 'https://www.jinse.com/lives/44338.htm'
     },
     {
       src: 'logo-sina.png',
+      // tslint:disable-next-line
       link: 'https://t.cj.sina.com.cn/articles/view/5379320436/140a1ea7400100a4n9'
     },
     {
       src: 'logo-tencent-news.png',
+      // tslint:disable-next-line
       link: 'http://view.inews.qq.com/a/20180731A135QN00'
     },
     {
       src: 'logo-digital-times.png',
+      // tslint:disable-next-line
       link: 'http://www.dt.co.kr/contents.html?article_no=2018080202101731041001&ref=naver'
     },
     {
       src: 'logo-financial-news.png',
+      // tslint:disable-next-line
       link: 'http://www.fnnews.com/news/201807300946070817'
     }
   ];

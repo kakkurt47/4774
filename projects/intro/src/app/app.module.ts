@@ -82,7 +82,7 @@ export class AppModule {
     let currentLang = (isPlatformBrowser(this.platformId)) ?
       this.localStorage.getItem('currentLang', this.translateService.getBrowserLang()) : Lang.ENG;
 
-    if (currentLang == Lang.KOR) {
+    if (currentLang === Lang.KOR) {
       currentLang = Lang.ENG;
     }
 

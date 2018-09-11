@@ -123,7 +123,7 @@ import { BaseComponent } from '../../../models/base.component';
   `]
 })
 export class MzkIntroMZKCoinComponent extends BaseComponent {
-  langDependedSuffix: string = '';
+  langDependedSuffix = '';
 
   constructor(private translateService: TranslateService) {
     super();
