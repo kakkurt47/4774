@@ -7,6 +7,7 @@
     "airdrop-btn-text": "에어드롭 참여하기"
   },
   "intro-navbar": {
+    "press": "Press",
     "ecosystem": "생태계",
     "mzk-coins": "MZK 코인",
     "partners": "파트너스",
@@ -14,6 +15,9 @@
     "advisors": "어드바이저",
     "roadmap": "로드맵",
     "services": "서비스"
+  },
+  "intro-press": {
+    "description": "전 세계 미디어에 소개된\nMuzika의 이야기를 확인해보세요."
   },
   "intro-ecosystem": {
     "title": "MUZIKA 생태계",

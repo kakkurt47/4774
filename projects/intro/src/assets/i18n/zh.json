@@ -7,6 +7,7 @@
     "airdrop-btn-text": "赏金计划"
   },
   "intro-navbar": {
+    "press": "Press",
     "ecosystem": "生态系统",
     "mzk-coins": "MZK代币",
     "partners": "合作方",
@@ -14,6 +15,9 @@
     "advisors": "顾问组",
     "roadmap": "路线图",
     "services": "应用场景"
+  },
+  "intro-press": {
+    "description": "Muzika受到全球诸多知名媒体的关注，\n颇具代表性的相关媒体报道如下："
   },
   "intro-ecosystem": {
     "title": "MUZIKA 生态系统",

@@ -7,6 +7,7 @@
     "airdrop-btn-text": "Bounty Program"
   },
   "intro-navbar": {
+    "press": "Press",
     "ecosystem": "Ecosystem",
     "mzk-coins": "MZK Coin",
     "partners": "Partners",
@@ -14,6 +15,9 @@
     "advisors": "Advisors",
     "roadmap": "Roadmap",
     "services": "Services"
+  },
+  "intro-press": {
+    "description": "Muzika has been covered by\nmultiple media channels around the world.\nHere we introduce some of them."
   },
   "intro-ecosystem": {
     "title": "THE MUZIKA ECOSYSTEM",
