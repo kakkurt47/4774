@@ -79,8 +79,13 @@ export class AppModule {
               private localStorage: LocalStorage,
               private translateService: TranslateService) {
     this.translateService.setDefaultLang('en');
-    const currentLang = (isPlatformBrowser(this.platformId)) ?
+    let currentLang = (isPlatformBrowser(this.platformId)) ?
       this.localStorage.getItem('currentLang', this.translateService.getBrowserLang()) : Lang.ENG;
+
+    if (currentLang == Lang.KOR) {
+      currentLang = Lang.ENG;
+    }
+
     switch (currentLang) {
       case Lang.ENG:
       case Lang.KOR:
