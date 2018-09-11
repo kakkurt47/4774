@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '../../../models/base.component';
 
 @Component({
@@ -13,8 +14,8 @@ import { BaseComponent } from '../../../models/base.component';
           {{'intro-mzk-coins.subtitle-1' | translate}}<BR/> <BR/>
           {{'intro-mzk-coins.subtitle-2' | translate}}
         </p>
-        <img src="assets/intro-img/diagram_coin_pc.png" class="mt-sm-5 img-fluid mb-sm-5 hidden-pc">
-        <img src="assets/intro-img/diagram_coin_mobile2.png" class="mt-sm-5 img-fluid mb-sm-5 hidden-mb">
+        <img [src]="'assets/intro-img/diagram_coin_pc' + langDependedSuffix + '.png'" class="mt-sm-5 img-fluid mb-sm-5 hidden-pc">
+        <img [src]="'assets/intro-img/diagram_coin_mobile2' + langDependedSuffix + '.png'" class="mt-sm-5 img-fluid mb-sm-5 hidden-mb">
         <BR/>
         <BR/>
         <h2 class="mt-5 text-center intro-section-title mb-5">{{'intro-mzk-coins.major-functions' | translate}}</h2>
@@ -122,9 +123,29 @@ import { BaseComponent } from '../../../models/base.component';
   `]
 })
 export class MzkIntroMZKCoinComponent extends BaseComponent {
-  constructor() {
+  langDependedSuffix: string = '';
+
+  constructor(private translateService: TranslateService) {
     super();
   }
 
+  ngOnInit(): void {
+    super.ngOnInit();
 
+    this.setSupportSuffix(this.translateService.currentLang);
+
+    this._sub.push(
+      this.translateService.onLangChange.subscribe(event => {
+        this.setSupportSuffix(event.lang);
+      })
+    );
+  }
+
+  private setSupportSuffix(lang: string) {
+    if (lang === 'zh') {
+      this.langDependedSuffix = '_zh';
+    } else {
+      this.langDependedSuffix = '';
+    }
+  }
 }
