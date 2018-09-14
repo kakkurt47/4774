@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '../../../models/base.component';
 
 @Component({
-  selector: 'mzk-intro-partners',
+  selector: 'mzk-intro-investors',
   template: `
     <section class="section" id="investor">
       <div class="container">
         <h2 class="text-center intro-section-title">
-          PARTNERS
+          INVESTORS
         </h2>
         <div class="row mt-5">
-          <!--<div class="col-sm-3 col-6">-->
-            <!--<mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>-->
-          <!--</div>-->
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-ngc.png" class="img-fluid">
+            </div>
+          </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
               <img src="assets/intro-img/partners/logo-ontology.png" class="img-fluid">
@@ -20,18 +22,34 @@ import { BaseComponent } from '../../../models/base.component';
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
+              <img src="assets/intro-img/investors/256-ventures.png" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
               <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
             </div>
           </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row mt-sm-4">
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
+              <img src="assets/intro-img/partners/logo-everest-ventures.png" class="img-fluid">
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-duanemorris.png" class="img-fluid">
+              <img src="assets/intro-img/partners/logo-t3-ventures.png" class="img-fluid">
             </div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-ulysses-capital.png" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>
           </div>
         </div>
       </div>
@@ -41,9 +59,9 @@ import { BaseComponent } from '../../../models/base.component';
     section {
       display: block;
       background-color: #f8fafb;
-      padding: 20px 0 100px 0;
+      padding: 100px 0;
     }
-    
+
     .wrap-box {
       width: 255px;
       height: 110px;
@@ -76,14 +94,14 @@ import { BaseComponent } from '../../../models/base.component';
       section {
         padding: 50px 0;
       }
-      
+
       .wrap-box {
         width: 150px;
         height: 48px;
         line-height: 48px;
         margin-bottom: 30px;
       }
-      
+
       img {
         max-width: 130px;
         max-height: 40px;
@@ -98,7 +116,7 @@ import { BaseComponent } from '../../../models/base.component';
     }
   `]
 })
-export class MzkIntroPartnersComponent extends BaseComponent {
+export class MzkIntroInvestorsComponent extends BaseComponent {
   expiredDates: Date[] = [
     new Date('2018-08-10T00:00:00'),
     new Date('2018-08-13T00:00:00'),

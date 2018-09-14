@@ -25,6 +25,7 @@ import { MzkIntroFloatingBtnsComponent } from './components/intro-floating-btns/
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MuzikaIconComponent } from '../../muzika-icon/muzika-icon.component';
 import { RouterModule } from '@angular/router';
+import { MzkIntroInvestorsComponent } from './components/intro-investors.component';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import { RouterModule } from '@angular/router';
     MzkIntroEcosystemComponent,
     MzkIntroMZKCoinComponent,
     MzkIntroPartnersComponent,
+    MzkIntroInvestorsComponent,
     MzkIntroFloatingBtnsComponent,
     MzkIntroCountdownComponent,
     MzkIntroCountdownNumberComponent,
