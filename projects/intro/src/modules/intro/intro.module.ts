@@ -5,7 +5,6 @@ import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { MzkIntroAdvisorsComponent } from './components/intro-advisors/mzk-intro-advisors.component';
-import { MzkIntroBlockchainTechComponent } from './components/intro-blockchain-tech/mzk-intro-blockchain-tech.component';
 import { MzkIntroBusinessIdeaComponent } from './components/intro-business-idea/mzk-intro-business-idea.component';
 import { MzkIntroCountdownNumberComponent } from './components/intro-countdown/intro-countdown-nubmer.component';
 import { IntroFooterComponent } from './components/intro-footer/intro-footer.component';
