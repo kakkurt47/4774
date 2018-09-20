@@ -8,7 +8,7 @@ import { BaseComponent } from '../../../../models/base.component';
   styleUrls: ['./intro-footer.component.scss']
 })
 export class IntroFooterComponent extends BaseComponent {
-  lang: string = 'en';
+  lang = 'en';
 
   constructor(private translateService: TranslateService) {
     super();
@@ -17,7 +17,7 @@ export class IntroFooterComponent extends BaseComponent {
   ngOnInit(): void {
     this._sub.push(
       this.translateService.onLangChange.subscribe(lang => {
-        this.lang = lang.lang
+        this.lang = lang.lang;
       })
     );
   }

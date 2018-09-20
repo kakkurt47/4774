@@ -62,6 +62,7 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
       'Exchange Listing',
       'Launch of the\nMuzika Ecosystem\nprototype for\ntestnet',
       'Launch of the\nMuzika Ecosystem\nprototype for\nmainnet',
+      // tslint:disable-next-line
       'Integrate Mapianist,\nMyMusicSheet, and other existing\nor soon-to-be-launched platforms\ndeveloped by Mapiacompany\nto Muzika Ecosystem',
       'Muzika Ecosystem\nbeta launch\n(consumption-oriented)',
       'Muzika Ecosystem\nbeta launch\n(production-oriented)',
@@ -241,6 +242,7 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
       list: [
         { date: '2018.09', text: 'Muzika 플랫폼을 이더리움 테스트넷 (Ropsten)에서 알파 런칭' },
         { date: '2018.11', text: 'Muzika 플랫폼을 이더리움 메인넷에서 알파 런칭' },
+        // tslint:disable-next-line
         { date: '2018.12', text: '마음만은 피아니스트, MyMusicSheet, KPopPiano 등 마피아컴퍼니가 운영하는 다른 플랫폼과 결제 수단 통합' },
         { date: '2019.01', text: 'Muzika 플랫폼 베타 런칭 1 (악보/음원 구매 중심)' },
         { date: '2019.02', text: 'Muzika 플랫폼 베타 런칭 2 (커뮤니티/보상 로직 중심)' },

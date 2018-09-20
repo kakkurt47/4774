@@ -109,7 +109,7 @@ export class MzkIntroRoadmapImageComponent extends BaseComponent implements OnCh
       };
     });
 
-    this.polylinePoint = this.quarterPos.map(({x, y}) => `${x} ${y}`).join(" ");
+    this.polylinePoint = this.quarterPos.map(({x, y}) => `${x} ${y}`).join(' ');
 
     this.quarterDescCirclePoint = [];
     this.quarterDescLinePoint = this.quarterPos.map((pos, i) => {
@@ -119,7 +119,7 @@ export class MzkIntroRoadmapImageComponent extends BaseComponent implements OnCh
       this.quarterDescLineDiff[i].forEach(cur => {
         cx += cur.dx;
         cy += cur.dy;
-        res = `${res} ${cx} ${cy}`
+        res = `${res} ${cx} ${cy}`;
       });
 
       this.quarterDescCirclePoint.push({x: cx, y: cy});
@@ -130,7 +130,7 @@ export class MzkIntroRoadmapImageComponent extends BaseComponent implements OnCh
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['desc']) {
-      let currentDesc = changes['desc'].currentValue;
+      const currentDesc = changes['desc'].currentValue;
       if (currentDesc) {
         this.convertedQuarterDesc = currentDesc.map((desc: string) => {
           return desc.split('\n').map(s => s.trim());
