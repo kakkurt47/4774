@@ -136,7 +136,7 @@
   margin-top: -17px;
 }
 
-@media(max-width: 738px) {
+@media(max-width: 768px) {
   .spinner {
     margin-top: 1px;
   }
@@ -174,4 +174,13 @@
       transform: scale(1.0);
       -webkit-transform: scale(1.0);
     }
+}
+
+intro-roadmap-img {
+  margin-top: 30px;
+  height: 740px;
+
+  @media (max-width: 1180px) {
+    height: 480px;
+  }
 }

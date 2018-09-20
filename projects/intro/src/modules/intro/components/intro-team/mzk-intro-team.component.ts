@@ -6,13 +6,16 @@ import { BaseComponent } from '../../../../models/base.component';
 export interface MuzikaMember {
   image: string;
   i18nName: {
-    [key: string]: string
+    [key: string]: string;
   };
   i18nPosition: {
-    [key: string]: string
+    [key: string]: string;
   };
   github?: string;
   linkedin?: string;
+  sentences?: {
+    [key: string]: string[];
+  };
 }
 
 @Component({
@@ -25,7 +28,7 @@ export interface MuzikaMember {
 })
 export class MzkIntroTeamComponent extends BaseComponent {
   currentLang: string = Lang.ENG;
-  members: MuzikaMember[] = [
+  leadBlockchain: MuzikaMember[] = [
     {
       image: '강승원.jpg',
       i18nName: {
@@ -34,12 +37,26 @@ export class MzkIntroTeamComponent extends BaseComponent {
         [Lang.CHN]: 'Seungwon Kang'
       },
       i18nPosition: {
-        [Lang.ENG]: 'Blockchain Engineer',
-        [Lang.KOR]: '블록체인 개발자',
-        [Lang.CHN]: '区块链工程师'
+        [Lang.ENG]: 'Blockchain Core Engineer',
+        [Lang.KOR]: 'Blockchain Core Engineer',
+        [Lang.CHN]: 'Blockchain Core Engineer'
       },
       linkedin: '',
-      github: 'https://github.com/seungwon-kang'
+      github: 'https://github.com/seungwon-kang',
+      sentences: {
+        [Lang.ENG]: [
+          'Computer Science, Hanyang University',
+          'ROK Military Network and IT Security Specialist'
+        ],
+        [Lang.KOR]: [
+          'Computer Science, Hanyang University',
+          'ROK Military Network and IT Security Specialist'
+        ],
+        [Lang.CHN]: [
+          'Computer Science, Hanyang University',
+          'ROK Military Network and IT Security Specialist'
+        ]
+      }
     },
     {
       image: '정채홍.jpg',
@@ -49,11 +66,25 @@ export class MzkIntroTeamComponent extends BaseComponent {
         [Lang.CHN]: 'Chaehong Jeong'
       },
       i18nPosition: {
-        [Lang.ENG]: 'Lead Blockchain Engineer',
-        [Lang.KOR]: '블록체인 리드 개발자',
-        [Lang.CHN]: '区块链工程师'
+        [Lang.ENG]: 'Blockchain Platform Engineer',
+        [Lang.KOR]: 'Blockchain Platform Engineer',
+        [Lang.CHN]: 'Blockchain Platform Engineer'
       },
-      github: 'https://github.com/brcps12'
+      github: 'https://github.com/brcps12',
+      sentences: {
+        [Lang.ENG]: [
+          'Computer Science, Hanyang University',
+          'Multiple Awards in Algorithm PS Competitions'
+        ],
+        [Lang.KOR]: [
+          'Computer Science, Hanyang University',
+          'Multiple Awards in Algorithm PS Competitions'
+        ],
+        [Lang.CHN]: [
+          'Computer Science, Hanyang University',
+          'Multiple Awards in Algorithm PS Competitions'
+        ]
+      }
     },
     {
       image: '이정우.jpg',
@@ -63,12 +94,79 @@ export class MzkIntroTeamComponent extends BaseComponent {
         [Lang.CHN]: 'Jungwoo Lee'
       },
       i18nPosition: {
-        [Lang.ENG]: 'Lead Blockchain Architect',
-        [Lang.KOR]: '블록체인 리드',
-        [Lang.CHN]: '区块链首席构架师'
+        [Lang.ENG]: 'Head of Business Development',
+        [Lang.KOR]: 'Head of Business Development',
+        [Lang.CHN]: 'Head of Business Development'
       },
-      linkedin: 'https://www.linkedin.com/in/jungwoo-lee-644506169/'
+      linkedin: 'https://www.linkedin.com/in/jungwoo-lee-644506169/',
+      sentences: {
+        [Lang.ENG]: [
+          'Certified Public Accountant, Korea (KICPA)',
+          'Business Administration, Seoul National University'
+        ],
+        [Lang.KOR]: [
+          'Certified Public Accountant, Korea (KICPA)',
+          'Business Administration, Seoul National University'
+        ],
+        [Lang.CHN]: [
+          'Certified Public Accountant, Korea (KICPA)',
+          'Business Administration, Seoul National University'
+        ]
+      }
     },
+    {
+      image: '윌리엄.jpg',
+      i18nName: {
+        [Lang.ENG]: 'William Wu',
+        [Lang.KOR]: '윌리엄',
+        [Lang.CHN]: 'William Wu'
+      },
+      i18nPosition: {
+        [Lang.ENG]: 'Head of Global PR',
+        [Lang.KOR]: '글로벌 PR 총괄',
+        [Lang.CHN]: '国际PR主管'
+      },
+      linkedin: 'https://www.linkedin.com/in/william-wu-66377398/',
+      sentences: {
+        [Lang.ENG]: [
+          'Professional in China & Cross-cultural Business Operations'
+        ],
+        [Lang.KOR]: [
+          'Professional in China & Cross-cultural Business Operations'
+        ],
+        [Lang.CHN]: [
+          'Professional in China & Cross-cultural Business Operations'
+        ]
+      }
+    },
+    {
+      image: '이민경.jpg',
+      i18nName: {
+        [Lang.ENG]: 'Minkyung Lee',
+        [Lang.KOR]: '이민경',
+        [Lang.CHN]: 'Minkyung Lee'
+      },
+      i18nPosition: {
+        [Lang.ENG]: 'Brand & UX Designer',
+        [Lang.KOR]: '브랜드 & UX 디자이너',
+        [Lang.CHN]: '品牌与用户体验设计师'
+      },
+      linkedin: 'https://www.linkedin.com/in/minkyung-lee-609506169/',
+      sentences: {
+        [Lang.ENG]: [
+          'Visual Communication, AAA School of Advertising'
+        ],
+        [Lang.KOR]: [
+          'Visual Communication, AAA School of Advertising'
+        ],
+        [Lang.CHN]: [
+          'Visual Communication, AAA School of Advertising'
+        ]
+      }
+    },
+  ];
+
+  members: MuzikaMember[] = [
     {
       image: '김지현.jpg',
       i18nName: {
@@ -126,20 +224,6 @@ export class MzkIntroTeamComponent extends BaseComponent {
       github: 'https://github.com/AhnJaeChan'
     },
     {
-      image: '이민경.jpg',
-      i18nName: {
-        [Lang.ENG]: 'Minkyung Lee',
-        [Lang.KOR]: '이민경',
-        [Lang.CHN]: 'Minkyung Lee'
-      },
-      i18nPosition: {
-        [Lang.ENG]: 'Brand & UX Designer',
-        [Lang.KOR]: '브랜드 & UX 디자이너',
-        [Lang.CHN]: '品牌与用户体验设计师'
-      },
-      linkedin: 'https://www.linkedin.com/in/minkyung-lee-609506169/'
-    },
-    {
       image: '나수경2.jpg',
       i18nName: {
         [Lang.ENG]: 'Sukyung Na',
@@ -152,20 +236,6 @@ export class MzkIntroTeamComponent extends BaseComponent {
         [Lang.CHN]: '国际商务主管'
       },
       linkedin: 'https://www.linkedin.com/in/sukyung-na-097750164'
-    },
-    {
-      image: '윌리엄.jpg',
-      i18nName: {
-        [Lang.ENG]: 'William Wu',
-        [Lang.KOR]: '윌리엄',
-        [Lang.CHN]: 'William Wu'
-      },
-      i18nPosition: {
-        [Lang.ENG]: 'Head of Global PR',
-        [Lang.KOR]: '글로벌 PR 총괄',
-        [Lang.CHN]: '国际PR主管'
-      },
-      linkedin: 'https://www.linkedin.com/in/william-wu-66377398/'
     },
     {
       image: '정예지.jpg',

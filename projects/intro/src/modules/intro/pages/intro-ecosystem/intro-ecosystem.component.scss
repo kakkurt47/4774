@@ -1,7 +1,7 @@
 @import 'helper';
 
 .bg-home-full {
-  min-height: 600px;
+  min-height: 480px;
 }
 
 .bg-home {
@@ -13,7 +13,7 @@
 }
 
 .container {
-  min-height: 600px;
+  min-height: 480px;
   padding-top: 80px;
 
   .row {
@@ -88,10 +88,10 @@
 }
 
 .home-center {
-  //background: url('../../../../assets/intro-img/design/wave-1.png') no-repeat;
-  //background-size: 100%;
-  //background-position-y: bottom;
-  //padding-bottom: 160px;
+  background: url('../../../../assets/intro-img/design/wave-1-1.png') no-repeat;
+  background-size: 100%;
+  background-position-y: bottom;
+  padding-bottom: 160px;
 }
 
 .home-desc-center {
@@ -254,10 +254,11 @@
 
 @media (min-width: 200px) and (max-width: 768px) {
   .bg-home-full {
-    min-height: 600px;
+    min-height: 180px;
   }
 
   .container {
+    min-height: 180px;
     padding-top: 0;
   }
 

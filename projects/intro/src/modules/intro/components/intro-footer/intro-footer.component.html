@@ -8,9 +8,11 @@
       <div class="col pl-sm-4">
         <h5 class="mb-3">Muzika</h5>
         <ul class="mb-4 text-center">
-          <li class="mb-2"><a href="#home">{{'intro-footer.whitepapers' | translate}}</a></li>
+          <!--<li class="mb-2"><a href="#home">{{'intro-footer.whitepapers' | translate}}</a></li>-->
+          <li class="mb-2"><a href="#the-challenge">{{'intro-footer.business' | translate}}</a></li>
+          <li class="mb-2"><a href="#ecosystem">{{'intro-footer.ecosystem' | translate}}</a></li>
+          <li class="mb-2"><a href="#leadershop-team">{{'intro-footer.teams' | translate}}</a></li>
           <li class="mb-2"><a href="#advisors">{{'intro-footer.advisors' | translate}}</a></li>
-          <li class="mb-2"><a href="#teams">{{'intro-footer.teams' | translate}}</a></li>
           <li class="mb-2"><a href="#roadmap">{{'intro-footer.roadmap' | translate}}</a></li>
           <li class="mb-2"><a routerLink="/beta">{{'intro-footer.services' | translate}}</a></li>
         </ul>
@@ -27,11 +29,36 @@
         </ul>
       </div>
       <div class="col">
+        <h5 class="mb-3">{{'intro-footer.project' | translate}}</h5>
+        <ul class="mb-4 text-center">
+
+          <li class="mb-2">
+            <a href="assets/mzk-whitepaper-en.pdf">{{'intro-footer.whitepaper' | translate}}</a>
+          </li>
+
+          <ng-container *ngIf="lang == 'en'">
+            <li class="mb-2">
+              <a href="assets/mzk-teaser-en.pdf">{{'intro-footer.project-teaser' | translate}}</a>
+            </li>
+          </ng-container>
+          <ng-container *ngIf="lang == 'ko'">
+            <li class="mb-2">
+              <a href="assets/mzk-teaser-kr.pdf">{{'intro-footer.project-teaser' | translate}}</a>
+            </li>
+          </ng-container>
+          <ng-container *ngIf="lang == 'zh'">
+            <li class="mb-2">
+              <a href="assets/mzk-teaser-ch.pdf">{{'intro-footer.project-teaser' | translate}}</a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div class="col">
         <h5 class="mb-3">{{'intro-footer.websites' | translate}}</h5>
         <ul class="mb-4 text-center">
-          <li class="mb-2"><a (click)="changeLang('en')">English</a></li>
-          <li class="mb-2"><a (click)="changeLang('ko')">한국어</a></li>
-          <li class="mb-2"><a (click)="changeLang('zh')">中文</a></li>
+          <li class="mb-2"><a href="#" (click)="$event.preventDefault();changeLang('en')">English</a></li>
+          <li class="mb-2"><a href="#" (click)="$event.preventDefault();changeLang('ko')">한국어</a></li>
+          <li class="mb-2"><a href="#" (click)="$event.preventDefault();changeLang('zh')">中文</a></li>
         </ul>
       </div>
     </div>

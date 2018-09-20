@@ -36,8 +36,13 @@
 
     a {
       color: #343c4d;
+      margin-left: 6px;
+
       &:hover {
         text-decoration: none;
+      }
+      &:first-child {
+        margin-left: 0;
       }
     }
   }
@@ -48,13 +53,19 @@
     line-height: 20px;
   }
 
+  .leader-sentences {
+    padding-left: 18px;
+    font-size: 14px;
+    color: #8196b2;
+    margin: 0;
+  }
 }
 
 ul {
   padding-left: 0;
   color: #333030;
   margin: 0 9px 0 26px;
-  min-height: 330px;
+  //min-height: 180px;
 
   li {
     font-size: 14px;
@@ -63,7 +74,7 @@ ul {
 }
 
 ul.ko, ul.zh {
-  min-height: 230px;
+  min-height: 120px;
 }
 
 .awards {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, NgZone } from '@angular/core';
 import { BaseComponent } from '../../../models/base.component';
 
 declare const jQuery;
@@ -6,54 +6,71 @@ declare const jQuery;
 @Component({
   selector: 'mzk-intro-business',
   template: `
-    <img src="assets/intro-img/design/wave-2.png" width="100%">
     <section class="section" id="business">
-      <h2 class="text-center intro-section-title">
-        OUR BUSINESS
-      </h2>
-      <p class="text-center intro-section-subtitle mt-4">
-        {{'intro-business.subtitle' | translate}}
-      </p>
-      <div class="row">
-        <div class="col-sm-7">
-          <div class="row highlight-box mt-5">
-            <div class="col-6 mb-4">
-              <div class="highlight-num" data-count="3">3</div>
-              <div class="highlight-name text-left">{{'intro-business.year-of-exp' | translate}}</div>
+      <div class="bg-class">
+        <h2 class="text-center intro-section-title">
+          OUR BUSINESS
+        </h2>
+        <p class="text-center intro-section-subtitle mt-4"
+           [innerHtml]="'intro-business.subtitle' | translate | nl2br"></p>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="row highlight-box mt-5">
+              <div class="col-6 mb-4">
+                <div class="highlight-num" data-count="3">3</div>
+                <div class="highlight-name text-left">{{'intro-business.year-of-exp' | translate}}</div>
+              </div>
+              <div class="col-6 mb-4">
+                <div class="highlight-num" data-count="150">150 +</div>
+                <div class="highlight-name text-left">{{'intro-business.user-nations' | translate}}</div>
+              </div>
+              <div class="col-6 mb-5">
+                <div class="highlight-num" data-count="2000000">2,000,000 +</div>
+                <div class="highlight-name text-left">{{'intro-business.users' | translate}}</div>
+              </div>
+              <div class="col-6 mb-5">
+                <div class="highlight-num" data-count="17000">17,000 +</div>
+                <div class="highlight-name text-left">{{'intro-business.artists' | translate}}</div>
+              </div>
             </div>
-            <div class="col-6 mb-4">
-              <div class="highlight-num" data-count="150">150 +</div>
-              <div class="highlight-name text-left">{{'intro-business.user-nations' | translate}}</div>
-            </div>
-            <div class="col-6 mb-5">
-              <div class="highlight-num" data-count="2000000">2,000,000 +</div>
-              <div class="highlight-name text-left">{{'intro-business.users' | translate}}</div>
-            </div>
-            <div class="col-6 mb-5">
-              <div class="highlight-num" data-count="17000">17,000 +</div>
-              <div class="highlight-name text-left">{{'intro-business.artists' | translate}}</div>
-            </div>
+            <h4 class="highlight-title mb-3">{{'intro-business.what-makes-muzika-unique' | translate}}</h4>
+            <p class="highlight-summary">
+              {{'intro-business.highlight-text-1' | translate}}<BR/><BR/>
+              {{'intro-business.highlight-text-2' | translate}}
+            </p>
           </div>
-          <h4 class="highlight-title mb-3">{{'intro-business.what-makes-muzika-unique' | translate}}</h4>
-          <p class="highlight-summary">
-            {{'intro-business.highlight-text-1' | translate}}<BR/><BR/>
-            {{'intro-business.highlight-text-2' | translate}}
-          </p>
-        </div>
-        <div class="col-sm-5">
-          <img src="assets/intro-img/business-preview.png" class="img-fluid mt-3 pr-sm-0">
+          <div class="col-sm-4">
+            <img src="assets/intro-img/business-preview.png" class="img-fluid pr-sm-0">
+          </div>
         </div>
       </div>
     </section>
   `,
   styles: [`
+    :host {
+      display: block;
+    }
+
     .section {
+      background: url('assets/intro-img/design/wave-1.png') no-repeat #192538;
+      background-size: 100%;
+      background-position-y: bottom;
+      padding-bottom: 160px;
+    }
+    
+    .bg-class {
       padding-bottom: 50px;
-      background: url('assets/intro-img/design/line-art-1.png') no-repeat #192538;
+      background: url('assets/intro-img/design/line-art-1.png') no-repeat;
       background-position-x: 70px;
       background-position-y: 130px;
       background-size: 600px;
       position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .bg-class {
+        padding-bottom: 80px;
+      }
     }
     
     .intro-section-title {
@@ -72,6 +89,7 @@ declare const jQuery;
       margin: 0 auto;
       padding: 0 15px;
       color: #8196b2;
+      text-align: justify;
     }
 
     .highlight-box {
@@ -110,36 +128,55 @@ declare const jQuery;
 
   `]
 })
-export class MzkIntroBusinessComponent extends BaseComponent {
-  constructor(private elementRef: ElementRef) {
+export class MzkIntroBusinessComponent extends BaseComponent implements AfterViewInit {
+  constructor(private elementRef: ElementRef,
+              private zone: NgZone) {
     super();
   }
 
-  @HostListener('window:scroll', ['$event'])
+  jQueryInstance;
+  jQueryHighlightNums: any;
+
+  isOut = true;
+
+  @HostListener('window:scroll.nozone', ['$event'])
   scrollEvent(event) {
-    if (window.scrollY + window.innerHeight < jQuery(this.elementRef.nativeElement).offset().top) {
+    const scrollPos = window.scrollY + window.innerHeight;
+    const top = this.jQueryInstance.offset().top;
+    const bottom = top + this.jQueryInstance.height();
+    const isOut = !(scrollPos >= top && scrollPos < bottom);
+
+    if (this.isOut !== isOut && !isOut) {
       this.ngOnInit();
     }
+    this.isOut = isOut;
   }
 
   ngOnInit() {
-    jQuery('.highlight-num').each(function() {
-      const $this = jQuery(this),
-        countTo = $this.attr('data-count');
+    this.zone.runOutsideAngular(() => {
+      this.jQueryHighlightNums.each(function() {
+        const $this = jQuery(this),
+          countTo = $this.attr('data-count');
 
-      jQuery({ countNum: $this.text() }).animate({
-          countNum: countTo
-        },
-        {
-          duration: 3000,
-          easing: 'linear',
-          step: function() {
-            $this.text(Math.floor(this.countNum).toLocaleString());
+        jQuery({ countNum: $this.text() }).animate({
+            countNum: countTo
           },
-          complete: function() {
-            $this.text(this.countNum.toLocaleString() + '+');
-          }
-        });
+          {
+            duration: 3000,
+            easing: 'linear',
+            step: function() {
+              $this.text(Math.floor(this.countNum).toLocaleString());
+            },
+            complete: function() {
+              $this.text(this.countNum.toLocaleString() + '+');
+            }
+          });
+      });
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.jQueryInstance = jQuery(this.elementRef.nativeElement);
+    this.jQueryHighlightNums = jQuery('.highlight-num');
   }
 }

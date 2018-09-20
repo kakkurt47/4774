@@ -7,22 +7,40 @@ import { BaseComponent } from '../../../models/base.component';
     <section class="section" id="ecosystem">
       <div class="container">
         <div class="row">
-          <div class="col-sm-6  pr-sm-5">
+          <div class="col-12 text-center">
+            <h2 class="intro-section-title">
+              {{'intro-ecosystem.title' | translate}}
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 mt-5 mx-auto">
             <img src="assets/intro-img/muzika-ecosystem2.gif" class="img-fluid mb-3">
           </div>
-          <div class="col-sm-6">
+        </div>
+        <div class="row">
+          <div class="mt-4 mx-auto">
             <div class="ecosystem-box">
-              <h3 class="text-left intro-section-title">
-                {{'intro-ecosystem.title' | translate}}
-              </h3>
-              <p class="text-left intro-section-subtitle pt-4">
-                {{'intro-ecosystem.subtitle-1' | translate}}<BR/>
-                {{'intro-ecosystem.subtitle-2' | translate}}<BR/>
-                {{'intro-ecosystem.subtitle-3' | translate}}<BR/>
+              <p class="text-center intro-section-subtitle">
+                {{'intro-ecosystem.subtitle-1' | translate}}
+              </p>
+              <p class="text-center intro-section-subtitle px-4">
+                {{'intro-ecosystem.subtitle-2' | translate}}
+              </p>
+              <p class="text-center intro-section-subtitle px-4">
+                {{'intro-ecosystem.subtitle-3' | translate}}
+              </p>
+              <p class="text-center intro-section-subtitle px-4">
                 {{'intro-ecosystem.subtitle-4' | translate}}
               </p>
             </div>
           </div>
+        </div>
+        
+        <div class="mt-4 text-center">
+          <a class="view-more-btn" href="/ecosystem" target="_blank">
+            View more <i class="fa fa-chevron-right"></i>
+          </a>
         </div>
       </div>
     </section>
@@ -35,10 +53,12 @@ import { BaseComponent } from '../../../models/base.component';
       padding: 100px 0 60px 0;
     }
 
+    /*
     .intro-section-title {
       font-size: 28px;
       font-weight: 700;
     }
+    */
 
     .intro-section-subtitle {
       font-size: 16px;
@@ -50,24 +70,39 @@ import { BaseComponent } from '../../../models/base.component';
 
     .ecosystem-box {
       display: block;
-      padding: 55px 45px;
-      border-radius: 20px 20px;
-    }
-
-    @media (min-width: 738px) {
-      .ecosystem-box {
-        box-shadow: 4px 4px 20px 4px rgba(20, 85, 195, 0.65);
-      }
+      width: 750px;
     }
 
     @media (max-width: 768px) {
       .ecosystem-box {
-        padding: 25px 20px;
+        width: 100%;
       }
 
       section {
         padding: 50px 0 30px 0;
       }
+    }
+    
+    .view-more-btn {
+      background-color: transparent;
+      border: 1px solid #343c4d;
+      color: #343c4d;
+      padding: 6px 48px;
+      outline: none;
+      transition-property: color, border-color;
+      transition-duration: 0.1s;
+      transition-timing-function: linear;
+    }
+    
+    .view-more-btn:hover {
+      border-color: #a5adbd;
+      color: #a5adbd;
+      text-decoration: none;
+    }
+    
+    .view-more-btn:active {
+      border-color: #6e778a;
+      color: #6e778a;
     }
   `]
 })

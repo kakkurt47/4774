@@ -30,10 +30,13 @@ declare const jQuery;
   `,
   styles: [`
     .section {
+      /*
       background: url(assets/intro-img/design/wave-4.png) no-repeat;
       background-size: 100%;
       background-position-y: bottom;
       padding-bottom: 180px;
+      */
+      background-color: white;
       position: relative;
     }
 
@@ -46,7 +49,7 @@ declare const jQuery;
     }
     
     .press-logo-img {
-      max-width: 100%;
+      width: 100%;
       margin-top: 24px;
     }
 

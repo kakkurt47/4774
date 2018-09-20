@@ -11,7 +11,7 @@
   color: #192538;
   vertical-align: middle;
 
-  &:hover {
+  &:hover, &:focus {
     color: #192538;
   }
 
@@ -21,6 +21,7 @@
     margin-top: -1px;
     margin-right: 15px;
     height: $navbar-brand-size;
+    width: $navbar-brand-size * 262 / 142; // original brand icon size: 262 X 142 (Bug fix in IE)
 
     /deep/ .muzika-icon-striped-primary {
       fill: white;
@@ -34,7 +35,7 @@
   > span {
     line-height: $navbar-brand-size;
     font-size: 18px;
-    @media(max-width: 738px) {
+    @media(max-width: 768px) {
       display: none;
     }
   }

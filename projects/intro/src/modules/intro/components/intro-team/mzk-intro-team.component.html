@@ -9,6 +9,34 @@
         </div>
       </div>
     </div>
+    <div class="row mt-5 pt-3">
+      <div class="col-sm-4 col-12 mt-3"
+           *ngFor="let member of leadBlockchain; index as i; last as isLast"
+           [class.ml-auto]="i % 3 == 0"
+           [class.mr-auto]="i % 3 == 2 || isLast">
+        <div class="team-lead-box py-3 pl-3">
+          <div class="team-img mr-2">
+            <img [src]="'assets/intro-img/team/' + member.image" alt="" class="d-block rounded-circle " height="90">
+          </div>
+          <div class="team-desc text-left">
+            <h6 class="team-name text-custom mb-1">
+              {{member.i18nName[currentLang]}}
+              <a class="fab fa-github" *ngIf="member.github" [attr.href]="member.github" target="_blank"></a>
+              <a class="fab fa-linkedin" *ngIf="member.linkedin" [attr.href]="member.linkedin" target="_blank"></a>
+            </h6>
+            <p class="team-position">{{member.i18nPosition[currentLang]}}</p>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <ul class="pt-2 team-sentences" [ngClass]="currentLang">
+            <li class="mt-1" *ngFor="let sentence of member.sentences[currentLang]; let i =index;">
+              {{sentence}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="row mt-3 pt-3">
       <div class="col-sm-3 col-6 mt-3" *ngFor="let member of members">
         <div class="team-box pt-sm-4 pb-4 pl-2">

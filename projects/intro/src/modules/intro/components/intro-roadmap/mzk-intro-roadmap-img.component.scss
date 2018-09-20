@@ -1,0 +1,154 @@
+$color-1: #76dbc7;
+$color-2: #bc4e9c;
+$color-3: #7d7ae2;
+$color-4: #3494f4;
+$color-5: #f7931e;
+
+:host {
+  display: block;
+  background: none;
+}
+
+svg {
+}
+
+#svg-graph-linear-grad {
+  stop {
+    &.svg-stop-color-2 {
+      stop-color: $color-2;
+    }
+    &.svg-stop-color-4 {
+      stop-color: $color-4;
+    }
+    &.svg-stop-color-5 {
+      stop-color: $color-5;
+    }
+  }
+}
+
+.svg-quarter-div-line {
+  fill: none;
+  stroke: #1f2e44;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+
+  &.svg-quarter-div-line-strong {
+    stroke-width: 8px;
+  }
+}
+
+.svg-roadmap-header-line {
+  fill: none;
+  stroke-miterlimit: 10;
+  stroke: #1f2e44;
+  stroke-width: 8px;
+}
+
+.svg-roadmap-increase-line {
+  fill: none;
+  stroke-miterlimit: 10;
+  stroke: url(#svg-graph-linear-grad);
+}
+
+.svg-stroke-color-1 {
+  stroke: $color-1;
+}
+
+.svg-stroke-color-2 {
+  stroke: $color-2;
+}
+
+.svg-stroke-color-3 {
+  stroke: $color-3;
+}
+
+.svg-stroke-color-4 {
+  stroke: $color-4;
+}
+
+.svg-stroke-color-5 {
+  stroke: $color-5;
+}
+
+.svg-fill-color-1 {
+  fill: $color-1;
+}
+
+.svg-fill-color-2 {
+  fill: $color-2;
+}
+
+.svg-fill-color-3 {
+  fill: $color-3;
+}
+
+.svg-fill-color-4 {
+  fill: $color-4;
+}
+
+.svg-fill-color-5 {
+  fill: $color-5;
+}
+
+.svg-quarter-bottom-line {
+  fill: none;
+  stroke-miterlimit: 10;
+  stroke-width: 3px;
+}
+
+.svg-quarter-ellipse {
+  fill: #192538;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+}
+
+.svg-quarter-bottom-div-line {
+  fill: none;
+  stroke-miterlimit: 10;
+  stroke-width: 3px;
+}
+
+.svg-quarter-name {
+  font-family: NotoSansCJKkr-Medium-KSCpc-EUC-H, Noto Sans CJK KR;
+  font-size: 16px;
+}
+
+.svg-quarter-dashed-line {
+  fill: none;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 3.42;
+}
+
+.svg-quarter-div-text {
+  font-size: 18px;
+  font-family: NotoSansCJKkr-Bold-KSCpc-EUC-H, Noto Sans CJK KR;
+  font-weight: 700;
+}
+
+.svg-quarter-desc-text {
+  font-family: NotoSansCJKkr-Medium-KSCpc-EUC-H, Noto Sans CJK KR;
+  font-size: 14px;
+  fill: #fff;
+}
+
+.svg-spinner {
+  fill: rgba(53, 232, 198, 0.6);
+  visibility: hidden;
+  transform-origin: center center;
+
+  //animation: sk-bounce 2.0s infinite ease-in-out;
+  //animation-delay: -1.0s;
+
+  &.svg-visible {
+    visibility: visible;
+  }
+}
+//
+//@keyframes sk-bounce {
+//  0%, 100% {
+//    r: 20;
+//  }
+//  50% {
+//    r: 0;
+//  }
+//}

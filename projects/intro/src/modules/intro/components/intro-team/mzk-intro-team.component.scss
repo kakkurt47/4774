@@ -4,10 +4,8 @@ h2 {
 }
 
 .section {
-  background: url('../../../../assets/intro-img/design/wave-3.png') no-repeat bottom #192538;
-  background-size: 100%;
+  background-color: #192538;
   padding-top: 0 !important;
-  padding-bottom: 160px;
 }
 
 .intro-section-title {
@@ -44,6 +42,59 @@ h2 {
         text-decoration: none;
       }
     }
+  }
+}
+
+.team-lead-box {
+  margin-top: 60px;
+  background-color: white;
+  position: relative;
+  // height: 180px;
+  border-radius: 10px;
+
+  .team-img {
+    position: absolute;
+    top: -45px;
+    left: 12px;
+    width: 95px;
+    height: 95px;
+    margin: 0 0 0 auto;
+
+    img {
+      border: 1px solid #d4d4d4;
+      margin-right: 5px;
+      box-shadow: 0 3px 15px 0 #e6e6e6;
+    }
+  }
+
+  .team-desc {
+    margin-top: 40px;
+    .team-name {
+      color: #343c4d;
+      font-size: 14px;
+    }
+    .team-position {
+      color: #5a6d86;
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+
+    a {
+      color: #343c4d;
+      margin-right: 4px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .team-sentences {
+    padding-left: 18px;
+    font-size: 14px;
+    color: #8196b2;
+    margin: 0;
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "intro-main": {
-    "home-subtitle-1": "Revolution and Redemption of Digital Music World",
-    "home-subtitle-2": "through a decentralized blockchain-based ecosystem.",
+    "home-subtitle-1": "Redemption of the Music World",
+    "home-subtitle-2": "Blockchain integrated into Digital Music",
     "project-teaser": "Project Teaser",
     "whitepaper": "Whitepaper",
     "airdrop-btn-text": "Bounty Program"
@@ -14,17 +14,43 @@
     "team": "Team",
     "advisors": "Advisors",
     "roadmap": "Roadmap",
-    "services": "Services"
+    "services": "Services",
+    "bounty": "Bounty",
+    "business": "Business",
+    "token-metrics": "Token Metrics"
+  },
+  "intro-business-idea": {
+    "title-1": "THE CHALLENGE",
+    "subtitle-1": "Musicians and fans are the real value creators in today’s music industry,\nbut they are not properly rewarded for their value creation.",
+    "challenge-item-1": "Musicians are starving. Everyone listens to music, more people pay for music, but artists are still not making money.",
+    "challenge-item-2": "On the other end, fans (that’s us) are still pigeonholed as consumers, though we are the ones who actually make super-stars! We devote our time and effort to vote, make cover songs, go viral, and even write fictions for our favorite artists, but no one rewards our effort and devotion.",
+    "challenge-item-3": "In contrast, intermediaries – distributors and platforms – are making excessive profit for one time and unsophisticated tasks of 'transferring' the ready-made values.",
+    "subtitle-2": "Muzika will bring innovation to the value chain in digital music industry",
+    "solution-desc": "We will reform how value is created and captured by various players within the industry. We will return rewards to those who create the value, from those who merely transfer the value, while recovering the share lost from digital piracy through blockchain technology.",
+    "title-2": "WHAT MAKES US DIFFERENT",
+    "different-1-short": "Previous attempts",
+    "different-1-long": "Previous music projects have been slow in progress because they focused too much on Smart Contract transaction itself, while overlooking the importance of fans and userbase. They proved it possible to give more percentage to artists. Unfortunately, for musicians, 10% of $10,000 from iTunes was better than 90% of $10 from a Smart Contract transaction without sufficient userbase.",
+    "different-2-short": "Muzika will create a new economy",
+    "different-2-long": "In order to provide musicians 90% of $10,000, we need to create a new form of economy – an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem. To create a new form of economy, we need fans – mass userbase that will create network effect and grow up with Muzika. We will reward fans for their value created, which will make an incentivized community. The incentivized community will create the network effect, allowing us to provide artists 90% of $10,000 or even more.",
+    "different-3-short": "We precisely know how to do it",
+    "different-3-long": "Creating a new economy requires a unique set of courage and mindset. In 2015, co-founders of Muzika saw opportunities in online instrumental music industry and started their venture – Mapiacompany. After 3 years, Mapiacompany now stands as the No.1 global instrumental music platform with more than 2,000,000 users"
   },
   "intro-press": {
     "description": "Muzika has been covered by\nmultiple media channels around the world.\nHere we introduce some of them."
   },
   "intro-ecosystem": {
     "title": "THE MUZIKA ECOSYSTEM",
-    "subtitle-1": "Muzika will create an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem, where compensations and rewards will become proportional to the level of devotion put into musical creations and ecosystem behind them. ",
+    "subtitle-1": "Muzika will create an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem, where compensations and rewards will become proportional to the level of devotion put into musical creations and ecosystem behind them.",
     "subtitle-2": "First, smart contract will allow digital musical products to be transferred directly from artists to fans, ensuring fairer and more transparent economic distribution.",
-    "subtitle-3": "Second, fans will have opportunities to make direct sponsorship to their favorite artists, supporting them and receiving exclusive benefits in return.",
-    "subtitle-4": "Third, fans will be rewarded with loyalty points for their various community activities, which will be regularly converted into MZK coins described in detail below. "
+    "subtitle-3": "Second, fans will be rewarded with loyalty points for their various community activities, which will be regularly converted into MZK coins - the sole medium of exchange for all economic activities in the ecosystem.",
+    "subtitle-4": "Third, fans will have opportunities to make direct sponsorship to their favorite artists, supporting them and receiving exclusive benefits in return."
+  },
+  "intro-token-metrics": {
+    "title": "TOKEN METRICS",
+    "num-of-tokens": "Total number of tokens",
+    "percent-for-sale": "% for sale",
+    "num-of-tokens-for-sale": "Total number of tokens for sale",
+    "hardcap": "Hard-cap"
   },
   "intro-mzk-coins": {
     "subtitle-1": "Muzika coin(MZK) was deliberately designed as the backbone of this new ecosystem. The team has analyzed both successful and failed cryptocurrencies, past and present, and established a clear vision of what is necessary to make this project a success. ",
@@ -50,7 +76,7 @@
     "awards": "Awards"
   },
   "intro-business": {
-    "subtitle": "Global No. 1 Instrumental Music Platform ",
+    "subtitle": "Global No. 1\nInstrumental Music Platform ",
     "year-of-exp": "Years of experience",
     "user-nations": "User nations",
     "users": "Users",
@@ -64,7 +90,8 @@
     "subtitle": "Our revolutionary journey has just begun"
   },
   "intro-footer": {
-    "whitepapers": "Whitepapers",
+    "business": "Business",
+    "ecosystem": "Ecosystem",
     "advisors": "Advisors",
     "teams": "Teams",
     "roadmap": "Roadmap",
@@ -77,7 +104,11 @@
     "telegram-zh": "Telegram (CHN)",
     "telegram-kr": "Telegram (KOR)",
 
-    "websites": "Websites"
+    "websites": "Websites",
+
+    "project": "Project",
+    "whitepaper": "Whitepaper",
+    "project-teaser": "Project Teaser"
   },
   "airdrop": {
     "my-wallet": "My Wallet",

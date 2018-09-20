@@ -17,6 +17,11 @@ export interface Advisors {
   i18nSentences?: {
     [key: string]: string[]
   };
+  profile?: {
+    linkedin?: string;
+    bloomberg?: string;
+    crunchbase?: string;
+  };
 }
 
 @Component({
@@ -56,6 +61,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '前 三星KMPG企业 资深合伙人',
           '注册会计师 （CPA)'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/minshik-michael-cho-7a8a70148/'
       }
     },
     {
@@ -80,6 +88,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
         [Lang.CHN]: [
 
         ]
+      },
+      profile: {
+        bloomberg: 'https://www.bloomberg.com/research/stocks/people/person.asp?personId=49035210&privcapId=9559960'
       }
     },
     {
@@ -110,6 +121,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '拥有丰富的从业经验，协助区块链项目包括 DACx, ZAFED and ChainB. ',
           '身兼区块链行业专业咨询PANONY公司与 Mithril秘银区块链项目的高级顾问。'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/stella-kung-b81799a7/'
       }
     },
     {
@@ -137,6 +151,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '前 野村国际亚洲金融（资本市场）主管',
           '前 雷曼兄弟国际亚洲金融（资本市场）主管'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/joonkee-hong-91075740/'
       }
     },
     {
@@ -170,6 +187,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '前Empas收索搜索引擎 软件工程师\n',
           '注册专利律师'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/inq-choi-bb334455/?originalSubdomain=kr'
       }
     },
     // {
@@ -244,6 +264,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '投资包括 Quarkchain, Fantom, Open Platform 等在内的20多个区块链项目。',
           '毕业于卡斯商学院的投资与金融风险管理'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/leetinka/?originalSubdomain=hk'
       }
     },
     {
@@ -277,6 +300,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '业界动态与高校场合的做客演说者\n',
           '前 Orichal Partners ICO投资项目的主管 '
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/adrian-lai/?originalSubdomain=hk'
       }
     },
     {
@@ -307,6 +333,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '资深企业创始人与投资人，身兼亚洲和美国诸多企业高级商业顾问，旗下成立多个品牌公司。',
           '近期负责日本一家成长期的金融科技公司的国际商务'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/langes/'
       }
     },
     {
@@ -338,6 +367,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '前 WPP Korea 商务拓展总监',
           '前 韩国娱乐传媒集团CJ E&M国际商务部和企业战略部 部门主要负责之一'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/jonathan-lee-0852021/'
       }
     },
     {
@@ -366,6 +398,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '区块链行业早期业内人士，协助优质区块链项目的市场进入策略与全球化营销策略。 ',
           '前 Conde Nast International 项目主管， 前 Isentia (ASX: ISD) 专业顾问， 前 Ogilvy 资深沟通专业人士。'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/alyssatsai/'
       }
     },
     {
@@ -397,6 +432,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '前 韩国电影制片人协会 法律顾问\n',
           '前 韩国JYP娱乐有限公司，韩国Star Empire Entertainment 唱片公司，韩国Jellyfish Entertainment 艺人经纪公司，包括白智英在内的多位韩国音乐艺术家，演员和明星的法律代表律师'
         ]
+      },
+      profile: {
+        crunchbase: 'https://www.crunchbase.com/person/myunsik-cho#section-overview'
       }
     },
     {
@@ -427,6 +465,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           '摩根斯坦利投资银行出身，曾参与亚洲多个IPO导向的高科技、媒体和电信领域的投资项目，' +
           '其中包括陌陌、印尼版淘宝Tokopedia，微众银行。'
         ]
+      },
+      profile: {
+        crunchbase: 'https://www.crunchbase.com/person/kevin-yeung'
       }
     },
     {
@@ -460,6 +501,9 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
           'KPMG Korea 资深跨境企业并购分析专家',
           'Deloitte Korea 企业并购专业顾问'
         ]
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/jang-yoon-jy-kang-83ab2961/'
       }
     }
   ];

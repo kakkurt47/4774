@@ -65,6 +65,7 @@ import { BaseComponent } from '../../../models/base.component';
     }
 
     .wrap-box {
+      max-width: 100%;
       width: 255px;
       height: 110px;
       background: white;
@@ -75,7 +76,7 @@ import { BaseComponent } from '../../../models/base.component';
     }
 
     img {
-      max-width: 225px;
+      max-width: 100%;
       max-height: 95px;
       margin: 0 auto;
     }
@@ -98,7 +99,7 @@ import { BaseComponent } from '../../../models/base.component';
       }
 
       .wrap-box {
-        width: 150px;
+        width: 100%;
         height: 48px;
         line-height: 48px;
         margin-bottom: 30px;

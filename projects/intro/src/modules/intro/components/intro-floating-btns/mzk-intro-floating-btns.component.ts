@@ -44,6 +44,18 @@ import { BaseComponent } from '../../../../models/base.component';
           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
         </span>
     </a>
+    <a href="https://www.facebook.com/muzikanews/" target="_blank"> 
+        <span class="fa-stack fa-2x">
+          <i class="fas fa-circle fa-stack-2x"></i>
+          <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+    <a href="https://www.reddit.com/r/muzikaofficial/" target="_blank"> 
+        <span class="fa-stack fa-2x">
+          <i class="fas fa-circle fa-stack-2x"></i>
+          <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
   `,
   styleUrls: [
     './mzk-intro-floating-btns.component.scss'

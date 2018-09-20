@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Lang } from '../../../../models/lang';
 import { BaseComponent } from '../../../../models/base.component';
+import { Lang } from '../../../../models/lang';
 
 declare const jQuery;
 
@@ -23,6 +23,90 @@ declare const jQuery;
 })
 export class MzkIntroRoadmapComponent extends BaseComponent implements AfterViewInit {
   eventsMinDistance = 120;
+
+  topics = {
+    [Lang.ENG]: [
+      'CONCEPTUALIZATION',
+      'SYSTEM MODELING',
+      'PLATFORM TESTING',
+      'TOKEN GENERATION',
+      'ECOSYSTEM LAUNCHING'
+    ],
+    [Lang.CHN]: [
+      '项目执行计划',
+      '系统模型塑造期',
+      '平台测试期',
+      '预售与私募',
+      '生态系统的启动'
+    ],
+    [Lang.KOR]: [
+      'CONCEPTUALIZATION',
+      'SYSTEM MODELING',
+      'PLATFORM TESTING',
+      'TOKEN GENERATION',
+      'ECOSYSTEM LAUNCHING'
+    ]
+  };
+  topic: string[];
+
+  desciptions = {
+    [Lang.ENG]: [
+      'Project\nconceptualized',
+      'Commencement\nof Platform Modeling',
+      'Establishment of\nthree distinct\nmodels for coin\neconomies of music',
+      'Decided upon\ndevelopment of\ncurrent ecosystem\nmodel',
+      'Open platform\ntesting for\ntransactions involving\nmusic sheets',
+      'Open platform testing\nfor transactions\nof other digital music\nfile types',
+      'Closed testing\nof the Muzika\ntoken (MZK)',
+      'Private sales',
+      'Exchange Listing',
+      'Launch of the\nMuzika Ecosystem\nprototype for\ntestnet',
+      'Launch of the\nMuzika Ecosystem\nprototype for\nmainnet',
+      'Integrate Mapianist,\nMyMusicSheet, and other existing\nor soon-to-be-launched platforms\ndeveloped by Mapiacompany\nto Muzika Ecosystem',
+      'Muzika Ecosystem\nbeta launch\n(consumption-oriented)',
+      'Muzika Ecosystem\nbeta launch\n(production-oriented)',
+      'Official global launch\nof the full-version\nof the Muzika Ecosystem',
+      'The Muzika ecosystem\nbegins reshaping the\nglobal music industry'
+    ],
+    [Lang.CHN]: [
+      '项目概念雏形塑造期',
+      '平台模型建成',
+      '成功搭建3个不同的音\n乐代币经济模型',
+      '最终确定现有生态\n系统模型的发展路线',
+      '包括乐谱在内的在线\n支付系统公开测试',
+      '其它数字音乐格式文件\n在线支付系统的公开测试',
+      'Muzika代币（MZK）\n的平台封闭测试',
+      '私募',
+      '交易所上线',
+      'Muzika 生态系统\n原型测试网的启动',
+      'Muzika 生态系统\n原型主网络的启动',
+      '融合与对接Mapianist, MyMusicSheet \n和其它Mapiacompany公司针对\nMuzika 生态系统而建成的各类平台',
+      'Muzika 生态系统的测\n试版上线（消费导向）',
+      'Muzika 生态系统测\n试版上线（生产导向）',
+      'Muzika 生态系统完\n整版全球官网上线',
+      'Muzika 数字音乐生态\n系统重塑全球\n音乐产业新格局'
+    ],
+    [Lang.KOR]: [
+      '프로젝트 방향성 &\n컨셉 기획',
+      '플랫폼 모델 정립',
+      '음악 코인 생태계를 위한\n3가지 취득 모델 정립',
+      '생태계 모델을\n구현하기 위한\n핵심 기술 개발 시작',
+      '악보 거래가 가능한\n트랜젝션 (스마트 컨트랙트)\n플랫폼 테스트 시작',
+      '악보 외 음원, 디지털\n음악 파일로 트랜젝션 유형 확장',
+      'Muzika 토큰에 대한\n테스트 종료 (MZK)',
+      '비공개 세일',
+      '거래소 상장',
+      'Muzika 플랫폼을\n이더리움 테스트넷 (Ropsten)에서\n알파 런칭',
+      'Muzika 플랫폼을\n이더리움 메인넷에서\n알파 런칭',
+      '마음만은 피아니스트, MyMusicSheet,\nKPopPiano 등 마피아컴퍼니가 운영하는\n다른 플랫폼과 결제 수단 통합',
+      'Muzika 플랫폼 베타 런칭 1\n(악보/음원 구매 중심)',
+      'Muzika 플랫폼 베타 런칭 2\n(커뮤니티/보상 로직 중심)',
+      // 'Muzika 플랫폼 RC 런칭 3\n(투자/분배 로직 중심)',
+      'Muzika 플랫폼의 글로벌\n공식 버전 런칭',
+      '글로벌 음악 산업에서\n뮤지카 플랫폼 안정화 및\n시장 장악',
+    ]
+  };
+  desc: string[];
 
   roadmaps = [];
 
@@ -169,6 +253,8 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
 
   constructor(private translateService: TranslateService) {
     super();
+    this.topic = this.topics[Lang.ENG];
+    this.desc = this.desciptions[Lang.ENG];
   }
 
   ngOnInit() {
@@ -176,6 +262,18 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
     this.roadmaps = this.roadmaps_EN;
     this._sub.push(
       this.translateService.onLangChange.subscribe(lang => {
+        switch (this.translateService.currentLang) {
+          case Lang.KOR:
+          case Lang.CHN:
+            this.topic = this.topics[this.translateService.currentLang];
+            this.desc = this.desciptions[this.translateService.currentLang];
+            break;
+
+          default:
+            this.topic = this.topics[Lang.ENG];
+            this.desc = this.desciptions[Lang.ENG];
+        }
+
         switch (this.translateService.currentLang) {
           case Lang.KOR:
             this.roadmaps = this.roadmaps_KR;

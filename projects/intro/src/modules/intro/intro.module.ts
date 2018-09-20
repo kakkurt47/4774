@@ -5,17 +5,22 @@ import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { MzkIntroAdvisorsComponent } from './components/intro-advisors/mzk-intro-advisors.component';
+import { MzkIntroBlockchainTechComponent } from './components/intro-blockchain-tech/mzk-intro-blockchain-tech.component';
+import { MzkIntroBusinessIdeaComponent } from './components/intro-business-idea/mzk-intro-business-idea.component';
 import { MzkIntroCountdownNumberComponent } from './components/intro-countdown/intro-countdown-nubmer.component';
 import { IntroFooterComponent } from './components/intro-footer/intro-footer.component';
 import { IntroLayoutComponent } from './components/intro-layout/intro-layout.component';
 import { MzkIntroLeadershipComponent } from './components/intro-leadership/mzk-intro-leadership.component';
 import { IntroNavbarComponent } from './components/intro-navbar/intro-navbar.component';
 import { MzkIntroPressComponent } from './components/intro-press.component';
+import { MzkIntroRoadmapImageComponent } from './components/intro-roadmap/mzk-intro-roadmap-img.component';
 import { MzkIntroRoadmapComponent } from './components/intro-roadmap/mzk-intro-roadmap.component';
 import { MzkIntroTeamComponent } from './components/intro-team/mzk-intro-team.component';
 import { MzkIntroCountdownComponent } from './components/intro-countdown/intro-countdown.component';
+import { MzkIntroTokenMetricsComponent } from './components/intro-token-metrics/mzk-intro-token-metrics.component';
 import { IntroRoutingModule } from './intro-routing.module';
 import { Nl2brPipe } from './nl2br.pipe';
+import { IntroEcosystemPageComponent } from './pages/intro-ecosystem/intro-ecosystem.component';
 import { IntroMainPageComponent } from './pages/intro-main/intro-main.component';
 import { MzkIntroBusinessComponent } from './components/intro-business.component';
 import { MzkIntroMZKCoinComponent } from './components/intro-mzk-coins.component';
@@ -63,10 +68,14 @@ import { MzkIntroInvestorsComponent } from './components/intro-investors.compone
     MzkIntroFloatingBtnsComponent,
     MzkIntroCountdownComponent,
     MzkIntroCountdownNumberComponent,
+    MzkIntroBusinessIdeaComponent,
+    MzkIntroTokenMetricsComponent,
+    MzkIntroRoadmapImageComponent,
 
     /* Page Components */
     /* For introduction */
     IntroMainPageComponent,
+    IntroEcosystemPageComponent,
 
     /* For Pipe */
     Nl2brPipe

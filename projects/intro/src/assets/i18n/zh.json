@@ -14,17 +14,43 @@
     "team": "团队",
     "advisors": "顾问组",
     "roadmap": "路线图",
-    "services": "应用场景"
+    "services": "应用场景",
+    "bounty": "赏金计划",
+    "business": "Business",
+    "token-metrics": "Token Metrics"
+  },
+  "intro-business-idea": {
+    "title-1": "THE CHALLENGE",
+    "subtitle-1": "Musicians and fans are the real value creators in today’s music industry,\nbut they are not properly rewarded for their value creation.",
+    "challenge-item-1": "Musicians are starving. Everyone listens to music, more people pay for music, but artists are still not making money.",
+    "challenge-item-2": "On the other end, fans (that’s us) are still pigeonholed as consumers, though we are the ones who actually make super-stars! We devote our time and effort to vote, make cover songs, go viral, and even write fictions for our favorite artists, but no one rewards our effort and devotion.",
+    "challenge-item-3": "In contrast, intermediaries – distributors and platforms – are making excessive profit for one time and unsophisticated tasks of 'transferring' the ready-made values.",
+    "subtitle-2": "Muzika will bring innovation to the value chain in digital music industry",
+    "solution-desc": "We will reform how value is created and captured by various players within the industry. We will return rewards to those who create the value, from those who merely transfer the value, while recovering the share lost from digital piracy through blockchain technology.",
+    "title-2": "WHAT MAKES US DIFFERENT",
+    "different-1-short": "Previous attempts",
+    "different-1-long": "Previous music projects have been slow in progress because they focused too much on Smart Contract transaction itself, while overlooking the importance of fans and userbase. They proved it possible to give more percentage to artists. Unfortunately, for musicians, 10% of $10,000 from iTunes was better than 90% of $10 from a Smart Contract transaction without sufficient userbase.",
+    "different-2-short": "Muzika will create a new economy",
+    "different-2-long": "In order to provide musicians 90% of $10,000, we need to create a new form of economy – an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem. To create a new form of economy, we need fans – mass userbase that will create network effect and grow up with Muzika. We will reward fans for their value created, which will make an incentivized community. The incentivized community will create the network effect, allowing us to provide artists 90% of $10,000 or even more.",
+    "different-3-short": "We precisely know how to do it",
+    "different-3-long": "Creating a new economy requires a unique set of courage and mindset. In 2015, co-founders of Muzika saw opportunities in online instrumental music industry and started their venture – Mapiacompany. After 3 years, Mapiacompany now stands as the No.1 global instrumental music platform with more than 2,000,000 users"
   },
   "intro-press": {
     "description": "Muzika受到全球诸多知名媒体的关注，\n颇具代表性的相关媒体报道如下："
   },
   "intro-ecosystem": {
-    "title": "MUZIKA 生态系统",
-    "subtitle-1": "Muzika将建立起由音乐人与粉丝推动的独立自主与可持续自我维持的生态系统，系统将会按照用户参与音乐创造环节与对生态系统的贡献与积极参与的热度进行不同程度的经济性奖励。",
-    "subtitle-2": "首先，通过智能合约，数字音乐制品可以直接地从音乐人那里分配到粉丝手中，从而有效地保障了更加公平与透明的经济分配。",
-    "subtitle-3": "其次，粉丝可以获得诸多不同可以直接赞助音乐人的机遇，通过直接赞助，粉丝可以获得专有特权与直接利益的回报。",
-    "subtitle-4": "最后，粉丝可以通过参与多种多样的社区活动，获得忠实奖励积分，而这些积分可定期地转换成MZK代币。"
+    "title": "THE MUZIKA ECOSYSTEM",
+    "subtitle-1": "Muzika will create an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem, where compensations and rewards will become proportional to the level of devotion put into musical creations and ecosystem behind them.",
+    "subtitle-2": "First, smart contract will allow digital musical products to be transferred directly from artists to fans, ensuring fairer and more transparent economic distribution.",
+    "subtitle-3": "Second, fans will be rewarded with loyalty points for their various community activities, which will be regularly converted into MZK coins - the sole medium of exchange for all economic activities in the ecosystem.",
+    "subtitle-4": "Third, fans will have opportunities to make direct sponsorship to their favorite artists, supporting them and receiving exclusive benefits in return."
+  },
+  "intro-token-metrics": {
+    "title": "TOKEN METRICS",
+    "num-of-tokens": "Total number of tokens",
+    "percent-for-sale": "% for sale",
+    "num-of-tokens-for-sale": "Total number of tokens for sale",
+    "hardcap": "Hard-cap"
   },
   "intro-mzk-coins": {
     "subtitle-1": "作为新音乐生态系统中的重要组成部分，我们设计出了Muzika代币。我们的团队反复学习与研究迄今为止的各类数字代币成功与失败的案例，我们清晰地领悟到要做好区块链项目所必须的条件与因素。",
@@ -64,7 +90,8 @@
     "subtitle": "一场革命性的伟业已悄然伊始"
   },
   "intro-footer": {
-    "whitepapers": "白皮书",
+    "business": "Business",
+    "ecosystem": "Ecosystem",
     "advisors": "顾问组",
     "teams": "团队",
     "roadmap": "路线图",
@@ -77,7 +104,11 @@
     "telegram-zh": "Telegram (CHN)",
     "telegram-kr": "Telegram (KOR)",
 
-    "websites": "语言选择"
+    "websites": "语言选择",
+
+    "project": "项目",
+    "whitepaper": "白皮书",
+    "project-teaser": "项目简报"
   },
   "airdrop": {
     "my-wallet": "我的钱包",

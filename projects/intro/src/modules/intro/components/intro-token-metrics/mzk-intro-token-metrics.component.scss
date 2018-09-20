@@ -1,0 +1,63 @@
+.section {
+  background-color: white;
+}
+
+.intro-section-title {
+  color: #343c4d;
+}
+
+.section-image {
+  text-align: center;
+  margin-top: 60px;
+  width: 730px;
+
+  img {
+    width: 100%;
+  }
+
+  @media(max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.metrics {
+  background-color: #F8FAFB;
+  border-radius: 12px;
+  width: 850px;
+  margin: auto;
+  padding: 10px 20px;
+
+  .metric-table {
+    width: 100%;
+
+    th {
+      font-size: 1.1rem;
+      color: #8196B2;
+      vertical-align: top;
+    }
+
+    td {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #76DBC7;
+    }
+
+    th:first-child {
+      width: 65%;
+    }
+  }
+
+  @media(max-width: 768px) {
+    width: 100%;
+
+    .metric-table {
+      th {
+        font-size: 0.9rem;
+      }
+
+      td {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

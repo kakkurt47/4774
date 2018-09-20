@@ -16,7 +16,9 @@
       </div>
     </div>
 
-    <div class="vertical-timeline">
+    <intro-roadmap-img class="d-none d-md-block" [topic]="topic" [desc]="desc" [active]="7"></intro-roadmap-img>
+
+    <div class="vertical-timeline d-md-none">
       <ng-container *ngFor="let roadmap of roadmaps; let i = index">
         <div class="roadmap-box" [class.right]="i%2 == 1">
           <div class="topic">

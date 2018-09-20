@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1248.86 740.82">
+  <defs>
+    <linearGradient id="svg-graph-linear-grad" x1="20.49" y1="346.58" x2="1220.94" y2="346.58" gradientUnits="userSpaceOnUse">
+      <stop offset="0.22" class="svg-stop-color-2"></stop>
+      <stop offset="0.5" class="svg-stop-color-4"></stop>
+      <stop offset="0.82" class="svg-stop-color-5"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Frame ->
+  <!-- Quarter Lines -->
+  <line *ngFor="let q of quarterInfo; let i = index"
+        class="svg-quarter-div-line"
+        [class.svg-quarter-div-line-strong]="q.strong"
+        [attr.x1]="quarterPos[i].x" y1="1.5"
+        [attr.x2]="quarterPos[i].x" y2="682.33"></line>
+
+  <line class="svg-roadmap-header-line" x1="18.57" y1="1.5" x2="1220.57" y2="1.5"></line>
+
+  <line class="svg-quarter-bottom-line svg-stroke-color-1" x1="20.57" y1="682.33" x2="100.57" y2="682.33"></line>
+  <line class="svg-quarter-bottom-line svg-stroke-color-2" x1="100.57" y1="682.5" x2="342.57" y2="682.5"></line>
+  <line class="svg-quarter-bottom-line svg-stroke-color-3" x1="341.57" y1="682.5" x2="582.57" y2="682.5"></line>
+  <line class="svg-quarter-bottom-line svg-stroke-color-4" x1="581.57" y1="682.5" x2="740.57" y2="682.5"></line>
+  <line class="svg-quarter-bottom-line svg-stroke-color-5" x1="740.57" y1="682.5" x2="1220.62" y2="682.5"></line>
+
+  <!-- Header of quarter name -->
+  <line class="svg-quarter-div-line svg-quarter-div-line-strong" x1="20.62" y1="397.5" x2="35.57" y2="397.5"></line>
+  <line class="svg-quarter-div-line svg-quarter-div-line-strong" x1="100.62" y1="327.5" x2="115.57" y2="327.5"></line>
+  <line class="svg-quarter-div-line svg-quarter-div-line-strong" x1="341.62" y1="257.5" x2="356.57" y2="257.5"></line>
+  <line class="svg-quarter-div-line svg-quarter-div-line-strong" x1="582.62" y1="186.5" x2="597.57" y2="186.5"></line>
+  <line class="svg-quarter-div-line svg-quarter-div-line-strong" x1="741.62" y1="116.5" x2="756.57" y2="116.5"></line>
+
+  <!-- Bottom -->
+  <line *ngFor="let q of quarterPos; let i = index"
+        class="svg-quarter-bottom-div-line"
+        [ngClass]="quarterColorClass[i].stroke"
+        [attr.x1]="q.x" y1="663.33" [attr.x2]="q.x" y2="701.33"></line>
+
+  <text *ngFor="let q of quarterInfo; let i = index"
+        class="svg-quarter-name"
+        [ngClass]="quarterColorClass[i].fill"
+        [attr.transform]="'translate(' + (quarterPos[i].x - 20.57) + ' 724.07)'">{{q.name}}</text>
+
+  <!-- End of frame -->
+
+  <!-- Quarter title -->
+  <text class="svg-quarter-div-text svg-fill-color-1"
+        transform="translate(41.12 404.98)">{{topic[0]}}</text>
+  <text class="svg-quarter-div-text svg-fill-color-2"
+        transform="translate(121.62 334.48)">{{topic[1]}}</text>
+  <text class="svg-quarter-div-text svg-fill-color-3"
+        transform="translate(361.62 263.98)">{{topic[2]}}</text>
+  <text class="svg-quarter-div-text svg-fill-color-4"
+        transform="translate(600.62 193.48)">{{topic[3]}}</text>
+  <text class="svg-quarter-div-text svg-fill-color-5"
+        transform="translate(760.62 122.98)">{{topic[4]}}</text>
+
+  <!-- Line graph -->
+  <polyline class="svg-roadmap-increase-line" [attr.points]="polylinePoint"></polyline>
+  <ng-container *ngFor="let d of quarterDescLinePoint; let i = index">
+    <polyline class="svg-quarter-dashed-line"
+              [ngClass]="quarterColorClass[i].stroke"
+              [attr.points]="d"></polyline>
+    <ellipse class="svg-quarter-ellipse"
+             [ngClass]="quarterColorClass[i].stroke"
+             [attr.cx]="quarterPos[i].x" [attr.cy]="quarterPos[i].y"
+             rx="6" ry="6"></ellipse>
+    <circle [ngClass]="quarterColorClass[i].fill"
+            [attr.cx]="quarterDescCirclePoint[i].x" [attr.cy]="quarterDescCirclePoint[i].y"
+            r="4"></circle>
+  </ng-container>
+
+  <!-- Each of description -->
+  <text *ngFor="let q of quarterDescCirclePoint; let i = index"
+        class="svg-quarter-desc-text"
+        [attr.transform]="'translate(' + (q.x + marginQuarterDesc) + ' ' + (q.y + 5) + ')'">
+    <tspan *ngFor="let txt of convertedQuarterDesc[i]; let j = index"
+           x="0" [attr.y]="lineHeightQuarterDesc * j">{{txt}}</tspan>
+  </text>
+
+  <!-- Spinner -->
+  <g>
+    <circle class="svg-spinner" [class.svg-visible]="spinnerVisible"
+            [attr.cx]="spinnerPos.x" [attr.cy]="spinnerPos.y" r="20">
+      <animate attributeType="xml" attributeName="r" from="0" to="20" dur="1s"
+               repeatCount="indefinite"
+               calcMode="spline"
+               keySplines="0.42 0 0.58 1"
+               values="0;20"></animate>
+    </circle>
+    <circle class="svg-spinner" [class.svg-visible]="spinnerVisible"
+            [attr.cx]="spinnerPos.x" [attr.cy]="spinnerPos.y" r="20">
+      <animate attributeType="xml" attributeName="r" from="20" to="0" dur="1s"
+               repeatCount="indefinite"
+               calcMode="spline"
+               keySplines="0.42 0 0.58 1"
+               values="20;0"></animate>
+    </circle>
+  </g>
+</svg>
