@@ -33,10 +33,18 @@
   <line class="svg-quarter-div-line svg-quarter-div-line-strong" x1="741.62" y1="116.5" x2="756.57" y2="116.5"></line>
 
   <!-- Bottom -->
-  <line *ngFor="let q of quarterPos; let i = index"
-        class="svg-quarter-bottom-div-line"
-        [ngClass]="quarterColorClass[i].stroke"
-        [attr.x1]="q.x" y1="663.33" [attr.x2]="q.x" y2="701.33"></line>
+  <ng-container *ngFor="let q of quarterPos; let i = index">
+    <ng-container *ngIf="!quarterInfo[i].name; else quarterNamed">
+      <line class="svg-quarter-bottom-div-line"
+            [ngClass]="quarterColorClass[i].stroke"
+            [attr.x1]="q.x" y1="673.33" [attr.x2]="q.x" y2="691.33"></line>
+    </ng-container>
+    <ng-template #quarterNamed>
+      <line class="svg-quarter-bottom-div-line"
+            [ngClass]="quarterColorClass[i].stroke"
+            [attr.x1]="q.x" y1="663.33" [attr.x2]="q.x" y2="701.33"></line>
+    </ng-template>
+  </ng-container>
 
   <text *ngFor="let q of quarterInfo; let i = index"
         class="svg-quarter-name"

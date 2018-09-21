@@ -39,7 +39,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
       i18nPosition: {
         [Lang.ENG]: 'Blockchain Core Engineer',
         [Lang.KOR]: 'Blockchain Core Engineer',
-        [Lang.CHN]: 'Blockchain Core Engineer'
+        [Lang.CHN]: '区块链核心开发工程师'
       },
       linkedin: '',
       github: 'https://github.com/seungwon-kang',
@@ -53,8 +53,8 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'ROK Military Network and IT Security Specialist'
         ],
         [Lang.CHN]: [
-          'Computer Science, Hanyang University',
-          'ROK Military Network and IT Security Specialist'
+          '韩国 汉阳大学 计算机工学',
+          '韩国军事网络与IT安全专家'
         ]
       }
     },
@@ -68,7 +68,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
       i18nPosition: {
         [Lang.ENG]: 'Blockchain Platform Engineer',
         [Lang.KOR]: 'Blockchain Platform Engineer',
-        [Lang.CHN]: 'Blockchain Platform Engineer'
+        [Lang.CHN]: '区块链平台开发工程师'
       },
       github: 'https://github.com/brcps12',
       sentences: {
@@ -81,8 +81,8 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Multiple Awards in Algorithm PS Competitions'
         ],
         [Lang.CHN]: [
-          'Computer Science, Hanyang University',
-          'Multiple Awards in Algorithm PS Competitions'
+          '韩国 汉阳大学 计算机工学',
+          '多次在算法编程竞赛中夺冠'
         ]
       }
     },
@@ -96,7 +96,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
       i18nPosition: {
         [Lang.ENG]: 'Head of Business Development',
         [Lang.KOR]: 'Head of Business Development',
-        [Lang.CHN]: 'Head of Business Development'
+        [Lang.CHN]: '商业发展主管'
       },
       linkedin: 'https://www.linkedin.com/in/jungwoo-lee-644506169/',
       sentences: {
@@ -109,8 +109,8 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Business Administration, Seoul National University'
         ],
         [Lang.CHN]: [
-          'Certified Public Accountant, Korea (KICPA)',
-          'Business Administration, Seoul National University'
+          '韩国注册会计师',
+          '韩国 首尔国立大学 工商管理'
         ]
       }
     },
@@ -135,7 +135,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Professional in China & Cross-cultural Business Operations'
         ],
         [Lang.CHN]: [
-          'Professional in China & Cross-cultural Business Operations'
+          '跨国与跨文化商业运营业内精英'
         ]
       }
     },
@@ -160,7 +160,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Visual Communication, AAA School of Advertising'
         ],
         [Lang.CHN]: [
-          'Visual Communication, AAA School of Advertising'
+          'AAA School of Advertising 视觉传达设计'
         ]
       }
     },

@@ -25,22 +25,22 @@ export class MzkIntroRoadmapImageComponent extends BaseComponent implements OnCh
 
   quarterDivIdx = [0, 1, 4, 7, 9];
 
-  quarterInfo: {name: string, strong?: boolean }[] = [
-    { name: '02.17', strong: true },
-    { name: '07.17', strong: true },
-    { name: '08.17' },
-    { name: '10.17' },
-    { name: '11.17', strong: true },
-    { name: '12.17' },
-    { name: '02.18' },
-    { name: 'Q2.18', strong: true },
-    { name: 'Q3.18' },
-    { name: '09.18', strong: true },
-    { name: '11.18' },
-    { name: '12.18' },
-    { name: '01.19' },
-    { name: '02.19' },
-    { name: '04.19' },
+  quarterInfo: {name?: string, strong?: boolean }[] = [
+    { name: 'Q1.2017', strong: true },
+    { name: null, strong: true },
+    { name: 'Q2.2017' },
+    { name: 'Q3.2017' },
+    { name: null, strong: true },
+    { name: 'Q4.2017' },
+    { name: 'Q1.2018' },
+    { name: 'Q2.2018', strong: true },
+    { name: 'Q3.2018' },
+    { name: 'Q4.2018', strong: true },
+    { name: null },
+    { name: null },
+    { name: 'Q1.2019' },
+    { name: null },
+    { name: 'Q2.2019' },
     { name: '2020+' }
   ];
 
