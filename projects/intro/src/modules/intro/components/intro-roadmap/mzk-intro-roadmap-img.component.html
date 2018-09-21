@@ -46,10 +46,10 @@
     </ng-template>
   </ng-container>
 
-  <text *ngFor="let q of quarterInfo; let i = index"
+  <text *ngFor="let q of quarterInfo; index as i; last as isLast"
         class="svg-quarter-name"
         [ngClass]="quarterColorClass[i].fill"
-        [attr.transform]="'translate(' + (quarterPos[i].x - 20.57) + ' 724.07)'">{{q.name}}</text>
+        [attr.transform]="'translate(' + (quarterPos[i].x - (i == 0 || isLast ? 20.57 : 32.57)) + ' 724.07)'">{{q.name}}</text>
 
   <!-- End of frame -->
 

@@ -56,6 +56,7 @@ declare const jQuery;
       background-size: 100%;
       background-position-y: bottom;
       padding-bottom: 160px;
+      margin-bottom: -1px;
     }
     
     .bg-class {

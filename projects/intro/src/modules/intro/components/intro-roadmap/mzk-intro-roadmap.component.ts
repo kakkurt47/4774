@@ -98,7 +98,7 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
       '비공개 세일',
       '거래소 상장',
       'Muzika 플랫폼을\n이더리움 테스트넷 (Ropsten)에서\n알파 런칭',
-      'Muzika 플랫폼을\n이더리움 메인넷에서\n알파 런칭',
+      'Muzika 플랫폼을\n메인넷에 연동',
       '마음만은 피아니스트, MyMusicSheet,\nKPopPiano 등 마피아컴퍼니가 운영하는\n다른 플랫폼과 결제 수단 통합',
       'Muzika 플랫폼 베타 런칭 1\n(악보/음원 구매 중심)',
       'Muzika 플랫폼 베타 런칭 2\n(커뮤니티/보상 로직 중심)',
@@ -241,7 +241,7 @@ export class MzkIntroRoadmapComponent extends BaseComponent implements AfterView
       topic: 'Ecosystem Launching',
       list: [
         { date: '2018.09', text: 'Muzika 플랫폼을 이더리움 테스트넷 (Ropsten)에서 알파 런칭' },
-        { date: '2018.11', text: 'Muzika 플랫폼을 이더리움 메인넷에서 알파 런칭' },
+        { date: '2018.11', text: 'Muzika 플랫폼을 메인넷에 연동' },
         // tslint:disable-next-line
         { date: '2018.12', text: '마음만은 피아니스트, MyMusicSheet, KPopPiano 등 마피아컴퍼니가 운영하는 다른 플랫폼과 결제 수단 통합' },
         { date: '2019.01', text: 'Muzika 플랫폼 베타 런칭 1 (악보/음원 구매 중심)' },
