@@ -12,4 +12,17 @@ import { BaseComponent } from '../../../../models/base.component';
   ]
 })
 export class MzkIntroTokenMetricsComponent extends BaseComponent {
+  lang: string;
+
+  constructor(private translateService: TranslateService) {
+    super();
+  }
+
+  ngOnInit(): void {
+    this._sub.push(
+      this.translateService.onLangChange.subscribe(lang => {
+        this.lang = lang.lang;
+      })
+    );
+  }
 }

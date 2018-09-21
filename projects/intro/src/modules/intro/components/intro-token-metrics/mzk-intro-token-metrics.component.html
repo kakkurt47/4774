@@ -41,7 +41,12 @@
     </div>
 
     <div class="section-image mx-auto">
-      <img src="assets/intro-img/metrics/token-metrics.png">
+      <ng-container *ngIf="lang == 'zh'">
+        <img src="assets/intro-img/metrics/token-metrics-zh.png">
+      </ng-container>
+      <ng-container *ngIf="lang != 'zh'">
+        <img src="assets/intro-img/metrics/token-metrics.png">
+      </ng-container>
     </div>
   </div>
 </section>
