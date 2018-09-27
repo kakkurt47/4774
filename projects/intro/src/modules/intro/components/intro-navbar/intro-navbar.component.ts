@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../models/base.component';
 import { isPlatformBrowser } from '@angular/common';
@@ -12,9 +12,20 @@ declare const jQuery;
   styleUrls: ['./intro-navbar.component.scss']
 })
 export class IntroNavbarComponent extends BaseComponent {
+  @Input()
+  stickOnTop: boolean = false;
+
   lang: string;
 
+  /* Jquery Instances */
+  rootInstance: any;
+  stickyInstance: any;
+  navItemsInstance: any;
+  navbarTogglerInstance: any;
+  navbarCollapseInstance: any;
+
   constructor(@Inject(PLATFORM_ID) private platformId: string,
+              private elementRef: ElementRef,
               private router: Router,
               private translateService: TranslateService) {
     super();
@@ -27,8 +38,18 @@ export class IntroNavbarComponent extends BaseComponent {
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       const vm = this;
-      jQuery('#navbarCollapse ul li a[href^=\'#\']').on('click', function(e) {
 
+      this.rootInstance = jQuery(this.elementRef.nativeElement);
+      this.stickyInstance = this.rootInstance.find('.sticky');
+      this.navItemsInstance = this.rootInstance.find(`#navbarCollapse ul li a[href^='#']`);
+      this.navbarTogglerInstance = this.rootInstance.find('.navbar-toggler');
+      this.navbarCollapseInstance = this.rootInstance.find('.navbar-collapse');
+
+      if (this.stickOnTop) {
+        this.stickyInstance.addClass('nav-sticky');
+      }
+
+      this.navItemsInstance.on('click', function (e) {
         // prevent default anchor click behavior
         e.preventDefault();
 
@@ -39,8 +60,8 @@ export class IntroNavbarComponent extends BaseComponent {
           vm.router.navigateByUrl('/');
         }
 
-        jQuery('.navbar-toggler').removeClass('collapsed');
-        jQuery('.navbar-collapse').removeClass('show');
+        vm.navbarTogglerInstance.removeClass('collapsed');
+        vm.navbarCollapseInstance.removeClass('show');
 
         // animate
         jQuery('html, body').stop().animate({
@@ -48,20 +69,18 @@ export class IntroNavbarComponent extends BaseComponent {
         }, 1000, () => {
         });
       });
+    }
+  }
 
-      jQuery(window).scroll(() => {
-        if (this.router.url !== '/airdrop-event') {
-          const scroll = jQuery(window).scrollTop();
-          if (scroll >= 50) {
-            jQuery('.sticky').addClass('nav-sticky');
-          } else {
-            jQuery('.sticky').removeClass('nav-sticky');
-          }
-        } else {
-          jQuery('.sticky').addClass('nav-sticky');
-        }
-      });
-
+  @HostListener('window:scroll')
+  private onWindowScroll() {
+    if (this.stickyInstance && !this.stickOnTop) {
+      const scroll = jQuery(window).scrollTop();
+      if (scroll >= 50) {
+        this.stickyInstance.addClass('nav-sticky');
+      } else {
+        this.stickyInstance.removeClass('nav-sticky');
+      }
     }
   }
 
@@ -77,5 +96,10 @@ export class IntroNavbarComponent extends BaseComponent {
 
   changeLang(lang: 'en' | 'ko' | 'zh') {
     this.translateService.use(lang);
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.navItemsInstance.off('click');
   }
 }

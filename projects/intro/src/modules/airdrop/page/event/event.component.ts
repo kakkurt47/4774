@@ -7,7 +7,7 @@ import { AirdropApi } from '../../airdrop-api';
 @Component({
   selector: 'airdrop-event',
   template: `
-    <app-intro-navbar></app-intro-navbar>
+    <app-intro-navbar [stickOnTop]="true"></app-intro-navbar>
     <div class="container">
       <airdrop-my-wallet [(loyaltyPoint)]="lp" [(mzk)]="mzk"></airdrop-my-wallet>
 
