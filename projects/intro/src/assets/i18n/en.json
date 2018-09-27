@@ -23,17 +23,17 @@
     "title-1": "THE CHALLENGE",
     "subtitle-1": "Musicians and fans are the real value creators in today’s music industry,\nbut they are not properly rewarded for their value creation.",
     "challenge-item-1": "Musicians are starving. Everyone listens to music, more people pay for music, but artists are still not making money.",
-    "challenge-item-2": "On the other end, fans (that’s us) are still pigeonholed as consumers, though we are the ones who actually make super-stars! We devote our time and effort to vote, make cover songs, go viral, and even write fictions for our favorite artists, but no one rewards our effort and devotion.",
-    "challenge-item-3": "In contrast, intermediaries – distributors and platforms – are making excessive profit for one time and unsophisticated tasks of 'transferring' the ready-made values.",
+    "challenge-item-2": "Fans (that’s us) are still pigeonholed as consumers, though we are the ones who actually make super-stars! We devote our time and effort to vote, make cover songs, go viral, and even write fictions for our favorite artists, but no one rewards our effort and devotion.",
+    "challenge-item-3": "Intermediaries (distributors and platforms) are making excessive profit for one time and unsophisticated tasks of 'transferring' the ready-made values.",
     "subtitle-2": "Muzika will bring innovation to the value chain in digital music industry",
     "solution-desc": "We will reform how value is created and captured by various players within the industry. We will return rewards to those who create the value, from those who merely transfer the value, while recovering the share lost from digital piracy through blockchain technology.",
     "title-2": "WHAT MAKES US DIFFERENT",
-    "different-1-short": "Previous attempts",
-    "different-1-long": "Previous music projects have been slow in progress because they focused too much on Smart Contract transaction itself, while overlooking the importance of fans and userbase. They proved it possible to give more percentage to artists. Unfortunately, for musicians, 10% of $10,000 from iTunes was better than 90% of $10 from a Smart Contract transaction without sufficient userbase.",
-    "different-2-short": "Muzika will create a new economy",
-    "different-2-long": "In order to provide musicians 90% of $10,000, we need to create a new form of economy – an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem. To create a new form of economy, we need fans – mass userbase that will create network effect and grow up with Muzika. We will reward fans for their value created, which will make an incentivized community. The incentivized community will create the network effect, allowing us to provide artists 90% of $10,000 or even more.",
-    "different-3-short": "We precisely know how to do it",
-    "different-3-long": "Creating a new economy requires a unique set of courage and mindset. In 2015, co-founders of Muzika saw opportunities in online instrumental music industry and started their venture – Mapiacompany. After 3 years, Mapiacompany now stands as the No.1 global instrumental music platform with more than 2,000,000 users"
+    "different-1-short": "Previous attempts failed to secure large userbase",
+    "different-1-long": "Previous music blockchain projects have overlooked the importance of a large userbase to achieve widescale adoption. These projects have demonstrated that it is possible to give a higher commission rate to artists for their work using Smart Contract transactions. However, for artists, the low commission rate offered from traditional music streaming apps that had huge userbases were more attractive than blockchain apps using Smart Contract transactions. Case in point, a 10% commission of $1000 from iTunes was preferable to 90% commission of $1 from a Smart Contract transaction.",
+    "different-2-short": "Muzika will create a new economy to incentivize the users",
+    "different-2-long": "Muzika aims to provide musicians the best of both worlds: a higher commission rate for their creative content and a strong userbase. Muzika has developed a strong system for incentivizing fans to contribute to the Muzika ecosystem. These incentives will build the userbase necessary for Muzika to provide both higher commissions to artists along with the mass userbase of traditional music streaming sites. The network effect from a mass userbase will be the key to developing an autonomous, self-sustaining ecosystem. In other words, Muzika can provide musicians with 90% of $100.",
+    "different-3-short": "We have done it before",
+    "different-3-long": "Muzika has already made significant achievements towards the development of sustainable solution to inefficiencies in the digital music industry. In 2015, co-founders of Muzika saw an opportunity in the online instrumental music industry and started  online piano community Mapiacompany. In just over 3 years, Mapiacompany has become the #1 global instrumental music platform with over 2 million users. Muzika will build upon this existing userbase and community."
   },
   "intro-press": {
     "description": "Muzika has been covered by\nmultiple media channels around the world.\nHere we introduce some of them."
@@ -41,9 +41,9 @@
   "intro-ecosystem": {
     "title": "THE MUZIKA ECOSYSTEM",
     "subtitle-1": "Muzika will create an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem, where compensations and rewards will become proportional to the level of devotion put into musical creations and ecosystem behind them.",
-    "subtitle-2": "First, smart contract will allow digital musical products to be transferred directly from artists to fans, ensuring fairer and more transparent economic distribution.",
-    "subtitle-3": "Second, fans will be rewarded with loyalty points for their various community activities, which will be regularly converted into MZK coins - the sole medium of exchange for all economic activities in the ecosystem.",
-    "subtitle-4": "Third, fans will have opportunities to make direct sponsorship to their favorite artists, supporting them and receiving exclusive benefits in return."
+    "subtitle-2": "Smart contract will allow digital musical products to be transferred directly from artists to fans, ensuring fairer and more transparent economic distribution.",
+    "subtitle-3": "Fans will be rewarded with loyalty points for their various community activities, which will be regularly converted into MZK coins - the sole medium of exchange for all economic activities in the ecosystem.",
+    "subtitle-4": "Fans will have opportunities to make direct sponsorship to their favorite artists, supporting them and receiving exclusive benefits in return."
   },
   "intro-token-metrics": {
     "title": "TOKEN METRICS",
@@ -76,12 +76,12 @@
     "awards": "Awards"
   },
   "intro-business": {
-    "subtitle": "Global No. 1\nInstrumental Music Platform ",
+    "subtitle": "Global No. 1 Instrumental Music Platform ",
     "year-of-exp": "Years of experience",
     "user-nations": "User nations",
     "users": "Users",
     "artists": "Artists",
-    "what-makes-muzika-unique": "What makes Muzika unique",
+    "what-makes-muzika-unique": "Muzika is built on 2 million active users",
     "highlight-text-1": "Unlike hundreds of ICOs without proof of practicality, Muzika is not starting from scratch. The token economy is strongly built on the backs of our existing, profit-generating, and privately & publicly funded business with 2,000,000 active users & subscribers from 150+ nations and artists from 30+ nations. ",
     "highlight-text-2": "Through years of experience, we have learned the precise ways to build a community run by loyal and incentivized individuals: a key to success of any community-based blockchain projects."
   },

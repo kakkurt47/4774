@@ -18,21 +18,24 @@ import { BaseComponent } from '../../../models/base.component';
             <img src="assets/intro-img/muzika-ecosystem2.gif" class="img-fluid mb-3">
           </div>
         </div>
-        <div class="row">
+        
+        <div class="d-flex">
           <div class="mt-4 mx-auto">
             <div class="ecosystem-box">
-              <p class="text-center intro-section-subtitle">
+              <p class="intro-section-subtitle">
                 {{'intro-ecosystem.subtitle-1' | translate}}
               </p>
-              <p class="text-center intro-section-subtitle px-4">
-                {{'intro-ecosystem.subtitle-2' | translate}}
-              </p>
-              <p class="text-center intro-section-subtitle px-4">
-                {{'intro-ecosystem.subtitle-3' | translate}}
-              </p>
-              <p class="text-center intro-section-subtitle px-4">
-                {{'intro-ecosystem.subtitle-4' | translate}}
-              </p>
+              <ol class="desc">
+                <li>
+                  {{'intro-ecosystem.subtitle-2' | translate}}
+                </li>
+                <li>
+                  {{'intro-ecosystem.subtitle-3' | translate}}
+                </li>
+                <li>
+                  {{'intro-ecosystem.subtitle-4' | translate}}
+                </li>
+              </ol>
             </div>
           </div>
         </div>
@@ -103,6 +106,15 @@ import { BaseComponent } from '../../../models/base.component';
     .view-more-btn:active {
       border-color: #6e778a;
       color: #6e778a;
+    }
+    
+    ol.desc {
+      padding-left: 16px;
+    }
+    
+    ol.desc li {
+      padding-left: 12px;
+      color: #8196b2;
     }
   `]
 })
