@@ -505,6 +505,22 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       profile: {
         linkedin: 'https://www.linkedin.com/in/jang-yoon-jy-kang-83ab2961/'
       }
+    },
+    {
+      'imagePath': 'allen.png',
+      'i18nPosition': {
+        [Lang.ENG]: 'CEO & Founder of Everest Ventures',
+        [Lang.KOR]: 'CEO & Founder of Everest Ventures',
+        [Lang.CHN]: 'Everest Ventures 创始人兼CEO'
+      },
+      'i18nName': {
+        [Lang.ENG]: 'Allen Ng',
+        [Lang.KOR]: 'Allen Ng',
+        [Lang.CHN]: 'Allen Ng'
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/allenngg/'
+      }
     }
   ];
 
