@@ -13,7 +13,7 @@ declare const jQuery;
 })
 export class IntroNavbarComponent extends BaseComponent {
   @Input()
-  stickOnTop: boolean = false;
+  stickOnTop = false;
 
   lang: string;
 
