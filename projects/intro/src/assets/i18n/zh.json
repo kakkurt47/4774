@@ -30,10 +30,13 @@
     "title-2": "Muzika的与总不同之处",
     "different-1-short": "先前的类似尝试",
     "different-1-long": "早先其它类似项目的进度都颇为缓慢，它们过多地将精力集中在智能合约上，却忽略了音乐粉丝与基础用户量的重要性。虽验证了通过区块链技术能将更多比率的利润回馈给音乐艺人的可行性。但遗憾的是，对音乐艺人来说，通过iTunes得到10,000美元中10%的回报要远比通过缺少足够用户量的智能合约交易而得到10美元中的90%要好得多。",
+    "different-1-image-caption": "higher commission rate with smaller userbase\nvs lower commission rate with bigger user base",
     "different-2-short": "Muzika创建新的经济生态",
     "different-2-long": "为了实现将10,000美元中的90%回馈给音乐艺人，我们需要创建新的经济生态 --- 一个由音乐艺人与粉丝推动的独立自主与可持续自我维持的经济生态。实现这一目标，我们需要音乐粉丝 --- 可引发“网络效应”与Muzika共同发展的基础用户量。用户在我们的平台上创造价值的时候，他们会得到相应的奖励，以此建立起具备奖励机制的社区，进而吸引更多的参与者，从而最终引发“网络效应”，以便有助我们实现将10,000美元中的90%回馈给音乐艺人的愿景。",
+    "different-2-image-caption": "Profit Distribution to Artists in Muzika",
     "different-3-short": "对音乐社区了如指掌",
-    "different-3-long": "创建新的经济生态需兼备独特的勇气与智慧。早在2015年，Muzika的三位联合创始人就发现了在线网络乐器音乐产业的商机，从而创建了Mapiacompany。三年后，Mapiacompany现已成为拥有200万用户量全球排名第一的在线网络乐器音乐平台。"
+    "different-3-long": "创建新的经济生态需兼备独特的勇气与智慧。早在2015年，Muzika的三位联合创始人就发现了在线网络乐器音乐产业的商机，从而创建了Mapiacompany。三年后，Mapiacompany现已成为拥有200万用户量全球排名第一的在线网络乐器音乐平台。",
+    "different-3-image-caption": "Incentivized Community Dynamics"
   },
   "intro-press": {
     "description": "Muzika受到全球诸多知名媒体的关注，\n颇具代表性的相关媒体报道如下："
