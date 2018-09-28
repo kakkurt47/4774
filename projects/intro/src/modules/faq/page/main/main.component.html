@@ -1,0 +1,13 @@
+<app-intro-navbar [stickOnTop]="true"></app-intro-navbar>
+
+<div class="container text-center">
+  <h2 class="intro-section-title"> FAQs </h2>
+</div>
+
+<section id="qa-section">
+  <div class="container">
+    <ng-container *ngFor="let qa of QAs[currentLang]">
+      <mzk-faq-qa [question]="qa.Q" [answer]="qa.A"></mzk-faq-qa>
+    </ng-container>
+  </div>
+</section>

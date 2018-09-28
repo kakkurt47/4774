@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FAQModule } from '../modules/faq/faq.module';
 import { MuzikaIntroModule } from '../modules/intro/intro.module';
 import { AppComponent } from './app.component';
 import { isPlatformBrowser } from '@angular/common';
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     MuzikaIntroModule,
     AirdropModule,
+    FAQModule,
 
     TranslateModule.forRoot({
       loader: {
