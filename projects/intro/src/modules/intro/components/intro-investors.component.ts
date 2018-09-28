@@ -27,7 +27,8 @@ import { BaseComponent } from '../../../models/base.component';
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/investors/vestigium.png" class="img-fluid">
+              <!--<img src="assets/intro-img/investors/vestigium.png" class="img-fluid">-->
+              <img src="assets/intro-img/investors/ddc.png" class="img-fluid">-
             </div>
           </div>
         </div>
