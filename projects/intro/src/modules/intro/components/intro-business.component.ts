@@ -9,7 +9,7 @@ declare const jQuery;
     <section class="section" id="business">
       <div class="bg-class">
         <h2 class="text-center intro-section-title">
-          WE ARE NOT STARTING FROM SCRATCH
+          {{'intro-business.title' | translate}}
         </h2>
         <p class="text-center intro-section-subtitle mt-4"
            [innerHtml]="'intro-business.subtitle' | translate | nl2br"></p>
