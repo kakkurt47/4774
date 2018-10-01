@@ -8,7 +8,7 @@ export class SimpleMDConverterPipe implements PipeTransform {
     let startOrderedList = false;
 
     const res = text
-        .split('\n').map(line => line.trim()).join('\n')
+        .split('\n').map(line => line.replace(/( ){2}$/, '<br>').trim()).join('\n')
         .replace(/\n\n(\n)+/g, '\n\n')
         .split('\n').map((line, index, arr) => {
           if (/^\d+\. /.test(line.trim())) {
