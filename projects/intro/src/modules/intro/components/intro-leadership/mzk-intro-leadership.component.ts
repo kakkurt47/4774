@@ -98,9 +98,9 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
       imagePath: 'assets/intro-img/leader-inseo.png',
       position: 'CEO',
       sentences: [
-        'Serial Entrepreneur and Professional Pianist',
-        `2nd Place, National Student Music Competition`,
-        'One of the earliest Ethereum miners in Korea',
+        '연쇄 창업가, 피아니스트',
+        '전국 학생 음악경연대회 2위 (피아노 부문)',
+        '초기 이더리움 채굴자',
       ],
       facebook: 'https://www.facebook.com/thankspinaoman/',
       linkedin: 'https://www.linkedin.com/in/inseo-chung-331427171/'
@@ -110,9 +110,9 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
       imagePath: 'assets/intro-img/leader-sangmin.png',
       position: 'CTO',
       sentences: [
-        'Computer Science, Hanyang University',
-        'Global Finalist, Intel Science and Engineering Fair(ISEF)',
-        `Sole Developer of 'The Bamboo Network'`,
+        '컴퓨터공학과, 한양대학교',
+        '인텔 국제과학기술경진대회(ISEF) Global Finalist ',
+        `페이스북 페이지 '대나무숲' 개발자`,
       ],
       github: 'https://github.com/leo6104',
       linkedin: 'https://www.linkedin.com/in/%EC%83%81%EB%AF%BC-%ED%97%88-4a3507169/'
@@ -122,9 +122,9 @@ export class MzkIntroLeadershipComponent extends BaseComponent {
       imagePath: 'assets/intro-img/leader-jangwon.png',
       position: 'COO',
       sentences: [
-        `Business Adminstration, Seoul National University`,
-        'Co-founder of Shadal Inc and Youthglobe Korea',
-        `Trilingual entrepreneur with key global networks`,
+        `경영학과, 서울대학교`,
+        '샤달(Shadal), 유스글로브코리아 등 다수의 기업 및 NGO 공동설립자',
+        `주요 글로벌 네트워크 보유 및 3개국어 구사`,
       ],
       linkedin: 'https://www.linkedin.com/in/jang-won-lee-5811b211a/'
     }

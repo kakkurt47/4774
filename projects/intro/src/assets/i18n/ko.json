@@ -10,7 +10,7 @@
     "press": "Press",
     "ecosystem": "생태계",
     "mzk-coins": "MZK 코인",
-    "partners": "파트너스",
+    "partners": "사업소개",
     "team": "팀",
     "advisors": "어드바이저",
     "roadmap": "로드맵",
@@ -22,39 +22,39 @@
   },
   "intro-business-idea": {
     "title-1": "THE CHALLENGE",
-    "subtitle-1": "Musicians and fans are the real value creators in today’s music industry,\nbut they are not properly rewarded for their value creation.",
-    "challenge-item-1": "Musicians are starving. Everyone listens to music, more people pay for music, but artists are still not making money.",
-    "challenge-item-2": "Fans (that’s us) are still pigeonholed as consumers, though we are the ones who actually make super-stars! We devote our time and effort to vote, make cover songs, go viral, and even write fictions for our favorite artists, but no one rewards our effort and devotion.",
-    "challenge-item-3": "Intermediaries (distributors and platforms) are making excessive profit for one time and unsophisticated tasks of 'transferring' the ready-made values.",
-    "subtitle-2": "Muzika will bring innovation to the value chain in digital music industry",
-    "solution-desc": "We will reform how value is created and captured by various players within the industry. We will return rewards to those who create the value, from those who merely transfer the value, while recovering the share lost from digital piracy through blockchain technology.",
+    "subtitle-1": "오늘날 음악 산업에서 아티스트와 팬들은 중대한 가치를 창출해내지만\n자신들이 창출한 가치에 대해 적절히 보상받지 못하고 있습니다.",
+    "challenge-item-1": "음악 산업은 계속해서 성장하고 유료 스트리밍 이용자도 증가하고 있지만, 많은 아티스트들이 여전히 경제적 어려움에 직면하고 있습니다.",
+    "challenge-item-2": "오늘날 슈퍼스타를 만들어내는 진정한 주인공은 팬들이지만, 우리는 여전히 '소비자'라는 규정된 역할에서 벗어나지 못하고 있습니다. 우리는 많은 시간과 노력을 할애하여 투표하고, 글을 작성하고, 커버 음악을 만들어 아티스트들을 스타로 성장시키고 있지만, 그 누구도 이러한 노력과 헌신에 대한 정당한 대가와 보상을 제공하지 않았습니다. ",
+    "challenge-item-3": "유통사와 같은 중개업자들은 이미 창출된 가치를 ‘전달’하는 비교적 단순한 역할만을 수행하면서, 그 역할의 중요성에 비해 지나치게 많은 이익을 얻어가고 있습니다.",
+    "subtitle-2": "Muzika는 음악 산업의 가치사슬(Value Chain)에 혁신을 불러오고자 합니다.",
+    "solution-desc": "Muzika는 음악 산업의 구조적 개혁을 이루어내고, 가치를 전달하는 주체가 아닌 진정으로 가치를 창출해내는 주체에게 더 많은 경제적 보상이 주어지도록 할 것입니다. 또한 블록체인을 통해 불법복제를 근절하고 아티스트들의 정당한 권리와 보상을 보장할 것입니다.",
     "title-2": "WHAT MAKES US DIFFERENT",
-    "different-1-short": "Previous attempts failed to secure large userbase",
-    "different-1-long": "Previous music blockchain projects have overlooked the importance of a large userbase to achieve widescale adoption. These projects have demonstrated that it is possible to give a higher commission rate to artists for their work using Smart Contract transactions. However, for artists, the low commission rate offered from traditional music streaming apps that had huge userbases were more attractive than blockchain apps using Smart Contract transactions. Case in point, a 10% commission of $1000 from iTunes was preferable to 90% commission of $1 from a Smart Contract transaction.",
-    "different-1-image-caption": "Higher commission rate with smaller userbase\nvs Lower commission rate with bigger user base",
-    "different-2-short": "Muzika will create a new economy to incentivize the users",
-    "different-2-long": "Muzika aims to provide musicians the best of both worlds: a higher commission rate for their creative content and a strong userbase. Muzika has developed a strong system for incentivizing fans to contribute to the Muzika ecosystem. These incentives will build the userbase necessary for Muzika to provide both higher commissions to artists along with the mass userbase of traditional music streaming sites. The network effect from a mass userbase will be the key to developing an autonomous, self-sustaining ecosystem. In other words, Muzika can provide musicians with 90% of $1000.",
-    "different-2-image-caption": "Profit Distribution to Artists in Muzika",
-    "different-3-short": "We have done it before",
-    "different-3-long": "Muzika has already made significant achievements towards the development of sustainable solution to inefficiencies in the digital music industry. In 2015, co-founders of Muzika saw an opportunity in the online instrumental music industry and started  online piano community Mapiacompany. In just over 3 years, Mapiacompany has become the #1 global instrumental music platform with over 2 million users. Muzika will build upon this existing userbase and community.",
-    "different-3-image-caption": "Incentivized Community Dynamics"
+    "different-1-short": "기존의 시도들은 많은 이용자들을 확보하는 데 실패했습니다.",
+    "different-1-long": "기존의 음악 블록체인 프로젝트들은 두터운 이용자층의 중요성을 간과했고, 이로 인해 경제적 규모를 키우는 데 성공적이지 못했습니다. 많은 프로젝트들이 스마트 컨트랙트를 이용하여 아티스트에게 총 수익의 더 많은 ‘비율’을 제공할 수 있음을 보였지만, 그것은 충분하지 않았습니다. 아티스트들에게는 비율 뿐 아니라 수익의 총량 또한 중요하기 때문입니다. 아이튠즈에서 얻은 1,000,000원의 수익 중 10%를 얻는 것이, 이름 없는 스마트 컨트랙트에서 얻은 1,000원의 수익 중 90%를 제공받는 것보다 선호되는 것은 자명한 일일 것입니다.",
+    "different-1-image-caption": "많은 퍼센티지, 하지만 적은 이용자수 vs 적은 퍼센티지, 하지만 많은 이용자수",
+    "different-2-short": "Muzika는 이용자들에게 충분한 인센티브를 제공할 수 있는 새로운 경제를 창조할 것입니다.",
+    "different-2-long": "Muzika는 아티스트들에게 총수익의 더 높은 비율을 제시함과 동시에, 이를 의미 있게 만들 수 있는 광범위하고 두터운 이용자층 또한 확보할 것입니다. 정교하게 고안된 인센티브 시스템을 토대로 팬들의 유입과 참여를 장려하고, 이를 토대로 네트워크 효과(Network Effect)를 만들어내어 자생적인 Muzika 생태계를 효과적으로, 그리고 빠르게 확장해 나가고자 합니다. 즉, Muzika는 아티스트에게 1,000,000원의 10% 또는 1,000원의 90%가 아닌, 1,000,000원의 수익 중 90%를 제공할 수 있는 새로운 경제를 탄생시킬 것입니다. ",
+    "different-2-image-caption": "Muzika : 많은 퍼센티지, 그리고 많은 이용자수",
+    "different-3-short": "Muzika는 검증된 모델과 팀, 그리고 풍부한 경험을 보유하고 있습니다.",
+    "different-3-long": "Muzika 팀은 이미 디지털 음악 시장에서 새로운 경제 모델 설계를 토대로 문제에 대해 지속가능한 해답을 제시한 경험이 있습니다. 2015년, Muzika의 공동설립자들은 온라인 연주음악(Instrumental Music) 시장에 주목하였고, 연주음악 플랫폼 기업인 마피아컴퍼니를 설립하였습니다. 3년 만에 마피아컴퍼니는 전세계 2백만 사용자를 보유한 글로벌 연주음악 플랫폼 기업으로 성장할 수 있었습니다. 연주음악 아티스트들은 직접 만든 연주음악 악보를 통해 수익을 얻고, 팬들은 편리하고 합법적인 방법으로 높은 품질의 악보를 접할 수 있게 되었습니다.",
+    "different-3-image-caption": "인센티브에 기반한 커뮤니티의 성장 흐름"
   },
   "intro-press": {
     "description": "전 세계 미디어에 소개된\nMuzika의 이야기를 확인해보세요."
   },
   "intro-ecosystem": {
     "title": "THE MUZIKA ECOSYSTEM",
-    "subtitle-1": "Muzika will create an autonomous, self-sustaining ecosystem driven by artists and their fans in tandem, where compensations and rewards will become proportional to the level of devotion put into musical creations and ecosystem behind them.",
-    "subtitle-2": "Smart contract will allow digital musical products to be transferred directly from artists to fans, ensuring fairer and more transparent economic distribution.",
-    "subtitle-3": "Fans will be rewarded with loyalty points for their various community activities, which will be regularly converted into MZK coins - the sole medium of exchange for all economic activities in the ecosystem.",
-    "subtitle-4": "Fans will have opportunities to make direct sponsorship to their favorite artists, supporting them and receiving exclusive benefits in return."
+    "subtitle-1": "Muzika는 아티스트와 팬들이 주도하는 자생적이고 지속가능한 생태계를 창조할 것이며, 경제적 보상이 음악 창작물, 그리고 생태계에 대한 헌신과 노력에 비례할 수 있도록 경제 구조를 만들어갈 것입니다.",
+    "subtitle-2": "스마트컨트랙트를 통해 아티스트와 팬들이 직접 악보와 음원 등의 디지털 음악 상품을 보다 효과적이고 투명하게 거래할 수 있게 됩니다.",
+    "subtitle-3": "팬들은 생태계 내 커뮤니티 활동에 대한 보상으로 Loyalty Point를 지급받게 되며, Loyalty Point는 정기적으로 MZK 코인으로 교환됩니다.",
+    "subtitle-4": "팬들은 Muzika 생태계에 참여하는 아티스트를 직접 후원하고, 그 대가로 해당 아티스트로부터 후원자만을 위한 혜택을 제공받을 수 있습니다."
   },
   "intro-token-metrics": {
-    "title": "TOKEN METRICS",
-    "num-of-tokens": "Total number of tokens",
-    "percent-for-sale": "% for sale",
-    "num-of-tokens-for-sale": "Total number of tokens for sale",
-    "hardcap": "Hard-cap"
+    "title": "토큰 메트릭",
+    "num-of-tokens": "총 토큰 발행량",
+    "percent-for-sale": "판매 비율",
+    "num-of-tokens-for-sale": "총 토큰 판매량",
+    "hardcap": "하드캡"
   },
   "intro-mzk-coins": {
     "subtitle-1": "Muzika 코인(MZK)은 새로운 Muzika 생태계에서 중추적인 역할을 담당할 것입니다. 우리는 과거와 현재의 수많은 가상화폐들의 성공과 실패 사례들을 분석하였고, 프로젝트를 성공으로 이끌기 위한 요소들에 대해 뚜렷한 시각을 얻을 수 있었습니다.",
@@ -81,7 +81,7 @@
   },
   "intro-business": {
     "title": "WE ARE NOT STARTING FROM SCRATCH",
-    "subtitle": "Global No. 1\nInstrumental Music Platform ",
+    "subtitle": "MAPIACOMPANY, Glboal No. 1 Instrumental Music Platform",
     "year-of-exp": "년의 경험",
     "user-nations": "서비스되는 국가의 수",
     "users": "사용자",
@@ -92,7 +92,7 @@
   },
   "intro-roadmap": {
     "title": "ROADMAP",
-    "subtitle": "음악 시장에서의 혁신은 이제 시작입니다"
+    "subtitle": "혁신을 위한 Muzika의 여정을 소개합니다"
   },
   "intro-footer": {
     "business": "Business",

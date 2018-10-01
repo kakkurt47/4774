@@ -38,7 +38,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
       },
       i18nPosition: {
         [Lang.ENG]: 'Blockchain Core Engineer',
-        [Lang.KOR]: 'Blockchain Core Engineer',
+        [Lang.KOR]: '블록체인 코어 엔지니어',
         [Lang.CHN]: '区块链核心开发工程师'
       },
       linkedin: '',
@@ -49,8 +49,8 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'ROK Military Network and IT Security Specialist'
         ],
         [Lang.KOR]: [
-          'Computer Science, Hanyang University',
-          'ROK Military Network and IT Security Specialist'
+          '컴퓨터공학과, 한양대학교',
+          '대한민국 육군 네트워크/정보보안 전문 부사관'
         ],
         [Lang.CHN]: [
           '韩国 汉阳大学 计算机工学',
@@ -67,7 +67,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
       },
       i18nPosition: {
         [Lang.ENG]: 'Blockchain Platform Engineer',
-        [Lang.KOR]: 'Blockchain Platform Engineer',
+        [Lang.KOR]: '블록체인 플랫폼 엔지니어',
         [Lang.CHN]: '区块链平台开发工程师'
       },
       github: 'https://github.com/brcps12',
@@ -77,8 +77,8 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Multiple Awards in Algorithm PS Competitions'
         ],
         [Lang.KOR]: [
-          'Computer Science, Hanyang University',
-          'Multiple Awards in Algorithm PS Competitions'
+          '컴퓨터공학과, 한양대학교',
+          '다수의 알고리즘 PS 대회 수상경력 보유'
         ],
         [Lang.CHN]: [
           '韩国 汉阳大学 计算机工学',
@@ -105,8 +105,8 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Business Administration, Seoul National University'
         ],
         [Lang.KOR]: [
-          'Certified Public Accountant, Korea (KICPA)',
-          'Business Administration, Seoul National University'
+          '경영학과, 서울대학교',
+          '한국공인회계사 합격 (KICPA)'
         ],
         [Lang.CHN]: [
           '韩国注册会计师',
@@ -132,7 +132,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Professional in China & Cross-cultural Business Operations'
         ],
         [Lang.KOR]: [
-          'Professional in China & Cross-cultural Business Operations'
+          '중국 및 아시아권 국가간 비즈니스 전문가'
         ],
         [Lang.CHN]: [
           '跨国与跨文化商业运营业内精英'
@@ -157,7 +157,7 @@ export class MzkIntroTeamComponent extends BaseComponent {
           'Visual Communication, AAA School of Advertising'
         ],
         [Lang.KOR]: [
-          'Visual Communication, AAA School of Advertising'
+          '그래픽 디자인 전공, AAA School of Advertising'
         ],
         [Lang.CHN]: [
           'AAA School of Advertising 视觉传达设计'
