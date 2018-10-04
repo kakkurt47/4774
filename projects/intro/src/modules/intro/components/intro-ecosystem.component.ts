@@ -42,7 +42,7 @@ import { BaseComponent } from '../../../models/base.component';
         
         <div class="mt-4 text-center">
           <a class="view-more-btn" href="/ecosystem" target="_blank">
-            View more <i class="fa fa-chevron-right"></i>
+            Read More <i class="fa fa-chevron-right"></i>
           </a>
         </div>
       </div>
