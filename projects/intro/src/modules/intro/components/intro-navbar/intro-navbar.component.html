@@ -29,9 +29,13 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mt-sm-0 mt-3 ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/airdrop-event" target="_blank">{{'intro-navbar.bounty' | translate}}</a>
-        </li>
+
+        <ng-container *ngIf="lang === 'en'">
+          <li class="nav-item">
+            <a class="nav-link" href="https://bitcointalk.org/index.php?topic=5042121.msg46417949#msg46417949"
+               target="_blank">{{'intro-navbar.bounty' | translate}}</a>
+          </li>
+        </ng-container>
 
         <li class="nav-item">
           <a class="nav-link" href="#the-challenge">{{'intro-navbar.business' | translate}}</a>

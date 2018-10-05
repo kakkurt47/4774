@@ -40,7 +40,7 @@ import { AirdropApi } from '../../airdrop-api';
   ]
 })
 export class AirdropEventComponent implements OnInit, OnDestroy {
-  contentStep = 1;
+  contentStep = -1;
   lp = 0;
   mzk = 0;
   selectedArtist;

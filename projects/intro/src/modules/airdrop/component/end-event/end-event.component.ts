@@ -8,10 +8,12 @@ import { AirdropApi } from '../../airdrop-api';
     <div class="content-wrapper">
       <div class="content">
         <h3> {{'airdrop.end-event.title' | translate}} </h3>
+        
         <p class="mt-3">
-          {{'airdrop.end-event.content-1' | translate}} <br>
-          {{'airdrop.end-event.content-2' | translate}}
+          <span [innerHtml]="'airdrop.end-event.content-1' | translate | nl2br"></span><br>
+          <span [innerHtml]="'airdrop.end-event.content-2' | translate | nl2br"></span>
         </p>
+        
         <div class="row w-100 mx-auto">
           <div class="col-md-4 mt-4">
             <a href="https://t.me/muzika_english"><i class="fab fa-telegram"></i> {{'intro-footer.telegram-en' | translate}}</a>

@@ -80,6 +80,7 @@ import { MzkIntroInvestorsComponent } from './components/intro-investors.compone
     Nl2brPipe
   ],
   exports: [
+    Nl2brPipe,
     IntroNavbarComponent
   ]
 })
