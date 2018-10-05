@@ -120,14 +120,16 @@
   height: 0;
 }
 
-.videoWrapper img {
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 10px;
+.videoWrapper {
+  img, iframe {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 10px;
+  }
 }
 
 .airdrop-btn {
