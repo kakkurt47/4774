@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../models/base.component';
 import { Lang } from '../../../../models/lang';
-import { SimpleMDConverterPipe } from '../../md-convert.pipe';
+import { SimpleMDConverterPipe } from '../../../shared/md-convert.pipe';
 
 /* @TODO
  * For now, setTranslation not works at binding view

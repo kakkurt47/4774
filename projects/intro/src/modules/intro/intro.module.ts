@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
+import { MuzikaIntroSharedModule } from '../shared/shared.module';
 import { MzkIntroAdvisorsComponent } from './components/intro-advisors/mzk-intro-advisors.component';
 import { MzkIntroBusinessIdeaComponent } from './components/intro-business-idea/mzk-intro-business-idea.component';
 import { MzkIntroCountdownNumberComponent } from './components/intro-countdown/intro-countdown-nubmer.component';
@@ -18,7 +19,6 @@ import { MzkIntroTeamComponent } from './components/intro-team/mzk-intro-team.co
 import { MzkIntroCountdownComponent } from './components/intro-countdown/intro-countdown.component';
 import { MzkIntroTokenMetricsComponent } from './components/intro-token-metrics/mzk-intro-token-metrics.component';
 import { IntroRoutingModule } from './intro-routing.module';
-import { Nl2brPipe } from './nl2br.pipe';
 import { IntroEcosystemPageComponent } from './pages/intro-ecosystem/intro-ecosystem.component';
 import { IntroMainPageComponent } from './pages/intro-main/intro-main.component';
 import { MzkIntroBusinessComponent } from './components/intro-business.component';
@@ -40,6 +40,7 @@ import { MzkIntroInvestorsComponent } from './components/intro-investors.compone
 
     RouterModule,
 
+    MuzikaIntroSharedModule,
     IntroRoutingModule,
 
     BsDropdownModule.forRoot(),
@@ -75,12 +76,8 @@ import { MzkIntroInvestorsComponent } from './components/intro-investors.compone
     /* For introduction */
     IntroMainPageComponent,
     IntroEcosystemPageComponent,
-
-    /* For Pipe */
-    Nl2brPipe
   ],
   exports: [
-    Nl2brPipe,
     IntroNavbarComponent
   ]
 })
