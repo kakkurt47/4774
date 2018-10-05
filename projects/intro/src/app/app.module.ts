@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { environment } from '../environments/environment';
 import { FAQModule } from '../modules/faq/faq.module';
 import { MuzikaIntroModule } from '../modules/intro/intro.module';
 import { AppComponent } from './app.component';
@@ -19,13 +20,21 @@ import { RouterModule } from '@angular/router';
 import * as Raven from 'raven-js';
 import { AirdropModule } from '../modules/airdrop/airdrop.module';
 
-Raven
-  .config('https://940fec8f8e2e49c796e0e6fbf4fb7259@sentry.io/1250399')
-  .install();
-
 export class RavenErrorHandler implements ErrorHandler {
   handleError(err: any): void {
     Raven.captureException(err);
+  }
+}
+
+export function ErrorHandlerFactory() {
+  if (environment.production) {
+    Raven
+      .config('https://940fec8f8e2e49c796e0e6fbf4fb7259@sentry.io/1250399')
+      .install();
+
+    return new RavenErrorHandler();
+  } else {
+    return new ErrorHandler();
   }
 }
 
@@ -72,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatRadioModule
   ],
   providers: [
-    { provide: ErrorHandler, useClass: RavenErrorHandler }
+    { provide: ErrorHandler, useFactory: ErrorHandlerFactory }
   ],
   bootstrap: [AppComponent]
 })
