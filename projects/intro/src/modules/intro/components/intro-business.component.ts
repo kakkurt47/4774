@@ -140,20 +140,26 @@ export class MzkIntroBusinessComponent extends BaseComponent implements AfterVie
 
   isOut = true;
 
-  @HostListener('window:scroll.nozone', ['$event'])
-  scrollEvent(event) {
+  ngAfterViewInit(): void {
+    this.jQueryInstance = jQuery(this.elementRef.nativeElement);
+    this.jQueryHighlightNums = jQuery('.highlight-num');
+    this.animateNums();
+  }
+
+  @HostListener('window:scroll.nozone')
+  private scrollEvent() {
     const scrollPos = window.scrollY + window.innerHeight;
     const top = this.jQueryInstance.offset().top;
     const bottom = top + this.jQueryInstance.height();
     const isOut = !(scrollPos >= top && scrollPos < bottom);
 
     if (this.isOut !== isOut && !isOut) {
-      this.ngOnInit();
+      this.animateNums();
     }
     this.isOut = isOut;
   }
 
-  ngOnInit() {
+  private animateNums() {
     this.zone.runOutsideAngular(() => {
       this.jQueryHighlightNums.each(function() {
         const $this = jQuery(this),
@@ -174,10 +180,5 @@ export class MzkIntroBusinessComponent extends BaseComponent implements AfterVie
           });
       });
     });
-  }
-
-  ngAfterViewInit(): void {
-    this.jQueryInstance = jQuery(this.elementRef.nativeElement);
-    this.jQueryHighlightNums = jQuery('.highlight-num');
   }
 }

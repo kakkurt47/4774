@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule, EventManager } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -19,6 +19,7 @@ import { LocalStorage } from '../models/localstorage.service';
 import { RouterModule } from '@angular/router';
 import * as Raven from 'raven-js';
 import { AirdropModule } from '../modules/airdrop/airdrop.module';
+import { CustomEventManager } from './custom-event-manager';
 
 export class RavenErrorHandler implements ErrorHandler {
   handleError(err: any): void {
@@ -81,7 +82,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatRadioModule
   ],
   providers: [
-    { provide: ErrorHandler, useFactory: ErrorHandlerFactory }
+    { provide: ErrorHandler, useFactory: ErrorHandlerFactory },
+    { provide: EventManager, useClass: CustomEventManager }
   ],
   bootstrap: [AppComponent]
 })
