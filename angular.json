@@ -72,7 +72,7 @@
             ],
             "styles": [
               "projects/intro/src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              // "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "scss/fontawesome/css/fontawesome.css",
               "scss/fontawesome/css/all.css"
             ],
