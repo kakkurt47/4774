@@ -8,7 +8,7 @@ export class CustomEventManager extends EventManager {
   }
 
   addGlobalEventListener(target: string, eventName: string, handler: Function): Function {
-    if(eventName.endsWith('nozone')) {
+    if (eventName.endsWith('nozone')) {
       eventName = eventName.split('.')[0];
       return this.zone.runOutsideAngular(() =>
         super.addGlobalEventListener(target, eventName, handler));
