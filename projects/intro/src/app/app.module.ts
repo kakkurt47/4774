@@ -21,23 +21,25 @@ import * as Raven from 'raven-js';
 import { AirdropModule } from '../modules/airdrop/airdrop.module';
 import { CustomEventManager } from './custom-event-manager';
 
+if (environment.production) {
+  Raven
+    .config('https://940fec8f8e2e49c796e0e6fbf4fb7259@sentry.io/1250399')
+    .install();
+}
+
 export class RavenErrorHandler implements ErrorHandler {
   handleError(err: any): void {
     Raven.captureException(err);
   }
 }
 
-export function ErrorHandlerFactory() {
-  if (environment.production) {
-    Raven
-      .config('https://940fec8f8e2e49c796e0e6fbf4fb7259@sentry.io/1250399')
-      .install();
-
-    return new RavenErrorHandler();
-  } else {
-    return new ErrorHandler();
-  }
-}
+// export function ErrorHandlerFactory() {
+//   if (environment.production) {
+//     return new RavenErrorHandler();
+//   } else {
+//     return new ErrorHandler();
+//   }
+// }
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -82,7 +84,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatRadioModule
   ],
   providers: [
-    { provide: ErrorHandler, useFactory: ErrorHandlerFactory },
+    { provide: ErrorHandler, useClass: RavenErrorHandler },
     { provide: EventManager, useClass: CustomEventManager }
   ],
   bootstrap: [AppComponent]
