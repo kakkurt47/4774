@@ -1,6 +1,18 @@
 import { Component } from '@angular/core';
 import { BaseComponent } from '../../../models/base.component';
 
+/*
+NGC https://ngc.fund/
+Ontology https://ont.io/
+256 Ventures https://www.256.ventures/
+DDC https://www.ddc.fund/
+Blackhorse https://blackhorsegroup.io/
+Everest Ventures https://www.linkedin.com/company/everest-ventures-group/
+Vestigium https://www.vestigium.io/
+
+Panony panony.com
+Duane Morris Selvam https://www.duanemorrisselvam.com/
+ */
 @Component({
   selector: 'mzk-intro-investors',
   template: `
@@ -12,22 +24,30 @@ import { BaseComponent } from '../../../models/base.component';
         <div class="row mt-5">
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-ngc.png" class="img-fluid">
+              <a href="https://ngc.fund/" target="_blank">
+                <img src="assets/intro-img/partners/logo-ngc.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-ontology.png" class="img-fluid">
+              <a href="https://ont.io/" target="_blank">
+                <img src="assets/intro-img/partners/logo-ontology.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/investors/256-ventures.png" class="img-fluid">
+              <a href="https://www.256.ventures/" target="_blank">
+                <img src="assets/intro-img/investors/256-ventures.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/investors/ddc.png" class="img-fluid">-
+              <a href="https://www.ddc.fund/" target="_blank">
+                <img src="assets/intro-img/investors/ddc.png" class="img-fluid">-
+              </a>
             </div>
           </div>
         </div>
@@ -35,12 +55,16 @@ import { BaseComponent } from '../../../models/base.component';
         <div class="row mt-sm-4">
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
+              <a href="https://blackhorsegroup.io/" target="_blank">
+                <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-everest-ventures.png" class="img-fluid">
+              <a href="https://www.linkedin.com/company/everest-ventures-group/" target="_blank">
+                <img src="assets/intro-img/partners/logo-everest-ventures.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
@@ -58,7 +82,9 @@ import { BaseComponent } from '../../../models/base.component';
         <div class="row mt-sm-4">
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/investors/vestigium.png" class="img-fluid">
+              <a href="https://www.vestigium.io/" target="_blank">
+                <img src="assets/intro-img/investors/vestigium.png" class="img-fluid">
+              </a>
             </div>
           </div>
         </div>

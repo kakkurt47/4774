@@ -15,22 +15,30 @@ import { BaseComponent } from '../../../models/base.component';
           <!--</div>-->
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-ontology.png" class="img-fluid">
+              <a href="https://ont.io/" target="_blank">
+                <img src="assets/intro-img/partners/logo-ontology.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
+              <a href="https://blackhorsegroup.io/" target="_blank">
+                <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
+              <a href="http://www.panony.com/" target="_blank">
+                <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
+              </a>
             </div>
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
-              <img src="assets/intro-img/partners/logo-duanemorris.png" class="img-fluid">
+              <a href="https://www.duanemorrisselvam.com/" target="_blank">
+                <img src="assets/intro-img/partners/logo-duanemorris.png" class="img-fluid">
+              </a>
             </div>
           </div>
         </div>
