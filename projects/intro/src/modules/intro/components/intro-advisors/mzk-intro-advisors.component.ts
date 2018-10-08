@@ -521,6 +521,38 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       profile: {
         linkedin: 'https://www.linkedin.com/in/allenngg/'
       }
+    },
+    {
+      'imagePath': 'herbie-fun.png',
+      'i18nPosition': {
+        [Lang.ENG]: 'Co-founder of T3 Labs / Asia Representative of Cryptic Labs',
+        [Lang.KOR]: 'Co-founder of T3 Labs / Asia Representative of Cryptic Labs',
+        [Lang.CHN]: 'Co-founder of T3 Labs / Asia Representative of Cryptic Labs'
+      },
+      'i18nName': {
+        [Lang.ENG]: 'Herbie Fun',
+        [Lang.KOR]: 'Herbie Fun',
+        [Lang.CHN]: 'Herbie Fun'
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/herbiefu/'
+      }
+    },
+    {
+      'imagePath': 'dee-hu.png',
+      'i18nPosition': {
+        [Lang.ENG]: 'Co-founder of T3 Labs / Global Partner at DoraHacks',
+        [Lang.KOR]: 'Co-founder of T3 Labs / Global Partner at DoraHacks',
+        [Lang.CHN]: 'Co-founder of T3 Labs / Global Partner at DoraHacks'
+      },
+      'i18nName': {
+        [Lang.ENG]: 'Dee Hu',
+        [Lang.KOR]: 'Dee Hu',
+        [Lang.CHN]: 'Dee Hu'
+      },
+      profile: {
+        linkedin: 'https://www.linkedin.com/in/dee-hu-bab62512a/'
+      }
     }
   ];
 
