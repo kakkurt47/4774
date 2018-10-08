@@ -313,6 +313,24 @@
       }
     }
   }
+
+  .studio-manual {
+    display: block;
+
+    i.fa {
+      margin-right: 6px;
+      font-size: 1.2rem;
+    }
+
+    a {
+      color: #fafbfc;
+
+      &:hover {
+        color: #b0bec5;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 .fa-circle {

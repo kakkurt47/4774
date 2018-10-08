@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  background-color: #fafbfc;
+  padding-top: 50px; // navbar height
+}
+
+.container {
+  padding: 80px 15px;
+}
+
+#qa-section {
+  background-color: #fafbfc;
+}
+
+mzk-faq-qa {
+  margin-bottom: 40px;
+}
+
+.description {
+  /* Style for Markdown */
+  /deep/ {
+    img {
+      width: 100%;
+      margin: 20px 0;
+      box-shadow: 0 10px 19px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    table {
+      margin-bottom: 24px;
+      width: 100%;
+
+      th, td {
+        padding: 8px 12px;
+        border: 1px solid #aaa;
+        text-align: center;
+
+        i.fa-times {
+          color: #99999900;
+        }
+
+        i.fa-check {
+          color: #28a745;
+        }
+
+        &:first-child {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

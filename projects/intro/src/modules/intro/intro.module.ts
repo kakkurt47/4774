@@ -30,6 +30,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MuzikaIconComponent } from '../../muzika-icon/muzika-icon.component';
 import { RouterModule } from '@angular/router';
 import { MzkIntroInvestorsComponent } from './components/intro-investors.component';
+import { IntroManualPageComponent } from './pages/intro-manual/intro-manual.component';
 
 @NgModule({
   imports: [
@@ -76,6 +77,7 @@ import { MzkIntroInvestorsComponent } from './components/intro-investors.compone
     /* For introduction */
     IntroMainPageComponent,
     IntroEcosystemPageComponent,
+    IntroManualPageComponent,
   ],
   exports: [
     IntroNavbarComponent
