@@ -523,16 +523,16 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'imagePath': 'herbie-fun.png',
+      'imagePath': 'herbie-fu.png',
       'i18nPosition': {
         [Lang.ENG]: 'Co-founder of T3 Labs / Asia Representative of Cryptic Labs',
         [Lang.KOR]: 'Co-founder of T3 Labs / Asia Representative of Cryptic Labs',
         [Lang.CHN]: 'Co-founder of T3 Labs / Asia Representative of Cryptic Labs'
       },
       'i18nName': {
-        [Lang.ENG]: 'Herbie Fun',
-        [Lang.KOR]: 'Herbie Fun',
-        [Lang.CHN]: 'Herbie Fun'
+        [Lang.ENG]: 'Herbie Fu',
+        [Lang.KOR]: 'Herbie Fu',
+        [Lang.CHN]: 'Herbie Fu'
       },
       profile: {
         linkedin: 'https://www.linkedin.com/in/herbiefu/'
