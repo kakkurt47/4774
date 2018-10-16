@@ -7,7 +7,6 @@ cd dist/
 cp -rf ../.ebextensions/ ./
 cp  -f ../package.json ./
 cp  -f ../config/ecosystem.config.js ./
-cp -f ../.npmrc ./
 zip -r dist-platform.zip ./
 mv dist-platform.zip ../
 cd ../
