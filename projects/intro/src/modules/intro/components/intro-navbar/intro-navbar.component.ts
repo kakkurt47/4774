@@ -100,6 +100,8 @@ export class IntroNavbarComponent extends BaseComponent {
 
   ngOnDestroy() {
     super.ngOnDestroy();
-    this.navItemsInstance.off('click');
+    if (this.navItemsInstance) {
+      this.navItemsInstance.off('click');
+    }
   }
 }

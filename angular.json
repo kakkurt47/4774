@@ -189,6 +189,43 @@
         }
       }
     },
+    "muzika-intro-server": {
+      "root": "projects/intro",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/intro/server",
+            "main": "projects/intro/src/main.server.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/intro/src/modules/intro/scss"
+              ]
+            },
+            "tsConfig": "projects/intro/tsconfig.server.json"
+          },
+          "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "src": "projects/intro/src/environments/environment.ts",
+                  "replaceWith": "projects/intro/src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "src": "projects/intro/src/environments/environment.ts",
+                  "replaceWith": "projects/intro/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
     "muzika-web": {
       "root": "projects/web/",
       "sourceRoot": "projects/web/",
