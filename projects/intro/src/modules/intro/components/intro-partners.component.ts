@@ -9,10 +9,15 @@ import { BaseComponent } from '../../../models/base.component';
         <h2 class="text-center intro-section-title">
           PARTNERS
         </h2>
+
         <div class="row mt-5">
-          <!--<div class="col-sm-3 col-6">-->
-            <!--<mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>-->
-          <!--</div>-->
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
+              <a href="https://ngc.fund/" target="_blank">
+                <img src="assets/intro-img/partners/logo-ngc.png" class="img-fluid">
+              </a>
+            </div>
+          </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
               <a href="https://ont.io/" target="_blank">
@@ -22,6 +27,23 @@ import { BaseComponent } from '../../../models/base.component';
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
+              <a href="https://www.256.ventures/" target="_blank">
+                <img src="assets/intro-img/investors/256-ventures.png" class="img-fluid">
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
+              <a href="https://www.ddc.fund/" target="_blank">
+                <img src="assets/intro-img/investors/ddc.png" class="img-fluid">-
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row mt-sm-4">
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
               <a href="https://blackhorsegroup.io/" target="_blank">
                 <img src="assets/intro-img/partners/logo-blackhorse.png" class="img-fluid">
               </a>
@@ -29,12 +51,43 @@ import { BaseComponent } from '../../../models/base.component';
           </div>
           <div class="col-sm-3 col-6">
             <div class="wrap-box">
+              <a href="https://www.linkedin.com/company/everest-ventures-group/" target="_blank">
+                <img src="assets/intro-img/partners/logo-everest-ventures.png" class="img-fluid">
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-t3-ventures.png" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
+              <img src="assets/intro-img/partners/logo-ulysses-capital.png" class="img-fluid">
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row mt-sm-4">
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
               <a href="http://www.panony.com/" target="_blank">
                 <img src="assets/intro-img/partners/logo-panony.png" class="img-fluid">
               </a>
             </div>
           </div>
+          <div class="col-sm-3 col-6">
+            <div class="wrap-box">
+              <a href="https://www.vestigium.io/" target="_blank">
+                <img src="assets/intro-img/investors/vestigium.png" class="img-fluid">
+              </a>
+            </div>
+          </div>
         </div>
+        
+          <!--<div class="col-sm-3 col-6">-->
+            <!--<mzk-intro-countdown [expiredDate]="expiredDates[0]"></mzk-intro-countdown>-->
+          <!--</div>-->
       </div>
     </section>
   `,

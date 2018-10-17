@@ -117,18 +117,6 @@ recommendation algorithm – all optimized for digital music transaction. Since 
 with global musicians and cater to global fans, in sync with our existing underlying platforms.`
       },
       {
-        Q: 'What\'s the token utility other than serving as a payment tool?',
-        A: `
-**Community building** will be one of the primary functions of MZK. Every member will be given the option to contribute
-any amount of MZK they wish to the community deposit. Contributors will be referred to as Builders.
-In return for their contribution, builders will be bestowed with two distinct benefits: Builder Certificate &
-Contribution Level (from level 1 to 10)
-
-**Sponsorship opportunities** within the new ecosystem, community members can sponsor and provide MZK to their chosen
-artists by and become their patrons, backed up by the Muzika blockchain. Muzika will promote the sponsorship
-opportunities by serving as a non-profit, commission-free platform among artists and fans.`
-      },
-      {
         Q: 'Will any famous musicians use Muzika and make some comments for Muzika?',
         A: `
 We will get initial endorsements from cover/instrumental artists and Youtube stars in our existing platforms.
@@ -224,13 +212,6 @@ KPopPiano (www.kpoppiano.com)
 自2015年10月成立以来，Mapiacompany就已经成功地建立了跨国平台，数百万用户和数千名音乐人在这里共享并交换他们的音乐理念、表演视频、音乐乐谱和录音文件。
 我们的平台拥有全球一流的版权保护、商业交易和推荐算法，这些都是专门针对数字音乐交易而优化的。Muzika从诞生开始就是一个全球性的项目。
 我们与全球音乐人合作，迎合全球粉丝的需求，并且与我们现有的基础平台保持同步。
-`
-      },
-      {
-        Q: '除了作为支付手段以外，Muzika 代币还有什么其它的用途吗？',
-        A: `
-1. 社区搭建将作为MZK 最主要的功能之一，所有成员都可以按照自己的意愿在社区内贡献相应比例的MZK代币，贡献MZK代币的成员将被视为“社区搭建者”，作为回报，这些“社区搭建者”将得到两项特殊权利：社区搭建者证书与贡献等级认证（1-10级不等）。
-2. 在新的生态系统内，赞助特权将赋予社区成员成为赞助商的角色，凭借Muzika区块链技术的支持，社区成员可以把MZK代币以赞助的方式提供给自己喜爱的音乐艺人，之后得到相应回报；Muzika代币实现了为音乐艺人与粉丝提供“桥梁”直线对接的用途。
 `
       },
       {
@@ -340,18 +321,6 @@ and thousands of musicians coexist and exchange their musical ideas, video perfo
 files, etc. Our platforms hold globally top-notch technologies of copyright protection, commercial transaction, and
 recommendation algorithm – all optimized for digital music transaction. Since the birth of our business, we have worked
 with global musicians and cater to global fans, in sync with our existing underlying platforms.`
-      },
-      {
-        Q: 'What\'s the token utility other than serving as a payment tool?',
-        A: `
-**Community building** will be one of the primary functions of MZK. Every member will be given the option to contribute
-any amount of MZK they wish to the community deposit. Contributors will be referred to as Builders.
-In return for their contribution, builders will be bestowed with two distinct benefits: Builder Certificate &
-Contribution Level (from level 1 to 10)
-
-**Sponsorship opportunities** within the new ecosystem, community members can sponsor and provide MZK to their chosen
-artists by and become their patrons, backed up by the Muzika blockchain. Muzika will promote the sponsorship
-opportunities by serving as a non-profit, commission-free platform among artists and fans.`
       },
       {
         Q: 'Will any famous musicians use Muzika and make some comments for Muzika?',
