@@ -34,13 +34,6 @@ import { BaseComponent } from '../../../models/base.component';
               </a>
             </div>
           </div>
-          <div class="col-sm-3 col-6">
-            <div class="wrap-box">
-              <a href="https://www.duanemorrisselvam.com/" target="_blank">
-                <img src="assets/intro-img/partners/logo-duanemorris.png" class="img-fluid">
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
