@@ -3,14 +3,14 @@
 set -e
 
 # Integrate PC & Mobile to one platform folder
-cd dist/
-cp -rf ../.ebextensions/ ./
-cp  -f ../package.json ./
-cp  -f ../config/ecosystem.config.js ./
-cp  -f ../.npmrc ./
+cd dist/intro/
+cp -rf ../../.ebextensions/ ./
+cp  -f ../../package.json ./
+cp  -f ../../config/ecosystem.config.js ./
+cp  -f ../../.npmrc ./
 zip -r dist-platform.zip ./
-mv dist-platform.zip ../
-cd ../
+mv dist-platform.zip ../../
+cd ../../
 # Finish dist-platform compress
 
 # Set zip file name to dist-platform.zip
