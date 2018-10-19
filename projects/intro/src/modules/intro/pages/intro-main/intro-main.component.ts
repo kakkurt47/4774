@@ -38,6 +38,6 @@ export class IntroMainPageComponent extends BaseComponent {
       this.translateService.onLangChange.subscribe(({ lang }) => {
         this.lang = lang;
       })
-    )
+    );
   }
 }
