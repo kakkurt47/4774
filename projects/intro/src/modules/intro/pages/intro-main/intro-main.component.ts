@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../models/base.component';
-
-declare const jQuery;
 
 @Component({
   selector: 'app-intro-main',
@@ -17,8 +15,9 @@ export class IntroMainPageComponent extends BaseComponent {
   macDownloadURL: string;
   winDownloadURL: string;
   linuxDownloadURL: string;
+  lang: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private translateService: TranslateService) {
     super();
   }
 
@@ -34,5 +33,11 @@ export class IntroMainPageComponent extends BaseComponent {
     this.macDownloadURL = 'https://s3.amazonaws.com/muzika-release/studio/darwin/Muzika-0.1.0.dmg';
     this.linuxDownloadURL = 'https://release.muzika.network/studio/linux/muzika-0.1.0-x86_64.AppImage';
     this.winDownloadURL = 'https://s3.amazonaws.com/muzika-release/studio/win-x64/Muzika+Setup+0.1.0.exe';
+
+    this._sub.push(
+      this.translateService.onLangChange.subscribe(({ lang }) => {
+        this.lang = lang;
+      })
+    )
   }
 }

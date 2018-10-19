@@ -71,9 +71,14 @@
           <div class="col-lg-6 p-sm-5">
             <div class="videoWrapper">
               <!-- Copy & Pasted from YouTube -->
-              <iframe width="530" height="315"
-                      src="https://www.youtube.com/embed/t_wfy5oDMy4"
-                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe [class.d-none]="lang !== 'zh'"
+                      width="530" height="315"
+                      src="https://v.qq.com/txp/iframe/player.html?vid=w0754gw3amt&auto=0&tiny=0"
+                      frameborder="0" allowfullscreen></iframe>
+              <iframe [class.d-none]="lang === 'zh'"
+                      width="530" height="315"
+                      src="https://www.youtube.com/embed/t_wfy5oDMy4?modestbranding=1&rel=0&showinfo=0"
+                      frameborder="0" allowfullscreen></iframe>
               <!--<iframe width="530" height="315" src="//www.youtube.com/embed/Df2JgpM9zQA?rel=0&hd=1" frameborder="0"-->
               <!--allowfullscreen></iframe>-->
             </div>
