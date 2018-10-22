@@ -20,7 +20,8 @@ declare const jQuery;
           <div class="col-sm-7 press-link">
             <div class="row">
               <div class="col-md-3 col-sm-4 col-6" *ngFor="let press of presses">
-                <a [href]="press.link" class="press-logo"><img class="press-logo-img" [src]="pressImgSrcPath + press.src"></a>
+                <a [href]="press.link" class="press-logo" 
+                   target="_blank"><img class="press-logo-img" [src]="pressImgSrcPath + press.src"></a>
               </div>
             </div>
           </div>
@@ -129,6 +130,11 @@ export class MzkIntroPressComponent extends BaseComponent {
       src: 'logo-financial-news.png',
       // tslint:disable-next-line
       link: 'http://www.fnnews.com/news/201807300946070817'
+    },
+    {
+      src: 'logo-forbes.png',
+      // tslint:disable-next-line
+      link: 'http://www.forbeschina.com/review/201810/0067232.shtml'
     }
   ];
 
