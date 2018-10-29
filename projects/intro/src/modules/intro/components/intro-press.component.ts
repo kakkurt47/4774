@@ -135,6 +135,11 @@ export class MzkIntroPressComponent extends BaseComponent {
       src: 'logo-forbes.png',
       // tslint:disable-next-line
       link: 'http://www.forbeschina.com/review/201810/0067232.shtml'
+    },
+    {
+      src: 'logo-jiemian.png',
+      // tslint:disable-next-line
+      link: 'https://baijiahao.baidu.com/s?id=1615357854107540225&wfr=spider&for=pc'
     }
   ];
 
