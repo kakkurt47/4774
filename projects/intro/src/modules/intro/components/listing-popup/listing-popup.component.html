@@ -1,0 +1,9 @@
+<div class="content" *ngIf="isShow">
+  <img (click)="open()" src="../../../../assets/popup.png" width="100%">
+  <div class="footer">
+    <input type="checkbox"> 하루동안 보지않기
+    <button class="btn btn-primary" (click)="isShow = false">닫기</button>
+  </div>
+</div>
+
+<div class="backdrop" *ngIf="isShow"></div>

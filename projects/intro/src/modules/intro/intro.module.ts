@@ -31,6 +31,7 @@ import { MuzikaIconComponent } from '../../muzika-icon/muzika-icon.component';
 import { RouterModule } from '@angular/router';
 import { MzkIntroInvestorsComponent } from './components/intro-investors.component';
 import { IntroManualPageComponent } from './pages/intro-manual/intro-manual.component';
+import { ListingPopupComponent } from './components/listing-popup/listing-popup.component';
 
 @NgModule({
   imports: [
@@ -72,6 +73,8 @@ import { IntroManualPageComponent } from './pages/intro-manual/intro-manual.comp
     MzkIntroBusinessIdeaComponent,
     MzkIntroTokenMetricsComponent,
     MzkIntroRoadmapImageComponent,
+
+    ListingPopupComponent,
 
     /* Page Components */
     /* For introduction */
