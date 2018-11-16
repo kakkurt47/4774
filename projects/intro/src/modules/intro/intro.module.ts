@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
@@ -31,12 +32,14 @@ import { MuzikaIconComponent } from '../../muzika-icon/muzika-icon.component';
 import { RouterModule } from '@angular/router';
 import { MzkIntroInvestorsComponent } from './components/intro-investors.component';
 import { IntroManualPageComponent } from './pages/intro-manual/intro-manual.component';
+import { ListingPopupComponent } from './components/listing-popup/listing-popup.component';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserTransferStateModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
 
     RouterModule,
@@ -72,6 +75,8 @@ import { IntroManualPageComponent } from './pages/intro-manual/intro-manual.comp
     MzkIntroBusinessIdeaComponent,
     MzkIntroTokenMetricsComponent,
     MzkIntroRoadmapImageComponent,
+
+    ListingPopupComponent,
 
     /* Page Components */
     /* For introduction */

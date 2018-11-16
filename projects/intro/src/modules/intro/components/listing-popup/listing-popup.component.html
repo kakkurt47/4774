@@ -1,0 +1,15 @@
+<div class="content" *ngIf="isShow">
+  <img (click)="open()" [src]="'assets/intro-img/popup/' + popupImgFile" width="100%">
+  <div class="footer">
+    <span (click)="hidepopup = !hidepopup" class="hidepopup-text">
+      <input type="checkbox"
+             id="hidepopup"
+             name="hidepopup"
+             [(ngModel)]="hidepopup"
+             (click)="$event.stopPropagation()"> {{messages[currentLang].hideMsg}}
+    </span>
+    <button class="btn btn-primary" (click)="close()">{{messages[currentLang].close}}</button>
+  </div>
+</div>
+
+<div class="backdrop" *ngIf="isShow"></div>
