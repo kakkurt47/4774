@@ -1,8 +1,14 @@
 <div class="content" *ngIf="isShow">
-  <img (click)="open()" src="../../../../assets/popup.png" width="100%">
+  <img (click)="open()" [src]="'assets/intro-img/popup/' + popupImgFile" width="100%">
   <div class="footer">
-    <input type="checkbox"> 하루동안 보지않기
-    <button class="btn btn-primary" (click)="isShow = false">닫기</button>
+    <span (click)="hidepopup = !hidepopup" class="hidepopup-text">
+      <input type="checkbox"
+             id="hidepopup"
+             name="hidepopup"
+             [(ngModel)]="hidepopup"
+             (click)="$event.stopPropagation()"> {{messages[currentLang].hideMsg}}
+    </span>
+    <button class="btn btn-primary" (click)="close()">{{messages[currentLang].close}}</button>
   </div>
 </div>
 

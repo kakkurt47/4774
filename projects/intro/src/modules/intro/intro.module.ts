@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
@@ -38,6 +39,7 @@ import { ListingPopupComponent } from './components/listing-popup/listing-popup.
     CommonModule,
     BrowserTransferStateModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
 
     RouterModule,
