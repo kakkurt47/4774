@@ -45,8 +45,9 @@ before_script:
 
   - git submodule update --init --recursive
   - git submodule foreach --recursive git submodule update --init
-  - cd muzika-contract/ && npm install && cd ../
-  - npm run contract:compile
+  - cd muzika-contract/ && npm install
+  - npm run contract:compile && npm run contract:import
+  - cd ../
 
 # Job: Build
 # Installs npm packages, transpiles ES6 -> ES5
