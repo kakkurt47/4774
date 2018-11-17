@@ -53,7 +53,19 @@ export class ListingPopupComponent extends BaseComponent {
   }
 
   open() {
-    window.open('https://www.huobi.co.kr/ko-KR/notice/');
+    switch (this.currentLang) {
+      case Lang.ENG:
+        window.open('https://www.huobi.co.kr/en-US/notices/388');
+        break;
+      case Lang.CHN:
+        window.open('https://www.huobi.co.kr/zh-CN/notices/388');
+        break;
+      case Lang.KOR:
+        window.open('https://www.huobi.co.kr/ko-KR/notices/387');
+        break;
+      default:
+        window.open('https://www.huobi.co.kr/ko-KR/notice/');
+    }
   }
 
   close() {
