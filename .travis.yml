@@ -14,8 +14,9 @@ install:
 
   - git submodule update --init --recursive
   - git submodule foreach --recursive git submodule update --init
-  - cd muzika-contract/ && npm install && cd ../
+  - cd muzika-contract/ && npm install
+  - npm run contract:compile && npm run contract:import
+  - cd ../
 script:
-  - npm run contract:compile
   - npm run lint
   - npm run build:core
