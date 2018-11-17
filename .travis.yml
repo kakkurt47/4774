@@ -8,8 +8,6 @@ node_js:
 install:
   - sudo apt-get update && sudo apt-get install -y libmagick++-dev
   - sudo ln -s `ls /usr/lib/x86_64-linux-gnu/ImageMagick-*/bin-Q16/Magick++-config | head -n 1` /usr/local/bin/
-  - npm install -g truffle ganache-cli
-  - nohup ganache-cli &
   - npm install
 
   - git submodule update --init --recursive
