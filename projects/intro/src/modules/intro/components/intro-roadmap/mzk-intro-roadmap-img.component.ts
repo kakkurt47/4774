@@ -21,7 +21,7 @@ export class MzkIntroRoadmapImageComponent extends BaseComponent implements OnCh
   @Input()
   desc: string[];
 
-  quarters = 17;
+  quarters = 16;
 
   quarterDivIdx = [0, 1, 4, 7, 9];
 
