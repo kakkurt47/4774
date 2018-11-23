@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BaseComponent } from '../../../../models/base.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -17,21 +18,21 @@ import { BaseComponent } from '../../../../models/base.component';
           <i class="fab fa-medium fa-stack-1x fa-inverse"></i>
         </span>
     </a>
-    <a href="https://t.me/muzika_english" target="_blank"> 
+    <a *ngIf="lang == 'en'" href="https://t.me/muzika_english" target="_blank"> 
         <span class="fa-stack fa-2x">
           <i class="fas fa-circle fa-stack-2x"></i>
           <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
           <span class="lang">EN</span>
         </span>
     </a>
-    <a href="https://t.me/muzika_chinese" target="_blank"> 
+    <a *ngIf="lang == 'zh'" href="https://t.me/muzika_chinese" target="_blank"> 
         <span class="fa-stack fa-2x">
           <i class="fas fa-circle fa-stack-2x"></i>
           <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
           <span class="lang">CH</span>
         </span>
     </a>
-    <a href="https://t.me/muzika_korean" target="_blank"> 
+    <a *ngIf="lang == 'ko'" href="https://t.me/muzika_korean" target="_blank"> 
         <span class="fa-stack fa-2x">
           <i class="fas fa-circle fa-stack-2x"></i>
           <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
@@ -62,5 +63,17 @@ import { BaseComponent } from '../../../../models/base.component';
   ]
 })
 export class MzkIntroFloatingBtnsComponent extends BaseComponent {
+  lang = 'en';
 
+  constructor(private translateService: TranslateService) {
+    super();
+  }
+
+  ngOnInit(): void {
+    this._sub.push(
+      this.translateService.onLangChange.subscribe(lang => {
+        this.lang = lang.lang;
+      })
+    );
+  }
 }
