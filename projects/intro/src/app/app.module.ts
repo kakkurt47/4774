@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import * as Raven from 'raven-js';
 import { AirdropModule } from '../modules/airdrop/airdrop.module';
 import { CustomEventManager } from './custom-event-manager';
+import { SoundModule } from '../modules/sound/sound.module';
 
 if (environment.production) {
   Raven
@@ -66,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MuzikaIntroModule,
     AirdropModule,
     FAQModule,
+    SoundModule,
 
     TranslateModule.forRoot({
       loader: {
