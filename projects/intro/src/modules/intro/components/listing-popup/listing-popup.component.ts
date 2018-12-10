@@ -41,7 +41,7 @@ export class ListingPopupComponent extends BaseComponent {
     this._sub.push(
       this.translateService.onLangChange.subscribe(({lang}) => {
         this.currentLang = lang;
-        this.popupImgFile = `popup-${lang}.png`;
+        this.popupImgFile = `app-popup-${lang}.png`;
       })
     );
 
@@ -55,16 +55,16 @@ export class ListingPopupComponent extends BaseComponent {
   open() {
     switch (this.currentLang) {
       case Lang.ENG:
-        window.open('https://www.huobi.co.kr/en-US/notices/388');
+        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
         break;
       case Lang.CHN:
-        window.open('https://www.huobi.co.kr/zh-CN/notices/388');
+        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
         break;
       case Lang.KOR:
-        window.open('https://www.huobi.co.kr/ko-KR/notices/387');
+        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
         break;
       default:
-        window.open('https://www.huobi.co.kr/ko-KR/notice/');
+        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
     }
   }
 
