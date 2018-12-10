@@ -55,16 +55,16 @@ export class ListingPopupComponent extends BaseComponent {
   open() {
     switch (this.currentLang) {
       case Lang.ENG:
-        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
         break;
       case Lang.CHN:
-        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
         break;
       case Lang.KOR:
-        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
         break;
       default:
-        window.open('https://play.google.com/store/apps/details?id=network.muzika.streaming');
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
     }
   }
 
