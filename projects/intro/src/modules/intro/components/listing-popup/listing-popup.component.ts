@@ -15,7 +15,7 @@ export class ListingPopupComponent extends BaseComponent {
   hidepopup = false;
   currentLang = Lang.ENG;
 
-  popupImgFile = 'popup-en.png';
+  popupImgFile = 'app-popup-en.png';
 
   messages = {
     [Lang.ENG]: {
