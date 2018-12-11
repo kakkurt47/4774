@@ -127,36 +127,6 @@ export class MzkIntroAdvisorsComponent extends BaseComponent {
       }
     },
     {
-      'imagePath': 'JoonkeeHong.png',
-      'i18nPosition': {
-        [Lang.ENG]: 'Non-executive Director of Kakao Bank',
-        [Lang.KOR]: '카카오뱅크 사외이사',
-        [Lang.CHN]: 'KAKAO BANK 社外董事'
-      },
-      'i18nName': {
-        [Lang.ENG]: 'JoonKee Hong',
-        [Lang.KOR]: '홍준기',
-        [Lang.CHN]: 'JoonKee Hong'
-      },
-      'i18nSentences': {
-        [Lang.ENG]: [
-          '(EX) Asia Head of Global Finance(Capital Markets), Nomura International',
-          '(EX) Asia Head of Global Finance(Capital Markets), Lehman Brothers'
-        ],
-        [Lang.KOR]: [
-          '(前) 노무라증권 Asia Head of Global Finance(Capital Markets)',
-          '(前) 리만브라더스 Asia Head of Global Finance(Capital Markets)'
-        ],
-        [Lang.CHN]: [
-          '前 野村国际亚洲金融（资本市场）主管',
-          '前 雷曼兄弟国际亚洲金融（资本市场）主管'
-        ]
-      },
-      profile: {
-        linkedin: 'https://www.linkedin.com/in/joonkee-hong-91075740/'
-      }
-    },
-    {
       'imagePath': 'InkyuChoi.png',
       'i18nPosition': {
         [Lang.ENG]: 'Naver Venture Capital',
