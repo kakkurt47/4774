@@ -85,6 +85,7 @@ import { ListingPopupComponent } from './components/listing-popup/listing-popup.
     IntroManualPageComponent,
   ],
   exports: [
+    MuzikaIconComponent,
     IntroNavbarComponent
   ]
 })

@@ -1,0 +1,415 @@
+:host {
+  display: block;
+  background-color: #fafbfc;
+}
+
+.container {
+  width: 1080px;
+  @media(max-width: 738px) {
+    width: 100%;
+  }
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 62px;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 42px;
+  line-height: 54px;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 16px;
+  line-height: 23px;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 300;
+}
+
+#sound-main {
+  color: white;
+  background: url('../../../../assets/sound/1_bg.jpg') bottom right;
+  background-size: cover;
+  height: 690px;
+  @media(max-width: 738px) {
+    height: auto;
+  }
+
+  h1, h3 {
+    text-align: center;
+  }
+
+  h1 {
+    padding-top: 210px;
+  }
+
+  h3 {
+    margin-top: 26px;
+    margin-bottom: 65px;
+    font-size: 28px;
+    font-weight: 300;
+  }
+
+  .app-button-group {
+    margin: 0 auto;
+  }
+
+  .btn-download {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 60px;
+    margin: 5px;
+
+    &:hover {
+      font-weight: 400;
+    }
+
+    img {
+      margin-top: -6px;
+      margin-right: 8px;
+    }
+
+    width: 220px;
+    height: 68px;
+    @media(max-width: 738px) {
+      width: 100px;
+      height: 45px;
+    }
+  }
+}
+
+#sound-intro-section {
+  background: white;
+  display: block;
+  padding: 130px 0;
+
+  .left {
+    display: inline-block;
+    width: 50%;
+    float: left;
+  }
+
+  .right {
+    display: inline-block;
+    width: 50%;
+    padding-left: 15px;
+
+    h2 {
+      font-weight: 500;
+    }
+
+    h4 {
+      margin-bottom: 45px;
+      font-weight: 400;
+    }
+
+    > img {
+      margin-bottom: 60px;
+    }
+
+    .qna {
+      border-top: 1px solid #d4d4d4;
+      border-bottom: 1px solid #d4d4d4;
+      min-height: 54px;
+
+      &.open {
+        background: #fafafa;
+
+        p.desc {
+          display: block;
+        }
+      }
+
+      &:last-child {
+        border-top: none;
+      }
+
+      > p:first-child {
+        padding: 15px;
+        margin: 0;
+        font-size: 16px;
+        color: black;
+        cursor: pointer;
+
+        i.fal {
+          float: right;
+          color: #d4d4d4;
+          margin-top: -2px;
+          font-size: 28px;
+        }
+      }
+
+      p.desc {
+        display: none;
+        border-top: 1px solid #d4d4d4;
+        padding: 22px 15px 15px 15px;
+        margin: 0;
+        font-size: 14px;
+        line-height: 22px;
+        color: #888;
+      }
+    }
+  }
+}
+
+// 아티스트 후원 파트
+#artist-sponsor-section {
+  padding: 110px 0;
+
+  .left {
+    padding-top: 90px;
+
+    p {
+      font-size: 16px;
+      line-height: 23px;
+      font-weight: 300;
+    }
+  }
+
+  .right {
+    position: relative;
+    padding: 0;
+
+    .step-text {
+      position: absolute;
+      left: 95px;
+      top: 0;
+      font-size: 15px;
+
+      p {
+        margin: 0;
+        padding: 26px 0;
+      }
+    }
+  }
+}
+
+#faq-section {
+  background: white;
+  padding: 110px 0 87px 0;
+
+  h1 {
+    font-size: 30px;
+    margin-bottom: 45px;
+  }
+
+  .qna {
+    h3 {
+      font-size: 17px;
+      font-weight: 500;
+      span {
+        display: inline-block;
+        color: #4c2871;
+        font-size: 20px;
+        margin-right: 3px;
+      }
+    }
+    p {
+      font-size: 15px;
+      color: #888;
+      margin: 0;
+    }
+    border-bottom: 1px solid #d4d4d4;
+    padding-bottom: 23px;
+    margin-bottom: 23px;
+  }
+}
+
+#find-artist-section {
+  padding: 110px 0;
+  background: #3f3c56;
+  text-align: center;
+  color: white;
+
+  img {
+    margin: 0 auto 40px auto;
+    display: block;
+  }
+
+  .label {
+    display: block;
+    margin: 0 auto 18px auto;
+    border-radius: 19px;
+    width: 130px;
+    font-size: 17px;
+    text-align: center;
+    padding: 5px 0;
+    background: #313144;
+  }
+
+  h1 {
+    margin-bottom: 26px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 23px;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+  }
+}
+
+#features-section {
+  padding: 30px 0;
+  background: white;
+}
+
+#first-blockchain {
+  padding: 110px 0;
+
+  h2 {
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+
+  p {
+    display: block;
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 45px;
+  }
+
+  table {
+    margin: 0 auto 50px auto;
+    tr {
+      td:first-child, td:last-child {
+        width: 350px;
+      }
+    }
+
+    tr.name {
+      td {
+        padding-top: 26px;
+        font-size: 20px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .circle {
+    width: 260px;
+    height: 260px;
+    border-radius: 260px;
+    text-align: center;
+    padding-top: 95px;
+    margin: 0 auto;
+  }
+
+  .mzk-circle {
+    background: #989898;
+    color: white;
+    font-size: 40px;
+    font-family: Arial;
+  }
+
+  .cake-circle {
+    background: #3f3c56;
+  }
+
+  .both-side-arrow {
+    width: 200px;
+    height: 2px;
+    background-color: #d4d4d4;
+    position: relative;
+  }
+
+  .both-side-arrow:after {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(33, 33, 33, 0);
+    border-left-color: #d4d4d4;
+    border-width: 10px;
+    margin-top: -10px;
+  }
+
+  .both-side-arrow:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(33, 33, 33, 0);
+    border-right-color: #d4d4d4;
+    border-width: 10px;
+    margin-top: -10px;
+  }
+}
+
+#roadmap {
+  padding: 110px 0;
+  background: white;
+
+  h2 {
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 23px;
+  }
+
+  .horizontal-line {
+    position: relative;
+    padding-top: 60px;
+    border-bottom: 3px solid #d4d4d4;
+
+    .active-line {
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      border-bottom: 3px solid #3f3c56;
+      width: 25%;
+      height: 3px;
+    }
+
+    .circle {
+      position: absolute;
+      bottom: -9px;
+      background: #d4d4d4;
+      width: 16px;
+      height: 16px;
+      border-radius: 16px;
+
+      &.step-1 {
+        left: 25%;
+        background-color: #3f3c56;
+      }
+
+      &.step-2 {
+        left: 50%;
+      }
+
+      &.step-3 {
+        left: 75%;
+      }
+    }
+  }
+}
+
+section.footer {
+  padding: 50px 0;
+  background: rgb(234, 234, 234);
+  font-size: 14px;
+  color: #888;
+}

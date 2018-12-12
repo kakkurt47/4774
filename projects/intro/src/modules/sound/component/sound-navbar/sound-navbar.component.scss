@@ -1,0 +1,111 @@
+@import '../../../../theme/variables';
+
+:host {
+  display: block;
+  position: relative;
+}
+
+.navbar-brand {
+  outline: none;
+  cursor: pointer;
+  color: white;
+  vertical-align: middle;
+
+  brand-icon-muzika {
+    display: block;
+    float: left;
+    margin-top: -1px;
+    margin-right: 15px;
+    height: $navbar-brand-size;
+    width: $navbar-brand-size * 262 / 142; // original brand icon size: 262 X 142 (Bug fix in IE)
+
+    /deep/ .muzika-icon-striped-primary {
+      fill: white;
+    }
+
+    /deep/ .muzika-icon-striped-secondary {
+      fill: white;
+    }
+  }
+
+  > span {
+    line-height: $navbar-brand-size;
+    font-size: 18px;
+    @media(max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.navbar-nav {
+  position: relative; // It's for dropdownMenu in PC
+}
+
+.navbar-nav li.divider {
+  border-right: 1px solid white;
+  height: 17px;
+  margin: 11px 8px 0 8px;
+}
+
+.navbar-light .navbar-toggler {
+  border: none;
+}
+
+/*********************
+    15.RESPONSIVE
+**********************/
+
+/*********************
+    2.NAVBAR-CUSTOM
+**********************/
+
+.navbar-custom {
+  background: transparent;
+  padding: 20px 60px;
+  @media(max-width: 738px) {
+    padding: 15px 6px 5px 15px;
+  }
+  width: 100%;
+  border-radius: 0;
+  z-index: 999;
+  margin-bottom: 0;
+}
+
+.navbar-custom .navbar-brand {
+  font-family: libre baskerville, serif;
+  letter-spacing: 2px;
+  @media(max-width: 738px) {
+    padding-top: 0;
+    margin-top: -4px;
+  }
+}
+
+.navbar-custom.nav-sticky {
+
+  .fa-bars {
+    color: black;
+  }
+}
+
+.nav-sticky .navbar-nav li > a {
+  color: #000;
+}
+
+.nav-sticky .navbar-brand {
+  color: white;
+  brand-icon-muzika {
+    /deep/ .muzika-icon-striped-primary {
+      fill: white;
+    }
+
+    /deep/ .muzika-icon-striped-secondary {
+      fill: white;
+    }
+  }
+
+  @media(max-width: 738px) {
+    span {
+      display: none;
+    }
+  }
+}

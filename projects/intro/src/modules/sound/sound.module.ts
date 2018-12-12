@@ -5,6 +5,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MuzikaIntroSharedModule } from '../shared/shared.module';
 import { SoundRoutingModule } from './sound.route';
 import { SoundPrivacyPageComponent } from './page/privacy/privacy.component';
+import { SoundMainPageComponent } from './page/main/main.component';
+import { SoundNavbarComponent } from './component/sound-navbar/sound-navbar.component';
 
 @NgModule({
   imports: [
@@ -16,6 +18,8 @@ import { SoundPrivacyPageComponent } from './page/privacy/privacy.component';
   ],
   declarations: [
     SoundPrivacyPageComponent,
+    SoundMainPageComponent,
+    SoundNavbarComponent
   ]
 })
 export class SoundModule {

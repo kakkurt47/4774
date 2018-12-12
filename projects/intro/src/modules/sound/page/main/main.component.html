@@ -1,0 +1,191 @@
+<app-sound-navbar [stickOnTop]="true"></app-sound-navbar>
+
+<div id="sound-main" class="text-center pb-0">
+  <h1>
+    처음 만나는 음악 어플 <BR/>
+    무료는 시작일 뿐이다
+  </h1>
+  <h3> 지금 받으면 평생 무료 (기간 한정) </h3>
+  <div class="app-button-group text-center">
+    <a class="btn-download">
+      <img src="assets/sound/1_google.png" width="25" height="25"> Google Play
+    </a>
+    <a class="btn-download">
+      <img src="assets/sound/1_apple.png" width="25" height="25"> App Store
+    </a>
+  </div>
+</div>
+
+<section id="sound-intro-section">
+  <div class="container">
+    <div class="left">
+      <img src="assets/sound/2_left.png" width="66%">
+    </div>
+    <div class="right">
+      <h2>
+        뮤지카와 함께 음악을 <BR/>
+        제대로 즐겨세요
+      </h2>
+      <h4>
+        뮤지카가 다른 음악 서비스들과 다른 5가지 이유가 무엇일까요? <BR/>
+        이 모든 것을 무료로 즐겨보세요.
+      </h4>
+      <img src="assets/sound/2_right.png" width="95%">
+      <div class="qna" [class.open]="openedQNA === 'copyright'" (click)="qnaClick('copyright')">
+        <p>
+          저작권법을 준수하나요?
+          <i class="fal" [class.fa-angle-down]="openedQNA !== 'copyright'"
+             [class.fa-angle-up]="openedQNA === 'copyright'"></i>
+        </p>
+        <p class="desc">
+          뮤지카는 한국저작권위원회를 통해 이용계약을 체결하고 저작권료를 정당하게 지불하고 있습니다. 웹사이트를 통해 저작권료 정산 및 지불 내역 또한 공개해드릴 예정입니다. 안심하고 음악을 즐기세요!
+        </p>
+      </div>
+      <div class="qna" [class.open]="openedQNA === 'why-free'" (click)="qnaClick('why-free')">
+        <p>
+          왜 음악을 무료로 제공하나요?
+          <i class="fal" [class.fa-angle-down]="openedQNA !== 'why-free'"
+             [class.fa-angle-up]="openedQNA === 'why-free'"></i>
+        </p>
+        <p class="desc">
+          뮤지카는 오늘날 슈퍼스타를 만들어내는 진정한 주인공은 팬들(바로 여러분입니다!)이라고 생각하며, 음악 산업에서 팬들 또한 정당하게 보상받아야 한다고 생각합니다. 최신 음악을 여러분께 무료로 제공하는
+          방식으로 그 첫걸음을 만들어내고자 합니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="artist-sponsor-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 left">
+        <h2>
+          아티스트를 후원하는 <BR/>
+          가장 똑똑한 방법
+        </h2>
+        <p>
+          내가 좋아하는 아티스트를 어떻게 후원해야할지 막막하셨나요?<BR/>
+          클릭 한번으로 후원과 주간 인기 투표에 참여해보세요.
+        </p>
+      </div>
+      <div class="col-6 right">
+        <img src="assets/sound/3_step.png" width="70">
+        <div class="step-text">
+          <p> 케이크를 획득한다. </p>
+          <p>
+            TOP 100 리스트에서 원하는 곡을 클릭하면, 후원과 동시에 투표 완료. <BR />
+            (1 케이크 = 1 투표, 중복투표 가능)
+          </p>
+          <p>
+            가장 많은 케이크를 획득한 곡은 다음 7일 간 재생 목록<BR />
+            Step 최상단으로 올라갑니다.
+          </p>
+          <p>
+            투표 결과와 관계 없이, 각 아티스트가 획득한 뮤지카 포인트는<BR />
+            아티스트들에게 후원금을 전달됩니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq-section">
+  <div class="container">
+    <h1>자주하는 질문 Q/A</h1>
+    <div class="qna">
+      <h3><span>Q</span> 케이크는 무엇인가요?</h3>
+      <p>케이크는 뮤지카 애플리케이션 내에서 아티스트 후원 등 다양한 활동에 사용할 수 있는 일종의 포인트입니다.</p>
+    </div>
+    <div class="qna">
+      <h3><span>Q</span> 케이크는 어떻게 얻나요?</h3>
+      <p>친구 추천 등 이벤트 참여와 뮤지카 내의 활동을 통해 획득하실 수 있으며, 애플리케이션 내부에서 별도 구매 또한 가능합니다.</p>
+    </div>
+    <div class="qna">
+      <h3><span>Q</span> 정말 아티스트들에게 후원되나요?</h3>
+      <p>아티스트 후원은 블록체인 기술을 통해 이루어지며, 모든 전송 내용이 투명하게 기록되어 본인의 후원 기록을 누구도 조작할 수 없습니다.</p>
+    </div>
+    <div class="qna">
+      <h3><span>Q</span> 남은 케이크는 어떻게 하나요?</h3>
+      <p>활동 보상으로 얻었거나, 사용하고 남은 케이크는 뮤지카 팀에게 판매하실 수 있습니다. 자세한 내용은 아래에서 확인해주세요.</p>
+    </div>
+  </div>
+</section>
+
+<section id="find-artist-section">
+  <div class="container">
+    <img src="assets/sound/4_muzika.png" width="70%">
+    <div class="label">에디터 선정</div>
+
+    <h1>
+      뮤지카에서 새로운 음악 <BR />
+      나만의 아티스트를 찾아드립니다
+    </h1>
+    <p>
+      매주 뮤지카 팀에서 엄선한 3명의 아티스트의 음악을 제공합니다.<BR />
+      에디터 선정 아티스트들에게 케이크를 선물하고, 직접 특별한 혜택도 받아보세요.
+    </p>
+  </div>
+</section>
+
+<section id="features-section">
+  <img src="assets/sound/5_feature_section.jpg" width="100%">
+</section>
+
+<section id="first-blockchain">
+  <div class="container">
+    <h2 class="text-center">
+      뮤지카는 대한민국 최초의 <BR />
+      블록체인 실사용 어플리케이션입니다
+    </h2>
+    <p class="text-center">
+      케이크는 ERC-20 기반 암호화폐 MZK와 1:1 대응됩니다. 이용자가 앱에서 케이크 구매시, <BR />
+      뮤지카 팀에서 동일한 수량의 MZK를 거래소에서 구입합니다.
+    </p>
+
+    <table>
+      <tr>
+        <td class="text-right">
+          <div class="circle cake-circle">
+            <img src="assets/sound/7_cake.png" width="60">
+          </div>
+        </td>
+        <td>
+          <div class="both-side-arrow"></div>
+        </td>
+        <td class="text-left">
+          <div class="circle mzk-circle">
+            MZK
+          </div>
+        </td>
+      </tr>
+      <tr class="name">
+        <td class="text-center">뮤지카 앱 케이크</td>
+        <td></td>
+        <td class="text-center">MZK 암호화폐</td>
+      </tr>
+    </table>
+
+  </div>
+</section>
+
+<!--<section id="roadmap">-->
+  <!--<h2 class="text-center">-->
+    <!--블록체인 로드맵-->
+  <!--</h2>-->
+  <!--<p class="text-center">-->
+    <!--자세한 내용은 https://www.muzika.network 에서 확인해주세요.-->
+  <!--</p>-->
+
+  <!--<div class="horizontal-line">-->
+    <!--<div class="active-line"></div>-->
+    <!--<div class="circle step-1"></div>-->
+    <!--<div class="circle step-2"></div>-->
+    <!--<div class="circle step-3"></div>-->
+  <!--</div>-->
+<!--</section>-->
+
+<section class="text-center footer">
+  Copyright 2018 Muzika Foundation. All right reserved
+</section>
