@@ -288,6 +288,10 @@ h4 {
   background: white;
   padding: 110px 0 87px 0;
 
+  @media(max-width: 738px) {
+    padding: 60px 0 60px 0;
+  }
+
   h1 {
     font-size: 30px;
     margin-bottom: 45px;
