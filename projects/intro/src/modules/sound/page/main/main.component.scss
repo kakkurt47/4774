@@ -373,6 +373,24 @@ h4 {
 #features-section {
   padding: 30px 0;
   background: white;
+
+  img.pc {
+    display: block;
+  }
+
+  img.mobile {
+    display: none;
+  }
+
+  @media(max-width: 738px) {
+    img.pc {
+      display: none;
+    }
+
+    img.mobile {
+      display: block;
+    }
+  }
 }
 
 #first-blockchain {
