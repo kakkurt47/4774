@@ -14,22 +14,41 @@ h1 {
   font-size: 50px;
   line-height: 62px;
   font-weight: 300;
+
+  @media(max-width: 738px) {
+    font-size: 30px;
+    line-height: 39px;
+  }
 }
 
 h2 {
   font-size: 42px;
   line-height: 54px;
   font-weight: 300;
-}
 
-h4 {
-  font-size: 16px;
-  line-height: 23px;
+  @media(max-width: 738px) {
+    font-size: 25px;
+    line-height: 35px;
+  }
 }
 
 h3 {
   font-size: 28px;
   font-weight: 300;
+
+  @media(max-width: 738px) {
+    font-size: 20px;
+  }
+}
+
+h4 {
+  font-size: 16px;
+  line-height: 23px;
+
+  @media(max-width: 738px) {
+    font-size: 13px;
+    line-height: 18px;
+  }
 }
 
 #sound-main {
@@ -47,13 +66,18 @@ h3 {
 
   h1 {
     padding-top: 210px;
+    @media(max-width: 738px) {
+      padding-top: 110px;
+    }
   }
 
   h3 {
     margin-top: 26px;
     margin-bottom: 65px;
-    font-size: 28px;
     font-weight: 300;
+    @media(max-width: 738px) {
+      margin-bottom: 30px;
+    }
   }
 
   .app-button-group {
@@ -65,25 +89,37 @@ h3 {
     background: transparent;
     border: 2px solid white;
     cursor: pointer;
-    font-size: 20px;
     font-weight: 300;
+    font-size: 20px;
     line-height: 60px;
     margin: 5px;
+    width: 220px;
+    height: 68px;
 
     &:hover {
       font-weight: 400;
     }
 
     img {
+      width: 25px;
+      height: 25px;
       margin-top: -6px;
       margin-right: 8px;
     }
 
-    width: 220px;
-    height: 68px;
     @media(max-width: 738px) {
-      width: 100px;
-      height: 45px;
+      width: 130px;
+      height: 35px;
+      font-size: 13px;
+      line-height: 30px;
+      margin-bottom: 80px;
+
+      img {
+        width: 15px;
+        height: 15px;
+        margin-top: -3px;
+        margin-right: 4px;
+      }
     }
   }
 }
@@ -111,10 +147,17 @@ h3 {
     h4 {
       margin-bottom: 45px;
       font-weight: 400;
+      @media(max-width: 738px) {
+        margin-bottom: 30px;
+      }
     }
 
     > img {
       margin-bottom: 60px;
+
+      @media(max-width: 738px) {
+        margin-bottom: 45px;
+      }
     }
 
     .qna {
@@ -160,14 +203,39 @@ h3 {
       }
     }
   }
+
+  @media(max-width: 738px) {
+    padding: 80px 0;
+
+    .left, .right {
+      display: block;
+      width: 100%;
+    }
+
+    .left {
+      text-align: center;
+      margin-bottom: 33px;
+    }
+
+    .right {
+      padding-left: 0;
+    }
+  }
+
 }
 
 // 아티스트 후원 파트
 #artist-sponsor-section {
   padding: 110px 0;
+  @media(max-width: 738px) {
+    padding: 75px 0;
+  }
 
   .left {
     padding-top: 90px;
+    @media(max-width: 738px) {
+      padding-top: 0;
+    }
 
     p {
       font-size: 16px;
@@ -180,15 +248,37 @@ h3 {
     position: relative;
     padding: 0;
 
+    img {
+      width: 70px;
+
+      @media(max-width: 738px) {
+        width: 50px;
+        margin-left: 15px;
+        margin-right: 5px;
+      }
+    }
+
     .step-text {
       position: absolute;
       left: 95px;
       top: 0;
       font-size: 15px;
+      @media(max-width: 738px) {
+        left: 85px;
+        padding-right: 15px;
+      }
 
       p {
-        margin: 0;
-        padding: 26px 0;
+        margin-top: 22px;
+        padding: 0;
+        margin-bottom: 44px;
+        @media(max-width: 738px) {
+          margin-top: 8px;
+          padding: 0;
+          max-height: 48px;
+          margin-bottom: 23px;
+          font-size: 12px;
+        }
       }
     }
   }
@@ -230,6 +320,9 @@ h3 {
   background: #3f3c56;
   text-align: center;
   color: white;
+  @media(max-width: 738px) {
+    padding: 60px 0;
+  }
 
   img {
     margin: 0 auto 40px auto;
@@ -245,10 +338,19 @@ h3 {
     text-align: center;
     padding: 5px 0;
     background: #313144;
+
+    @media(max-width: 738px) {
+      font-size: 15px;
+      width: 100px;
+    }
   }
 
   h1 {
     margin-bottom: 26px;
+
+    @media(max-width: 738px) {
+      font-size: 23px;
+    }
   }
 
   p {
@@ -257,6 +359,10 @@ h3 {
     margin: 0;
     padding: 0;
     font-weight: 300;
+
+    @media(max-width: 738px) {
+      font-size: 15px;
+    }
   }
 }
 
