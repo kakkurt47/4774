@@ -461,16 +461,18 @@ h4 {
 
     th {
       width: 40%;
-      padding: 16px 10px;
-      border: 1px solid #727270;
+      padding: 12px 12px;
+      background: #f3f3f3;
+      border: 1px solid #d4d4d4;
+      font-weight: normal;
       vertical-align: top;
     }
 
     td {
-      width: 60%;
+      width: 60% !important;
       color: #727270;
-      border: 1px solid #727270;
-      padding: 16px 10px;
+      border: 1px solid #d4d4d4;
+      padding: 12px 12px;
       vertical-align: top;
     }
   }
