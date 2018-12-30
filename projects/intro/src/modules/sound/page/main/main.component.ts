@@ -12,6 +12,7 @@ import { SimpleMDConverterPipe } from '../../../shared/md-convert.pipe';
 })
 export class SoundMainPageComponent extends BaseComponent {
   openedQNA = '';
+  currentLang = Lang.ENG;
 
   constructor(private translateService: TranslateService,
               private mdConvertPipe: SimpleMDConverterPipe) {
@@ -26,7 +27,30 @@ export class SoundMainPageComponent extends BaseComponent {
     }
   }
 
+  open() {
+    switch (this.currentLang) {
+      case Lang.ENG:
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+        break;
+      case Lang.CHN:
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+        break;
+      case Lang.KOR:
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+        break;
+      default:
+        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+    }
+  }
+
   ngOnInit() {
     super.ngOnInit();
+
+    this._sub.push(
+      this.translateService.onLangChange.subscribe(({lang}) => {
+        this.currentLang = lang;
+      })
+    );
+
   }
 }

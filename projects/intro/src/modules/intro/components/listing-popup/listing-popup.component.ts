@@ -3,6 +3,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../models/base.component';
 import { Lang } from '../../../../models/lang';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class ListingPopupComponent extends BaseComponent {
   };
 
   constructor(private translateService: TranslateService,
+              private router: Router,
               @Inject(PLATFORM_ID) private platformId: string) {
     super();
   }
@@ -53,19 +55,20 @@ export class ListingPopupComponent extends BaseComponent {
   }
 
   open() {
-    switch (this.currentLang) {
-      case Lang.ENG:
-        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
-        break;
-      case Lang.CHN:
-        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
-        break;
-      case Lang.KOR:
-        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
-        break;
-      default:
-        window.open('https://play.google.com/apps/testing/network.muzika.streaming');
-    }
+    this.router.navigateByUrl('/sound');
+    // switch (this.currentLang) {
+    //   case Lang.ENG:
+    //     window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+    //     break;
+    //   case Lang.CHN:
+    //     window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+    //     break;
+    //   case Lang.KOR:
+    //     window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+    //     break;
+    //   default:
+    //     window.open('https://play.google.com/apps/testing/network.muzika.streaming');
+    // }
   }
 
   close() {
