@@ -245,4 +245,6 @@ Muzika는 악보를 구매하거나 판매할 때 사용되는 화페이며, 이
 [3]: https://www.nucypher.com/whitepapers/english.pdf
 
 <!-- Links -->
-[ERC20]: https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+[ERC20]:  https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+
+
